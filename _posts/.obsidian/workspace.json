@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "가상화.md",
+                "file": "네트워크 엔지니어 로드맵.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "가상화"
+              "title": "네트워크 엔지니어 로드맵"
             }
           }
         ]
@@ -171,7 +171,7 @@
   },
   "active": "2e1e6f63c4c800a6",
   "lastOpenFiles": [
-    "무제 1.md",
-    "가상화.md"
+    "가상화.md",
+    "네트워크 엔지니어 로드맵.md"
   ]
 }
