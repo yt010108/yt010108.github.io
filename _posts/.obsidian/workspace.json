@@ -35,8 +35,7 @@
               "title": "무제"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -184,7 +183,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "990f36c9b1c8a070",
+  "active": "2e1e6f63c4c800a6",
   "lastOpenFiles": [
     "무제 1.md",
     "무제.md"
