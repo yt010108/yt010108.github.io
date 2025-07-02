@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "OSI 7 모델.md",
+                "file": "네트워크 엔지니어 로드맵.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "OSI 7 모델"
+              "title": "네트워크 엔지니어 로드맵"
             }
           }
         ]
@@ -180,14 +180,15 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "0bb9136b2e221d33",
+  "active": "c8072e61dd701203",
   "lastOpenFiles": [
-    "image/Pasted image 20250702145141.png",
+    "로드맵post",
+    "로드맵post/토플로지.md",
+    "로드맵post/OSI 7 모델.md",
     "네트워크 엔지니어 로드맵.md",
-    "OSI 7 모델.md",
-    "토플로지.md",
-    "가상화.md",
-    "네트워크.md",
+    "image/Pasted image 20250702145141.png",
+    "로드맵post/가상화.md",
+    "로드맵post/네트워크.md",
     "image",
     "image/Pasted image 20250701163434.png"
   ]
