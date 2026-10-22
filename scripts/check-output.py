@@ -59,7 +59,10 @@ def check():
     for file, doc in docs.items():
         rel = file.relative_to(PUBLIC).as_posix()
         url = config["base_url"].rstrip("/") + "/" + re.sub(r"index\.html$", "", rel)
-        if doc.headings != 1:
+        # The Sveltia CMS admin shell mounts its UI client-side, so its
+        # static HTML entrypoint does not contain a document heading.
+        # Continue checking its links and other output invariants.
+        if rel != "admin/index.html" and doc.headings != 1:
             errors.append(f"{rel}: expected one h1, found {doc.headings}")
         for reference in doc.references:
             if not reference:
