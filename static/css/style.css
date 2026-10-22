@@ -660,6 +660,8 @@ html.search-open { overflow: hidden; }
 }
 
 /* --- Journal / portfolio adaptation ------------------------------------- */
+.site-notice { padding: 0.65rem 1.15rem; border-bottom: 1px solid var(--accent-line); background: var(--accent-soft); color: var(--accent); text-align: center; font-size: var(--text-sm); }
+.site-notice p { margin: 0; }
 html { scroll-padding-top: 7rem; }
 body { overflow-wrap: anywhere; }
 h1, h2, h3, h4, h5, h6 { word-break: keep-all; }
