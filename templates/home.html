@@ -1,0 +1,61 @@
+{% include "header.html" %}
+<main id="main" class="home" tabindex="-1">
+  <section class="hero" aria-labelledby="hero-title">
+    <p class="hero__eyebrow">Security journal &amp; portfolio</p>
+    <h1 class="hero__title" id="hero-title">{{ site.title | e }}</h1>
+    <p class="hero__promise">{{ page.extra.tagline | e }}</p>
+    <div class="hero__intro">{{ content | safe }}</div>
+    <p class="hero__links"><a href="{{ base_url }}/about/">About me <span aria-hidden="true">↗</span></a><a href="https://github.com/yt010108">GitHub <span aria-hidden="true">↗</span></a></p>
+    <ul class="hero__facts">
+      <li><span>Research</span> 질문을 따라가는 분석</li>
+      <li><span>Notes</span> 다시 찾아볼 작은 기록</li>
+      <li><span>Projects</span> 직접 만든 도구와 실험</li>
+    </ul>
+  </section>
+
+  {% set posts = get_section(path="posts/_index.md") %}
+  {% set latest = posts.pages | sort_by("date", reverse=true) %}
+  <section class="releases-latest" aria-labelledby="latest-title">
+    <div class="section-head">
+      <h2 class="section-head__title" id="latest-title">Latest writing</h2>
+      <a class="section-head__link" href="{{ base_url }}/posts/">모든 글<span aria-hidden="true"> →</span></a>
+    </div>
+    <p class="lock-legend"><span class="lock-legend__item"><span class="lock-swatch lock-swatch--secure" aria-hidden="true"></span> 보안과 실험을 이어가는 기록</span></p>
+    <ol class="timeline">
+      {% for r in latest %}{% if loop.index <= 3 %}
+      {% include "partials/entry.html" %}
+      {% endif %}{% endfor %}
+    </ol>
+  </section>
+
+  <section class="home-section" aria-labelledby="projects-title">
+    <div class="section-head">
+      <h2 class="section-head__title" id="projects-title">Selected projects</h2>
+      <a class="section-head__link" href="{{ base_url }}/projects/">모든 프로젝트<span aria-hidden="true"> →</span></a>
+    </div>
+    {% set projects = get_section(path="projects/_index.md") %}
+    <div class="project-list">
+      {% for r in projects.pages %}
+      <article class="project-item">
+        <p class="project-item__category">{{ r.extra.category | e }}{% if r.extra.sample %}<span class="sample-label">예시</span>{% endif %}</p>
+        <h3><a href="{{ base_url }}{{ r.url }}">{{ r.title | e }} <span aria-hidden="true">↗</span></a></h3>
+        <p>{{ r.description | e }}</p>
+        <p class="project-item__stack">{{ r.extra.stack | join(' / ') | e }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="home-section" aria-labelledby="notes-title">
+    <div class="section-head">
+      <h2 class="section-head__title" id="notes-title">From the notebook</h2>
+      <a class="section-head__link" href="{{ base_url }}/notes/">모든 노트<span aria-hidden="true"> →</span></a>
+    </div>
+    <ul class="notebook-list">
+      <li><a href="{{ base_url }}/notes/network-roadmap/"><span>네트워크 엔지니어 로드맵</span><span aria-hidden="true">→</span></a><p>기초 개념부터 보안과 클라우드까지, 공부의 연결점.</p></li>
+      <li><a href="{{ base_url }}/notes/osi-model/"><span>OSI 7 모델</span><span aria-hidden="true">→</span></a><p>계층을 따라 정리하는 네트워크 통신의 흐름.</p></li>
+      <li><a href="{{ base_url }}/notes/dhcp/"><span>DHCP</span><span aria-hidden="true">→</span></a><p>요청과 응답으로 살펴보는 IP 주소 할당 과정.</p></li>
+    </ul>
+  </section>
+</main>
+{% include "footer.html" %}

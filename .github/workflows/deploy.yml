@@ -1,0 +1,59 @@
+name: Build and deploy Hwaro
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Install Hwaro 0.21.0
+        shell: bash
+        run: |
+          curl --fail --location --retry 3 \
+            https://github.com/hahwul/hwaro/releases/download/v0.21.0/hwaro-v0.21.0-linux-x86_64 \
+            --output "$RUNNER_TEMP/hwaro"
+          echo "002576fd135f9e7bc779e48d35e3ce10c3770b1c6a01cce6c685dd0819519846  $RUNNER_TEMP/hwaro" | sha256sum --check
+          chmod +x "$RUNNER_TEMP/hwaro"
+          echo "$RUNNER_TEMP" >> "$GITHUB_PATH"
+      - name: Diagnose source
+        run: hwaro doctor
+      - name: Build static site
+        run: hwaro build --minify --base-url "https://yt010108.github.io"
+      - name: Check internal content links
+        run: hwaro tool check-links --internal-only
+      - name: Check rendered pages and assets
+        run: python3 scripts/check-output.py
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: public
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

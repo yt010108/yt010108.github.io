@@ -1,0 +1,48 @@
+# Hwaro 0.21.0 · Tally adaptation for yt010108
+title = "yt010108"
+description = "보안을 공부하고, 실험하고, 발견한 내용을 기록합니다. 분석 글과 짧은 노트, 직접 만든 프로젝트를 모으는 공간."
+base_url = "https://yt010108.github.io"
+default_language = "ko"
+
+[languages.ko]
+language_name = "한국어"
+
+[plugins]
+processors = ["markdown"]
+
+[highlight]
+enabled = true
+theme = "github"
+use_cdn = true
+
+[search]
+enabled = true
+format = "fuse_json"
+fields = ["title", "content", "description", "tags"]
+filename = "search.json"
+
+[[taxonomies]]
+name = "tags"
+feed = false
+
+[pagination]
+enabled = false
+
+[sitemap]
+enabled = true
+
+[robots]
+enabled = true
+
+[feeds]
+enabled = true
+type = "rss"
+sections = ["posts", "notes"]
+
+[og]
+type = "article"
+twitter_card = "summary"
+
+[markdown]
+safe = false
+lazy_loading = true
