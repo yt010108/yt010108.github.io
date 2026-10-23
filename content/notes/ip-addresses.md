@@ -1,11 +1,8 @@
 +++
 title = "IP 주소"
 description = "IPv4와 IPv6, 공인·사설 IP, 주소 할당 방식에 관한 노트."
+toc = true
 tags = ["networking"]
-summary = "IPv4와 IPv6, 공인·사설 IP, 주소 할당 방식에 관한 노트."
-draft = false
-showToc = true
-weight = 3
 [extra]
 imported = true
 source = "로드맵post/IP주소.md"

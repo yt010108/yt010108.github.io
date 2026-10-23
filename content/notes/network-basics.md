@@ -1,11 +1,8 @@
 +++
 title = "네트워크"
 description = "컴퓨터 네트워크와 프로토콜의 기본 개념."
+toc = true
 tags = ["networking"]
-summary = "컴퓨터 네트워크와 프로토콜의 기본 개념."
-draft = false
-showToc = true
-weight = 1
 [extra]
 imported = true
 source = "로드맵post/네트워크.md"

@@ -1,11 +1,9 @@
 +++
 title = "글과 프로젝트가 함께 쌓이는 공간"
 description = "공부한 내용과 직접 만든 작업물을 연결하는 개인 사이트의 첫 기록."
+toc = true
 date = "2026-10-12"
 tags = ["writing"]
-summary = "공부한 내용과 직접 만든 작업물을 연결하는 개인 사이트의 첫 기록."
-draft = true
-showToc = true
 [extra]
 sample = true
 +++

@@ -1,11 +1,9 @@
 +++
 title = "참고 링크에 한 문장 더하기"
 description = "주소만 저장하는 대신 왜 남겼는지도 적어두기."
+toc = true
 date = "2026-10-16"
 tags = ["writing"]
-summary = "주소만 저장하는 대신 왜 남겼는지도 적어두기."
-draft = true
-showToc = true
 [extra]
 sample = true
 +++

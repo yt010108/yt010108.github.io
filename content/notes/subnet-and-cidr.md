@@ -1,15 +1,13 @@
 +++
 title = "서브넷 마스크와 CIDR 표기법"
 description = "네트워크와 호스트를 나누는 서브넷 마스크, CIDR 표기법 정리."
+toc = true
 tags = ["networking"]
-summary = "네트워크와 호스트를 나누는 서브넷 마스크, CIDR 표기법 정리."
-draft = false
-showToc = true
-weight = 4
 [extra]
 imported = true
 source = "로드맵post/서브넷 마스크와 CIDR 표기법.md"
 +++
+
 
 ---
 

@@ -1,11 +1,8 @@
 +++
 title = "가상화"
 description = "가상 머신, 하이퍼바이저, 컨테이너의 구조와 차이 정리."
+toc = true
 tags = ["networking"]
-summary = "가상 머신, 하이퍼바이저, 컨테이너의 구조와 차이 정리."
-draft = false
-showToc = true
-weight = 10
 [extra]
 imported = true
 source = "로드맵post/가상화.md"

@@ -1,0 +1,22 @@
+{% include "header.html" %}
+<main id="main" class="page" tabindex="-1">
+  <article class="prose-wrap">
+    {% if page.section %}<a class="back-link" href="{{ base_url }}/{{ page.section }}/"><span aria-hidden="true">← </span>{{ page.section | title | e }}</a>{% endif %}
+    <header class="page-head">
+      <div class="release__meta">
+        {% if page.section %}<span class="release__kind">{{ page.section | upper | e }}</span>{% endif %}
+        {% if page.date %}<time class="release__date" datetime="{{ page.date | date('%Y-%m-%d') }}">{{ page.date | date('%Y.%m.%d') }}</time>{% endif %}
+        {% if page.extra.imported %}<span class="sample-label">이전 기록</span>{% endif %}
+        {% if page.extra.sample %}<span class="sample-label">예시</span>{% endif %}
+      </div>
+      <h1 class="page-head__title">{{ page.title | e }}</h1>
+      {% if page.description %}<p class="page-head__lead">{{ page.description | e }}</p>{% endif %}
+      {% if page.tags %}<ul class="entry-tags article-tags" aria-label="태그">{% for t in page.tags %}<li><a href="{{ get_taxonomy_url(kind='tags', term=t) }}">{{ t | e }}</a></li>{% endfor %}</ul>{% endif %}
+    </header>
+    {% if page.extra.sample %}<aside class="sample-notice">화면 구성을 위한 예시 콘텐츠입니다. 실제 분석 결과나 개발 성과를 뜻하지 않습니다.</aside>{% endif %}
+    {% if toc %}<details class="article-toc" open><summary>이 글의 목차</summary>{{ toc | safe }}</details>{% endif %}
+    <div class="prose">{{ content | safe }}</div>
+    {% if page.section %}<footer class="article-end"><a href="{{ base_url }}/{{ page.section }}/">{{ page.section | title | e }} 목록으로<span aria-hidden="true"> →</span></a><a href="#main">맨 위로 ↑</a></footer>{% endif %}
+  </article>
+</main>
+{% include "footer.html" %}

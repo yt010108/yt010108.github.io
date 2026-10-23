@@ -1,11 +1,8 @@
 +++
 title = "FTP"
 description = "파일 전송 프로토콜의 동작 방식과 연결 구조를 정리한 노트."
+toc = true
 tags = ["networking"]
-summary = "파일 전송 프로토콜의 동작 방식과 연결 구조를 정리한 노트."
-draft = false
-showToc = true
-weight = 8
 [extra]
 imported = true
 source = "FTP.md"

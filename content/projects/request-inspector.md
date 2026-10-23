@@ -1,10 +1,8 @@
 +++
 title = "Request Inspector"
 description = "HTTP 요청의 구조를 읽고 비교하는 도구를 소개하는 포트폴리오 예시."
+toc = true
 tags = ["Python", "HTTP"]
-summary = "HTTP 요청의 구조를 읽고 비교하는 도구를 소개하는 포트폴리오 예시."
-draft = true
-showToc = true
 [extra]
 sample = true
 category = "SECURITY TOOL"

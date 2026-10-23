@@ -1,11 +1,8 @@
 +++
 title = "토폴로지"
 description = "스타형, 버스형, 링형, 망형 네트워크의 구조와 선택 기준."
+toc = true
 tags = ["networking"]
-summary = "스타형, 버스형, 링형, 망형 네트워크의 구조와 선택 기준."
-draft = false
-showToc = true
-weight = 6
 [extra]
 imported = true
 source = "로드맵post/토플로지.md"

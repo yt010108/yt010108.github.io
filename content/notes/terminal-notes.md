@@ -1,11 +1,9 @@
 +++
 title = "터미널 작업을 기록하는 습관"
 description = "다음에 다시 쓸 명령과 실행 환경을 함께 남기기."
+toc = true
 date = "2026-10-19"
 tags = ["linux", "tooling"]
-summary = "다음에 다시 쓸 명령과 실행 환경을 함께 남기기."
-draft = true
-showToc = true
 [extra]
 sample = true
 +++

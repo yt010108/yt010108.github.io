@@ -1,11 +1,8 @@
 +++
 title = "DHCP"
 description = "IP 주소를 할당받는 과정과 DHCP 메시지의 흐름 정리."
+toc = true
 tags = ["networking"]
-summary = "IP 주소를 할당받는 과정과 DHCP 메시지의 흐름 정리."
-draft = false
-showToc = true
-weight = 7
 [extra]
 imported = true
 source = "DHCP.md"

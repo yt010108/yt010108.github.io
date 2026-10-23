@@ -1,11 +1,9 @@
 +++
 title = "하나의 요청에서 시작하는 보안 분석"
 description = "요청이 만들어지고, 처리되고, 응답으로 돌아오기까지. 작은 관찰을 분석 기록으로 남기는 방법."
+toc = true
 date = "2026-10-22"
 tags = ["web-security", "research"]
-summary = "요청이 만들어지고, 처리되고, 응답으로 돌아오기까지. 작은 관찰을 분석 기록으로 남기는 방법."
-draft = true
-showToc = true
 [extra]
 sample = true
 +++

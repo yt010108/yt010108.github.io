@@ -1,11 +1,8 @@
 +++
 title = "네트워크 종류와 특징"
 description = "LAN, WAN, MAN, WLAN의 범위와 특징 비교."
+toc = true
 tags = ["networking"]
-summary = "LAN, WAN, MAN, WLAN의 범위와 특징 비교."
-draft = false
-showToc = true
-weight = 5
 [extra]
 imported = true
 source = "로드맵post/네트워크 종류와 특징(LAN, WAN, MAN, WLAN).md"

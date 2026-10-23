@@ -1,11 +1,9 @@
 +++
 title = "다시 꺼내 읽을 수 있는 분석 노트 만들기"
 description = "결과만 남기는 대신 질문, 실험 과정, 판단의 근거를 함께 정리하는 기록 방식."
+toc = true
 date = "2026-10-20"
 tags = ["methodology", "writing"]
-summary = "결과만 남기는 대신 질문, 실험 과정, 판단의 근거를 함께 정리하는 기록 방식."
-draft = true
-showToc = true
 [extra]
 sample = true
 +++

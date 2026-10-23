@@ -1,0 +1,12 @@
+{% include "header.html" %}
+<main id="main" class="section-page" tabindex="-1">
+  <a class="back-link" href="{{ base_url }}/tags/">← 모든 태그</a>
+  <header class="page-head"><p class="hero__eyebrow">Topic</p><h1 class="page-head__title">{{ taxonomy_term | e }}</h1></header>
+  {% set tax = get_taxonomy(kind="tags") %}
+  <ol class="timeline timeline--full">
+    {% for term in tax.items %}{% if term.name == taxonomy_term %}
+    {% for r in term.pages | sort_by("date", reverse=true) %}{% include "partials/entry.html" %}{% endfor %}
+    {% endif %}{% endfor %}
+  </ol>
+</main>
+{% include "footer.html" %}

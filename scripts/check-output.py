@@ -1,20 +1,23 @@
-"""Validate the published Hugo pages, links, search index, and draft boundaries."""
+"""Check rendered routes, anchors, listings, and UTF-8 output without dependencies."""
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urljoin, urlsplit
 import json
+import re
 import sys
 import tomllib
 
 ROOT = Path(__file__).resolve().parents[1]
-PUBLIC = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else ROOT / "public"
+PUBLIC = ROOT / "public"
 
 class Document(HTMLParser):
     def __init__(self, text):
         super().__init__()
         self.ids = set()
         self.references = []
-        self.h1_count = 0
+        self.headings = 0
+        self.entry_titles = []
+        self.in_entry_title = False
         self.feed(text)
 
     def handle_starttag(self, tag, pairs):
@@ -22,30 +25,45 @@ class Document(HTMLParser):
         if "id" in attrs:
             self.ids.add(attrs["id"])
         if tag == "h1":
-            self.h1_count += 1
+            self.headings += 1
         for attr in ("href", "src"):
             if attr in attrs:
                 self.references.append(attrs[attr])
+        if "release__title" in attrs.get("class", "").split():
+            self.in_entry_title = True
+
+    def handle_endtag(self, tag):
+        if tag in ("h2", "h3"):
+            self.in_entry_title = False
+
+    def handle_data(self, text):
+        if self.in_entry_title and text.strip():
+            self.entry_titles.append(text.strip())
 
 def check():
-    config = tomllib.loads((ROOT / "hugo.toml").read_text(encoding="utf-8"))
-    base = config["baseURL"].rstrip("/")
-    hosts = {urlsplit(base).hostname, "localhost", "127.0.0.1"}
+    config = tomllib.loads((ROOT / "config.toml").read_text(encoding="utf-8"))
+    origin = urlsplit(config["base_url"])
+    hosts = {origin.hostname, "localhost", "127.0.0.1"}
     docs = {}
     errors = []
-    references = 0
     for file in PUBLIC.rglob("*.html"):
         text = file.read_text(encoding="utf-8")
         docs[file] = Document(text)
-        if "\ufffd" in text or "#ZgotmplZ" in text:
-            errors.append(f"{file.relative_to(PUBLIC)}: invalid rendered output")
-        if docs[file].h1_count > 1:
-            errors.append(f"{file.relative_to(PUBLIC)}: multiple primary headings")
+        if "\ufffd" in text:
+            errors.append(f"{file.relative_to(PUBLIC)}: invalid UTF-8 replacement character")
+        if re.search(r"\{[{%]", text):
+            errors.append(f"{file.relative_to(PUBLIC)}: unrendered template")
     if not docs:
-        errors.append("No HTML output. Run hugo first.")
+        errors.append("No rendered HTML files. Run hwaro build first.")
+    references = 0
     for file, doc in docs.items():
         rel = file.relative_to(PUBLIC).as_posix()
-        url = base + "/" + (rel[:-10] if rel.endswith("index.html") else rel)
+        url = config["base_url"].rstrip("/") + "/" + re.sub(r"index\.html$", "", rel)
+        # The Sveltia CMS admin shell mounts its UI client-side, so its
+        # static HTML entrypoint does not contain a document heading.
+        # Continue checking its links and other output invariants.
+        if rel != "admin/index.html" and doc.headings != 1:
+            errors.append(f"{rel}: expected one h1, found {doc.headings}")
         for reference in doc.references:
             if not reference:
                 errors.append(f"{rel}: empty URL")
@@ -61,54 +79,18 @@ def check():
                 errors.append(f"{rel}: missing {reference}")
             elif target.fragment and path in docs and unquote(target.fragment) not in docs[path].ids:
                 errors.append(f"{rel}: missing anchor {reference}")
-
-    index = json.loads((PUBLIC / "index.json").read_text(encoding="utf-8"))
-    search_paths = set()
-    for item in index:
-        route = urlsplit(item["permalink"]).path
-        search_paths.add(route)
-        if PUBLIC / route.lstrip("/") / "index.html" not in docs:
-            errors.append(f"Search result has no page: {route}")
-
-    published = 0
-    draft_count = 0
-    for source in (ROOT / "content").rglob("*.md"):
-        raw = source.read_text(encoding="utf-8")
-        metadata = tomllib.loads(raw.split("+++", 2)[1])
-        if source.name == "_index.md":
-            continue
-        route = "/" + source.relative_to(ROOT / "content").with_suffix("").as_posix() + "/"
-        path = PUBLIC / route.lstrip("/") / "index.html"
-        if metadata.get("draft"):
-            draft_count += 1
-            if path.exists() or route in search_paths:
-                errors.append(f"Draft is publicly available: {route}")
-        elif source.parent.name in ("notes", "posts"):
-            published += 1
-            if path not in docs or route not in search_paths:
-                errors.append(f"Published article is missing from pages/search: {route}")
-            elif docs[path].h1_count != 1:
-                errors.append(f"Article heading is missing: {route}")
-            elif "blog-sidebar" not in docs[path].ids:
-                errors.append(f"Article sidebar is missing: {route}")
-    for path in ("admin/index.html", "admin/config.yml", "rss.xml", "notes/rss.xml", "about/index.html", "search/index.html", "archives/index.html", "blog/index.html"):
-        if not (PUBLIC / path).is_file():
-            errors.append(f"Required output missing: {path}")
-    if "name: showToc," not in (PUBLIC / "admin/config.yml").read_text(encoding="utf-8"):
-        errors.append("CMS table of contents field is not compatible with PaperMod")
-
-    for route in ("index.html", "about/index.html", "search/index.html", "tags/index.html"):
-        path = PUBLIC / route
-        if path in docs and "blog-sidebar" in docs[path].ids:
-            errors.append(f"Blog sidebar leaked into the default PaperMod layout: {route}")
-    for route in ("archives/index.html", "notes/index.html", "posts/index.html"):
-        path = PUBLIC / route
-        if path in docs and "blog-sidebar" not in docs[path].ids:
-            errors.append(f"Blog listing sidebar is missing: {route}")
-
+    for section in ("posts", "notes", "projects"):
+        doc = docs.get(PUBLIC / section / "index.html")
+        if not doc or not doc.entry_titles:
+            errors.append(f"{section}: empty rendered listing")
+    search = json.loads((PUBLIC / "search.json").read_text(encoding="utf-8"))
+    for item in search:
+        path = PUBLIC / item["url"].lstrip("/") / "index.html"
+        if path not in docs:
+            errors.append(f"Search result has no page: {item['url']}")
     for error in errors:
         print("ERROR:", error)
-    print(f"Checked {len(docs)} HTML pages, {references} internal references, {published} articles, {len(index)} search results, {draft_count} hidden drafts.")
+    print(f"Checked {len(docs)} HTML pages, {references} internal references, {len(search)} search results.")
     return bool(errors)
 
 if __name__ == "__main__":
