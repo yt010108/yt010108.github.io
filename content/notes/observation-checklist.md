@@ -1,9 +1,11 @@
 +++
 title = "실험 전에 확인하는 작은 체크리스트"
 description = "환경, 버전, 입력, 예상 동작을 기록해 두기."
-toc = true
 date = "2026-10-22"
 tags = ["methodology"]
+summary = "환경, 버전, 입력, 예상 동작을 기록해 두기."
+draft = true
+showToc = true
 [extra]
 sample = true
 +++

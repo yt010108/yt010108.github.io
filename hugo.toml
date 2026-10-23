@@ -1,0 +1,81 @@
+baseURL = "https://yt010108.github.io/"
+title = "yt010108"
+locale = "ko-KR"
+defaultContentLanguage = "ko"
+theme = "PaperMod"
+hasCJKLanguage = true
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+summaryLength = 60
+
+[pagination]
+pagerSize = 6
+
+[taxonomies]
+tag = "tags"
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+
+[outputFormats.RSS]
+baseName = "rss"
+
+[params]
+env = "production"
+description = "보안과 네트워크를 공부하며 남긴 기록."
+author = "yt010108"
+DateFormat = "2006.01.02"
+mainSections = ["posts", "notes"]
+defaultTheme = "auto"
+disableThemeToggle = false
+disableSpecial1stPost = true
+ShowReadingTime = true
+ShowCodeCopyButtons = true
+ShowPostNavLinks = true
+ShowBreadCrumbs = true
+ShowShareButtons = false
+ShowWordCount = false
+ShowRssButtonInSectionTermList = true
+ShowToc = true
+TocOpen = false
+comments = false
+
+[params.assets]
+favicon = "/favicon.svg"
+favicon16x16 = "/favicon.svg"
+favicon32x32 = "/favicon.svg"
+apple_touch_icon = "/favicon.svg"
+safari_pinned_tab = "/favicon.svg"
+
+[params.fuseOpts]
+isCaseSensitive = false
+shouldSort = true
+threshold = 0.3
+ignoreLocation = true
+minMatchCharLength = 1
+keys = ["title", "summary", "content"]
+
+[[menu.main]]
+identifier = "blog"
+name = "글"
+url = "/"
+weight = 10
+
+[[menu.main]]
+identifier = "search"
+name = "검색"
+url = "/search/"
+weight = 20
+
+[[menu.main]]
+identifier = "about"
+name = "About me"
+url = "/about/"
+weight = 30
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.highlight]
+noClasses = false

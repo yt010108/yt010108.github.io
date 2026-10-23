@@ -1,9 +1,11 @@
 +++
 title = "반복되는 작업을 작은 도구로 옮기기"
 description = "수동으로 하던 작업을 정리하고, 필요한 기능만 담은 도구를 설계하는 과정."
-toc = true
 date = "2026-10-18"
 tags = ["tooling", "methodology"]
+summary = "수동으로 하던 작업을 정리하고, 필요한 기능만 담은 도구를 설계하는 과정."
+draft = true
+showToc = true
 [extra]
 sample = true
 +++

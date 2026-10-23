@@ -1,8 +1,11 @@
 +++
 title = "OSI 7 모델"
 description = "물리 계층부터 응용 계층까지 네트워크 통신의 흐름 정리."
-toc = true
 tags = ["networking"]
+summary = "물리 계층부터 응용 계층까지 네트워크 통신의 흐름 정리."
+draft = false
+showToc = true
+weight = 2
 [extra]
 imported = true
 source = "로드맵post/OSI 7 모델.md"

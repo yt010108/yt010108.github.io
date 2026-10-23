@@ -1,13 +1,15 @@
 +++
 title = "네트워크 엔지니어 로드맵"
 description = "네트워크 기본 개념부터 보안, 운영, 클라우드까지 이어지는 학습 목차."
-toc = true
 tags = ["networking"]
+summary = "네트워크 기본 개념부터 보안, 운영, 클라우드까지 이어지는 학습 목차."
+draft = false
+showToc = true
+weight = 11
 [extra]
 imported = true
 source = "네트워크 엔지니어 로드맵.md"
 +++
-
 
 [https://velog.io/@kyu123/네트워크-엔지니어-로드맵-단계별-학습-가이드](https://velog.io/@kyu123/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4-%EB%A1%9C%EB%93%9C%EB%A7%B5-%EB%8B%A8%EA%B3%84%EB%B3%84-%ED%95%99%EC%8A%B5-%EA%B0%80%EC%9D%B4%EB%93%9C)
 

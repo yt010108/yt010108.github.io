@@ -1,8 +1,10 @@
 +++
 title = "Research Notebook"
 description = "흩어진 분석 메모와 참고 자료를 연결하는 기록 프로젝트 예시."
-toc = true
 tags = ["Markdown", "JavaScript"]
+summary = "흩어진 분석 메모와 참고 자료를 연결하는 기록 프로젝트 예시."
+draft = true
+showToc = true
 [extra]
 sample = true
 category = "PERSONAL EXPERIMENT"

@@ -1,8 +1,11 @@
 +++
 title = "네트워크 설정"
 description = "네트워크 토폴로지와 장비 설정을 공부하며 남긴 실습 기록."
-toc = true
 tags = ["networking"]
+summary = "네트워크 토폴로지와 장비 설정을 공부하며 남긴 실습 기록."
+draft = false
+showToc = true
+weight = 9
 [extra]
 imported = true
 source = "네트워크 설정.md"

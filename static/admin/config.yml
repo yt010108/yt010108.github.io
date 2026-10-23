@@ -8,7 +8,7 @@ backend:
   branch: main
   auth_methods: [token]
 
-# Hwaro copies static/ to the site root on build.
+# Hugo copies static/ to the site root on build.
 media_folder: /static/images
 public_folder: /images
 
@@ -23,9 +23,10 @@ collections:
     fields:
       - { name: title, label: 제목, widget: string }
       - { name: description, label: 설명, widget: text, required: false }
+      - { name: summary, label: 목록 요약, widget: text, required: false }
       - { name: date, label: 작성일, widget: datetime, type: date }
       - { name: tags, label: 태그, widget: list, required: false }
-      - { name: toc, label: 목차 표시, widget: boolean, default: true, required: false }
+      - { name: showToc, label: 목차 표시, widget: boolean, default: true, required: false }
       - { name: draft, label: 초안, widget: boolean, default: false, required: false }
       # Preserve the existing [extra] table used by the site's sample posts.
       - name: extra

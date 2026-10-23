@@ -1,4 +1,4 @@
-name: Build and deploy Hwaro
+name: Build and deploy Hugo
 
 on:
   push:
@@ -16,25 +16,24 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Install Hwaro 0.21.0
+        with:
+          submodules: recursive
+      - name: Install Hugo 0.168.0 extended
         shell: bash
         run: |
+          mkdir -p "$RUNNER_TEMP/hugo-bin"
           curl --fail --location --retry 3 \
-            https://github.com/hahwul/hwaro/releases/download/v0.21.0/hwaro-v0.21.0-linux-x86_64 \
-            --output "$RUNNER_TEMP/hwaro"
-          echo "002576fd135f9e7bc779e48d35e3ce10c3770b1c6a01cce6c685dd0819519846  $RUNNER_TEMP/hwaro" | sha256sum --check
-          chmod +x "$RUNNER_TEMP/hwaro"
-          echo "$RUNNER_TEMP" >> "$GITHUB_PATH"
-      - name: Diagnose source
-        run: hwaro doctor
-      - name: Build static site
-        run: hwaro build --minify --base-url "https://yt010108.github.io"
-      - name: Check internal content links
-        run: hwaro tool check-links --internal-only
+            https://github.com/gohugoio/hugo/releases/download/v0.168.0/hugo_extended_0.168.0_linux-amd64.tar.gz \
+            --output "$RUNNER_TEMP/hugo.tar.gz"
+          echo "787f100057328824f38c6ad7c87ff10d6451ae0a7bc39cedaad0dd2bcde17e53  $RUNNER_TEMP/hugo.tar.gz" | sha256sum --check
+          tar -xzf "$RUNNER_TEMP/hugo.tar.gz" -C "$RUNNER_TEMP/hugo-bin" hugo
+          echo "$RUNNER_TEMP/hugo-bin" >> "$GITHUB_PATH"
+      - name: Build PaperMod site
+        run: hugo --minify --baseURL https://yt010108.github.io/
       - name: Check rendered pages and assets
         run: python3 scripts/check-output.py
       - name: Upload Pages artifact
@@ -48,7 +47,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: build
     permissions:
       pages: write

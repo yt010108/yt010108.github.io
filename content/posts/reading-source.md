@@ -1,9 +1,11 @@
 +++
 title = "소스 코드를 읽으며 남겨두는 질문들"
 description = "전체를 한 번에 이해하려 하기보다, 관심 있는 동작에서 출발하는 코드 읽기 메모."
-toc = true
 date = "2026-10-15"
 tags = ["research", "methodology"]
+summary = "전체를 한 번에 이해하려 하기보다, 관심 있는 동작에서 출발하는 코드 읽기 메모."
+draft = true
+showToc = true
 [extra]
 sample = true
 +++
