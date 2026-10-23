@@ -1,4 +1,4 @@
-name: Build and deploy Hwaro
+name: Deploy static security blog
 
 on:
   push:
@@ -16,39 +16,31 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Install Hwaro 0.21.0
-        shell: bash
+      - name: Check JavaScript syntax
         run: |
-          curl --fail --location --retry 3 \
-            https://github.com/hahwul/hwaro/releases/download/v0.21.0/hwaro-v0.21.0-linux-x86_64 \
-            --output "$RUNNER_TEMP/hwaro"
-          echo "002576fd135f9e7bc779e48d35e3ce10c3770b1c6a01cce6c685dd0819519846  $RUNNER_TEMP/hwaro" | sha256sum --check
-          chmod +x "$RUNNER_TEMP/hwaro"
-          echo "$RUNNER_TEMP" >> "$GITHUB_PATH"
-      - name: Diagnose source
-        run: hwaro doctor
-      - name: Build static site
-        run: hwaro build --minify --base-url "https://yt010108.github.io"
-      - name: Check internal content links
-        run: hwaro tool check-links --internal-only
-      - name: Check rendered pages and assets
-        run: python3 scripts/check-output.py
+          node --check app.js
+          node --check content.js
+      - name: Prepare static site
+        run: |
+          mkdir -p _site
+          cp index.html 404.html styles.css app.js content.js .nojekyll _site/
+          cp -R assets _site/assets
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v4
         with:
-          path: public
+          path: _site
 
   deploy:
     if: github.event_name != 'pull_request'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: build
     permissions:
       pages: write
