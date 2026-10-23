@@ -10,7 +10,7 @@ buildFuture = false
 summaryLength = 60
 
 [pagination]
-pagerSize = 6
+pagerSize = 3
 
 [taxonomies]
 tag = "tags"
@@ -25,21 +25,38 @@ baseName = "rss"
 env = "production"
 description = "보안과 네트워크를 공부하며 남긴 기록."
 author = "yt010108"
-DateFormat = "2006.01.02"
 mainSections = ["posts", "notes"]
 defaultTheme = "auto"
 disableThemeToggle = false
-disableSpecial1stPost = true
 ShowReadingTime = true
 ShowCodeCopyButtons = true
 ShowPostNavLinks = true
 ShowBreadCrumbs = true
-ShowShareButtons = false
+ShowShareButtons = true
 ShowWordCount = false
 ShowRssButtonInSectionTermList = true
+ShowPageNums = true
 ShowToc = true
 TocOpen = false
 comments = false
+
+[params.homeInfoParams]
+Title = "yt010108"
+Content = """
+보안과 네트워크를 공부하며 남긴 기록.
+
+지금 수정중입니다
+"""
+
+[[params.socialIcons]]
+name = "github"
+title = "GitHub"
+url = "https://github.com/yt010108"
+
+[[params.socialIcons]]
+name = "rss"
+title = "RSS"
+url = "/rss.xml"
 
 [params.assets]
 favicon = "/favicon.svg"
@@ -57,22 +74,28 @@ minMatchCharLength = 1
 keys = ["title", "summary", "content"]
 
 [[menu.main]]
-identifier = "blog"
-name = "글"
-url = "/"
+identifier = "about"
+name = "About"
+url = "/about/"
 weight = 10
 
 [[menu.main]]
-identifier = "search"
-name = "검색"
-url = "/search/"
+identifier = "notes"
+name = "Archive"
+url = "/notes/"
 weight = 20
 
 [[menu.main]]
-identifier = "about"
-name = "About me"
-url = "/about/"
+identifier = "search"
+name = "Search"
+url = "/search/"
 weight = 30
+
+[[menu.main]]
+identifier = "tags"
+name = "Tags"
+url = "/tags/"
+weight = 40
 
 [markup.goldmark.renderer]
 unsafe = true

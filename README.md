@@ -2,7 +2,9 @@
 
 [블로그](https://yt010108.github.io/) · [PaperMod 공식 문서](https://github.com/adityatelange/hugo-PaperMod/wiki/)
 
-Hugo 0.168.0 extended와 공식 PaperMod 테마를 사용합니다. 테마는 `themes/PaperMod` Git submodule로 버전을 고정했고, 기본 글 목록·테마 전환·검색·목차·코드 복사를 사용합니다.
+Hugo 0.168.0 extended와 공식 PaperMod 테마를 사용합니다. 테마는 `themes/PaperMod` Git submodule로 버전을 고정했습니다. [공식 데모](https://adityatelange.github.io/hugo-PaperMod/)의 Home-Info 모드와 페이지당 글 3개를 사용하며, 테마의 CSS와 레이아웃은 수정하지 않습니다. 상단 소개·GitHub/RSS 아이콘·메뉴는 `hugo.toml`에서 설정합니다.
+
+원래 게시일이 없는 기존 노트도 볼 수 있도록 Archive 메뉴는 테마의 기본 노트 목록(`/notes/`)으로 연결합니다. 연도별 아카이브를 위해 임의의 게시일을 넣지 않습니다. 테마 전환·검색·목차·코드 복사·공유 버튼은 PaperMod 기본 기능을 사용합니다.
 
 ## 실행
 
