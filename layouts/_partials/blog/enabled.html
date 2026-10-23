@@ -1,0 +1,4 @@
+{{- $sections := slice "notes" "posts" -}}
+{{- $article := and .IsPage (in $sections .Type) -}}
+{{- $listing := and .IsSection (or (in $sections .Section) (eq .Layout "blog")) -}}
+{{- return (or $article $listing) -}}

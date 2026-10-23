@@ -89,11 +89,22 @@ def check():
                 errors.append(f"Published article is missing from pages/search: {route}")
             elif docs[path].h1_count != 1:
                 errors.append(f"Article heading is missing: {route}")
-    for path in ("admin/index.html", "admin/config.yml", "rss.xml", "notes/rss.xml", "about/index.html", "search/index.html"):
+            elif "blog-sidebar" not in docs[path].ids:
+                errors.append(f"Article sidebar is missing: {route}")
+    for path in ("admin/index.html", "admin/config.yml", "rss.xml", "notes/rss.xml", "about/index.html", "search/index.html", "archives/index.html", "blog/index.html"):
         if not (PUBLIC / path).is_file():
             errors.append(f"Required output missing: {path}")
     if "name: showToc," not in (PUBLIC / "admin/config.yml").read_text(encoding="utf-8"):
         errors.append("CMS table of contents field is not compatible with PaperMod")
+
+    for route in ("index.html", "about/index.html", "search/index.html", "tags/index.html"):
+        path = PUBLIC / route
+        if path in docs and "blog-sidebar" in docs[path].ids:
+            errors.append(f"Blog sidebar leaked into the default PaperMod layout: {route}")
+    for route in ("archives/index.html", "notes/index.html", "posts/index.html"):
+        path = PUBLIC / route
+        if path in docs and "blog-sidebar" not in docs[path].ids:
+            errors.append(f"Blog listing sidebar is missing: {route}")
 
     for error in errors:
         print("ERROR:", error)

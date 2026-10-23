@@ -2,9 +2,11 @@
 
 [블로그](https://yt010108.github.io/) · [PaperMod 공식 문서](https://github.com/adityatelange/hugo-PaperMod/wiki/)
 
-Hugo 0.168.0 extended와 공식 PaperMod 테마를 사용합니다. 테마는 `themes/PaperMod` Git submodule로 버전을 고정했습니다. [공식 데모](https://adityatelange.github.io/hugo-PaperMod/)의 Home-Info 모드와 페이지당 글 3개를 사용하며, 테마의 CSS와 레이아웃은 수정하지 않습니다. 상단 소개·GitHub/RSS 아이콘·메뉴는 `hugo.toml`에서 설정합니다.
+Hugo 0.168.0 extended와 공식 PaperMod 테마를 사용합니다. 테마는 `themes/PaperMod` Git submodule로 버전을 고정했습니다. 홈은 [공식 데모](https://adityatelange.github.io/hugo-PaperMod/)의 Home-Info 모드와 페이지당 글 3개를 유지합니다. 상단 소개·GitHub/RSS 아이콘·메뉴는 `hugo.toml`에서 설정합니다.
 
-원래 게시일이 없는 기존 노트도 볼 수 있도록 Archive 메뉴는 테마의 기본 노트 목록(`/notes/`)으로 연결합니다. 연도별 아카이브를 위해 임의의 게시일을 넣지 않습니다. 테마 전환·검색·목차·코드 복사·공유 버튼은 PaperMod 기본 기능을 사용합니다.
+Archive 메뉴(`/archives/`, `/blog/`에서도 접근)는 공개한 글과 노트를 모아서 보여줍니다. 기존 `/notes/`와 `/posts/`의 글 목록·상세에 고정 사이드바를 적용하고, 상세에는 가운데 제목 영역과 오른쪽 목차를 표시합니다. 사이드바는 독립적으로 스크롤되며 스크롤바는 숨깁니다. 작은 화면에서는 메뉴 버튼으로 사이드바를 열고, 목차를 본문 위에서 펼칠 수 있습니다. About·Search·Tags와 홈은 기존 PaperMod 레이아웃을 사용합니다.
+
+이 구성은 프로젝트의 `layouts/`와 `assets/css/blog-shell.css`, `assets/js/blog-shell.js`로 확장합니다. 원본 테마 submodule은 수정하지 않습니다. 블로그 CSS·JavaScript는 해당 화면에서만 로드합니다. 프로필은 `hugo.toml`의 `params.sidebar`에서 설정하며, `avatar`에 이미지 주소를 지정하기 전에는 `y`를 표시합니다. 기존 글과 원래 게시일이 없는 노트에 임의의 날짜를 추가하지 않습니다.
 
 ## 실행
 

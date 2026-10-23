@@ -1,0 +1,4 @@
+{{- if partial "blog/enabled.html" . }}
+{{- $style := resources.Get "css/blog-shell.css" | resources.Minify | fingerprint }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous">
+{{- end }}

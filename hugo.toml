@@ -40,6 +40,10 @@ ShowToc = true
 TocOpen = false
 comments = false
 
+[params.sidebar]
+avatarText = "y"
+description = "보안과 네트워크를 공부하는 기록"
+
 [params.homeInfoParams]
 Title = "yt010108"
 Content = """
@@ -80,9 +84,9 @@ url = "/about/"
 weight = 10
 
 [[menu.main]]
-identifier = "notes"
+identifier = "archives"
 name = "Archive"
-url = "/notes/"
+url = "/archives/"
 weight = 20
 
 [[menu.main]]
@@ -102,3 +106,7 @@ unsafe = true
 
 [markup.highlight]
 noClasses = false
+
+[markup.tableOfContents]
+startLevel = 2
+endLevel = 6

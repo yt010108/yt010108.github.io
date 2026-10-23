@@ -1,0 +1,35 @@
+{{- $current := . -}}
+<aside class="blog-sidebar" id="blog-sidebar" aria-label="블로그 사이드바">
+    <button class="blog-icon-button blog-sidebar-close" type="button" aria-label="블로그 메뉴 닫기">{{ partial "blog/icon.html" "close" }}</button>
+    <div class="blog-identity">
+        <a class="blog-avatar" href="{{ "" | absLangURL }}" aria-label="{{ site.Title }} 홈">
+            {{- with site.Params.sidebar.avatar }}<img src="{{ . | relURL }}" alt="{{ site.Title }} 프로필" width="88" height="88">{{- else }}{{ site.Params.sidebar.avatarText | default "y" }}{{ end -}}
+        </a>
+        <a class="blog-name" href="{{ "" | absLangURL }}">{{ site.Title }}</a>
+        <p class="blog-bio">{{ site.Params.sidebar.description | default site.Params.description }}</p>
+    </div>
+    <nav class="blog-sidebar-nav" aria-label="블로그 메뉴">
+        <a href="{{ "" | absLangURL }}">{{ partial "blog/icon.html" "home" }}<span>Home</span></a>
+        {{- range site.Menus.main }}
+        {{- $active := or (eq $current.RelPermalink (.URL | relLangURL)) (and $current.IsSection (eq .Identifier $current.Section)) }}
+        <a href="{{ .URL | absLangURL }}"{{ if $active }} aria-current="page"{{ end }}>{{ partial "blog/icon.html" .Identifier }}<span>{{ .Name }}</span></a>
+        {{- end }}
+    </nav>
+    <div class="blog-sidebar-divider"></div>
+    <p class="blog-sidebar-label">분류</p>
+    <nav class="blog-sidebar-nav" aria-label="글 분류">
+        {{- range slice (dict "section" "notes" "name" "Network") (dict "section" "posts" "name" "Blog") }}
+        {{- $name := .name }}
+        {{- $section := site.GetPage .section }}
+        {{- with $section }}
+        {{- if gt (len .RegularPagesRecursive) 0 }}
+        <a href="{{ .RelPermalink }}"{{ if eq $current.Section .Section }} aria-current="page"{{ end }}>{{ partial "blog/icon.html" "network" }}<span>{{ $name }}</span><span class="blog-count">{{ len .RegularPagesRecursive }}</span></a>
+        {{- end }}
+        {{- end }}
+        {{- end }}
+    </nav>
+    <div class="blog-sidebar-footer">
+        {{ partial "social_icons.html" (dict "align" "") }}
+        <p>&copy; {{ site.Title }}</p>
+    </div>
+</aside>

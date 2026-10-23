@@ -1,1 +1,5 @@
 <script src="{{ "js/legacy-links.js" | relURL }}" defer></script>
+{{- if partial "blog/enabled.html" . }}
+{{- $script := resources.Get "js/blog-shell.js" | resources.Minify | fingerprint }}
+<script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" crossorigin="anonymous" defer></script>
+{{- end }}
