@@ -2,9 +2,12 @@
 body.blog-shell {
   --blog-edge: 20px;
   --blog-sidebar-width: 188px;
-  --blog-gap: 24px;
+  --blog-gap: 40px;
+  --blog-content-width: 720px;
+  --blog-layout-start: max(var(--blog-edge), calc((100% - var(--blog-sidebar-width) - var(--blog-gap) - var(--blog-content-width)) / 2));
   background: var(--code-bg);
 }
+body.blog-shell-with-toc { --blog-content-width: 952px; }
 [data-theme="dark"] body.blog-shell { background: var(--theme); }
 .blog-shell .blog-skip-link { position: fixed; top: -100px; left: 16px; padding: 10px 16px; background: var(--entry); border: 1px solid var(--border); z-index: 120; }
 .blog-shell .blog-skip-link:focus { top: 12px; }
@@ -12,7 +15,7 @@ body.blog-shell {
   position: fixed;
   top: var(--blog-edge);
   bottom: var(--blog-edge);
-  left: var(--blog-edge);
+  left: var(--blog-layout-start);
   width: var(--blog-sidebar-width);
   display: flex;
   flex-direction: column;
@@ -47,8 +50,8 @@ body.blog-shell {
 .blog-shell .blog-sidebar-footer .social-icons a { display: inline-flex; padding: 6px 0; }
 .blog-shell .blog-sidebar-footer .social-icons svg { width: 20px; height: 20px; }
 .blog-shell .blog-sidebar-footer p { font-size: 11px; margin: 12px 0 0; }
-.blog-shell .blog-workspace { margin-inline-start: calc(var(--blog-edge) + var(--blog-sidebar-width) + var(--blog-gap)); padding: 0 var(--blog-edge) var(--blog-edge) 0; }
-.blog-shell .blog-toolbar { display: flex; align-items: center; gap: 12px; min-height: 64px; max-width: 1120px; margin: 0 auto; }
+.blog-shell .blog-workspace { margin-inline-start: calc(var(--blog-layout-start) + var(--blog-sidebar-width) + var(--blog-gap)); margin-inline-end: var(--blog-layout-start); padding: 0 0 var(--blog-edge); }
+.blog-shell .blog-toolbar { display: flex; align-items: center; gap: 12px; min-height: 64px; max-width: var(--blog-content-width); margin: 0 auto; }
 .blog-shell .blog-breadcrumbs { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; color: var(--secondary); font-size: 12px; line-height: 1.6; }
 .blog-shell .blog-breadcrumbs a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .blog-shell .blog-breadcrumbs > span:last-child { color: var(--primary); }
@@ -58,7 +61,7 @@ body.blog-shell {
 .blog-shell .blog-icon-button svg { width: 18px; height: 18px; }
 .blog-shell .blog-menu-toggle, .blog-shell .blog-sidebar-close, .blog-shell .blog-backdrop { display: none; }
 .blog-shell .blog-backdrop[hidden] { display: none; }
-.blog-shell .main { width: 100%; max-width: 1120px; min-height: calc(100vh - 144px); margin: 0 auto; padding: 0; }
+.blog-shell .main { width: 100%; max-width: var(--blog-content-width); min-height: calc(100vh - 144px); margin: 0 auto; padding: 0; }
 .blog-shell .blog-list { max-width: 720px; margin: 30px auto 0; }
 .blog-shell .blog-list .page-header { margin: 0 0 32px; }
 .blog-shell .blog-list .post-description { color: var(--secondary); font-size: 15px; }
@@ -86,13 +89,13 @@ body.blog-shell {
 .blog-shell .blog-toc nav a { display: block; padding: 7px 8px; border-radius: 5px; color: var(--secondary); font-size: 12px; line-height: 1.65; overflow-wrap: anywhere; text-decoration: none; }
 .blog-shell .blog-toc nav a:hover, .blog-shell .blog-toc nav a[aria-current="location"] { color: var(--primary); background: var(--code-bg); }
 .blog-shell .blog-toc nav a[aria-current="location"] { font-weight: 600; }
-.blog-shell .footer { max-width: 1120px; margin: 24px auto 0; }
+.blog-shell .footer { max-width: var(--blog-content-width); margin: 24px auto 0; }
 .blog-shell .blog-sidebar a:focus-visible, .blog-shell .blog-icon-button:focus-visible { outline: 2px solid var(--secondary); outline-offset: 3px; }
 @media (max-width: 1100px) {
   .blog-shell .blog-article-grid { grid-template-columns: minmax(0, 1fr) 170px; gap: 24px; }
 }
 @media (max-width: 840px) {
-  body.blog-shell { --blog-sidebar-width: 174px; --blog-gap: 20px; }
+  body.blog-shell { --blog-sidebar-width: 174px; --blog-gap: 24px; }
   .blog-shell .blog-article-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "toc" "reading"; gap: 24px; }
   .blog-shell .blog-toc { position: static; max-height: none; overflow: visible; }
   .blog-shell .blog-toc .toc { border-radius: 8px; box-shadow: none; padding: 13px 15px; }
