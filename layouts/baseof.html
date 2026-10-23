@@ -19,9 +19,6 @@
 {{- $classes = $classes | append "list" }}
 {{- end }}
 {{- if $blogShell }}{{ $classes = $classes | append "blog-shell" }}{{ end }}
-{{- if and $blogShell .IsPage (.Param "ShowToc") (gt (len (findRE "<h[2-6][[:space:]>]" .Content)) 0) }}
-{{- $classes = $classes | append "blog-shell-with-toc" }}
-{{- end }}
 <body{{ with $classes }} class="{{ delimit . " " }}"{{ end }} id="top">
     {{- if $blogShell }}
     <a class="blog-skip-link" href="#blog-main">본문으로 건너뛰기</a>
