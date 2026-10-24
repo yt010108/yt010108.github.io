@@ -9,7 +9,7 @@
   };
 
   function applyTheme(value) {
-    const theme = value === "light" ? "light" : "dark";
+    const theme = value === "dark" ? "dark" : "light";
     root.dataset.theme = theme;
     document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "light" ? "#ffffff" : "#0b0c0c");
     document.querySelectorAll("[data-theme-toggle]").forEach(button => {
@@ -23,7 +23,7 @@
     });
   }
 
-  let initialTheme = "dark";
+  let initialTheme = "light";
   try { initialTheme = localStorage.getItem(storageKey); } catch {}
   applyTheme(initialTheme);
 
