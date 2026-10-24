@@ -155,7 +155,12 @@
 .writer-metadata select, .writer-metadata input { font-size: 12px !important; }
 .writer-category { flex: 0 1 270px; }
 .writer-category input { width: 100%; }
-.writer-page .writer-title { display: block; padding: 24px 0 23px; width: 100%; resize: none; overflow: hidden; border: 0; border-radius: 0; font-size: clamp(25px, 3vw, 34px); font-weight: 400; line-height: 1.5; letter-spacing: -.045em; outline-offset: 5px; }
+.writer-page .writer-title { display: block; padding: 24px 0 23px; width: 100%; resize: none; overflow: hidden; border: 0; border-radius: 0; font-size: clamp(25px, 3vw, 34px); font-weight: 400; line-height: 1.5; letter-spacing: -.045em; }
+/* Keep the focus indicator inside the title so the sticky toolbar cannot cover it. */
+.writer-page .writer-title:focus { outline: none; box-shadow: inset 0 -2px 0 var(--focus); }
+@media (forced-colors: active) {
+  .writer-page .writer-title:focus { outline: 2px solid Highlight; outline-offset: -2px; }
+}
 .writer-title::placeholder { color: var(--quiet); }
 .writer-toolbar-wrap { position: sticky; top: var(--writer-header-height); z-index: 15; border-block: 1px solid var(--line); background: var(--bg); }
 .writer-toolbar { display: flex; gap: 2px; flex-wrap: wrap; align-items: center; width: min(1100px, calc(100% - 48px)); margin: auto; padding: 10px 0; }
