@@ -1,0 +1,3 @@
+# Published JSON is compared with Git blob hashes, so preserve LF bytes on every OS.
+blog/index.json text eol=lf
+blog/entries/*.json text eol=lf
