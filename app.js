@@ -2,10 +2,19 @@
   "use strict";
 
   const data = window.BLOG_DATA;
-  for (const kind of ["posts", "notes"]) {
-    const published = (window.BLOG_PUBLISHED || []).filter(item => item.kind === kind);
-    if (published.length || window.BLOG_MANAGED_KINDS?.includes(kind)) data[kind] = [...published, ...data[kind].filter(item => !item.sample && !published.some(post => post.id === item.id))].sort((a, b) => b.date.localeCompare(a.date) || (b.publishedAt || "").localeCompare(a.publishedAt || ""));
+  const originalPosts = { posts: [...data.posts], notes: [...data.notes] };
+  const bundleURL = new URL("published.js", document.currentScript?.src || location.href);
+  let contentRevision = new URL(document.currentScript?.src || location.href).searchParams.get("v") || "";
+  let contentCheck = "checking", refreshTask;
+  function applyPublished() {
+    for (const kind of ["posts", "notes"]) {
+      const published = (window.BLOG_PUBLISHED || []).filter(item => item.kind === kind);
+      data[kind] = published.length || window.BLOG_MANAGED_KINDS?.includes(kind)
+        ? [...published, ...originalPosts[kind].filter(item => !item.sample && !published.some(post => post.id === item.id))].sort((a, b) => b.date.localeCompare(a.date) || (b.publishedAt || "").localeCompare(a.publishedAt || ""))
+        : [...originalPosts[kind]];
+    }
   }
+  applyPublished();
   const main = document.getElementById("main");
   const dialog = document.getElementById("search-dialog");
   const searchInput = document.getElementById("search-input");
@@ -113,13 +122,67 @@
     return `<div class="container page-bottom">${pageHead("404 / NOT FOUND", "A missing page.", "이 주소에 해당하는 기록을 찾지 못했습니다.")}<a class="primary-link" href="#/">Back to home <span class="arrow" aria-hidden="true">→</span></a></div>`;
   }
 
+  function missingPost(kind) {
+    const checking = contentCheck === "checking", failed = contentCheck === "error";
+    return `<div class="container page-bottom" data-publication-status role="status">${pageHead(checking ? "CHECKING PUBLICATION" : failed ? "CONNECTION UNAVAILABLE" : "404 / NOT FOUND", checking ? "글을 확인하고 있어요." : failed ? "최신 글을 확인하지 못했어요." : "A missing page.", checking ? "최신 글 목록을 불러오고 있습니다." : failed ? "연결을 확인한 뒤 다시 시도해 주세요." : "이 주소에 해당하는 기록을 찾지 못했습니다. 방금 발행한 글이라면 잠시 후 다시 확인해 주세요.")}<div class="hero-actions">${checking ? "" : '<button class="archive-search" type="button" data-refresh-posts>다시 확인 ↻</button>'}<a class="primary-link" href="#/${kind === "post" ? "posts" : "notes"}">글 목록으로 <span class="arrow" aria-hidden="true">→</span></a></div></div>`;
+  }
+
+  function loadPublishedBundle(revision) {
+    return new Promise((resolve, reject) => {
+      const script = document.createElement("script"), url = new URL(bundleURL);
+      url.searchParams.set("v", revision || String(Date.now()));
+      url.searchParams.set("refresh", String(Date.now()));
+      const finish = error => {
+        clearTimeout(timer); script.remove();
+        if (error) reject(error); else resolve();
+      };
+      const timer = setTimeout(() => finish(new Error("Content request timed out")), 8000);
+      script.src = url.href; script.async = true;
+      script.onload = () => finish();
+      script.onerror = () => finish(new Error("Content request failed"));
+      document.head.append(script);
+    });
+  }
+
+  function refreshPublished() {
+    if (refreshTask) return refreshTask;
+    refreshTask = (async () => {
+      const previous = JSON.stringify([window.BLOG_PUBLISHED, window.BLOG_MANAGED_KINDS]);
+      let changed = false;
+      try {
+        let revision = "";
+        try {
+          const url = new URL("assets/deployment.json", bundleURL);
+          url.searchParams.set("refresh", String(Date.now()));
+          const response = await fetch(url, { cache: "no-store", signal: AbortSignal.timeout(5000) });
+          if (response.ok) {
+            const marker = await response.json();
+            if (/^[a-f0-9]{40}$/.test(marker.commit)) revision = marker.commit;
+          }
+        } catch { /* A fresh bundle can still be available when its marker cannot be read. */ }
+        if (!revision || revision !== contentRevision) {
+          await loadPublishedBundle(revision);
+          changed = previous !== JSON.stringify([window.BLOG_PUBLISHED, window.BLOG_MANAGED_KINDS]);
+          applyPublished(); contentRevision = revision;
+        }
+        contentCheck = "ready";
+      } catch { contentCheck = "error"; }
+      finally {
+        refreshTask = null;
+        if (changed || main.querySelector("[data-publication-status]")) render(false);
+        if (dialog.open) updateSearch();
+      }
+    })();
+    return refreshTask;
+  }
+
   function closeMenu() {
     menu.classList.remove("is-open");
     menuButton.setAttribute("aria-expanded", "false");
     menuButton.setAttribute("aria-label", "메뉴 열기");
   }
 
-  function render() {
+  function render(navigate = true) {
     const raw = location.hash.slice(1) || "/";
     const [path, query = ""] = raw.split("?");
     const params = new URLSearchParams(query);
@@ -138,8 +201,8 @@
     else if (kind === "about") { html = about(); title = "About"; }
     else if (kind === "post" || kind === "note") {
       const item = (kind === "post" ? data.posts : data.notes).find(post => post.id === id);
-      html = item ? article(item, kind, section) : notFound();
-      title = item ? item.title : "Not found";
+      html = item ? article(item, kind, section) : missingPost(kind);
+      title = item ? item.title : contentCheck === "checking" ? "글 확인 중" : contentCheck === "error" ? "연결 확인" : "Not found";
       nav = kind === "post" ? "posts" : "notes";
     } else if (kind === "project") {
       const project = data.projects.find(item => item.id === id);
@@ -153,14 +216,14 @@
       if (link.dataset.nav === nav) link.setAttribute("aria-current", "page");
       else link.removeAttribute("aria-current");
     });
-    closeMenu();
-    requestAnimationFrame(() => {
+    if (navigate) closeMenu();
+    if (navigate) requestAnimationFrame(() => {
       if (section && document.getElementById(section)) document.getElementById(section).scrollIntoView({ behavior: "instant", block: "start" });
       else window.scrollTo({ top: 0, behavior: "instant" });
     });
   }
 
-  const searchable = [
+  const searchableItems = () => [
     ...data.posts.map(item => ({ ...item, kind: "post", type: "POST" })),
     ...data.notes.map(item => ({ ...item, kind: "note", type: "NOTE" })),
     ...data.projects.map(item => ({ ...item, title: item.name, tags: item.stack, kind: "project", type: "PROJECT" }))
@@ -168,6 +231,7 @@
   const normalize = text => String(text).normalize("NFKC").toLocaleLowerCase("ko-KR");
 
   function updateSearch() {
+    const searchable = searchableItems();
     const query = normalize(searchInput.value).trim();
     let matches;
     if (!query) matches = [searchable[0], searchable[1], searchable.find(item => item.kind === "note"), searchable.find(item => item.kind === "project")].filter(Boolean);
@@ -188,6 +252,7 @@
     updateSearch();
     dialog.showModal();
     searchInput.focus();
+    refreshPublished();
   }
 
   async function copyCode(button) {
@@ -214,6 +279,7 @@
     const target = event.target instanceof Element ? event.target : null;
     if (!target) return;
     if (target.closest("[data-search-open]")) openSearch();
+    if (target.closest("[data-refresh-posts]")) { contentCheck = "checking"; render(false); refreshPublished(); }
     const scrollLink = target.closest("[data-scroll]");
     if (scrollLink) {
       event.preventDefault();
@@ -248,7 +314,12 @@
       closeMenu();
     }
   });
-  window.addEventListener("hashchange", render);
+  window.addEventListener("hashchange", () => { contentCheck = "checking"; render(); refreshPublished(); });
+  window.addEventListener("focus", refreshPublished);
+  window.addEventListener("online", refreshPublished);
+  window.addEventListener("pageshow", event => { if (event.persisted) refreshPublished(); });
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) refreshPublished(); });
+  setInterval(() => { if (!document.hidden) refreshPublished(); }, 30000);
 
   document.querySelectorAll("[data-profile-name]").forEach(node => { node.textContent = data.profile.name; });
   document.querySelector(".brand-mark").innerHTML = `${esc(data.profile.mark)}<span>_</span>`;
@@ -257,4 +328,5 @@
     if (event.target instanceof HTMLImageElement && event.target.classList.contains("writer-link-image")) event.target.hidden = true;
   }, true);
   render();
+  refreshPublished();
 })();

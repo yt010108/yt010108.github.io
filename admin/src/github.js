@@ -10,7 +10,7 @@ const TOKEN_KEY = "yt010108-cms-github-session";
 export const REMEMBER_KEY = "yt010108-cms-github-remember";
 const emptyIndex = () => ({ format: INDEX_FORMAT, version: 1, entries: [] });
 const jsonText = value => JSON.stringify(value, null, 2) + "\n";
-export const publicLink = (entry, commit = "") => SITE + (commit ? "?v=" + encodeURIComponent(commit) : "") + "#/" + (entry.kind === "notes" ? "note" : "post") + "/" + encodeURIComponent(entry.id);
+export const publicLink = (entry, commit = entry.sha || "") => SITE + (commit ? "?v=" + encodeURIComponent(commit) : "") + "#/" + (entry.kind === "notes" ? "note" : "post") + "/" + encodeURIComponent(entry.id);
 
 export class RepositoryConflict extends Error {
   constructor() { super("GitHub에서 이 글이나 저장소가 변경됐어요. 글 관리를 새로고침하고 최신 공개본을 확인해 주세요. 현재 수정본은 브라우저에 남아 있어요."); this.name = "RepositoryConflict"; }
