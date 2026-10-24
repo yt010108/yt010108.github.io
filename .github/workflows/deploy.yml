@@ -20,16 +20,29 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Build writing editor
+        run: |
+          npm ci --ignore-scripts
+          npm run build:editor
       - name: Check JavaScript syntax
         run: |
           node --check app.js
           node --check content.js
           node --check theme.js
+          node --check admin/assets/editor.js
       - name: Prepare static site
         run: |
           mkdir -p _site
           cp index.html 404.html styles.css app.js content.js theme.js .nojekyll _site/
           cp -R assets _site/assets
+          mkdir -p _site/admin
+          cp admin/index.html admin/editor.css _site/admin/
+          cp -R admin/assets _site/admin/assets
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v4

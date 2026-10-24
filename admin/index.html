@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>글쓰기 — yt010108</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <script src="../theme.js?v=2"></script>
+  <link rel="stylesheet" href="../styles.css?v=2">
+  <link rel="stylesheet" href="editor.css?v=1">
+  <script src="assets/editor.js?v=1" defer></script>
+</head>
+<body class="writer-page">
+  <a class="skip-link" href="#post-title">글 제목으로 이동</a>
+  <header class="writer-header">
+    <div class="writer-header-inner">
+      <a class="brand" href="../" aria-label="블로그로 돌아가기"><span class="brand-mark" aria-hidden="true">y<span>_</span></span><span class="brand-name">yt010108</span></a>
+      <span class="writer-heading">글쓰기</span>
+      <div class="writer-header-actions">
+        <button type="button" class="writer-text-button" id="new-draft" disabled><i data-lucide="square-pen" aria-hidden="true"></i><span>새 글</span></button>
+        <button type="button" class="writer-text-button" id="open-drafts" disabled><i data-lucide="files" aria-hidden="true"></i><span>임시글</span></button>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="다크 모드로 전환"></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="writer-main">
+    <p id="writer-loading" class="writer-loading" role="status">글쓰기를 준비하고 있어요…</p>
+    <fieldset id="writer-fields" disabled>
+      <legend class="writer-sr-only">글 작성</legend>
+      <div class="writer-paper">
+        <div class="writer-metadata">
+          <label><span class="writer-sr-only">글 종류</span><select id="entry-kind"><option value="posts">Posts</option><option value="notes">Notes</option></select></label>
+          <label class="writer-category"><span class="writer-sr-only">카테고리</span><input id="post-category" list="category-suggestions" placeholder="카테고리 선택 또는 입력" maxlength="100" autocomplete="off"></label>
+          <datalist id="category-suggestions"><option value="Security / Web Security"></option><option value="Security / Reversing"></option><option value="Security / Pwnable"></option><option value="Network"></option><option value="CTF"></option><option value="Research"></option><option value="AI"></option><option value="Study"></option></datalist>
+        </div>
+        <label for="post-title" class="writer-sr-only">글 제목</label>
+        <textarea id="post-title" class="writer-title" rows="1" placeholder="제목을 입력하세요" maxlength="200" spellcheck="false"></textarea>
+      </div>
+
+      <div class="writer-toolbar-wrap">
+        <div class="writer-toolbar" role="toolbar" aria-label="본문 서식">
+          <select id="block-style" aria-label="문단 스타일"><option value="paragraph">본문</option><option value="1">제목 1</option><option value="2">제목 2</option><option value="3">제목 3</option></select>
+          <span class="writer-tool-divider" aria-hidden="true"></span>
+          <button type="button" data-command="undo" aria-label="실행 취소" title="실행 취소 · Ctrl Z"><i data-lucide="undo-2" aria-hidden="true"></i></button>
+          <button type="button" data-command="redo" aria-label="다시 실행" title="다시 실행 · Ctrl Shift Z"><i data-lucide="redo-2" aria-hidden="true"></i></button>
+          <span class="writer-tool-divider" aria-hidden="true"></span>
+          <button type="button" data-command="bold" aria-label="굵게" aria-pressed="false" title="굵게 · Ctrl B"><i data-lucide="bold" aria-hidden="true"></i></button>
+          <button type="button" data-command="italic" aria-label="기울임" aria-pressed="false" title="기울임 · Ctrl I"><i data-lucide="italic" aria-hidden="true"></i></button>
+          <button type="button" data-command="strike" aria-label="취소선" aria-pressed="false" title="취소선"><i data-lucide="strikethrough" aria-hidden="true"></i></button>
+          <button type="button" data-command="code" aria-label="인라인 코드" aria-pressed="false" title="인라인 코드"><i data-lucide="code" aria-hidden="true"></i></button>
+          <button type="button" data-command="bulletList" aria-label="글머리 목록" aria-pressed="false" title="글머리 목록"><i data-lucide="list" aria-hidden="true"></i></button>
+          <button type="button" data-command="orderedList" aria-label="번호 목록" aria-pressed="false" title="번호 목록"><i data-lucide="list-ordered" aria-hidden="true"></i></button>
+          <button type="button" data-command="blockquote" aria-label="인용문" aria-pressed="false" title="인용문"><i data-lucide="quote" aria-hidden="true"></i></button>
+          <button type="button" data-action="link" aria-label="링크 넣기" title="링크"><i data-lucide="link" aria-hidden="true"></i></button>
+          <button type="button" data-action="images" aria-label="이미지 첨부" title="이미지 · 붙여넣기와 드래그도 가능"><i data-lucide="image-plus" aria-hidden="true"></i></button>
+          <button type="button" data-command="table" aria-label="표 넣기" title="표"><i data-lucide="table-2" aria-hidden="true"></i></button>
+          <button type="button" data-command="codeBlock" aria-label="코드 블록" aria-pressed="false" title="코드 블록"><i data-lucide="square-code" aria-hidden="true"></i></button>
+          <button type="button" data-command="horizontalRule" aria-label="구분선" title="구분선"><i data-lucide="minus" aria-hidden="true"></i></button>
+          <select id="editor-mode" aria-label="편집 모드"><option value="rich">기본모드</option><option value="markdown">Markdown</option></select>
+        </div>
+        <div id="table-tools" class="writer-context-tools" aria-label="표 편집" hidden><span>표</span><button type="button" data-table-command="addRowAfter">행 추가</button><button type="button" data-table-command="addColumnAfter">열 추가</button><button type="button" data-table-command="deleteRow">행 삭제</button><button type="button" data-table-command="deleteColumn">열 삭제</button><button type="button" data-table-command="deleteTable">표 삭제</button></div>
+        <div id="code-tools" class="writer-context-tools" hidden><label>코드 언어 <select id="code-language"><option value="">일반 텍스트</option><option value="http">HTTP</option><option value="bash">Bash</option><option value="python">Python</option><option value="javascript">JavaScript</option><option value="json">JSON</option><option value="c">C</option><option value="cpp">C++</option><option value="html">HTML</option><option value="css">CSS</option><option value="yaml">YAML</option><option value="sql">SQL</option></select></label></div>
+        <div id="image-tools" class="writer-context-tools" hidden><span>이미지</span><button type="button" data-action="image-alt">설명 수정</button><button type="button" data-action="remove-image">이미지 삭제</button></div>
+      </div>
+
+      <div class="writer-paper writer-body-wrap">
+        <div id="rich-editor" class="writer-prose"></div>
+        <label for="markdown-editor" class="writer-sr-only">Markdown 본문</label>
+        <textarea id="markdown-editor" class="writer-markdown" spellcheck="false" placeholder="Markdown으로 글을 작성하세요…" hidden></textarea>
+        <div class="writer-tags"><i data-lucide="hash" aria-hidden="true"></i><div id="tag-list" aria-label="입력한 태그"></div><label for="tag-input" class="writer-sr-only">태그 입력</label><input id="tag-input" placeholder="태그 입력 후 Enter 또는 쉼표" maxlength="80" autocomplete="off"></div>
+        <p class="writer-small-note">이미지는 붙여넣거나 끌어다 놓을 수 있어요.</p>
+      </div>
+    </fieldset>
+    <div id="writer-message" class="writer-message" role="status" aria-live="polite" hidden></div>
+  </main>
+
+  <footer class="writer-footer">
+    <div class="writer-save-info"><span id="save-status" role="status" aria-live="polite">이 브라우저에 저장</span><span id="word-count"></span><button type="button" id="save-copy" hidden>복사본으로 저장</button></div>
+    <div class="writer-footer-actions"><button type="button" class="writer-button" id="preview-button" disabled><i data-lucide="eye" aria-hidden="true"></i>미리보기</button><button type="button" class="writer-button" id="save-button" disabled>임시저장</button><button type="button" class="writer-button writer-primary" id="finish-button" disabled>완료</button></div>
+  </footer>
+
+  <input id="image-input" type="file" accept="image/png,image/jpeg,image/gif,image/webp" multiple hidden>
+  <input id="backup-input" type="file" accept=".json,application/json" hidden>
+
+  <dialog id="link-dialog" class="writer-dialog" aria-labelledby="link-title">
+    <form id="link-form"><div class="writer-dialog-heading"><h2 id="link-title">링크</h2><button type="button" data-close aria-label="링크 창 닫기">×</button></div><label>주소<input id="link-url" type="text" placeholder="https://example.com" autocomplete="url"></label><p class="writer-dialog-note">주소를 비우고 적용하면 링크를 해제해요.</p><div class="writer-dialog-actions"><button type="button" class="writer-button" data-close>취소</button><button type="submit" class="writer-button writer-primary">적용</button></div></form>
+  </dialog>
+  <dialog id="image-dialog" class="writer-dialog" aria-labelledby="image-dialog-title">
+    <form id="image-form"><div class="writer-dialog-heading"><h2 id="image-dialog-title">이미지 설명</h2><button type="button" data-close aria-label="이미지 설명 창 닫기">×</button></div><label>이미지를 설명하는 문장<input id="image-alt" maxlength="300" placeholder="예: HTTP 요청을 비교한 화면"></label><div class="writer-dialog-actions"><button type="button" class="writer-button" data-close>취소</button><button type="submit" class="writer-button writer-primary">적용</button></div></form>
+  </dialog>
+  <dialog id="drafts-dialog" class="writer-dialog writer-drafts-dialog" aria-labelledby="drafts-title">
+    <div class="writer-dialog-heading"><h2 id="drafts-title">임시글</h2><button type="button" data-close aria-label="임시글 창 닫기">×</button></div><p class="writer-dialog-note">이 브라우저에 저장한 글이에요.</p><div id="draft-list"></div><div class="writer-dialog-actions"><button type="button" class="writer-button" id="import-backup"><i data-lucide="folder-open" aria-hidden="true"></i>백업 파일 불러오기</button><button type="button" class="writer-button" data-close>닫기</button></div>
+  </dialog>
+  <dialog id="export-dialog" class="writer-dialog" aria-labelledby="export-title">
+    <div class="writer-dialog-heading"><h2 id="export-title">저장 및 내보내기</h2><button type="button" data-close aria-label="내보내기 창 닫기">×</button></div>
+    <p class="writer-dialog-note">파일로 보관하면 다른 브라우저에서도 이어 쓸 수 있어요.</p>
+    <label>파일 이름<input id="post-slug" maxlength="120" placeholder="my-security-notes" autocomplete="off"></label>
+    <label>글 설명<textarea id="post-description" rows="3" maxlength="500" placeholder="글 목록에 표시할 짧은 설명"></textarea></label>
+    <label>작성일<input id="post-date" type="date"></label>
+    <p id="export-info" class="writer-dialog-note"></p>
+    <div class="writer-export-options"><button type="button" class="writer-button writer-primary" id="export-markdown"><i data-lucide="download" aria-hidden="true"></i><span>Markdown 저장</span></button><button type="button" class="writer-button" id="export-backup"><i data-lucide="archive" aria-hidden="true"></i>편집용 백업 저장</button></div>
+    <p class="writer-dialog-note writer-export-note">내보내기는 파일 저장이에요. 블로그에 공개되지는 않아요.</p>
+  </dialog>
+  <dialog id="preview-dialog" class="writer-preview-dialog" aria-labelledby="preview-heading">
+    <div class="writer-preview-bar"><span id="preview-heading">미리보기</span><button type="button" class="writer-button" data-close><i data-lucide="arrow-left" aria-hidden="true"></i>계속 편집</button></div>
+    <article class="writer-preview-article"><header class="article-header"><div id="preview-category" class="eyebrow"></div><h1 id="preview-title"></h1><p id="preview-description"></p><div id="preview-meta" class="meta"></div></header><div class="article-layout"><div id="preview-body" class="article-content writer-prose"></div><aside class="article-toc"><p class="eyebrow">ON THIS PAGE</p><ol id="preview-toc"></ol></aside></div></article>
+  </dialog>
+  <noscript><p class="writer-loading">글쓰기를 사용하려면 브라우저에서 JavaScript를 켜 주세요.</p></noscript>
+</body>
+</html>

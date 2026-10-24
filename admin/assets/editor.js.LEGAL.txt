@@ -1,0 +1,38 @@
+Bundled license information:
+
+lucide/dist/esm/defaultAttributes.mjs:
+lucide/dist/esm/createElement.mjs:
+lucide/dist/esm/shared/src/utils/mergeClasses.mjs:
+lucide/dist/esm/shared/src/utils/hasA11yProp.mjs:
+lucide/dist/esm/shared/src/utils/toCamelCase.mjs:
+lucide/dist/esm/shared/src/utils/toPascalCase.mjs:
+lucide/dist/esm/replaceElement.mjs:
+lucide/dist/esm/icons/archive.mjs:
+lucide/dist/esm/icons/arrow-left.mjs:
+lucide/dist/esm/icons/bold.mjs:
+lucide/dist/esm/icons/code.mjs:
+lucide/dist/esm/icons/download.mjs:
+lucide/dist/esm/icons/eye.mjs:
+lucide/dist/esm/icons/files.mjs:
+lucide/dist/esm/icons/folder-open.mjs:
+lucide/dist/esm/icons/hash.mjs:
+lucide/dist/esm/icons/image-plus.mjs:
+lucide/dist/esm/icons/italic.mjs:
+lucide/dist/esm/icons/link.mjs:
+lucide/dist/esm/icons/list-ordered.mjs:
+lucide/dist/esm/icons/list.mjs:
+lucide/dist/esm/icons/minus.mjs:
+lucide/dist/esm/icons/quote.mjs:
+lucide/dist/esm/icons/redo-2.mjs:
+lucide/dist/esm/icons/square-code.mjs:
+lucide/dist/esm/icons/square-pen.mjs:
+lucide/dist/esm/icons/strikethrough.mjs:
+lucide/dist/esm/icons/table-2.mjs:
+lucide/dist/esm/icons/undo-2.mjs:
+lucide/dist/esm/lucide.mjs:
+  /**
+   * @license lucide v1.61.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   */
