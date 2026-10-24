@@ -9,6 +9,10 @@ const result = await build({
 });
 
 const packages = new Map();
+await build({
+  entryPoints: ["src/public-posts.js"], outfile: "assets/posts.js",
+  bundle: true, minify: true, format: "iife", target: "es2022", logLevel: "info"
+});
 for (const input of Object.keys(result.metafile.inputs).filter(path => path.includes("node_modules"))) {
   let dir = dirname(resolve(input));
   while (relative(process.cwd(), dir).includes("node_modules")) {

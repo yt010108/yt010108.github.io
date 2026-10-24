@@ -1,0 +1,39 @@
+.post-body { overflow-wrap: anywhere; min-width: 0; }
+.post-body h1 { font-size: 30px; margin: 42px 0 20px; line-height: 1.5; }
+.post-body h3 { margin: 32px 0 16px; line-height: 1.6; }
+.post-body :is(h1,h2,h3) { scroll-margin-top: 100px; }
+.post-body img.post-image { display: block; max-width: 100%; height: auto; margin: 28px auto; }
+.post-body blockquote { border-left: 2px solid var(--muted); background: var(--surface); margin: 24px 0; padding: 10px 24px; }
+.post-body blockquote p:last-child { margin-bottom: 0; }
+.post-body hr { border: 0; border-top: 1px solid var(--line); margin: 34px 0; }
+.post-body li > p { margin: 0; }
+.post-body .article-table-wrap { width: 100%; overflow-x: auto; margin: 24px 0; }
+.post-body table { border-collapse: collapse; width: 100%; min-width: 300px; font-size: 13px; }
+.post-body :is(td, th) { border: 1px solid var(--line); padding: 10px 14px; min-width: 80px; vertical-align: top; text-align: left; }
+.post-body th { background: var(--surface); color: var(--text); font-weight: 500; }
+.post-body :is(td,th) p { margin: 0; }
+.post-body .article-code { margin: 24px 0; }
+.post-body .article-code pre { margin: 0; max-width: 100%; overflow-x: auto; }
+.post-body .article-code code { background: transparent; border: 0; padding: 0; }
+.post-body .writer-link-preview { margin: 24px 0; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: var(--bg); }
+.post-body a.writer-link-card { display: grid; grid-template-columns: 180px minmax(0,1fr); min-height: 172px; color: var(--text); text-decoration: none; border: 0; }
+.post-body .writer-link-media { position: relative; display: grid; place-items: center; border-right: 1px solid var(--line); background: var(--surface); overflow: hidden; min-height: 172px; }
+.post-body .writer-link-placeholder { color: var(--quiet); font: 38px/1 var(--mono); opacity: .45; }
+.post-body .writer-link-media:has(img:not([hidden])) .writer-link-placeholder { display: none; }
+.post-body img.writer-link-image { position: absolute; inset: 0; width: 100%; height: 100%; max-height: none; object-fit: cover; margin: 0; border: 0; border-radius: 0; }
+.post-body .writer-link-media[data-kind="logo"] img { object-fit: contain; padding: 34px; }
+.post-body .writer-link-copy { min-width: 0; display: flex; flex-direction: column; justify-content: center; padding: 23px 28px; gap: 7px; line-height: 1.5; }
+.post-body .writer-link-title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 20px; font-weight: 500; letter-spacing: -.025em; }
+.post-body .writer-link-description { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; color: var(--muted); font-size: 12px; }
+.post-body .writer-link-description:empty { display: none; }
+.post-body .writer-link-site { margin-top: auto; padding-top: 10px; color: var(--quiet); font-size: 12px; overflow-wrap: anywhere; }
+.post-body [hidden] { display: none !important; }
+@media (max-width: 600px) {
+  .post-body a.writer-link-card { grid-template-columns: 96px minmax(0,1fr); min-height: 142px; }
+  .post-body .writer-link-media { min-height: 142px; }
+  .post-body .writer-link-copy { padding: 15px; gap: 5px; }
+  .post-body .writer-link-title { font-size: 16px; }
+  .post-body .writer-link-description { font-size: 11px; }
+  .post-body .writer-link-site { font-size: 11px; padding-top: 7px; }
+  .post-body .writer-link-media[data-kind="logo"] img { padding: 20px; }
+}

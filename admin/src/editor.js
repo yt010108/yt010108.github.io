@@ -10,6 +10,9 @@ import { createIcons, SquarePen, Files, Bold, Italic, Strikethrough, Code, List,
 import { readDraft, listDrafts, writeDraft, DraftConflict } from "./draft-store.js";
 import { IMAGE_TYPES, MAX_IMAGE_SIZE, newEntry, safeSlug, safeImageData, createAsset, imageBySource, transformImages, usedAssets, validateBackup, markdownDocument, assetBytes } from "./document.js";
 import { createLinkPreviews, webURL } from "./link-preview.js";
+import { renderDocument } from "../../shared/posts.js";
+import { GitHubRepository } from "./github.js";
+import { createManager } from "./manager.js";
 
 const $ = id => document.getElementById(id);
 const ACTIVE_KEY = "yt010108-writing-active";
@@ -19,6 +22,8 @@ let entry = newEntry(), mode = "rich", ready = false, silent = false, composing 
 let changes = 0, savedChanges = 0, exportedChanges = -1;
 let saveTimer, messageTimer, savePromise, editor, lastSelection, imagePosition;
 let imageJobs = Promise.resolve(), pendingImages = 0;
+let cmsBusy = false, managing = false, navigationBusy = false;
+const repository = new GitHubRepository();
 const linkPreviews = createLinkPreviews({ getEditor: () => editor, getEntryId: () => entry.id });
 
 createIcons({ icons: { SquarePen, Files, Bold, Italic, Strikethrough, Code, List, ListOrdered, Quote, Link, ImagePlus, Table2, SquareCode, Minus, Eye, Undo2, Redo2, FolderOpen, Download, Archive, ArrowLeft, Hash }, attrs: { "stroke-width": 1.5 } });
@@ -36,6 +41,54 @@ function message(text, error = false) {
 function saveStatus(text, error = false) {
   status.textContent = text;
   status.dataset.error = String(error);
+}
+
+function setBusy(value) {
+  cmsBusy = value;
+  $("writer-fields").disabled = value || !ready;
+  editor?.setEditable(ready && !value, false);
+  ["new-draft", "open-drafts", "manage-button", "manager-new", "manager-refresh", "github-connect", "finish-button", "save-button", "preview-button", "publish-button"].forEach(id => { $(id).disabled = value || !ready; });
+}
+
+function setView(managerView) {
+  managing = managerView;
+  document.body.classList.toggle("is-managing", managerView);
+  $("manager-view").hidden = !managerView;
+  $("writer-view").hidden = managerView;
+  document.querySelector(".writer-heading").textContent = managerView ? "관리" : "글쓰기";
+  $("manage-button").setAttribute("aria-current", managerView ? "page" : "false");
+  const skip = document.querySelector(".skip-link");
+  skip.href = managerView ? "#manager-title" : "#post-title";
+  skip.textContent = managerView ? "글 관리로 이동" : "글 제목으로 이동";
+  document.title = managerView ? "글 관리 — yt010108" : (title.value.trim() || "글쓰기") + " — yt010108";
+  history.replaceState(null, "", managerView ? "#manage" : "#write");
+  if (!managerView) resizeTitle();
+}
+
+async function openManager() {
+  if (cmsBusy || navigationBusy || !ready) return;
+  navigationBusy = true; setBusy(true);
+  try {
+    if (!await keepBeforeSwitch()) return;
+    setView(true);
+    await manager.refresh();
+  } finally { navigationBusy = false; setBusy(false); }
+}
+
+async function beginNew() {
+  if (cmsBusy || navigationBusy || !ready) return;
+  navigationBusy = true; setBusy(true);
+  try {
+    if (!await keepBeforeSwitch()) return;
+    applyEntry(newEntry()); setView(false);
+  } finally { navigationBusy = false; setBusy(false); }
+  title.focus();
+}
+
+function updatePublishReview() {
+  const name = title.value.trim() || "제목 없는 글";
+  $("publish-review").textContent = name + " · " + ($("entry-kind").value === "notes" ? "Notes" : "Posts") + " · " + ($("post-category").value.trim() || "미분류") + " · 공개";
+  $("publish-button").textContent = repository.connected ? entry.publication ? "수정 발행" : "발행하기" : "GitHub 연결 후 발행";
 }
 
 function resizeTitle() {
@@ -177,6 +230,15 @@ editor = new Editor({
   },
   onUpdate() { changed(); updateTools(); if (ready) linkPreviews.resume(); },
   onSelectionUpdate() { updateTools(); }
+});
+const manager = createManager({
+  repository, report: message, onBusy: setBusy, newDraft: beginNew,
+  edit: async (next, publish) => {
+    if (!await keepBeforeSwitch()) return;
+    applyEntry(next); setView(false);
+    if (publish) await openExport();
+    else editor.commands.focus();
+  }
 });
 
 function syncMarkdown() {
@@ -428,7 +490,7 @@ async function preview() {
     $("preview-category").textContent = data.category || (data.kind === "notes" ? "NOTES" : "POSTS");
     const minutes = Math.max(1, Math.ceil(editor.getText().trim().split(/\s+/).length / 200));
     $("preview-meta").textContent = data.date + " · " + minutes + " min read · yt010108";
-    $("preview-body").innerHTML = editor.getHTML();
+    $("preview-body").innerHTML = renderDocument(data.doc, { assets: data.assets, preview: true }).html;
     const toc = $("preview-toc");
     toc.replaceChildren();
     $("preview-body").querySelectorAll("h1, h2, h3").forEach((heading, index) => {
@@ -458,7 +520,45 @@ async function openExport() {
   const count = data.assets.length;
   $("export-info").textContent = count ? "첨부 이미지 " + count + "장과 글을 함께 보관해요." : "Markdown은 글 원본, 편집용 백업은 다시 불러오기 위한 파일이에요.";
   $("export-markdown").querySelector("span").textContent = count ? "Markdown + 이미지 ZIP 저장" : "Markdown 저장";
+  $("publish-progress").textContent = "";
+  updatePublishReview();
   $("export-dialog").showModal();
+}
+
+async function publish() {
+  if (cmsBusy) return;
+  if (!repository.connected) { openGitHub(); return; }
+  if (!title.value.trim()) { $("publish-progress").textContent = "제목을 입력해 주세요."; return; }
+  setBusy(true);
+  let result;
+  try {
+    await waitForImages(); commitTags();
+    if (!$("post-slug").value.trim()) $("post-slug").value = safeSlug(title.value);
+    await persist(true);
+    const data = snapshot();
+    result = await repository.publish(data, text => { $("publish-progress").textContent = text; });
+    manager.setRemote(result.index); manager.watchDeployment(result.commit, result.item);
+    entry.publication = result.publication; changes++;
+    try { await persist(true); }
+    catch {
+      $("export-dialog").close();
+      message("GitHub에는 발행을 저장했지만 브라우저 임시글 저장에서 충돌이 났어요. 현재 수정본을 복사본으로 보관하고 글 관리에서 공개본을 확인해 주세요.", true);
+      return;
+    }
+    $("export-dialog").close(); setView(true);
+    await manager.refresh();
+    message("GitHub에 저장했어요. 배포가 끝나면 블로그에 반영돼요.");
+  } catch (error) {
+    $("publish-progress").textContent = result ? "GitHub 저장은 완료됐어요. 글 관리에서 배포 상태를 확인해 주세요." : error.message || "발행하지 못했어요.";
+  } finally { setBusy(false); updatePublishReview(); }
+}
+
+function openGitHub() {
+  $("github-token").value = "";
+  $("github-error").hidden = true;
+  $("github-disconnect").hidden = !repository.connected;
+  $("github-dialog").showModal();
+  if (!repository.connected) $("github-token").focus();
 }
 
 function download(blob, filename) {
@@ -508,7 +608,7 @@ async function showDrafts() {
         try {
           const next = await readDraft(draft.id);
           if (!next) throw new Error("이 글을 찾을 수 없어요.");
-          applyEntry(next); $("drafts-dialog").close();
+          applyEntry(next); setView(false); $("drafts-dialog").close();
         } catch (error) { message(error.message || "글을 불러오지 못했어요.", true); }
       });
       list.append(button);
@@ -527,6 +627,7 @@ async function importBackup(file) {
     const map = new Map(next.assets.map(asset => [asset.id, asset]));
     editor.schema.nodeFromJSON(transformImages(next.doc, map, true)).check();
     applyEntry(next);
+    setView(false);
     changes++;
     await persist(true);
     message("백업을 새 임시글로 불러왔어요.");
@@ -562,7 +663,7 @@ document.querySelectorAll(".writer-toolbar button, .writer-context-tools button"
   });
 });
 ["entry-kind", "post-category", "post-title", "post-slug", "post-description", "post-date"].forEach(id => {
-  $(id).addEventListener("input", changed);
+  $(id).addEventListener("input", () => { changed(); updatePublishReview(); });
 });
 title.addEventListener("input", resizeTitle);
 source.addEventListener("input", changed);
@@ -622,12 +723,32 @@ $("preview-button").addEventListener("click", preview);
 $("save-button").addEventListener("click", () => { commitTags(); persist(true).catch(() => {}); });
 $("finish-button").addEventListener("click", openExport);
 $("open-drafts").addEventListener("click", showDrafts);
-$("new-draft").addEventListener("click", async () => {
-  if (!await keepBeforeSwitch()) return;
-  applyEntry(newEntry()); title.focus();
+$("new-draft").addEventListener("click", beginNew);
+$("manage-button").addEventListener("click", openManager);
+$("github-connect").addEventListener("click", openGitHub);
+$("publish-button").addEventListener("click", publish);
+$("github-form").addEventListener("submit", async event => {
+  event.preventDefault();
+  $("github-submit").disabled = true; $("github-error").hidden = true;
+  const token = $("github-token").value; $("github-token").value = "";
+  try {
+    await repository.connect(token);
+    $("github-dialog").close(); message("GitHub에 연결했어요.");
+    await manager.refresh();
+  } catch (error) { $("github-error").textContent = error.message; $("github-error").hidden = false; }
+  finally { $("github-submit").disabled = false; }
+});
+$("github-disconnect").addEventListener("click", () => {
+  repository.disconnect(); $("github-dialog").close(); message("GitHub 연결을 해제했어요.");
+});
+repository.addEventListener("change", () => {
+  $("github-connect").textContent = repository.connected ? repository.user.login + " 연결됨" : "GitHub 연결";
+  $("github-disconnect").hidden = !repository.connected;
+  updatePublishReview();
 });
 $("save-copy").addEventListener("click", async () => {
   entry = { ...entry, id: crypto.randomUUID(), revision: 0, createdAt: new Date().toISOString() };
+  delete entry.publication; delete entry.trashedAt;
   savedChanges = -1;
   try { await persist(true); message("현재 내용을 새 임시글로 저장했어요."); } catch {}
 });
@@ -637,11 +758,25 @@ $("import-backup").addEventListener("click", () => { $("drafts-dialog").close();
 $("backup-input").addEventListener("change", async event => { await importBackup(event.target.files[0]); event.target.value = ""; });
 document.addEventListener("keydown", event => {
   if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "s") {
-    event.preventDefault(); commitTags(); persist(true).catch(() => {});
+    event.preventDefault();
+    if (!managing) { commitTags(); persist(true).catch(() => {}); }
   }
   if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k" && mode === "rich" && editor.isFocused && !document.querySelector("dialog[open]")) {
     event.preventDefault(); openLink();
   }
+});
+window.addEventListener("hashchange", () => {
+  if (location.hash === "#write") {
+    if (!cmsBusy) setView(false);
+  } else if (location.hash === "#manage" && !managing) openManager();
+});
+document.addEventListener("click", async event => {
+  const button = event.target.closest("#preview-body .copy-code");
+  if (!button) return;
+  try {
+    await navigator.clipboard.writeText(button.closest(".article-code").querySelector("code").textContent);
+    button.textContent = "복사됨";
+  } catch { button.textContent = "복사 실패"; }
 });
 document.addEventListener("visibilitychange", () => { if (document.hidden) persist().catch(() => {}); });
 window.addEventListener("beforeunload", event => {
@@ -657,6 +792,7 @@ async function start() {
     let active;
     try { active = localStorage.getItem(ACTIVE_KEY); } catch {}
     let restored = active ? await readDraft(active) : null;
+    if (restored?.trashedAt) restored = null;
     if (!restored) {
       const latest = (await listDrafts())[0];
       if (latest) restored = await readDraft(latest.id);
@@ -665,11 +801,14 @@ async function start() {
   } catch { message("이 브라우저에서 임시저장을 사용할 수 없어요. 작성 후 파일로 보관해 주세요.", true); }
   ready = true;
   $("writer-fields").disabled = false;
-  ["new-draft", "open-drafts", "preview-button", "save-button", "finish-button"].forEach(id => { $(id).disabled = false; });
+  ["new-draft", "open-drafts", "manage-button", "preview-button", "save-button", "finish-button"].forEach(id => { $(id).disabled = false; });
   $("writer-loading").hidden = true;
   editor.setEditable(true, false);
   resizeTitle(); refreshCount(); updateTools();
   linkPreviews.resume();
+  setView(location.hash !== "#write");
+  manager.refresh();
+  repository.restore().catch(error => message(error.message, true));
 }
 applyEntry(entry);
 start();

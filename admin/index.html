@@ -6,13 +6,14 @@
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#ffffff">
   <meta name="color-scheme" content="light dark">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src https://api.microlink.io; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://api.github.com https://api.microlink.io; object-src 'none'; base-uri 'self'; form-action 'none'">
   <title>글쓰기 — yt010108</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <script src="../theme.js?v=2"></script>
   <link rel="stylesheet" href="../styles.css?v=2">
-  <link rel="stylesheet" href="editor.css?v=2">
-  <script src="assets/editor.js?v=2" defer></script>
+  <link rel="stylesheet" href="../assets/post.css?v=__BUILD__">
+  <link rel="stylesheet" href="editor.css?v=__BUILD__">
+  <script src="assets/editor.js?v=__BUILD__" defer></script>
 </head>
 <body class="writer-page">
   <a class="skip-link" href="#post-title">글 제목으로 이동</a>
@@ -21,14 +22,30 @@
       <a class="brand" href="../" aria-label="블로그로 돌아가기"><span class="brand-mark" aria-hidden="true">y<span>_</span></span><span class="brand-name">yt010108</span></a>
       <span class="writer-heading">글쓰기</span>
       <div class="writer-header-actions">
+        <button type="button" class="writer-text-button" id="manage-button" disabled><i data-lucide="files" aria-hidden="true"></i><span>글 관리</span></button>
         <button type="button" class="writer-text-button" id="new-draft" disabled><i data-lucide="square-pen" aria-hidden="true"></i><span>새 글</span></button>
         <button type="button" class="writer-text-button" id="open-drafts" disabled><i data-lucide="files" aria-hidden="true"></i><span>임시글</span></button>
+        <button type="button" class="writer-text-button" id="github-connect">GitHub 연결</button>
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="다크 모드로 전환"></button>
       </div>
     </div>
   </header>
 
   <main class="writer-main">
+    <section id="manager-view" class="cms-manager" aria-labelledby="manager-title" hidden>
+      <div class="cms-title-row"><div><p class="cms-eyebrow">CONTENT</p><h1 id="manager-title" tabindex="-1">글 관리</h1><p id="manager-connection">이 브라우저의 임시글과 GitHub에 발행한 글을 관리해요.</p></div><button type="button" class="writer-button writer-primary" id="manager-new">새 글 쓰기</button></div>
+      <div id="deployment-panel" class="cms-deployment" role="status" aria-live="polite" hidden><span id="deployment-status"></span><div><a id="deployment-actions" target="_blank" rel="noopener noreferrer" hidden>Actions에서 보기 ↗</a><a id="deployment-view" target="_blank" rel="noopener noreferrer" hidden>블로그에서 보기 ↗</a><button type="button" id="deployment-refresh" class="writer-text-button">다시 확인</button></div></div>
+      <div class="cms-tabs" role="group" aria-label="글 상태"><button type="button" data-status="all" aria-pressed="true">전체 <span>0</span></button><button type="button" data-status="draft" aria-pressed="false">임시글 <span>0</span></button><button type="button" data-status="published" aria-pressed="false">발행된 글 <span>0</span></button><button type="button" data-status="trash" aria-pressed="false">휴지통 <span>0</span></button></div>
+      <div class="cms-filter-row"><label><span class="writer-sr-only">글 종류 필터</span><select id="manager-kind"><option value="">모든 종류</option><option value="posts">Posts</option><option value="notes">Notes</option></select></label><label><span class="writer-sr-only">카테고리 필터</span><select id="manager-category"><option value="">모든 카테고리</option></select></label><label class="cms-search"><span class="writer-sr-only">글 검색</span><input id="manager-search" type="search" placeholder="제목·카테고리·태그 검색" autocomplete="off"></label><button type="button" class="writer-button" id="manager-refresh">새로고침</button></div>
+      <div class="cms-selection-row"><label><input type="checkbox" id="manager-select-all" aria-label="현재 목록 전체 선택"><span id="manager-selection-count">0개 선택</span></label><div><button type="button" class="writer-text-button" id="manager-bulk-trash" disabled>휴지통으로 이동</button><button type="button" class="writer-text-button" id="manager-bulk-restore" disabled hidden>복원</button><button type="button" class="writer-text-button" id="manager-import">백업 불러오기</button></div></div>
+      <p id="manager-loading" class="cms-list-note" role="status" hidden>글 목록을 불러오는 중…</p>
+      <p id="manager-remote-error" class="cms-list-note" role="alert" hidden></p>
+      <table class="cms-post-table"><caption class="writer-sr-only">관리할 글 목록</caption><thead><tr><th scope="col"><span class="writer-sr-only">선택</span></th><th scope="col">제목</th><th scope="col">상태</th><th scope="col">카테고리</th><th scope="col">수정일</th><th scope="col">관리</th></tr></thead><tbody id="manager-list"></tbody></table>
+      <p id="manager-empty" class="cms-empty" hidden>아직 작성한 글이 없어요. 새 글을 작성해 보세요.</p>
+      <div class="cms-bottom-row"><span id="manager-result-count"></span><div><button type="button" class="writer-button" id="manager-prev">이전</button><span id="manager-page">1 / 1</span><button type="button" class="writer-button" id="manager-next">다음</button></div></div>
+      <p class="writer-small-note">임시글은 이 브라우저에 저장돼요. 발행된 글을 휴지통으로 옮기면 공개 목록에서 내려가며, GitHub의 이전 기록에는 남아요.</p>
+    </section>
+    <div id="writer-view">
     <p id="writer-loading" class="writer-loading" role="status">글쓰기를 준비하고 있어요…</p>
     <fieldset id="writer-fields" disabled>
       <legend class="writer-sr-only">글 작성</legend>
@@ -77,6 +94,7 @@
         <p class="writer-small-note">주소 한 줄 + Enter → 링크 카드 · <code>&#96;&#96;&#96;</code> + 스페이스 → 코드 블록<br>이미지는 붙여넣거나 끌어다 놓을 수 있어요. 링크 정보는 주소만 Microlink로 보내 조회해요.</p>
       </div>
     </fieldset>
+    </div>
     <div id="writer-message" class="writer-message" role="status" aria-live="polite" hidden></div>
   </main>
 
@@ -105,12 +123,15 @@
     <label>작성일<input id="post-date" type="date"></label>
     <p id="export-info" class="writer-dialog-note"></p>
     <div class="writer-export-options"><button type="button" class="writer-button writer-primary" id="export-markdown"><i data-lucide="download" aria-hidden="true"></i><span>Markdown 저장</span></button><button type="button" class="writer-button" id="export-backup"><i data-lucide="archive" aria-hidden="true"></i>편집용 백업 저장</button></div>
-    <p class="writer-dialog-note writer-export-note">내보내기는 파일 저장이에요. 블로그에 공개되지는 않아요.</p>
+    <div class="writer-publish-section"><h3>블로그 발행</h3><p id="publish-review" class="writer-dialog-note"></p><p class="writer-dialog-note">발행하면 글과 첨부 이미지가 GitHub 저장소와 블로그에 공개돼요.</p><button type="button" class="writer-button writer-primary" id="publish-button">GitHub 연결 후 발행</button><p id="publish-progress" class="writer-dialog-note" role="status" aria-live="polite"></p></div>
+    <p class="writer-dialog-note writer-export-note">Markdown·편집용 백업 버튼은 파일로만 저장해요.</p>
   </dialog>
   <dialog id="preview-dialog" class="writer-preview-dialog" aria-labelledby="preview-heading">
     <div class="writer-preview-bar"><span id="preview-heading">미리보기</span><button type="button" class="writer-button" data-close><i data-lucide="arrow-left" aria-hidden="true"></i>계속 편집</button></div>
-    <article class="writer-preview-article"><header class="article-header"><div id="preview-category" class="eyebrow"></div><h1 id="preview-title"></h1><p id="preview-description"></p><div id="preview-meta" class="meta"></div></header><div class="article-layout"><div id="preview-body" class="article-content writer-prose"></div><aside class="article-toc"><p class="eyebrow">ON THIS PAGE</p><ol id="preview-toc"></ol></aside></div></article>
+    <article class="writer-preview-article"><header class="article-header"><div id="preview-category" class="eyebrow"></div><h1 id="preview-title"></h1><p id="preview-description"></p><div id="preview-meta" class="meta"></div></header><div class="article-layout"><div id="preview-body" class="article-content writer-prose post-body"></div><aside class="article-toc"><p class="eyebrow">ON THIS PAGE</p><ol id="preview-toc"></ol></aside></div></article>
   </dialog>
+  <dialog id="github-dialog" class="writer-dialog" aria-labelledby="github-title"><form id="github-form"><div class="writer-dialog-heading"><h2 id="github-title">GitHub 연결</h2><button type="button" data-close aria-label="GitHub 연결 창 닫기">×</button></div><p class="writer-dialog-note">yt010108/yt010108.github.io에 글과 이미지를 발행할 권한을 연결해요.</p><ol class="cms-auth-steps"><li><a href="https://github.com/settings/personal-access-tokens/new?name=Blog+CMS&amp;target_name=yt010108&amp;expires_in=30&amp;contents=write&amp;actions=read" target="_blank" rel="noopener noreferrer">GitHub에서 토큰 만들기 ↗</a></li><li>Repository access에서 Only select repositories → yt010108.github.io 선택</li><li>Contents는 Read and write, Actions는 Read-only로 설정</li></ol><label>개인 액세스 토큰<input id="github-token" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…" required></label><p class="writer-dialog-note">토큰은 이 탭의 세션에만 보관하고 GitHub API에만 보내요. 연결 해제로 지울 수 있어요.</p><p id="github-error" class="writer-dialog-note" role="alert" hidden></p><div class="writer-dialog-actions"><button type="button" class="writer-button" id="github-disconnect" hidden>연결 해제</button><button type="submit" class="writer-button writer-primary" id="github-submit">연결</button></div></form></dialog>
+  <dialog id="manager-confirm" class="writer-dialog" aria-labelledby="manager-confirm-title"><div class="writer-dialog-heading"><h2 id="manager-confirm-title"></h2><button type="button" data-close aria-label="확인 창 닫기">×</button></div><p id="manager-confirm-description" class="writer-dialog-note"></p><ul id="manager-confirm-items"></ul><div class="writer-dialog-actions"><button type="button" class="writer-button" data-close>취소</button><button type="button" class="writer-button writer-primary" id="manager-confirm-submit">계속</button></div></dialog>
   <noscript><p class="writer-loading">글쓰기를 사용하려면 브라우저에서 JavaScript를 켜 주세요.</p></noscript>
 </body>
 </html>

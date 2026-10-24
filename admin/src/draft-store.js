@@ -33,16 +33,17 @@ export async function readDraft(id) {
   });
 }
 
-export async function listDrafts() {
+export async function listDrafts({ includeTrash = false } = {}) {
   const db = await database();
   return new Promise((resolve, reject) => {
     const request = db.transaction("summaries").objectStore("summaries").getAll();
-    request.onsuccess = () => resolve(request.result.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)));
+    request.onsuccess = () => resolve(request.result.filter(item => includeTrash || !item.trashedAt).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)));
     request.onerror = () => reject(request.error);
   });
 }
 
 export async function writeDraft(entry, expectedRevision) {
+  const sourceDigest = await draftDigest(entry);
   const db = await database();
   return new Promise((resolve, reject) => {
     const tx = db.transaction(["drafts", "summaries"], "readwrite");
@@ -55,15 +56,50 @@ export async function writeDraft(entry, expectedRevision) {
         tx.abort();
         return;
       }
-      result = { ...entry, revision: expectedRevision + 1, updatedAt: new Date().toISOString() };
+      result = { ...entry, sourceDigest, revision: expectedRevision + 1, updatedAt: new Date().toISOString() };
       store.put(result);
-      tx.objectStore("summaries").put({
-        id: result.id, title: result.title, kind: result.kind, category: result.category,
-        updatedAt: result.updatedAt, revision: result.revision
-      });
+      tx.objectStore("summaries").put(summary(result));
     };
     tx.oncomplete = () => resolve(result);
     tx.onabort = () => reject(conflict || tx.error || new Error("임시저장에 실패했어요."));
+    tx.onerror = () => {};
+  });
+}
+import { draftDigest } from "../../shared/posts.js";
+
+
+function summary(entry) {
+  const { id, title, kind, category, tags, date, updatedAt, revision, trashedAt, publication, sourceDigest } = entry;
+  return { id, title, kind, category, tags, date, updatedAt, revision, trashedAt, publication, sourceDigest };
+}
+
+export async function trashDrafts(items, restore = false, publications = new Map()) {
+  if (!items.length) return [];
+  const db = await database();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(["drafts", "summaries"], "readwrite");
+    const store = tx.objectStore("drafts"), found = [];
+    let remaining = items.length, failure;
+    items.forEach(item => {
+      const request = store.get(item.id);
+      request.onsuccess = () => {
+        if (!request.result || request.result.revision !== item.revision) {
+          failure = new DraftConflict(); tx.abort(); return;
+        }
+        found.push(request.result);
+        if (--remaining) return;
+        const now = new Date().toISOString();
+        found.forEach(entry => {
+          entry.trashedAt = restore ? null : now;
+          if (publications.has(entry.id)) entry.publication = { ...entry.publication, ...publications.get(entry.id) };
+          entry.revision++;
+          entry.updatedAt = now;
+          store.put(entry); tx.objectStore("summaries").put(summary(entry));
+        });
+      };
+    });
+    tx.oncomplete = () => resolve(found);
+    tx.onabort = () => reject(failure || tx.error || new Error("글 상태를 변경하지 못했어요."));
     tx.onerror = () => {};
   });
 }

@@ -2,6 +2,10 @@
   "use strict";
 
   const data = window.BLOG_DATA;
+  for (const kind of ["posts", "notes"]) {
+    const published = (window.BLOG_PUBLISHED || []).filter(item => item.kind === kind);
+    if (published.length || window.BLOG_MANAGED_KINDS?.includes(kind)) data[kind] = [...published, ...data[kind].filter(item => !item.sample && !published.some(post => post.id === item.id))].sort((a, b) => b.date.localeCompare(a.date) || (b.publishedAt || "").localeCompare(a.publishedAt || ""));
+  }
   const main = document.getElementById("main");
   const dialog = document.getElementById("search-dialog");
   const searchInput = document.getElementById("search-input");
@@ -40,7 +44,7 @@
   }
 
   function home() {
-    const featured = data.posts.filter(post => post.featured).slice(0, 2);
+    const featured = data.posts.some(post => post.featured) ? data.posts.filter(post => post.featured).slice(0, 2) : data.posts.slice(0, 2);
     return `<div class="container"><section class="hero" aria-labelledby="home-title"><div class="hero-monogram" aria-hidden="true">${esc(data.profile.mark)}<span>_</span></div><p class="eyebrow">${esc(data.profile.role)}</p><h1 id="home-title">${data.profile.headline.map(line => `<span>${esc(line)}</span>`).join("")}</h1><p class="hero-intro">${esc(data.profile.intro)}</p><div class="hero-actions"><a class="primary-link" href="#/posts">Explore posts <span class="arrow" aria-hidden="true">→</span></a><a class="text-link" href="#/about">About me ${arrow}</a></div><span class="hero-index" aria-hidden="true">PERSONAL SITE / 2026</span><a class="hero-scroll" href="#selected" data-scroll="selected">SCROLL TO EXPLORE <span class="arrow" aria-hidden="true">↓</span></a></section>
       <section class="home-section" id="selected">${sectionHeading("SELECTED WRITING", "먼저 읽어볼 글", "#/posts", "All posts")}<div class="featured-grid">${featured.map(post => `<article class="featured-item"><p class="eyebrow">${post.tags.map(tag => esc(tagName(tag))).join(" / ")}</p><h3 class="featured-title"><a href="${localPath("post", post.id)}">${esc(post.title)}</a></h3><p>${esc(post.description)}</p>${meta(post)}</article>`).join("")}</div></section>
       <section class="home-section">${sectionHeading("SELECTED PROJECTS", "작게 만들고, 깊게 이해하기", "#/projects", "All projects")}<div class="project-grid">${data.projects.slice(0, 2).map(project => projectCard(project)).join("")}</div></section>
@@ -60,7 +64,7 @@
       const count = tag === "all" ? items.length : items.filter(item => item.tags.includes(tag)).length;
       return `<button class="filter-button" type="button" data-filter-tag="${esc(tag)}" data-filter-kind="${isNotes ? "notes" : "posts"}" aria-pressed="${tag === selectedTag}">${esc(tag === "all" ? "All" : tagName(tag))}<span>${count}</span></button>`;
     }).join("");
-    return `<div class="container">${pageHead(isNotes ? "SMALL OBSERVATIONS" : "WRITING & RESEARCH", isNotes ? "Notes." : "Posts.", isNotes ? "아직 긴 글이 되지 않은 생각들. 짧은 실험, 자주 쓰는 명령, 다음에 다시 꺼내볼 메모를 남깁니다." : "궁금했던 것을 따라가며 남긴 기록입니다. 분석 과정과 배운 점, 그 사이의 작은 발견들을 정리합니다.")}<p class="archive-notice">${sample({ sample: true })} 표시는 콘텐츠를 채우기 전의 구성 예시입니다.</p><div class="filter-bar"><div class="filter-buttons" aria-label="주제 필터">${filters}</div><button class="archive-search" type="button" data-search-open>Search ↗</button></div><div class="archive-list">${filtered.length ? filtered.map(item => postRow(item, kind)).join("") : '<div class="empty-state"><p>이 주제의 기록이 아직 없습니다.</p><button type="button" data-filter-tag="all" data-filter-kind="' + (isNotes ? "notes" : "posts") + '">전체 기록 보기</button></div>'}</div></div>`;
+    return `<div class="container">${pageHead(isNotes ? "SMALL OBSERVATIONS" : "WRITING & RESEARCH", isNotes ? "Notes." : "Posts.", isNotes ? "아직 긴 글이 되지 않은 생각들. 짧은 실험, 자주 쓰는 명령, 다음에 다시 꺼내볼 메모를 남깁니다." : "궁금했던 것을 따라가며 남긴 기록입니다. 분석 과정과 배운 점, 그 사이의 작은 발견들을 정리합니다.")}${items.some(item => item.sample) ? '<p class="archive-notice"><span class="sample-label">예시</span> 표시는 콘텐츠를 채우기 전의 구성 예시입니다.</p>' : ""}<div class="filter-bar"><div class="filter-buttons" aria-label="주제 필터">${filters}</div><button class="archive-search" type="button" data-search-open>Search ↗</button></div><div class="archive-list">${filtered.length ? filtered.map(item => postRow(item, kind)).join("") : '<div class="empty-state"><p>이 주제의 기록이 아직 없습니다.</p><button type="button" data-filter-tag="all" data-filter-kind="' + (isNotes ? "notes" : "posts") + '">전체 기록 보기</button></div>'}</div></div>`;
   }
 
   function projects() {
@@ -88,8 +92,9 @@
     const isNotes = kind === "note";
     const archiveRoute = isNotes ? "notes" : "posts";
     const others = (isNotes ? data.notes : data.posts).filter(post => post.id !== item.id).slice(0, 2);
-    const headings = item.body.filter(block => block.type === "heading");
-    return `<article class="container"><header class="article-header"><a class="breadcrumb" href="#/${archiveRoute}">← BACK TO ${archiveRoute.toUpperCase()}</a><p class="eyebrow">${item.tags.map(tag => esc(tagName(tag))).join(" / ")}</p><h1>${esc(item.title)}</h1><p>${esc(item.description)}</p>${meta(item)}</header><div class="article-layout"><div class="article-content">${item.body.map(block => renderBlock(block)).join("")}</div>${toc(headings, kind, item.id, section)}</div><div class="article-end"><div class="article-tags">${item.tags.map(tag => `<a href="#/${archiveRoute}?tag=${encodeURIComponent(tag)}"># ${esc(tagName(tag))}</a>`).join("")}</div><a class="text-link" href="#/${archiveRoute}">전체 ${isNotes ? "노트" : "글"} 보기 <span class="arrow" aria-hidden="true">→</span></a></div><section class="related-section"><p class="eyebrow">MORE TO EXPLORE</p>${others.map(post => postRow(post, kind)).join("")}</section></article>`;
+    const rendered = item.doc ? window.BlogPosts.renderDocument(item.doc, { assets: item.assets }) : null;
+    const headings = rendered?.headings || item.body.filter(block => block.type === "heading");
+    return `<article class="container"><header class="article-header"><a class="breadcrumb" href="#/${archiveRoute}">← BACK TO ${archiveRoute.toUpperCase()}</a><p class="eyebrow">${item.tags.map(tag => esc(tagName(tag))).join(" / ")}</p><h1>${esc(item.title)}</h1><p>${esc(item.description)}</p>${meta(item)}</header><div class="article-layout"><div class="article-content post-body">${rendered?.html ?? item.body.map(block => renderBlock(block)).join("")}</div>${toc(headings, kind, item.id, section)}</div><div class="article-end"><div class="article-tags">${item.tags.map(tag => `<a href="#/${archiveRoute}?tag=${encodeURIComponent(tag)}"># ${esc(tagName(tag))}</a>`).join("")}</div><a class="text-link" href="#/${archiveRoute}">전체 ${isNotes ? "노트" : "글"} 보기 <span class="arrow" aria-hidden="true">→</span></a></div><section class="related-section"><p class="eyebrow">MORE TO EXPLORE</p>${others.map(post => postRow(post, kind)).join("")}</section></article>`;
   }
 
   function projectDetail(project, section) {
@@ -169,7 +174,7 @@
     else {
       const tokens = query.split(/\s+/);
       matches = searchable.filter(item => {
-        const text = normalize([item.title, item.description, ...item.tags, ...item.tags.map(tagName)].join(" "));
+        const text = normalize([item.title, item.description, item.category || "", item.searchText || "", ...item.tags, ...item.tags.map(tagName)].join(" "));
         return tokens.every(token => text.includes(token));
       });
     }
@@ -248,5 +253,8 @@
   document.querySelectorAll("[data-profile-name]").forEach(node => { node.textContent = data.profile.name; });
   document.querySelector(".brand-mark").innerHTML = `${esc(data.profile.mark)}<span>_</span>`;
   document.getElementById("footer-links").innerHTML = `${isHttpLink(data.profile.github) ? `<a href="${esc(data.profile.github)}" target="_blank" rel="noopener noreferrer">GitHub ↗</a>` : ""}<a href="#/about">About ↗</a><button type="button" data-search-open>Search ↗</button>`;
+  document.addEventListener("error", event => {
+    if (event.target instanceof HTMLImageElement && event.target.classList.contains("writer-link-image")) event.target.hidden = true;
+  }, true);
   render();
 })();
