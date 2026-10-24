@@ -48,6 +48,8 @@
 
 개발 시 npm ci --ignore-scripts 후 npm run build, npm test를 실행합니다. GitHub Actions도 같은 빌드와 테스트를 실행합니다. 관리자 원본은 admin/src/, 배포 번들은 admin/assets/이며 라이선스 고지를 함께 배포합니다. _site/가 최종 배포 폴더입니다.
 
+admin/assets/ 전체, assets/posts.js, published.js, _site/는 빌드 산출물이므로 Git으로 추적하지 않습니다. 새로 저장소를 받으면 먼저 빌드해 생성합니다. 관리자 라이선스 고지도 빌드 중 생성하고 배포 파일에 포함합니다.
+
 발행한 글은 blog/entries/에 문서 JSON으로 저장하고 blog/index.json이 목록과 파일 버전을 관리합니다. 이미지는 assets/uploads/에 저장합니다. 공개 빌드는 발행 상태의 글만 published.js에 포함하며, 브라우저에서 임시저장한 글과 휴지통 글은 포함하지 않습니다. 공개 저장소에 발행한 글은 휴지통으로 옮겨도 Git 이력에 남습니다.
 
 ### 공개 블로그 콘텐츠
@@ -75,10 +77,13 @@ content.js에서 이름, 소개, 연락처, 프로젝트와 초기 구성 예시
 
 ## 로컬에서 확인
 
-`index.html`을 브라우저에서 열거나, 저장소 폴더에서 다음을 실행합니다.
+저장소 폴더에서 의존성을 설치하고 빌드한 뒤, 생성된 _site/를 실행합니다.
 
 ```powershell
-python -m http.server 8781 --bind 127.0.0.1
+npm ci --ignore-scripts
+npm run build
+npm test
+python -m http.server 8781 --bind 127.0.0.1 --directory _site
 ```
 
 브라우저에서 `http://127.0.0.1:8781/`을 엽니다.
@@ -91,6 +96,6 @@ main에 변경 사항을 반영하면 .github/workflows/deploy.yml이 편집기�
 
 ## 기존 콘텐츠 보존
 
-기존 Jekyll의 `_posts/`와 이미지, 관련 원본 파일을 그대로 보존했습니다. 새 화면의 목록에는 아직 자동으로 연결되지 않습니다. 기존 Jekyll 설정 파일은 `.nojekyll`이 있는 현재 배포에서 사용하지 않습니다.
+기존 _posts/의 학습 글과 첨부 이미지는 원본 콘텐츠로 보관합니다. 새 화면의 목록에는 아직 자동으로 연결되지 않습니다. 사용하지 않는 Jekyll 설정·Ruby 의존성·기본 예제와 Obsidian 설정·플러그인은 정리했습니다. Obsidian 설정과 빌드 산출물은 .gitignore로 제외합니다.
 
 교체 직전 버전은 `backup/pre-security-blog-2026-10-22` 브랜치와 Git 이력에서 확인할 수 있습니다.
