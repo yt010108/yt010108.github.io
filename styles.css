@@ -163,6 +163,8 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
 .empty-state button { margin-top: 14px; border: 0; border-bottom: 1px solid var(--quiet); background: none; font-size: 12px; }
 
 .article-header { padding: 62px 0 44px; max-width: 830px; }
+.container.post-detail { max-width: 840px; }
+.post-detail > .article-header { max-width: none; }
 .breadcrumb { display: inline-flex; align-items: center; gap: 10px; color: var(--quiet); font: 10px/1.6 var(--mono); margin-bottom: 35px; }
 .breadcrumb:hover { color: var(--text); }
 .article-header h1 { margin: 18px 0 20px; font-size: clamp(30px, 3.9vw, 49px); font-weight: 400; line-height: 1.5; letter-spacing: -.055em; word-break: keep-all; }
