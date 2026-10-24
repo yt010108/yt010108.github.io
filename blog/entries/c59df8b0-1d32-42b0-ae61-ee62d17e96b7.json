@@ -12,8 +12,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-10-24T17:41:04.090Z",
-  "updatedAt": "2026-10-24T17:41:04.090Z",
-  "sourceDigest": "63f36e230c0cda1c4af8b4481564d6dc37ba8d4fe8427168ce73c5e1c7a4f87c",
+  "updatedAt": "2026-10-24T17:41:53.167Z",
+  "sourceDigest": "089740d840b7efc0ee35d358b3f664068a9cf7691db2b31dbd8c42d714e18851",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -38,6 +38,21 @@
             "text": "주요 사업 수급, 유통, 수출, 식품"
           }
         ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "왜 굳이 저희 본사에서 그걸 하고 싶은 지"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
       }
     ]
   }
