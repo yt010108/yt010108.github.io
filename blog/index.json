@@ -18,6 +18,23 @@
       "trashedAt": null,
       "path": "blog/entries/06e2f54a-99fb-461b-819d-c1d90def7dcf.json",
       "sha": "97a0ffbc37a0eba327c212339845500f0636bf6c"
+    },
+    {
+      "id": "a13cf82f-34ed-4090-997d-6397e7722318",
+      "kind": "notes",
+      "slug": "수준-낮은-작업들이-반복되야-탁월함이-나온다",
+      "title": "수준 낮은 작업들이 반복되야 탁월함이 나온다",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-10-25",
+      "updatedAt": "2026-10-24T17:36:48.266Z",
+      "publishedAt": "2026-10-24T17:36:48.266Z",
+      "status": "published",
+      "sourceDigest": "e446f52f65d81e7c834da816cc595be6d439338cae5e39f546742918a1bcecc7",
+      "trashedAt": null,
+      "path": "blog/entries/a13cf82f-34ed-4090-997d-6397e7722318.json",
+      "sha": "c3a00b71860a8f1d23b6df3233ca7d4a9213b50c"
     }
   ]
 }
