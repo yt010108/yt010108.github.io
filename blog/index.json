@@ -1,5 +1,23 @@
 {
   "format": "yt010108-post-index",
   "version": 1,
-  "entries": []
+  "entries": [
+    {
+      "id": "06e2f54a-99fb-461b-819d-c1d90def7dcf",
+      "kind": "posts",
+      "slug": "test",
+      "title": "test",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-10-24",
+      "updatedAt": "2026-10-24T17:11:06.735Z",
+      "publishedAt": "2026-10-24T17:11:06.735Z",
+      "status": "published",
+      "sourceDigest": "b560f8efdbc82800d7dca8dde964688c84ca4c0ee84bd9ce38f45d64368bca27",
+      "trashedAt": null,
+      "path": "blog/entries/06e2f54a-99fb-461b-819d-c1d90def7dcf.json",
+      "sha": "97a0ffbc37a0eba327c212339845500f0636bf6c"
+    }
+  ]
 }

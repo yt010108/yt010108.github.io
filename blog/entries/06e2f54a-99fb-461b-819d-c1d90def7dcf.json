@@ -1,0 +1,109 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "06e2f54a-99fb-461b-819d-c1d90def7dcf",
+  "title": "test",
+  "kind": "posts",
+  "slug": "test",
+  "description": "",
+  "category": "",
+  "date": "2026-10-24",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-10-24T17:11:06.735Z",
+  "updatedAt": "2026-10-24T17:11:06.735Z",
+  "sourceDigest": "b560f8efdbc82800d7dca8dde964688c84ca4c0ee84bd9ce38f45d64368bca27",
+  "assets": [
+    {
+      "id": "eb5c337e-f4f2-4413-9ddd-c27c04704533",
+      "name": "as.jpg",
+      "type": "image/jpeg",
+      "path": "/assets/uploads/06e2f54a-99fb-461b-819d-c1d90def7dcf/eb5c337e-f4f2-4413-9ddd-c27c04704533.jpg",
+      "sha": "f1055f4490048c8def8a5dba110d73a781a6822b"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.google.com/webhp?hl=en&sa=X&ved=2ahUKEwic2vTG09KXAxU5ra8BHa86ClwQPHoECAYQBQ",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "https://www.google.com/webhp?hl=en&sa=X&ved=2ahUKEwic2vTG09KXAxU5ra8BHa86ClwQPHoECAYQBQ"
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "9dd1f4b5-a6b7-443b-95e6-20a5958e5cdf",
+          "href": "https://www.google.com/webhp?hl=en&sa=X&ved=2ahUKEwic2vTG09KXAxU5ra8BHa86ClwQPHoECAYQBQ",
+          "title": "Google",
+          "description": "AboutStore",
+          "image": "https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png",
+          "imageKind": "logo",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/06e2f54a-99fb-461b-819d-c1d90def7dcf/eb5c337e-f4f2-4413-9ddd-c27c04704533.jpg",
+          "alt": "as",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "eb5c337e-f4f2-4413-9ddd-c27c04704533"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "asdasdas"
+          }
+        ]
+      }
+    ]
+  }
+}
