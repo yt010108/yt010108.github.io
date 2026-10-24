@@ -136,6 +136,7 @@
 .writer-page button, .writer-page input, .writer-page select, .writer-page textarea { border-radius: 5px; }
 .writer-page input, .writer-page select, .writer-page textarea { background: var(--bg); color: var(--text); }
 .writer-page input:not([type="file"]), .writer-page select { border: 1px solid var(--line); padding: 8px 10px; max-width: 100%; }
+.writer-page input[type="checkbox"] { -webkit-appearance: checkbox; appearance: auto; padding: 0; accent-color: var(--writer-accent); cursor: pointer; }
 .writer-page textarea { resize: vertical; }
 .writer-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .writer-header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--line); background: var(--bg); }
