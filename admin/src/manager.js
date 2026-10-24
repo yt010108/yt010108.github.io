@@ -7,12 +7,12 @@ const $ = id => document.getElementById(id);
 const normalize = value => String(value || "").normalize("NFKC").toLocaleLowerCase("ko-KR");
 const DEPLOY_KEY = "yt010108-cms-deployment";
 const stateLabel = { draft: "임시글", modified: "수정 중", published: "발행됨", trash: "휴지통" };
-export function createManager({ repository, edit, newDraft, report, onBusy = () => {} }) {
+export function createManager({ repository, edit, newDraft, report, onBusy = () => {}, onStatusChange = () => {} }) {
   let local = [], remote = [], rows = [], selected = new Set(), status = "all", page = 1, busy = false;
   let lastDeployment, deployTimer, polls = 0, refreshVersion = 0;
   function withBusy(callback) {
     return async (...args) => {
-      if (busy) return;
+      if (busy || !repository.connected) return;
       busy = true; onBusy(true); renderSelection();
       try { return await callback(...args); }
       catch (error) { report(error.message || "작업을 완료하지 못했어요.", true); }
@@ -52,6 +52,7 @@ export function createManager({ repository, edit, newDraft, report, onBusy = () 
     $("manager-select-all").disabled = busy || !shown.length;
   }
   function render() {
+    if (!repository.connected) { clear(); return; }
     rows = combined();
     document.querySelectorAll(".cms-tabs [data-status]").forEach(button => {
       button.setAttribute("aria-pressed", String(button.dataset.status === status));
@@ -98,12 +99,14 @@ export function createManager({ repository, edit, newDraft, report, onBusy = () 
     $("manager-prev").disabled = busy || page <= 1; $("manager-next").disabled = busy || page >= pages;
     $("manager-connection").textContent = repository.connected ? repository.user.login + " 연결됨 · 임시글은 브라우저에, 발행한 글은 GitHub에 저장돼요." : "GitHub 미연결 · 임시글을 편집할 수 있고, 발행·공개 글 변경에는 연결이 필요해요.";
     renderSelection();
+    onStatusChange(status);
   }
   async function refresh({ fetchRemote = true } = {}) {
+    if (!repository.connected) { clear(); return; }
     const version = ++refreshVersion;
     $("manager-loading").hidden = false;
     const results = await Promise.allSettled([listDrafts({ includeTrash: true }), fetchRemote ? repository.readIndex() : Promise.resolve(null)]);
-    if (version !== refreshVersion) return;
+    if (version !== refreshVersion || !repository.connected) return;
     $("manager-loading").hidden = true;
     if (results[0].status === "fulfilled") local = results[0].value;
     else report("브라우저 임시글을 불러오지 못했어요. 사이트 저장 공간을 확인해 주세요.", true);
@@ -115,6 +118,14 @@ export function createManager({ repository, edit, newDraft, report, onBusy = () 
       $("manager-remote-error").hidden = false;
     }
     selected.clear(); render();
+  }
+  function clear() {
+    refreshVersion++; clearTimeout(deployTimer);
+    local = []; remote = []; rows = []; selected.clear();
+    $("manager-list").replaceChildren();
+    $("manager-loading").hidden = true;
+    $("manager-remote-error").hidden = true;
+    $("deployment-panel").hidden = true;
   }
   function confirmChange(chosen, restore) {
     const published = chosen.some(row => row.published);
@@ -201,10 +212,10 @@ export function createManager({ repository, edit, newDraft, report, onBusy = () 
   $("manager-bulk-trash").addEventListener("click", withBusy(() => change(rows.filter(row => selected.has(row.id)), false)));
   $("manager-bulk-restore").addEventListener("click", withBusy(() => change(rows.filter(row => selected.has(row.id)), true)));
   $("manager-import").addEventListener("click", () => $("backup-input").click());
-  repository.addEventListener("change", render);
+  repository.addEventListener("change", () => { if (!repository.connected) clear(); else render(); });
   async function checkDeployment() {
     clearTimeout(deployTimer);
-    if (!lastDeployment) return;
+    if (!lastDeployment || !repository.connected) return;
     const current = lastDeployment, panel = $("deployment-panel");
     panel.hidden = false; polls++;
     let done = false;
@@ -234,6 +245,10 @@ export function createManager({ repository, edit, newDraft, report, onBusy = () 
     const value = JSON.parse(localStorage.getItem(DEPLOY_KEY));
     if (/^[a-f0-9]{40}$/.test(value?.sha) && /^[a-f0-9-]{36}$/.test(value.item?.id) && ["posts", "notes"].includes(value.item.kind)) lastDeployment = value;
   } catch {}
-  if (lastDeployment) checkDeployment();
-  return { refresh, render, watchDeployment, setRemote(index) { remote = index.entries; render(); } };
+  return {
+    refresh, render, clear, watchDeployment,
+    resume() { if (lastDeployment && repository.connected) { polls = 0; checkDeployment(); } },
+    setStatus(next) { if (!["all", "draft", "published", "trash"].includes(next)) return; status = next; page = 1; selected.clear(); render(); },
+    setRemote(index) { remote = index.entries; render(); }
+  };
 }

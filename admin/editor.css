@@ -1,6 +1,45 @@
 .writer-page { --writer-header-height: 73px; --writer-accent: #2d4434; --writer-on-accent: #fff; font-size: 14px; min-height: 100svh; display: flex; flex-direction: column; }
 :root[data-theme="dark"] .writer-page { --writer-accent: #d9e5dc; --writer-on-accent: #18251c; }
 .writer-page [hidden] { display: none !important; }
+.writer-page { --cms-sidebar-width: 184px; }
+.writer-page.is-locked :is(#cms-sidebar, #sidebar-toggle, #manage-button, #new-draft, #open-drafts, #github-connect, .writer-footer, #admin-main) { display: none !important; }
+.writer-page.is-locked .writer-heading { color: var(--quiet); }
+.cms-login { flex: 1; display: grid; place-items: center; padding: 45px 20px; min-height: calc(100svh - var(--writer-header-height)); }
+.cms-login-card.writer-dialog { width: min(520px, 100%); max-height: none; padding: 32px; overflow: visible; box-shadow: none; margin: 0; }
+.cms-login-card h1 { font-size: 26px; font-weight: 500; letter-spacing: -.04em; margin: 8px 0 13px; }
+#auth-form-host .writer-dialog-heading { display: none; }
+.cms-login-back { display: block; width: fit-content; margin-top: 24px; color: var(--quiet); font-size: 12px; text-decoration: underline; text-underline-offset: 4px; }
+.cms-login-card #auth-status:empty { display: none; }
+#auth-retry { width: 100%; margin-top: 12px; }
+.writer-dialog label.cms-remember { display: flex; align-items: center; gap: 9px; margin-bottom: 8px; color: var(--text); cursor: pointer; }
+.writer-dialog .cms-remember input[type="checkbox"] { width: 16px; height: 16px; min-height: 0; padding: 0; margin: 0; accent-color: var(--writer-accent); flex: 0 0 16px; }
+.cms-sidebar { position: fixed; top: var(--writer-header-height); bottom: 0; left: 0; width: var(--cms-sidebar-width); background: var(--surface); border-right: 1px solid var(--line); z-index: 18; display: flex; flex-direction: column; padding: 24px 13px 16px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; }
+.cms-sidebar::-webkit-scrollbar { display: none; }
+.cms-side-link { display: flex; align-items: center; gap: 11px; width: 100%; text-align: left; padding: 12px 11px; border: 0; border-radius: 5px; background: transparent; color: var(--muted); font-size: 13px !important; line-height: 1.5; margin: 1px 0; }
+.cms-side-link svg { width: 16px; height: 16px; }
+.cms-side-link:hover:not(:disabled) { background: var(--line); color: var(--text); }
+.cms-side-link[aria-current="page"] { color: var(--text); background: color-mix(in srgb, var(--writer-accent) 9%, var(--bg)); font-weight: 500; }
+.writer-page .cms-side-link:disabled { opacity: 1; color: var(--quiet); }
+.cms-side-label { color: var(--quiet); font-size: 11px; margin: 22px 11px 8px; }
+.cms-side-bottom { margin-top: auto; padding-top: 28px; }
+.writer-page:not(.is-locked) .writer-main { padding-left: var(--cms-sidebar-width); }
+.writer-page:not(.is-locked) .writer-footer { width: calc(100% - var(--cms-sidebar-width)); margin-left: var(--cms-sidebar-width); }
+#sidebar-toggle, .cms-sidebar-overlay { display: none; }
+@media (max-width: 800px) {
+  .writer-page:not(.is-locked) .writer-main { padding-left: 0; }
+  .writer-page:not(.is-locked) .writer-footer { width: 100%; margin-left: 0; }
+  .cms-sidebar { width: 216px; transform: translateX(-100%); visibility: hidden; z-index: 30; }
+  .writer-page.is-sidebar-open .cms-sidebar { transform: none; visibility: visible; }
+  .writer-page.is-sidebar-open { overflow: hidden; }
+  .writer-page:not(.is-locked) #sidebar-toggle { display: inline-flex; }
+  .cms-sidebar-overlay:not([hidden]) { display: block; position: fixed; inset: var(--writer-header-height) 0 0; background: #0005; border: 0; border-radius: 0; padding: 0; z-index: 29; }
+}
+@media (max-width: 480px) {
+  .cms-login { padding: 24px 16px; align-items: start; }
+  .cms-login-card.writer-dialog { padding: 24px; }
+  .cms-login-card h1 { font-size: 24px; }
+  .writer-page:not(.is-locked) #manage-button { display: none; }
+}
 .writer-page.is-managing .writer-footer { display: none; }
 .writer-page.is-managing #open-drafts { display: none; }
 .writer-page:not(.is-managing) #manage-button { color: var(--text); }

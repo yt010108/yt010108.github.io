@@ -7,6 +7,7 @@ export const SITE = "https://yt010108.github.io/";
 const API = "https://api.github.com";
 const ROOT = "/repos/" + REPOSITORY;
 const TOKEN_KEY = "yt010108-cms-github-session";
+export const REMEMBER_KEY = "yt010108-cms-github-remember";
 const emptyIndex = () => ({ format: INDEX_FORMAT, version: 1, entries: [] });
 const jsonText = value => JSON.stringify(value, null, 2) + "\n";
 export const publicLink = (entry, commit = "") => SITE + (commit ? "?v=" + encodeURIComponent(commit) : "") + "#/" + (entry.kind === "notes" ? "note" : "post") + "/" + encodeURIComponent(entry.id);
@@ -39,51 +40,100 @@ function mapImages(doc, assets) {
   return copy;
 }
 export class GitHubRepository extends EventTarget {
-  constructor({ fetcher = (...args) => fetch(...args), storage } = {}) {
+  constructor({ fetcher = (...args) => fetch(...args), storage, persistentStorage } = {}) {
     super();
     this.fetcher = fetcher;
     try { this.storage = storage === undefined ? sessionStorage : storage; } catch { this.storage = null; }
+    try { this.persistentStorage = persistentStorage === undefined ? localStorage : persistentStorage; } catch { this.persistentStorage = null; }
     this.token = ""; this.user = null;
+    this.remembered = false; this.storageWarning = ""; this.generation = 0;
   }
   get connected() { return Boolean(this.user && this.token); }
   notify() { this.dispatchEvent(new Event("change")); }
-  disconnect() {
-    this.token = ""; this.user = null;
+  savedConnection() {
+    try { const token = this.persistentStorage?.getItem(REMEMBER_KEY); if (token) return { token, remember: true }; } catch {}
+    try { const token = this.storage?.getItem(TOKEN_KEY); if (token) return { token, remember: false }; } catch {}
+    return null;
+  }
+  get hasSavedConnection() { return Boolean(this.savedConnection()); }
+  forgetStored() {
     try { this.storage?.removeItem(TOKEN_KEY); } catch {}
+    try { this.persistentStorage?.removeItem(REMEMBER_KEY); } catch {}
+  }
+  disconnect({ forget = true } = {}) {
+    this.generation++;
+    this.token = ""; this.user = null;
+    this.remembered = false;
+    if (forget) this.forgetStored();
     this.notify();
   }
-  async restore() {
-    let token;
-    try { token = this.storage?.getItem(TOKEN_KEY); } catch {}
-    if (token) await this.connect(token);
-  }
-  async connect(value) {
-    this.disconnect();
-    const token = value.trim();
-    if (!/^(github_pat_|ghp_)[A-Za-z0-9_]{16,}$/.test(token)) throw new Error("GitHub에서 만든 개인 액세스 토큰을 입력해 주세요.");
-    this.token = token;
+  rememberConnection(remember) {
+    if (!this.connected) throw new Error("먼저 관리자에 로그인해 주세요.");
+    this.storageWarning = ""; this.remembered = false;
     try {
-      const user = await this.request("/user");
-      const repo = await this.request(ROOT);
-      if (user.login?.toLowerCase() !== "yt010108" || repo.full_name?.toLowerCase() !== REPOSITORY.toLowerCase() || repo.permissions?.push === false) throw new Error("yt010108 계정과 이 블로그 저장소의 쓰기 권한으로 연결해 주세요.");
+      const target = remember ? this.persistentStorage : this.storage;
+      if (!target) throw new Error("Storage unavailable");
+      const key = remember ? REMEMBER_KEY : TOKEN_KEY;
+      if (target.getItem(key) !== this.token) target.setItem(key, this.token);
+      if (remember) this.storage?.removeItem(TOKEN_KEY);
+      else this.persistentStorage?.removeItem(REMEMBER_KEY);
+      this.remembered = Boolean(remember);
+    } catch {
+      if (!remember) { try { this.persistentStorage?.removeItem(REMEMBER_KEY); } catch {} }
+      try { this.storage?.setItem(TOKEN_KEY, this.token); } catch {}
+      this.storageWarning = remember ? "브라우저에 연결 정보를 저장하지 못했어요. 현재 탭에서만 연결돼요." : "연결 정보를 저장하지 못했어요. 새로고침하면 다시 로그인해야 해요.";
+    }
+    return this.remembered;
+  }
+  async restore() {
+    const saved = this.savedConnection();
+    if (!saved) return false;
+    await this.connect(saved.token, { remember: saved.remember, restoring: true });
+    return true;
+  }
+  async connect(value, { remember = false, restoring = false } = {}) {
+    const generation = ++this.generation;
+    this.token = ""; this.user = null; this.remembered = false;
+    if (!restoring) this.forgetStored();
+    const token = value.trim();
+    this.notify();
+    try {
+      if (!/^(github_pat_|ghp_)[A-Za-z0-9_]{16,}$/.test(token)) {
+        const error = new Error("GitHub에서 만든 개인 액세스 토큰을 입력해 주세요."); error.authInvalid = true; throw error;
+      }
+      this.token = token;
+      const user = await this.request("/user", { authorizing: true });
+      const repo = await this.request(ROOT, { authorizing: true });
+      if (generation !== this.generation) throw new Error("다른 로그인 요청으로 변경됐어요. 다시 시도해 주세요.");
+      if (user.login?.toLowerCase() !== "yt010108" || repo.full_name?.toLowerCase() !== REPOSITORY.toLowerCase() || repo.permissions?.push === false) {
+        const error = new Error("yt010108 계정과 이 블로그 저장소의 쓰기 권한으로 연결해 주세요."); error.authInvalid = true; throw error;
+      }
       this.user = { login: user.login };
-      try { this.storage?.setItem(TOKEN_KEY, token); } catch {}
+      this.rememberConnection(remember);
       this.notify();
       return this.user;
-    } catch (error) { this.disconnect(); throw error; }
+    } catch (error) {
+      if (generation === this.generation) {
+        this.token = ""; this.user = null; this.remembered = false;
+        if (error.authInvalid || [401, 404].includes(error.status)) this.forgetStored();
+        this.notify();
+      }
+      throw error;
+    }
   }
-  async request(path, { method = "GET", body, auth = true } = {}) {
+  async request(path, { method = "GET", body, auth = true, authorizing = false } = {}) {
     if (!(path === "/user" || path === ROOT || path.startsWith(ROOT + "/"))) throw new Error("허용되지 않는 GitHub 요청이에요.");
-    if (method !== "GET" && !this.connected) throw new Error("먼저 GitHub에 연결해 주세요.");
+    if (!this.connected && !(authorizing && method === "GET" && ["/user", ROOT].includes(path))) throw new Error("먼저 관리자에 로그인해 주세요.");
+    const generation = this.generation, requestToken = this.token;
     const headers = { Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28" };
     if (auth && this.token) headers.Authorization = "Bearer " + this.token;
     if (body !== undefined) headers["Content-Type"] = "application/json";
     let response;
     try {
-      response = await this.fetcher(API + path, { method, headers, body: body === undefined ? undefined : JSON.stringify(body), credentials: "omit", referrerPolicy: "no-referrer", cache: "no-store", signal: AbortSignal.timeout(90000) });
+      response = await this.fetcher(API + path, { method, headers, body: body === undefined ? undefined : JSON.stringify(body), credentials: "omit", referrerPolicy: "no-referrer", cache: "no-store", signal: AbortSignal.timeout(authorizing ? 15000 : 90000) });
     } catch { throw new Error("GitHub에 연결하지 못했어요. 네트워크를 확인한 뒤 다시 시도해 주세요."); }
     if (!response.ok) {
-      if (response.status === 401 && auth) this.disconnect();
+      if (response.status === 401 && auth && generation === this.generation && requestToken === this.token) this.disconnect();
       throw new GitHubError(response.status);
     }
     return response.status === 204 ? null : response.json();

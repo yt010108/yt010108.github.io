@@ -15,13 +15,14 @@
   <link rel="stylesheet" href="editor.css?v=__BUILD__">
   <script src="assets/editor.js?v=__BUILD__" defer></script>
 </head>
-<body class="writer-page">
+<body class="writer-page is-locked">
   <a class="skip-link" href="#post-title">글 제목으로 이동</a>
   <header class="writer-header">
     <div class="writer-header-inner">
       <a class="brand" href="../" aria-label="블로그로 돌아가기"><span class="brand-mark" aria-hidden="true">y<span>_</span></span><span class="brand-name">yt010108</span></a>
       <span class="writer-heading">글쓰기</span>
       <div class="writer-header-actions">
+        <button type="button" class="writer-text-button" id="sidebar-toggle" aria-label="관리 메뉴 열기" aria-controls="cms-sidebar" aria-expanded="false"><i data-lucide="menu" aria-hidden="true"></i></button>
         <button type="button" class="writer-text-button" id="manage-button" disabled><i data-lucide="files" aria-hidden="true"></i><span>글 관리</span></button>
         <button type="button" class="writer-text-button" id="new-draft" disabled><i data-lucide="square-pen" aria-hidden="true"></i><span>새 글</span></button>
         <button type="button" class="writer-text-button" id="open-drafts" disabled><i data-lucide="files" aria-hidden="true"></i><span>임시글</span></button>
@@ -31,7 +32,23 @@
     </div>
   </header>
 
-  <main class="writer-main">
+  <section id="admin-login" class="cms-login" aria-labelledby="admin-login-title">
+    <div class="writer-dialog cms-login-card"><p class="cms-eyebrow">YT010108 / ADMIN</p><h1 id="admin-login-title">관리자 로그인</h1><p class="writer-dialog-note">GitHub 토큰을 확인한 뒤 관리자 화면을 열어요.</p><p id="auth-status" class="writer-dialog-note" role="status" aria-live="polite"></p><div id="auth-form-host"></div><button type="button" id="auth-retry" class="writer-button" hidden>저장된 연결 다시 확인</button><a class="cms-login-back" href="../">블로그로 돌아가기 ↗</a></div>
+  </section>
+  <aside id="cms-sidebar" class="cms-sidebar" aria-label="관리 메뉴">
+    <nav><button type="button" class="cms-side-link" data-admin-view="write"><i data-lucide="square-pen" aria-hidden="true"></i><span>글쓰기</span></button>
+      <p class="cms-side-label">콘텐츠</p>
+      <button type="button" class="cms-side-link" data-admin-view="all"><i data-lucide="files" aria-hidden="true"></i><span>글 관리</span></button>
+      <button type="button" class="cms-side-link" data-admin-view="draft"><i data-lucide="file-clock" aria-hidden="true"></i><span>임시저장</span></button>
+      <button type="button" class="cms-side-link" disabled title="준비 중" aria-label="카테고리·태그 관리, 준비 중"><i data-lucide="folder-tree" aria-hidden="true"></i><span>카테고리·태그</span></button>
+      <button type="button" class="cms-side-link" disabled title="준비 중" aria-label="미디어 관리, 준비 중"><i data-lucide="images" aria-hidden="true"></i><span>미디어</span></button>
+      <p class="cms-side-label">사이트</p>
+      <button type="button" class="cms-side-link" disabled title="준비 중" aria-label="페이지·프로젝트 관리, 준비 중"><i data-lucide="panels-top-left" aria-hidden="true"></i><span>페이지·프로젝트</span></button>
+      <button type="button" class="cms-side-link" data-admin-view="trash"><i data-lucide="trash-2" aria-hidden="true"></i><span>휴지통</span></button>
+    </nav><div class="cms-side-bottom"><button type="button" class="cms-side-link" id="sidebar-logout"><i data-lucide="log-out" aria-hidden="true"></i><span>로그아웃</span></button></div>
+  </aside>
+  <button type="button" id="sidebar-overlay" class="cms-sidebar-overlay" aria-label="관리 메뉴 닫기" hidden></button>
+  <main id="admin-main" class="writer-main" hidden>
     <section id="manager-view" class="cms-manager" aria-labelledby="manager-title" hidden>
       <div class="cms-title-row"><div><p class="cms-eyebrow">CONTENT</p><h1 id="manager-title" tabindex="-1">글 관리</h1><p id="manager-connection">이 브라우저의 임시글과 GitHub에 발행한 글을 관리해요.</p></div><button type="button" class="writer-button writer-primary" id="manager-new">새 글 쓰기</button></div>
       <div id="deployment-panel" class="cms-deployment" role="status" aria-live="polite" hidden><span id="deployment-status"></span><div><a id="deployment-actions" target="_blank" rel="noopener noreferrer" hidden>Actions에서 보기 ↗</a><a id="deployment-view" target="_blank" rel="noopener noreferrer" hidden>블로그에서 보기 ↗</a><button type="button" id="deployment-refresh" class="writer-text-button">다시 확인</button></div></div>
@@ -98,7 +115,7 @@
     <div id="writer-message" class="writer-message" role="status" aria-live="polite" hidden></div>
   </main>
 
-  <footer class="writer-footer">
+  <footer id="writer-footer" class="writer-footer" hidden>
     <div class="writer-save-info"><span id="save-status" role="status" aria-live="polite">이 브라우저에 저장</span><span id="word-count"></span><button type="button" id="save-copy" hidden>복사본으로 저장</button></div>
     <div class="writer-footer-actions"><button type="button" class="writer-button" id="preview-button" disabled><i data-lucide="eye" aria-hidden="true"></i>미리보기</button><button type="button" class="writer-button" id="save-button" disabled>임시저장</button><button type="button" class="writer-button writer-primary" id="finish-button" disabled>완료</button></div>
   </footer>
@@ -130,7 +147,7 @@
     <div class="writer-preview-bar"><span id="preview-heading">미리보기</span><button type="button" class="writer-button" data-close><i data-lucide="arrow-left" aria-hidden="true"></i>계속 편집</button></div>
     <article class="writer-preview-article"><header class="article-header"><div id="preview-category" class="eyebrow"></div><h1 id="preview-title"></h1><p id="preview-description"></p><div id="preview-meta" class="meta"></div></header><div class="article-layout"><div id="preview-body" class="article-content writer-prose post-body"></div><aside class="article-toc"><p class="eyebrow">ON THIS PAGE</p><ol id="preview-toc"></ol></aside></div></article>
   </dialog>
-  <dialog id="github-dialog" class="writer-dialog" aria-labelledby="github-title"><form id="github-form"><div class="writer-dialog-heading"><h2 id="github-title">GitHub 연결</h2><button type="button" data-close aria-label="GitHub 연결 창 닫기">×</button></div><p class="writer-dialog-note">yt010108/yt010108.github.io에 글과 이미지를 발행할 권한을 연결해요.</p><ol class="cms-auth-steps"><li><a href="https://github.com/settings/personal-access-tokens/new?name=Blog+CMS&amp;target_name=yt010108&amp;expires_in=30&amp;contents=write&amp;actions=read" target="_blank" rel="noopener noreferrer">GitHub에서 토큰 만들기 ↗</a></li><li>Repository access에서 Only select repositories → yt010108.github.io 선택</li><li>Contents는 Read and write, Actions는 Read-only로 설정</li></ol><label>개인 액세스 토큰<input id="github-token" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…" required></label><p class="writer-dialog-note">토큰은 이 탭의 세션에만 보관하고 GitHub API에만 보내요. 연결 해제로 지울 수 있어요.</p><p id="github-error" class="writer-dialog-note" role="alert" hidden></p><div class="writer-dialog-actions"><button type="button" class="writer-button" id="github-disconnect" hidden>연결 해제</button><button type="submit" class="writer-button writer-primary" id="github-submit">연결</button></div></form></dialog>
+  <dialog id="github-dialog" class="writer-dialog" aria-labelledby="github-title"><form id="github-form"><div class="writer-dialog-heading"><h2 id="github-title">GitHub 연결</h2><button type="button" data-close aria-label="GitHub 연결 창 닫기">×</button></div><p class="writer-dialog-note">yt010108/yt010108.github.io에 글과 이미지를 발행할 권한을 연결해요.</p><ol class="cms-auth-steps"><li><a href="https://github.com/settings/personal-access-tokens/new?name=Blog+CMS&amp;target_name=yt010108&amp;expires_in=30&amp;contents=write&amp;actions=read" target="_blank" rel="noopener noreferrer">GitHub에서 토큰 만들기 ↗</a></li><li>Repository access에서 Only select repositories → yt010108.github.io 선택</li><li>Contents는 Read and write, Actions는 Read-only로 설정</li></ol><label>개인 액세스 토큰<input id="github-token" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…" required></label><label class="cms-remember"><input id="github-remember" type="checkbox" checked><span>이 브라우저에서 연결 유지</span></label><p id="github-storage-note" class="writer-dialog-note">선택하면 토큰을 이 브라우저에 저장해 다음 방문에도 연결해요. 공용 PC에서는 선택을 해제해 주세요.</p><p id="github-error" class="writer-dialog-note" role="alert" hidden></p><div class="writer-dialog-actions"><button type="button" class="writer-button" id="github-disconnect" hidden>로그아웃</button><button type="submit" class="writer-button writer-primary" id="github-submit">연결</button></div></form></dialog>
   <dialog id="manager-confirm" class="writer-dialog" aria-labelledby="manager-confirm-title"><div class="writer-dialog-heading"><h2 id="manager-confirm-title"></h2><button type="button" data-close aria-label="확인 창 닫기">×</button></div><p id="manager-confirm-description" class="writer-dialog-note"></p><ul id="manager-confirm-items"></ul><div class="writer-dialog-actions"><button type="button" class="writer-button" data-close>취소</button><button type="button" class="writer-button writer-primary" id="manager-confirm-submit">계속</button></div></dialog>
   <noscript><p class="writer-loading">글쓰기를 사용하려면 브라우저에서 JavaScript를 켜 주세요.</p></noscript>
 </body>

@@ -6,12 +6,12 @@ import { TableKit } from "@tiptap/extension-table";
 import { Markdown } from "@tiptap/markdown";
 import { EditorState } from "@tiptap/pm/state";
 import { zipSync, strToU8 } from "fflate";
-import { createIcons, SquarePen, Files, Bold, Italic, Strikethrough, Code, List, ListOrdered, Quote, Link, ImagePlus, Table2, SquareCode, Minus, Eye, Undo2, Redo2, FolderOpen, Download, Archive, ArrowLeft, Hash } from "lucide";
+import { createIcons, SquarePen, Files, Bold, Italic, Strikethrough, Code, List, ListOrdered, Quote, Link, ImagePlus, Table2, SquareCode, Minus, Eye, Undo2, Redo2, FolderOpen, Download, Archive, ArrowLeft, Hash, Menu, FileClock, FolderTree, Images, PanelsTopLeft, Trash2, LogOut } from "lucide";
 import { readDraft, listDrafts, writeDraft, DraftConflict } from "./draft-store.js";
 import { IMAGE_TYPES, MAX_IMAGE_SIZE, newEntry, safeSlug, safeImageData, createAsset, imageBySource, transformImages, usedAssets, validateBackup, markdownDocument, assetBytes } from "./document.js";
 import { createLinkPreviews, webURL } from "./link-preview.js";
 import { renderDocument } from "../../shared/posts.js";
-import { GitHubRepository } from "./github.js";
+import { GitHubRepository, REMEMBER_KEY } from "./github.js";
 import { createManager } from "./manager.js";
 
 const $ = id => document.getElementById(id);
@@ -23,10 +23,11 @@ let changes = 0, savedChanges = 0, exportedChanges = -1;
 let saveTimer, messageTimer, savePromise, editor, lastSelection, imagePosition;
 let imageJobs = Promise.resolve(), pendingImages = 0;
 let cmsBusy = false, managing = false, navigationBusy = false;
+let authorized = false, authBusy = false, unlockTask, managerStatus = "all";
 const repository = new GitHubRepository();
 const linkPreviews = createLinkPreviews({ getEditor: () => editor, getEntryId: () => entry.id });
 
-createIcons({ icons: { SquarePen, Files, Bold, Italic, Strikethrough, Code, List, ListOrdered, Quote, Link, ImagePlus, Table2, SquareCode, Minus, Eye, Undo2, Redo2, FolderOpen, Download, Archive, ArrowLeft, Hash }, attrs: { "stroke-width": 1.5 } });
+createIcons({ icons: { SquarePen, Files, Bold, Italic, Strikethrough, Code, List, ListOrdered, Quote, Link, ImagePlus, Table2, SquareCode, Minus, Eye, Undo2, Redo2, FolderOpen, Download, Archive, ArrowLeft, Hash, Menu, FileClock, FolderTree, Images, PanelsTopLeft, Trash2, LogOut }, attrs: { "stroke-width": 1.5 } });
 
 function message(text, error = false) {
   clearTimeout(messageTimer);
@@ -45,12 +46,14 @@ function saveStatus(text, error = false) {
 
 function setBusy(value) {
   cmsBusy = value;
-  $("writer-fields").disabled = value || !ready;
-  editor?.setEditable(ready && !value, false);
-  ["new-draft", "open-drafts", "manage-button", "manager-new", "manager-refresh", "github-connect", "finish-button", "save-button", "preview-button", "publish-button"].forEach(id => { $(id).disabled = value || !ready; });
+  const enabled = ready && authorized && repository.connected;
+  $("writer-fields").disabled = value || !enabled;
+  editor?.setEditable(enabled && !value, false);
+  ["new-draft", "open-drafts", "manage-button", "manager-new", "manager-refresh", "github-connect", "sidebar-logout", "github-disconnect", "finish-button", "save-button", "preview-button", "publish-button"].forEach(id => { $(id).disabled = value || !enabled; });
 }
 
 function setView(managerView) {
+  if (!authorized || !repository.connected) return;
   managing = managerView;
   document.body.classList.toggle("is-managing", managerView);
   $("manager-view").hidden = !managerView;
@@ -61,22 +64,25 @@ function setView(managerView) {
   skip.href = managerView ? "#manager-title" : "#post-title";
   skip.textContent = managerView ? "글 관리로 이동" : "글 제목으로 이동";
   document.title = managerView ? "글 관리 — yt010108" : (title.value.trim() || "글쓰기") + " — yt010108";
-  history.replaceState(null, "", managerView ? "#manage" : "#write");
+  history.replaceState(null, "", managerView ? managerStatus === "draft" ? "#drafts" : managerStatus === "trash" ? "#trash" : "#manage" : "#write");
+  syncSidebar(); setSidebarOpen(false);
   if (!managerView) resizeTitle();
 }
 
-async function openManager() {
-  if (cmsBusy || navigationBusy || !ready) return;
+async function openManager(next = "all") {
+  if (cmsBusy || navigationBusy || !ready || !authorized || !repository.connected) return;
+  if (typeof next !== "string") next = "all";
   navigationBusy = true; setBusy(true);
   try {
     if (!await keepBeforeSwitch()) return;
+    manager.setStatus(next);
     setView(true);
     await manager.refresh();
   } finally { navigationBusy = false; setBusy(false); }
 }
 
 async function beginNew() {
-  if (cmsBusy || navigationBusy || !ready) return;
+  if (cmsBusy || navigationBusy || !ready || !authorized || !repository.connected) return;
   navigationBusy = true; setBusy(true);
   try {
     if (!await keepBeforeSwitch()) return;
@@ -111,7 +117,7 @@ function scheduleSave() {
 }
 
 function changed() {
-  if (!ready || silent) return;
+  if (!ready || silent || !authorized) return;
   changes++;
   saveStatus("작성 중 · 이 브라우저에 저장");
   refreshCount();
@@ -233,7 +239,9 @@ editor = new Editor({
 });
 const manager = createManager({
   repository, report: message, onBusy: setBusy, newDraft: beginNew,
+  onStatusChange: status => { managerStatus = status; syncSidebar(); },
   edit: async (next, publish) => {
+    if (!authorized || !repository.connected) return;
     if (!await keepBeforeSwitch()) return;
     applyEntry(next); setView(false);
     if (publish) await openExport();
@@ -480,6 +488,7 @@ function runCommand(command) {
 }
 
 async function preview() {
+  if (!authorized || !repository.connected) return;
   await waitForImages();
   commitTags();
   try {
@@ -509,6 +518,7 @@ async function preview() {
 }
 
 async function openExport() {
+  if (!authorized || !repository.connected) return;
   await waitForImages();
   commitTags();
   try { await persist(); } catch {}
@@ -526,7 +536,7 @@ async function openExport() {
 }
 
 async function publish() {
-  if (cmsBusy) return;
+  if (cmsBusy || !authorized) return;
   if (!repository.connected) { openGitHub(); return; }
   if (!title.value.trim()) { $("publish-progress").textContent = "제목을 입력해 주세요."; return; }
   setBusy(true);
@@ -554,11 +564,108 @@ async function publish() {
 }
 
 function openGitHub() {
+  if (!authorized) { $("github-token").focus(); return; }
   $("github-token").value = "";
   $("github-error").hidden = true;
   $("github-disconnect").hidden = !repository.connected;
   $("github-dialog").showModal();
   if (!repository.connected) $("github-token").focus();
+}
+
+function syncSidebar() {
+  const current = managing ? managerStatus === "draft" ? "draft" : managerStatus === "trash" ? "trash" : "all" : "write";
+  document.querySelectorAll("[data-admin-view]").forEach(button => {
+    if (button.dataset.adminView === current) button.setAttribute("aria-current", "page");
+    else button.removeAttribute("aria-current");
+  });
+  if (authorized && managing) history.replaceState(null, "", current === "draft" ? "#drafts" : current === "trash" ? "#trash" : "#manage");
+}
+
+function setSidebarOpen(open) {
+  const mobile = matchMedia("(max-width: 800px)").matches;
+  open = Boolean(open && mobile && authorized);
+  document.body.classList.toggle("is-sidebar-open", open);
+  $("sidebar-toggle").setAttribute("aria-expanded", String(open));
+  $("sidebar-toggle").setAttribute("aria-label", open ? "관리 메뉴 닫기" : "관리 메뉴 열기");
+  $("sidebar-overlay").hidden = !open;
+  $("cms-sidebar").inert = !authorized || mobile && !open;
+  $("cms-sidebar").setAttribute("aria-hidden", String($("cms-sidebar").inert));
+}
+
+function lockAdmin() {
+  const wasAuthorized = authorized;
+  authorized = false; clearTimeout(saveTimer);
+  document.body.classList.add("is-locked");
+  $("admin-login").hidden = false; $("admin-main").hidden = true; $("writer-footer").hidden = true;
+  document.querySelector(".writer-heading").textContent = "관리자";
+  document.querySelector(".skip-link").href = "#admin-login-title";
+  document.querySelector(".skip-link").textContent = "로그인으로 이동";
+  document.title = "관리자 로그인 — yt010108";
+  document.querySelectorAll("dialog[open]").forEach(dialog => dialog.close());
+  $("auth-form-host").append($("github-form"));
+  $("github-submit").textContent = authBusy ? "확인 중…" : "관리자 열기";
+  $("auth-retry").hidden = !repository.hasSavedConnection;
+  if (!authBusy) $("auth-status").textContent = "관리자에 로그인해 주세요.";
+  manager.clear(); setSidebarOpen(false); setBusy(false);
+  if (wasAuthorized && ready && changes !== savedChanges) persist().catch(() => {});
+}
+
+async function unlockAdmin() {
+  if (!repository.connected) return;
+  const generation = repository.generation;
+  if (unlockTask?.generation === generation) return unlockTask.promise;
+  const promise = (async () => {
+    authorized = true;
+    if (savePromise) { try { await savePromise; } catch {} }
+    if (!ready) await start();
+    if (!repository.connected || repository.generation !== generation) return;
+    const route = location.hash;
+    manager.setStatus(route === "#drafts" ? "draft" : route === "#trash" ? "trash" : "all");
+    setView(route !== "#write");
+    await manager.refresh();
+    if (!repository.connected || repository.generation !== generation) return;
+    $("github-dialog").append($("github-form"));
+    document.body.classList.remove("is-locked");
+    $("admin-login").hidden = true; $("admin-main").hidden = false; $("writer-footer").hidden = false;
+    $("github-remember").checked = repository.remembered;
+    $("auth-status").textContent = "";
+    $("auth-retry").hidden = true;
+    setBusy(false); setSidebarOpen(false); manager.resume(); resizeTitle();
+  })();
+  unlockTask = { generation, promise };
+  return promise;
+}
+
+function authFormBusy(value) {
+  authBusy = value;
+  ["github-submit", "github-token", "github-remember", "auth-retry"].forEach(id => { $(id).disabled = value; });
+}
+
+async function restoreAuth() {
+  if (authBusy) return;
+  authFormBusy(true);
+  $("github-error").hidden = true;
+  $("auth-status").textContent = repository.hasSavedConnection ? "저장된 연결을 GitHub에서 확인하고 있어요…" : "";
+  try {
+    if (await repository.restore()) await unlockAdmin();
+  } catch (error) {
+    $("github-error").textContent = error.message; $("github-error").hidden = false;
+    $("auth-status").textContent = "";
+  } finally {
+    authFormBusy(false);
+    $("auth-retry").hidden = repository.connected || !repository.hasSavedConnection;
+    $("github-submit").textContent = repository.connected ? "토큰 변경" : "관리자 열기";
+  }
+}
+
+async function logout() {
+  if (cmsBusy || authBusy) return;
+  setBusy(true);
+  try { await persist(); } catch {}
+  repository.disconnect();
+  $("github-token").value = ""; $("github-error").hidden = true;
+  $("auth-status").textContent = "로그아웃했어요. 저장된 토큰도 지웠어요.";
+  setBusy(false);
 }
 
 function download(blob, filename) {
@@ -718,7 +825,7 @@ $("image-form").addEventListener("submit", event => {
   editor.chain().focus().setNodeSelection(imagePosition).updateAttributes("image", { alt: $("image-alt").value.trim() }).run();
 });
 $("link-url").addEventListener("input", () => $("link-url").setCustomValidity(""));
-document.querySelectorAll("[data-close]").forEach(button => button.addEventListener("click", () => button.closest("dialog").close()));
+document.querySelectorAll("[data-close]").forEach(button => button.addEventListener("click", () => button.closest("dialog")?.close()));
 $("preview-button").addEventListener("click", preview);
 $("save-button").addEventListener("click", () => { commitTags(); persist(true).catch(() => {}); });
 $("finish-button").addEventListener("click", openExport);
@@ -729,22 +836,51 @@ $("github-connect").addEventListener("click", openGitHub);
 $("publish-button").addEventListener("click", publish);
 $("github-form").addEventListener("submit", async event => {
   event.preventDefault();
-  $("github-submit").disabled = true; $("github-error").hidden = true;
-  const token = $("github-token").value; $("github-token").value = "";
+  if (authBusy) return;
+  authFormBusy(true); $("github-error").hidden = true;
+  const token = $("github-token").value, remember = $("github-remember").checked; $("github-token").value = "";
+  $("auth-status").textContent = "GitHub 계정과 저장소를 확인하고 있어요…";
   try {
-    await repository.connect(token);
+    await repository.connect(token, { remember });
+    await unlockAdmin();
     $("github-dialog").close(); message("GitHub에 연결했어요.");
-    await manager.refresh();
+    if (repository.storageWarning) message(repository.storageWarning, true);
   } catch (error) { $("github-error").textContent = error.message; $("github-error").hidden = false; }
-  finally { $("github-submit").disabled = false; }
+  finally {
+    authFormBusy(false); $("auth-status").textContent = "";
+    $("auth-retry").hidden = repository.connected || !repository.hasSavedConnection;
+    $("github-submit").textContent = repository.connected ? "토큰 변경" : "관리자 열기";
+  }
 });
-$("github-disconnect").addEventListener("click", () => {
-  repository.disconnect(); $("github-dialog").close(); message("GitHub 연결을 해제했어요.");
+$("github-disconnect").addEventListener("click", logout);
+$("sidebar-logout").addEventListener("click", logout);
+$("auth-retry").addEventListener("click", restoreAuth);
+$("github-remember").addEventListener("change", () => {
+  if (!repository.connected) return;
+  repository.rememberConnection($("github-remember").checked);
+  $("github-remember").checked = repository.remembered;
+  $("github-storage-note").textContent = repository.storageWarning || (repository.remembered ? "이 브라우저에서 다음 방문에도 연결을 복구해요." : "현재 탭에서만 연결을 유지해요.");
 });
 repository.addEventListener("change", () => {
   $("github-connect").textContent = repository.connected ? repository.user.login + " 연결됨" : "GitHub 연결";
   $("github-disconnect").hidden = !repository.connected;
   updatePublishReview();
+  if (!repository.connected) lockAdmin();
+});
+document.querySelectorAll("[data-admin-view]").forEach(button => button.addEventListener("click", () => {
+  if (button.dataset.adminView === "write") beginNew();
+  else openManager(button.dataset.adminView);
+}));
+$("sidebar-toggle").addEventListener("click", () => setSidebarOpen(!document.body.classList.contains("is-sidebar-open")));
+$("sidebar-overlay").addEventListener("click", () => setSidebarOpen(false));
+matchMedia("(max-width: 800px)").addEventListener("change", () => setSidebarOpen(false));
+window.addEventListener("storage", event => {
+  if (event.key !== REMEMBER_KEY || !repository.remembered) return;
+  let token;
+  try { token = localStorage.getItem(REMEMBER_KEY); } catch {}
+  if (token === repository.token) return;
+  repository.disconnect({ forget: false });
+  $("auth-status").textContent = "다른 탭에서 연결이 변경됐어요. 다시 로그인해 주세요.";
 });
 $("save-copy").addEventListener("click", async () => {
   entry = { ...entry, id: crypto.randomUUID(), revision: 0, createdAt: new Date().toISOString() };
@@ -757,6 +893,8 @@ $("export-backup").addEventListener("click", () => exportFile(true));
 $("import-backup").addEventListener("click", () => { $("drafts-dialog").close(); $("backup-input").click(); });
 $("backup-input").addEventListener("change", async event => { await importBackup(event.target.files[0]); event.target.value = ""; });
 document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && document.body.classList.contains("is-sidebar-open")) { setSidebarOpen(false); $("sidebar-toggle").focus(); return; }
+  if (!authorized) return;
   if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "s") {
     event.preventDefault();
     if (!managing) { commitTags(); persist(true).catch(() => {}); }
@@ -766,9 +904,10 @@ document.addEventListener("keydown", event => {
   }
 });
 window.addEventListener("hashchange", () => {
+  if (!authorized) return;
   if (location.hash === "#write") {
     if (!cmsBusy) setView(false);
-  } else if (location.hash === "#manage" && !managing) openManager();
+  } else if (["#manage", "#drafts", "#trash"].includes(location.hash)) openManager(location.hash === "#drafts" ? "draft" : location.hash === "#trash" ? "trash" : "all");
 });
 document.addEventListener("click", async event => {
   const button = event.target.closest("#preview-body .copy-code");
@@ -800,15 +939,11 @@ async function start() {
     if (restored) applyEntry(restored);
   } catch { message("이 브라우저에서 임시저장을 사용할 수 없어요. 작성 후 파일로 보관해 주세요.", true); }
   ready = true;
-  $("writer-fields").disabled = false;
-  ["new-draft", "open-drafts", "manage-button", "preview-button", "save-button", "finish-button"].forEach(id => { $(id).disabled = false; });
   $("writer-loading").hidden = true;
-  editor.setEditable(true, false);
+  setBusy(false);
   resizeTitle(); refreshCount(); updateTools();
   linkPreviews.resume();
-  setView(location.hash !== "#write");
-  manager.refresh();
-  repository.restore().catch(error => message(error.message, true));
 }
 applyEntry(entry);
-start();
+lockAdmin();
+restoreAuth();

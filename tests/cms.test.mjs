@@ -21,12 +21,13 @@ function server() {
   const initialTree = hash(Buffer.from("initial tree")), initialHead = hash(Buffer.from("initial commit"));
   trees.set(initialTree, new Map([["blog/index.json", initialIndex], ["index.html", original]]));
   commits.set(initialHead, { tree: { sha: initialTree }, parents: [] });
-  const state = { head: initialHead, race: false, blobFailure: false, ambiguousPatch: false, wrongUser: false };
+  const state = { head: initialHead, race: false, blobFailure: false, ambiguousPatch: false, wrongUser: false, expired: false, offline: false, storageFailure: false };
   const respond = (value, status = 200) => new Response(JSON.stringify(value), { status, headers: { "content-type": "application/json" } });
   const fetcher = async (url, options = {}) => {
+    if (state.offline) throw new TypeError("Offline");
     const endpoint = new URL(url), path = endpoint.pathname, method = options.method || "GET", body = options.body ? JSON.parse(options.body) : null;
     requests.push({ path, method, body, headers: options.headers });
-    if (path === "/user") return respond({ login: state.wrongUser ? "someone-else" : "yt010108" });
+    if (path === "/user") return state.expired ? respond({}, 401) : respond({ login: state.wrongUser ? "someone-else" : "yt010108" });
     if (path === ROOT) return respond({ full_name: REPOSITORY, permissions: { push: true } });
     if (path === ROOT + "/git/ref/heads/main") return respond({ object: { sha: state.head } });
     if (path.startsWith(ROOT + "/git/commits/")) return respond(commits.get(path.split("/").at(-1)));
@@ -71,9 +72,11 @@ function server() {
     }
     throw new Error("Unexpected request " + method + " " + path);
   };
-  const storage = new Map();
-  const client = new GitHubRepository({ fetcher, storage: { getItem: key => storage.get(key), setItem: (key, value) => storage.set(key, value), removeItem: key => storage.delete(key) } });
-  return { client, state, requests, blobs, trees, commits, initialHead, original, storage };
+  const storage = new Map(), persistent = new Map();
+  const sessionStore = { getItem: key => storage.get(key), setItem: (key, value) => storage.set(key, value), removeItem: key => storage.delete(key) };
+  const persistentStore = { getItem: key => persistent.get(key), setItem: (key, value) => { if (state.storageFailure) throw new Error("Storage blocked"); persistent.set(key, value); }, removeItem: key => persistent.delete(key) };
+  const client = new GitHubRepository({ fetcher, storage: sessionStore, persistentStorage: persistentStore });
+  return { client, state, requests, blobs, trees, commits, initialHead, original, storage, persistent, fetcher, sessionStore, persistentStore };
 }
 function draft() {
   return { ...newEntry(), title: "보안 연구 기록", slug: "security-notes", category: "Security / Web", tags: ["http", "보안"], doc: { type: "doc", content: [
@@ -145,6 +148,67 @@ test("Authentication is restricted to the owner and cleared by disconnect", asyn
   await assert.rejects(() => s.client.connect(TOKEN), /yt010108/);
   assert.equal(s.client.connected, false); assert.equal(s.storage.size, 0);
   assert.ok(s.requests.every(r => r.path === "/user" || r.path.startsWith(ROOT)));
+});
+test("Remembered connections survive a new session and are verified again before repository reads", async () => {
+  const s = server();
+  await assert.rejects(() => s.client.readIndex(), /로그인/);
+  assert.equal(s.requests.length, 0);
+  await s.client.connect(TOKEN, { remember: true });
+  assert.equal(s.storage.size, 0); assert.equal(s.persistent.size, 1);
+  const changes = [];
+  const trackedStore = { ...s.persistentStore, setItem: (...args) => { changes.push("set"); s.persistentStore.setItem(...args); }, removeItem: (...args) => { changes.push("remove"); s.persistentStore.removeItem(...args); } };
+  const next = new GitHubRepository({ fetcher: s.fetcher, storage: null, persistentStorage: trackedStore });
+  assert.equal(next.connected, false);
+  const before = s.requests.length;
+  assert.equal(await next.restore(), true);
+  assert.equal(next.connected, true); assert.equal(next.remembered, true);
+  assert.deepEqual(s.requests.slice(before).map(call => call.path), ["/user", ROOT]);
+  assert.deepEqual(changes, [], "Revalidation must not remove and recreate the shared token and log out other tabs");
+  next.disconnect();
+  assert.equal(s.persistent.size, 0); assert.equal(next.connected, false);
+});
+test("Expired remembered tokens are removed instead of granting access", async () => {
+  const s = server(); await s.client.connect(TOKEN, { remember: true }); s.state.expired = true;
+  const next = new GitHubRepository({ fetcher: s.fetcher, storage: s.sessionStore, persistentStorage: s.persistentStore });
+  await assert.rejects(() => next.restore(), /만료/);
+  assert.equal(next.connected, false); assert.equal(next.hasSavedConnection, false);
+  assert.equal(s.storage.size, 0); assert.equal(s.persistent.size, 0);
+  await assert.rejects(() => next.readIndex(), /로그인/);
+});
+test("An offline verification remains locked and preserves the token for a deliberate retry", async () => {
+  const s = server(); await s.client.connect(TOKEN, { remember: true }); s.state.offline = true;
+  const next = new GitHubRepository({ fetcher: s.fetcher, storage: s.sessionStore, persistentStorage: s.persistentStore });
+  await assert.rejects(() => next.restore(), /네트워크/);
+  assert.equal(next.connected, false); assert.equal(next.hasSavedConnection, true);
+  await assert.rejects(() => next.readIndex(), /로그인/);
+  s.state.offline = false;
+  await next.restore(); assert.equal(next.connected, true);
+});
+test("Remember preference can move an existing connection to session storage and logout clears both", async () => {
+  const s = server(); await s.client.connect(TOKEN, { remember: true });
+  const requests = s.requests.length;
+  s.client.rememberConnection(false);
+  assert.equal(s.client.remembered, false); assert.equal(s.persistent.size, 0); assert.equal(s.storage.size, 1);
+  s.client.rememberConnection(true);
+  assert.equal(s.client.remembered, true); assert.equal(s.persistent.size, 1); assert.equal(s.storage.size, 0);
+  assert.equal(s.requests.length, requests);
+  s.storage.set("yt010108-cms-github-session", TOKEN);
+  s.client.disconnect();
+  assert.equal(s.storage.size, 0); assert.equal(s.persistent.size, 0);
+});
+test("Blocked persistent storage falls back to the tab with an explicit warning", async () => {
+  const s = server(); s.state.storageFailure = true;
+  await s.client.connect(TOKEN, { remember: true });
+  assert.equal(s.client.connected, true); assert.equal(s.client.remembered, false);
+  assert.equal(s.storage.size, 1); assert.equal(s.persistent.size, 0);
+  assert.match(s.client.storageWarning, /현재 탭/);
+});
+test("Turning remember off removes persistent credentials even if session storage fails", async () => {
+  const s = server(); await s.client.connect(TOKEN, { remember: true });
+  s.sessionStore.setItem = () => { throw new Error("Storage blocked"); };
+  s.client.rememberConnection(false);
+  assert.equal(s.persistent.size, 0); assert.equal(s.client.remembered, false);
+  assert.match(s.client.storageWarning, /다시 로그인/);
 });
 test("Reader rendering escapes hostile text and URLs while preserving headings, tables, cards, and code", () => {
   const entry = draft();
