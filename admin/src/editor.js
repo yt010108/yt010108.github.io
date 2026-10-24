@@ -9,6 +9,7 @@ import { zipSync, strToU8 } from "fflate";
 import { createIcons, SquarePen, Files, Bold, Italic, Strikethrough, Code, List, ListOrdered, Quote, Link, ImagePlus, Table2, SquareCode, Minus, Eye, Undo2, Redo2, FolderOpen, Download, Archive, ArrowLeft, Hash } from "lucide";
 import { readDraft, listDrafts, writeDraft, DraftConflict } from "./draft-store.js";
 import { IMAGE_TYPES, MAX_IMAGE_SIZE, newEntry, safeSlug, safeImageData, createAsset, imageBySource, transformImages, usedAssets, validateBackup, markdownDocument, assetBytes } from "./document.js";
+import { createLinkPreviews, webURL } from "./link-preview.js";
 
 const $ = id => document.getElementById(id);
 const ACTIVE_KEY = "yt010108-writing-active";
@@ -18,6 +19,7 @@ let entry = newEntry(), mode = "rich", ready = false, silent = false, composing 
 let changes = 0, savedChanges = 0, exportedChanges = -1;
 let saveTimer, messageTimer, savePromise, editor, lastSelection, imagePosition;
 let imageJobs = Promise.resolve(), pendingImages = 0;
+const linkPreviews = createLinkPreviews({ getEditor: () => editor, getEntryId: () => entry.id });
 
 createIcons({ icons: { SquarePen, Files, Bold, Italic, Strikethrough, Code, List, ListOrdered, Quote, Link, ImagePlus, Table2, SquareCode, Minus, Eye, Undo2, Redo2, FolderOpen, Download, Archive, ArrowLeft, Hash }, attrs: { "stroke-width": 1.5 } });
 
@@ -110,6 +112,21 @@ function pastedHTML(html) {
   return template.innerHTML;
 }
 
+function enterShortcut(view, event) {
+  if (event.key !== "Enter" || event.shiftKey || event.ctrlKey || event.altKey || event.metaKey || event.isComposing || composing) return false;
+  const { empty, $from } = view.state.selection;
+  if (!empty || $from.parent.type.name !== "paragraph" || $from.parentOffset !== $from.parent.content.size) return false;
+  const text = $from.parent.textContent;
+  const url = $from.depth === 1 && !/\s/.test(text.trim()) ? webURL(text) : null;
+  if (!url) return false;
+  const after = $from.after();
+  if (view.state.doc.nodeAt(after)?.type.name === "linkPreview") return false;
+  return editor.chain().setTextSelection({ from: $from.start(), to: $from.end() })
+    .setLink({ href: url.href }).setTextSelection($from.end())
+    .insertContentAt(after, [linkPreviews.create(url.href), { type: "paragraph" }])
+    .unsetLink().run();
+}
+
 editor = new Editor({
   element: $("rich-editor"), editable: false,
   extensions: [
@@ -118,6 +135,7 @@ editor = new Editor({
       link: { openOnClick: false, HTMLAttributes: { target: "_blank", rel: "noopener noreferrer" } }
     }),
     DraftImage,
+    linkPreviews.extension,
     TableKit.configure({ table: { resizable: false, renderWrapper: true, cellMinWidth: 80 } }),
     Placeholder.configure({ placeholder: "이야기를 시작해 보세요…" }),
     Markdown.configure({ markedOptions: { gfm: true } })
@@ -126,6 +144,19 @@ editor = new Editor({
   editorProps: {
     attributes: { role: "textbox", "aria-label": "글 본문", "aria-multiline": "true", spellcheck: "false" },
     transformPastedHTML: pastedHTML,
+    handleKeyDown: enterShortcut,
+    handleDOMEvents: {
+      click(view, event) {
+        if (event.target instanceof Element && event.target.closest(".writer-link-card")) event.preventDefault();
+        return false;
+      }
+    },
+    handleClickOn(view, position, node, nodePosition, event) {
+      if (node.type.name !== "linkPreview") return false;
+      event.preventDefault();
+      editor.commands.setNodeSelection(nodePosition);
+      return true;
+    },
     handlePaste(view, event) {
       const images = [...(event.clipboardData?.files || [])].filter(file => file.type.startsWith("image/"));
       if (!images.length) return false;
@@ -144,7 +175,7 @@ editor = new Editor({
       return true;
     }
   },
-  onUpdate() { changed(); updateTools(); },
+  onUpdate() { changed(); updateTools(); if (ready) linkPreviews.resume(); },
   onSelectionUpdate() { updateTools(); }
 });
 
@@ -153,16 +184,17 @@ function syncMarkdown() {
   silent = true;
   try { editor.commands.setContent(source.value, { contentType: "markdown", emitUpdate: false }); }
   finally { silent = false; }
+  if (ready) linkPreviews.resume();
 }
 
 function snapshot() {
   syncMarkdown();
-  const doc = transformImages(editor.getJSON(), assets, false);
+  const doc = transformImages(linkPreviews.enrich(editor.getJSON()), assets, false);
   return {
     ...entry, title: title.value.trim(), kind: $("entry-kind").value, category: $("post-category").value.trim(),
     slug: $("post-slug").value.trim(), description: $("post-description").value.trim(),
     date: $("post-date").value || entry.date, tags: [...entry.tags],
-    doc, mode, markdown: mode === "markdown" ? source.value : null,
+    doc, mode, markdown: mode === "markdown" ? linkPreviews.rewriteMarkdown(source.value) : null,
     assets: usedAssets(doc, assets, mode === "markdown" ? source.value : "")
   };
 }
@@ -244,10 +276,19 @@ function updateTools() {
   $("table-tools").hidden = !rich || !editor.isActive("table");
   $("code-tools").hidden = !rich || !editor.isActive("codeBlock");
   $("image-tools").hidden = !rich || !editor.isActive("image");
+  $("link-preview-tools").hidden = !rich || !editor.isActive("linkPreview");
+  document.querySelector('[data-action="refresh-link-preview"]').disabled = editor.getAttributes("linkPreview").state === "loading";
   if (rich) {
     const level = editor.getAttributes("heading").level;
     $("block-style").value = editor.isActive("heading") ? String(level) : "paragraph";
-    $("code-language").value = editor.getAttributes("codeBlock").language || "";
+    const language = editor.getAttributes("codeBlock").language || "";
+    $("code-language").querySelector('[data-custom-language]')?.remove();
+    if (language && ![...$("code-language").options].some(option => option.value === language)) {
+      const option = new Option(language, language);
+      option.dataset.customLanguage = "";
+      $("code-language").add(option);
+    }
+    $("code-language").value = language;
   }
 }
 
@@ -257,7 +298,8 @@ function applyEntry(next) {
   entry = next;
   assets.clear();
   entry.assets.forEach(asset => assets.set(asset.id, asset));
-  const doc = transformImages(entry.doc, assets, true);
+  linkPreviews.remember(entry.doc);
+  const doc = transformImages(linkPreviews.enrich(entry.doc), assets, true);
   editor.commands.setContent(doc, { emitUpdate: false, errorOnInvalidContent: true });
   editor.view.updateState(EditorState.create({ schema: editor.schema, doc: editor.state.doc, plugins: editor.state.plugins }));
   title.value = entry.title;
@@ -279,6 +321,7 @@ function applyEntry(next) {
   saveStatus(entry.revision ? "이 브라우저에 저장한 글을 불러왔어요" : "이 브라우저에 자동저장");
   document.title = (entry.title || "글쓰기") + " — yt010108";
   renderTags(); resizeTitle(); refreshCount(); updateTools();
+  if (ready) linkPreviews.resume();
 }
 
 async function keepBeforeSwitch() {
@@ -432,7 +475,7 @@ function exportFile(backup) {
     if (backup) {
       download(new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }), filename + ".draft.json");
     } else {
-      const text = markdownDocument(data, mode === "markdown" ? source.value : editor.getMarkdown());
+      const text = markdownDocument(data, mode === "markdown" ? data.markdown : editor.getMarkdown());
       if (data.assets.length) {
         const files = { [filename + ".md"]: strToU8(text) };
         data.assets.forEach(asset => { files[asset.path] = [assetBytes(asset), { level: 0 }]; });
@@ -510,6 +553,12 @@ document.querySelectorAll(".writer-toolbar button, .writer-context-tools button"
       $("image-dialog").showModal();
     }
     if (button.dataset.action === "remove-image") editor.chain().focus().deleteSelection().run();
+    if (button.dataset.action === "remove-link-preview") editor.chain().focus().deleteSelection().run();
+    if (button.dataset.action === "refresh-link-preview") linkPreviews.refreshSelected();
+    if (button.dataset.action === "open-link-preview") {
+      const url = webURL(editor.getAttributes("linkPreview").href);
+      if (url) window.open(url.href, "_blank", "noopener,noreferrer");
+    }
   });
 });
 ["entry-kind", "post-category", "post-title", "post-slug", "post-description", "post-date"].forEach(id => {
@@ -517,6 +566,9 @@ document.querySelectorAll(".writer-toolbar button, .writer-context-tools button"
 });
 title.addEventListener("input", resizeTitle);
 source.addEventListener("input", changed);
+document.addEventListener("error", event => {
+  if (event.target instanceof HTMLImageElement && event.target.classList.contains("writer-link-image")) event.target.hidden = true;
+}, true);
 document.addEventListener("compositionstart", () => { composing = true; });
 document.addEventListener("compositionend", () => { composing = false; changed(); });
 $("tag-input").addEventListener("keydown", event => {
@@ -617,6 +669,7 @@ async function start() {
   $("writer-loading").hidden = true;
   editor.setEditable(true, false);
   resizeTitle(); refreshCount(); updateTools();
+  linkPreviews.resume();
 }
 applyEntry(entry);
 start();
