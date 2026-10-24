@@ -12,8 +12,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-10-24T17:41:04.090Z",
-  "updatedAt": "2026-10-24T17:41:53.167Z",
-  "sourceDigest": "089740d840b7efc0ee35d358b3f664068a9cf7691db2b31dbd8c42d714e18851",
+  "updatedAt": "2026-10-24T17:46:20.966Z",
+  "sourceDigest": "75d8e66115245259c17e97febf5f6a21b7b6523a17d61652164e60c295f0b521",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -48,6 +48,42 @@
           {
             "type": "text",
             "text": "왜 굳이 저희 본사에서 그걸 하고 싶은 지"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "뛰어나다고 생각하는 역량과 ~"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "aT 좋은점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "내 생각에는 일단 조직문화, 밥 맛있는 거가 유튜브에서 강조하는 거 같음"
           }
         ]
       },
