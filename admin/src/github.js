@@ -1,5 +1,6 @@
 import { POST_FORMAT, INDEX_FORMAT, UUID, SHA, entryPath, uploadPath, validateRecord, validateIndex, indexEntry, draftDigest } from "../../shared/posts.js";
 import { newEntry, safeImageData, MAX_IMAGE_SIZE } from "./document.js";
+import { validateTaxonomy, taxonomyOptions, usesTaxonomy, replaceTaxonomy } from "../../shared/taxonomy.js";
 
 export const REPOSITORY = "yt010108/yt010108.github.io";
 export const BRANCH = "main";
@@ -252,6 +253,34 @@ export class GitHubRepository extends EventTarget {
     const index = { ...snapshot.index, entries: snapshot.index.entries.map(item => replacements.get(item.id) || item) };
     const commit = await this.commit(snapshot, index, files, (restore ? "Restore" : "Trash") + " " + items.length + " blog post(s)");
     return { commit, index };
+  }
+  async changeTaxonomy({ type, action, name, replacement = "", expectedIndex }) {
+    if (!this.connected) throw new Error("먼저 GitHub에 연결해 주세요.");
+    if (!["categories", "tags"].includes(type) || !["add", "rename", "delete"].includes(action)) throw new Error("분류 변경 정보를 확인해 주세요.");
+    const limit = type === "categories" ? 100 : 80;
+    if (typeof name !== "string" || !name.trim() || name !== name.trim() || name.length > limit || typeof replacement !== "string" || (action === "rename" && (!replacement.trim() || replacement !== replacement.trim() || replacement.length > limit))) throw new Error("분류 이름을 확인해 주세요.");
+    const snapshot = await this.snapshot();
+    if (!expectedIndex || JSON.stringify(snapshot.index) !== JSON.stringify(expectedIndex)) throw new RepositoryConflict();
+    const taxonomy = taxonomyOptions(snapshot.index), values = taxonomy[type];
+    const next = action === "add" ? name : action === "rename" ? replacement : "";
+    if (next && values.includes(next)) throw new Error("이미 있는 이름이에요. 다른 이름을 입력해 주세요.");
+    taxonomy[type] = [...values.filter(value => action === "add" || value !== name), ...(next ? [next] : [])];
+    validateTaxonomy(taxonomy);
+    const files = [], changed = new Map(), now = new Date().toISOString();
+    if (action !== "add") for (const item of snapshot.index.entries.filter(item => usesTaxonomy(item, type, name))) {
+      const record = replaceTaxonomy(await this.record(item), type, name, next);
+      const localAssets = record.assets.map(asset => ({ ...asset, path: "images/" + asset.path.split("/").at(-1) }));
+      record.updatedAt = now;
+      record.sourceDigest = await draftDigest({ ...record, assets: localAssets, doc: mapImages(record.doc, new Map(localAssets.map(asset => [asset.id, asset]))) });
+      validateRecord(record);
+      const sha = await this.createBlob(jsonText(record));
+      files.push({ path: item.path, mode: "100644", type: "blob", sha });
+      changed.set(item.id, indexEntry(record, sha));
+    }
+    const index = { ...snapshot.index, taxonomy, entries: snapshot.index.entries.map(item => changed.get(item.id) || item) };
+    validateIndex(index);
+    const commit = await this.commit(snapshot, index, files, action + " " + type + ": " + name + (action === "rename" ? " → " + replacement : ""));
+    return { commit, index, items: [...changed.values()] };
   }
   async deployment(sha) {
     if (!SHA.test(sha)) throw new Error("배포 버전이 올바르지 않아요.");

@@ -1,3 +1,5 @@
+import { validateTaxonomy } from "./taxonomy.js";
+
 export const POST_FORMAT = "yt010108-published-post";
 export const INDEX_FORMAT = "yt010108-post-index";
 export const UUID = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i;
@@ -56,6 +58,7 @@ export function validateRecord(value) {
 }
 export function validateIndex(value) {
   if (value?.format !== INDEX_FORMAT || value.version !== 1 || !Array.isArray(value.entries) || value.entries.length > 10000) throw new Error("글 목록 형식을 확인할 수 없어요.");
+  if (value.taxonomy !== undefined) validateTaxonomy(value.taxonomy);
   const ids = new Set();
   for (const item of value.entries) {
     metadata(item);

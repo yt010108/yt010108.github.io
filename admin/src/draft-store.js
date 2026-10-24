@@ -42,6 +42,28 @@ export async function listDrafts({ includeTrash = false } = {}) {
   });
 }
 
+export async function writeDraftBatch(entries) {
+  if (!entries.length) return [];
+  const now = new Date().toISOString();
+  const prepared = await Promise.all(entries.map(async entry => ({ ...entry, sourceDigest: await draftDigest(entry), revision: entry.revision + 1, updatedAt: now })));
+  const db = await database();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(["drafts", "summaries"], "readwrite"), store = tx.objectStore("drafts");
+    let remaining = entries.length, conflict;
+    entries.forEach(entry => {
+      const request = store.get(entry.id);
+      request.onsuccess = () => {
+        if (request.result?.revision !== entry.revision) { conflict = new DraftConflict(); tx.abort(); return; }
+        if (--remaining) return;
+        prepared.forEach(next => { store.put(next); tx.objectStore("summaries").put(summary(next)); });
+      };
+    });
+    tx.oncomplete = () => resolve(prepared);
+    tx.onabort = () => reject(conflict || tx.error || new Error("임시글 분류를 변경하지 못했어요."));
+    tx.onerror = () => {};
+  });
+}
+
 export async function writeDraft(entry, expectedRevision) {
   const sourceDigest = await draftDigest(entry);
   const db = await database();

@@ -13,6 +13,7 @@ import { createLinkPreviews, webURL } from "./link-preview.js";
 import { renderDocument } from "../../shared/posts.js";
 import { GitHubRepository, REMEMBER_KEY } from "./github.js";
 import { createManager } from "./manager.js";
+import { createTaxonomyManager } from "./taxonomy.js";
 
 const $ = id => document.getElementById(id);
 const ACTIVE_KEY = "yt010108-writing-active";
@@ -22,7 +23,7 @@ let entry = newEntry(), mode = "rich", ready = false, silent = false, composing 
 let changes = 0, savedChanges = 0, exportedChanges = -1;
 let saveTimer, messageTimer, savePromise, editor, lastSelection, imagePosition;
 let imageJobs = Promise.resolve(), pendingImages = 0;
-let cmsBusy = false, managing = false, navigationBusy = false;
+let cmsBusy = false, managing = false, taxonomyOpen = false, navigationBusy = false;
 let authorized = false, authBusy = false, unlockTask, managerStatus = "all";
 const repository = new GitHubRepository();
 const linkPreviews = createLinkPreviews({ getEditor: () => editor, getEntryId: () => entry.id });
@@ -48,23 +49,27 @@ function setBusy(value) {
   cmsBusy = value;
   const enabled = ready && authorized && repository.connected;
   $("writer-fields").disabled = value || !enabled;
+  $("taxonomy-fields").disabled = value || !enabled;
+  $("taxonomy-refresh").disabled = value || !enabled;
   editor?.setEditable(enabled && !value, false);
   ["new-draft", "open-drafts", "manage-button", "manager-new", "manager-refresh", "github-connect", "sidebar-logout", "github-disconnect", "finish-button", "save-button", "preview-button", "publish-button"].forEach(id => { $(id).disabled = value || !enabled; });
 }
 
 function setView(managerView) {
   if (!authorized || !repository.connected) return;
-  managing = managerView;
-  document.body.classList.toggle("is-managing", managerView);
-  $("manager-view").hidden = !managerView;
-  $("writer-view").hidden = managerView;
+  taxonomyOpen = managerView === "taxonomy";
+  managing = Boolean(managerView);
+  document.body.classList.toggle("is-managing", managing);
+  $("taxonomy-view").hidden = !taxonomyOpen;
+  $("manager-view").hidden = !managing || taxonomyOpen;
+  $("writer-view").hidden = managing;
   document.querySelector(".writer-heading").textContent = managerView ? "관리" : "글쓰기";
   $("manage-button").setAttribute("aria-current", managerView ? "page" : "false");
   const skip = document.querySelector(".skip-link");
-  skip.href = managerView ? "#manager-title" : "#post-title";
-  skip.textContent = managerView ? "글 관리로 이동" : "글 제목으로 이동";
-  document.title = managerView ? "글 관리 — yt010108" : (title.value.trim() || "글쓰기") + " — yt010108";
-  history.replaceState(null, "", managerView ? managerStatus === "draft" ? "#drafts" : managerStatus === "trash" ? "#trash" : "#manage" : "#write");
+  skip.href = taxonomyOpen ? "#taxonomy-title" : managing ? "#manager-title" : "#post-title";
+  skip.textContent = taxonomyOpen ? "분류 관리로 이동" : managing ? "글 관리로 이동" : "글 제목으로 이동";
+  document.title = taxonomyOpen ? "카테고리·태그 — yt010108" : managing ? "글 관리 — yt010108" : (title.value.trim() || "글쓰기") + " — yt010108";
+  history.replaceState(null, "", taxonomyOpen ? "#taxonomy" : managing ? managerStatus === "draft" ? "#drafts" : managerStatus === "trash" ? "#trash" : "#manage" : "#write");
   syncSidebar(); setSidebarOpen(false);
   if (!managerView) resizeTitle();
 }
@@ -89,6 +94,15 @@ async function beginNew() {
     applyEntry(newEntry()); setView(false);
   } finally { navigationBusy = false; setBusy(false); }
   title.focus();
+}
+
+async function openTaxonomy() {
+  if (cmsBusy || navigationBusy || !ready || !authorized || !repository.connected) return;
+  navigationBusy = true; setBusy(true);
+  try {
+    if (!await keepBeforeSwitch()) return;
+    setView("taxonomy"); await taxonomy.refresh();
+  } finally { navigationBusy = false; setBusy(false); }
 }
 
 function updatePublishReview() {
@@ -240,12 +254,26 @@ editor = new Editor({
 const manager = createManager({
   repository, report: message, onBusy: setBusy, newDraft: beginNew,
   onStatusChange: status => { managerStatus = status; syncSidebar(); },
+  onIndexChange: (index, drafts) => taxonomy.setIndex(index, drafts),
   edit: async (next, publish) => {
     if (!authorized || !repository.connected) return;
     if (!await keepBeforeSwitch()) return;
     applyEntry(next); setView(false);
     if (publish) await openExport();
     else editor.commands.focus();
+  }
+});
+const taxonomy = createTaxonomyManager({
+  repository, report: message, onBusy: setBusy,
+  onChange: async (result, updatedIds) => {
+    manager.setRemote(result.index);
+    if (updatedIds.includes(entry.id)) {
+      const next = await readDraft(entry.id);
+      if (next) applyEntry(next);
+    }
+    await manager.refresh({ fetchRemote: false });
+    const published = result.items.find(item => item.status === "published");
+    if (published) manager.watchDeployment(result.commit, published);
   }
 });
 
@@ -389,7 +417,7 @@ function applyEntry(next) {
   $("save-copy").hidden = true;
   $("writer-message").hidden = true;
   saveStatus(entry.revision ? "이 브라우저에 저장한 글을 불러왔어요" : "이 브라우저에 자동저장");
-  document.title = (entry.title || "글쓰기") + " — yt010108";
+  if (!managing) document.title = (entry.title || "글쓰기") + " — yt010108";
   renderTags(); resizeTitle(); refreshCount(); updateTools();
   if (ready) linkPreviews.resume();
 }
@@ -502,12 +530,17 @@ async function preview() {
     $("preview-body").innerHTML = renderDocument(data.doc, { assets: data.assets, preview: true }).html;
     const toc = $("preview-toc");
     toc.replaceChildren();
-    $("preview-body").querySelectorAll("h1, h2, h3").forEach((heading, index) => {
+    const headings = [...$("preview-body").querySelectorAll("h1, h2, h3")];
+    const baseLevel = Math.min(...headings.map(heading => Number(heading.tagName.slice(1))));
+    headings.forEach((heading, index) => {
       heading.id = "preview-section-" + index;
       heading.style.scrollMarginTop = "90px";
       const li = document.createElement("li"), button = document.createElement("button");
       button.type = "button";
-      button.textContent = heading.textContent;
+      li.className = "toc-depth-" + Math.max(0, Number(heading.tagName.slice(1)) - baseLevel);
+      const text = document.createElement("span"), arrow = document.createElement("span");
+      text.textContent = heading.textContent; arrow.textContent = "→"; arrow.setAttribute("aria-hidden", "true");
+      button.append(text, arrow);
       button.addEventListener("click", () => heading.scrollIntoView({ behavior: "smooth", block: "start" }));
       li.append(button); toc.append(li);
     });
@@ -573,12 +606,12 @@ function openGitHub() {
 }
 
 function syncSidebar() {
-  const current = managing ? managerStatus === "draft" ? "draft" : managerStatus === "trash" ? "trash" : "all" : "write";
+  const current = taxonomyOpen ? "taxonomy" : managing ? managerStatus === "draft" ? "draft" : managerStatus === "trash" ? "trash" : "all" : "write";
   document.querySelectorAll("[data-admin-view]").forEach(button => {
     if (button.dataset.adminView === current) button.setAttribute("aria-current", "page");
     else button.removeAttribute("aria-current");
   });
-  if (authorized && managing) history.replaceState(null, "", current === "draft" ? "#drafts" : current === "trash" ? "#trash" : "#manage");
+  if (authorized && managing) history.replaceState(null, "", current === "taxonomy" ? "#taxonomy" : current === "draft" ? "#drafts" : current === "trash" ? "#trash" : "#manage");
 }
 
 function setSidebarOpen(open) {
@@ -606,7 +639,7 @@ function lockAdmin() {
   $("github-submit").textContent = authBusy ? "확인 중…" : "관리자 열기";
   $("auth-retry").hidden = !repository.hasSavedConnection;
   if (!authBusy) $("auth-status").textContent = "관리자에 로그인해 주세요.";
-  manager.clear(); setSidebarOpen(false); setBusy(false);
+  manager.clear(); taxonomy.clear(); setSidebarOpen(false); setBusy(false);
   if (wasAuthorized && ready && changes !== savedChanges) persist().catch(() => {});
 }
 
@@ -621,8 +654,9 @@ async function unlockAdmin() {
     if (!repository.connected || repository.generation !== generation) return;
     const route = location.hash;
     manager.setStatus(route === "#drafts" ? "draft" : route === "#trash" ? "trash" : "all");
-    setView(route !== "#write");
+    setView(route === "#taxonomy" ? "taxonomy" : route !== "#write");
     await manager.refresh();
+    if (route === "#taxonomy") await taxonomy.refresh();
     if (!repository.connected || repository.generation !== generation) return;
     $("github-dialog").append($("github-form"));
     document.body.classList.remove("is-locked");
@@ -869,6 +903,7 @@ repository.addEventListener("change", () => {
 });
 document.querySelectorAll("[data-admin-view]").forEach(button => button.addEventListener("click", () => {
   if (button.dataset.adminView === "write") beginNew();
+  else if (button.dataset.adminView === "taxonomy") openTaxonomy();
   else openManager(button.dataset.adminView);
 }));
 $("sidebar-toggle").addEventListener("click", () => setSidebarOpen(!document.body.classList.contains("is-sidebar-open")));
@@ -907,7 +942,8 @@ window.addEventListener("hashchange", () => {
   if (!authorized) return;
   if (location.hash === "#write") {
     if (!cmsBusy) setView(false);
-  } else if (["#manage", "#drafts", "#trash"].includes(location.hash)) openManager(location.hash === "#drafts" ? "draft" : location.hash === "#trash" ? "trash" : "all");
+  } else if (location.hash === "#taxonomy") openTaxonomy();
+  else if (["#manage", "#drafts", "#trash"].includes(location.hash)) openManager(location.hash === "#drafts" ? "draft" : location.hash === "#trash" ? "trash" : "all");
 });
 document.addEventListener("click", async event => {
   const button = event.target.closest("#preview-body .copy-code");

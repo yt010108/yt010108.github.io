@@ -92,9 +92,10 @@
     }
   }
 
-  function toc(headings, kind, id, section) {
+  function toc(headings, kind, id, section, inline = false) {
     if (!headings.length) return "";
-    return `<aside class="article-toc" aria-label="글 목차"><p class="eyebrow">ON THIS PAGE</p><ol>${headings.map(heading => `<li><a href="${localPath(kind, id)}?section=${encodeURIComponent(heading.id)}" ${heading.id === section ? 'aria-current="location"' : ""}>${esc(heading.text)}</a></li>`).join("")}</ol></aside>`;
+    const baseLevel = Math.min(...headings.map(heading => heading.level || 2));
+    return `<aside class="article-toc${inline ? " article-toc--inline" : ""}" aria-label="글 목차">${inline ? '<div class="toc-heading"><span>목차</span><span aria-hidden="true">≡</span></div>' : '<p class="eyebrow">ON THIS PAGE</p>'}<ol>${headings.map(heading => `<li class="toc-depth-${Math.max(0, (heading.level || 2) - baseLevel)}"><a href="${localPath(kind, id)}?section=${encodeURIComponent(heading.id)}" ${heading.id === section ? 'aria-current="location"' : ""}><span>${esc(heading.text)}</span>${inline ? '<span aria-hidden="true">→</span>' : ""}</a></li>`).join("")}</ol></aside>`;
   }
 
   function article(item, kind, section) {
@@ -103,7 +104,7 @@
     const others = (isNotes ? data.notes : data.posts).filter(post => post.id !== item.id).slice(0, 2);
     const rendered = item.doc ? window.BlogPosts.renderDocument(item.doc, { assets: item.assets }) : null;
     const headings = rendered?.headings || item.body.filter(block => block.type === "heading");
-    return `<article class="container"><header class="article-header"><a class="breadcrumb" href="#/${archiveRoute}">← BACK TO ${archiveRoute.toUpperCase()}</a><p class="eyebrow">${item.tags.map(tag => esc(tagName(tag))).join(" / ")}</p><h1>${esc(item.title)}</h1><p>${esc(item.description)}</p>${meta(item)}</header><div class="article-layout"><div class="article-content post-body">${rendered?.html ?? item.body.map(block => renderBlock(block)).join("")}</div>${toc(headings, kind, item.id, section)}</div><div class="article-end"><div class="article-tags">${item.tags.map(tag => `<a href="#/${archiveRoute}?tag=${encodeURIComponent(tag)}"># ${esc(tagName(tag))}</a>`).join("")}</div><a class="text-link" href="#/${archiveRoute}">전체 ${isNotes ? "노트" : "글"} 보기 <span class="arrow" aria-hidden="true">→</span></a></div><section class="related-section"><p class="eyebrow">MORE TO EXPLORE</p>${others.map(post => postRow(post, kind)).join("")}</section></article>`;
+    return `<article class="container"><header class="article-header"><a class="breadcrumb" href="#/${archiveRoute}">← BACK TO ${archiveRoute.toUpperCase()}</a><p class="eyebrow">${[item.category, ...item.tags.map(tagName)].filter(Boolean).map(esc).join(" / ")}</p><h1>${esc(item.title)}</h1><p>${esc(item.description)}</p>${meta(item)}</header><div class="article-layout article-layout--post">${toc(headings, kind, item.id, section, true)}<div class="article-content post-body">${rendered?.html ?? item.body.map(block => renderBlock(block)).join("")}</div></div><div class="article-end"><div class="article-tags">${item.tags.map(tag => `<a href="#/${archiveRoute}?tag=${encodeURIComponent(tag)}"># ${esc(tagName(tag))}</a>`).join("")}</div><a class="text-link" href="#/${archiveRoute}">전체 ${isNotes ? "노트" : "글"} 보기 <span class="arrow" aria-hidden="true">→</span></a></div><section class="related-section"><p class="eyebrow">MORE TO EXPLORE</p>${others.map(post => postRow(post, kind)).join("")}</section></article>`;
   }
 
   function projectDetail(project, section) {

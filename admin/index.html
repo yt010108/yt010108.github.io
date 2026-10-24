@@ -10,7 +10,7 @@
   <title>글쓰기 — yt010108</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <script src="../theme.js?v=2"></script>
-  <link rel="stylesheet" href="../styles.css?v=2">
+  <link rel="stylesheet" href="../styles.css?v=__BUILD__">
   <link rel="stylesheet" href="../assets/post.css?v=__BUILD__">
   <link rel="stylesheet" href="editor.css?v=__BUILD__">
   <script src="assets/editor.js?v=__BUILD__" defer></script>
@@ -19,7 +19,7 @@
   <a class="skip-link" href="#post-title">글 제목으로 이동</a>
   <header class="writer-header">
     <div class="writer-header-inner">
-      <a class="brand" href="../" aria-label="블로그로 돌아가기"><span class="brand-mark" aria-hidden="true">y<span>_</span></span><span class="brand-name">yt010108</span></a>
+      <div class="writer-brand"><a class="brand" href="../" aria-label="블로그로 돌아가기"><span class="brand-mark" aria-hidden="true">y<span>_</span></span><span class="brand-name">yt010108</span></a><button class="theme-toggle" type="button" data-theme-toggle aria-label="다크 모드로 전환"></button></div>
       <span class="writer-heading">글쓰기</span>
       <div class="writer-header-actions">
         <button type="button" class="writer-text-button" id="sidebar-toggle" aria-label="관리 메뉴 열기" aria-controls="cms-sidebar" aria-expanded="false"><i data-lucide="menu" aria-hidden="true"></i></button>
@@ -27,7 +27,6 @@
         <button type="button" class="writer-text-button" id="new-draft" disabled><i data-lucide="square-pen" aria-hidden="true"></i><span>새 글</span></button>
         <button type="button" class="writer-text-button" id="open-drafts" disabled><i data-lucide="files" aria-hidden="true"></i><span>임시글</span></button>
         <button type="button" class="writer-text-button" id="github-connect">GitHub 연결</button>
-        <button class="theme-toggle" type="button" data-theme-toggle aria-label="다크 모드로 전환"></button>
       </div>
     </div>
   </header>
@@ -40,7 +39,7 @@
       <p class="cms-side-label">콘텐츠</p>
       <button type="button" class="cms-side-link" data-admin-view="all"><i data-lucide="files" aria-hidden="true"></i><span>글 관리</span></button>
       <button type="button" class="cms-side-link" data-admin-view="draft"><i data-lucide="file-clock" aria-hidden="true"></i><span>임시저장</span></button>
-      <button type="button" class="cms-side-link" disabled title="준비 중" aria-label="카테고리·태그 관리, 준비 중"><i data-lucide="folder-tree" aria-hidden="true"></i><span>카테고리·태그</span></button>
+      <button type="button" class="cms-side-link" data-admin-view="taxonomy"><i data-lucide="folder-tree" aria-hidden="true"></i><span>카테고리·태그</span></button>
       <button type="button" class="cms-side-link" disabled title="준비 중" aria-label="미디어 관리, 준비 중"><i data-lucide="images" aria-hidden="true"></i><span>미디어</span></button>
       <p class="cms-side-label">사이트</p>
       <button type="button" class="cms-side-link" disabled title="준비 중" aria-label="페이지·프로젝트 관리, 준비 중"><i data-lucide="panels-top-left" aria-hidden="true"></i><span>페이지·프로젝트</span></button>
@@ -62,6 +61,14 @@
       <div class="cms-bottom-row"><span id="manager-result-count"></span><div><button type="button" class="writer-button" id="manager-prev">이전</button><span id="manager-page">1 / 1</span><button type="button" class="writer-button" id="manager-next">다음</button></div></div>
       <p class="writer-small-note">임시글은 이 브라우저에 저장돼요. 발행된 글을 휴지통으로 옮기면 공개 목록에서 내려가며, GitHub의 이전 기록에는 남아요.</p>
     </section>
+    <section id="taxonomy-view" class="cms-manager" aria-labelledby="taxonomy-title" hidden>
+      <div class="cms-title-row"><div><p class="cms-eyebrow">ORGANIZE</p><h1 id="taxonomy-title" tabindex="-1">카테고리·태그</h1><p>글을 분류할 항목을 관리해요. 변경 사항은 GitHub에 저장돼요.</p></div><button type="button" class="writer-button" id="taxonomy-refresh">새로고침</button></div>
+      <fieldset id="taxonomy-fields"><legend class="writer-sr-only">카테고리·태그 관리</legend>
+        <div class="cms-tabs" role="group" aria-label="분류 종류"><button type="button" data-taxonomy-type="categories" aria-pressed="true">카테고리</button><button type="button" data-taxonomy-type="tags" aria-pressed="false">태그</button></div>
+        <form id="taxonomy-add-form" class="taxonomy-add"><label for="taxonomy-name" id="taxonomy-name-label">새 카테고리</label><input id="taxonomy-name" maxlength="100" placeholder="예: Security / Web" required autocomplete="off"><button type="submit" class="writer-button writer-primary">추가</button></form>
+        <p id="taxonomy-loading" class="cms-list-note" role="status" hidden>분류를 불러오는 중…</p><p id="taxonomy-empty" class="cms-empty" hidden>등록된 항목이 없어요. 첫 항목을 추가해 보세요.</p><ul id="taxonomy-list" class="taxonomy-list"></ul>
+      </fieldset><p class="writer-small-note">이름 변경은 해당 글의 분류에도 적용돼요. 카테고리를 삭제하면 해당 글은 미분류로, 태그를 삭제하면 해당 태그만 제거돼요. 글 본문과 이미지는 유지돼요.</p>
+    </section>
     <div id="writer-view">
     <p id="writer-loading" class="writer-loading" role="status">글쓰기를 준비하고 있어요…</p>
     <fieldset id="writer-fields" disabled>
@@ -70,7 +77,7 @@
         <div class="writer-metadata">
           <label><span class="writer-sr-only">글 종류</span><select id="entry-kind"><option value="posts">Posts</option><option value="notes">Notes</option></select></label>
           <label class="writer-category"><span class="writer-sr-only">카테고리</span><input id="post-category" list="category-suggestions" placeholder="카테고리 선택 또는 입력" maxlength="100" autocomplete="off"></label>
-          <datalist id="category-suggestions"><option value="Security / Web Security"></option><option value="Security / Reversing"></option><option value="Security / Pwnable"></option><option value="Network"></option><option value="CTF"></option><option value="Research"></option><option value="AI"></option><option value="Study"></option></datalist>
+          <datalist id="category-suggestions"></datalist>
         </div>
         <label for="post-title" class="writer-sr-only">글 제목</label>
         <textarea id="post-title" class="writer-title" rows="1" placeholder="제목을 입력하세요" maxlength="200" spellcheck="false"></textarea>
@@ -107,7 +114,7 @@
         <div id="rich-editor" class="writer-prose"></div>
         <label for="markdown-editor" class="writer-sr-only">Markdown 본문</label>
         <textarea id="markdown-editor" class="writer-markdown" spellcheck="false" placeholder="Markdown으로 글을 작성하세요…" hidden></textarea>
-        <div class="writer-tags"><i data-lucide="hash" aria-hidden="true"></i><div id="tag-list" aria-label="입력한 태그"></div><label for="tag-input" class="writer-sr-only">태그 입력</label><input id="tag-input" placeholder="태그 입력 후 Enter 또는 쉼표" maxlength="80" autocomplete="off"></div>
+        <div class="writer-tags"><i data-lucide="hash" aria-hidden="true"></i><div id="tag-list" aria-label="입력한 태그"></div><label for="tag-input" class="writer-sr-only">태그 입력</label><input id="tag-input" list="tag-suggestions" placeholder="태그 입력 후 Enter 또는 쉼표" maxlength="80" autocomplete="off"><datalist id="tag-suggestions"></datalist></div>
         <p class="writer-small-note">주소 한 줄 + Enter → 링크 카드 · <code>&#96;&#96;&#96;</code> + 스페이스 → 코드 블록<br>이미지는 붙여넣거나 끌어다 놓을 수 있어요. 링크 정보는 주소만 Microlink로 보내 조회해요.</p>
       </div>
     </fieldset>
@@ -123,6 +130,7 @@
   <input id="image-input" type="file" accept="image/png,image/jpeg,image/gif,image/webp" multiple hidden>
   <input id="backup-input" type="file" accept=".json,application/json" hidden>
 
+  <dialog id="taxonomy-dialog" class="writer-dialog" aria-labelledby="taxonomy-dialog-title"><form id="taxonomy-change-form"><div class="writer-dialog-heading"><h2 id="taxonomy-dialog-title">분류 변경</h2><button type="button" data-close aria-label="분류 변경 창 닫기">×</button></div><p id="taxonomy-change-name" class="writer-dialog-note"></p><label id="taxonomy-next-label">새 이름<input id="taxonomy-next" maxlength="100" autocomplete="off"></label><p id="taxonomy-impact" class="writer-dialog-note"></p><p id="taxonomy-error" role="alert" hidden></p><div class="writer-dialog-actions"><button type="button" class="writer-button" data-close>취소</button><button id="taxonomy-confirm" type="submit" class="writer-button writer-primary">적용</button></div></form></dialog>
   <dialog id="link-dialog" class="writer-dialog" aria-labelledby="link-title">
     <form id="link-form"><div class="writer-dialog-heading"><h2 id="link-title">링크</h2><button type="button" data-close aria-label="링크 창 닫기">×</button></div><label>주소<input id="link-url" type="text" placeholder="https://example.com" autocomplete="url"></label><p class="writer-dialog-note">주소를 비우고 적용하면 링크를 해제해요.</p><div class="writer-dialog-actions"><button type="button" class="writer-button" data-close>취소</button><button type="submit" class="writer-button writer-primary">적용</button></div></form>
   </dialog>
@@ -145,7 +153,7 @@
   </dialog>
   <dialog id="preview-dialog" class="writer-preview-dialog" aria-labelledby="preview-heading">
     <div class="writer-preview-bar"><span id="preview-heading">미리보기</span><button type="button" class="writer-button" data-close><i data-lucide="arrow-left" aria-hidden="true"></i>계속 편집</button></div>
-    <article class="writer-preview-article"><header class="article-header"><div id="preview-category" class="eyebrow"></div><h1 id="preview-title"></h1><p id="preview-description"></p><div id="preview-meta" class="meta"></div></header><div class="article-layout"><div id="preview-body" class="article-content writer-prose post-body"></div><aside class="article-toc"><p class="eyebrow">ON THIS PAGE</p><ol id="preview-toc"></ol></aside></div></article>
+    <article class="writer-preview-article"><header class="article-header"><div id="preview-category" class="eyebrow"></div><h1 id="preview-title"></h1><p id="preview-description"></p><div id="preview-meta" class="meta"></div></header><div class="article-layout article-layout--post"><aside class="article-toc article-toc--inline"><div class="toc-heading"><span>목차</span><span aria-hidden="true">≡</span></div><ol id="preview-toc"></ol></aside><div id="preview-body" class="article-content writer-prose post-body"></div></div></article>
   </dialog>
   <dialog id="github-dialog" class="writer-dialog" aria-labelledby="github-title"><form id="github-form"><div class="writer-dialog-heading"><h2 id="github-title">GitHub 연결</h2><button type="button" data-close aria-label="GitHub 연결 창 닫기">×</button></div><p class="writer-dialog-note">yt010108/yt010108.github.io에 글과 이미지를 발행할 권한을 연결해요.</p><ol class="cms-auth-steps"><li><a href="https://github.com/settings/personal-access-tokens/new?name=Blog+CMS&amp;target_name=yt010108&amp;expires_in=30&amp;contents=write&amp;actions=read" target="_blank" rel="noopener noreferrer">GitHub에서 토큰 만들기 ↗</a></li><li>Repository access에서 Only select repositories → yt010108.github.io 선택</li><li>Contents는 Read and write, Actions는 Read-only로 설정</li></ol><label>개인 액세스 토큰<input id="github-token" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…" required></label><label class="cms-remember"><input id="github-remember" type="checkbox" checked><span>이 브라우저에서 연결 유지</span></label><p id="github-storage-note" class="writer-dialog-note">선택하면 토큰을 이 브라우저에 저장해 다음 방문에도 연결해요. 공용 PC에서는 선택을 해제해 주세요.</p><p id="github-error" class="writer-dialog-note" role="alert" hidden></p><div class="writer-dialog-actions"><button type="button" class="writer-button" id="github-disconnect" hidden>로그아웃</button><button type="submit" class="writer-button writer-primary" id="github-submit">연결</button></div></form></dialog>
   <dialog id="manager-confirm" class="writer-dialog" aria-labelledby="manager-confirm-title"><div class="writer-dialog-heading"><h2 id="manager-confirm-title"></h2><button type="button" data-close aria-label="확인 창 닫기">×</button></div><p id="manager-confirm-description" class="writer-dialog-note"></p><ul id="manager-confirm-items"></ul><div class="writer-dialog-actions"><button type="button" class="writer-button" data-close>취소</button><button type="button" class="writer-button writer-primary" id="manager-confirm-submit">계속</button></div></dialog>

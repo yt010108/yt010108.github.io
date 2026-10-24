@@ -7,7 +7,7 @@ const $ = id => document.getElementById(id);
 const normalize = value => String(value || "").normalize("NFKC").toLocaleLowerCase("ko-KR");
 const DEPLOY_KEY = "yt010108-cms-deployment";
 const stateLabel = { draft: "임시글", modified: "수정 중", published: "발행됨", trash: "휴지통" };
-export function createManager({ repository, edit, newDraft, report, onBusy = () => {}, onStatusChange = () => {} }) {
+export function createManager({ repository, edit, newDraft, report, onBusy = () => {}, onStatusChange = () => {}, onIndexChange = () => {} }) {
   let local = [], remote = [], rows = [], selected = new Set(), status = "all", page = 1, busy = false;
   let lastDeployment, deployTimer, polls = 0, refreshVersion = 0;
   function withBusy(callback) {
@@ -111,7 +111,7 @@ export function createManager({ repository, edit, newDraft, report, onBusy = () 
     if (results[0].status === "fulfilled") local = results[0].value;
     else report("브라우저 임시글을 불러오지 못했어요. 사이트 저장 공간을 확인해 주세요.", true);
     if (results[1].status === "fulfilled") {
-      if (results[1].value) remote = results[1].value.entries;
+      if (results[1].value) { remote = results[1].value.entries; onIndexChange(results[1].value, local); }
       $("manager-remote-error").hidden = true;
     } else {
       $("manager-remote-error").textContent = "GitHub 글 목록을 갱신하지 못했어요. 임시글은 계속 편집할 수 있어요. " + results[1].reason.message;
@@ -249,6 +249,6 @@ export function createManager({ repository, edit, newDraft, report, onBusy = () 
     refresh, render, clear, watchDeployment,
     resume() { if (lastDeployment && repository.connected) { polls = 0; checkDeployment(); } },
     setStatus(next) { if (!["all", "draft", "published", "trash"].includes(next)) return; status = next; page = 1; selected.clear(); render(); },
-    setRemote(index) { remote = index.entries; render(); }
+    setRemote(index) { remote = index.entries; onIndexChange(index, local); render(); }
   };
 }

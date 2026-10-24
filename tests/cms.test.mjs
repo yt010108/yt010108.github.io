@@ -260,3 +260,61 @@ test("The production content build includes published entries and excludes trash
     await rm(temp, { recursive: true, force: true });
   }
 });
+
+test("Category creation persists across clients and later publication preserves the registry", async () => {
+  const s = server(); await s.client.connect(TOKEN);
+  const created = await s.client.changeTaxonomy({ type: "categories", action: "add", name: "Network", expectedIndex: await s.client.readIndex() });
+  assert.deepEqual(created.index.taxonomy.categories, ["Network"]);
+  assert.deepEqual(created.items, []);
+  const another = new GitHubRepository({ fetcher: s.fetcher, storage: s.sessionStore, persistentStorage: s.persistentStore });
+  await another.connect(TOKEN);
+  assert.deepEqual((await another.readIndex()).taxonomy.categories, ["Network"]);
+  const published = await another.publish({ ...draft(), category: "Network" });
+  assert.deepEqual(published.index.taxonomy.categories, ["Network"]);
+  assert.equal(s.trees.get(s.commits.get(s.state.head).tree.sha).get("index.html"), s.original);
+});
+
+test("Renaming a used category updates records and their digests without changing the body or image blobs", async () => {
+  const s = server(); await s.client.connect(TOKEN);
+  const entry = draft(), imageId = crypto.randomUUID();
+  entry.assets = [{ id: imageId, path: "images/" + imageId + ".png", name: "image.png", type: "image/png", data: "data:image/png;base64,aW1hZ2U=" }];
+  entry.doc.content.push({ type: "image", attrs: { assetId: imageId, src: entry.assets[0].path, alt: "이미지" } });
+  const published = await s.client.publish(entry), before = await s.client.record(published.item);
+  const result = await s.client.changeTaxonomy({ type: "categories", action: "rename", name: entry.category, replacement: "Web Security", expectedIndex: await s.client.readIndex() });
+  const record = await s.client.record(result.items[0]);
+  assert.equal(record.category, "Web Security"); assert.deepEqual(record.tags, before.tags);
+  assert.deepEqual(record.doc, before.doc); assert.deepEqual(record.assets, before.assets);
+  assert.equal(record.sourceDigest, await draftDigest(await s.client.loadDraft(result.items[0])));
+  assert.notEqual(record.sourceDigest, before.sourceDigest);
+  assert.deepEqual(result.index.taxonomy.categories, ["Web Security"]);
+});
+
+test("Deleting classifications keeps posts, bodies, unrelated tags and trash state intact", async () => {
+  const s = server(); await s.client.connect(TOKEN);
+  const entry = draft(), published = await s.client.publish(entry);
+  await s.client.changeStatus([published.item]);
+  const removedTag = await s.client.changeTaxonomy({ type: "tags", action: "delete", name: "http", expectedIndex: await s.client.readIndex() });
+  let record = await s.client.record(removedTag.items[0]);
+  assert.deepEqual(record.tags, ["보안"]); assert.equal(record.status, "trash"); assert.deepEqual(record.doc, entry.doc);
+  const removedCategory = await s.client.changeTaxonomy({ type: "categories", action: "delete", name: entry.category, expectedIndex: await s.client.readIndex() });
+  record = await s.client.record(removedCategory.items[0]);
+  assert.equal(record.category, ""); assert.equal(record.status, "trash"); assert.equal(removedCategory.index.entries.length, 1);
+});
+
+test("Taxonomy changes reject stale previews and never overwrite a concurrent publication", async () => {
+  const s = server(); await s.client.connect(TOKEN);
+  const stale = await s.client.readIndex(); await s.client.publish(draft());
+  await assert.rejects(() => s.client.changeTaxonomy({ type: "categories", action: "add", name: "Network", expectedIndex: stale }), RepositoryConflict);
+  const current = await s.client.readIndex(); s.state.race = true;
+  await assert.rejects(() => s.client.changeTaxonomy({ type: "categories", action: "rename", name: "Security / Web", replacement: "Web", expectedIndex: current }), RepositoryConflict);
+  assert.equal((await s.client.readIndex()).entries[0].category, "Security / Web");
+  assert.ok(s.requests.filter(request => request.method === "PATCH").every(request => request.body.force === false));
+});
+
+test("Invalid registry data and empty classification names are rejected before writing", async () => {
+  const s = server(); await s.client.connect(TOKEN);
+  await assert.rejects(async () => s.client.changeTaxonomy({ type: "categories", action: "add", name: " ", expectedIndex: await s.client.readIndex() }));
+  assert.equal(s.requests.filter(request => request.method !== "GET").length, 0);
+  assert.throws(() => validateIndex({ format: INDEX_FORMAT, version: 1, entries: [], taxonomy: { categories: ["same", "same"], tags: [] } }));
+  assert.throws(() => validateIndex({ format: INDEX_FORMAT, version: 1, entries: [], taxonomy: { categories: [], tags: [null] } }));
+});
