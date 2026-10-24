@@ -35,6 +35,23 @@
       "trashedAt": null,
       "path": "blog/entries/a13cf82f-34ed-4090-997d-6397e7722318.json",
       "sha": "c3a00b71860a8f1d23b6df3233ca7d4a9213b50c"
+    },
+    {
+      "id": "c59df8b0-1d32-42b0-ae61-ee62d17e96b7",
+      "kind": "notes",
+      "slug": "농수산-면접",
+      "title": "농수산 면접",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-10-25",
+      "updatedAt": "2026-10-24T17:41:04.090Z",
+      "publishedAt": "2026-10-24T17:41:04.090Z",
+      "status": "published",
+      "sourceDigest": "63f36e230c0cda1c4af8b4481564d6dc37ba8d4fe8427168ce73c5e1c7a4f87c",
+      "trashedAt": null,
+      "path": "blog/entries/c59df8b0-1d32-42b0-ae61-ee62d17e96b7.json",
+      "sha": "908613cbe212802b3878534708114390e55c3817"
     }
   ]
 }
