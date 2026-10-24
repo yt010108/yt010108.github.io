@@ -24,10 +24,11 @@ jobs:
         run: |
           node --check app.js
           node --check content.js
+          node --check theme.js
       - name: Prepare static site
         run: |
           mkdir -p _site
-          cp index.html 404.html styles.css app.js content.js .nojekyll _site/
+          cp index.html 404.html styles.css app.js content.js theme.js .nojekyll _site/
           cp -R assets _site/assets
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,10 +10,11 @@
   <meta property="og:description" content="보안을 탐구하고, 만들고, 기록하는 개인 블로그와 포트폴리오.">
   <meta property="og:url" content="https://yt010108.github.io/">
   <meta name="theme-color" content="#0b0c0c">
-  <meta name="color-scheme" content="dark">
+  <meta name="color-scheme" content="dark light">
   <title>yt010108 — Security research, notes & projects</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
+  <script src="theme.js"></script>
+  <link rel="stylesheet" href="styles.css?v=2">
   <script src="content.js" defer></script>
   <script src="app.js" defer></script>
 </head>
@@ -36,6 +37,7 @@
           <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
           <span>Search</span><kbd>Ctrl K</kbd>
         </button>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="라이트 모드로 전환"></button>
         <button class="menu-trigger" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="메뉴 열기"><span></span><span></span></button>
       </div>
     </div>
