@@ -2,7 +2,6 @@
 window.BLOG_DATA = {
   profile: {
     name: "yt010108",
-    mark: "y",
     role: "Security researcher & builder",
     headline: ["Security research,", "notes & projects."],
     intro: "보안을 공부하고, 실험하고, 발견한 내용을 기록합니다.\n작은 메모부터 분석 글과 직접 만든 도구까지.",

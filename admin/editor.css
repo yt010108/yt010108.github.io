@@ -154,7 +154,7 @@
 .taxonomy-list li > div > span { color: var(--quiet); font-size: 11px; }
 .taxonomy-actions { display: flex; gap: 16px; flex-shrink: 0; }
 #taxonomy-error { color: var(--text); font-size: 12px; border-left: 2px solid var(--muted); padding-left: 12px; }
-.writer-header .brand-mark { font-size: 30px; }
+.writer-header .brand-logo { width: 32px; height: 32px; flex: 0 0 32px; }
 .writer-heading { border-left: 1px solid var(--line); padding-left: 19px; font-size: 13px; color: var(--muted); }
 .writer-header-actions { display: flex; align-items: center; gap: 16px; margin-left: auto; }
 .writer-text-button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 8px 0; color: var(--muted); background: transparent; border: 0; font-size: 12px !important; }

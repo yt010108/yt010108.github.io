@@ -9,6 +9,8 @@
 ## 화면 구성
 
 - 홈: 자기소개 → 대표 글 → 대표 프로젝트 → 최근 글
+- 상단 메뉴: Home → Posts → Notes → Projects. Home에서 현재 위치를 표시하고 About 진입 링크는 숨깁니다.
+- 로고: assets/yt-logo.svg의 단색 yt 심벌을 헤더와 관리자에서 공유하고, 같은 형태의 파비콘을 사용합니다.
 - Posts / Notes: 목록, 태그 필터, 상세 화면
 - Projects: 프로젝트 목록과 케이스 스터디
 - About: 소개, 관심 분야, 활동, 연락처

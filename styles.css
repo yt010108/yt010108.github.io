@@ -65,8 +65,7 @@ a:hover > .arrow { transform: translateX(3px); }
 .brand { display: flex; align-items: center; gap: 17px; margin-right: auto; }
 .header-brand { display: flex; align-items: center; gap: 12px; margin-right: auto; }
 .header-brand .brand { margin-right: 0; }
-.brand-mark { font: italic 35px/.9 Georgia, serif; letter-spacing: -.13em; padding-right: 5px; }
-.brand-mark span { color: #949b96; font-style: normal; }
+.brand-logo { display: block; width: 34px; height: 34px; flex: 0 0 34px; color: var(--text); }
 .brand-name { color: #c6ccc7; font: 11px/1 var(--mono); letter-spacing: .17em; }
 .main-nav { display: flex; align-items: center; gap: 30px; }
 .main-nav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); font-size: 11px; letter-spacing: .12em; position: relative; }
@@ -88,8 +87,6 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
 
 .hero { min-height: 655px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 66px 30px 86px; text-align: center; position: relative; }
 .hero::after { content: ""; width: 1px; background: var(--soft-line); position: absolute; right: 0; top: 77px; bottom: 84px; }
-.hero-monogram { font: italic 58px/.9 Georgia, serif; letter-spacing: -.12em; padding-right: 8px; margin-bottom: 31px; }
-.hero-monogram span { font-style: normal; color: var(--quiet); }
 .hero .eyebrow { font-size: 9px; letter-spacing: .22em; margin-bottom: 18px; }
 .hero h1 { font-size: clamp(46px, 5.5vw, 76px); font-weight: 300; line-height: 1.12; letter-spacing: -.047em; }
 .hero h1 span { display: block; }
@@ -218,7 +215,7 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
 
 .about-layout { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 65px; padding-bottom: 85px; }
 .about-identity { padding-top: 12px; }
-.about-mark { font: italic 100px/1 Georgia, serif; letter-spacing: -.14em; margin-bottom: 24px; }
+.about-logo { display: block; width: 88px; height: 88px; color: var(--text); margin-bottom: 24px; }
 .about-identity h2 { font: 13px/1.7 var(--mono); letter-spacing: .07em; }
 .about-identity p { font-size: 12px; color: var(--muted); margin-top: 8px; }
 .about-copy { font-size: 16px; line-height: 2.1; color: #bdc7c0; }
@@ -266,7 +263,7 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
 .noscript-note { padding: 30px; text-align: center; }
 
 /* Light colors share the original layout and typography. */
-:root[data-theme="light"] :is(.brand-mark span, .hero h1 span:last-child, .featured-item .eyebrow, .sample-label, kbd, .stack span, .flow-node, .article-content, .project-facts dd, .about-copy, .article-callout .eyebrow, .search-result-type) { color: var(--muted); }
+:root[data-theme="light"] :is(.hero h1 span:last-child, .featured-item .eyebrow, .sample-label, kbd, .stack span, .flow-node, .article-content, .project-facts dd, .about-copy, .article-callout .eyebrow, .search-result-type) { color: var(--muted); }
 :root[data-theme="light"] :is(.brand-name, .article-content .article-lead, .article-code pre, .footer-name) { color: var(--text); }
 :root[data-theme="light"] .featured-item:hover .featured-title a { color: var(--text); }
 :root[data-theme="light"] :is(.sample-label, kbd, .stack span, .flow-node, .notes-visual, .unconfigured-link) { border-color: var(--line); }
@@ -320,7 +317,6 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
   .menu-trigger[aria-expanded="true"] span:last-child { transform: translateY(-4px) rotate(-45deg); }
   .hero { min-height: 610px; padding: 58px 0 91px; }
   .hero::after, .hero-index { display: none; }
-  .hero-monogram { font-size: 52px; margin-bottom: 32px; }
   .hero h1 { font-size: clamp(41px, 7.8vw, 56px); }
   .hero-intro { font-size: 12px; line-height: 2; margin-top: 27px; }
   .hero-actions { gap: 27px; }
@@ -374,7 +370,7 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
   .project-facts dd { font-size: 11px; }
   .about-layout { grid-template-columns: 1fr; gap: 35px; }
   .about-identity { border-bottom: 1px solid var(--line); padding: 0 0 25px; }
-  .about-mark { font-size: 64px; float: left; margin: 0 35px 0 0; }
+  .about-logo { width: 64px; height: 64px; float: left; margin: 0 35px 0 0; }
   .about-identity h2 { padding-top: 6px; }
   .about-copy { font-size: 14px; }
   .footer-inner { padding: 29px 0 33px; }
