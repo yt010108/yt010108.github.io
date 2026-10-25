@@ -43,9 +43,9 @@
   }
 
   function projectVisual(project, detail = false) {
-    return `<div class="project-visual ${detail ? "project-detail-visual" : ""}" aria-label="${esc(project.name)} 구성 예시"><div class="visual-topbar"><span class="visual-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>${project.visual === "request" ? "REQUEST FLOW" : "RESEARCH NOTES"}</span></div>${project.visual === "request"
-      ? '<div class="request-visual" aria-hidden="true"><span class="flow-node">request</span><span class="flow-arrow">→</span><span class="flow-node emphasis">inspect</span><span class="flow-arrow">→</span><span class="flow-node">insight</span></div>'
-      : '<div class="notes-visual" aria-hidden="true"><i class="note-line"></i><i class="note-line"></i><i class="note-line"></i><i class="note-line"></i></div>'}<span class="visual-caption">PROJECT OUTLINE · EXAMPLE</span></div>`;
+    const stages = project.flow || [project.name];
+    const flow = stages.map((stage, index) => `<span class="flow-node${index === 1 ? " emphasis" : ""}">${esc(stage)}</span>`).join('<span class="flow-arrow" aria-hidden="true">→</span>');
+    return `<div class="project-visual ${detail ? "project-detail-visual" : ""}" role="img" aria-label="${esc(project.name)} 구성: ${stages.map(esc).join(" → ")}"><div class="visual-topbar"><span class="visual-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>${esc(project.flowLabel || project.category)}</span></div><div class="request-visual project-flow" aria-hidden="true">${flow}</div><span class="visual-caption">${esc(project.status || project.type)} · ${esc(project.year)}</span></div>`;
   }
 
   function projectCard(project) {
@@ -57,7 +57,7 @@
     return `<div class="container"><section class="hero" aria-labelledby="home-title"><p class="eyebrow">${esc(data.profile.role)}</p><h1 id="home-title">${data.profile.headline.map(line => `<span>${esc(line)}</span>`).join("")}</h1><p class="hero-intro">${esc(data.profile.intro)}</p><div class="hero-actions"><a class="primary-link" href="#/posts">Explore posts <span class="arrow" aria-hidden="true">→</span></a><a class="text-link" href="#/about">About me ${arrow}</a></div><span class="hero-index" aria-hidden="true">PERSONAL SITE / 2026</span><a class="hero-scroll" href="#selected" data-scroll="selected">SCROLL TO EXPLORE <span class="arrow" aria-hidden="true">↓</span></a></section>
       <section class="home-section" id="selected">${sectionHeading("SELECTED WRITING", "먼저 읽어볼 글", "#/posts", "All posts")}<div class="featured-grid">${featured.map(post => `<article class="featured-item"><p class="eyebrow">${post.tags.map(tag => esc(tagName(tag))).join(" / ")}</p><h3 class="featured-title"><a href="${localPath("post", post.id)}">${esc(post.title)}</a></h3><p>${esc(post.description)}</p>${meta(post)}</article>`).join("")}</div></section>
       <section class="home-section">${sectionHeading("SELECTED PROJECTS", "작게 만들고, 깊게 이해하기", "#/projects", "All projects")}<div class="project-grid">${data.projects.slice(0, 2).map(project => projectCard(project)).join("")}</div></section>
-      <section class="home-section">${sectionHeading("LATEST POSTS", "최근에 남긴 기록", "#/posts", "View archive")}<div class="post-list">${data.posts.slice(0, 5).map(post => postRow(post)).join("")}</div><p class="home-bottom-note">‘예시’로 표시한 글과 프로젝트는 화면 구성을 확인하기 위한 샘플입니다.</p></section></div>`;
+      <section class="home-section">${sectionHeading("LATEST POSTS", "최근에 남긴 기록", "#/posts", "View archive")}<div class="post-list">${data.posts.slice(0, 5).map(post => postRow(post)).join("")}</div>${[...data.posts, ...data.projects].some(item => item.sample) ? '<p class="home-bottom-note">‘예시’로 표시한 글과 프로젝트는 화면 구성을 확인하기 위한 샘플입니다.</p>' : ""}</section></div>`;
   }
 
   function pageHead(eyebrow, title, intro) {
@@ -94,7 +94,7 @@
   }
 
   function projects() {
-    return `<div class="container">${pageHead("TOOLS & EXPERIMENTS", "Projects.", "궁금했던 것을 직접 만들어보며 이해합니다. 작은 도구와 개인 실험의 배경, 과정, 배운 점을 정리합니다.")}<p class="archive-notice">아래 프로젝트는 포트폴리오 구성을 보여주는 예시입니다.</p><div class="project-grid projects-page-grid">${data.projects.map(project => projectCard(project)).join("")}</div></div>`;
+    return `<div class="container">${pageHead("TOOLS & EXPERIMENTS", "Projects.", "보안 분석과 반복 작업의 자동화, AI를 활용한 서비스와 평가 실험을 만듭니다. 프로젝트의 배경과 구현 방식, 개발 과정에서 확인한 결과와 한계를 정리했습니다.")}<div class="project-grid projects-page-grid">${data.projects.map(project => projectCard(project)).join("")}</div></div>`;
   }
 
   function renderBlock(block) {
@@ -126,14 +126,28 @@
 
   function projectDetail(project, section) {
     const headings = project.sections.map((item, index) => ({ id: `part-${index + 1}`, text: item.title }));
-    const github = isHttpLink(project.github) ? `<a class="text-link" href="${esc(project.github)}" target="_blank" rel="noopener noreferrer">GitHub ${arrow}</a>` : '<span class="unconfigured-link">GitHub · 연결 예정</span>';
-    return `<article class="container"><header class="article-header"><a class="breadcrumb" href="#/projects">← BACK TO PROJECTS</a><p class="eyebrow">${esc(project.category)} / ${esc(project.year)}</p><h1>${esc(project.name)}</h1><p>${esc(project.description)}</p>${sample(project)}<div class="project-detail-links">${github}<a class="text-link" href="${localPath("post", project.relatedPost)}">관련 글 읽기 ${arrow}</a></div></header>${projectVisual(project, true)}<dl class="project-facts"><div><dt>TYPE</dt><dd>개인 프로젝트 예시</dd></div><div><dt>STACK</dt><dd>${project.stack.map(esc).join(" / ")}</dd></div><div><dt>YEAR</dt><dd>${esc(project.year)}</dd></div></dl><div class="article-layout"><div class="article-content"><p class="article-lead">${esc(project.summary)}</p>${project.sections.map((item, index) => `<h2 id="part-${index + 1}">${esc(item.title)}</h2><p>${esc(item.text)}</p>`).join("")}</div>${toc(headings, "project", project.id, section)}</div><div class="article-end"><a class="text-link" href="#/projects">← 전체 프로젝트 보기</a><a class="text-link" href="${localPath("post", project.relatedPost)}">관련 기록으로 이어가기 ${arrow}</a></div><div class="page-bottom"></div></article>`;
+    const related = (project.relatedPosts || []).map(id => data.posts.find(post => post.id === id)).filter(Boolean);
+    const github = isHttpLink(project.github) ? `<a class="text-link" href="${esc(project.github)}" target="_blank" rel="noopener noreferrer">GitHub ${arrow}</a>` : "";
+    const writing = related.length ? `<a class="text-link" href="${localPath("post", related[0].id)}">개발 기록 읽기 ${arrow}</a>` : "";
+    const records = related.length ? `<section class="project-writing"><p class="eyebrow">DEVELOPMENT LOG</p><h2>관련 개발 기록</h2><ul>${related.map(post => `<li><a href="${localPath("post", post.id)}">${esc(post.title)} ${arrow}</a></li>`).join("")}</ul></section>` : "";
+    return `<article class="container"><header class="article-header"><a class="breadcrumb" href="#/projects">← BACK TO PROJECTS</a><p class="eyebrow">${esc(project.category)} / ${esc(project.year)}</p><h1>${esc(project.name)}</h1><p>${esc(project.description)}</p><span class="project-status">${esc(project.status)}</span><div class="project-detail-links">${github}${writing}</div></header>${projectVisual(project, true)}<dl class="project-facts"><div><dt>TYPE</dt><dd>${esc(project.type)}</dd></div><div><dt>STACK</dt><dd>${project.stack.map(esc).join(" / ")}</dd></div><div><dt>YEAR</dt><dd>${esc(project.year)}</dd></div></dl><div class="article-layout"><div class="article-content"><p class="article-lead">${esc(project.summary)}</p>${project.sections.map((item, index) => `<h2 id="part-${index + 1}">${esc(item.title)}</h2><p>${esc(item.text)}</p>`).join("")}${records}</div>${toc(headings, "project", project.id, section)}</div><div class="article-end"><a class="text-link" href="#/projects">← 전체 프로젝트 보기</a>${writing}</div><div class="page-bottom"></div></article>`;
+  }
+
+  function profileRecords(label, title, records, compact = false) {
+    if (!records?.length) return "";
+    return `<section class="about-section"><p class="eyebrow">${esc(label)}</p><h2>${esc(title)}</h2><ul class="about-records${compact ? " about-records--compact" : ""}">${records.map(item => {
+      const validLink = isHttpLink(item.href) || /^#\/(post|project)\/[a-z0-9-]+$/i.test(item.href || "");
+      const link = validLink ? `<a href="${esc(item.href)}"${isHttpLink(item.href) ? ' target="_blank" rel="noopener noreferrer"' : ""}>${esc(item.linkLabel || "기록 보기")} ↗</a>` : "";
+      return `<li class="about-record"><div class="about-record-heading"><h3>${esc(item.title)}</h3>${item.period ? `<span>${esc(item.period)}</span>` : ""}</div>${item.description ? `<p>${esc(item.description)}</p>` : ""}${link}</li>`;
+    }).join("")}</ul></section>`;
   }
 
   function about() {
-    const github = isHttpLink(data.profile.github) ? `<a href="${esc(data.profile.github)}" target="_blank" rel="noopener noreferrer">GitHub ↗</a>` : '<span class="unconfigured-link">GitHub · 연결 예정</span>';
-    const email = data.profile.email ? `<a href="mailto:${esc(data.profile.email)}">${esc(data.profile.email)}</a>` : '<span class="unconfigured-link">Email · 연결 예정</span>';
-    return `<div class="container">${pageHead("THE PERSON BEHIND THE NOTES", "About.", "어떤 질문을 품고, 무엇을 만들며, 어떻게 기록하는지.")}<div class="about-layout"><aside class="about-identity"><svg class="about-logo" viewBox="0 0 52 52" aria-hidden="true"><use href="assets/yt-logo.svg?v=${encodeURIComponent(contentRevision)}#mark"></use></svg><h2>${esc(data.profile.name)}</h2><p>${esc(data.profile.role)}</p></aside><div class="about-copy"><p>${esc(data.profile.about)}</p><section class="about-section"><p class="eyebrow">FOCUS</p><h2>관심을 두는 것들</h2>${data.profile.focus.map((item, index) => `<div class="focus-item"><span>0${index + 1}</span><div><h3>${esc(item.name)}</h3><p>${esc(item.description)}</p></div></div>`).join("")}</section><section class="about-section"><p class="eyebrow">EXPERIENCE & ACTIVITIES</p><h2>활동과 경험</h2><p class="placeholder-text">실제 경력, 프로젝트, 대회, 발표 등의 활동을 채울 자리입니다.<br>기간 · 역할 · 한두 문장의 설명 · 관련 링크로 구성할 수 있습니다.</p></section><section class="about-section" id="contact"><p class="eyebrow">GET IN TOUCH</p><h2>함께 이야기하고 싶다면</h2><div class="contact-row">${github}${email}</div></section></div></div></div>`;
+    const profile = data.profile;
+    const contacts = [["GitHub", profile.github], ["Tistory", profile.tistory]].filter(([, href]) => isHttpLink(href)).map(([label, href]) => `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer">${esc(label)} ↗</a>`).join("");
+    const email = profile.email ? `<a href="mailto:${esc(profile.email)}">${esc(profile.email)}</a>` : "";
+    const skills = profile.skills?.length ? `<section class="about-section"><p class="eyebrow">TOOLS & TECHNOLOGIES</p><h2>사용하는 기술과 도구</h2><dl class="about-skills">${profile.skills.map(group => `<div><dt>${esc(group.name)}</dt><dd class="stack">${group.items.map(item => `<span>${esc(item)}</span>`).join("")}</dd></div>`).join("")}</dl></section>` : "";
+    return `<div class="container">${pageHead("THE PERSON BEHIND THE NOTES", "About.", "웹 보안, 리버스 엔지니어링과 AI 기반 보안 자동화를 공부하고 만듭니다.")}<div class="about-layout"><aside class="about-identity"><svg class="about-logo" viewBox="0 0 52 52" aria-hidden="true"><use href="assets/yt-logo.svg?v=${encodeURIComponent(contentRevision)}#mark"></use></svg><h2>${esc(profile.displayName || profile.name)}</h2><p class="about-handle">${esc(profile.name)}</p><p>${esc(profile.role)}</p><a class="about-project-link" href="#/projects">프로젝트 보기 ↗</a></aside><div class="about-copy"><p>${esc(profile.about)}</p><section class="about-section"><p class="eyebrow">FOCUS</p><h2>관심을 두는 것들</h2>${profile.focus.map((item, index) => `<div class="focus-item"><span>0${index + 1}</span><div><h3>${esc(item.name)}</h3><p>${esc(item.description)}</p></div></div>`).join("")}</section>${skills}${profileRecords("RESEARCH & CONTRIBUTIONS", "취약점 제보와 기여", profile.contributions)}${profileRecords("ACTIVITIES", "프로젝트와 스터디 활동", profile.activities)}${profileRecords("CERTIFICATIONS", "자격증", profile.certifications, true)}${profileRecords("EDUCATION", "교육", profile.education)}${profileRecords("AWARDS & RECOGNITION", "수상 기록", profile.awards)}<section class="about-section" id="contact"><p class="eyebrow">ELSEWHERE</p><h2>다른 곳에서의 기록</h2><div class="contact-row">${contacts}${email}</div></section></div></div></div>`;
   }
 
   function notFound() {

@@ -1,17 +1,48 @@
-/* 이름, 소개, 링크와 예시 콘텐츠를 이 파일에서 수정합니다. 모든 글과 프로젝트는 틀을 보여주기 위한 예시입니다. */
+/* 공개 프로필·프로젝트는 이 파일에서, 발행한 글은 blog/에서 관리합니다. posts/notes의 sample 항목은 초기 구성용 데이터입니다. */
 window.BLOG_DATA = {
   profile: {
     name: "yt010108",
-    role: "Security researcher & builder",
+    displayName: "Yeongtaek Yoo",
+    role: "Security research & automation",
     headline: ["Security research,", "notes & projects."],
     intro: "보안을 공부하고, 실험하고, 발견한 내용을 기록합니다.\n작은 메모부터 분석 글과 직접 만든 도구까지.",
-    about: "안녕하세요. yt010108입니다. 보안을 공부하며 정리한 생각과 실험을 이곳에 남깁니다. 한 번의 정답보다 왜 그렇게 동작하는지 이해하는 과정을 중요하게 생각합니다.",
+    about: "웹 보안과 리버스 엔지니어링을 공부하며, AI 에이전트를 보안 분석과 자동화에 적용하고 있습니다. 취약점이 발생하는 원인과 재현 과정을 이해하고, 분석 과정에서 반복되는 일을 도구로 옮깁니다. 이곳에는 직접 만든 프로젝트, 취약점 분석과 실습, 학습 과정에서 확인한 결과와 한계를 기록합니다.",
     github: "https://github.com/yt010108",
+    tistory: "https://yt5246.tistory.com/",
     email: "",
     focus: [
-      { name: "Security research", description: "작은 의문에서 출발해, 동작 원리와 경계를 살펴봅니다." },
-      { name: "Tools & experiments", description: "반복되는 작업을 줄이고 이해를 돕는 작은 도구를 만듭니다." },
-      { name: "Learning in public", description: "배운 내용을 다시 찾아볼 수 있는 기록으로 정리합니다." }
+      { name: "Web security & vulnerability research", description: "인증·인가, 입력값 처리와 HTTP 요청 흐름을 살펴보고 취약점의 원인과 재현 근거를 정리합니다." },
+      { name: "Reverse engineering", description: "Ghidra와 GDB를 사용해 바이너리와 APK의 동작을 분석하고, CTF 풀이 과정을 기록합니다." },
+      { name: "AI & LLM security", description: "PAIR 기반 레드팀 실험과 프롬프트 인젝션 방어를 공부하며, 모델 응답과 평가 결과를 함께 검토합니다." },
+      { name: "Agents & security automation", description: "Pi 하네스, Agent Skills와 MCP를 활용해 정보 수집부터 분석·검증·보고까지 이어지는 도구를 만듭니다." }
+    ],
+    skills: [
+      { name: "Languages", items: ["Python", "Bash", "C", "PHP"] },
+      { name: "Security tools", items: ["Burp Suite", "Ghidra", "GDB", "Metasploit", "Nikto"] },
+      { name: "Environment", items: ["Linux", "Kali Linux", "Docker", "Git"] }
+    ],
+    contributions: [
+      { period: "2026.09", title: "IXWebSocket 경로 탐색 취약점 제보", description: "기본 HttpServer 콜백의 경로 처리 문제를 제보했습니다. 업스트림 수정 커밋에 Yeongtaek Yoo · @yt010108이 제보자로 명시돼 있습니다.", href: "https://github.com/machinezone/IXWebSocket/commit/5da103b0da9183757301ea1676b26795a996e443", linkLabel: "수정 커밋" }
+    ],
+    activities: [
+      { title: "T34M Rookie", description: "CTF와 웹 보안 문제의 분석·풀이 과정을 정리하는 정보보안 스터디에 참여합니다.", href: "https://github.com/T34M-Rookie/T34M-ROOKIE-Study-Archive", linkLabel: "스터디 기록" },
+      { period: "2026", title: "AGENTIC PLAYER 10", description: "팀으로 kr-gov-job-mcp를 개발해 카카오 PlayMCP에 등록하고, 공공기관 채용 정보 분석 도구를 출품했습니다.", href: "#/project/kr-gov-job-mcp", linkLabel: "프로젝트" }
+    ],
+    certifications: [
+      { title: "정보보안기사", href: "#/post/8db5ce4b-f1c4-5d96-873b-8354e6b7d963", linkLabel: "취득 후기" },
+      { title: "정보처리기사", href: "#/post/dbc4c10f-ecb6-5e56-ae3a-4cbdd8ee5018", linkLabel: "취득 후기" },
+      { title: "네트워크관리사 2급", href: "#/post/2d9cf327-633b-558f-bc53-68517ee3874d", linkLabel: "취득 기록" },
+      { title: "리눅스마스터 2급", href: "#/post/44bc44a1-ff5a-594a-a5d3-f0da88d8f246", linkLabel: "취득 후기" }
+    ],
+    education: [
+      { title: "SK Shieldus Rookies", description: "정보보안 교육과 실습" },
+      { title: "KISA 아카데미 버그헌팅 실습훈련", description: "초급 · 중급" },
+      { title: "Cisco Virtual Internship", description: "가상 인턴십 프로그램" }
+    ],
+    awards: [
+      { period: "2026", title: "AI 원클릭 해킹대회", description: "한국인터넷진흥원" },
+      { period: "2026", title: "AI 프라이버시 챌린지", description: "한국방송통신전파진흥원 · 한국인터넷진흥원 공동주관" },
+      { title: "누리집 보안 취약점 식별 유공", description: "광주광역시교육청" }
     ]
   },
   tags: {
@@ -123,21 +154,75 @@ window.BLOG_DATA = {
   ],
   projects: [
     {
-      id: "request-inspector", name: "Request Inspector", category: "SECURITY TOOL", description: "HTTP 요청의 구조를 읽고 비교하는 도구를 소개하는 포트폴리오 예시.", stack: ["Python", "HTTP"], year: "2026", sample: true, github: "", relatedPost: "request-boundaries", visual: "request",
-      summary: "요청을 살펴보며 반복했던 작업을 한곳에 모으는 개인 도구의 예시입니다. 실제 구현물의 문제 정의, 담당 역할, 구현 과정과 결과를 이 구조에 맞춰 정리할 수 있습니다.",
+      id: "reverser", name: "Reverser", category: "REVERSE ENGINEERING", description: "문제 정찰·가설·검증과 분석 기록을 연결하는 Pi 기반 리버싱 CTF 하네스.", stack: ["Python", "Pi", "Docker", "Ghidra"], year: "2026", sample: false, github: "https://github.com/yt010108/Reverser", type: "리버싱 CTF 하네스", status: "연구·개발", flowLabel: "HYPOTHESIS-DRIVEN ANALYSIS", flow: ["Triage", "Hypothesis", "Verify"], relatedPosts: ["b94d38fd-8751-5c77-ac8b-0f09e9a3cfd4", "40014620-6914-53cb-8d6d-b80276920c78", "8cc6e116-a226-5a95-a874-950a9ea1129d"],
+      summary: "AI가 리버싱 문제를 풀 때 같은 시도를 반복하거나 근거 없이 완료를 선언하는 문제에서 출발했습니다. Pi와 Python 하네스, Docker 작업자를 연결해 문제별 분석과 실행 결과를 기록하고, 가설을 검증하는 흐름을 구성했습니다.",
       sections: [
-        { title: "풀고 싶은 문제", text: "어떤 작업이 불편했는지, 기존 방식에서 무엇을 개선하려 했는지 설명하는 공간입니다." },
-        { title: "내 역할과 접근", text: "직접 맡은 범위와 구현 방식을 설명합니다. 입력과 출력, 주요 흐름, 선택한 기술의 이유를 넣으면 좋습니다." },
-        { title: "결과와 배운 점", text: "실제로 확인한 결과를 캡처나 근거와 함께 정리하는 공간입니다. 현재 내용은 예시이며 실제 성과를 기재한 것은 아닙니다." }
+        { title: "가설과 실행 근거 연결", text: "정찰 결과에서 가설을 세우고, 검사 방법·반증 조건·실행 근거를 함께 기록합니다. 검증 결과를 confirmed, rejected, inconclusive로 구분해 다음 시도의 출발점이 남도록 했습니다." },
+        { title: "분석 작업과 기록 분리", text: "Parent Pi와 Solver의 역할을 나누고, 정적 분석·동적 분석·Ghidra 작업자를 필요에 따라 사용합니다. 완료 상태와 Write-up, 재사용할 분석 기법을 문제별 작업 기록과 연결합니다." },
+        { title: "지원 범위와 검증 기준", text: "현재 README의 v1 범위는 x86/amd64 Linux ELF와 PE 정적 분석입니다. 플래그 자동 제출은 수행하지 않으며, 로컬 검증과 실제 플래그 획득을 서로 다른 상태로 기록합니다." }
       ]
     },
     {
-      id: "research-notebook", name: "Research Notebook", category: "PERSONAL EXPERIMENT", description: "흩어진 분석 메모와 참고 자료를 연결하는 기록 프로젝트 예시.", stack: ["Markdown", "JavaScript"], year: "2026", sample: true, github: "", relatedPost: "reusable-research-notes", visual: "notes",
-      summary: "짧은 실험 노트와 완성된 분석을 함께 관리하는 프로젝트의 예시입니다. 배경과 핵심 기능, 구현 과정, 사용하면서 배운 점을 담을 수 있습니다.",
+      id: "recon", name: "Recon", category: "SECURITY AUTOMATION", description: "허가된 대상의 수집·탐색 결과를 기능 단위 경로와 검토 후보로 정리하는 리콘 하네스.", stack: ["Python", "Pi", "Docker", "HTTPX", "Katana"], year: "2026", sample: false, github: "https://github.com/yt010108/Recon", type: "웹 리콘 하네스", status: "연구·개발", flowLabel: "FROM COLLECTION TO REVIEW", flow: ["Collect", "Normalize", "Report"], relatedPosts: ["ba4d16c1-a960-5e2e-a838-a7b025386537", "04c53a28-d0a9-5cc5-b8bd-8708849a84c9"],
+      summary: "여러 리콘 도구의 출력이 쌓여도 다음에 무엇을 확인할지 판단하기 어려웠던 경험을 바탕으로 만들었습니다. 수집 원본을 보존하면서 값만 다른 URL을 기능 단위 route로 묶고, 수동으로 검토할 대상을 정리합니다.",
       sections: [
-        { title: "프로젝트 배경", text: "왜 만들었는지, 누구의 어떤 문제를 해결하려 했는지 설명하는 공간입니다." },
-        { title: "설계와 구현", text: "실제 콘텐츠 구조와 탐색 방식, 구현 중에 했던 선택을 정리할 수 있습니다." },
-        { title: "회고와 다음 단계", text: "직접 사용해 본 결과와 한계, 다음에 개선할 부분을 담는 공간입니다." }
+        { title: "도구 실행을 하나의 흐름으로", text: "서브도메인·과거 URL 수집, HTTP 응답 확인, 크롤링과 경로 탐색을 단계별로 연결합니다. Pi에서 시작한 작업의 진행 상태와 단계별 결과를 run 단위로 남깁니다." },
+        { title: "중복을 줄인 검토 결과", text: "Wayback, robots.txt, Katana와 소스 분석 결과의 출처를 함께 보존합니다. Normalize 단계에서 route를 정리하고, 최종 보고서에는 사이트맵과 우선 검토할 엔드포인트·보안 관련 주석을 모읍니다." },
+        { title: "실전 사용에서 확인한 한계", text: "대회에서 사용한 뒤 공통 자산과 중복 URL이 결과를 부풀리는 문제를 회고했습니다. 수집량 자체보다 결과의 구조, 우선순위와 다음 검증 행동이 중요하다는 점을 개발 기록에 남겼습니다." }
+      ]
+    },
+    {
+      id: "pentest-helper", name: "pentest-helper", category: "AGENT SKILL", description: "엔드포인트 분류에서 취약점별 점검, 증적과 보고서 작성으로 이어지는 웹 모의해킹 Skill.", stack: ["Agent Skills", "OWASP WSTG", "Markdown"], year: "2026", sample: false, github: "https://github.com/yt010108/pentest-helper", type: "보안 분석 워크플로우", status: "Skill 공개", flowLabel: "EVIDENCE-BASED TESTING", flow: ["Triage", "Test", "Evidence"], relatedPosts: ["55e2f42c-075c-524a-acaa-d4c3c35bee02", "ef558698-35f8-5bd0-937c-c427b7f64931"],
+      summary: "웹 모의해킹을 도울 AI에게 취약점 목록만 주는 대신, 점검 범위·관찰·검증 근거와 보고서가 이어지는 작업 흐름을 제공하도록 설계했습니다. WSTG 장별 메뉴로 시작한 구조를 실제 엔드포인트와 관심 취약점 중심으로 개편했습니다.",
+      sections: [
+        { title: "엔드포인트와 입력의 역할 파악", text: "URL·크롤링 결과·프록시 기록에서 엔드포인트의 기능과 파라미터 역할을 추정합니다. 객체 식별자, 검색어, 파일 경로, 권한 힌트 등으로 나누고 추정의 확실성을 함께 기록합니다." },
+        { title: "필요한 취약점 모드로 연결", text: "IDOR, 숨은 경로, 주석·JavaScript 정보 노출, 파일 업로드, XSS, SQL Injection, API 등 관심 영역에 맞는 참고 문서로 연결합니다. SKILL.md는 범위 확인과 문서 라우팅을 맡는 작은 진입점으로 유지했습니다." },
+        { title: "관찰에서 보고서까지", text: "notes, evidence, findings, report-draft를 이어서 작성하고 결과를 WSTG·CWE 항목에 매핑합니다. 검증 범위와 근거를 다시 확인할 수 있는 보고서 템플릿을 함께 제공합니다." }
+      ]
+    },
+    {
+      id: "kr-gov-job-mcp", name: "kr-gov-job-mcp", category: "MCP & PUBLIC DATA", description: "공공기관 채용공고·직무기술서·NCS·기관 자료를 근거와 함께 연결하는 취업 정보 분석 MCP.", stack: ["Python", "MCP", "Docker", "Public data"], year: "2026", sample: false, github: "https://github.com/yt010108/kr-gov-job-mcp", type: "팀 프로젝트 · MCP 서버", status: "AGENTIC PLAYER 10", flowLabel: "CONNECTED PUBLIC INFORMATION", flow: ["Job-ALIO", "NCS", "Strategy"], relatedPosts: ["b08135ce-070d-5ec2-af54-4902ca65c557"],
+      summary: "채용공고와 직무기술서, NCS, 기관의 사업 자료를 따로 찾아야 하는 불편을 줄이기 위한 MCP 서버입니다. 카카오 AGENTIC PLAYER 10에 팀으로 참여하며 개발·등록한 과정과 서비스 사용 경험을 글로 정리했습니다.",
+      sections: [
+        { title: "근거가 있는 공공데이터 연결", text: "Job-ALIO 공고 검색과 상세 조회를 시작으로 직무기술서, NCS 역량과 ALIO 기관 자료를 연결합니다. 각 정보의 출처를 유지하며 직무와 기관을 이해하는 흐름을 구성했습니다." },
+        { title: "검색에서 준비 전략까지", text: "기관·직무명 해석, 공고 분석, 기관 사업 방향과 지원 준비 전략을 별도 도구로 나눕니다. 사용자 경험은 근거를 확인하는 질문과 STAR 답변의 뼈대로 정리하도록 했습니다." },
+        { title: "MCP 서버와 개발 경험", text: "stdio와 HTTP MCP 엔드포인트, Docker 배포 구성을 제공합니다. 대회 참여 뒤에는 기능의 완성도와 함께 서비스 대상, 첫 사용 경험과 대중성을 고려해야 한다는 점을 회고했습니다." }
+      ]
+    },
+    {
+      id: "windows-security-assessment", name: "Windows Security Assessment", category: "SECURITY ASSESSMENT", description: "주요정보통신기반시설 가이드의 W-01~W-64를 기준으로 점검·판정·보고서를 연결한 Windows 점검 도구.", stack: ["Python", "PowerShell", "HTML / JSON"], year: "2026", sample: false, github: "", type: "Windows 보안 점검 도구", status: "구현 기록", flowLabel: "CONFIGURATION TO REMEDIATION", flow: ["Collect", "Assess", "Report"], relatedPosts: ["bb9b7a47-7804-553a-bf31-990902135f3c"],
+      summary: "Windows 서버의 보안 설정을 수집하는 데서 끝나지 않고, 점검 기준과 판단 근거, 조치 자료를 함께 남기기 위해 만든 도구입니다. PowerShell 수집기와 Python 판정 엔진을 분리해 로컬 실행과 결과 보고서를 연결했습니다.",
+      sections: [
+        { title: "점검 기준의 구조화", text: "W-01~W-64의 항목명, 중요도, 판단 기준과 조치 방법을 카탈로그로 정리했습니다. 점검 엔진이 어떤 기준으로 결과를 냈는지 추적할 수 있도록 데이터와 로직을 나눴습니다." },
+        { title: "수집과 판정 분리", text: "PowerShell로 계정·정책·레지스트리·서비스·방화벽 등의 설정을 읽고, Python에서 양호·취약·수동확인으로 판정합니다. 자동 확인이 어려운 항목은 별도의 수동확인 대상으로 남깁니다." },
+        { title: "보고서와 조치 자료", text: "HTML 요약·상세 보고서와 JSON 결과, 항목별 조치 텍스트를 생성합니다. 분류별 현황과 우선 조치 대상을 함께 보여주는 결과 구조를 개발 글에 정리했습니다." }
+      ]
+    },
+    {
+      id: "pair-ollama", name: "PAIR × Ollama", category: "AI & LLM SECURITY", description: "공개 PAIR 구현을 로컬 Ollama에 연결하고, 자동 레드팀의 Judge 오판과 평가 한계를 분석한 실험.", stack: ["Python", "Ollama", "PAIR"], year: "2026", sample: false, github: "", type: "공개 구현 확장 · 실험", status: "실험 기록", flowLabel: "ITERATIVE MODEL EVALUATION", flow: ["Attacker", "Target", "Judge"], relatedPosts: ["b92cd837-a2c9-5c4f-b18a-e57fc16d2eac"],
+      summary: "PAIR의 공개 JailbreakingLLMs 구현을 기반으로 Attacker와 Target을 로컬 Ollama 모델에 연결했습니다. 프롬프트를 반복 개선하는 흐름을 실행하고, 높은 Judge 점수가 실제 안전 정책 우회와 일치하는지 검토했습니다.",
+      sections: [
+        { title: "기존 반복 루프와 모델 연결", text: "PAIR의 Generate → Response → Evaluate → Improve 루프를 유지하면서 모델 라우팅과 Ollama 호출 부분을 연결했습니다. 여러 탐색 흐름을 병렬로 실행하는 구조도 함께 살펴봤습니다." },
+        { title: "자동 평가의 오탐 확인", text: "거절 문구의 유무로 판단하는 Judge가 정상적인 답변까지 성공으로 분류하는 사례를 확인했습니다. 점수만으로 공격 성공률을 계산하면 실험 결과를 잘못 해석할 수 있다는 한계를 기록했습니다." },
+        { title: "평가 신뢰도를 위한 다음 단계", text: "응답의 실제 의미와 정책 위반 여부를 구분하고, 높은 점수의 사례를 사람이 다시 검토하는 평가 구조를 다음 개선 방향으로 정리했습니다. 원본 알고리즘과 직접 변경한 모델 연결 범위를 구분해 기록합니다." }
+      ]
+    },
+    {
+      id: "locallens", name: "LocalLens", category: "AI APPLICATION", description: "자연어 검색과 방문자 리뷰의 감성 정보를 결합한 제주도 여행지 추천 서비스.", stack: ["FastAPI", "React", "ChromaDB", "Docker"], year: "2026", sample: false, github: "", type: "캡스톤 프로젝트", status: "개발·배포 기록", flowLabel: "REVIEWS TO SEMANTIC SEARCH", flow: ["Reviews", "Vectors", "Search"], relatedPosts: ["f593c18c-e3fc-57ea-b868-2102af5f309a"],
+      summary: "‘조용한 카페 근처 해변’처럼 사용자가 원하는 분위기로 여행지를 찾을 수 있도록 만든 캡스톤 프로젝트입니다. 장소·리뷰 수집과 감성 분석, 벡터 검색을 API와 웹 화면에 연결했습니다.",
+      sections: [
+        { title: "검색 가능한 리뷰 데이터", text: "장소 정보와 리뷰를 수집한 뒤 KOTE 감성 분석, 키워드 추출과 로컬 LLM을 활용해 검색 맥락을 구성했습니다. 임베딩을 ChromaDB에 저장하고 감성 점수와 검색 유사도를 함께 고려합니다." },
+        { title: "배치·API·화면의 분리", text: "데이터 파이프라인은 Batch Server, 검색은 FastAPI, 화면은 React로 나눴습니다. Docker Compose와 Nginx로 묶어 데이터 처리와 사용자 요청을 서로 다른 흐름으로 운영하도록 구성했습니다." },
+        { title: "배포 과정에서 확인한 과제", text: "입력 검증, CORS와 정보 노출 방지 등 서비스 보안도 함께 검토했습니다. 개발 글에는 배치 실패 복구, 공식 데이터 API 전환, HTTPS와 초기 요청 지연을 개선 과제로 남겼습니다." }
+      ]
+    },
+    {
+      id: "bomti", name: "Bomti", category: "AI APPLICATION", description: "자기소개서 답변의 상투성·과장과 맥락 적합성을 문장 근거로 설명하는 한국어 평가 서비스.", stack: ["Next.js", "TypeScript", "React", "Zod"], year: "2026", sample: false, github: "https://github.com/yt010108/bomti", type: "웹 서비스 프로토타입", status: "개발 중", flowLabel: "CONTEXT-AWARE FEEDBACK", flow: ["Input", "Evaluate", "Feedback"], relatedPosts: [],
+      summary: "질문·직무·회사 또는 공고 맥락을 바탕으로 자기소개서 답변을 평가하는 웹 서비스를 개발하고 있습니다. 답변을 대신 생성하기보다 점수의 근거가 된 문장과 설명, 제한된 개선 방향을 보여주는 구성을 목표로 합니다.",
+      sections: [
+        { title: "평가와 근거를 함께 제공", text: "사용자의 질문·답변·목표 직무·맥락을 입력받고, 평가 지수와 위험 차원, 문장별 근거를 연결하도록 설계했습니다. 답변 생성과 평가 피드백의 역할을 구분합니다." },
+        { title: "입력 처리와 개인정보 고려", text: "동의 이후 문장 세그먼트화와 가명처리를 거쳐 모델로 전달하는 흐름을 둡니다. 원문 보관과 로그 노출을 피하는 데이터 처리 경계를 문서화했습니다." },
+        { title: "현재 개발 범위", text: "현재는 로컬 검증 기반과 평가 계약을 구현하고 있습니다. 외부 인증과 모델 공급자 연동, 실제 서비스 배포는 후속 단계로 남아 있습니다." }
       ]
     }
   ]

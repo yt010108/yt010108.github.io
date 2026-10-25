@@ -82,7 +82,9 @@ content.js에서 이름, 소개, 연락처, 프로젝트와 초기 구성 예시
 | assets/post.css, assets/posts.js | 공개 글의 서식과 렌더러 번들 |
 | `.nojekyll` | 정적 파일을 그대로 배포하도록 지정 |
 
-`profile.github`, `profile.email`, 프로젝트별 `github`에 실제 링크를 지정할 수 있습니다. 예시를 실제 내용으로 바꾼 뒤 해당 항목의 `sample`을 `false`로 바꾸면 예시 표시가 사라집니다.
+`content.js`의 `profile`에는 공개 이름·소개·관심 분야·기술·기여·활동·자격증·교육·수상 기록이 있습니다. 현재 내용은 공개 GitHub 프로필·프로젝트 README와 티스토리의 소개·개발 기록을 바탕으로 구성했습니다. `profile.github`, `profile.tistory`, 선택 항목인 `profile.email`로 외부 링크를 관리합니다.
+
+프로젝트의 `github`는 공개 저장소가 있을 때만 지정합니다. `relatedPosts`에는 현재 공개된 글의 ID를 넣으며, 해당 글이 없거나 휴지통 상태이면 관련 링크를 표시하지 않습니다. `type`, `status`, `flowLabel`, `flow`는 프로젝트 종류·진행 상태·구성 그림을 정합니다. 프로젝트의 배경과 구현·한계는 `summary`, `sections`에서 수정합니다.
 
 글의 `body`는 `lead`, `heading`, `paragraph`, `code`, `list`, `callout` 블록으로 구성됩니다. `heading.id`는 목차 이동에 사용하므로 글 안에서 중복되지 않게 지정합니다.
 
