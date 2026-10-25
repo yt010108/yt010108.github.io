@@ -11,13 +11,13 @@
       "category": "",
       "tags": [],
       "date": "2026-10-24",
-      "updatedAt": "2026-10-24T17:11:06.735Z",
+      "updatedAt": "2026-10-25T05:39:36.580Z",
       "publishedAt": "2026-10-24T17:11:06.735Z",
-      "status": "published",
+      "status": "trash",
       "sourceDigest": "b560f8efdbc82800d7dca8dde964688c84ca4c0ee84bd9ce38f45d64368bca27",
-      "trashedAt": null,
+      "trashedAt": "2026-10-25T05:39:36.580Z",
       "path": "blog/entries/06e2f54a-99fb-461b-819d-c1d90def7dcf.json",
-      "sha": "97a0ffbc37a0eba327c212339845500f0636bf6c"
+      "sha": "6b49d8bed8eb2b779b298fbb333db73578279dfa"
     },
     {
       "id": "a13cf82f-34ed-4090-997d-6397e7722318",
@@ -45,13 +45,13 @@
       "category": "",
       "tags": [],
       "date": "2026-10-25",
-      "updatedAt": "2026-10-24T17:43:03.880Z",
+      "updatedAt": "2026-10-25T05:39:36.580Z",
       "publishedAt": "2026-10-24T17:43:03.880Z",
-      "status": "published",
+      "status": "trash",
       "sourceDigest": "f00f28b120f576f2864a8065872885aca99d877170b361049d66b01276df74c6",
-      "trashedAt": null,
+      "trashedAt": "2026-10-25T05:39:36.580Z",
       "path": "blog/entries/b2f5c157-97ad-4d83-8c05-2c6afd2bda50.json",
-      "sha": "084012712f01db3598fd5919f2b77a4d43ac1c4e"
+      "sha": "878d80f216a352e0fd677515ae8587806120c43c"
     },
     {
       "id": "c59df8b0-1d32-42b0-ae61-ee62d17e96b7",
