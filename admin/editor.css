@@ -275,7 +275,6 @@
 .writer-preview-article .article-toc button:hover { color: var(--text); }
 @media (max-width: 800px) {
   .writer-header-inner { width: calc(100% - 40px); }
-  .writer-header .brand-name { display: none; }
   .writer-header-actions { gap: 15px; }
   .writer-paper { width: calc(100% - 40px); }
   .writer-toolbar { width: calc(100% - 28px); }
