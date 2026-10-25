@@ -1252,13 +1252,13 @@
       "category": "",
       "tags": [],
       "date": "2026-08-06",
-      "updatedAt": "2026-10-22T17:49:20+09:00",
+      "updatedAt": "2026-10-25T05:40:03.176Z",
       "publishedAt": "2026-08-06T09:26:11+09:00",
-      "status": "published",
+      "status": "trash",
       "sourceDigest": "05c4203ccb5b10f314925afe5a8843ea425ecb946fa153241383b08d471a55b6",
-      "trashedAt": null,
+      "trashedAt": "2026-10-25T05:40:03.176Z",
       "path": "blog/entries/9fafbeed-b8ff-57b2-9960-6f8d77173c93.json",
-      "sha": "9faea0ae60a1e021e6311c07011969fdff5de266"
+      "sha": "c667395f9e9659da6c4de8a2cdccff86bde969fe"
     },
     {
       "id": "a01201bf-8c72-594c-a4b7-6cf2fac1d23f",
