@@ -1,0 +1,44 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "e5307a85-7c76-43cf-9be4-135423b1dd6e",
+  "title": "깃허브 모음",
+  "kind": "notes",
+  "slug": "깃허브-모음",
+  "description": "",
+  "category": "",
+  "date": "2026-10-25",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-10-25T12:27:43.545Z",
+  "updatedAt": "2026-10-25T12:27:43.545Z",
+  "sourceDigest": "e481f987a1e064e792d191044dc88532fa01c5b70e680e0fc966fddcdd3c2a83",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/hahwul",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "https://github.com/hahwul"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -2024,6 +2024,23 @@
       "trashedAt": null,
       "path": "blog/entries/c596987e-393f-4ff1-9acc-92f9b0bc3b6e.json",
       "sha": "c8b5df1e72e3ee4c411ca88147580930947b66f8"
+    },
+    {
+      "id": "e5307a85-7c76-43cf-9be4-135423b1dd6e",
+      "kind": "notes",
+      "slug": "깃허브-모음",
+      "title": "깃허브 모음",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-10-25",
+      "updatedAt": "2026-10-25T12:27:43.545Z",
+      "publishedAt": "2026-10-25T12:27:43.545Z",
+      "status": "published",
+      "sourceDigest": "e481f987a1e064e792d191044dc88532fa01c5b70e680e0fc966fddcdd3c2a83",
+      "trashedAt": null,
+      "path": "blog/entries/e5307a85-7c76-43cf-9be4-135423b1dd6e.json",
+      "sha": "efe4043e8f4d85c1189c1ba6955a25391bd5e1c7"
     }
   ],
   "taxonomy": {
