@@ -1,0 +1,35 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "56d420ff-d06b-4ff6-84ed-447ef0725125",
+  "title": "블로그 만들어갈 방향",
+  "kind": "posts",
+  "slug": "블로그-만들어갈-방향",
+  "description": "",
+  "category": "",
+  "date": "2026-10-25",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-10-25T14:37:21.420Z",
+  "updatedAt": "2026-10-25T14:37:21.420Z",
+  "sourceDigest": "b136d0b7635adf15f2b5139ccc306169a403527fa502b66697f2a6781618dae4",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "약간 대시보드처럼 만들면 좋을 듯 그래서 이걸 항상 켜둘 수 있고 어떤 걸 해야하는 지 보이게"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  }
+}

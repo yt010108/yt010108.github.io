@@ -2041,6 +2041,23 @@
       "trashedAt": null,
       "path": "blog/entries/e5307a85-7c76-43cf-9be4-135423b1dd6e.json",
       "sha": "efe4043e8f4d85c1189c1ba6955a25391bd5e1c7"
+    },
+    {
+      "id": "56d420ff-d06b-4ff6-84ed-447ef0725125",
+      "kind": "posts",
+      "slug": "블로그-만들어갈-방향",
+      "title": "블로그 만들어갈 방향",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-10-25",
+      "updatedAt": "2026-10-25T14:37:21.420Z",
+      "publishedAt": "2026-10-25T14:37:21.420Z",
+      "status": "published",
+      "sourceDigest": "b136d0b7635adf15f2b5139ccc306169a403527fa502b66697f2a6781618dae4",
+      "trashedAt": null,
+      "path": "blog/entries/56d420ff-d06b-4ff6-84ed-447ef0725125.json",
+      "sha": "180cd26ca61bba0cdeb8c8fd553d5f2dc452ffb0"
     }
   ],
   "taxonomy": {
