@@ -7,7 +7,7 @@ import { Markdown } from "@tiptap/markdown";
 import { EditorState } from "@tiptap/pm/state";
 import { zipSync, strToU8 } from "fflate";
 import { createIcons, SquarePen, Files, Bold, Italic, Strikethrough, Code, List, ListOrdered, Quote, Link, ImagePlus, Table2, SquareCode, Minus, Eye, Undo2, Redo2, FolderOpen, Download, Archive, ArrowLeft, Hash, Menu, FileClock, FolderTree, Images, PanelsTopLeft, Trash2, LogOut } from "lucide";
-import { readDraft, listDrafts, writeDraft, DraftConflict } from "./draft-store.js";
+import { readDraft, listDrafts, writeDraft, hasUnpublishedChanges, DraftConflict } from "./draft-store.js";
 import { IMAGE_TYPES, MAX_IMAGE_SIZE, newEntry, safeSlug, safeImageData, createAsset, imageBySource, transformImages, usedAssets, validateBackup, markdownDocument, assetBytes } from "./document.js";
 import { createLinkPreviews, webURL } from "./link-preview.js";
 import { renderDocument } from "../../shared/posts.js";
@@ -311,11 +311,15 @@ async function persist(force = false) {
     const result = await writeDraft(data, entry.revision);
     entry.revision = result.revision;
     entry.updatedAt = result.updatedAt;
+    entry.sourceDigest = result.sourceDigest;
     savedChanges = version;
-    try { localStorage.setItem(ACTIVE_KEY, entry.id); } catch {}
+    try {
+      if (hasUnpublishedChanges(result)) localStorage.setItem(ACTIVE_KEY, entry.id);
+      else if (localStorage.getItem(ACTIVE_KEY) === entry.id) localStorage.removeItem(ACTIVE_KEY);
+    } catch {}
     $("save-copy").hidden = true;
     const time = new Date(result.updatedAt).toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" });
-    saveStatus(changes === savedChanges ? "이 브라우저에 저장됨 · " + time : "새 변경 사항 저장 중…");
+    saveStatus(changes === savedChanges ? hasUnpublishedChanges(result) ? "이 브라우저에 저장됨 · " + time : "발행됨 · 새 변경 사항 없음" : "새 변경 사항 저장 중…");
   })().catch(error => {
     failed = true;
     const text = error instanceof DraftConflict ? error.message : "임시저장하지 못했어요. 완료에서 파일로 보관해 주세요.";
@@ -416,7 +420,7 @@ function applyEntry(next) {
   silent = false;
   $("save-copy").hidden = true;
   $("writer-message").hidden = true;
-  saveStatus(entry.revision ? "이 브라우저에 저장한 글을 불러왔어요" : "이 브라우저에 자동저장");
+  saveStatus(!hasUnpublishedChanges(entry) ? "발행됨 · 새 변경 사항 없음" : entry.revision ? "이 브라우저에 저장한 글을 불러왔어요" : "이 브라우저에 자동저장");
   if (!managing) document.title = (entry.title || "글쓰기") + " — yt010108";
   renderTags(); resizeTitle(); refreshCount(); updateTools();
   if (ready) linkPreviews.resume();
@@ -733,9 +737,9 @@ async function showDrafts() {
   const list = $("draft-list");
   list.replaceChildren();
   try {
-    const drafts = await listDrafts();
+    const drafts = await listDrafts({ pendingOnly: true });
     if (!drafts.length) {
-      const empty = document.createElement("p"); empty.className = "writer-dialog-note"; empty.textContent = "아직 저장한 글이 없어요."; list.append(empty);
+      const empty = document.createElement("p"); empty.className = "writer-dialog-note"; empty.textContent = "아직 발행하지 않은 변경 사항이 없어요."; list.append(empty);
     }
     drafts.forEach(draft => {
       const button = document.createElement("button"), name = document.createElement("span"), details = document.createElement("small");
@@ -966,9 +970,12 @@ async function start() {
     let active;
     try { active = localStorage.getItem(ACTIVE_KEY); } catch {}
     let restored = active ? await readDraft(active) : null;
-    if (restored?.trashedAt) restored = null;
+    if (restored && (restored.trashedAt || !hasUnpublishedChanges(restored))) {
+      try { if (localStorage.getItem(ACTIVE_KEY) === restored.id) localStorage.removeItem(ACTIVE_KEY); } catch {}
+      restored = null;
+    }
     if (!restored) {
-      const latest = (await listDrafts())[0];
+      const latest = (await listDrafts({ pendingOnly: true }))[0];
       if (latest) restored = await readDraft(latest.id);
     }
     if (restored) applyEntry(restored);

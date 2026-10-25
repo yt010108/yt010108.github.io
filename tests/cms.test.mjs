@@ -7,12 +7,31 @@ import { resolve, dirname, basename } from "node:path";
 import { spawnSync } from "node:child_process";
 import { GitHubRepository, REPOSITORY, RepositoryConflict } from "../admin/src/github.js";
 import { newEntry } from "../admin/src/document.js";
+import { hasUnpublishedChanges } from "../admin/src/draft-store.js";
 import { INDEX_FORMAT, validateRecord, validateIndex, renderDocument, draftDigest } from "../shared/posts.js";
 
 const hash = bytes => createHash("sha1").update("blob " + bytes.length + "\0").update(bytes).digest("hex");
 const json = value => Buffer.from(JSON.stringify(value, null, 2) + "\n");
 const TOKEN = "github_pat_" + "testonly".repeat(5);
 const ROOT = "/repos/" + REPOSITORY;
+
+test("Successful publication clears draft status, later edits and failed publication keep it", async () => {
+  const s = server(); await s.client.connect(TOKEN);
+  const entry = draft(); entry.sourceDigest = await draftDigest(entry);
+  assert.equal(hasUnpublishedChanges(entry), true);
+  entry.publication = (await s.client.publish(entry)).publication;
+  assert.equal(hasUnpublishedChanges(entry), false);
+  entry.doc.content.push({ type: "paragraph", content: [{ type: "text", text: "아직 발행하지 않은 수정" }] });
+  entry.sourceDigest = await draftDigest(entry);
+  assert.equal(hasUnpublishedChanges(entry), true);
+  s.state.blobFailure = true;
+  await assert.rejects(() => s.client.publish(entry), /권한/);
+  assert.equal(hasUnpublishedChanges(entry), true);
+  s.state.blobFailure = false;
+  entry.publication = (await s.client.publish(entry)).publication;
+  assert.equal(hasUnpublishedChanges(entry), false);
+  assert.equal(hasUnpublishedChanges({ publication: {} }), true, "An unverified old copy must stay visible");
+});
 
 test("imported heading levels stay intact in the article and table of contents", () => {
   const doc = { type: "doc", content: [1, 2, 3, 4, 5, 6].map(level => ({ type: "heading", attrs: { level }, content: [{ type: "text", text: "Section <" + level + ">" }] })) };

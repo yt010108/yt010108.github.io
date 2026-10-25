@@ -33,11 +33,15 @@ export async function readDraft(id) {
   });
 }
 
-export async function listDrafts({ includeTrash = false } = {}) {
+export function hasUnpublishedChanges(entry) {
+  return !entry?.publication?.sourceDigest || !entry.sourceDigest || entry.publication.sourceDigest !== entry.sourceDigest;
+}
+
+export async function listDrafts({ includeTrash = false, pendingOnly = false } = {}) {
   const db = await database();
   return new Promise((resolve, reject) => {
     const request = db.transaction("summaries").objectStore("summaries").getAll();
-    request.onsuccess = () => resolve(request.result.filter(item => includeTrash || !item.trashedAt).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)));
+    request.onsuccess = () => resolve(request.result.filter(item => (includeTrash || !item.trashedAt) && (!pendingOnly || hasUnpublishedChanges(item))).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)));
     request.onerror = () => reject(request.error);
   });
 }

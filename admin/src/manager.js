@@ -1,4 +1,4 @@
-import { listDrafts, readDraft, writeDraft, trashDrafts } from "./draft-store.js";
+import { listDrafts, readDraft, writeDraft, trashDrafts, hasUnpublishedChanges } from "./draft-store.js";
 import { newEntry } from "./document.js";
 import { publicLink } from "./github.js";
 import { esc } from "../../shared/posts.js";
@@ -26,7 +26,7 @@ export function createManager({ repository, edit, newDraft, report, onBusy = () 
       const item = row.local || row.remote;
       const published = Boolean(row.remote || row.local?.publication);
       const trashed = row.remote?.status === "trash" || row.local?.trashedAt;
-      const modified = row.local && (!row.local.publication || row.local.publication.sourceDigest !== row.local.sourceDigest);
+      const modified = row.local && hasUnpublishedChanges(row.local);
       const stale = Boolean(row.remote && row.local && row.remote.sha !== row.local.publication?.sha);
       return { ...row, item, published, stale, state: trashed ? "trash" : published ? modified || stale ? "modified" : "published" : "draft" };
     }).sort((a, b) => (b.item.updatedAt || "").localeCompare(a.item.updatedAt || ""));
