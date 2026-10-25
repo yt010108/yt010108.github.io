@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[DVWA] XXS",
   "slug": "tistory-18",
-  "description": "1.Cross Site ScriptingCross Site Scripting 취약점은 웹 애플리케이션이 사용자로부터 입력받은 값을 제대로 검증하지 않고 웹 페이지에 그대로 출력할 때 발생하는 취약점이다. 공격자는 이 취약점을 이용해 악의적인 스크립트(주로 JavaScript)를 웹 페이지에 삽입한다.DVWA에서 Cross Site Scripting을 알아보자 2. 문제DVWA 웹 사이트에서 이름을 입력하면 hello라고 출력해주는 기능을 구현해 뒀다. 입력받은 name 값을 그대로 사용자에게 출력해서 문제가 생긴다. 실습해보자 low level 코드 을 입력으로 입력하면 가 사용자 브라우져에서 실행된다. low level에 구현된 소스코드는 아래와 같으며 get요청이 들어오면 name에 해당하는 ..",
+  "description": "DVWA의 이름 출력 기능에서 발생하는 Reflected XSS를 난이도별 코드로 분석한다. 특정 태그와 문자열을 제거하는 필터의 한계를 확인하고 HTML 특수문자를 인코딩해 텍스트로 출력하는 처리와 비교한다.",
   "category": "Wargame / DVWA",
   "date": "2025-12-31",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2025-12-31T17:14:28+09:00",
-  "updatedAt": "2026-01-20T13:27:11+09:00",
-  "sourceDigest": "830a30d8a4d47aa8b57d282cba990def305bcd035718e5c850e3a48cb0cf3795",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "92d0c607fa19e51f47aad089dbf80603a14c0caf623c094c9c500a85231221dd",
   "assets": [
     {
       "id": "da8123e4-891a-5ede-b7a4-0033df3bfa9b",

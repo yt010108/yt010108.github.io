@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[DVWA] CSRF",
   "slug": "tistory-19",
-  "description": "1. CSRFCSRF는 클라이언트 신뢰성을 익스플로잇하는 취약점으로 웹 브라우저의 쿠키 시스템과 서버 인증 방식의 문제이다. DVWA에서 CSRF에 대해 알아보자. 1.1 CSRF 개념CSRF(사이트 간 요청 위조)는 사용자가 자신의 의지와는 무관하게 공격자가 의도한 행위(수정, 삭제, 등록 등)를 특정 웹사이트에 요청하게 만드는 공격이다. 내 브라우저가 나 몰래 내 권한으로 서버에 명령을 내리는 것이다. 일반적으로 공격자가 보낸 악성 링크를 클릭하거나, XSS(교차 사이트 스크립팅) 취약점과 연계하여 공격 코드가 심어진 게시글을 열람할 때 발생힌다. CSRF가 가능한 이유는 웹 브라우저의 쿠키 정책 때문이다. 브라우저는 특정 도메인으로 요청을 보낼 때, 그 도메인과 관련된 쿠키(세션 ID 포함)를 자동..",
+  "description": "DVWA의 비밀번호 변경 기능을 통해 인증된 사용자의 브라우저가 원치 않는 요청을 보내는 CSRF를 실습한다. Referer·CSRF 토큰·현재 비밀번호 검증의 차이와 XSS가 함께 존재할 때의 영향을 살펴본다.",
   "category": "Wargame / DVWA",
   "date": "2026-01-03",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-03T19:38:42+09:00",
-  "updatedAt": "2026-01-20T13:27:46+09:00",
-  "sourceDigest": "d54f1142aff2e20b4ed104dcde7f50483b4e90c08cee09871f7e8b1de7b063f7",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "e8ac8227f3a5245915f29901925f9c9777f2baa6202d2dd9d933c87d9303a7c0",
   "assets": [
     {
       "id": "e653466d-26e7-56fc-bcff-b3d8cc7e3a30",

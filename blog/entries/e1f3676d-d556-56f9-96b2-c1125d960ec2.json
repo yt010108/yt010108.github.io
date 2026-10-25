@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[System hacking] 시스템 보안 수업 후기",
   "slug": "tistory-9",
-  "description": "4학년 2학기에 시스템 보안 수업을 들었다.3학년 2학기에 들을까 고민했지만 다른 수업이 많아서안 들었다가 수업을 들은 형의 후기가 너무 재밌고 좋았다고 했고 보안 수업을 듣고 싶어서 들었다. 4학년 1학기에 리버싱 수업을 들었기에, 스택이나 BOF 같은 기본 개념은 익숙했다.운영체제 환경만 윈도우에서 리눅스로 바뀐 느낌이라 초반에는 수월하게 따라갈 수 있었다.수업은 컴퓨터 아키텍쳐, gdb, shellcode, fsb, checksec순으로 진행되었다. 수업은 통해 시스템 해킹과 각종 방어기법, 스택구조등을 알게 되었고 자연스럽게 드림핵에서 문제를 풀고ctf대회에 나가서 잘하고 싶다고 생각하게 만들었다. 블로그에 포스팅도 수업 내용에서 배운 것 위주로 포스팅했었다.하지만 시험이 너무 아쉬워서 후기를 ..",
+  "description": "시스템 보안 수업과 CTF 형식 시험을 돌아보며 페이로드 구성과 디버깅에서 겪은 시행착오를 기록한다. 준비한 코드와 AI에 의존했던 한계를 짚고 직접 실습하고 막힌 원인을 분석하는 연습의 필요성을 되새긴다.",
   "category": "Security / Pwnable",
   "date": "2025-12-18",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2025-12-18T00:27:54+09:00",
-  "updatedAt": "2026-02-02T22:05:40+09:00",
-  "sourceDigest": "4b33bb08e8db930020aa380bcd8b1b57a35f2a0e17577f9afdcf9fcdcf4f6bde",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "b43ced9cefe425a06caca57cf10c21993e556a4a3c127dfb2cbf166dde97d470",
   "assets": [
     {
       "id": "d6b644a1-2d30-5283-8fcf-18cacdbf8a67",

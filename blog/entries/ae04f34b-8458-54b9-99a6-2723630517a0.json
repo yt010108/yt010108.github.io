@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[Ghidra] 리버스 엔지니어링 기드라 실전 가이드 스터디 - chapter 5(level4-GO바이너리)",
   "slug": "tistory-55",
-  "description": "0. GoGo는 빠르고 병렬 프로세싱을 구현하기 쉬우며 크로스 컴파일링이 가능해 어플리케이션 개발에 인기 있는 언어디다.Zebrocy, WellMess, Mirai의 C2서버는 Go로 구현되었으며 최근 멀웨어는 Go로 쓰인 경우도 있어 알아둬야한다. 1. level4 crackme(Go)level 4 크랙미는 go 언어로 구현된 바이너리를 분석해야한다. file 명령어에서 Go Build ID를 보아 이 파일이 go 언어로 쓰인 것을 알 수 있다. 파일을 실행하면 Access code를 입력하고 코드가 다르면 Bad Code가 나온다.2. Go 바이너리 배경지식 C/C++로 컴파일하면 엔트리 포인트가 Winmain이나 main이지만 Go는 _rt0_amd64_linux나 _rt0_386_window처럼..",
+  "description": "Go로 작성된 CrackMe Level 4의 런타임 구조와 심벌 복원 과정을 살펴본다. 고정 시드로 생성한 난수의 SHA-256 값을 입력과 비교하는 로직을 분석하고 같은 계산을 재현해 검증한다.",
   "category": "Security / Reversing",
   "date": "2026-01-24",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-24T17:13:51+09:00",
-  "updatedAt": "2026-01-26T13:19:44+09:00",
-  "sourceDigest": "a4e0709c5bf3c6af3dfbf7573fcd8ad19172454cf3adf555ea8ef2dc0e5bee46",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "6d18bb40f3bcad6f3a672900129f3f15acde73181152b286052449fb416c00b9",
   "assets": [
     {
       "id": "fb6ce7c7-a030-57e8-997e-8f774ee23c8f",

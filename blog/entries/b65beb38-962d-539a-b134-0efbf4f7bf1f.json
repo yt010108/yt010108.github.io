@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "Hermes Agent-Dashboard로 Skills, Cron, MCP 최적화하기",
   "slug": "tistory-108",
-  "description": "0. 개요Hermes Agent를 처음 쓸 때는 CLI와 config.yaml만으로도 충분하다. 설정을 바꾸고, API 키를 넣고, 필요한 명령어를 실행하면 된다. 또한 AI한테 원하는 설정을 말하면 알아서 설정해주기 때문에 충분했었다. 하지만 Hermes를 사용하다보면 skills가 많아서 비활성화해야하는 경우도 있고 모델 설정이나 Cron, 플러그인, 플러그인, mcp, 채널 등 이런 설정들을 관리하기에는 무리가 있다. 하지만 여러 관리 도구가 있지만 dashboard가 괜찮은 거 같아서 소개한다. 1. 환경 설정내 환경은 ssh를 사용해서 클라우드에 연결해 hermes desktop이 사용이 불가능하다. 따라서 선택지가 web을 통한 dashboard를 선택했다. 환경 설정은 간단하다. hermes..",
+  "description": "클라우드에서 실행한 Hermes Dashboard에 SSH 터널로 접속하고 설정을 관리하는 과정을 소개한다. 사용하지 않는 Skills·Cron·MCP 연결을 정리해 도구 선택과 토큰 사용, 권한 관리를 단순하게 만드는 방법을 다룬다.",
   "category": "AI / hermes",
   "date": "2026-06-06",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-06-06T18:12:39+09:00",
-  "updatedAt": "2026-06-06T18:28:18+09:00",
-  "sourceDigest": "62cbee9a957a4528a785104b4d51d9a9aa4746d956f48778470bad1187c0bafe",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "4c1e06fa648ef888c0d86718d458ac7906ba2e1309c34a968cfbf5a1f57a8289",
   "assets": [
     {
       "id": "61b252be-195a-5673-864e-c886e73cf80d",

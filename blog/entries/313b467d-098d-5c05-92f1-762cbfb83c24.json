@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-1문제",
   "slug": "tistory-65",
-  "description": "1. 문제 정보문제 번호 : old -1문제 점수 : 20점2. 문제 분석문제에 들어가면 level : 1이 있고 소스보기가 있다.. 소스는 아래와 같다.\"); }?>---------------------=4) $_COOKIE['user_lv']=1; if($_COOKIE['user_lv']>3) solve(1); echo \"level : {$_COOKIE['user_lv']}\";?>view-source cookie에 user_lv를 저장해서 level이 숫자인지, 4보다 크거나 같은지 3보다 큰지 검사하는 로직이다. 3. 풀이 개발자 도구에서 cookie값을 3.5로 설정하고 새로고침하면 풀린다.4. 요약 user_lv 쿠키 값이 4 이상이면 1로 초기화되고 3보다 크면 문제가 해결되는 서버 측 ..",
+  "description": "webhacking.kr old-1의 레벨 쿠키와 숫자 비교 조건을 분석한다. 정수가 아닌 실수 값을 사용해 두 경계 사이의 조건을 만족시키며 입력 범위 검증의 허점을 확인한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-27",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-27T15:14:40+09:00",
-  "updatedAt": "2026-01-27T15:14:40+09:00",
-  "sourceDigest": "dcfdfd6ee08bcd392e09a406ef54dbd4a78302d6c660817030373ecc2b024ede",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "2a7477457f22103f1ebfcc1c0b74d99512782c88e9e26ba9afc3fde4ceb8781d",
   "assets": [
     {
       "id": "6b9c984e-fa6f-57f2-bf05-272994eb345e",

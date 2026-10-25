@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-3 문제",
   "slug": "tistory-78",
-  "description": "1. 문제 정보문제 번호 : old -3문제 점수 : 30점2. 문제 분석문제에 들어가면 nonogram이 나오고 nonogram을 처음 풀어봐서 위키 피디아를 참고해 룰을 보았다.https://ko.wikipedia.org/wiki/%EB%85%B8%EB%85%B8%EA%B7%B8%EB%9E%A8#:~:text=%EB%85%B8%EB%85%B8%EA%B7%B8%EB%9E%A8(%EC%98%81%EC%96%B4%3A%20Nonogram%20%2C,%EB%84%A4%EB%AA%A8%EB%84%A4%EB%AA%A8%20%EB%A1%9C%EC%A7%81%EC%9D%B4%EB%9D%BC%EA%B3%A0%20%EB%B6%88%EB%A6%B0%EB%8B%A4. 노노그램을 풀면 아래 그림처럼 나온다.클리어하면 l..",
+  "description": "webhacking.kr old-3의 노노그램 풀이와 정답 전송 과정을 분석한다. 입력 변경으로 나타난 데이터베이스 오류를 단서로 answer 파라미터의 SQL Injection을 확인하는 과정을 기록한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-02-05",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-02-05T16:51:27+09:00",
-  "updatedAt": "2026-02-05T20:41:04+09:00",
-  "sourceDigest": "86eb0d33b3263bab0fdde0685a9c3b1a1a668cec3402e4ae88953277e8f029fe",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "2308c3eb0d4b24cfdf6f847ba9d0b7fb90672a8d12d83db397c8b5b165243049",
   "assets": [
     {
       "id": "80a37cdb-9fe9-546c-87cb-c84a1486bb2d",

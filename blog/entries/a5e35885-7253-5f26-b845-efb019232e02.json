@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr] old-14 문제",
   "slug": "tistory-41",
-  "description": "1. 문제 정보문제 번호 : old -14문제 점수 : 10점2. 문제 분석입력하는 박스하나 나오고 check를 통해 입력받는다. 페이지 소스를 보니onclick을 하면 ck함수를 실행한다. ck함수는 입력한 값과 ul값과 같은 지 검사한다.ul은 .kr의 위치값에 30을 곱한 값이며 이건 자바스크립트 콘솔에서 계산할 수 있다. 3. 풀이ul의 인덱스값을 알기 위해서 개발자 도구 console창에 코드를 입력하면 540이 나온다.540을 넣고 check를 눌러보면 문제가 풀린다. 4. 요약 소스 코드의 ck() 함수를 분석하여 현재 URL을 기반으로 정답을 계산하는 로직을 파악했다.로직은 URL에서 \".kr\" 문자열의 인덱스를 찾아 30을 곱하는 방식이었다.개발자 도구 콘솔에서 해당 연산을 직접 실행해..",
+  "description": "webhacking.kr old-14의 자바스크립트 검증 함수를 분석한다. 현재 URL의 문자열 위치로 정답을 계산하는 규칙을 찾아 브라우저 콘솔에서 검증 값을 확인한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-20",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-20T18:19:17+09:00",
-  "updatedAt": "2026-01-20T18:19:35+09:00",
-  "sourceDigest": "42e945e0e2e19991b813f415fb09d6c8f4607c56385671af01239594a6b14b1e",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "d6c3700425ec9e258b4649a7389a56b1f30b3409c0def7606d811b2d5d3f02ff",
   "assets": [
     {
       "id": "d67463da-d753-5cb0-8b70-0a588d74e5a5",

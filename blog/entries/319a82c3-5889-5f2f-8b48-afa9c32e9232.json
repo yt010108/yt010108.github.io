@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "프롬프트 인젝션 방어: AgentCore 기반 다층 보안 설계 패턴 리뷰",
   "slug": "tistory-130",
-  "description": "이 글은 AWS 기술 블로그의 「프롬프트 인젝션 방어: AgentCore 기반 다층 보안 설계 패턴」을 읽고 보안 관점에서 정리한 글이다. 프롬프트 인젝션 방어: AgentCore 기반 다층 보안 설계 패턴 | Amazon Web Services들어가며 LLM 기반 에이전트를 프로덕션으로 옮기는 순간, 모든 팀이 한 번쯤 마주치는 질문이 있습니다. “에이전트가 다른 사용자의 데이터를 노출하지 않는다는 걸 어떻게 보장할 수 있나요?aws.amazon.com 원문에서는 Amazon Bedrock AgentCore를 이용해 LLM Agent 환경에서 발생할 수 있는 프롬프트 인젝션과 사용자 간 데이터 접근 문제를 어떻게 시스템 구조 차원에서 방어할 수 있는지 설명한다.개인적으로 이 글에서 가장 중요하다고 본..",
+  "description": "AgentCore 기반의 프롬프트 인젝션 방어 설계를 인증·인가와 신뢰 경계 관점에서 검토한다. JWT 검증, 사용자별 데이터 분리와 Index Mapper를 통해 LLM의 판단이 권한 경계를 넘지 않도록 하는 구조를 살펴본다.",
   "category": "Security / Research",
   "date": "2026-08-07",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-08-07T18:56:04+09:00",
-  "updatedAt": "2026-08-08T01:10:52+09:00",
-  "sourceDigest": "78bf0331abc44b0bfc72b5ff77562a82da372c723d608ee71542eca06c4437c7",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "fbada46b03b2507c8ae187ecba163c389efe269392c877c9695c1d49702b8efd",
   "assets": [
     {
       "id": "c451c7ee-773d-50d5-b61b-df5fe0f3ba68",

@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[Project] LLM이 스스로 Jailbreak Prompt를 개선하게 만들기",
   "slug": "tistory-132",
-  "description": "LLM의 안전장치를 테스트할 때 가장 단순하게 떠올릴 수 있는 방법은 사람이 직접 프롬프트를 바꿔가며 반복해서 질문하는 것이다.예를 들어 첫 번째 프롬프트가 거절되면 표현을 조금 변경하고, 그래도 거절되면 맥락을 추가하거나 요청 방식을 다시 바꿔보는 식이다.문제는 이 과정이 상당히 수동적이라는 것이다.그렇다면 이 과정을 사람 대신 다른 LLM에게 맡길 수 있지 않을까?PAIR(Prompt Automatic Iterative Refinement)는 바로 이 아이디어에서 출발한다.이번에는 Jailbreaking Black Box Large Language Models in Twenty Queries에서 제안된 PAIR 구조를 살펴보고, 공개된 JailbreakingLLMs 구현체를 기반으로 attacker와..",
+  "description": "PAIR의 Attacker·Target·Judge 반복 루프를 로컬 Ollama 모델에 연결한 구현 기록이다. 모델 라우팅과 병렬 탐색을 살펴보고 정상 응답을 탈옥 성공으로 오판한 Judge의 한계와 평가 개선 방향을 정리한다.",
   "category": "Project",
   "date": "2026-08-09",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-08-09T23:29:51+09:00",
-  "updatedAt": "2026-08-10T10:36:19+09:00",
-  "sourceDigest": "428a47a82caafa684612ed70fb95556e55ed1d8c62d3ea80a040bccbd9a1edbd",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "6bc68002fd472dc41e7b85ee2d4e43dcbb73d53eb8d97e212e9b6011e6cba4b7",
   "assets": [
     {
       "id": "0148082d-19d8-54ba-8fe9-2ef99a767e0c",

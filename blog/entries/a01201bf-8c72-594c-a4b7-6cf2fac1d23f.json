@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-59 문제",
   "slug": "tistory-73",
-  "description": "1. 문제 정보문제 번호 : old -61문제 점수 : 20점 2. 문제 분석문제에 들어가면 join과 login에 맞춰 제출 버튼이 나온다. 아마도 join으로 회원가입 후 login으로 들어가는 것 같다.join에 a랑1을 입력하고 login을 해보면 이렇게 나온다 소스코드를 봐보자 소스코드를 보면 lv값이 admin이여야 solve함수가 호출된다. lv : {$result['lv']}\"; if($result['lv'] == \"admin\"){ mysqli_query($db,\"delete from chall59\"); solve(59); } echo \"view-source\"; exit(); } } if($_POST['id'] && isset($_POS..",
+  "description": "webhacking.kr old-59의 회원가입 INSERT 쿼리와 권한 값 저장 과정을 분석한다. 제한된 입력 길이 안에서 기존 컬럼을 참조하고 문자열을 변환해 권한 값이 달라지는 원리를 확인한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-02-02",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-02-02T03:18:37+09:00",
-  "updatedAt": "2026-02-02T03:25:40+09:00",
-  "sourceDigest": "e44083db791b805675dd99e7d3b4c6ceba88d66a721ea5d0bc025449a3c61df4",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "c8a2a690416fcb309e883a43e596f6ae744e26fda611d839031b47682b7c2fdc",
   "assets": [
     {
       "id": "2b6f18e9-dc78-537a-b283-ab3fa2170df7",

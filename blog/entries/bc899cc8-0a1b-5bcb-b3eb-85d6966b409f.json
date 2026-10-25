@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-26문제",
   "slug": "tistory-46",
-  "description": "1. 문제 정보문제 번호 : old -26문제 점수 : 10점2. 문제 분석들어가면 까만 화면과 view-source가 나온다.소스는 아래와 같다.view-source 소스에서는 preg_match를 통해 /admin/과 get['id']값을 비교해 같으면 no를 반환하고 종료한다.그리고 urldecode를 하고 admin과 같으면 solve(26)이 반환된다. 그러면 preg_match할때는 인코딩 되어 있으면서 if문에서는 디코딩한 값이 admin이면 문제가 풀린다. 3. 풀이아래와 같이 get의 id인자값에 %2561dmin값을 입력하면 첫 번째에서는 %61dmin이 첫 번째 비교이며 두번째에는 admin이 되서 통과한다.4. 요약 소스 코드는 preg_match로 \"admin\"을 먼저 필터링하지만..",
+  "description": "webhacking.kr old-26에서 문자열 필터와 URL 디코딩이 적용되는 순서를 분석한다. PHP의 요청 처리와 추가 디코딩을 구분하며 이중 인코딩이 검증 결과를 바꾸는 원리를 확인한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-22",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-22T02:33:32+09:00",
-  "updatedAt": "2026-01-22T03:17:31+09:00",
-  "sourceDigest": "0930f08d2675a58e03cc48bf038e9c4ee8b619c6369a72febf0a4e16877f5b61",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "c201382f13b2e2433faf74f284b7b558852f71e11a0dabebad1c3d1fd42338d5",
   "assets": [
     {
       "id": "828602b2-d4a5-564e-aca3-ed981e267a13",

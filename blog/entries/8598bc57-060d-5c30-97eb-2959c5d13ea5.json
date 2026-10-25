@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-58 문제",
   "slug": "tistory-59",
-  "description": "1. 문제 정보문제 번호 : old -58문제 점수 : 15점문제 유형: Insecure Client-Side Control 2. 문제 분석58번 문제에 들어가면 send버튼 하나 있고 입력창이 나온다. 입력창에 ls, asd, cd 같은 명령어들을 입력하다가 flag를 입력하니 permission이 부족하다는 것을 알게 되었다. 소스코드를 보자 Send 소스코드는 jquery를 사용해서 socket통신을 하는 것을 알 수있다.socket.emit('cmd',username+\":\"+$('#m').val() 부분에서 user name이 guest로 들어가는 것을 알 수 있다.3. 풀이burp suit로 웹 소켓 메시지를 잡아보니 guest..",
+  "description": "webhacking.kr old-58의 웹소켓 메시지와 명령 실행 권한을 분석한다. 클라이언트가 보낸 사용자 이름을 서버가 신뢰하는 흐름을 확인하며 서버 측 권한 검증의 필요성을 살펴본다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-26",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-26T18:10:40+09:00",
-  "updatedAt": "2026-01-26T18:10:40+09:00",
-  "sourceDigest": "68bd41eb1b76eb5fea38219e20ff7dc00e11855e05c8ed9538efc52207767b4b",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "b541fd7ca6b432fd8f1ccd70e1f4ccb1bb24c0b55fdd089a4d4f3c9925b95e71",
   "assets": [
     {
       "id": "bfd3dafd-a67e-5460-a624-35edc23516e6",

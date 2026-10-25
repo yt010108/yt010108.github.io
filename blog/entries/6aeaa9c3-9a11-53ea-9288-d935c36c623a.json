@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-54 문제",
   "slug": "tistory-45",
-  "description": "1. 문제 정보문제 번호 : old -54문제 점수 : 10점2. 문제 분석54번 문제에 들어가면 password is 뒤에 문자가 바뀌고 마지막에 ?로 바뀐다. function run(){ if(window.ActiveXObject){ try { return new ActiveXObject('Msxml2.XMLHTTP'); } catch (e) { try { return new ActiveXObject('Microsoft.XMLHTTP'); } catch (e) { return null; } } }else if(window.XMLHttpRequest){ return new XMLHttpRequest(); }else{ return null; ..",
+  "description": "webhacking.kr old-54에서 비밀번호 문자가 잠깐씩 바뀌어 보이는 원인을 분석한다. 비동기 응답을 덮어쓰는 자바스크립트를 누적 출력으로 바꾸며 전체 문자열을 확인하는 과정을 기록한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-21",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-21T23:43:18+09:00",
-  "updatedAt": "2026-01-22T02:23:13+09:00",
-  "sourceDigest": "face1e960c5c4a2130a737e65839b23a6eeeb2177308698545255940122bc906",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "087376c3f907788aad5788c126864ee287f6d16a9794e7c7315fe58c6975f2b6",
   "assets": [
     {
       "id": "d9bd1568-ef38-5941-832c-8ae73d2f7d7f",

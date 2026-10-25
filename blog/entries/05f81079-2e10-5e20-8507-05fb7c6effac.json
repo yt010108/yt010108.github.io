@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[System hacking] Checksec",
   "slug": "tistory-1",
-  "description": "checksec은 바이너리 파일에 적용된 보안 보호 기법을 확인하는 도구로 시스템 해킹이나 CTF 문제를 풀 때 가장 먼저 하는 일은 checksec 명령어를 통해 바이너리에 적용된 보안 기법을 확인하는 것이다.checksec가 아래의 보호기법을 탐지하는 방법과 아래 기법들이 무엇을 의미하는지 알아보자 1. Arch (Architecture), Stripped, DebuginfoArch :CPU 아키텍처와 데이터 저장 방식(Endian)을 나타낸다.(예: amd64-64-little )Stripped: 심볼 테이블 제거 여부를 나타낸다. No라면 함수 이름이나 변수명이 살아있다.Debuginfo: 디버깅 정보 포함 여부이다.2. RELRO (Relocation Read-Only) RELRO란?GOT o..",
+  "description": "Checksec이 보여주는 ELF 바이너리의 보호 기법과 탐지 로직을 분석한다. RELRO, 스택 카나리, NX, PIE의 동작 원리와 컴파일 옵션을 비교하고 각 보호 기법이 공격 흐름에 미치는 영향을 살펴본다.",
   "category": "Security / Pwnable",
   "date": "2025-12-09",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2025-12-09T14:22:49+09:00",
-  "updatedAt": "2025-12-15T13:38:35+09:00",
-  "sourceDigest": "0e2ef6ae75237822b3038fa280b36511d16e4a5a40dc392327b90d68da74f30c",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "4d5af1810561c9dcfcad985a47c46fe9482d9dc7ac5ca39e95c8b09f39ee2c0f",
   "assets": [
     {
       "id": "477ec553-f3ff-561f-8563-252fea22a953",

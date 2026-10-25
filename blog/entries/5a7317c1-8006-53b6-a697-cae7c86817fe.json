@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-4 문제",
   "slug": "tistory-75",
-  "description": "1. 문제 정보문제 번호 : old -4문제 점수 : 30점 2. 문제 분석문제를 보면dd156f7cf80164fd8afbc11c95d0e33e237d0275 가 있고 password를 제출하는 칸이 보인다. 코드를 확인해보자. Password[view-source] 가장 중요한 부분은 천만~1억 사이의 숫자에 salt_for_you 더 한값을 session값에 저장하고 sha1을 으로 500번 더한 값을 $hash로 나타낸다. 그 값이 처음 문제에 나온 값이다.dd156f7cf80164fd8afbc11c95d0e33e237d0275 게다가 한번 잘못 요청하면 값이 바뀐다. 3. 풀이이 문제는 90000000번 동안 루프를 돌아 맞는 값을 찾을 수 도 있지만 메모리가 너무 많이 든다.따라서 100000..",
+  "description": "webhacking.kr old-4의 솔트와 반복 SHA-1 해시 구조를 분석한다. 멀티프로세싱으로 일부 후보의 해시를 미리 계산하고 저장한 뒤 매번 바뀌는 문제 값과 대조하는 풀이를 기록한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-02-02",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-02-02T15:10:56+09:00",
-  "updatedAt": "2026-02-02T21:05:36+09:00",
-  "sourceDigest": "42148422f80b946602782fbbd7d4e1aee7705d8470d955d6f43dd9c95ffeb9b8",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "625fa1a398c3cbf9a2523484dda8547bcb50bb9bb4d57a731890c6b4bb204553",
   "assets": [
     {
       "id": "1d1c18bd-1774-5984-8cb2-d5bb4d4d18a8",

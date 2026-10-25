@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[DVWA] Command Injection",
   "slug": "tistory-12",
-  "description": "1. Command InjectionCommand Injection은 웹 애플리케이션을 통해 시스템 쉘에 임의의 명령어를 전달하여 실행시키는 취약점이다DVWA에서 command injection을 해보자2. 문제 DVWA 웹 사이트에서 ping을 대신해 주는 기능을 구현해 뒀다.Enter an IP address를 입력하면 해당 주소로 ping이 가고 결괏값을 출력해 준다. 버프 스위트로 패킷을 보면 post 요청으로 ip변수에 Enter an IP address값이 들어가는 것을 알 수 있다. low level 코드low level에 구현된 소스코드는 아래와 같으며 post요청이 들어오면 ip에 해당하는 값을 target 변수에 넣고 shell_exec()에 ping과 $target에 있는 값이 연결..",
+  "description": "DVWA의 ping 기능을 통해 사용자 입력이 셸 명령으로 연결될 때 발생하는 Command Injection을 실습한다. 난이도별 입력 처리 코드를 비교하며 메타문자 블랙리스트의 한계와 형식 검증의 차이를 살펴본다.",
   "category": "Wargame / DVWA",
   "date": "2025-12-19",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2025-12-19T18:41:25+09:00",
-  "updatedAt": "2026-01-20T13:23:33+09:00",
-  "sourceDigest": "ebf2fa20d4f005059518a11f6be594a3fc306709530f764ad95c04f53552bb4b",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "8f611ccdc66ca20431baa1bc9e58619c5a3245ecf4e6b670e3ae29f1b383f8d6",
   "assets": [
     {
       "id": "9545326e-6fc5-523f-aa93-5127bae933ec",

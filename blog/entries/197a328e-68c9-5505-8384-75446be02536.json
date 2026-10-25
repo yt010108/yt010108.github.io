@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[Ghidra] 리버스 엔지니어링 기드라 실전 가이드 스터디 - chapter 5(level3)",
   "slug": "tistory-54",
-  "description": "1. level3 crackme(bof)level 3 크랙미 디스어셈블 결과이다. param_2를 입력받아 welcome param_2를 하고 주사위 게임을 해서 10번 연속으로 맞춰야 게임을 이길 수 있다.undefined8 main(int param_1,undefined8 *param_2){ int iVar1; undefined8 uVar2; char name [24]; uint seed; uint random_val; FILE *File; uint i; uint local_c; if (param_1 == 2) { seed = 0; File = fopen(\"/dev/urandom\",\"r\"); fread(&seed,4,1,File); fclose(File); ..",
+  "description": "CrackMe Level 3의 strcpy 호출을 분석해 입력 버퍼와 인접한 난수 시드의 관계를 확인한다. 버퍼 오버플로우로 시드가 고정되는 과정을 실습하고 PyGhidra로 취약한 함수 호출 지점을 찾는다.",
   "category": "Security / Reversing",
   "date": "2026-01-24",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-24T03:29:14+09:00",
-  "updatedAt": "2026-01-24T03:30:02+09:00",
-  "sourceDigest": "b001fb4375905619128514464ed16b9b1b3914343b0e8fb80c3f953c70398092",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "4e65725dd6af49e6c89dd51d8fd4fee9828148cfea945a1541f0d7edf9593da6",
   "assets": [
     {
       "id": "7fcb7ee9-bf04-53a3-9027-363611263d31",

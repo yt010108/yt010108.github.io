@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-61 문제",
   "slug": "tistory-72",
-  "description": "1. 문제 정보문제 번호 : old -61문제 점수 : 20점 2. 문제 분석문제에 들어가면 view-source만 나온다 소스코드를 확인해보자소스코드눈 PHP로 되어 있으며 id값을 파라미터로 받아서 addslash와 preg_match로 필터링하고 있다. 또한 최대 id값은 15개이다.\"; echo \"view-source\"; $_GET['id'] = addslashes($_GET['id']); if(preg_match(\"/\\(|\\)|select|from|,|by|\\./i\",$_GET['id'])) exit(\"Access Denied\"); if(strlen($_GET['id'])>15) exit(\"Access Denied\"); $result = mysqli_fetch_array(mysqli_..",
+  "description": "webhacking.kr old-61에서 사용자 입력이 SELECT 절의 조회 항목으로 들어가는 문제를 분석한다. 길이와 문자 제한 안에서 리터럴과 별칭을 조합해 반환 값이 구성되는 원리를 살펴본다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-02-02",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-02-02T01:58:32+09:00",
-  "updatedAt": "2026-02-02T01:58:32+09:00",
-  "sourceDigest": "a52d5ef137154f48bca1481dfce2329f362eb893b9922a3960c752c80e918307",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "33be154c5d1dfe991decd848b6004cbd08011d34e0ab95dfe1b0dda9abc56f7f",
   "assets": [
     {
       "id": "96f0571a-1d2c-5d9e-8d06-eb307ce37eae",

@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "모의해킹을 위한 에이전트 SKILLS 구축-1",
   "slug": "tistory-102",
-  "description": "업데이트: 이 글은 pentest-helper 초기 구조를 다뤄 변경 과정은 2편에서 설명합니다. 모의해킹을 위한 에이전트 SKILLS 구축-2모의해킹을 위한 에이전트 SKILLS 구축 2이 글은 이전에 만든 웹 침투테스트용 pentest-helper Skill을 다시 고친 기록이다.1편에서는 Agent Skill의 개념과 흐름을 정리하고, OWASP WSTG 구조를 기준으로 pentesyt5246.tistory.com Skills 관련 내용은 아래 글에서 확인할 수 있습니다. AI Skills1. Skill이란?Skill은 범용 AI에 특정 작업환경에 필요한 프롬프트와 리소스를 제공해, 상황에 맞는 전문화된 AI와 워크플로우를 사용할 수 있게 하는 기술이다. 또한 패키징하여 모듈 형식으로 배포yt524..",
+  "description": "OWASP WSTG를 기준으로 웹 모의해킹을 돕는 pentest-helper Skill을 설계한다. SKILL.md와 단계별 참고 문서를 분리하고 로컬 WizMall 점검을 통해 증적·발견 사항·보고서가 이어지는 흐름을 검토한다.",
   "category": "AI",
   "date": "2026-04-21",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-04-21T23:02:45+09:00",
-  "updatedAt": "2026-08-09T22:42:57+09:00",
-  "sourceDigest": "624394797498fdf75df292b451d4039c568f35396a56dff20fe28d5e8bddfbec",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "d67d94c2b24c759cf12d1e0f803c1b30c4324fc806260b86baaff9110f813a07",
   "assets": [
     {
       "id": "038cbaf0-44af-5dd5-8ef5-9d835aa2b857",

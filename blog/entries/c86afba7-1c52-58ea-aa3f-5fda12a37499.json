@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-38문제",
   "slug": "tistory-51",
-  "description": "1. 문제 정보문제 번호 : old -38문제 점수 : 10점2. 문제 분석38번 문제에 들어가면 로그 인젝션 문제인 것을 알 수 있다. login버튼이 있으므로 일단 admin을 입력했다. 어드민이 아니라고 나온다. 코드를 보기위해 소스 보기를 해봤다.admin page -->주석으로 admin.php가 있다는 것을 알 수 있었다.admin page에 가보니 이때까지 시도한 admin 빼고 로그가 찍혀 있었다.로그를 admin으로 바꾸면 될 거 같다. 3. 풀이log에서 ip주소 : 이름이 나오므로 다음 줄까지 입력해서 ip주소에 admin을 맞춰서 입력해보자.입력하고 admin.php로 들어가보면 풀린다. 아래 어드민은 안나오나보다.4. 요약log 시스템이 취약하면 %0d: Carriage Retur..",
+  "description": "webhacking.kr old-38의 로그 기록 형식과 관리자 페이지를 분석한다. 입력에 포함된 줄바꿈이 새 로그 행으로 해석되는 과정을 통해 로그 인젝션의 원리를 확인한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-23",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-23T03:38:28+09:00",
-  "updatedAt": "2026-01-23T03:38:40+09:00",
-  "sourceDigest": "9cffc2a4398eea624aa5ef2abb84b8efc19cfa84d3ad65a4179c2f9b1a005a13",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "de1cef31ad9b08db72aac5d3bcee70314bb3a7a1b308dd426a352f3372f0b416",
   "assets": [
     {
       "id": "c87b5dd0-206d-59af-afef-879d82236fc8",

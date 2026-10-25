@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[WebGoat] (A3) Injection-sqli",
   "slug": "tistory-30",
-  "description": "Injection-SQL 이란?이 모듈은 OWASP Top 10의 보안 취약점 중 'A03:2021 - Injection (인젝션)' 항목에 해당하는 SQL Injection(SQL 삽입 공격)을 다룹니다.sqli는 공격자가 웹 애플리케이션의 입력값(로그인 ID, 검색어 등)에 악의적인 SQL 구문을 조작하여 삽입함으로써, 데이터베이스(DB)가 개발자의 의도와 다른 명령을 실행하게 만드는 공격 기법입니다.개념이 강의에서는 구조화 질의 언어(SQL)가 무엇이며, 개발자의 원래 의도와는 다른 작업을 수행하도록 SQL을 어떻게 변형할 수 있는지 설명합니다.목표사용자는 SQL의 작동 방식과 용도에 대한 기본적인 이해를 갖추고 있어야 합니다.사용자는 SQL 인젝션이 무엇이며 어떻게 작동하는지에 대한 기본적인 이해..",
+  "description": "WebGoat의 SQL 과제로 DML·DDL·DCL의 역할과 문자열·숫자형 SQL Injection을 익힌다. 입력이 쿼리 구조를 바꾸는 과정과 쿼리 체이닝이 기밀성·무결성·가용성에 미치는 영향을 정리한다.",
   "category": "Wargame / WebGoat",
   "date": "2026-01-19",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-19T23:10:32+09:00",
-  "updatedAt": "2026-02-13T00:09:50+09:00",
-  "sourceDigest": "4bad09e5e756fa1510a9df172fd3193e2770e9ff2c4c8b7ec7c4a47f5befc7ad",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "a49a922094bc5fea39496001eb01795a938f5524dfd718057bdc6a2be441134d",
   "assets": [
     {
       "id": "b22b2873-e064-5d01-84cd-5f12565bfc10",

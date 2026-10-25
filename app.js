@@ -31,7 +31,7 @@
   const isHttpLink = value => /^https?:\/\//i.test(value || "");
 
   function meta(item) {
-    return `<div class="meta"><time datetime="${esc(item.date)}">${date(item.date)}</time><span class="meta-dot" aria-hidden="true"></span><span>${esc(item.readTime)} min read</span>${sample(item)}</div>`;
+    return `<div class="meta"><time datetime="${esc(item.date)}">${date(item.date)}</time>${sample(item)}</div>`;
   }
 
   function sectionHeading(label, title, link, linkText) {
@@ -39,7 +39,7 @@
   }
 
   function postRow(item, kind = "post") {
-    return `<article class="post-row"><time class="post-date" datetime="${esc(item.date)}">${date(item.date)}</time><div><h3><a href="${localPath(kind, item.id)}">${esc(item.title)}</a></h3><p>${esc(item.description)}</p><div class="row-meta"><span>${[item.category, ...item.tags.map(tagName)].filter(Boolean).map(esc).join(" / ")}</span><span>${esc(item.readTime)} min</span>${sample(item)}</div></div><a class="row-arrow" href="${localPath(kind, item.id)}" aria-label="${esc(item.title)} 읽기">${arrow}</a></article>`;
+    return `<article class="post-row"><time class="post-date" datetime="${esc(item.date)}">${date(item.date)}</time><div><h3><a href="${localPath(kind, item.id)}">${esc(item.title)}</a></h3><p>${esc(item.description)}</p><div class="row-meta"><span>${[item.category, ...item.tags.map(tagName)].filter(Boolean).map(esc).join(" / ")}</span>${sample(item)}</div></div><a class="row-arrow" href="${localPath(kind, item.id)}" aria-label="${esc(item.title)} 읽기">${arrow}</a></article>`;
   }
 
   function projectVisual(project, detail = false) {

@@ -257,6 +257,7 @@ test("The production content build includes published entries and excludes trash
     assert.equal(feed.format, "yt010108-public-content");
     assert.equal(feed.version, 1);
     assert.equal(feed.posts.length, 1);
+    assert.ok(feed.posts.every(post => !Object.hasOwn(post, "readTime")), "Public content must not contain an estimated reading time");
     assert.deepEqual(feed.managedKinds.sort(), ["notes", "posts"]);
     assert.doesNotMatch(await readFile(resolve(temp, "published.js"), "utf8"), /보안 연구 기록/);
     assert.match(output, /보안 연구 기록/); assert.doesNotMatch(output, /비공개 목록 테스트/);

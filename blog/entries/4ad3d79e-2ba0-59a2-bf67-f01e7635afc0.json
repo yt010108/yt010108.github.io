@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[web] SSTI 알아보기",
   "slug": "tistory-82",
-  "description": "0. SSTI란?SSTI는 사용자 입력이 서버 템플릿 엔진에서 코드처럼 해석되는 취약점이다.즉, 단순 문자열 출력이 아니라 템플릿 문법으로 실행된다는 점이 핵심이다. 1. Template 엔진이란?템플릿 엔진은 고정된 서식(Template)과 변하는 데이터(Data)를 결합하여 완성된 문서(주로 HTML)를 생성해 주는 소프트웨어 도구이다.그러면 template란?템플릿은 고정된 서식(Template)으로 변하는 데이터(Data)로 {{}}등 여기에 데이터가 들어가고 나머지 HTML구조등을 말한다. 템플릿 엔진은 {{}}안에 데이터를 해석해 템플릿과 합쳐주는 도구이다. 2. Jinja2는 무엇인가?Jinja2는 웹 프레임워크가 아니라 Python 템플릿 엔진 라이브러리다.Flask가 기본 템플릿 엔진으로..",
+  "description": "사용자 입력이 서버의 템플릿 문법으로 실행되는 SSTI의 원리를 살펴본다. Flask와 Jinja2의 역할, 파이썬 객체를 통한 접근 경로, 필터 처리 방식과 엔진별 식별 예제를 정리한다.",
   "category": "Security / Web Security",
   "date": "2026-02-15",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-02-15T00:38:13+09:00",
-  "updatedAt": "2026-04-03T01:11:55+09:00",
-  "sourceDigest": "62528548b9160fec19270b7f420c45d34c5a5c921213975d1bd3911ad32d1709",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "4c61444ce865cfda5270119a3e7b09ad93d165779176e7c3e351be32796a877d",
   "assets": [
     {
       "id": "84fb92c6-5725-5987-a1da-d30c080ab00e",

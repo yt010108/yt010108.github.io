@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[Project] Reverser 제작(PI Reversing Harness)-2",
   "slug": "tistory-143",
-  "description": "1편에서는 Pi, Python Harness, Docker Worker를 연결해 리버싱 CTF 문제를 분석하는 Reverser의 기본 구조를 정리했다.1편: Reverser 제작: Pi 기반 리버싱 CTF Harness - 1 [Project] Reverser 제작(PI Reversing Harness)-1AI가 발전하면서 CTF처럼 시간이 제한되어 있는 문제 풀이에서는 AI 사용이 필수적이다. 또한 AI가 발전하면서 Agent를 통한 문제 풀이가 일반적이다.codex를 사용한 문제 풀이를 진행하다 보면 쉬운yt5246.tistory.com 현재 구조에는 문제 가져오기, triage, 격리 분석, Solver와 Reviewer 분리, Write-up 생성, Technique Memory까지 들어가 있다...",
+  "description": "다른 CTF 에이전트와 Reverser를 비교하며 반복 실패와 검증 부족을 줄일 피드백 루프를 설계한다. 관찰과 사실의 구분, 반증 가능한 가설, 실행 증거와 종료 조건을 정리하고 다음 구현 범위를 정한다.",
   "category": "Project",
   "date": "2026-08-24",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-08-24T21:55:06+09:00",
-  "updatedAt": "2026-08-25T21:45:27+09:00",
-  "sourceDigest": "0164427e1d319b3f3a882dd8ef1496fd3fd36c9c2eac8ed96d35aa8c96e5dddb",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "9a165ea04db3aeea78cd61075e809afe4d9e9d1fc049e3b4f019cae89a4e840f",
   "assets": [
     {
       "id": "501d59d4-ae2b-5275-84e4-19646fc6f37c",

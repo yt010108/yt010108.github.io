@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[DVWA] Blind SQL Injection",
   "slug": "tistory-17",
-  "description": "1.Blind SQL InjectionBlind SQL Injection 취약점은 SQL 쿼리문이 성공했는지 판별하는 것으로 시작해 데이터를 대입해서 정보를 찾는 취약점이다.DVWA에서 Blind SQL Injection을 알아보자 2. 문제 DVWA 웹 사이트에서 유저 아이디를 입력하면 아이디가 존재하는지 출력하는 기능을 구현해 뒀다.존재하는 아이디를 입력하면 id exists in the database, 없으면 id is MISSING from the database를 출력한다. SQL Injection과 마찬가지로 userid값을 입력받는다. 이때 1' or 1=1 #를 입력하면 id exists in the database가 뜨게 된다. 이제 admin에 대한 패스워드를 찾아보자. 데이터베이..",
+  "description": "DVWA의 아이디 존재 여부 응답으로 참·거짓 기반 Blind SQL Injection을 실습한다. 문자열 길이와 문자 비교, 범위 탐색으로 정보를 추론하는 원리를 살펴보고 sqlmap의 자동화 결과와 비교한다.",
   "category": "Wargame / DVWA",
   "date": "2025-12-31",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2025-12-31T03:01:25+09:00",
-  "updatedAt": "2026-01-20T13:26:40+09:00",
-  "sourceDigest": "24f210ae9ce6e192d9d80f1572a819a6b120cb6b5c4988bf2e8295ba1e31c538",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "49413613e440fe372f0e4591b550531b57adaf7f8408ef4166692f88dd93454e",
   "assets": [
     {
       "id": "911b192f-058c-5c01-8c6c-0060b0ce1ae5",

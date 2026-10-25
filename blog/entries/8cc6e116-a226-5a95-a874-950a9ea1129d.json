@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[Project] Reverser 제작(PI Reversing Harness)-3",
   "slug": "tistory-144",
-  "description": "1편에서는 Reverser의 기본 구조를 만들었고 2편에서는 풀이 중 막힘을 감지하는 피드백 루프를 정리했다.1편: https://yt5246.tistory.com/142 [Project] Reverser 제작(PI Reversing Harness)-1CTF 리버싱 문제를 풀다 보면 비슷한 작업을 계속 반복하게 된다.문제 파일을 내려받으면 먼저 file, strings, checksec로 기본 정보를 확인한다. 이어 radare2나 Ghidra로 코드를 살피고 필요할 때 GDB로 실yt5246.tistory.com 2편에서 추가하려던 데이터는 Facts, Hypotheses, Dead-ends, Flag Evidence였다. 실제 명령으로 확인한 내용과 실패한 접근을 남기면 같은 실수를 덜 반복한다고 봤..",
+  "description": "Reverser의 정찰·가설·검증 흐름과 실행 근거를 연결하는 규칙을 구현한다. Solver 완료를 파일 변경 이벤트로 전달하고 독립 Reviewer가 기록을 검토하도록 바꾸며, 상태 전이 테스트와 남은 한계를 정리한다.",
   "category": "Project",
   "date": "2026-08-24",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-08-24T22:43:42+09:00",
-  "updatedAt": "2026-08-28T17:28:22+09:00",
-  "sourceDigest": "7ec9926fd08ccf9367ab05ade413ae3d061632a0010baf89aadd90d1ca784b28",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "3af2fbf19ecb174e5d8fd6be4d8e70033881ff19c2bd02dbbcd7a01bb35ebde5",
   "assets": [
     {
       "id": "73d0c4c4-4b14-5d14-8873-2a339aa5e7eb",

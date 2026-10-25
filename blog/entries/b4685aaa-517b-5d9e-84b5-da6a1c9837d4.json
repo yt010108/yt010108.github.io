@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-12 문제",
   "slug": "tistory-70",
-  "description": "1. 문제 정보문제 번호 : old -12문제 점수 : 25점2. 문제 분석문제는 자바스크립트 문제라는 내용만 나오고 아무것도 없다 소스코드를 확인해보자 소스코드를 보면 이상한 이모티콘 같이 생긴 문자열이 자꾸 나온다. javascript challenge3. 풀이위에 코드는 aaencode라고 불리는 자바스크립트 난독화 코드이다. 일본어 이모티콘을 사용하여 코드를 은폐하는 기법으로, 실제로는 브라우저가 실행할 수 있는 정상적인 자바스크립트이다. 이 코드는 자바스크립트의 유연한 문법을 악용한 것으로 자바스크립트는 유니코드 문자를 변수명으로 사용할 수 있으며, 빈 배열 []이나 괄호 () 등을 연산하여 문자열을 만들어낼 수 있음을 이용한 것이다. https://jamtg.github.io/aaencod..",
+  "description": "webhacking.kr old-12의 이모티콘 형태로 난독화된 자바스크립트를 분석한다. aaencode를 해제해 원래 검증 로직과 숨겨진 변수 값을 확인하는 과정을 정리한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-30",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-30T19:13:44+09:00",
-  "updatedAt": "2026-01-30T19:13:44+09:00",
-  "sourceDigest": "0de7619bddf214676adf42bf1c7e5f53f624cfa469e30f85267e389ce4873f33",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "acf797eaae77dba2a6e220d6580b1089ce8ec67b3e3044f8ec1579eb78dbd693",
   "assets": [
     {
       "id": "2fd96a5c-fa90-5a34-bcc2-73adde79c078",

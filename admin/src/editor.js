@@ -525,8 +525,7 @@ async function preview() {
     $("preview-description").textContent = data.description;
     $("preview-description").hidden = !data.description;
     $("preview-category").textContent = data.category || (data.kind === "notes" ? "NOTES" : "POSTS");
-    const minutes = Math.max(1, Math.ceil(editor.getText().trim().split(/\s+/).length / 200));
-    $("preview-meta").textContent = data.date + " · " + minutes + " min read · yt010108";
+    $("preview-meta").textContent = data.date + " · yt010108";
     $("preview-body").innerHTML = renderDocument(data.doc, { assets: data.assets, preview: true }).html;
     const toc = $("preview-toc");
     toc.replaceChildren();

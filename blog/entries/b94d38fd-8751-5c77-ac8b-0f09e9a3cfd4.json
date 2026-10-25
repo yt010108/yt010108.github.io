@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[Project] Reverser 제작(PI Reversing Harness)-1",
   "slug": "tistory-142",
-  "description": "AI가 발전하면서 CTF처럼 시간이 제한되어 있는 문제 풀이에서는 AI 사용이 필수적이다. 또한 AI가 발전하면서 Agent를 통한 문제 풀이가 일반적이다.codex를 사용한 문제 풀이를 진행하다 보면 쉬운 문제는 가볍게 잘 풀리지만 어려운 문제로 갈수록 시간과 비용이 많이 든다. 게다가 agent를 사용하면 사용자가 개입할 수 있는 부분은 처음 문제 설명과 로그로 사용자가 부분적으로 개입 가능하다. codex로 사용할 경우에는 문제 입력과 skill을 통해서 문제 풀이를 하곤 했다. 하지만 codex는 물론 잘 만든 하네스이고 리버싱 문제를 잘 풀지만 못 푸는 문제도 있으며 문제 풀이에서 사용자가 입력 가능한 skill과 입력만으로는 한계가 느껴졌다. 그래서 PI Agent를 통한 하네스를 만들어 문제..",
+  "description": "Pi와 Python 하네스, 격리된 Docker Worker를 연결한 리버싱 CTF 도구 Reverser의 초기 구조를 소개한다. 문제 분류와 분석 기록, Solver·Reviewer 분리, 풀이 검토와 재사용할 기법 저장 방식을 설계한다.",
   "category": "Project",
   "date": "2026-08-24",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-08-24T13:10:16+09:00",
-  "updatedAt": "2026-08-25T14:17:46+09:00",
-  "sourceDigest": "bcf3cc2e7108e648adb449d36318342dd08945cec20cb80fb62b9ad0c53d8dc7",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "b210aec0b6416f64fef1b3b323e075c19442d83f63d9f2ebaea13b1b9b61e158",
   "assets": [
     {
       "id": "24752cca-0215-5f9e-bd46-36643a442acb",

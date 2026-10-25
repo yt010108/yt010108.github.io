@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-32 문제",
   "slug": "tistory-42",
-  "description": "1. 문제 정보문제 번호 : old -32문제 점수 : 15점2. 문제 분석 들어가면 HIT 랭킹표가 나온다. 닉네임을 클릭하면 이미 투표했다고 나온다.버프스위트로 패킷을 조사하면 cookie에 vote_check값이 ok이 되어있다. vote_check을 바꿔서 투표를 해보자 3. 풀이 cookie값을 빈칸으로 제출했을 때 투표가 성공하고 hit값이 증가한다. 하지만 성공했다고 안뜬다. hit가 100번까지 있으므로 자기 이름으로 100번 넘게 hit를 요청하면 성공한다.import requestsurl = \"https://webhacking.kr/challenge/code-5/\"params = {\"hit\": \"내_닉네임\"} # 본인의 닉네임 입력cookies = {\"PHPSESSID\": \"내_세션..",
+  "description": "webhacking.kr old-32의 중복 투표 방지 기능을 분석한다. 투표 여부를 나타내는 쿠키를 신뢰하는 문제를 확인하고 세션을 유지한 반복 요청으로 동작을 검증한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-20",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-20T19:28:35+09:00",
-  "updatedAt": "2026-01-20T21:05:28+09:00",
-  "sourceDigest": "ed9e36fd98824e895b4ac1c103ed5965d4777abb551e15bb3d10a3dd3aa6105a",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "4970444d8e403ecbe28c4b61bde5aed324a9e01e30049c335117ba0fdac5d9ef",
   "assets": [
     {
       "id": "79036c63-d326-57d9-85dd-37cece6ed05b",

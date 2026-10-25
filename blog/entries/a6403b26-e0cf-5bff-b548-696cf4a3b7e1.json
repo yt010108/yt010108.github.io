@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-10 문제",
   "slug": "tistory-71",
-  "description": "1. 문제 정보문제 번호 : old -10문제 점수 : 25점2. 문제 분석 문제를 들어가면 0이 보이고 코스가 보인다. 0을 누르면 y0u가 나오고 앞으로 한칸 간다.goal까지 들어가야하는 문제 같다. 소스코드를 보면 한번 누를때마다 1씩 올라가고 1600번에서 if문이 실행된다. O||||Goalno hack 3. 풀이this.href='?go='+this.style.left를 보고 ) ?go=1600px를 해봤는데 no hack이 나온다. 자바스크립트 콘솔에서 hackme.style.left = \"1590px\"를 하고 10번 클릭하니까 성공했다. 주소에서 바로 안되는 이유는 주소창에 직접 입력했을 때 no hack이 뜨는 이유는 서버가 요청의 출처(Referer)를 검사하기 때문일 가능성이 매..",
+  "description": "webhacking.kr old-10의 클릭 횟수와 요소 위치를 이용한 진행 로직을 분석한다. 콘솔에서 위치를 조정한 뒤 링크를 클릭해 목표에 도달하며 직접 URL 요청과의 동작 차이를 기록한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-30",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-30T19:51:29+09:00",
-  "updatedAt": "2026-01-30T20:53:56+09:00",
-  "sourceDigest": "1b4739879babc6002877cbb9e27359b0d4525c41da64578271a234398c3d8b55",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "ed7716f78a442ede105a66a351bcf41eb3d89d79346fe387e0b0db5453ff8b6f",
   "assets": [
     {
       "id": "5ca8599e-f833-56c5-82b8-b64ef4f8be60",

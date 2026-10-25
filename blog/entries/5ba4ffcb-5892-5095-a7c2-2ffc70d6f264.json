@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-7문제",
   "slug": "tistory-77",
-  "description": "1. 문제 정보문제 번호 : old -7문제 점수 : 30점2. 문제 분석문제에 들어가면 admin page라고 나오고 아무것도 없다. auth를 누르면 access_denied가 뜬다. 소스코드를 확인해보자val을 받아서 정규식과 매치한 다음에 rand값에 맞춰 query를 가져온 다음 data [0] 값이 2이면 문제가 풀린다. \"); }echo(\"Admin page\");if(preg_match(\"/2|-|\\+|from|_|=|\\\\s|\\*|\\//i\",$go)) exit(\"Access Denied!\");$db = dbconnect();$rand=rand(1,5);if($rand==1){ $result=mysqli_query($db,\"select lv from chall7 where lv=($go)..",
+  "description": "webhacking.kr old-7의 SQL 필터와 무작위 괄호 구조를 분석한다. 공백과 숫자 제한을 고려해 연산식과 UNION으로 결과를 구성하고 쿼리 문법이 맞는 조건을 확인한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-02-03",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-02-03T17:38:32+09:00",
-  "updatedAt": "2026-02-03T17:38:32+09:00",
-  "sourceDigest": "c94cd6d250cd9cf97a0a22ab2271b6776fcc0431807a0bf7d20cefd6f8cad673",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "ea3cee76b9f14d7f87a36829f9510dcedce0bf931c25d9555e3d27fbdd0b2f49",
   "assets": [
     {
       "id": "3a15407e-1eda-5aab-ad95-0999091792f2",

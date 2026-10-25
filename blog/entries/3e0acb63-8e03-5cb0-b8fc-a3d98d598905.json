@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-42 문제",
   "slug": "tistory-62",
-  "description": "1. 문제 정보문제 번호 : old -42문제 점수 : 20점문제 유형 : 권한 우회2. 문제 분석42번 문제를 들어가면 다운로드할 수 있는 file과 번호가 나온다. 다운로드를 누르면 다운로드가 실행된다.test.txt는 다운이 진행되지만 flag.docx는 권한 오류가 있다. 페이지 소스보기를 실행시 text.txt는 down을 get파라미터로 뒤에 어떤 값을 보낸다. 하지만 flag.docx는 그냥 alert만 실행한다.nosubjectfile2testtest.txt [download]1read meflag.docx [download] test.txt에 down의 문자열이 base64같아 문자열을 https://dencode.com/en/ DenCode | 인코딩 & 디코딩 온라인 도구인코딩 &..",
+  "description": "webhacking.kr old-42의 파일 다운로드 링크와 권한 제한을 분석한다. Base64로 표현된 파일명을 직접 요청하며 화면의 자바스크립트 차단과 서버 측 접근 제어의 차이를 확인한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-27",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-27T12:27:41+09:00",
-  "updatedAt": "2026-01-27T12:27:41+09:00",
-  "sourceDigest": "e4bd01351629e972cb8422915764d00bb773506a725b67dc166181b6887ab065",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "6b65cb7c1c1da64b94e1467831644a8a0d571a9c426738aba2c0ac83b547eeef",
   "assets": [
     {
       "id": "c349a7b2-e21a-5d87-8de6-e7f6922659bf",

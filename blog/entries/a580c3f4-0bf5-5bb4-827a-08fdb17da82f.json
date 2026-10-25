@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-43 문제",
   "slug": "tistory-68",
-  "description": "1. 문제 정보문제 번호 : old -43문제 점수 : 25점2. 문제 분석문제에 들어가면 you must webshell and cat /flag 글과 파일 업로드 하는 것이 나온다.웹쉘에서 cat /flag를 하면 flag가 나온다고 적혀있다. http는 아래처럼 생겼고 enctype=\"multipart/form-data\"는 HTML 폼(Form) 태그에서 서버로 데이터를 보낼 때, 데이터들을 어떻게 포장해서 보낼지 결정하는 인코딩 방식을 지정하는 속성이다. 파일을 보낼 때의 필수 조건 HTML의 form 태그는 기본적으로 application/x-www-form-urlencoded라는 방식을 사용한다. 이 방식은 모든 데이터를 텍스트(문자열)로 변환해서 전송한다. 하지만 이미지, 실행 파일, ..",
+  "description": "webhacking.kr old-43의 파일 업로드 검증을 분석한다. 클라이언트가 지정한 Content-Type을 신뢰할 때의 문제를 실습하고 확장자·파일 내용·서버 설정 등 함께 살펴볼 검증 요소를 정리한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-30",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-30T04:09:50+09:00",
-  "updatedAt": "2026-01-30T04:10:02+09:00",
-  "sourceDigest": "30d8e2c98197c09062d074a3ed4642de2e13a77737552b66c34b48c01f93fdc5",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "41145a1d45f72d80e41ee9db3ca58c3c01f15005291574bbb34705af0c29efff",
   "assets": [
     {
       "id": "65caafb8-f146-5c36-aad3-5bf09b8671b9",

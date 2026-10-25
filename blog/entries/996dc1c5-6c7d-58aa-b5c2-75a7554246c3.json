@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-15문제",
   "slug": "tistory-38",
-  "description": "1. 문제 정보문제 번호 : old -15문제 점수 : 5점2. 문제 분석문제를 들어가면 access_denied가 뜨고 확인을 누르면 webhacking.kr로 이동한다. 버프 스위트로 request를 인터셉트 해보자 get 요청으로 js-2를 불러온다. 응답은 아래와 같다 응답을 보면 alert()다음에 location.href로 /로 이동하는 것을 알 수 있고 그 다음에 document.write로 ?getFlag 하이퍼링크를 html에 작성하는 것을 알 수 있다. 하지만 alert다음에 /로 이동하므로 볼 수 없다. location.href는 웹 브라우저의 현재 페이지 URL 정보를 다루는 JavaScript 속성이다.href 속성값에 있는 ?는 쿼리 스트링(Query String) 기호로 웹 ..",
+  "description": "webhacking.kr old-15의 접근 거부 알림과 리다이렉트 스크립트를 분석한다. 화면에서 보이지 않던 링크를 응답 소스에서 찾아 쿼리 파라미터의 역할과 클라이언트 측 이동 처리의 한계를 확인한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-20",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-20T16:24:22+09:00",
-  "updatedAt": "2026-01-27T00:20:14+09:00",
-  "sourceDigest": "34b8278bee8528f37fd45536c3c0738b5ecb14a0d78cfe1038001750d0f9d5aa",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "3d53e953ae969128ea59df8d8483f5e927d2df1c73390c2e9c046ca0f1415d44",
   "assets": [
     {
       "id": "2fe35a20-6d26-5e99-aeea-60af70428ffd",

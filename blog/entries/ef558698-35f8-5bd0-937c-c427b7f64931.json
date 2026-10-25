@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "모의해킹을 위한 에이전트 SKILLS 구축-2",
   "slug": "tistory-103",
-  "description": "모의해킹을 위한 에이전트 SKILLS 구축 2이 글은 이전에 만든 웹 침투테스트용 pentest-helper Skill을 다시 고친 기록이다.1편에서는 Agent Skill의 개념과 흐름을 정리하고, OWASP WSTG 구조를 기준으로 pentest-helper를 설계했다. 처음에는 그 방식이 꽤 정석적이라고 생각했다. WSTG는 웹 보안 테스트를 설명할 때 가장 널리 쓰이는 기준 중 하나이고, 보고서나 점검 항목을 정리하기에도 좋기 때문이다.그런데 실제로 써보니 생각이 조금 바뀌었다.WSTG는 기준 문서로는 좋지만, 내가 실제 모의해킹을 진행할 때의 흐름과는 조금 달랐다. 특히 나는 정보 수집, IDOR, 관리자 페이지, 주석과 JavaScript의 정보 노출, 파일 업로드, XSS, SQLi 같은 항..",
+  "description": "pentest-helper를 WSTG의 장별 분류에서 실제 엔드포인트와 테스트 모드 중심으로 개편한다. 파라미터 역할 추정과 우선순위 판단을 추가하고 점검 결과를 증적·보고서와 WSTG 항목으로 연결하는 구조를 정리한다.",
   "category": "AI",
   "date": "2026-05-02",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-05-02T23:57:17+09:00",
-  "updatedAt": "2026-07-29T13:28:39+09:00",
-  "sourceDigest": "f551a02a9645374ace944a24b0adefeed955deab06ef0c584f90ef480de5ca5d",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "2b9d9efe4d52cf50f2698a8b62997021c5735c7735f3b8dba82d854cc1dfe7d4",
   "assets": [
     {
       "id": "67f7df2c-cc5c-5ded-8d8e-dee456ee1231",

@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old- 19문제",
   "slug": "tistory-58",
-  "description": "1. 문제 정보문제 번호 : old -19문제 점수 : 15점2. 문제 분석19번 문제는 id 폼에 admin이 있다. 써있어서 그냥 제출 눌러보면 you are not admin이 나온다. 다른 아이디를 입력시에 hello 아이디가 나온다. 이때 전달되는 http 요청을 봐보자 userid에 어떤 값을 같이 보내는데 무엇인지 알아보자.YzRjYTQyMzhhMGI5MjM4MjBkY2M1MDlhNmY3NTg0OWI=로 =를 보아 base64형식인 것을 알 수 있고 이걸 디코딩해보자c4ca4238a0b923820dcc509a6f75849b가 나온다. c4ca4238a0b923820dcc509a6f75849b를 찾기 위해 https://crackstation.net/ CrackStation - Onlin..",
+  "description": "webhacking.kr old-19의 userid 쿠키 생성 규칙을 역추적한다. 입력 길이에 따른 변화를 비교해 문자별 MD5 해시와 Base64 인코딩의 조합을 알아내고 인증 값의 검증 방식을 살펴본다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-26",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-26T17:47:15+09:00",
-  "updatedAt": "2026-01-26T17:47:15+09:00",
-  "sourceDigest": "a6cb9e5eb797cef5472ac7eebd8cdeaec4630bfb6e7b1d7205c487e72b0df298",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "9d650174fff32583baf3d0dac0a289c41d728336b9cc79bdbda08efdea0755a6",
   "assets": [
     {
       "id": "fafb1c63-5165-5e58-a998-483c7182d521",

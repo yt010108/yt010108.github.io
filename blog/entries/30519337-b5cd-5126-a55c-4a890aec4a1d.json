@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[Ghidra] 리버스 엔지니어링 기드라 실전 가이드 스터디 - chapter 5(level2)",
   "slug": "tistory-49",
-  "description": "1. level2 crackme(base64)level 2 크랙미 디스어셈블 결과이다. param_2를 입력받아 encode_custom_base64로 인코딩 후에 4PpnRoanRomTze4SKPo+Zwd3IejS와 비교한다.값이 같으면 correct가 나온다.undefined8 main(int param_1,undefined8 *param_2){ int iVar1; undefined8 uVar2; char *__s1; size_t __n; if (param_1 == 2) { __s1 = (char *)encode_custom_base64(param_2[1]); __n = strlen(\"4PpnRoanRomTze4SKPo+Zwd3IejS\"); iVar1 = strncmp(_..",
+  "description": "CrackMe Level 2에서 표준과 다른 문자 테이블을 사용하는 Base64 인코딩을 분석한다. 커스텀 테이블을 추출해 디코딩 스크립트를 작성하고 CyberChef로 복구 결과를 확인한다.",
   "category": "Security / Reversing",
   "date": "2026-01-22",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-22T20:46:23+09:00",
-  "updatedAt": "2026-01-24T03:00:06+09:00",
-  "sourceDigest": "266bbb99d54cd57729b984d1a0e7d9ae20115fae444b9c44b790ae681defe4b4",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "b972ff13dea41af76470417ecf2916b68a90d812f3d932961ac6e3bd01f22142",
   "assets": [
     {
       "id": "9d57f2b3-a56b-5f06-8cba-7c6caab36d86",

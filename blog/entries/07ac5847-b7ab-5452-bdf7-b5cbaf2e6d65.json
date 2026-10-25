@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "PI Harness 프로젝트들",
   "slug": "tistory-162",
-  "description": "Reverserhttps://github.com/yt010108/Reverser AI 리버싱 문제 풀이 하네스 1편https://yt5246.tistory.com/142 [Project] Reverser 제작(PI Reversing Harness)-1AI가 발전하면서 CTF처럼 시간이 제한되어 있는 문제 풀이에서는 AI 사용이 필수적이다. 또한 AI가 발전하면서 Agent를 통한 문제 풀이가 일반적이다.codex를 사용한 문제 풀이를 진행하다 보면 쉬운yt5246.tistory.com 2편https://yt5246.tistory.com/143 [Project] Reverser 제작(PI Reversing Harness)-21편에서는 Pi, Python Harness, Docker Worker를 연결해 리..",
+  "description": "Pi 기반 AI 하네스 프로젝트인 Reverser와 Recon의 저장소와 개발 기록을 모았다. 리버싱 문제 풀이와 웹 공격 표면 수집을 위한 두 프로젝트의 후속 글을 찾아볼 수 있다.",
   "category": "AI",
   "date": "2026-09-28",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-09-28T02:03:46+09:00",
-  "updatedAt": "2026-09-28T02:03:46+09:00",
-  "sourceDigest": "bc9f27b55700d6220e050482a1e356333b9adad209048d70887ed7002546d796",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "a631e252d09b8ddfe94f736a472fbf46a3019ec86c13adffd269bfbf3b36c1be",
   "assets": [
     {
       "id": "4a52158c-1920-5576-841e-0575fd193518",

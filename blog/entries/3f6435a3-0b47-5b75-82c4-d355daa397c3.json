@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[DVWA] File inclusion",
   "slug": "tistory-15",
-  "description": "1. File inclusionFile Inclusion 취약점은 웹 애플리케이션이 사용자로부터 입력받은 값을 이용해 파일을 동적으로 읽어오거나 실행할 때, 입력값에 대한 검증이 미흡하여 발생하는 보안 취약점이다. DVWA에서 File Inclusion을 알아보자2. 문제 DVWA 웹 사이트에서 서버에 있는 파일을 보여주는 기능을 구현해 뒀다.파일을 눌러보면 파일에 해당되는 내용이 보인다. .파일을 요청하는 주소에 page = file2.php처럼 get 요청에 값을 받아서 서버에 요청한다. low level 코드low level에 구현된 소스코드는 아래와 같으며 get요청이 들어오면 page에 해당하는 값을 file 변수에 넣고 파일 값을 넣는다. low level에서는 사용자가 작성한 page 값을..",
+  "description": "DVWA의 page 파라미터가 파일 포함 경로로 사용되는 흐름을 분석한다. 경로 문자열 치환과 파일명 패턴 검사의 한계를 실습하고 허용 파일을 명시적으로 제한하는 처리와 비교한다.",
   "category": "Wargame / DVWA",
   "date": "2025-12-19",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2025-12-19T23:04:25+09:00",
-  "updatedAt": "2026-01-20T13:24:42+09:00",
-  "sourceDigest": "c4d1096943d244b79af943274411f16f120fe4d3eb0c72c403c6fb9e97a04bd2",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "ad057116df9acb5d990fdd8e26ad5af715e40183a28db16506d17ebd206c618e",
   "assets": [
     {
       "id": "2e3038ec-63a6-5c36-a4ab-00f9401030ab",

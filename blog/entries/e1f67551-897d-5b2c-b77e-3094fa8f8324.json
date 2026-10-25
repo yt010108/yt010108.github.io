@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[DVWA] SQL Injection",
   "slug": "tistory-16",
-  "description": "1. SQL InjectionSQL Injection 취약점은 웹 애플리케이션이 사용자로부터 입력받은 값을 이용해 데이터베이스 쿼리문을 작성할 때,입력값에 대한 검증이 미흡하여 발생하는 보안 취약점이다. DVWA에서 SQL Injection을 알아보자 2. 문제 DVWA 웹 사이트에서 유저 아이디를 입력하면 이름을 출력하는 기능을 구현해 뒀다.아이디를 입력하면 해당하는 유저의 이름이 출력된다. low level 코드low level에 구현된 소스코드는 아래와 같으며 get요청이 들어오면 id 값을 query변수에 넣고 데이터 베이스에 쿼리문으로 작성한다. ' . ((is_object($GLOBALS[\"___mysqli_ston\"])) ? mysqli_error($GLOBALS[\"___mysqli_sto..",
+  "description": "DVWA의 사용자 조회 기능을 통해 SQL Injection의 원리와 난이도별 입력 처리를 비교한다. 쿼리 구조·데이터베이스 메타정보를 확인하는 실습과 함께 준비된 쿼리와 정수 바인딩의 역할을 살펴본다.",
   "category": "Wargame / DVWA",
   "date": "2025-12-28",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2025-12-28T19:44:46+09:00",
-  "updatedAt": "2026-01-20T13:25:15+09:00",
-  "sourceDigest": "d3dafab6b64b5ec9ed163cecfefd213eb6dfe11825fbb514b04dddb8157af9e5",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "2e42d806d100e9ddf4cb1a019fe665b21fa52fa0333feb8309d257c285a36863",
   "assets": [
     {
       "id": "08679cab-e20a-5a86-b45b-a821f811d7e6",

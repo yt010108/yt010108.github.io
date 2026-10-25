@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[WebGoat] Introduction & General",
   "slug": "tistory-23",
-  "description": "WebGoat란? WebGoat는 OWASP(Open Web Application Security Project)에서 개발 및 관리하는 의도적으로 취약하게 만든 웹 애플리케이션으로 WebGoat를 통해 OWASP top10 취약점과 그 외 취약점들을 실습하고 익힐 수 있다. 더 자세한 내용은 OWASP 공식 홈페이지에서 확인할 수 있다. OWASP WebGoat | OWASP FoundationOWASP WebGoat on the main website for The OWASP Foundation. OWASP is a nonprofit foundation that works to improve the security of software.owasp.org HTTP BasicHTTP 작동 방식:모든 H..",
+  "description": "WebGoat의 입문 과제를 통해 HTTP 요청·응답과 프록시, 브라우저 개발자 도구의 사용법을 익힌다. 요청 메서드·헤더·파라미터를 관찰·변경하는 실습과 기밀성·무결성·가용성의 기초를 정리한다.",
   "category": "Wargame / WebGoat",
   "date": "2026-01-12",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-12T16:35:52+09:00",
-  "updatedAt": "2026-01-20T13:56:25+09:00",
-  "sourceDigest": "7cacf709a55e6866fa6419931571b1031402697700de04fc2e5c3a41050b0124",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "d9be1c82115ef1980f113aac89f7ace7dca6e9389c91081803987a5088a3e83b",
   "assets": [
     {
       "id": "5b84adb3-2434-5db3-b66c-08a14a1d1eea",

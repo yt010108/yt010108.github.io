@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-56 문제",
   "slug": "tistory-74",
-  "description": "1. 문제 정보문제 번호 : old -61문제 점수 : 25점 2. 문제 분석56번 문제에 들어가면 BOARD가 들어가고 search가 나온다. subject에서 readme를 누르면 access denied가 뜨고 hi~를 누르면 hello가 나온다. read me에 내용을 읽어야할 것 같다.search버튼에 1,id, sub,0을 눌러도 아무것도 안나온다 하지만 hi를 눌러보면 admin이 나왔다그래서 내용을 기반으로 검색하는 거 같아 hello를 검색하니 guest가 나왔다. sql에서 검색을 아래 쿼리로 하고 있는 것 같다.SELECT * FROM board WHERE content LIKE '%{검색어}%'3. 풀이내용을 바탕으로 검색하니까 readme의 내용을 유츄해보면 flag가 있을 것이..",
+  "description": "webhacking.kr old-56의 게시판 검색 결과로 비공개 본문을 추론하는 과정을 기록한다. 문자별 탐색을 Python으로 자동화하며 LIKE 와일드카드가 일으킨 오탐과 검사 순서의 영향을 살펴본다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-02-02",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-02-02T14:38:09+09:00",
-  "updatedAt": "2026-02-02T14:42:52+09:00",
-  "sourceDigest": "047bbb2a8710f4d46055d44aa9979edb58172d4ba35630001ba2ab8abc971d73",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "6c4a4dd7f58d46542e4c37be03d3ecf3a4a735176a4f6e8658e42276aad41a39",
   "assets": [
     {
       "id": "9acb4315-65ba-5317-b969-2590aa571c7f",

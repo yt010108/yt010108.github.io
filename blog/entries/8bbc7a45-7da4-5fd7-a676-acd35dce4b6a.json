@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-23문제",
   "slug": "tistory-64",
-  "description": "1. 문제 정보문제 번호 : old -23문제 점수 : 20점문제 유형 : xss-null injection2. 문제 분석 23번 문제이다. xss을 시도해야하는 미션이 보인다. 를 입력하면 no hack이 보인다.그러면 서버 내 코드에서는 받은 문자열을 필터링하는 것을 알 수 있다 필터링되는 문자를 알아보기 위해 필요한 특수문자인 , /를 입력했더니 필터링이 안된다. 그러면 script가 필터링으로 생각해 입력해보았다. script는 필터링에 걸려 자바스크립트는 대소문자 구분이 없으므로 대문자를 섞어서 ScrIpt를 입력해도 똑같이 no hack이 출력된다. 그러면 xss에서 태그를 사용한 xss를 해도 안된다. 여러번 시도를 해보니 sc도 필터링 im도 필터링인걸 보아 연속된 문자열이 있으면 no..",
+  "description": "webhacking.kr old-23의 XSS 입력 필터를 단계별로 살펴본다. 연속된 영문자를 검사하는 규칙과 널 바이트가 포함된 입력의 처리 차이를 중심으로 필터 우회 실습을 정리한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-27",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-27T14:55:37+09:00",
-  "updatedAt": "2026-01-27T14:59:44+09:00",
-  "sourceDigest": "b8c1e02a7262d4de1a972f7a2362d5e00f4bd3a469412e9893e535b99c4e2ffb",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "7c37fc0acd7c0ab89365993eeb23399e348d0b9fc38a65b06001c8f60848cba4",
   "assets": [
     {
       "id": "09c587c9-3b70-57cc-bda5-a674816bfb6f",

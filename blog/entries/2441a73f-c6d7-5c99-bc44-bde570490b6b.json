@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-31 문제",
   "slug": "tistory-53",
-  "description": "1. 문제 정보문제 번호 : old -31문제 점수 : 15점2. 문제 분석문제에 들어가면 아래 코드가 뜬다 php로 랜덤으로 10000과 10100사이에 포트를 fsokopen으로 server파라미터로 들어온 주소로 소켓을 연다.$port = rand(10000,10100);$socket = fsockopen($_GET['server'],$port,$errno,$errstr,3) or die(\"error : {$errstr}\");Warning: fsockopen(): unable to connect to 211.107.176.16:10055 (Connection timed out) in /var/www/html/challenge/web-16/index.php on line 23error : Connec..",
+  "description": "webhacking.kr old-31에서 서버가 임의의 포트로 연결하는 소켓 코드를 분석한다. Python의 socket·select로 지정 범위의 포트를 함께 수신 대기하고 서버의 메시지를 받는 과정을 기록한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-23",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-23T23:53:12+09:00",
-  "updatedAt": "2026-01-24T00:37:14+09:00",
-  "sourceDigest": "0aa7cad3415bb0fcc29ddc43063a95c0318087bd8c4c8aa0570b40f634ea7188",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "27b8021ca738afdc395b8f01c65f165d46d3c311e0164790addc9643842c70cb",
   "assets": [
     {
       "id": "2058cccb-3531-5637-bfbe-decc630593ef",

@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-5 문제",
   "slug": "tistory-79",
-  "description": "1. 문제 정보문제 번호 : old -5문제 점수 : 30점2. 문제 분석문제에 들어가면 join과 login이 보인다. 조인을 누르면 access denied가 뜬다. 로그인을 보자 로그인 창이 나오고 아이디 비밀번호를 마구잡이로 입력해도 안된다. https://webhacking.kr/challenge/web-05/mem/login.php에서 mem이 새로 있길래 혹시 웹서버의 Directory Listing(디렉토리 리스팅) 취약점이 있을 거 같아서 요청해보니까 index가 나왔다, join을 들어가보니 join에서 bye가 뜨고 엑세스가 거부되었다. 코드를 봐보자 l='a';ll='b';lll='c';llll='d';lllll='e';llllll='f';lllllll='g';llllllll..",
+  "description": "webhacking.kr old-5의 디렉토리 목록과 난독화된 회원가입 스크립트를 분석한다. 가입 폼의 클라이언트 측 제한을 살펴보고 널 바이트가 포함된 아이디의 중복 검사·로그인 동작을 확인한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-02-05",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-02-05T21:20:26+09:00",
-  "updatedAt": "2026-02-05T21:20:26+09:00",
-  "sourceDigest": "eb792515530fb23c320c87c243f3ecc46fd7094568ba454cb5fbc9af66d04581",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "6cb4bb3e767255f0bd4ef72a8e4e907713adf84531ef467771902064744bec09",
   "assets": [
     {
       "id": "832fb86e-312d-5265-8c1a-0d7fb23f4ded",

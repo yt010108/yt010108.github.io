@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-20문제",
   "slug": "tistory-37",
-  "description": "1. 문제 정보문제 번호 : old -20문제 점수 : 20점2. 문제 분석 20번 문제는 닉네임과 코맨트 그리고 captcha를 2초안에 통과해야하는 문제이다. 어플리케이션에서 쿠키를 봤을 때 st가 새로고침할 때마다 증가하므로 스타트 타임인 것을 알 수 있다. 3. 풀이그냥 st를 좀 크게 설정해서 보내보자 그러면 no Cheat가 나온다. 파이썬으로 GET요청을 파싱해서 POST요청을 보내보면 import requestsimport re # 정규표현식 모듈# 1. 설정 정보url = \"https://webhacking.kr/challenge/code-4/\"cookies = { \"PHPSESSID\": \"\" # 본인의 세션 ID }s = requests.Session()s.cookies..",
+  "description": "webhacking.kr old-20의 짧은 제한 시간과 동적 CAPTCHA를 분석한다. 시간 쿠키 변경이 거부되는 것을 확인한 뒤 세션을 유지하면서 폼 값을 읽고 제출하는 자동화로 문제를 해결한 과정을 기록한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-20",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-20T16:06:35+09:00",
-  "updatedAt": "2026-01-27T12:59:21+09:00",
-  "sourceDigest": "d2db7c8447fd6fc487756ebc94117a989e4e1b1786aba881c56876a5764da779",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "dfa36d3a098a532116525289bf0f7f9e945da9c56348796a1b636d4173f62be2",
   "assets": [
     {
       "id": "341d60fb-fc04-53cd-a625-4c88daed1126",

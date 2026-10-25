@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[System hacking] FSB",
   "slug": "tistory-2",
-  "description": "FSB는 FormatStringBug의 약자로 printf를 잘못 사용하여 발생하는 시스템 해킹 취약점이다.FSB에 대해서 알아보자 포멧 스트링이란? printf 함수에서 첫번째 인자의 문자열에 들어가 형식을 지정해주는 문자들로 %d, %x, %s, %p등이 있다.printf(\"%s\", user_input);처럼 사용된다. 만약 printf(\"%s %p %p\", user_input);처럼 포멧 스트링과 인자의 수가 맞지 않다면 어떻게 될까?컴퓨터는 user_input 뒤에 정상적으로 인자가 있다고 생각해 정해진 위치의 값을 출력할 것이다. 그 정해진 위치가 어딜까?함수 호출규약(Calling Convention) Calling Convention은 함수를 호출할 때의 규칙으로 함수의 리턴값, 스택정리..",
+  "description": "printf의 포맷 문자열 처리와 리눅스 64비트 호출 규약을 바탕으로 FSB의 원리를 설명한다. 레지스터·스택 값 노출과 메모리 쓰기, pwntools를 이용한 실습 및 안전한 출력 방식까지 정리한다.",
   "category": "Security / Pwnable",
   "date": "2025-12-12",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2025-12-12T17:44:17+09:00",
-  "updatedAt": "2025-12-16T01:14:31+09:00",
-  "sourceDigest": "593cd6b98244ee4be7674ad5d7aa6a7f5ae18f6661ed77c52927f5ff45309533",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "cdce35a6dfbc5111f6202ad6e34c6ea25e8418152a0285cbf24fc0db6c71459c",
   "assets": [
     {
       "id": "f3a75513-b533-50bd-a8a4-7e1b28ab349c",

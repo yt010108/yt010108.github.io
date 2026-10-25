@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-18문제",
   "slug": "tistory-47",
-  "description": "1. 문제 정보문제 번호 : old -18문제 점수 : 10점2. 문제 분석sqli문제이다. view-source로 가서 php코드를 확인해보면 guest이면 hi guest를 출력하고 admin이면 문제가 풀린다. 하지만 preg_match로 공백, 슬래시, 괄호, 파이프, 퍼센트, select,0x를 필터링한다. 하지만 %09인 tab을 통해 공백처럼 사용가능하다.3. 풀이\"select id from chall18 where id='guest' and no=$_GET[no]\"이 쿼리문에서 id가 admin을 불러오기 위해서 no에 0을 넣고 or id='admin'을 입력하면 연산자 우선순위 때문에 or이 나중에 되서 admin이 불러와진다. 0%09or%09id=%27admin%27위처럼 페이로..",
+  "description": "webhacking.kr old-18의 SQL Injection 문제를 분석한다. 공백을 제한하는 필터와 탭 문자의 차이, AND·OR 연산자 우선순위가 조회 조건에 미치는 영향을 실습한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-22",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-22T03:16:24+09:00",
-  "updatedAt": "2026-01-22T03:17:18+09:00",
-  "sourceDigest": "eb30699085bf67652e6488aaa1d8561444425c6a350f73e5bb10ed7b8fd97311",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "114721d7752ce81f3349b85d961a22e2fea743ee6ccfb77d466f75935c312b48",
   "assets": [
     {
       "id": "1aa7698f-4270-5d8a-b731-cd6c37dfd4c7",

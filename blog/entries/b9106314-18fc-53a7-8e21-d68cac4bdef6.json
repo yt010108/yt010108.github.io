@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-39 문제",
   "slug": "tistory-52",
-  "description": "1. 문제 정보문제 번호 : old -39문제 점수 : 10점분야 : sql2. 문제 분석 제출하라는 폼만 나오고 view-source가 나온다. view-source 소스는 위처럼 생겼고 \\\\즉 \\를 필터링하고 '를 ''로 만든다. 일단 str.replace(\"\\\\\")에서 처음 막혔는데 \\\\를 필터링하는줄 알았느데 \\를 필터링하는 거였다.그리고 두번째로 막힌건 length(id)length에서 id값은 sql에서 DB가 튜플을 조회할 때 그 튜플의 id값의 길이이다. 3. 풀이데이터베이스에서 where에서 %20즉 엔터는 무시된다. 그러므로 admin하고 공백으로 14글자를 채운 뒤에 '를하면 15, 16번째에 '가 들어간다 하지만 substr로 15번째부터 잘린다. 따라서 where 절에서 bu..",
+  "description": "webhacking.kr old-39에서 따옴표 치환 뒤 문자열을 잘라내는 처리 순서를 분석한다. 잘린 이스케이프 문자와 MySQL의 문자열 비교 특성이 인증 쿼리에 미치는 영향을 정리한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-23",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-23T22:13:52+09:00",
-  "updatedAt": "2026-01-23T23:53:28+09:00",
-  "sourceDigest": "8504bfee37d4e086d979307cfdfd2c064f655e73da6b4cedd83b6c03e6bd7759",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "1c3e7f6adc88bac2e9fc0e9b0f63892d4b0df19ac2f45425f0072fb9e5b556cb",
   "assets": [
     {
       "id": "5418c922-26ab-5fde-92e2-c99618f11b8d",

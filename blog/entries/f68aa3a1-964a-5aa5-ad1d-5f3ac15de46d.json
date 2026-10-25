@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "모의해킹 방법론  OWASP WSTG",
   "slug": "tistory-99",
-  "description": "웹 모의해킹을 공부하다 보면 SQL Injection, XSS, 인증 우회, IDOR 같은 취약점 이름을 먼저 접하게 된다. 처음에는 각각의 취약점과 페이로드를 익히는 것만으로도 충분해 보이지만, 실제 점검을 하려고 하면 곧 다른 질문이 생긴다.\"무엇부터 봐야 하지?\"\"어떤 순서로 테스트해야 하지?\"\"어디까지 확인해야 제대로 봤다고 할 수 있지?\"이때 기준점으로 삼기 좋은 문서가 OWASP WSTG(Web Security Testing Guide)다. WSTG는 웹 애플리케이션 보안 테스트를 위한 공개 방법론으로, 단순한 취약점 목록이 아니라 웹 모의해킹을 어떤 관점과 흐름으로 진행할지 정리한 가이드다.1. OWASP WSTG란?OWASP WSTG는 OWASP에서 제공하는 웹 보안 테스트 가이드다.OWA..",
+  "description": "OWASP WSTG를 기준으로 정보 수집부터 인증·인가·세션·입력값 검증과 보고서 작성까지 웹 모의해킹의 흐름을 정리한다. 자동화와 수동 분석을 병행하며 재현 근거와 수정 권고를 남기는 방법을 다룬다.",
   "category": "Security / Web Security",
   "date": "2026-04-21",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-04-21T17:09:25+09:00",
-  "updatedAt": "2026-08-07T18:39:51+09:00",
-  "sourceDigest": "e38155553b0e426a047ccd7bf503c8de619f2e6dd55e4e3fa66cac218cc5e457",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "9cdd4e69206c458ad3751994f76190a40ce375f28eb9834c8cd0a056b6edd7e1",
   "assets": [
     {
       "id": "6ac88d91-102e-517c-97f0-b7e84b3b4a72",

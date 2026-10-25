@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-51 문제",
   "slug": "tistory-69",
-  "description": "1. 문제 정보문제 번호 : old -51문제 점수 : 25점2. 문제 분석 문제에 들어가면 admin page라고 나오고 id와 pw를 입력받는다.페이지 소스보기를 통해서 소스를 보면 id에는 addslash, pw에는 md5처리를 하고 데이터베이스에 입력한다.Admin pageWrong\"; }?>IDPW....view-source3. 풀이만약 데이터베이스 설정이 멀티바이트 문자셋을 사용한다면 %aa'를 사용해서 %aa%5c%27에서 %aa%5c'를 GBK 인코딩 환경이라면 窶 (구)라는 한자로 바꿔 addslash를 우회할 수 있다,하지만 입력을 하면 안된다. 그러면 md5($_POST['pw'],true); 함수를 봐보자 md5는 해쉬 함수이다. md5(string $string, bool ..",
+  "description": "webhacking.kr old-51의 로그인 쿼리와 MD5 바이너리 출력을 분석한다. 해시 결과를 SQL 문자열에 직접 연결하면 따옴표와 연산자가 쿼리의 일부로 해석될 수 있음을 확인한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-30",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-30T17:24:08+09:00",
-  "updatedAt": "2026-01-30T17:24:08+09:00",
-  "sourceDigest": "f321a451efc4d471c3cf966876d29426a92aacf60fa2e2c29f50ef4c60bf51fc",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "ab941e904d705f5604df18ead254a407e194298b667fe53e4cafbaeaf0aff4ba",
   "assets": [
     {
       "id": "9075554c-f9e5-5e2c-a9aa-0206b632c814",

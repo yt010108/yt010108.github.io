@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "오라클 클라우드 A1 Flex 무료 서버 획득기(feat. Codex)",
   "slug": "tistory-105",
-  "description": "예전부터 오라클 클라우드 무료 서버 이야기는 많이 봤다.특히 Oracle Cloud Always Free에서 제공하는 A1 Flex 서버는 무료인데도 사양이 꽤 좋아서 관심이 갔다. 오라클 A1 Flex는 조건만 맞으면 4 OCPU / 24GB RAM까지 사용할 수 있다. 다만 문제는 이게 생각보다 잘 안 만들어진다는 점이다.나도 예전에 몇 번 시도해봤는데, 자리가 없어서 A1 Flex는 포기하고 VM.Standard.E2.1.Micro 로 1 OCPU / 1GB RAM 을 사용했었다.이번에는 헤르메스 에이전트를 하고 싶은 마음도 있고 쓰레드에서 A1 Flex를 코덱스로 자동화 성공하는 사람들이 많아서 해보자는 생각으로 다시 도전했고, 결론적으로 3일 정도 걸려서 성공했다. 00. 준비먼저 Orac..",
+  "description": "용량 부족으로 생성되지 않던 Oracle Cloud A1 Flex 인스턴스를 Codex와 OCI CLI의 주기적 재시도로 확보한 경험을 기록한다. 생성 후 무료 한도와 서버 상태를 확인하고 Hermes 실행 환경으로 활용하는 과정을 소개한다.",
   "category": "AI / hermes",
   "date": "2026-06-02",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-06-02T20:48:38+09:00",
-  "updatedAt": "2026-06-05T19:04:39+09:00",
-  "sourceDigest": "69bc2ec5ccc3f6f0010f09aba17ba8aeba82c84e8af7acf4f3a1f5ef937f1c5c",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "14116ae9bb639478b8a4e978e16a64acd6b45fc783bc0cc2cedda9e20456bdca",
   "assets": [
     {
       "id": "512178f6-c236-54f4-9e39-1b27ca266178",

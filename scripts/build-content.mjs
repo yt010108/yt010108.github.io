@@ -14,7 +14,7 @@ for (const item of index.entries) {
   }
   if (record.status !== "published") continue;
   const text = plainText(record.doc);
-  posts.push({ ...record, sha: item.sha, searchText: text, readTime: Math.max(1, Math.ceil(text.trim().split(/\s+/).length / 200)), sample: false });
+  posts.push({ ...record, sha: item.sha, searchText: text, sample: false });
 }
 posts.sort((a, b) => b.date.localeCompare(a.date) || b.publishedAt.localeCompare(a.publishedAt));
 await writeFile("published.json", JSON.stringify({ format: "yt010108-public-content", version: 1, posts, managedKinds: [...new Set(index.entries.map(item => item.kind))] }) + "\n");

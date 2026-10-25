@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-36문제",
   "slug": "tistory-63",
-  "description": "1. 문제 정보문제 번호 : old -36문제 점수 : 20점2. 문제 분석 36번 문제이다. 들어가면 아래처럼 index.php가 파워가 나가서 source 코드가 사라졌다고 한다. recover해보자. vi나 vim은 예기치 못한 종료가 있을 때 swp파일을 만든다. swp파일은 백업 파일로 .[filename].swp파일로 숨겨진다. 그래서 https://webhacking.kr/challenge/bonus-8/.index.php.swp파일을 주소창에 요청하면 파일이 다운로드 된다. 파일을 열어보면 알아 볼 수 없다.3. 풀이리눅스에서 index.php 파일을 만들고 아래 파일을 .index.php.swp파일로 이름을 바꿔 실행해보면 flag가 나온다 4. 요약 전력 차단으로 소스 코드가 유실..",
+  "description": "webhacking.kr old-36의 소스 유실 힌트에서 Vim 스왑 파일을 찾아낸다. 웹에 노출된 임시 파일을 내려받고 복구 기능으로 원본 코드를 확인하는 과정을 기록한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-27",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-27T13:23:03+09:00",
-  "updatedAt": "2026-01-27T13:23:03+09:00",
-  "sourceDigest": "c682f21c920db8836e59129bfa7d9d5e0e3afb76b732b8a537cb2d1e9a1ca0c6",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "6384b08ea62e922b0262b4f9ae3507308f6a706fa5913a500e0f40152597b6df",
   "assets": [
     {
       "id": "b485a26d-e86a-5708-8f7f-7cb418db9aa4",

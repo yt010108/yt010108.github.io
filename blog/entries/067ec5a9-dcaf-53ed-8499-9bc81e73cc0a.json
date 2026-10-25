@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-27 문제",
   "slug": "tistory-56",
-  "description": "1. 문제 정보문제 번호 : old -27문제 점수 : 15점문제 유형 : SQLI 2. 문제 분석문제는 SQL Injection 문제이다. 그리고 SQL을 제출하는 폼이 있고 소스를 볼 수 있다, 소스는 아래와 같다. 제출된 no파라미터는 preg_match 정규식 필터링을 한번 거치고 쿼리로 입력된다.아래는 필터링 목록이다#select\\((공백)limit=0xdb에서 query에 no = (GET 요청 no값)형식으로 데이터를 입력한다.SQL INJECTIONview-source 3. 풀이no 파라미터에 아래와 같이 입력하면 =를 like로 공백을 \\t으로 우회할 수 있고 괄호 닫는 거는 필터링에 없어서 사용 가능하고 원래 있는 괄호는 주석 처리를 통해 우회 가능하다.2)%09or%09id%09l..",
+  "description": "webhacking.kr old-27의 SQL 쿼리 구조와 입력 필터를 분석한다. 탭·LIKE·주석의 역할을 살펴보며 일부 문자를 차단하는 방식만으로 쿼리 구조를 보호하기 어려운 이유를 확인한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-26",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-26T15:47:58+09:00",
-  "updatedAt": "2026-01-26T15:59:34+09:00",
-  "sourceDigest": "d3e7c7d3e5b53e2ad52b31534ba70ccb4ffc4cc6cef7f5f5701a5f01a77ee127",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "9fe7a8f0dea63931b4c085bb6d7239cbe70affab19b185db9c8bfc321884785e",
   "assets": [
     {
       "id": "c8d6348d-bc2c-532f-9ee3-60300e03953b",

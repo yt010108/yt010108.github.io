@@ -58,7 +58,6 @@ button, input { -webkit-appearance: none; }
 a:hover > .arrow { transform: translateX(3px); }
 .sample-label { display: inline-flex; border: 1px solid #363c38; padding: 1px 6px; color: #b6bdb8; font: 9px/1.65 var(--mono); letter-spacing: .04em; vertical-align: middle; }
 .meta { display: flex; align-items: center; flex-wrap: wrap; gap: 13px; color: var(--quiet); font: 10px/1.7 var(--mono); }
-.meta-dot { width: 2px; height: 2px; background: var(--quiet); border-radius: 50%; }
 
 .site-header { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--soft-line); }
 .header-inner { min-height: 82px; display: flex; align-items: center; gap: 44px; position: relative; }

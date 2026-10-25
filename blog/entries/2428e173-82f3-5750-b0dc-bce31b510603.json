@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-06문제",
   "slug": "tistory-39",
-  "description": "1. 문제 정보문제 번호 : old -06문제 점수 : 10점2. 문제 분석문제를 클릭하면 위 사진과 같은 화면이 뜨게 된다. view-sourece를 눌러보면 소스 코드가 나오는데 아래와 같이 val_id와 val_pw로 설정하고 이걸 쿠키로 작성한다. 특수문자는 숫자로 치환되는 코드도 있다. $val_id=\"guest\"; $val_pw=\"123qwe\"; for($i=0;$i\"); 문제에서 base64로 20번 디코드한 값이 id는 admin, pw는 nimda일 경우 해결되므로 admin과 nimda를 20번 인코딩해주면 된다.for($i=0;$iview-source\");echo(\"ID : $decode_idPW : $decode_pw\");if($decode_id==\"admin\" && $decod..",
+  "description": "webhacking.kr old-06의 쿠키 생성·검증 로직을 분석한다. 반복 Base64 인코딩과 문자 치환 규칙을 확인하고 서버가 기대하는 값을 같은 방식으로 구성해 인증 결과를 검증한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-20",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-20T17:21:45+09:00",
-  "updatedAt": "2026-01-20T17:21:56+09:00",
-  "sourceDigest": "5a44c70e6c865e30ee343ca92ad040ebb04c4196a9de455318d9d64e76475265",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "03243482cac80d5e41554d8cf942c6f9dc6fceecc30bcd7c0c4e61a217259737",
   "assets": [
     {
       "id": "32903e6b-6541-5c84-a5fb-ad6967e49acf",

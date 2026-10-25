@@ -26,7 +26,7 @@ window.BLOG_DATA = {
     {
       id: "request-boundaries", title: "하나의 요청에서 시작하는 보안 분석",
       description: "요청이 만들어지고, 처리되고, 응답으로 돌아오기까지. 작은 관찰을 분석 기록으로 남기는 방법.",
-      date: "2026-10-22", readTime: 6, tags: ["web-security", "research"], featured: true, sample: true,
+      date: "2026-10-22", tags: ["web-security", "research"], featured: true, sample: true,
       body: [
         { type: "lead", text: "작은 의문을 하나 고르고, 요청의 흐름을 따라가며 관찰한 내용을 정리합니다. 이 글은 제목, 본문, 목차, 코드 블록의 모양을 보여주는 예시입니다." },
         { type: "heading", id: "question", text: "01. 질문을 먼저 적어두기" },
@@ -45,7 +45,7 @@ window.BLOG_DATA = {
     {
       id: "reusable-research-notes", title: "다시 꺼내 읽을 수 있는 분석 노트 만들기",
       description: "결과만 남기는 대신 질문, 실험 과정, 판단의 근거를 함께 정리하는 기록 방식.",
-      date: "2026-10-20", readTime: 4, tags: ["methodology", "writing"], featured: true, sample: true,
+      date: "2026-10-20", tags: ["methodology", "writing"], featured: true, sample: true,
       body: [
         { type: "lead", text: "잘 정리한 기록은 다음 실험의 출발점이 됩니다. 이 글은 긴 분석 글과 짧은 노트를 구분하는 콘텐츠 예시입니다." },
         { type: "heading", id: "structure", text: "질문 → 관찰 → 판단" },
@@ -60,7 +60,7 @@ window.BLOG_DATA = {
     {
       id: "small-tools", title: "반복되는 작업을 작은 도구로 옮기기",
       description: "수동으로 하던 작업을 정리하고, 필요한 기능만 담은 도구를 설계하는 과정.",
-      date: "2026-10-18", readTime: 5, tags: ["tooling", "methodology"], sample: true,
+      date: "2026-10-18", tags: ["tooling", "methodology"], sample: true,
       body: [
         { type: "lead", text: "분석 과정에서 반복한 일을 모아 작은 프로젝트의 주제로 삼아봅니다. 실제 도구 개발 과정을 기록할 수 있는 글의 예시입니다." },
         { type: "heading", id: "problem", text: "어떤 일이 반복되는가" },
@@ -74,7 +74,7 @@ window.BLOG_DATA = {
     {
       id: "reading-source", title: "소스 코드를 읽으며 남겨두는 질문들",
       description: "전체를 한 번에 이해하려 하기보다, 관심 있는 동작에서 출발하는 코드 읽기 메모.",
-      date: "2026-10-15", readTime: 3, tags: ["research", "methodology"], sample: true,
+      date: "2026-10-15", tags: ["research", "methodology"], sample: true,
       body: [
         { type: "lead", text: "소스 코드 분석 글을 위한 예시입니다. 실제 코드와 관찰 내용을 이 자리에 채울 수 있습니다." },
         { type: "heading", id: "entry", text: "관심 있는 동작에서 시작하기" },
@@ -86,7 +86,7 @@ window.BLOG_DATA = {
     {
       id: "personal-research-space", title: "글과 프로젝트가 함께 쌓이는 공간",
       description: "공부한 내용과 직접 만든 작업물을 연결하는 개인 사이트의 첫 기록.",
-      date: "2026-10-12", readTime: 2, tags: ["writing"], sample: true,
+      date: "2026-10-12", tags: ["writing"], sample: true,
       body: [
         { type: "lead", text: "이 블로그의 첫 글을 위한 자리입니다. 사이트를 시작하는 이유와 앞으로 다룰 주제를 소개할 수 있습니다." },
         { type: "heading", id: "writing", text: "기록하고 싶은 것" },
@@ -96,7 +96,7 @@ window.BLOG_DATA = {
   ],
   notes: [
     {
-      id: "observation-checklist", title: "실험 전에 확인하는 작은 체크리스트", description: "환경, 버전, 입력, 예상 동작을 기록해 두기.", date: "2026-10-22", readTime: 1, tags: ["methodology"], sample: true,
+      id: "observation-checklist", title: "실험 전에 확인하는 작은 체크리스트", description: "환경, 버전, 입력, 예상 동작을 기록해 두기.", date: "2026-10-22", tags: ["methodology"], sample: true,
       body: [
         { type: "lead", text: "긴 글로 만들기 전의 짧은 메모를 위한 예시입니다." },
         { type: "heading", id: "checklist", text: "실험 시작 전" },
@@ -104,7 +104,7 @@ window.BLOG_DATA = {
       ]
     },
     {
-      id: "terminal-notes", title: "터미널 작업을 기록하는 습관", description: "다음에 다시 쓸 명령과 실행 환경을 함께 남기기.", date: "2026-10-19", readTime: 1, tags: ["linux", "tooling"], sample: true,
+      id: "terminal-notes", title: "터미널 작업을 기록하는 습관", description: "다음에 다시 쓸 명령과 실행 환경을 함께 남기기.", date: "2026-10-19", tags: ["linux", "tooling"], sample: true,
       body: [
         { type: "lead", text: "명령어와 짧은 설명을 빠르게 남기는 노트 예시입니다." },
         { type: "heading", id: "environment", text: "환경도 함께 기록하기" },
@@ -113,7 +113,7 @@ window.BLOG_DATA = {
       ]
     },
     {
-      id: "links-with-context", title: "참고 링크에 한 문장 더하기", description: "주소만 저장하는 대신 왜 남겼는지도 적어두기.", date: "2026-10-16", readTime: 1, tags: ["writing"], sample: true,
+      id: "links-with-context", title: "참고 링크에 한 문장 더하기", description: "주소만 저장하는 대신 왜 남겼는지도 적어두기.", date: "2026-10-16", tags: ["writing"], sample: true,
       body: [
         { type: "lead", text: "참고 자료를 정리하는 짧은 노트의 예시입니다." },
         { type: "heading", id: "context", text: "다시 읽을 이유" },

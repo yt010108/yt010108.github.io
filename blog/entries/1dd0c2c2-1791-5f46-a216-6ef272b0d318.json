@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-25 문제",
   "slug": "tistory-57",
-  "description": "1. 문제 정보문제 번호 : old -25문제 점수 : 15점문제 유형 : PHP wrapper 2. 문제 분석25번 문제에 들어오면 아래 사진 처럼 나온다. url을 보니 http://webhacking.kr:10001/?file=hello 이다.아래 hello word는 입력하면 아무것도 안나온다. 페이지 소스 보기를 해보자 뭐 아무것도 없다.total 20drwxr-xr-x 2 root root 4096 Dec 28 01:09 .drwxr-xr-x 1 root root 4096 Dec 28 00:50 ..-rw-r--r-- 1 root root 82 Aug 24 2019 flag.php-rw-r--r-- 1 root root 31 Aug 24 2019 hello.php-rw-r--r..",
+  "description": "webhacking.kr old-25의 파일 호출 기능과 PHP 스트림 래퍼를 분석한다. PHP 파일이 실행된 결과와 Base64로 변환된 소스의 차이를 통해 파일 포함 취약점의 동작을 이해한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-26",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-26T16:22:38+09:00",
-  "updatedAt": "2026-01-26T16:22:38+09:00",
-  "sourceDigest": "0fefdcfdc0805da4fcca5673632f5210495c95821f54e3b3a9add40bd34e3d5e",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "f867d17ad27c185ce1bdb5e809b4986c74c24a10ec0d19ec058cfa80db61a681",
   "assets": [
     {
       "id": "e34f88e9-8ff8-54f1-82d1-32c1eb79f03b",

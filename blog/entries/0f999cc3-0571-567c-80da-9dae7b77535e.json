@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[CTF] deadface ctf apk 분석 문제",
   "slug": "tistory-166",
-  "description": "0. 개요De Monne Slayer 문제는 4개의 문제로 되어 있으며 모바일 apk 파일을 분석해 하드코딩된 키, 설정 오류를 파악해 flag를 획득하는 문제1. apk 파일APK(Android Package Kit)는 안드로이드 앱을 설치하기 위한 패키지 파일로 사실상 zip파일에서 확장자만 바꾼 것, ipaapp.apk├── AndroidManifest.xml # 앱 설정 및 권한├── classes.dex # 컴파일된 앱 코드(opcode)├── resources.arsc # 리소스 정보├── res/ # 이미지, UI 리소스├── assets/ # 추가 데이터├── lib/ #..",
+  "description": "DEADFACE CTF의 De Monne Slayer APK를 JADX로 분석한다. 하드코딩된 토큰과 내부 계정, 외부에 노출된 진단 Activity, 계좌 API의 인가 검증 문제를 추적하며 네 가지 문제를 풀이한다.",
   "category": "Security / Reversing",
   "date": "2026-10-20",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-10-20T10:01:53+09:00",
-  "updatedAt": "2026-10-21T17:22:38+09:00",
-  "sourceDigest": "1b42db82729b3db6116001faea7e632c1ade823cf1360ed5e9f407be9a9097a7",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "15a3520928381e0af6155188df6e07109bdf20692ff744bc5be5b6323becc0ea",
   "assets": [
     {
       "id": "dc088410-4cac-574f-a86c-83fd43205d44",

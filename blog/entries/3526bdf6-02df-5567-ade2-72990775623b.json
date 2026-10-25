@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[webhacking.kr]  old-47 문제",
   "slug": "tistory-60",
-  "description": "1. 문제 정보문제 번호 : old -47문제 점수 : 15점문제 유형: PHP mail 2. 문제 분석47번 문제에 들어가면 mail subject가 나오고 send 버튼을 누르면 mail has been sent가 나온다. 소스코드를 봐도 post요청을 하는거만 보인다.Mail subject : 3. 풀이서버에서 동작을 생각해보면 post로 받은 subject를 받고 PHP에서 mail함수에 인자를 넣고 보낼 것이다.PHP에서 주로 사용하는 메일 함수를 보자 mail( string $to, string $subject, string $message, array|string $additional_headers = [], string $additional_params = ..",
+  "description": "webhacking.kr old-47의 메일 발송 기능을 통해 헤더 인젝션을 실습한다. 제목 입력의 줄바꿈이 메일 헤더와 수신자 처리에 영향을 주는 과정을 PHP mail 함수의 구조와 함께 정리한다.",
   "category": "Wargame / webhacking.kr",
   "date": "2026-01-26",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-26T22:50:39+09:00",
-  "updatedAt": "2026-01-26T22:50:39+09:00",
-  "sourceDigest": "1a2aa2486efeb35e37741a0cb8f9a87e0816becc7c4cad0bd4a7db8a94963c7b",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "7d87f810686f22db55acf568ca901ea420683bd0a8c20fdce410d4eec1b8a663",
   "assets": [
     {
       "id": "eb35e1be-d199-5456-bd01-87c45498d246",

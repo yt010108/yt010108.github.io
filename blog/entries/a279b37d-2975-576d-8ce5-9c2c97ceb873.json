@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[ghidra] mcp 셋팅",
   "slug": "tistory-84",
-  "description": "0. 개요CTF 문제 풀이와 리버싱 분석을 할 때 Ghidra 디컴파일러 결과를 Claude AI가 직접 읽고 분석해줄 수 있도록 MCP(Model Context Protocol) 연동 환경을 구성했습니다. 이 설정을 통해 모르는 함수의 의미를 물어보거나, 함수명 변경 등의 작업을 AI와 대화하듯 처리할 수 있고 라이트업 작성도 훨씬 빠르게 할 수 있습니다. Ghidra ↔ GhidraMCP 서버 ↔ Claude Desktop 순서로 연결됩니다. GhidraMCP 서버가 중간에서 Ghidra의 디컴파일 결과를 Claude가 이해할 수 있는 형태로 전달해주는 역할을 합니다.1. Claude Desktop 설치https://claude.com/product/overview 에서 운영체제에 맞는 설치 파일을..",
+  "description": "Ghidra의 디컴파일 결과를 Claude Desktop에서 활용하도록 GhidraMCP 연동 환경을 구성한다. 확장 플러그인과 MCP 서버 설정부터 함수 설명·이름 변경 등 리버싱 보조 기능을 사용하는 과정까지 기록한다.",
   "category": "Security / Reversing",
   "date": "2026-02-27",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-02-27T00:23:18+09:00",
-  "updatedAt": "2026-02-28T02:02:07+09:00",
-  "sourceDigest": "c31303342b9395493b05596180815620ff9ed069178f2bbcf97956ab0568594e",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "4199eac67c5700c8c54992c72067b9dc2ce85b2a2baa29bfd577118557dd6209",
   "assets": [
     {
       "id": "eaa88fa5-7aad-58ab-867f-161c995c716d",

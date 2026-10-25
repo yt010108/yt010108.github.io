@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[WebGoat] (A2) Cryptographic Failures",
   "slug": "tistory-29",
-  "description": "Cryptographic Failures이란? WebGoat의 (A2) Cryptographic Failures(암호화 실패)는 OWASP Top 10 2021의 두 번째 항목으로, 민감한 데이터(비밀번호, 신용카드 정보, 개인 식별 정보 등)를 보호하기 위한 암호화 메커니즘이 없거나 잘못 구현되었을 때 발생하는 취약점이다. Goals이 강의에서는 웹 애플리케이션에서 일반적으로 사용되는 다양한 암호화 기술 유형에 대해 설명합니다. EncodingHasingEncryptionSingingKeystoresSecurity defaultsEncoding(Base64)인코딩은 엄밀히 말하면 암호화는 아니지만, 암호화 기능과 관련된 다양한 표준에서 많이 사용됩니다. 특히 Base64 인코딩이 그렇습니다.Base64..",
+  "description": "WebGoat 과제를 통해 인코딩·해시·대칭키·비대칭키 암호화와 서명의 차이를 정리한다. Basic 인증, 키 저장소와 인증서, 컨테이너 이미지에 남은 비밀번호 사례를 살펴보며 민감정보 보호를 복습한다.",
   "category": "Wargame / WebGoat",
   "date": "2026-01-19",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-19T20:45:31+09:00",
-  "updatedAt": "2026-01-20T16:01:25+09:00",
-  "sourceDigest": "86381cfd6953d73b687a54459e637952db840be6a9d72c376b147f8796eb3b5d",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "c930107f5404d6c2c6cf5f4c99b94bbad510f0d92a6811c8cc4de252ff48b551",
   "assets": [
     {
       "id": "9032d2b7-11e5-522b-9ece-f2130f0fa831",

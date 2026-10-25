@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[WebGoat] (A1) Broken Access Control",
   "slug": "tistory-28",
-  "description": "Broken Access Control이란? Broken Access Control(취약한 접근 제어)는 2021년 OWASP Top 10에서 1위(A01:2021)로 선정된 가장 중대하고 흔한 웹 애플리케이션 보안 취약점이다.이 취약점은 인증된 사용자가 수행할 수 있는 작업에 대한 제한이 부족할 때 발생한다. 즉, 사용자가 자신의 권한 범위를 벗어나서 다른 사용자의 계정에 접근하거나 관리자 페이지에 접속하는 등 의도하지 않은 행동을 할 수 있는 상태를 의미한다. Hijack a session개념사용자 지정 세션 ID를 개발하는 애플리케이션 개발자들은 보안에 필요한 복잡성과 무작위성을 고려하지 않는 경우가 많습니다. 사용자별 세션 ID가 복잡하고 무작위적이지 않으면 해당 애플리케이션은 세션 기반 무차별..",
+  "description": "WebGoat의 접근 제어 과제로 예측 가능한 세션, IDOR, 기능 수준 인가 누락과 인증 쿠키 조작을 살펴본다. 객체·기능 접근에서 서버가 사용자의 권한을 검증해야 하는 이유를 실습으로 정리한다.",
   "category": "Wargame / WebGoat",
   "date": "2026-01-19",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-19T19:30:01+09:00",
-  "updatedAt": "2026-01-20T14:05:42+09:00",
-  "sourceDigest": "77d42c5bc2ae99b41517438444b07d2a9f826bfb77f178ca2c8e10ce5f8b54f9",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "14c12b6385c6689ccd0f9366135866ff8f140f851f9842cec2205a6b9eed2e36",
   "assets": [
     {
       "id": "d1b6df9e-cbfe-506d-860b-27ce279f678f",

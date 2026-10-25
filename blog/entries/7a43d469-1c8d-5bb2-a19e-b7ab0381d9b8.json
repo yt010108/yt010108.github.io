@@ -5,15 +5,15 @@
   "kind": "posts",
   "title": "[Ghidra] 리버스 엔지니어링 기드라 실전 가이드 스터디 - chapter 5(level1)",
   "slug": "tistory-48",
-  "description": "1. CrackMe란?리버스 엔지니어링을 배우기 위해 만들어진 연습용 프로그램으로 프로그램을 리버스 엔지니어링해서 비밀번호를 밝혀 풀어낸다.5장에서는 멀웨어에서 자주 사용되는 인코딩 방법을 다루는 4문제를 푼다. 2. level1 crackme(xor)level 1 크랙미 디스어셈블 결과undefined8 main(void){ char *pcVar1; size_t sVar2; undefined8 uVar3; long in_FS_OFFSET; int local_6c; int local_68 [12]; byte local_38 [40]; long local_10; local_10 = *(long *)(in_FS_OFFSET + 0x28); local_68[0] = 0x29; local..",
+  "description": "Ghidra로 CrackMe Level 1의 XOR 비교 로직을 분석한다. PyGhidra로 하드코딩된 배열을 추출하고 역연산으로 입력값을 복구한 뒤 CyberChef로 결과를 검증한다.",
   "category": "Security / Reversing",
   "date": "2026-01-22",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-01-22T20:38:16+09:00",
-  "updatedAt": "2026-01-22T20:42:25+09:00",
-  "sourceDigest": "9f9acdc8faef99e25d2b9686c70d875d49ec0b8e45fc93696fff72d3d5b07608",
+  "updatedAt": "2026-10-25T05:55:56.711Z",
+  "sourceDigest": "63f3c10e282a9a17814085c8dbee9e0e4e917f09bd7f0fbf3db5f71f7e6ca28a",
   "assets": [
     {
       "id": "aa0716c2-5684-5c99-9b0d-cc38b231b52f",
