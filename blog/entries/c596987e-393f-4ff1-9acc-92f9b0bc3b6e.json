@@ -1,0 +1,44 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "c596987e-393f-4ff1-9acc-92f9b0bc3b6e",
+  "title": "ACDC 준비용",
+  "kind": "notes",
+  "slug": "acdc-준비용",
+  "description": "",
+  "category": "",
+  "date": "2026-10-25",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-10-25T07:22:32.546Z",
+  "updatedAt": "2026-10-25T07:22:32.546Z",
+  "sourceDigest": "3b3d7ffb5df980e4b3298fffb0e698d3a772f6f5dda97b084e795f7d262e903a",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://blog.realsung.kr/2025/12/04/2025-ACDC-Final/#1-%EB%8C%80%ED%9A%8C-%EC%86%8C%EA%B0%9C",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "https://blog.realsung.kr/2025/12/04/2025-ACDC-Final/#1-%EB%8C%80%ED%9A%8C-%EC%86%8C%EA%B0%9C"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -2007,6 +2007,23 @@
       "trashedAt": null,
       "path": "blog/entries/fffc6fc9-4037-551b-8d90-e78b58588aff.json",
       "sha": "45e9318923568fc6e3c9e076bf4c60f427af30a9"
+    },
+    {
+      "id": "c596987e-393f-4ff1-9acc-92f9b0bc3b6e",
+      "kind": "notes",
+      "slug": "acdc-준비용",
+      "title": "ACDC 준비용",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-10-25",
+      "updatedAt": "2026-10-25T07:22:32.546Z",
+      "publishedAt": "2026-10-25T07:22:32.546Z",
+      "status": "published",
+      "sourceDigest": "3b3d7ffb5df980e4b3298fffb0e698d3a772f6f5dda97b084e795f7d262e903a",
+      "trashedAt": null,
+      "path": "blog/entries/c596987e-393f-4ff1-9acc-92f9b0bc3b6e.json",
+      "sha": "c8b5df1e72e3ee4c411ca88147580930947b66f8"
     }
   ],
   "taxonomy": {
