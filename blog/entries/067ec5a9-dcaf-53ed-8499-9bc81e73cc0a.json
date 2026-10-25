@@ -1,0 +1,431 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "067ec5a9-dcaf-53ed-8499-9bc81e73cc0a",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-27 문제",
+  "slug": "tistory-56",
+  "description": "1. 문제 정보문제 번호 : old -27문제 점수 : 15점문제 유형 : SQLI 2. 문제 분석문제는 SQL Injection 문제이다. 그리고 SQL을 제출하는 폼이 있고 소스를 볼 수 있다, 소스는 아래와 같다. 제출된 no파라미터는 preg_match 정규식 필터링을 한번 거치고 쿼리로 입력된다.아래는 필터링 목록이다#select\\((공백)limit=0xdb에서 query에 no = (GET 요청 no값)형식으로 데이터를 입력한다.SQL INJECTIONview-source 3. 풀이no 파라미터에 아래와 같이 입력하면 =를 like로 공백을 \\t으로 우회할 수 있고 괄호 닫는 거는 필터링에 없어서 사용 가능하고 원래 있는 괄호는 주석 처리를 통해 우회 가능하다.2)%09or%09id%09l..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-26",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-26T15:47:58+09:00",
+  "updatedAt": "2026-01-26T15:59:34+09:00",
+  "sourceDigest": "d3e7c7d3e5b53e2ad52b31534ba70ccb4ffc4cc6cef7f5f5701a5f01a77ee127",
+  "assets": [
+    {
+      "id": "c8d6348d-bc2c-532f-9ee3-60300e03953b",
+      "name": "tistory-56-c8d6348d-bc2c-532f-9ee3-60300e03953b.png",
+      "type": "image/png",
+      "path": "/assets/uploads/067ec5a9-dcaf-53ed-8499-9bc81e73cc0a/c8d6348d-bc2c-532f-9ee3-60300e03953b.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "ca69cb8c-05b7-519a-ad28-15666bfca89a",
+      "name": "tistory-56-ca69cb8c-05b7-519a-ad28-15666bfca89a.png",
+      "type": "image/png",
+      "path": "/assets/uploads/067ec5a9-dcaf-53ed-8499-9bc81e73cc0a/ca69cb8c-05b7-519a-ad28-15666bfca89a.png",
+      "sha": "e3d8d59e8855161b7a4c12fb22163139a5e61834"
+    },
+    {
+      "id": "6ec73518-435a-5e40-b7c5-0c0ed9f8a201",
+      "name": "tistory-56-6ec73518-435a-5e40-b7c5-0c0ed9f8a201.png",
+      "type": "image/png",
+      "path": "/assets/uploads/067ec5a9-dcaf-53ed-8499-9bc81e73cc0a/6ec73518-435a-5e40-b7c5-0c0ed9f8a201.png",
+      "sha": "157c37ebfa0f26bcef1271631276e1e008655c54"
+    },
+    {
+      "id": "c8daccb6-4bff-5351-b9df-ab6534cafe74",
+      "name": "tistory-56-c8daccb6-4bff-5351-b9df-ab6534cafe74.png",
+      "type": "image/png",
+      "path": "/assets/uploads/067ec5a9-dcaf-53ed-8499-9bc81e73cc0a/c8daccb6-4bff-5351-b9df-ab6534cafe74.png",
+      "sha": "06e2c78944b4fb67b8e5cfd9db5f018b24241ab3"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "c8d6348d-bc2c-532f-9ee3-60300e03953b",
+          "src": "/assets/uploads/067ec5a9-dcaf-53ed-8499-9bc81e73cc0a/c8d6348d-bc2c-532f-9ee3-60300e03953b.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -27"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 15점"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 유형 : SQLI"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제는 SQL Injection 문제이다. 그리고 SQL을 제출하는 폼이 있고 소스를 볼 수 있다,"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "ca69cb8c-05b7-519a-ad28-15666bfca89a",
+          "src": "/assets/uploads/067ec5a9-dcaf-53ed-8499-9bc81e73cc0a/ca69cb8c-05b7-519a-ad28-15666bfca89a.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "소스는 아래와 같다. 제출된 no파라미터는 preg_match 정규식 필터링을 한번 거치고 쿼리로 입력된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래는 필터링 목록이다"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "#"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "select"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "\\("
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "(공백)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "limit"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "="
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "0x"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "db에서 query에 no = (GET 요청 no값)형식으로 데이터를 입력한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n  include \"../../config.php\";\n  if($_GET['view_source']) view_source();\n?><html>\n<head>\n<title>Challenge 27</title>\n</head>\n<body>\n<h1>SQL INJECTION</h1>\n<form method=get action=index.php>\n<input type=text name=no><input type=submit>\n</form>\n<?php\n  if($_GET['no']){\n  $db = dbconnect();\n  if(preg_match(\"/#|select|\\(| |limit|=|0x/i\",$_GET['no'])) exit(\"no hack\");\n  $r=mysqli_fetch_array(mysqli_query($db,\"select id from chall27 where id='guest' and no=({$_GET['no']})\")) or die(\"query error\");\n  if($r['id']==\"guest\") echo(\"guest\");\n  if($r['id']==\"admin\") solve(27); // admin's no = 2\n}\n?>\n<br><a href=?view_source=1>view-source</a>\n</body>\n</html>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "no 파라미터에 아래와 같이 입력하면 =를 like로 공백을 \\t으로 우회할 수 있고 괄호 닫는 거는 필터링에 없어서 사용 가능하고 원래 있는 괄호는 주석 처리를 통해 우회 가능하다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2)%09or%09id%09like%09'a%'--%09"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "6ec73518-435a-5e40-b7c5-0c0ed9f8a201",
+          "src": "/assets/uploads/067ec5a9-dcaf-53ed-8499-9bc81e73cc0a/6ec73518-435a-5e40-b7c5-0c0ed9f8a201.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "c8daccb6-4bff-5351-b9df-ab6534cafe74",
+          "src": "/assets/uploads/067ec5a9-dcaf-53ed-8499-9bc81e73cc0a/c8daccb6-4bff-5351-b9df-ab6534cafe74.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "select, 공백, =, ( 등을 차단하는 정규식 필터와 id='guest' 및 괄호로 고정된 SQL 쿼리 구조를 파악 했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "차단된 공백은 탭(%09)으로, 등호(=)는 like 연산자로 대체하고 여는 괄호는 주석처리해 쿼리 문법을 우회했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "2) or id like 'a%' 구문을 주입하여 고정된 guest 조건을 벗어나 admin 계정을 조회하고 문제를 해결했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/56",
+    "originalId": "56",
+    "publishedAt": "2026-01-26T15:47:58+09:00",
+    "updatedAt": "2026-01-26T15:59:34+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

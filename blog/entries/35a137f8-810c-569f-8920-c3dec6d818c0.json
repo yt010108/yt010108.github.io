@@ -1,0 +1,656 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "35a137f8-810c-569f-8920-c3dec6d818c0",
+  "kind": "posts",
+  "title": "[System hacking] FSB",
+  "slug": "tistory-2",
+  "description": "FSB는 FormatStringBug의 약자로 printf를 잘못 사용하여 발생하는 시스템 해킹 취약점이다.FSB에 대해서 알아보자 포멧 스트링이란? printf 함수에서 첫번째 인자의 문자열에 들어가 형식을 지정해주는 문자들로 %d, %x, %s, %p등이 있다.printf(\"%s\", user_input);처럼 사용된다. 만약 printf(\"%s %p %p\", user_input);처럼 포멧 스트링과 인자의 수가 맞지 않다면 어떻게 될까?컴퓨터는 user_input 뒤에 정상적으로 인자가 있다고 생각해 정해진 위치의 값을 출력할 것이다. 그 정해진 위치가 어딜까?함수 호출규약(Calling Convention) Calling Convention은 함수를 호출할 때의 규칙으로 함수의 리턴값, 스택정리..",
+  "category": "Security / Pwnable",
+  "date": "2025-12-12",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2025-12-12T17:44:17+09:00",
+  "updatedAt": "2025-12-16T01:14:31+09:00",
+  "sourceDigest": "593cd6b98244ee4be7674ad5d7aa6a7f5ae18f6661ed77c52927f5ff45309533",
+  "assets": [
+    {
+      "id": "f3a75513-b533-50bd-a8a4-7e1b28ab349c",
+      "name": "tistory-2-f3a75513-b533-50bd-a8a4-7e1b28ab349c.png",
+      "type": "image/png",
+      "path": "/assets/uploads/35a137f8-810c-569f-8920-c3dec6d818c0/f3a75513-b533-50bd-a8a4-7e1b28ab349c.png",
+      "sha": "fa831becc6a8009264620372dce5d0550d18d03a"
+    },
+    {
+      "id": "c3df52eb-2cd1-5634-87e8-0fe8a6accb2d",
+      "name": "tistory-2-c3df52eb-2cd1-5634-87e8-0fe8a6accb2d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/35a137f8-810c-569f-8920-c3dec6d818c0/c3df52eb-2cd1-5634-87e8-0fe8a6accb2d.png",
+      "sha": "ff869b2f644f895580941e080e5ee1d38dda32f6"
+    },
+    {
+      "id": "39d69b55-3572-5f0f-be67-4258ed8c44ba",
+      "name": "tistory-2-39d69b55-3572-5f0f-be67-4258ed8c44ba.png",
+      "type": "image/png",
+      "path": "/assets/uploads/35a137f8-810c-569f-8920-c3dec6d818c0/39d69b55-3572-5f0f-be67-4258ed8c44ba.png",
+      "sha": "9bcbf57f45b223d63e18cb4bf7c99d8d032e4fc3"
+    },
+    {
+      "id": "3f07c477-3a43-549e-9885-7c38c35b6846",
+      "name": "tistory-2-3f07c477-3a43-549e-9885-7c38c35b6846.png",
+      "type": "image/png",
+      "path": "/assets/uploads/35a137f8-810c-569f-8920-c3dec6d818c0/3f07c477-3a43-549e-9885-7c38c35b6846.png",
+      "sha": "b47f34be3ba55ffd3132b14c830277eb4bd80972"
+    },
+    {
+      "id": "9e052802-d287-5e32-a7c7-9d36a9db66dd",
+      "name": "tistory-2-9e052802-d287-5e32-a7c7-9d36a9db66dd.png",
+      "type": "image/png",
+      "path": "/assets/uploads/35a137f8-810c-569f-8920-c3dec6d818c0/9e052802-d287-5e32-a7c7-9d36a9db66dd.png",
+      "sha": "80b42198b38a68395713fbe3f4da26f650856d11"
+    },
+    {
+      "id": "516d6e76-b2a6-5043-bf3d-e5c8d7bce81f",
+      "name": "tistory-2-516d6e76-b2a6-5043-bf3d-e5c8d7bce81f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/35a137f8-810c-569f-8920-c3dec6d818c0/516d6e76-b2a6-5043-bf3d-e5c8d7bce81f.png",
+      "sha": "9c60f60e02f9cbd6001cd8b885e3a1cb30b60e9a"
+    },
+    {
+      "id": "4da1451d-fca0-58cc-bcb1-242d710c1b06",
+      "name": "tistory-2-4da1451d-fca0-58cc-bcb1-242d710c1b06.png",
+      "type": "image/png",
+      "path": "/assets/uploads/35a137f8-810c-569f-8920-c3dec6d818c0/4da1451d-fca0-58cc-bcb1-242d710c1b06.png",
+      "sha": "a97e9e6976b96772f2934786183d316d396fa371"
+    },
+    {
+      "id": "669b4fc6-7cb9-561f-b490-eed2db8cfa54",
+      "name": "tistory-2-669b4fc6-7cb9-561f-b490-eed2db8cfa54.png",
+      "type": "image/png",
+      "path": "/assets/uploads/35a137f8-810c-569f-8920-c3dec6d818c0/669b4fc6-7cb9-561f-b490-eed2db8cfa54.png",
+      "sha": "9e2112f13ed688b889cdc0ded41ca9293e1a36fb"
+    },
+    {
+      "id": "ab49cf69-f168-58a7-99a0-b41c975c40eb",
+      "name": "tistory-2-ab49cf69-f168-58a7-99a0-b41c975c40eb.png",
+      "type": "image/png",
+      "path": "/assets/uploads/35a137f8-810c-569f-8920-c3dec6d818c0/ab49cf69-f168-58a7-99a0-b41c975c40eb.png",
+      "sha": "8a01cf8c63c044ee65c6ca101db6ae7406770fbe"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "FSB는 FormatStringBug의 약자로 printf를 잘못 사용하여 발생하는 시스템 해킹 취약점이다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "FSB에 대해서 알아보자"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "f3a75513-b533-50bd-a8a4-7e1b28ab349c",
+          "src": "/assets/uploads/35a137f8-810c-569f-8920-c3dec6d818c0/f3a75513-b533-50bd-a8a4-7e1b28ab349c.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "포멧 스트링이란? "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "printf 함수에서 첫번째 인자의 문자열에 들어가 형식을 지정해주는 문자들로 %d, %x, %s, %p등이 있다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "printf(\"%s\", user_input);처럼 사용된다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "c3df52eb-2cd1-5634-87e8-0fe8a6accb2d",
+          "src": "/assets/uploads/35a137f8-810c-569f-8920-c3dec6d818c0/c3df52eb-2cd1-5634-87e8-0fe8a6accb2d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정상적인 %s 사용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "만약 printf(\"%s %p %p\", user_input);처럼 포멧 스트링과 인자의 수가 맞지 않다면 어떻게 될까?"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "컴퓨터는 user_input 뒤에 정상적으로 인자가 있다고 생각해 정해진 위치의 값을 출력할 것이다. "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "그 정해진 위치가 어딜까?"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "39d69b55-3572-5f0f-be67-4258ed8c44ba",
+          "src": "/assets/uploads/35a137f8-810c-569f-8920-c3dec6d818c0/39d69b55-3572-5f0f-be67-4258ed8c44ba.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "함수 호출규약("
+          },
+          {
+            "type": "text",
+            "text": "Calling Convention)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Calling Convention은 함수를 호출할 때의 규칙으로 함수의 리턴값, 스택정리, 인자에 대한 규칙이다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "64bit 리눅스에서는 System V AMD64 ABI를 사용한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "인자 전달 방식은 레지스터(rdi, rsi, rdx, rcx, r8, r9) 6개 + 스택을 사용한다. 따라서  printf(\"%s %p %p\\n\", user_input);일 경우에 \"%s %p %p\"가 첫번째 함수 인자로 rdi로 전해지며, user_input은 rsi를 통해서 함수 인자가 전달된다. 이때 %p %p의 각각의 인자는 rdx와 rcx에 저장된 것으로 여겨진다. 따라서  printf(\"%s %p %p\\n\", user_input); 의 출력값은 user_input의 값과 rdx의 주소값, rcx의 주소값이 출력된다."
+          },
+          {
+            "type": "hardBreak"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이를 GDB에서 확인할 수 있는데"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "3f07c477-3a43-549e-9885-7c38c35b6846",
+          "src": "/assets/uploads/35a137f8-810c-569f-8920-c3dec6d818c0/3f07c477-3a43-549e-9885-7c38c35b6846.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "printf전 레지스터의 값"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "9e052802-d287-5e32-a7c7-9d36a9db66dd",
+          "src": "/assets/uploads/35a137f8-810c-569f-8920-c3dec6d818c0/9e052802-d287-5e32-a7c7-9d36a9db66dd.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "출력값"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이를 통해 printf가 레지스터의 값을 출력한다는 것을 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "포멧 스트링 버그(FSB)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 우리는 printf(user_input);과 같은 코드가 있을 때 \"%p %p %p %p ....\"와 같은 스트링을 입력해 레지스터 및 스택을 알아낼 수 있다. 이것을 포멧 스트링 버그라고 한다."
+          },
+          {
+            "type": "hardBreak"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "그런데 printf로 메모리에 쓰는 것도 가능하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "printf에서 %n이라는 형식 지정자는 지금까지 출력된 문자열의 갯수를 특정 메모리에 저장하는 지시자이다. printf(\"12345%n\", &i);, printf(\"%d\", &i);를 통해 i값을 추적해보면 5로 문자열의 길이를 i값에 저장할 수 있다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "만약 printf(user_input)과 같은 코드가 있을 때 user_input에 12345%n을 하면 5의 값이 rsi에 저장된 주소의 값에 저장된다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "이걸 응용하면 원하는 스택의 주소에 값을 작성할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "516d6e76-b2a6-5043-bf3d-e5c8d7bce81f",
+          "src": "/assets/uploads/35a137f8-810c-569f-8920-c3dec6d818c0/516d6e76-b2a6-5043-bf3d-e5c8d7bce81f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "4da1451d-fca0-58cc-bcb1-242d710c1b06",
+          "src": "/assets/uploads/35a137f8-810c-569f-8920-c3dec6d818c0/4da1451d-fca0-58cc-bcb1-242d710c1b06.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "출력값"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "FSB를 사용해 원하는 위치에 값 작성하기 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " 우리는 원하는 스택 위치에 값을 작성하고 싶다. 만약 64bit 리눅스를 사용한다면 6번째 인자부터 스택에 값을 저장하게 된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "printf(\"%p %p %p %p %p 12345%n\")을 하게되면 리턴 주소 아래에 있는 주소에 작성할 수 있다. 하지만 만약 더 큰 값을 저장하고 싶고 더 멀리 있는 스택에 저장하려면 앞의 문자열을 늘리거나 형식 지정자를 더 써야할까?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "답은 아니다. 형식 지정자에는 자리수를 지정할 수 있는 기능이 있다. 형식지정자 사이에 원하는 자릿수 만큼 넣어 사용할 수 있다. 예시로 12345라는 값을 쓰고 싶다면, 실제로 12,345글자를 적는 대신 %12345c%n 같이 작성하여 문자의 개수를 원하는 만큼 작성할 수 있다..또한 $를 사용하면 형식지정자를 많이 사용하지 않고도 원하는 자리에 있는 값을 가져올 수 있다. 예시로 %6$n을 사용해 6번째 인자에 있는 주소를 찾아가 값을 저장한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 우리는 %12345c%5$n과 같은 코드를 printf의 인자로 주게되면 r9에 있는 주소의 값에 12345라는 값을 저장할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "669b4fc6-7cb9-561f-b490-eed2db8cfa54",
+          "src": "/assets/uploads/35a137f8-810c-569f-8920-c3dec6d818c0/669b4fc6-7cb9-561f-b490-eed2db8cfa54.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "pwntool로 fsb 쉽게 작성하기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "pwntool로 fsb를 쉽게 작성할 수 있다. pwntool에 fmstr_payload 함수를 사용해서 쉽게 fsb를 작성할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "fmtstr_payload(offset,{targetaddr:value})형식을 가지며 offset은 printf에 쓰인 첫번째 인자의 값이 해당하는 버퍼로 \"aaaaaaaa %p %p %p ...\"와 같은 값을 입력했을 때, 출력 결과에서 0x6161616161616161 ('a'가 8개)이 출력되는 순서를 세어보면 쉽게 알 수 있다. targetaddr은 값을 적을 주소이고 value는 주소에 적을 값이다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "ab49cf69-f168-58a7-99a0-b41c975c40eb",
+          "src": "/assets/uploads/35a137f8-810c-569f-8920-c3dec6d818c0/ab49cf69-f168-58a7-99a0-b41c975c40eb.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "0x40403c에 0x11223344를 덮어씌우는 fsb 코드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "더보기",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/#/post/35a137f8-810c-569f-8920-c3dec6d818c0"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "b'%68c%12$lln%205c%13$hhn%17c%14$hhn%17c%15$hhnaaa<@@\\x00\\x00\\x00\\x00\\x00?@@\\x00\\x00\\x00\\x00\\x00>@@\\x00\\x00\\x00\\x00\\x00=@@\\x00\\x00\\x00\\x00\\x00'"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "대응 방안 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "FSB를 막는 방법은 의외로 매우 간단하다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "1. 포맷 지정자 필수 사용 사용자의 입력이 출력 함수의 포맷 문자열로 직접 들어가지 않도록 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " "
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "참조"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://jiravvit.tistory.com/entry/64bit%EC%97%90%EC%84%9C-FSB-Format-String-Bug-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-1",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://jiravvit.tistory.com/entry/64bit%EC%97%90%EC%84%9C-FSB-Format-String-Bug-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-1"
+                }
+              }
+            ]
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "https://s1m0hya.tistory.com/19",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://s1m0hya.tistory.com/19"
+                }
+              }
+            ]
+          },
+          {
+            "type": "hardBreak"
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/2",
+    "originalId": "2",
+    "publishedAt": "2025-12-12T17:44:17+09:00",
+    "updatedAt": "2025-12-16T01:14:31+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

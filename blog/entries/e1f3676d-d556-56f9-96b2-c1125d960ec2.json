@@ -1,0 +1,809 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "e1f3676d-d556-56f9-96b2-c1125d960ec2",
+  "kind": "posts",
+  "title": "[System hacking] 시스템 보안 수업 후기",
+  "slug": "tistory-9",
+  "description": "4학년 2학기에 시스템 보안 수업을 들었다.3학년 2학기에 들을까 고민했지만 다른 수업이 많아서안 들었다가 수업을 들은 형의 후기가 너무 재밌고 좋았다고 했고 보안 수업을 듣고 싶어서 들었다. 4학년 1학기에 리버싱 수업을 들었기에, 스택이나 BOF 같은 기본 개념은 익숙했다.운영체제 환경만 윈도우에서 리눅스로 바뀐 느낌이라 초반에는 수월하게 따라갈 수 있었다.수업은 컴퓨터 아키텍쳐, gdb, shellcode, fsb, checksec순으로 진행되었다. 수업은 통해 시스템 해킹과 각종 방어기법, 스택구조등을 알게 되었고 자연스럽게 드림핵에서 문제를 풀고ctf대회에 나가서 잘하고 싶다고 생각하게 만들었다. 블로그에 포스팅도 수업 내용에서 배운 것 위주로 포스팅했었다.하지만 시험이 너무 아쉬워서 후기를 ..",
+  "category": "Security / Pwnable",
+  "date": "2025-12-18",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2025-12-18T00:27:54+09:00",
+  "updatedAt": "2026-02-02T22:05:40+09:00",
+  "sourceDigest": "4b33bb08e8db930020aa380bcd8b1b57a35f2a0e17577f9afdcf9fcdcf4f6bde",
+  "assets": [
+    {
+      "id": "d6b644a1-2d30-5283-8fcf-18cacdbf8a67",
+      "name": "tistory-9-d6b644a1-2d30-5283-8fcf-18cacdbf8a67.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f3676d-d556-56f9-96b2-c1125d960ec2/d6b644a1-2d30-5283-8fcf-18cacdbf8a67.png",
+      "sha": "56412c230062a25e6a82496dae0c167c680ee0da"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "4학년 2학기에 시스템 보안 수업을 들었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "3학년 2학기에 들을까 고민했지만 다른 수업이 많아서"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "안 들었다가 수업을 들은 형의 후기가 너무 재밌고 좋았다고 했고 보안 수업을 듣고 싶어서 들었다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "d6b644a1-2d30-5283-8fcf-18cacdbf8a67",
+          "src": "/assets/uploads/e1f3676d-d556-56f9-96b2-c1125d960ec2/d6b644a1-2d30-5283-8fcf-18cacdbf8a67.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "4학년 1학기에 리버싱 수업을 들었기에, 스택이나 BOF 같은 기본 개념은 익숙했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "운영체제 환경만 윈도우에서 리눅스로 바뀐 느낌이라 초반에는 수월하게 따라갈 수 있었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "수업은 컴퓨터 아키텍쳐, gdb, shellcode, fsb, checksec순으로 진행되었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "수업은 통해 시스템 해킹과 각종 방어기법, 스택구조등을 알게 되었고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자연스럽게 드림핵에서 문제를 풀고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ctf대회에 나가서 잘하고 싶다고 생각하게 만들었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "블로그에 포스팅도 수업 내용에서 배운 것 위주로 포스팅했었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 시험이 너무 아쉬워서 후기를 작성해 본다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CTF형식으로 시험을 봤는데 너무 많이 못 풀어서 아쉽다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "삽질을 너무 많이 했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 시험 준비"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일단 시험 준비는 개념 및 ppt에 있는 예제 문제들을 푸는 걸로 시작했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예제 문제는 수업시간에 설명이 기억나서 생각보다 잘 풀렸다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ppt와 문제를 두 번 정도 보고 드림핵에 문제를 풀면서 공부했었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "근데 드림핵에 문제는 약간 예제 문제랑 느낌이 좀 달랐고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개념은 알았지만 페이로드를 구성하는데 잘못 넣는 것이나 pwntool 사용이 미숙해 이상한 삽질을 많이 했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그래서 삽질을 하기 싫어서 페이로드 중 중요하다고 생각하는 부분만 내가 짜고 안되거나 오류 나는 부분은 gemini를 사용했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "혼자 하려고 시도할 때 오류 나는 부분이나 pwntool미숙한 부분 때문에 시간 잡아먹는 것이 너무 싫었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그래서 시험공부할 때에는 개념들을 블로그에 정리하면서 공부했고 예제 문제들을 다시 풀었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "마지막 시험 전에는 예상 문제에 맞게 페이로드를 여러 개 구성했고 값만 조금 바꾸면 빠르게 페이로드를 구성해"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "빨리 풀어 점수를 획득하는 것을 목표로 했다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " "
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " 2. 시험"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일단 시험의 첫 번째 목표는 첫번째 문제를 가장 먼저 푸는 것이었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "원래 가장 처음 문제가 제일 쉬울 테고 bof문제가 나올 것이라고 확신했다. 그래서 시험이 시작하자마자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "빠르게 코드를 본 후 미리 구성해 둔 페이로드를 변경해 첫 번째로 풀었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제는 그다음이었다. 2번째 문제, 3번째 문제를 아무리 맞게 페이로드를 구성해도 안 풀렸다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "심지어 어려운 것도 아니었다. 마음을 다잡고 5번째 문제가 shellcode부분이고 shellcode문제는"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "상황별로 예상한 문제랑 너무 비슷했다 그래서 이걸 먼저 푸려고 했다. 근데 1시간이 지나도 안 풀렸다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "왜지..."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 일단 마음을 잡고 점수판을 봤다. 2문제 차이였다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "할만하다고 생각했고 다른 문제들을 찾았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "7번에 shellcode가 또 있었다. 그 문제도 30분 동안 잡고 있었다. 안 풀렸다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 정도 되니까 사람들이 푼 문제들을 풀었다. 쉬운 rop문제를 풀고 시간을 봤는데"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "1시간 남아 있었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ctf대회에서 시간제한은 너무 시야를 좁게 한다는 것을 그때 알았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이때까지 ctf대회들은 24시간이나 반나절 정도였다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그런데 너무 한정된 시간과 잘해보려는 마음은 너무 나를 급하게 했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이제 개념 문제들을 풀었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "10문제 정도 있었는데 8문제를 풀고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "2문제가 개념은 아는데 너무 안 풀려서 그냥 포기했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 shellcode문제를 다시 보다가 시험이 끝났다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "결과는 처참했다. 하위 60% 정도의 등수였다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "너무 아쉬웠고 짜증 났다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 복기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "집에 와서 복기를 해봤다. 똑같이 안된다. gemini에 넣어봤다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래는 답변들이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "답변: 이 코드에는 치명적 오류가 있습니다. b'0x90', ex += b'shellcraft.cat() +오타"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "와 진짜 b'0x90'랑 ex += b'shellcraft.cat()이게 틀릴 것이라고 생각도 못했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "몇 번이고 코드를 다시 봤었지만 몰랐었다. 물론 페이로드도 틀렸었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 분석"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "너무 gemini를 의존한 느낌이 들었다. 삽질도 분명 연습이고 실력을 늘려주는데 너무 피했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "높은 점수를 받으려고 시간 압박을 받았다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "미리 짜 둔 코드가 오히려 독이 되었다. 많아서 헷갈렸다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "다른 사람들이 푼 문제를 풀걸 그랬다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "막혔을 때 시야가 좁아졌다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. 결론 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "1번이 가장 컸다고 생각한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "결국에 내가 실력과 연습이 부족하게 시험을 본 것이고 그게 시험에서 나왔다고 생각한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제를 보고 삽질하는 게 너무 중요하다고 다시 한번 생각하게 되는 계기가 되었고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "너무 ai에 의존했다는 것을 다시 한번 깨닫게 되었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번이 그냥 학교 시험이라서 다행이라는 생각과 다음에 ctf 대회나 중요한 시험이 있으면"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "더 열심히 그리고 잘 연습해서 준비해야겠다고 생각했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 문제 풀다가 막혔을 때 스스로 대처법 같은 것이 있으면 좋겠다고 생각했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "시스템 보안 수업은 유익하고 재밌었지만 시험을 너무 못 봐서 아쉽다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "AI에 대한 의존보다는 스스로 하자고 생각하게 되었다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "다음에 더 열심히 해야지"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/9",
+    "originalId": "9",
+    "publishedAt": "2025-12-18T00:27:54+09:00",
+    "updatedAt": "2026-02-02T22:05:40+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

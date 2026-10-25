@@ -204,7 +204,7 @@ editor = new Editor({
   element: $("rich-editor"), editable: false,
   extensions: [
     StarterKit.configure({
-      heading: { levels: [1, 2, 3] }, underline: false,
+      heading: { levels: [1, 2, 3, 4, 5, 6] }, underline: false,
       link: { openOnClick: false, HTMLAttributes: { target: "_blank", rel: "noopener noreferrer" } }
     }),
     DraftImage,
@@ -530,7 +530,7 @@ async function preview() {
     $("preview-body").innerHTML = renderDocument(data.doc, { assets: data.assets, preview: true }).html;
     const toc = $("preview-toc");
     toc.replaceChildren();
-    const headings = [...$("preview-body").querySelectorAll("h1, h2, h3")];
+    const headings = [...$("preview-body").querySelectorAll("h1, h2, h3, h4, h5, h6")];
     const baseLevel = Math.min(...headings.map(heading => Number(heading.tagName.slice(1))));
     headings.forEach((heading, index) => {
       heading.id = "preview-section-" + index;

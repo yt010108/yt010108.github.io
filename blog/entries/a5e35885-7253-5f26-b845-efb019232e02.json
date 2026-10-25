@@ -1,0 +1,292 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "a5e35885-7253-5f26-b845-efb019232e02",
+  "kind": "posts",
+  "title": "[webhacking.kr] old-14 문제",
+  "slug": "tistory-41",
+  "description": "1. 문제 정보문제 번호 : old -14문제 점수 : 10점2. 문제 분석입력하는 박스하나 나오고 check를 통해 입력받는다. 페이지 소스를 보니onclick을 하면 ck함수를 실행한다. ck함수는 입력한 값과 ul값과 같은 지 검사한다.ul은 .kr의 위치값에 30을 곱한 값이며 이건 자바스크립트 콘솔에서 계산할 수 있다. 3. 풀이ul의 인덱스값을 알기 위해서 개발자 도구 console창에 코드를 입력하면 540이 나온다.540을 넣고 check를 눌러보면 문제가 풀린다. 4. 요약 소스 코드의 ck() 함수를 분석하여 현재 URL을 기반으로 정답을 계산하는 로직을 파악했다.로직은 URL에서 \".kr\" 문자열의 인덱스를 찾아 30을 곱하는 방식이었다.개발자 도구 콘솔에서 해당 연산을 직접 실행해..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-20",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-20T18:19:17+09:00",
+  "updatedAt": "2026-01-20T18:19:35+09:00",
+  "sourceDigest": "42e945e0e2e19991b813f415fb09d6c8f4607c56385671af01239594a6b14b1e",
+  "assets": [
+    {
+      "id": "d67463da-d753-5cb0-8b70-0a588d74e5a5",
+      "name": "tistory-41-d67463da-d753-5cb0-8b70-0a588d74e5a5.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a5e35885-7253-5f26-b845-efb019232e02/d67463da-d753-5cb0-8b70-0a588d74e5a5.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "c80e45cb-5fb1-5fdc-9207-a23f43838506",
+      "name": "tistory-41-c80e45cb-5fb1-5fdc-9207-a23f43838506.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a5e35885-7253-5f26-b845-efb019232e02/c80e45cb-5fb1-5fdc-9207-a23f43838506.png",
+      "sha": "bb231430e0c4e5943826440f0e90dfcc54a90b2d"
+    },
+    {
+      "id": "41122190-d0a7-5633-8768-df1568fdf927",
+      "name": "tistory-41-41122190-d0a7-5633-8768-df1568fdf927.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a5e35885-7253-5f26-b845-efb019232e02/41122190-d0a7-5633-8768-df1568fdf927.png",
+      "sha": "164e3012443f9e66898563b492a10a395c0b696d"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "d67463da-d753-5cb0-8b70-0a588d74e5a5",
+          "src": "/assets/uploads/a5e35885-7253-5f26-b845-efb019232e02/d67463da-d753-5cb0-8b70-0a588d74e5a5.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -14"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 10점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "c80e45cb-5fb1-5fdc-9207-a23f43838506",
+          "src": "/assets/uploads/a5e35885-7253-5f26-b845-efb019232e02/c80e45cb-5fb1-5fdc-9207-a23f43838506.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "입력하는 박스하나 나오고 check를 통해 입력받는다. 페이지 소스를 보니"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<html>\n<head>\n<title>Challenge 14</title>\n<style type=\"text/css\">\nbody { background:black; color:white; font-size:10pt; }\n</style>\n</head>\n<body>\n<br><br>\n<form name=pw onsubmit=\"ck();return false\"><input type=text name=input_pwd><input type=button value=\"check\" onclick=ck()></form>\n<script>\nfunction ck(){\n  var ul=document.URL;\n  ul=ul.indexOf(\".kr\");\n  ul=ul*30;\n  if(ul==pw.input_pwd.value) { location.href=\"?\"+ul*pw.input_pwd.value; }\n  else { alert(\"Wrong\"); }\n  return false;\n}\n</script>\n</body>\n</html>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "onclick을 하면 ck함수를 실행한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ck함수는 입력한 값과 ul값과 같은 지 검사한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ul은 .kr의 위치값에 30을 곱한 값이며 이건 자바스크립트 콘솔에서 계산할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ul의 인덱스값을 알기 위해서 개발자 도구 console창에 코드를 입력하면 540이 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "41122190-d0a7-5633-8768-df1568fdf927",
+          "src": "/assets/uploads/a5e35885-7253-5f26-b845-efb019232e02/41122190-d0a7-5633-8768-df1568fdf927.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "540을 넣고 check를 눌러보면 문제가 풀린다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "소스 코드의 ck() 함수를 분석하여 현재 URL을 기반으로 정답을 계산하는 로직을 파악했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "로직은 URL에서 \".kr\" 문자열의 인덱스를 찾아 30을 곱하는 방식이었다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "개발자 도구 콘솔에서 해당 연산을 직접 실행해 얻은 값(540)을 입력하여 해결했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/41",
+    "originalId": "41",
+    "publishedAt": "2026-01-20T18:19:17+09:00",
+    "updatedAt": "2026-01-20T18:19:35+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

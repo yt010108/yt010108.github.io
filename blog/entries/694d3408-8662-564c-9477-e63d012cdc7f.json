@@ -1,0 +1,387 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "694d3408-8662-564c-9477-e63d012cdc7f",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-11 문제",
+  "slug": "tistory-76",
+  "description": "1. 문제 정보문제 번호 : old -11문제 점수 : 30점 2. 문제 분석문제에 들어가면 wrong이라고 뜨고 아무것도 안뜬다 소스코드를 봐보자 Wrong\"); echo(\"\");?>view-source 소스코드에서는 val을 입력받아 preg_match즉 정규식을 받아서 처리하고 있다. 알맞은 정규식을 val로 보내 통과해보자3. 풀이$pat=\"/[1-3][a-f]{5}_.*$_SERVER[REMOTE_ADDR].*\\tp\\ta\\ts\\ts/\"; 을 통과하려면 [1-3] 문자열의 시작은 숫자 1, 2, 3 중 하나여야 한다.[a-f]{5} a부터 f 사이의 소문자 알파벳이 정확히 5개 이어져야 한다._ 밑줄(_) 문자가 하나 있어야 한다..* 줄바꿈을 제외한 임의의 문자가 0개 이상 올 수 있..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-02-02",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-02-02T16:06:39+09:00",
+  "updatedAt": "2026-02-02T16:06:39+09:00",
+  "sourceDigest": "863d4a84e0232a428d8561bf544c1385e6e73b06bf0eae6ff5171eb6c6f9f9da",
+  "assets": [
+    {
+      "id": "5a7831c2-5d16-582a-955c-d1c5bfef08b3",
+      "name": "tistory-76-5a7831c2-5d16-582a-955c-d1c5bfef08b3.png",
+      "type": "image/png",
+      "path": "/assets/uploads/694d3408-8662-564c-9477-e63d012cdc7f/5a7831c2-5d16-582a-955c-d1c5bfef08b3.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "847234a9-bd2f-58ef-80f1-e23499aa4183",
+      "name": "tistory-76-847234a9-bd2f-58ef-80f1-e23499aa4183.png",
+      "type": "image/png",
+      "path": "/assets/uploads/694d3408-8662-564c-9477-e63d012cdc7f/847234a9-bd2f-58ef-80f1-e23499aa4183.png",
+      "sha": "7396a6faec1ac899aa88746339696909894f98df"
+    },
+    {
+      "id": "2a05fdf3-46d8-5280-842f-5b4d4d37c8d2",
+      "name": "tistory-76-2a05fdf3-46d8-5280-842f-5b4d4d37c8d2.png",
+      "type": "image/png",
+      "path": "/assets/uploads/694d3408-8662-564c-9477-e63d012cdc7f/2a05fdf3-46d8-5280-842f-5b4d4d37c8d2.png",
+      "sha": "c6e399bdc74c53078fd2e04a72ab6aa878026aae"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "5a7831c2-5d16-582a-955c-d1c5bfef08b3",
+          "src": "/assets/uploads/694d3408-8662-564c-9477-e63d012cdc7f/5a7831c2-5d16-582a-955c-d1c5bfef08b3.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -11"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 30점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제에 들어가면 wrong이라고 뜨고 아무것도 안뜬다"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "847234a9-bd2f-58ef-80f1-e23499aa4183",
+          "src": "/assets/uploads/694d3408-8662-564c-9477-e63d012cdc7f/847234a9-bd2f-58ef-80f1-e23499aa4183.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "소스코드를 봐보자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n  include \"../../config.php\";\n  if($_GET['view_source']) view_source();\n?><html>\n<head>\n<title>Challenge 11</title>\n<style type=\"text/css\">\nbody { background:black; color:white; font-size:10pt; }\n</style>\n</head>\n<body>\n<center>\n<br><br>\n<?php\n  $pat=\"/[1-3][a-f]{5}_.*$_SERVER[REMOTE_ADDR].*\\tp\\ta\\ts\\ts/\";\n  if(preg_match($pat,$_GET['val'])){\n    solve(11);\n  }\n  else echo(\"<h2>Wrong</h2>\");\n  echo(\"<br><br>\");\n?>\n<a href=./?view_source=1>view-source</a>\n</center>\n</body>\n</html>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "소스코드에서는 val을 입력받아 preg_match즉 정규식을 받아서 처리하고 있다. 알맞은 정규식을 val로 보내 통과해보자"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "$pat=\"/[1-3][a-f]{5}_.*$_SERVER[REMOTE_ADDR].*\\tp\\ta\\ts\\ts/\"; 을 통과하려면"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "[1-3] 문자열의 시작은 숫자 1, 2, 3 중 하나여야 한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "[a-f]{5} a부터 f 사이의 소문자 알파벳이 정확히 5개 이어져야 한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "_ 밑줄(_) 문자가 하나 있어야 한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": ".* 줄바꿈을 제외한 임의의 문자가 0개 이상 올 수 있다. 즉, 밑줄과 IP 주소 사이에 아무 내용이 없어도 되고, 쓰레기 값이 들어가도 된다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "$_SERVER[REMOTE_ADDR] 앞서 설명했듯 접속자의 IP 주소가 정확하게 일치해야 한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "\\tp\\ta\\ts\\ts 이 부분은 탭(Tab) 문자와 알파벳 p, a, s, s가 번갈아 나오는 구조다. (URL인코딩에서 %09이다)"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 값을 입력하면"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "2a05fdf3-46d8-5280-842f-5b4d4d37c8d2",
+          "src": "/assets/uploads/694d3408-8662-564c-9477-e63d012cdc7f/2a05fdf3-46d8-5280-842f-5b4d4d37c8d2.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "PHP의 큰따옴표 문자열 처리 특성상 정규식 내부의 서버 변수가 실제 접속자의 IP로 치환되어 검사된다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "정해진 숫자 범위와 문자 반복 횟수 등 정규표현식의 제약 조건을 정확히 분석하여 오타 없는 문자열을 구성해야 한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "탭과 같은 제어 문자는 브라우저 입력 시 URL 인코딩된 형태인 %09로 변환하여 전송해야 정상적으로 인식된다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/76",
+    "originalId": "76",
+    "publishedAt": "2026-02-02T16:06:39+09:00",
+    "updatedAt": "2026-02-02T16:06:39+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

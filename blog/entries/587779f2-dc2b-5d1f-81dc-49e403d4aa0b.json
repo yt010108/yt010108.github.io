@@ -1,0 +1,1902 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "587779f2-dc2b-5d1f-81dc-49e403d4aa0b",
+  "kind": "posts",
+  "title": "Local LLM Fine-tuning과 PAIR Jailbreak 논문 분석",
+  "slug": "tistory-133",
+  "description": "0. 개요최근 LLM을 사용하다 보면 예전보다 보안 관련 질문에 대한 제한이 많이 강해졌다는 것을 느낄 수 있다.악성코드 작성이나 시스템 공격처럼 명확하게 위험한 요청뿐만 아니라, jailbreak prompt를 만들어 달라는 요청 자체도 대부분 거부된다.처음에는 LLM Jailbreak라고 하면 단순히 프롬프트를 잘 작성해서 안전 정책을 우회하는 문제라고 생각했다.하지만 관련 논문들을 읽어보면서 생각이 조금 바뀌었다.LLM의 안전성을 볼 때 단순히\"어떤 프롬프트를 입력하면 뚫리는가?\"만 볼 것이 아니라,1. 모델을 추가 학습하면 기존 안전 정렬이 유지되는가?2. 모델 내부를 전혀 모르는 상황에서도 응답만 관찰해서 안전 정책을 우회할 수 있는가?두 가지 관점으로 볼 수 있었다.그래서 이번에는 다음 두..",
+  "category": "Security / Research",
+  "date": "2026-08-10",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-08-10T10:35:24+09:00",
+  "updatedAt": "2026-08-12T10:00:36+09:00",
+  "sourceDigest": "f626328700d1716f02a3e9e36398645380b097a0bbe1fabbb175d2083c2c8363",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Fine-tuning_Aligned_Language_Models.pdf",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/assets/imported/tistory/252e77d3e7b7f340c5eedabcb4c946f05c3218d14b7638fa22b01569f8bda3d4.pdf"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Jailbreaking_Black_Box.pdf",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/assets/imported/tistory/590bf40aa58061928f54d01b7d53f0d5141bb2ecf4f01483c6849423934f44e4.pdf"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "0. 개요"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "최근 LLM을 사용하다 보면 예전보다 보안 관련 질문에 대한 제한이 많이 강해졌다는 것을 느낄 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "악성코드 작성이나 시스템 공격처럼 명확하게 위험한 요청뿐만 아니라, jailbreak prompt를 만들어 달라는 요청 자체도 대부분 거부된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "처음에는 LLM Jailbreak라고 하면 단순히 프롬프트를 잘 작성해서 안전 정책을 우회하는 문제라고 생각했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 관련 논문들을 읽어보면서 생각이 조금 바뀌었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "LLM의 안전성을 볼 때 단순히"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "\"어떤 프롬프트를 입력하면 뚫리는가?\"\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "만 볼 것이 아니라,"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 모델을 추가 학습하면 기존 안전 정렬이 유지되는가?\n\n2. 모델 내부를 전혀 모르는 상황에서도\n   응답만 관찰해서 안전 정책을 우회할 수 있는가?\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "두 가지 관점으로 볼 수 있었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그래서 이번에는 다음 두 논문을 같이 살펴봤다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Fine-tuning Aligned Language Models Compromises Safety,\nEven When Users Do Not Intend To!\n\nJailbreaking Black Box Large Language Models in Twenty Queries\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "두 논문 모두 LLM의 Guardrail이 절대적인 방어선은 아니라는 점을 다루지만 공격이 발생하는 위치가 서로 다르다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "첫 번째 논문은 Fine-tuning 단계,"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "두 번째 논문은 Prompt 입력 단계에서의 문제를 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. LLM의 Alignment와 Guardrail"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "먼저 Alignment가 무엇인지 볼 필요가 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "LLM은 기본적으로 대량의 데이터를 이용해 다음 token을 예측하도록 학습된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 이렇게 학습한 모델을 그대로 제공하면 위험하거나 부적절한 요청에도 답변할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그래서 실제 서비스에 사용되는 모델에는 추가적인 안전 정렬 과정이 적용된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "간단하게 표현하면 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Pre-trained LLM\n      ↓\nSafety Alignment\n      ↓\nAligned LLM\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Alignment가 적용된 모델은 위험한 요청이 들어왔을 때"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "요청 거부\n안전한 대안 제시\n위험한 내용 생략\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "등의 행동을 하도록 학습된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이런 정책을 일반적으로 Guardrail이라고 부른다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제는 이 Guardrail이 모델에 한 번 적용됐다고 해서 영구적으로 유지되는가 하는 것이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. Fine-tuning Aligned Language Models"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "첫 번째로 본 논문은"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Fine-tuning Aligned Language Models Compromises Safety, Even When Users Do Not Intend To!"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "논문의 핵심 질문은 상당히 단순하다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "이미 안전하게 정렬된 모델을\n사용자가 다시 Fine-tuning하면\n기존 안전성이 그대로 유지될까?\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "결론부터 보면 그렇지 않을 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. Fine-tuning과 Alignment"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Fine-tuning은 이미 학습된 모델을 특정 목적에 맞게 추가 학습하는 과정이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 기본 LLM을 가져와서"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "법률 문서\n의료 문서\n사내 데이터\n코딩 데이터\n특정 말투\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "등을 학습시키면 특정 업무에 더 적합한 모델을 만들 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제는 Fine-tuning이 모델의 지식만 바꾸는 것이 아니라는 점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모델의 전체적인 응답 경향도 같이 변할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉,"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Aligned Model\n      ↓\nFine-tuning\n      ↓\nBehavior Change\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가 발생할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 이 과정에서 기존의 안전 정렬까지 약해질 가능성이 생긴다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 사용자가 악의적이지 않아도 문제가 될 수 있다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 논문에서 흥미로운 부분은 Fine-tuning 데이터가 반드시 악의적일 필요가 없다는 점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "보통 Jailbreak나 LLM 공격이라고 하면 공격자가 의도적으로 모델을 망가뜨린다고 생각하기 쉽다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 실제 환경에서는 모델을 특정 업무에 맞추기 위해 일반적인 Fine-tuning을 진행할 수도 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그런데 추가 학습 과정에서 기존 Alignment가 약해진다면 문제가 달라진다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Base Model\n\n      ↓\n\nSafety Alignment\n\n      ↓\n\n안전한 모델\n\n      ↓\n\nFine-tuning\n\n      ↓\n\n기존 Guardrail 약화 가능\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉 Fine-tuning 가능한 모델에서는"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "\"배포 당시 안전했는가?\"\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "만 확인해서는 부족하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Fine-tuning 이후에도 동일한 안전 정책이 유지되는지를 다시 확인해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. 오픈 모델에서 더 생각해볼 문제"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 부분은 오픈 모델을 사용하면서 특히 관심이 갔다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Gemma, Llama 같은 오픈 모델은 사용자가 직접 모델을 실행하고 Fine-tuning할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이것은 상당히 큰 장점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "내 데이터를 학습시킬 수도 있고 특정 작업에 맞게 모델을 최적화할 수도 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 보안 관점에서는 그만큼 새로운 공격면이 생긴다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Closed Model\n→ 사용자가 모델 weight를 직접 변경하기 어려움\n\nOpen Model\n→ 사용자가 Fine-tuning 가능\n→ 모델 행동 자체를 변경할 수 있음\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 Open LLM을 사용할 때는 Fine-tuning 성능만 볼 것이 아니라 Fine-tuning 이후 Safety Evaluation도 같이 진행해야 한다고 생각한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6. Jailbreaking Black Box Large Language Models"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "두 번째로 본 논문은"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Jailbreaking Black Box Large Language Models in Twenty Queries"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 논문에서는 PAIR라는 방식을 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "첫 번째 논문과 달리 모델 자체를 수정하지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "오직 모델에게"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Prompt 입력\nResponse 확인\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "만 가능하다고 가정한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "7. Black Box 공격"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Black Box라는 말 그대로 모델 내부를 알 수 없는 환경이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공격자는 다음 정보를 알 수 없다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Model Parameter\nGradient\nTraining Data\nModel Architecture\nSafety Training Method\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대신 확인할 수 있는 것은"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "내가 입력한 Prompt\n모델이 출력한 Response\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "뿐이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실제 상용 LLM API 역시 대부분 이런 구조다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사용자는 모델 내부에는 접근할 수 없고 API를 통해 입력과 출력만 확인할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그래서 이 논문이 실제 LLM 서비스의 보안 문제와 상당히 가깝다고 생각했다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "8. PAIR"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PAIR의 핵심은 jailbreak prompt 하나를 사람이 직접 만드는 것이 아니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공격용 LLM을 하나 더 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "구조를 단순화하면 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Attacker LLM\n      ↓\nPrompt 생성\n\n      ↓\n\nTarget LLM\n      ↓\nResponse\n\n      ↓\n\nAttacker LLM\n      ↓\nResponse 분석\n\n      ↓\n\n새 Prompt 생성\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Target이 요청을 거부하면 Attacker가 그 응답을 보고 프롬프트를 수정한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 다시 Target에 전달한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 과정을 반복하면서 Guardrail의 경계를 탐색한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "9. 사람이 하던 Prompt Engineering을 자동화한다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PAIR를 보면서 가장 흥미로웠던 부분이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기존 Jailbreak는 보통 사람이 직접 프롬프트를 만들었다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Prompt 작성\n\n↓ 실패\n\nPrompt 수정\n\n↓ 실패\n\n다른 표현 사용\n\n↓ 성공\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PAIR에서는 이 과정을 LLM에게 맡긴다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Attacker LLM\n\n↓ Prompt\n\nTarget LLM\n\n↓ Response\n\nAttacker LLM\n\n↓ Prompt 개선\n\nTarget LLM\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉 공격자가 직접 jailbreak prompt를 계속 연구하는 것이 아니라 Attacker LLM이 자동으로 Prompt Search를 수행한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이런 구조는 Jailbreak뿐만 아니라 앞으로의 LLM Red Teaming 방식과도 연결될 수 있다고 생각한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "10. Fine-tuning과 PAIR의 차이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "두 논문을 같이 본 이유는 둘 다 LLM의 안전 정책을 다루지만 접근 방법이 완전히 다르기 때문이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정리하면 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "구분Fine-tuningPAIR"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "공격 위치"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "학습 단계"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "추론 단계"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "모델 수정"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "O"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "X"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Weight 접근"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "필요"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "필요 없음"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Prompt 반복"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "필요 없음"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "핵심"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Black Box 환경"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "어려움"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "가능"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "주요 문제"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Alignment 약화"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Guardrail 우회 탐색"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Fine-tuning은 모델 자체를 변경한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Model\n ↓\nTraining\n ↓\nModel Behavior 변경\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "반면 PAIR는 Target Model을 전혀 변경하지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Prompt\n ↓\nModel\n ↓\nResponse\n ↓\nPrompt 수정\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "결국 같은 LLM Safety 문제라도 서로 다른 Attack Surface라고 볼 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "11. 두 공격을 연결해서 보면"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "두 논문을 따로 보는 것보다 같이 놓고 보면 LLM의 안전성 문제를 더 쉽게 이해할 수 있었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "LLM이 처음 배포될 때 안전하게 Alignment되어 있다고 가정해보자."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "LLM\n ↓\nSafety Alignment\n ↓\nSafe Model\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "여기서 첫 번째 문제가 발생한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Safe Model\n ↓\nFine-tuning\n ↓\nAlignment 약화 가능\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 모델이 배포된 이후에는 두 번째 문제가 존재한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Model\n ↑\n반복적으로 Prompt 입력\n ↑\nPAIR\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "결국 모델의 Safety를 평가하려면 단순히 하나의 시점만 확인해서는 부족하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "내가 보기에는 크게 다음 두 단계를 모두 봐야 한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Training Security\n\nFine-tuning 이후에도\nSafety Alignment가 유지되는가?\n\n\nInference Security\n\n실제 사용 환경에서\nPrompt 공격을 얼마나 견딜 수 있는가?\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "12. PAIR 직접 구현"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "논문을 읽은 이후 실제로 PAIR 환경도 구성해봤다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PAIR 구현 과정은 이미 이전 글에서 별도로 정리했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "관련 글:"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PAIR 구현 글",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/#/post/b92cd837-a2c9-5c4f-b18a-e57fc16d2eac"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "해당 글에서는 논문 저자가 공개한 JailbreakingLLMs를 기반으로 기존 PAIR loop를 유지하면서 Ollama 환경의 모델을 Attacker / Target으로 연결했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "구현 구조는 대략 다음과 같이 구성했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Fine-tuned Gemma\n     │\n     │ Attacker\n     ▼\nPAIR\n     │\n     │ Prompt\n     ▼\nTarget Gemma\n     │\n     │ Response\n     ▼\nJudge\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "구체적인 환경 구성이나 실행 과정은 132번 글에서 다뤘기 때문에 이번 글에서는 생략한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "13. 논문을 읽고 생각한 점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "처음에는 LLM Jailbreak를 상당히 단순하게 생각했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Guardrail이 있다.\n\n↓\n\n특별한 Prompt를 넣는다.\n\n↓\n\nGuardrail을 우회한다.\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정도의 문제라고 생각했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 두 논문을 같이 보고 나니 Safety 문제는 훨씬 넓었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모델이 안전하게 만들어졌더라도"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Fine-tuning으로 행동이 변할 수 있고\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모델 자체를 건드리지 않더라도"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Black Box 환경에서 입력을 반복적으로 탐색할 수 있다.\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉 Guardrail 하나만으로 LLM Safety를 해결하기 어렵다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "특히 앞으로 LLM Agent가 발전하면 공격 과정 역시 Agent화될 가능성이 크다고 생각한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "현재도 PAIR처럼"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Attacker\nTarget\nJudge\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "구조를 이용하면 사람이 모든 Prompt를 직접 만들 필요가 없다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Attacker가 공격을 생성하고 Target의 응답을 관찰하고 Judge가 결과를 평가하는 구조로 자동화할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "LLM Red Teaming도 결국 이런 방향으로 발전할 가능성이 있다고 본다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "14. 마무리"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번에는 두 개의 LLM Safety 관련 논문을 살펴봤다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Fine-tuning Aligned Language Models Compromises Safety,\nEven When Users Do Not Intend To!\n\nJailbreaking Black Box Large Language Models in Twenty Queries\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "첫 번째 논문에서는 안전하게 Alignment된 모델도 Fine-tuning 이후 Safety가 약해질 수 있다는 문제를 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "두 번째 논문에서는 모델 내부에 접근하지 못하는 Black Box 환경에서도 PAIR를 이용해 반복적으로 Prompt를 개선하면서 Guardrail을 탐색할 수 있다는 것을 보여준다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "두 논문을 연결하면 LLM Safety를 다음과 같이 볼 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Training 단계\nFine-tuning으로 Alignment가 유지되는가?\n\n        +\n\nInference 단계\nPrompt 기반 공격을 얼마나 견딜 수 있는가?\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "결국 LLM의 보안성을 확인하려면 단순히 모델이 위험한 질문 하나를 거부하는지만 확인해서는 부족하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Fine-tuning 이후의 Safety Evaluation과 실제 Black Box 환경에서의 Red Teaming을 모두 진행해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개인적으로 이번 논문을 구현하면서 가장 흥미로웠던 점은 LLM 공격 역시 점점 자동화되고 있다는 부분이었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PAIR처럼 LLM이 다른 LLM의 응답을 분석하고 다음 공격을 만드는 구조를 보면 앞으로 LLM Security Research에서는 Agent 기반 Red Teaming도 중요한 분야가 될 것 같다."
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/133",
+    "originalId": "133",
+    "publishedAt": "2026-08-10T10:35:24+09:00",
+    "updatedAt": "2026-08-12T10:00:36+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

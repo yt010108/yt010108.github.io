@@ -1,0 +1,51 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "2d9cf327-633b-558f-bc53-68517ee3874d",
+  "kind": "posts",
+  "title": "네트워크 관리사 2급 취득 후기",
+  "slug": "tistory-7",
+  "description": "",
+  "category": "Certificate",
+  "date": "2025-12-15",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2025-12-15T12:27:43+09:00",
+  "updatedAt": "2026-08-06T00:06:25+09:00",
+  "sourceDigest": "ea68923c90e7d69645feed0be7757916c895b3626212ac58b68de89bc68e1d49",
+  "assets": [
+    {
+      "id": "3148c9cd-f764-504c-9911-4cb76d46d02c",
+      "name": "tistory-7-3148c9cd-f764-504c-9911-4cb76d46d02c.png",
+      "type": "image/png",
+      "path": "/assets/uploads/2d9cf327-633b-558f-bc53-68517ee3874d/3148c9cd-f764-504c-9911-4cb76d46d02c.png",
+      "sha": "e1a706eecc30ee419fe61ffe3ab282458114fd13"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "3148c9cd-f764-504c-9911-4cb76d46d02c",
+          "src": "/assets/uploads/2d9cf327-633b-558f-bc53-68517ee3874d/3148c9cd-f764-504c-9911-4cb76d46d02c.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/7",
+    "originalId": "7",
+    "publishedAt": "2025-12-15T12:27:43+09:00",
+    "updatedAt": "2026-08-06T00:06:25+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

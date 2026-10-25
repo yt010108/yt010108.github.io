@@ -1,0 +1,353 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "8598bc57-060d-5c30-97eb-2959c5d13ea5",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-58 문제",
+  "slug": "tistory-59",
+  "description": "1. 문제 정보문제 번호 : old -58문제 점수 : 15점문제 유형: Insecure Client-Side Control 2. 문제 분석58번 문제에 들어가면 send버튼 하나 있고 입력창이 나온다. 입력창에 ls, asd, cd 같은 명령어들을 입력하다가 flag를 입력하니 permission이 부족하다는 것을 알게 되었다. 소스코드를 보자 Send 소스코드는 jquery를 사용해서 socket통신을 하는 것을 알 수있다.socket.emit('cmd',username+\":\"+$('#m').val() 부분에서 user name이 guest로 들어가는 것을 알 수 있다.3. 풀이burp suit로 웹 소켓 메시지를 잡아보니 guest..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-26",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-26T18:10:40+09:00",
+  "updatedAt": "2026-01-26T18:10:40+09:00",
+  "sourceDigest": "68bd41eb1b76eb5fea38219e20ff7dc00e11855e05c8ed9538efc52207767b4b",
+  "assets": [
+    {
+      "id": "bfd3dafd-a67e-5460-a624-35edc23516e6",
+      "name": "tistory-59-bfd3dafd-a67e-5460-a624-35edc23516e6.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8598bc57-060d-5c30-97eb-2959c5d13ea5/bfd3dafd-a67e-5460-a624-35edc23516e6.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "a6927c48-dc10-51f1-bf54-1f42a2d97383",
+      "name": "tistory-59-a6927c48-dc10-51f1-bf54-1f42a2d97383.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8598bc57-060d-5c30-97eb-2959c5d13ea5/a6927c48-dc10-51f1-bf54-1f42a2d97383.png",
+      "sha": "5eb7b62e0050244f398e8682777839b9866b07ab"
+    },
+    {
+      "id": "79ab0d7b-c2dd-5b8b-bdaf-7f68b300c2ab",
+      "name": "tistory-59-79ab0d7b-c2dd-5b8b-bdaf-7f68b300c2ab.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8598bc57-060d-5c30-97eb-2959c5d13ea5/79ab0d7b-c2dd-5b8b-bdaf-7f68b300c2ab.png",
+      "sha": "229660310f21548ccee4b2f334094fd0ec7c7e77"
+    },
+    {
+      "id": "a967b0df-089c-5957-9d95-3e701044185f",
+      "name": "tistory-59-a967b0df-089c-5957-9d95-3e701044185f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8598bc57-060d-5c30-97eb-2959c5d13ea5/a967b0df-089c-5957-9d95-3e701044185f.png",
+      "sha": "fd7cc03c0e736e8151a6ab76941e37ad8a0b06ba"
+    },
+    {
+      "id": "57c560c7-53dd-58bb-bba7-c8525dd8c609",
+      "name": "tistory-59-57c560c7-53dd-58bb-bba7-c8525dd8c609.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8598bc57-060d-5c30-97eb-2959c5d13ea5/57c560c7-53dd-58bb-bba7-c8525dd8c609.png",
+      "sha": "138a842b34acca22b58cf1a636c4bc94e4168290"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "bfd3dafd-a67e-5460-a624-35edc23516e6",
+          "src": "/assets/uploads/8598bc57-060d-5c30-97eb-2959c5d13ea5/bfd3dafd-a67e-5460-a624-35edc23516e6.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -58"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 15점"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 유형: Insecure Client-Side Control"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "58번 문제에 들어가면 send버튼 하나 있고 입력창이 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "a6927c48-dc10-51f1-bf54-1f42a2d97383",
+          "src": "/assets/uploads/8598bc57-060d-5c30-97eb-2959c5d13ea5/a6927c48-dc10-51f1-bf54-1f42a2d97383.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "입력창에 ls, asd, cd 같은 명령어들을 입력하다가 flag를 입력하니 permission이 부족하다는 것을 알게 되었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "79ab0d7b-c2dd-5b8b-bdaf-7f68b300c2ab",
+          "src": "/assets/uploads/8598bc57-060d-5c30-97eb-2959c5d13ea5/79ab0d7b-c2dd-5b8b-bdaf-7f68b300c2ab.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "소스코드를 보자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<!doctype html>\n<html>\n  <head>\n    <title>USER Console</title>\n    <style>\n      * { margin: 0; padding: 0; box-sizing: border-box; }\n      body { font: 13px Helvetica, Arial; }\n      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }\n      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }\n      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }\n      #messages { list-style-type: none; margin: 0; padding: 0; }\n      #messages li { padding: 5px 10px; }\n      #messages li:nth-child(odd) { background: #eee; }\n    </style>\n  </head>\n  <body>\n    <ul id=\"messages\"></ul>\n    <form action=\"\">\n      <input id=\"m\" autocomplete=\"off\" /><button>Send</button>\n    </form>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js\"></script>\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>\n    <script>\n    $(function () {\n      var username = \"guest\";\n      var socket = io();\n      $('form').submit(function(e){\n        e.preventDefault();\n        socket.emit('cmd',username+\":\"+$('#m').val());\n        $('#m').val('');\n        return false;\n      });\n      socket.on('cmd', function(msg){\n        $('#messages').append($('<li>').text(msg));\n      });\n    });\n    </script>\n  </body>\n</html>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "소스코드는 jquery를 사용해서 socket통신을 하는 것을 알 수있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "socket.emit('cmd',username+\":\"+$('#m').val() 부분에서 user name이 guest로 들어가는 것을 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "a967b0df-089c-5957-9d95-3e701044185f",
+          "src": "/assets/uploads/8598bc57-060d-5c30-97eb-2959c5d13ea5/a967b0df-089c-5957-9d95-3e701044185f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "burp suit로 웹 소켓 메시지를 잡아보니 guest로 username을 요청한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "admin으로 바꿔서 요청하면 Flag가 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "57c560c7-53dd-58bb-bba7-c8525dd8c609",
+          "src": "/assets/uploads/8598bc57-060d-5c30-97eb-2959c5d13ea5/57c560c7-53dd-58bb-bba7-c8525dd8c609.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "입력창에 flag를 입력했을 때 권한 오류가 발생하는 것을 보고, 자바스크립트 소스 코드 분석을 통해 username 변수가 \"guest\"로 고정되어 socket.emit으로 전송되는 로직을 파악했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "클라이언트 측에서 전송되는 데이터 형식이 username:command 구조임을 확인했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "프록시 도구(Burp Suite)를 사용하여 전송되는 패킷의 \"guest\" 문자열을 \"admin\"으로 변조(Tampering)하여 전송함으로써 플래그를 획득했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/59",
+    "originalId": "59",
+    "publishedAt": "2026-01-26T18:10:40+09:00",
+    "updatedAt": "2026-01-26T18:10:40+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

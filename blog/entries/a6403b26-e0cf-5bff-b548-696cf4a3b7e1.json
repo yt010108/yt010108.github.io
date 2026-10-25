@@ -1,0 +1,320 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "a6403b26-e0cf-5bff-b548-696cf4a3b7e1",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-10 문제",
+  "slug": "tistory-71",
+  "description": "1. 문제 정보문제 번호 : old -10문제 점수 : 25점2. 문제 분석 문제를 들어가면 0이 보이고 코스가 보인다. 0을 누르면 y0u가 나오고 앞으로 한칸 간다.goal까지 들어가야하는 문제 같다. 소스코드를 보면 한번 누를때마다 1씩 올라가고 1600번에서 if문이 실행된다. O||||Goalno hack 3. 풀이this.href='?go='+this.style.left를 보고 ) ?go=1600px를 해봤는데 no hack이 나온다. 자바스크립트 콘솔에서 hackme.style.left = \"1590px\"를 하고 10번 클릭하니까 성공했다. 주소에서 바로 안되는 이유는 주소창에 직접 입력했을 때 no hack이 뜨는 이유는 서버가 요청의 출처(Referer)를 검사하기 때문일 가능성이 매..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-30",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-30T19:51:29+09:00",
+  "updatedAt": "2026-01-30T20:53:56+09:00",
+  "sourceDigest": "1b4739879babc6002877cbb9e27359b0d4525c41da64578271a234398c3d8b55",
+  "assets": [
+    {
+      "id": "5ca8599e-f833-56c5-82b8-b64ef4f8be60",
+      "name": "tistory-71-5ca8599e-f833-56c5-82b8-b64ef4f8be60.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a6403b26-e0cf-5bff-b548-696cf4a3b7e1/5ca8599e-f833-56c5-82b8-b64ef4f8be60.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "0a5d8ab2-d7cb-5960-910c-4bd8cc1d33df",
+      "name": "tistory-71-0a5d8ab2-d7cb-5960-910c-4bd8cc1d33df.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a6403b26-e0cf-5bff-b548-696cf4a3b7e1/0a5d8ab2-d7cb-5960-910c-4bd8cc1d33df.png",
+      "sha": "f9ed2841386d6a65b1a08c92d85a71bf40efb33c"
+    },
+    {
+      "id": "0c845911-0eec-5d68-8f13-28f231ab7d67",
+      "name": "tistory-71-0c845911-0eec-5d68-8f13-28f231ab7d67.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a6403b26-e0cf-5bff-b548-696cf4a3b7e1/0c845911-0eec-5d68-8f13-28f231ab7d67.png",
+      "sha": "0aea436630b91a88ec23c8bd87c098198c6d845d"
+    },
+    {
+      "id": "ec687fce-df88-5ecb-885d-121b59b351b1",
+      "name": "tistory-71-ec687fce-df88-5ecb-885d-121b59b351b1.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a6403b26-e0cf-5bff-b548-696cf4a3b7e1/ec687fce-df88-5ecb-885d-121b59b351b1.png",
+      "sha": "0d3ad4b2098e8b14afec66fb4a57182dba67b9c2"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "5ca8599e-f833-56c5-82b8-b64ef4f8be60",
+          "src": "/assets/uploads/a6403b26-e0cf-5bff-b548-696cf4a3b7e1/5ca8599e-f833-56c5-82b8-b64ef4f8be60.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -10"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 25점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "0a5d8ab2-d7cb-5960-910c-4bd8cc1d33df",
+          "src": "/assets/uploads/a6403b26-e0cf-5bff-b548-696cf4a3b7e1/0a5d8ab2-d7cb-5960-910c-4bd8cc1d33df.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제를 들어가면 0이 보이고 코스가 보인다. 0을 누르면 y0u가 나오고 앞으로 한칸 간다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "goal까지 들어가야하는 문제 같다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "소스코드를 보면 한번 누를때마다 1씩 올라가고 1600번에서 if문이 실행된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<html>\n<head>\n<title>Challenge 10</title>\n</head>\n\n<body>\n<hr style=height:100;background:brown;>\n<table border=0 width=1800 style=background:gray>\n<tr><td>\n<a id=hackme style=\"position:relative;left:0;top:0\" onclick=\"this.style.left=parseInt(this.style.left,10)+1+'px';if(this.style.left=='1600px')this.href='?go='+this.style.left\" onmouseover=this.innerHTML='yOu' onmouseout=this.innerHTML='O'>O</a><br>\n<font style=\"position:relative;left:1600;top:0\" color=gold>|<br>|<br>|<br>|<br>Goal</font>\n</td></tr>\n</table>\n<hr style=height:100;background:brown;>\nno hack"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "this.href='?go='+this.style.left를 보고 ) ?go=1600px를 해봤는데 no hack이 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "0c845911-0eec-5d68-8f13-28f231ab7d67",
+          "src": "/assets/uploads/a6403b26-e0cf-5bff-b548-696cf4a3b7e1/0c845911-0eec-5d68-8f13-28f231ab7d67.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자바스크립트 콘솔에서 hackme.style.left = \"1590px\"를 하고 10번 클릭하니까 성공했다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "ec687fce-df88-5ecb-885d-121b59b351b1",
+          "src": "/assets/uploads/a6403b26-e0cf-5bff-b548-696cf4a3b7e1/ec687fce-df88-5ecb-885d-121b59b351b1.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "주소에서 바로 안되는 이유는 주소창에 직접 입력했을 때 no hack이 뜨는 이유는 서버가 요청의 출처(Referer)를 검사하기 때문일 가능성이 매우 높다. 링크를 클릭하면 referer헤더를 넣지만 주소창에 입력할 경우에는 넣지않는다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "주소창에 URL을 직접 입력하면 브라우저가 출발지 정보(Referer)를 서버에 보내지 않아서 비정상 접근으로 차단된다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "반면 콘솔로 위치를 조작했더라도 링크를 직접 클릭하면 출발지 정보가 정상적으로 전송되어 서버 인증을 통과했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "즉 서버는 단순히 1600이라는 값만 보는 것이 아니라, 요청이 실제 게임 페이지에서 발생했는지 확인하는 검증 로직을 가지고 있다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/71",
+    "originalId": "71",
+    "publishedAt": "2026-01-30T19:51:29+09:00",
+    "updatedAt": "2026-01-30T20:53:56+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

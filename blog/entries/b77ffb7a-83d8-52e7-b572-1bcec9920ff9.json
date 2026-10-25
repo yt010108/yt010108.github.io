@@ -1,0 +1,829 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "b77ffb7a-83d8-52e7-b572-1bcec9920ff9",
+  "kind": "posts",
+  "title": "[WEB] wizmall로 Bug Bounty 실습해보기",
+  "slug": "tistory-94",
+  "description": "0. wizmall 환경 설정WizMall은 오래된 PHP 기반 솔루션으로 버그 바운티나 모의해킹 실습용으로 아주 좋은 소재이다. wizmall 환경을 설정해보자 github에서 도커 파일을 다운로드 받는다. GitHub - boldagihororok/wizmall-dockerContribute to boldagihororok/wizmall-docker development by creating an account on GitHub.github.com wizmall(위즈몰)을 도커 컨테이너로 실행해보자 docker-compose up -d 이제 localhost:80으로 들어가면 아래 사이트가 나오고 확인을 누른다. 확인을 누른후에 깃허브에서 본 것처럼 설정에 값을 넣는다. MYSQL호스트 : db..",
+  "category": "Security / Web Security",
+  "date": "2026-03-18",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-03-18T17:05:25+09:00",
+  "updatedAt": "2026-04-03T00:41:25+09:00",
+  "sourceDigest": "05ccfe9eb2de5ae4a1a480618bfdd87858304f82bed7997d54853ec4028419ca",
+  "assets": [
+    {
+      "id": "561ed290-f676-5622-8949-5228ab42f247",
+      "name": "tistory-94-561ed290-f676-5622-8949-5228ab42f247.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/561ed290-f676-5622-8949-5228ab42f247.png",
+      "sha": "94d78841c44d4cd2c5149958ede971aa0cb377b8"
+    },
+    {
+      "id": "79bbbc34-922f-5fa6-b9f3-d5b155340213",
+      "name": "tistory-94-79bbbc34-922f-5fa6-b9f3-d5b155340213.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/79bbbc34-922f-5fa6-b9f3-d5b155340213.png",
+      "sha": "d71fa9f26c6bc643462658b2b6eb51bf33a51ba8"
+    },
+    {
+      "id": "9f9d5b14-db0b-538a-bbb5-f46466f47197",
+      "name": "tistory-94-9f9d5b14-db0b-538a-bbb5-f46466f47197.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/9f9d5b14-db0b-538a-bbb5-f46466f47197.png",
+      "sha": "89fc14ad10dfd11dead8dac2de4be78e788cbe2d"
+    },
+    {
+      "id": "0d1312cc-70b9-5733-bc64-52868123c966",
+      "name": "tistory-94-0d1312cc-70b9-5733-bc64-52868123c966.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/0d1312cc-70b9-5733-bc64-52868123c966.png",
+      "sha": "0da1ad272dee1dd50b42446f56a803ef54903946"
+    },
+    {
+      "id": "dc23ba75-568c-55a0-9200-ea7683a45f25",
+      "name": "tistory-94-dc23ba75-568c-55a0-9200-ea7683a45f25.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/dc23ba75-568c-55a0-9200-ea7683a45f25.png",
+      "sha": "20069e93315b9aefe2bfc229dee80729d710566f"
+    },
+    {
+      "id": "5ebe23cd-66fa-5cf5-83cc-b0b2ed9c45dc",
+      "name": "tistory-94-5ebe23cd-66fa-5cf5-83cc-b0b2ed9c45dc.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/5ebe23cd-66fa-5cf5-83cc-b0b2ed9c45dc.png",
+      "sha": "d73c7da1978bec073cc8ba9cbe224ba2f5a267cb"
+    },
+    {
+      "id": "bf3a183e-49e1-5a5b-8030-838fb95f90d4",
+      "name": "tistory-94-bf3a183e-49e1-5a5b-8030-838fb95f90d4.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/bf3a183e-49e1-5a5b-8030-838fb95f90d4.png",
+      "sha": "297c998b1bf45e60d4d5746c7082a15e1f02e7c9"
+    },
+    {
+      "id": "5789cef1-8fde-57ee-b66a-4ac2d7940487",
+      "name": "tistory-94-5789cef1-8fde-57ee-b66a-4ac2d7940487.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/5789cef1-8fde-57ee-b66a-4ac2d7940487.png",
+      "sha": "2bb0476e56d833139192a78ba2d4fba8ec2785a1"
+    },
+    {
+      "id": "37be85d1-3462-5128-aba7-2e77b0862aea",
+      "name": "tistory-94-37be85d1-3462-5128-aba7-2e77b0862aea.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/37be85d1-3462-5128-aba7-2e77b0862aea.png",
+      "sha": "57c5a0cdcab8603c7a223c7f53839612e1ef7735"
+    },
+    {
+      "id": "e534c4d0-5770-5d94-9605-810783dab674",
+      "name": "tistory-94-e534c4d0-5770-5d94-9605-810783dab674.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/e534c4d0-5770-5d94-9605-810783dab674.png",
+      "sha": "fff6742b53c69b9a94b656fde273e9ea2981d863"
+    },
+    {
+      "id": "eef71561-686d-50c8-aa88-cf892b6bd07a",
+      "name": "tistory-94-eef71561-686d-50c8-aa88-cf892b6bd07a.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/eef71561-686d-50c8-aa88-cf892b6bd07a.png",
+      "sha": "ab315df39c5bc2501758c12e2b78542e1c915c2d"
+    },
+    {
+      "id": "413b1aa2-d8f1-5959-8bfd-9ebf294614b5",
+      "name": "tistory-94-413b1aa2-d8f1-5959-8bfd-9ebf294614b5.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/413b1aa2-d8f1-5959-8bfd-9ebf294614b5.png",
+      "sha": "ceec543b50d8490a7d80cfc2ec1fbd9df506f5da"
+    },
+    {
+      "id": "223f5cd5-7e20-5ab0-bc54-94bf95beb7ab",
+      "name": "tistory-94-223f5cd5-7e20-5ab0-bc54-94bf95beb7ab.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/223f5cd5-7e20-5ab0-bc54-94bf95beb7ab.png",
+      "sha": "1ae59214a97784e17f242ff3134184f153917e6a"
+    },
+    {
+      "id": "31a3d539-31dd-5336-8217-a8ae0f3fc83c",
+      "name": "tistory-94-31a3d539-31dd-5336-8217-a8ae0f3fc83c.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/31a3d539-31dd-5336-8217-a8ae0f3fc83c.png",
+      "sha": "81e71807950bcb97068872084ba8d9a1bae62130"
+    },
+    {
+      "id": "4937e794-f5f2-564d-8f0d-dc4f2b51dd9f",
+      "name": "tistory-94-4937e794-f5f2-564d-8f0d-dc4f2b51dd9f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/4937e794-f5f2-564d-8f0d-dc4f2b51dd9f.png",
+      "sha": "9349ba4ba5e021c7f19db6a4791305eec44fdd05"
+    },
+    {
+      "id": "cdee5e73-8aab-5117-8840-9bf2c2268141",
+      "name": "tistory-94-cdee5e73-8aab-5117-8840-9bf2c2268141.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/cdee5e73-8aab-5117-8840-9bf2c2268141.png",
+      "sha": "ba6e876b3b14f763d5be515f23447673b9debe21"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "0. wizmall 환경 설정"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "WizMall은 오래된 PHP 기반 솔루션으로 버그 바운티나 모의해킹 실습용으로 아주 좋은 소재이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "wizmall 환경을 설정해보자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "github에서 도커 파일을 다운로드 받는다."
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "cd4950fc-b413-5a34-8cc4-834ecd8ec155",
+          "href": "https://github.com/boldagihororok/wizmall-docker",
+          "title": "GitHub - boldagihororok/wizmall-docker",
+          "description": "Contribute to boldagihororok/wizmall-docker development by creating an account on GitHub.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/7230d8ef94ceece7523a0094c057c8f54ccb77a18ffcebdaeeef2ce5e50ee5cb.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "wizmall(위즈몰)을 도커 컨테이너로 실행해보자"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "docker-compose up -d"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "561ed290-f676-5622-8949-5228ab42f247",
+          "src": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/561ed290-f676-5622-8949-5228ab42f247.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이제 localhost:80으로 들어가면 아래 사이트가 나오고 확인을 누른다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "79bbbc34-922f-5fa6-b9f3-d5b155340213",
+          "src": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/79bbbc34-922f-5fa6-b9f3-d5b155340213.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "확인을 누른후에 깃허브에서 본 것처럼 설정에 값을 넣는다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "9f9d5b14-db0b-538a-bbb5-f46466f47197",
+          "src": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/9f9d5b14-db0b-538a-bbb5-f46466f47197.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "MYSQL호스트 : db\n사용DB이름 : wizmall\nDB 아이디 : wizmall\nDB 패스워드 : wizmall\nAdmin ID : admin\n패스워드등록 : admin\n패스워드확인 : admin\n상호명 : wizmall\n홈페이지명 : wizmall\n관리자이메일 : admin@admin.com\nWizMall 절대경로 : /"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "0d1312cc-70b9-5733-bc64-52868123c966",
+          "src": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/0d1312cc-70b9-5733-bc64-52868123c966.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "상호명도 마찬가지로 넣어주자"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "dc23ba75-568c-55a0-9200-ea7683a45f25",
+          "src": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/dc23ba75-568c-55a0-9200-ea7683a45f25.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "설정이 완료된다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "5ebe23cd-66fa-5cf5-83cc-b0b2ed9c45dc",
+          "src": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/5ebe23cd-66fa-5cf5-83cc-b0b2ed9c45dc.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "admin으로 로그인하면 아래 화면이 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "bf3a183e-49e1-5a5b-8030-838fb95f90d4",
+          "src": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/bf3a183e-49e1-5a5b-8030-838fb95f90d4.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. wizmall 탐방"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "5789cef1-8fde-57ee-b66a-4ac2d7940487",
+          "src": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/5789cef1-8fde-57ee-b66a-4ac2d7940487.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "wizmall 사이트 화면"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "위즈몰의 소스코드는 아래 깃허브에서 참고할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://github.com/wangta69/wizmall",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/wangta69/wizmall"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "3f62c64c-5220-5461-ac7d-b62f4dadb656",
+          "href": "https://github.com/wangta69/wizmall",
+          "title": "GitHub - wangta69/wizmall: e-commercial open source for php",
+          "description": "e-commercial open source for php. Contribute to wangta69/wizmall development by creating an account on GitHub.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/78c91abc82bbea01bec491af7622cb829240e60eecd6bb575bba44e30853dd4f.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "깃허브 Readme를 보면 각종 링크 설명 부분에서 wizmember.php에서 get메소드로 query string을 사용해 받은 변수를 사용해서 라우팅하는 것으로 보인다, 이건 쿼리에 변수에 따라서 필요한 링크를 include해 화면에 랜더링하는 것으로 추측할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "37be85d1-3462-5128-aba7-2e77b0862aea",
+          "src": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/37be85d1-3462-5128-aba7-2e77b0862aea.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "wizmember.php코드를 보면 query 값으로 알맞는 php코드를 include하는 것을 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "if ($cfg[\"member\"] && $cfg[\"member\"][\"mgrade\"] != \"1\") {\n\tif ($query == 'point') {\n\t\tinclude ($mem_skin_path.\"/USER_POINT.php\");\n\t\t$status = $query;\n\t}\n\telse if ($query == 'order') {\n\t\tinclude ($mem_skin_path.\"/USER_ORDER.php\");\n\t\t$status = $query;\n\t}\n\telse if ($query == 'infopass') {//회원정보수정시 먼저 패스워드 한번더 확인\n\t\tinclude ($mem_skin_path.\"/USER_INFO_PASS.php\");\n\t\t$status = $query;\n\t}\n    ..."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이제 기능 하나씩 점검해보자"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 회원가입 점검"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2-1 /wizmember.php?query=regis_step1"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "wizmall 메인 화면에서 오른쪽 가운데에 회원가입을 누른 엔드 포인트이다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "e534c4d0-5770-5d94-9605-810783dab674",
+          "src": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/e534c4d0-5770-5d94-9605-810783dab674.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "회원 가입을 누르면 체크박스와 실명확인, 아이핀, 인증없이 가입이 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "eef71561-686d-50c8-aa88-cf892b6bd07a",
+          "src": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/eef71561-686d-50c8-aa88-cf892b6bd07a.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "해당 기능은 js코드로 switch문으로 구성되었다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "413b1aa2-d8f1-5959-8bfd-9ebf294614b5",
+          "src": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/413b1aa2-d8f1-5959-8bfd-9ebf294614b5.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "스탭 2로 넘어가보자"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2-2 /wizmember.php?query=regis_step2"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "회원가입에 필요한 입력창이 나온다"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "223f5cd5-7e20-5ab0-bc54-94bf95beb7ab",
+          "src": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/223f5cd5-7e20-5ab0-bc54-94bf95beb7ab.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "중복 검색을 눌러보자 localhost/wizmember/IPIN/ID_EXIST.php?id=엔드포인트이다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "31a3d539-31dd-5336-8217-a8ae0f3fc83c",
+          "src": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/31a3d539-31dd-5336-8217-a8ae0f3fc83c.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "깃허브에서 해당 코드를 찾으면 아래와 같다. 유저의 id를 sql문에 그대로 넣는 것을 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "$dbcon\t\t= new database($cfg[\"sql\"]);\n\n$sqlstr = \"SELECT count(uid) FROM wizMembers WHERE mid='$user_id'\";\n$result = $dbcon->get_one($sqlstr);\n\nif(!$user_id) {\n\t$message = \"id를 입력해 주세요\";\n\t$status = \"false\";\n}else if((strlen($user_id) > 12) || (strlen($user_id) < 6)) {\n\t$message = \"아이디는 6~12자 사이의 영문숫자 혼합으로 구성되어야 합니다.\";\n\t$status = \"false\";\n}else if ( $result ) {\n\t$message = \"<span class='orange'>\".$user_id.\"</span>은(는) 이미 사용중인 아이디입니다.\";\n\t$status = \"false\";\n}\nelse {\n\t$message\t= \"<span class='orange'>\".$user_id.\"</span>은(는) 사용가능한 ID입니다.\";\n\t$status = \"true\";\n}\n$dbcon->_close();"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 include한 cfg.common.php이 addslashes를 적용하고 있어 필터링 된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "if( !get_magic_quotes_gpc() ){//magic_quotes_gpc 값이 FALSE 인 경우 addslashes() 적용\n\tif( is_array($_GET) )\n\t{\n\t\twhile( list($k, $v) = each($_GET) )\n\t\t{\n\t\t\tif( is_array($_GET[$k]) )\n\t\t\t{\n\t\t\t\twhile( list($k2, $v2) = each($_GET[$k]) )\n\t\t\t\t{\n\t\t\t\t\t$_GET[$k][$k2] = addslashes($v2);\n\t\t\t\t}\n\t\t\t\t@reset($_GET[$k]);\n\t\t\t}\n\t\t\telse\n\t\t\t{\n\t\t\t\t$_GET[$k] = addslashes($v);\n\t\t\t}\n\t\t}\n\t\t@reset($_GET);\n\t}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "4937e794-f5f2-564d-8f0d-dc4f2b51dd9f",
+          "src": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/4937e794-f5f2-564d-8f0d-dc4f2b51dd9f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SQLI는 안될 거 같다. 하지만 여기서 xxs 가능할 것 같다. 코드를 봐보자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<form name=\"s_form\" id=\"s_form\">\n\t<input type=\"hidden\" name=\"action\" value=\"user_idcheck\">\n\t<div class=\"agn_l b white b_black\">아이디 체크</div>\n\t<div class=\"space15\"></div>\n\t아이디는 영/숫자 혼합으로 6~15자가 가능합니다.\n\t<div class=\"space15\"></div>\n\t아이디\n\t<input type=\"text\" name=\"user_id\" id=\"user_id\"  value=\"<?=$user_id?>\" size=15>\n\t<? if($status == \"true\") : ?>\n\t<span class=\"button bull\"><a href=\"javascript:setting('<?=$user_id?>')\">적용</a></span>\n\t<? endif; ?>\n\t<span class=\"button bull\" id=\"btn_search\"><a>검색</a></span>\n\t<div class=\"space15\"></div>\n\t<div class=\"msg\">\n\t\t<?=$message?>\n\t</div>\n</form>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "form으로 id값을 보낸다 그리고 get요청을 보내면 위에 데이터 베이스 쿼리문에서 userid에 따른 message값과 status값을 반환하게 된다. 만약 id값이 12가 넘더라도 status와 message값은 false와 6~12자만 가능합니다가 뜨겠지만 "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "<input type=\"text\" name=\"user_id\" id=\"user_id\" value=\"<?=$user_id?>\" size=15>부분에 user_id값이 들어가게 된다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 userid를 변경한 패킷인"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "GET /wizmember/IPIN/ID_EXISTS.php?action=user_idcheck&user_id=\"><script>alert(1)</script>로 버프스위트에서 보내면 html이 아래처럼 바뀌어"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "<input type=\"text\" name=\"user_id\" id=\"user_id\" value=\"\"><script>alert(1)</script>\" size=15> xss가 성공한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "cdee5e73-8aab-5117-8840-9bf2c2268141",
+          "src": "/assets/uploads/b77ffb7a-83d8-52e7-b572-1bcec9920ff9/cdee5e73-8aab-5117-8840-9bf2c2268141.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번 편에서는 WizMall 회원가입 ID 중복확인 기능에서 `user_id` 파라미터가 출력 구간에서 적절히 이스케이프되지 않아 발생하는 Reflected XSS를 확인했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "단순 PoC(alert) 수준에서는 영향이 작아 보일 수 있지만, 해당 취약점은 공격자가 조작한 링크를 피해자에게 클릭시키는 방식으로 재현 가능하다는 점에서 의미가 있다. "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "특히 동일 도메인 내 로그인 사용자(또는 관리자)를 대상으로 한 클릭 유도 시나리오와 결합되면, 세션 컨텍스트 악용·민감 기능 요청 유도 등 더 큰 공격으로 연계될 가능성이 있다."
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/94",
+    "originalId": "94",
+    "publishedAt": "2026-03-18T17:05:25+09:00",
+    "updatedAt": "2026-04-03T00:41:25+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

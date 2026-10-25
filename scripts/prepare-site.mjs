@@ -3,8 +3,8 @@ import { createHash } from "node:crypto";
 
 const folder = process.env.SITE_OUTPUT || "_site";
 await mkdir(folder + "/admin", { recursive: true });
-const revision = process.env.GITHUB_SHA || createHash("sha256").update(await readFile("published.js")).digest("hex").slice(0, 16);
-for (const name of ["index.html", "404.html", "styles.css", "app.js", "content.js", "published.js", "theme.js", ".nojekyll"]) {
+const revision = process.env.GITHUB_SHA || createHash("sha256").update(await readFile("published.json")).digest("hex").slice(0, 16);
+for (const name of ["index.html", "404.html", "styles.css", "app.js", "content.js", "published.json", "published.js", "theme.js", ".nojekyll"]) {
   if (name.endsWith(".html")) await writeFile(folder + "/" + name, (await readFile(name, "utf8")).replaceAll("__BUILD__", revision));
   else await cp(name, folder + "/" + name);
 }

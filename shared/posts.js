@@ -109,7 +109,7 @@ export function renderDocument(doc, { assets = [], preview = false } = {}) {
       }
       case "paragraph": return "<p>" + (children() || "<br>") + "</p>";
       case "heading": {
-        const level = [1, 2, 3].includes(attrs.level) ? attrs.level : 2, id = "section-" + (headings.length + 1);
+        const level = [1, 2, 3, 4, 5, 6].includes(attrs.level) ? attrs.level : 2, id = "section-" + (headings.length + 1);
         headings.push({ id, level, text: plainText(node).trim() });
         return "<h" + level + ' id="' + id + '">' + children() + "</h" + level + ">";
       }

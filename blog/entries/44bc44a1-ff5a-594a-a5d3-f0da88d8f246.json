@@ -1,0 +1,853 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "44bc44a1-ff5a-594a-a5d3-f0da88d8f246",
+  "kind": "posts",
+  "title": "리눅스 마스터 2급 취득 후기",
+  "slug": "tistory-5",
+  "description": "안녕하세요 리눅스 마스터 2급 시험 후기 및 취득 후기입니다.저는 리눅스는 개발, 보안 공부하면서 당연하게 사용하지만 리눅스에 대한 이해를 높이고자기소개서 작성시 필요 역량이나 우대사항에 linux가 있을 때객관적으로 linux를 넣을 근거를 위해서 자격증을 응시했습니다. 제 베이스는 학교 수업으로 리눅스 수업을 들은 적이 있으며도커를 통한 프로젝트나 보안 ctf문제를 풀 때 wsl로 윈도우에서 리눅스를 사용했습니다.시험 개요 리눅스 마스터 2급 시험 리눅스 마스터 시험은 1차 필기 시험과 2차 실기 시험으로 나뉘어져 있습니다. 그리고 실기와 필기 모두 60점 이상을 맞아야 통과합니다. 응시료는 총 66,000원으로 기사 시험에 비하면 비싸고1차는 온라인 2차는 대면 시험으로 8개시에서 응시 가능..",
+  "category": "Certificate",
+  "date": "2025-12-15",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2025-12-15T12:25:52+09:00",
+  "updatedAt": "2026-08-07T18:54:05+09:00",
+  "sourceDigest": "f3c5e7addbe2c4342f6e7cf5ba3ac265c14b2dddc87261d7ab3e31a878ac8944",
+  "assets": [
+    {
+      "id": "2ba233df-76ec-54da-8e04-159017ba9820",
+      "name": "tistory-5-2ba233df-76ec-54da-8e04-159017ba9820.png",
+      "type": "image/png",
+      "path": "/assets/uploads/44bc44a1-ff5a-594a-a5d3-f0da88d8f246/2ba233df-76ec-54da-8e04-159017ba9820.png",
+      "sha": "40128b6b0140afb838c3e0fa718e64087a149d89"
+    },
+    {
+      "id": "17e51ff8-2e48-5104-b16d-b0ab79a23a82",
+      "name": "tistory-5-17e51ff8-2e48-5104-b16d-b0ab79a23a82.png",
+      "type": "image/png",
+      "path": "/assets/uploads/44bc44a1-ff5a-594a-a5d3-f0da88d8f246/17e51ff8-2e48-5104-b16d-b0ab79a23a82.png",
+      "sha": "c18a38668182e87d8c8bc7dd99ce93c243b30b89"
+    },
+    {
+      "id": "672bc48f-6dee-5e2e-9f06-827eeeff9634",
+      "name": "tistory-5-672bc48f-6dee-5e2e-9f06-827eeeff9634.png",
+      "type": "image/png",
+      "path": "/assets/uploads/44bc44a1-ff5a-594a-a5d3-f0da88d8f246/672bc48f-6dee-5e2e-9f06-827eeeff9634.png",
+      "sha": "2422a423486cc1614752947ff88139193a70d224"
+    },
+    {
+      "id": "a877979f-ea63-5066-9c62-aac7cbb9fed7",
+      "name": "tistory-5-a877979f-ea63-5066-9c62-aac7cbb9fed7.jpg",
+      "type": "image/jpeg",
+      "path": "/assets/uploads/44bc44a1-ff5a-594a-a5d3-f0da88d8f246/a877979f-ea63-5066-9c62-aac7cbb9fed7.jpg",
+      "sha": "a4fe49535e8651e83b867e2d799f3ede1a1ac6d8"
+    },
+    {
+      "id": "5099d2f8-4ed7-55bd-b4da-2b29d2a35496",
+      "name": "tistory-5-5099d2f8-4ed7-55bd-b4da-2b29d2a35496.png",
+      "type": "image/png",
+      "path": "/assets/uploads/44bc44a1-ff5a-594a-a5d3-f0da88d8f246/5099d2f8-4ed7-55bd-b4da-2b29d2a35496.png",
+      "sha": "76df2ad22733fbdcc9f2626d407f25477c27cec0"
+    },
+    {
+      "id": "57df001c-4921-53a6-8897-60e87b75e87f",
+      "name": "tistory-5-57df001c-4921-53a6-8897-60e87b75e87f.jpg",
+      "type": "image/jpeg",
+      "path": "/assets/uploads/44bc44a1-ff5a-594a-a5d3-f0da88d8f246/57df001c-4921-53a6-8897-60e87b75e87f.jpg",
+      "sha": "19262e2b995bff1de18dc8cd4c579d50fc2e869c"
+    },
+    {
+      "id": "0a80ecd7-3a16-533e-b782-1c83df9b8c50",
+      "name": "tistory-5-0a80ecd7-3a16-533e-b782-1c83df9b8c50.png",
+      "type": "image/png",
+      "path": "/assets/uploads/44bc44a1-ff5a-594a-a5d3-f0da88d8f246/0a80ecd7-3a16-533e-b782-1c83df9b8c50.png",
+      "sha": "51bcba8c60bc3e9f956fc434e94439417da03269"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "안녕하세요 "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "리눅스 마스터 2급 시험 후기 및 취득 후기입니다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "2ba233df-76ec-54da-8e04-159017ba9820",
+          "src": "/assets/uploads/44bc44a1-ff5a-594a-a5d3-f0da88d8f246/2ba233df-76ec-54da-8e04-159017ba9820.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "저는 리눅스는 개발, 보안 공부하면서 당연하게 사용하지만 리눅스에 대한 이해를 높이고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자기소개서 작성시 필요 역량이나 우대사항에 linux가 있을 때"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "객관적으로 linux를 넣을 근거를 위해서 자격증을 응시했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "제 베이스는 학교 수업으로 리눅스 수업을 들은 적이 있으며"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "도커를 통한 프로젝트나 보안 ctf문제를 풀 때 wsl로 윈도우에서 리눅스를 사용했습니다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "시험 개요"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "리눅스 마스터 2급 시험"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "17e51ff8-2e48-5104-b16d-b0ab79a23a82",
+          "src": "/assets/uploads/44bc44a1-ff5a-594a-a5d3-f0da88d8f246/17e51ff8-2e48-5104-b16d-b0ab79a23a82.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "리눅스 마스터 시험은 1차 필기 시험과 2차 실기 시험으로 나뉘어져 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 실기와 필기 모두 60점 이상을 맞아야 통과합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "672bc48f-6dee-5e2e-9f06-827eeeff9634",
+          "src": "/assets/uploads/44bc44a1-ff5a-594a-a5d3-f0da88d8f246/672bc48f-6dee-5e2e-9f06-827eeeff9634.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "응시료는 총 66,000원으로 기사 시험에 비하면 비싸고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "1차는 온라인 2차는 대면 시험으로 8개시에서 응시 가능합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "더 자세한 내용과 응시는 홈페이지에서 확인 가능합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://www.ihd.or.kr/main.do",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.ihd.or.kr/main.do"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "c55df7a2-63ec-5f59-a0a2-ff7ee6cfc3ec",
+          "href": "https://www.ihd.or.kr/main.do",
+          "title": "KAIT 자격검정",
+          "description": "현재 접속하신 아이피에서는접속이 불가능합니다.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/6531fec1c5bdeca2b607bd8f6af1ee0eb52938851adb61eca6bb723a4fd82aad.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " "
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "시험 준비"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "필기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "필기는 온라인 시험으로 솔직히 준비하지 않고 봤습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": ". 60분동안 50문제 푸는데 아래 블로그에 있는 시험 정리를 가지고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "컨트롤 f와 못 찾는 것들은 인터넷과 gemini를 사용해서 풀었습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "76924adb-b0ff-5cdc-a7fb-1b0d615dcd4e",
+          "href": "https://solearn.tistory.com/272",
+          "title": "[Linux] 리눅스마스터 2급 - 응시방법, 주의점, 꿀팁, 공부법 총정리",
+          "description": "일정응시방법1) 시험 접수 KAIT 자격검정시험접수 정보통신 자격검정 시험 원서등록을 하실 수 있습니다www.ihd.or.kr2) 시험 신청 방법 참고 족보준비 -> 온라인 시험 순으로 하시면 됩니다. 1.시험 ",
+          "image": "https://yt010108.github.io/assets/imported/tistory/71e1913d96d35ca00c72a0cde44d892638ef371d302935066f68c385965cce7a.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "a877979f-ea63-5066-9c62-aac7cbb9fed7",
+          "src": "/assets/uploads/44bc44a1-ff5a-594a-a5d3-f0da88d8f246/a877979f-ea63-5066-9c62-aac7cbb9fed7.jpg",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제를 보고 생각보다 모르는게 많아서 걱정했지만"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "걱정과 달리 50문제 중에 30문제만 넘으면 되고 시간도 넉넉해서 쉽게 통과했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "5099d2f8-4ed7-55bd-b4da-2b29d2a35496",
+          "src": "/assets/uploads/44bc44a1-ff5a-594a-a5d3-f0da88d8f246/5099d2f8-4ed7-55bd-b4da-2b29d2a35496.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "실기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실기는 준비기간은 1주일 했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "저는 쿠팡에서 아래 책을 25000원 주고 구매해서 봤습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "57df001c-4921-53a6-8897-60e87b75e87f",
+          "src": "/assets/uploads/44bc44a1-ff5a-594a-a5d3-f0da88d8f246/57df001c-4921-53a6-8897-60e87b75e87f.jpg",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "구성은 개념+문제, 기출문제로 되어있으며"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개념만 읽고 기출문제로 넘어가 풀었습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기출문제는 해설이 같이 있는 연습 문제랑 실전 문제가 있었는데"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "연습 문제 풀고 실전 문제 합쳐서 총 10개 기출 풀었습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개념 2일 보고 3일동안 3개씩 풀었습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공부시간은 하루에 1~ 2시간 정도 걸렸습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기출 하나에 80문제지만 그냥"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "객관식이라 금방금방 풀더라구여"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "틀린 부분만 왜 틀렸지 하면서 봤습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 아래 CBT문제 사이트에서 버스에서 2개 풀었습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://www.comcbt.com/",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.comcbt.com/"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "d9b53958-8330-5887-9d5e-7ac5edc0c916",
+          "href": "https://www.comcbt.com",
+          "title": "최강 자격증 기출문제 전자문제집 CBT",
+          "description": "전자문제집,CBT,자격증,기출문제,해설,워드,워드프로세서,컴활,컴퓨터,활용능력,1급,2급,기사,산업기사,기능사,기능장,정보,전기,산업,안전,PC,네트워크,건축,건설,토목,가스,금속,미용,위험물,자",
+          "image": "https://yt010108.github.io/assets/imported/tistory/3c79095749c4aa276fb497aa539ade96d1b51dbfe7541bb8b5f688d008744e91.gif",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "cbt문제랑 책이랑 문제 스타일이 살짝 다르더라구요"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "그냥 책이 더 어렵게 냈다고 생각했는데 시험은 CBT보다는 책에 더 가깝게 나왔고 "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "사이트 문제는 23년 12월이 가장 최근이라 최근에 문제가 바뀐 느낌이였습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "시험당일"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "입실 시간은 13:50까지여서 너무 좋았습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "시험 날에는 OMR이라 컴싸랑 신분증, 수험표를 가져갔고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "30분 일찍 가서 대기실에서"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "커피 먹으면서 핸드폰으로 노션에 정리해주신 블로그 보면서 준비했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "d7808a8f-2a3b-59cb-b8bd-1198c7a8d1e4",
+          "href": "https://hyowonsarchive.tistory.com/69",
+          "title": "2024 리눅스 마스터 2급 pdf 정리 자료 및 notion 링크",
+          "description": "오류나 오타 지적해주시면 반영하겠습니다 notion 주소 https://totoda.notion.site/2-5fbf29d84e474ad2abe7ac7cdf0981e9?pvs=74 리눅스마스터 2급 | Notion파이널 특강totoda.notion.site  문제 풀 때는 첫번째 파일로  ",
+          "image": "https://yt010108.github.io/assets/imported/tistory/5e9f1dad16da5d90b28ea889e4c35e82b7203e670ced9d69c3c0304176d10d4a.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "시험은 100분이지만 50분 지나면 나갈 수 있고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가답안은 수험표 뒤에 써서 나갈 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "(시험 다음주에 가답안 나옵니다.)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "시험 결과 및 후기"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "0a80ecd7-3a16-533e-b782-1c83df9b8c50",
+          "src": "/assets/uploads/44bc44a1-ff5a-594a-a5d3-f0da88d8f246/0a80ecd7-3a16-533e-b782-1c83df9b8c50.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "시험 후기 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "단순 명령어뿐만 아니라 리눅스 역사, 라이선스, 파티션 설정, x-window등등"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이론적인 부분도 출제되므로 단순 암기가 필요하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "많이 사용하는 명령어 말고도 잘 안쓰는 명령어가 많고 생각보다 넓은 범위를 앝게 공부하는 시험"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "시험을 합격한다고 리눅스를 잘 사용한다는 아닌 것 같다. 그냥 관심있다 느낌"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 필기는 온라인이라 구글링 자료 + ai 사용하면 쉽다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "2. cbt 사이트 문제랑 시험 문제랑 살짝 느낌이 다르다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 시험 보시는 분들 모두 화이팅하십쇼"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/5",
+    "originalId": "5",
+    "publishedAt": "2025-12-15T12:25:52+09:00",
+    "updatedAt": "2026-08-07T18:54:05+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

@@ -1,0 +1,849 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "a65d6502-2153-5ed4-963b-f21bc7d0ac53",
+  "kind": "posts",
+  "title": "Hermes Agent 1주일 사용기",
+  "slug": "tistory-106",
+  "description": "Hermes Agent는 Open Claw가 유행하고 얼마 지나지 않아서 에이전틱 AI에서 Open Claw를 제치고 1위를 달성한 프로젝트이다. 오픈 클로를 사용하지는 않았지만 hermes를 1주일 정도 사용하고 작성하는 글이다. 1. Hermes Agent란?Hermes Agent는 Nous Research에서 개발한 오픈소스 AI 에이전트다. 공식 소개 문구를 요약하면 “사용자와 함께 성장하는 에이전트”다.일반적인 챗봇이나 IDE에 붙어 있는 코딩 보조 도구라기보다는, 서버나 로컬 환경에 올려두고 계속 실행하면서 도구 호출, 코드 실행, 웹 작업, 메신저 알림, 스케줄링 같은 일을 처리하는 자율 에이전트에 가깝다. 공식 문서에서도 Hermes는 경험을 바탕으로 스킬을 만들고, 사용 중에 개선하..",
+  "category": "AI / hermes",
+  "date": "2026-06-05",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-06-05T20:46:55+09:00",
+  "updatedAt": "2026-06-06T18:28:32+09:00",
+  "sourceDigest": "892bdb69ebd0ac4b9489704e4cab1eaa41880c43a5adc18571861d057b2e9b32",
+  "assets": [
+    {
+      "id": "325929d4-2da2-53eb-981c-c17f545796d4",
+      "name": "tistory-106-325929d4-2da2-53eb-981c-c17f545796d4.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a65d6502-2153-5ed4-963b-f21bc7d0ac53/325929d4-2da2-53eb-981c-c17f545796d4.png",
+      "sha": "8a2bf5ee7439b35b0a617c399bc844604fc415d7"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "325929d4-2da2-53eb-981c-c17f545796d4",
+          "src": "/assets/uploads/a65d6502-2153-5ed4-963b-f21bc7d0ac53/325929d4-2da2-53eb-981c-c17f545796d4.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Hermes Agent는  Open Claw가 유행하고 얼마 지나지 않아서 에이전틱 AI에서 Open Claw를 제치고 1위를 달성한 프로젝트이다. 오픈 클로를 사용하지는 않았지만 hermes를 1주일 정도 사용하고 작성하는 글이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. Hermes Agent란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Hermes Agent는 Nous Research에서 개발한 오픈소스 AI 에이전트다. 공식 소개 문구를 요약하면 “사용자와 함께 성장하는 에이전트”다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일반적인 챗봇이나 IDE에 붙어 있는 코딩 보조 도구라기보다는, 서버나 로컬 환경에 올려두고 계속 실행하면서 도구 호출, 코드 실행, 웹 작업, 메신저 알림, 스케줄링 같은 일을 처리하는 자율 에이전트에 가깝다. 공식 문서에서도 Hermes는 경험을 바탕으로 스킬을 만들고, 사용 중에 개선하며, 세션을 넘어서 기억을 유지하는 구조를 강조한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 내가 Hermes 사용하는 이유"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "에이전트 AI는 단순 LLM이 아니다. 코드 실행, 도구 호출, 브라우저 조작, 파일 처리, 메신저 연동처럼 사용자가 컴퓨터에서 하던 작업을 어느 정도 대신 수행할 수 있는 구조다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "오픈클로가 유행했을 때에는 보안 관련 이슈도 있었고 오픈 클로를 굳이 사용해야하나?라는 의문도 가지고 있었다. Codex나 Claude Code를 사용하면 따로 서버를 켜두거나 에이전트를 구성하지 않아도 바로 좋은 모델과 좋은 개발 도구를 사용할 수 있다. 단순 코딩 작업만 놓고 보면 Codex나 Claude Code가 훨씬 편하고 안정적일 때가 많다.그런데 최근에는 에이전트 AI를 활용할 만한 환경도 생겼고, Codex나 Claude Code만 사용할 때의 단점도 느껴졌다. 그래서 그 부분을 보완하려고 Hermes를 사용하고 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "보안 분야 작업 특성상 일반 상용 LLM에서 답변이 막히거나 성능이 떨어지는 경우가 있다. 이럴 때 로컬 모델이나 직접 제어 가능한 모델을 실험할 수 있는 환경이 필요했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "자가 개선 루프, 즉 피드백이 있는 하네스를 만들고 싶었다. Codex의 skill 방식으로도 일부 구현할 수는 있지만, Hermes의 메모리와 스킬 구조가 더 직접적으로 맞는 느낌이었다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Discord나 Telegram 같은 원하는 플랫폼에서 알림을 받고, 필요한 작업을 이어서 처리하고 싶었다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "여러 모델을 바꿔가며 LLM을 실험해 보고 싶었다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "개인정보와 작업 데이터의 흐름을 더 직접적으로 관리하고 싶었다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "물론 Hermes를 구축하고 운영하는 단점도 뚜렷하다."
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "구축해도 Codex, Claude Code에서 쓰는 상용 모델 수준의 안정성과 성능을 항상 기대하기는 어렵다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "토큰 사용량이 늘어난다. 메모리, 스킬, 도구 정의, 게이트웨이 구조까지 고려하면 체감상 오버헤드가 꽤 있다. 내 환경에서는 작업에 따라 거의 2배 가까이 느껴질 때도 있었다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Hermes 서버, 로컬 LLM 서빙 서버, GPU 환경을 따로 고려해야 한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "보안 문제가 있다. 에이전트에게 터미널, 파일, 브라우저, 계정 접근 권한을 주는 순간 공격면이 넓어진다. 따라서 승인 모드, 컨테이너 격리, 권한 분리, 별도 계정 사용 같은 운영 원칙이 필요하다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. Hermes와 Codex, Claude Code"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "내가 Hermes를 사용하는 가장 큰 이유는 자가 개선 루프를 위한 skills와 memory를 직접 설정하고 실험할 수 있기 때문이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Codex나 Claude Code에도 맥락 저장, 도구 사용, 프로젝트 이해 같은 기능이 있다. 다만 사용자가 내부 메모리 구조나 개선 루프를 원하는 방식으로 세밀하게 제어하기는 어렵다. 반면 Hermes는 메모리 파일, 스킬, cron, 메신저 게이트웨이, 로컬 모델, 외부 모델을 묶어서 내가 원하는 구조로 운영할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다만 여기서 중요한 점이 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그냥 코딩만 할 거면 Hermes를 굳이 쓸 필요가 없을 수 있다. Codex나 Claude Code가 더 빠르고 편하다. 특히 상용 모델을 그대로 사용할 거라면 Hermes를 중간에 두는 순간 토큰 오버헤드와 설정 비용이 생긴다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그럼에도 Hermes에서 Codex나 Claude 계열 모델을 같이 쓸 이유는 있다. 설정 작업, 중요한 자료 정리, 복잡한 워크플로우 설계, 에러 원인 분석처럼 정확도가 중요한 작업에서는 좋은 모델을 붙였을 때 효율이 많이 올라간다. 로컬 LLM만 사용할 때보다 시간과 시행착오를 줄일 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "내 기준으로 정리하면 이렇다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "단순 코딩: Codex, Claude Code가 편하다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "계속 돌아가는 자동화: Hermes가 더 맞다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "메신저 알림, cron, 서버 작업: Hermes가 유리하다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "모델 실험, 로컬 LLM, 자체 하네스: Hermes가 더 자유롭다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "중요한 코드 작성과 검토: Hermes에 좋은 모델을 붙이거나 Codex/Claude Code를 병행하는 방식이 좋다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "hardBreak"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 로컬 LLM 모델 비교 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "나는 로컬 LLM으로 Qwen 3.6 35b-a3b모델을 사용하고 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "로컬 LLM을 Hermes에 붙이면 장점은 분명하다. 비용을 줄일 수 있고, 외부 API로 보내기 애매한 데이터를 로컬에서 처리할 수 있다. 모델을 바꿔가며 실험하기도 좋다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 단점도 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "로컬 모델은 상용 모델보다 추론 품질이 떨어질 수 있고, 긴 컨텍스트와 복잡한 도구 사용에서 흔들릴 때가 있다. 특히 에이전트는 단순 질의응답보다 도구 호출, 중간 판단, 오류 복구가 중요하기 때문에 모델의 기본 성능 차이가 꽤 크게 느껴진다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그래서 나는 로컬 LLM을 “전부 맡기는 모델”이라기보다 “가벼운 반복 작업과 실험용 모델”에 가깝게 보고 있다. 루프 설정, 중요한 설정, 위험한 명령, 복잡한 코드 변경은 더 강한 모델을 사용하거나 사람이 중간에 확인하는 편이 안전하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "현재 기준으로는 이렇게 쓰는 방식이 가장 현실적이라고 느꼈다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "로컬 LLM: 반복 리서치, 간단한 정리, 로그 요약, 실험용 자동화"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "상용 모델: 복잡한 코드 작성, 보안 관련 판단, 실패 원인 분석, 중요한 설정 변경"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Hermes: 둘을 연결하고, 메모리와 스킬을 쌓고, 메신저와 cron으로 계속 돌리는 역할"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. Hermes 사용 사례"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Hermes 공식 사이트에는 실제 사용자들이 Hermes로 만든 사례가 정리되어 있다. 단순 데모가 아니라 X, GitHub, Reddit, Discord, YouTube, 블로그 등에서 수집한 사용 사례들이고, 개인 비서, 개발 워크플로우, 리서치, 비즈니스 자동화, 셀프호스팅 같은 카테고리로 나뉘어 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "내가 보기에는 그중에서 다음 3가지가 Hermes의 장점을 잘 보여준다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "첫 번째는 매일 사이버보안 + AI 브리핑을 자동으로 받는 사례다. 매일 사이버보안과 AI 관련 브리핑을 받는 용도로 사용하고 있었다. 이 사례가 괜찮다고 느낀 이유는 Hermes가 단순히 질문에 답하는 도구가 아니라, 서버에서 계속 돌아가면서 정기적으로 정보를 모으고 요약해 주는 에이전트라는 점을 잘 보여주기 때문이다. 보안 쪽에서는 취약점, 공격 기법, 툴 업데이트, AI 보안 이슈처럼 계속 봐야 하는 정보가 많기 때문에 이런 자동 브리핑은 꽤 실용적이라고 생각한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "두 번째는 매일 리서치 브리프를 여러 채널로 보내는 사례다. 한 사용자는 Hermes를 AI/에이전트 분야 리서치 에이전트로 만들고, 유용한 신호를 골라 브리프를 작성하게 한 뒤 Discord, Slack, Notion, 이메일, Obsidian, 로컬 Markdown 등으로 전달하도록 구성했다. 이건 내가 Hermes를 쓰려는 목적과도 꽤 비슷하다. 단순히 “검색해줘”가 아니라, 계속 관찰하고, 내가 무시한 내용까지 추적하고, 워크플로우를 개선해 가는 구조이기 때문이다. Hermes의 메모리와 cron, 메신저 연동이 가장 자연스럽게 쓰이는 사례라고 볼 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "세 번째는 코드 리뷰 워크플로우가 반복되면서 사용자 취향을 학습한 사례다. 한 사용자는 Hermes를 설치한 지 10일 정도 지난 뒤, 처음에는 어색했던 코드 리뷰 워크플로우가 반복 사용을 거치면서 어떤 파일을 먼저 볼지, 어떤 패턴을 지적할지, 결과를 어떤 형식으로 정리할지 학습했다고 설명했다. 이 부분이 Hermes의 “자가 개선” 컨셉과 잘 맞는다. Codex나 Claude Code가 즉시 코드를 잘 짜는 도구라면, Hermes는 반복되는 작업 방식을 기억하고 내 작업 흐름에 맞춰지는 쪽에 강점이 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6. hermes 1주일 사용후기 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "처음에는 “이걸 굳이 써야 하나?”라는 생각이 컸다. Codex나 Claude Code를 쓰면 바로 좋은 결과가 나오는데, Hermes는 설치하고 설정하고 모델 붙이고 도구 권한도 봐야 한다. 로컬 LLM까지 붙이면 GPU나 서빙 환경도 신경 써야 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "그런데 1주일 정도 사용해 보니 Hermes의 장점은 모델 성능 자체가 아니라 구조에 있었다. 메모리, 스킬, cron, 메신저 알림, 서버에서 계속 실행되는 환경이 합쳐지면 단순 LLM과는 다른 느낌나고 사용하기에 괜찮고 여러가지를 시도해 보기 좋았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다만 아직은 최적화가 필요하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "토큰 오버헤드가 있고, 스킬이 많아지면 관리가 필요하고, 로컬 모델은 작업에 따라 답답할 때가 있다. 그리고 에이전트에게 권한을 많이 줄수록 보안 리스크도 커진다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "결론적으로 Hermes는 “상용 코딩 에이전트 대체재”라기보다는 “내가 직접 운영하는 장기 실행형 에이전트 프레임워크”에 가깝다. 단순히 코드를 빨리 짜고 싶다면 Codex나 Claude Code가 낫다. 하지만 계속 돌아가는 자동화, 메신저 기반 작업, 로컬 LLM 실험, 자가 개선 루프를 만들고 싶다면 Hermes를 써볼 만하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "7. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Hermes는 단순 코딩 도구라기보다 메모리, 스킬, cron, 메신저 연동을 묶어 계속 돌릴 수 있는 에이전트라 생각보다 쓸만하다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "로컬 LLM만 쓰면 한계가 있지만, Codex나 Claude Code와 같이 사용하면 설정, 코드 분석, 리서치 자동화에서 더 쓸만해진다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "보안 브리핑, 반복 리서치, 워크플로우 자동화 같은 걸 더 시도해 보고 실제 사용 후기를 계속 남겨봐야겠다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "8. 출처 및 참고자료 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "- Hermes Agent 공식 사이트: "
+          },
+          {
+            "type": "text",
+            "text": "https://hermes-agent.nousresearch.com/",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://hermes-agent.nousresearch.com/"
+                }
+              }
+            ]
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- Hermes Agent User Stories & Use Cases: "
+          },
+          {
+            "type": "text",
+            "text": "https://hermes-agent.nousresearch.com/docs/user-stories",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://hermes-agent.nousresearch.com/docs/user-stories"
+                }
+              }
+            ]
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- Hostinger, “Hermes Agent use cases: 10 examples of what you can do”: "
+          },
+          {
+            "type": "text",
+            "text": "https://www.hostinger.com/tutorials/hermes-agent-use-cases",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.hostinger.com/tutorials/hermes-agent-use-cases"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "c66b36a8-3702-5347-92f2-4cea756edda3",
+          "href": "https://hermes-agent.nousresearch.com/docs/",
+          "title": "Hermes Agent Documentation | Hermes Agent",
+          "description": "The self-improving AI agent built by Nous Research. A built-in learning loop that creates skills from experience, improves them during use, and remembers across sessions.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/75e85ef6fecf5a6227985f2082e5b35331fceff4d8db03720c82a7d9ee8b7eea.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/106",
+    "originalId": "106",
+    "publishedAt": "2026-06-05T20:46:55+09:00",
+    "updatedAt": "2026-06-06T18:28:32+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

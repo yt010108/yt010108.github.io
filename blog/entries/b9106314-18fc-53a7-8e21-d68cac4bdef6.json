@@ -1,0 +1,335 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "b9106314-18fc-53a7-8e21-d68cac4bdef6",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-39 문제",
+  "slug": "tistory-52",
+  "description": "1. 문제 정보문제 번호 : old -39문제 점수 : 10점분야 : sql2. 문제 분석 제출하라는 폼만 나오고 view-source가 나온다. view-source 소스는 위처럼 생겼고 \\\\즉 \\를 필터링하고 '를 ''로 만든다. 일단 str.replace(\"\\\\\")에서 처음 막혔는데 \\\\를 필터링하는줄 알았느데 \\를 필터링하는 거였다.그리고 두번째로 막힌건 length(id)length에서 id값은 sql에서 DB가 튜플을 조회할 때 그 튜플의 id값의 길이이다. 3. 풀이데이터베이스에서 where에서 %20즉 엔터는 무시된다. 그러므로 admin하고 공백으로 14글자를 채운 뒤에 '를하면 15, 16번째에 '가 들어간다 하지만 substr로 15번째부터 잘린다. 따라서 where 절에서 bu..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-23",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-23T22:13:52+09:00",
+  "updatedAt": "2026-01-23T23:53:28+09:00",
+  "sourceDigest": "8504bfee37d4e086d979307cfdfd2c064f655e73da6b4cedd83b6c03e6bd7759",
+  "assets": [
+    {
+      "id": "5418c922-26ab-5fde-92e2-c99618f11b8d",
+      "name": "tistory-52-5418c922-26ab-5fde-92e2-c99618f11b8d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b9106314-18fc-53a7-8e21-d68cac4bdef6/5418c922-26ab-5fde-92e2-c99618f11b8d.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "dfaee9f7-31c0-51f7-b680-8929bb797da0",
+      "name": "tistory-52-dfaee9f7-31c0-51f7-b680-8929bb797da0.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b9106314-18fc-53a7-8e21-d68cac4bdef6/dfaee9f7-31c0-51f7-b680-8929bb797da0.png",
+      "sha": "643ea900cfcbec59ef8f6d695b06d79096f74cf2"
+    },
+    {
+      "id": "15f21aa1-49e5-5035-9afa-497603941f28",
+      "name": "tistory-52-15f21aa1-49e5-5035-9afa-497603941f28.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b9106314-18fc-53a7-8e21-d68cac4bdef6/15f21aa1-49e5-5035-9afa-497603941f28.png",
+      "sha": "16d446f512045f4c4eccad0c1c22826dc4034a3c"
+    },
+    {
+      "id": "7bb55acd-b14c-51d1-beeb-56467915b85e",
+      "name": "tistory-52-7bb55acd-b14c-51d1-beeb-56467915b85e.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b9106314-18fc-53a7-8e21-d68cac4bdef6/7bb55acd-b14c-51d1-beeb-56467915b85e.png",
+      "sha": "04cb25af498ee30f0981badd503f1258315d73e2"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "5418c922-26ab-5fde-92e2-c99618f11b8d",
+          "src": "/assets/uploads/b9106314-18fc-53a7-8e21-d68cac4bdef6/5418c922-26ab-5fde-92e2-c99618f11b8d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -39"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 10점"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "분야 : sql"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "dfaee9f7-31c0-51f7-b680-8929bb797da0",
+          "src": "/assets/uploads/b9106314-18fc-53a7-8e21-d68cac4bdef6/dfaee9f7-31c0-51f7-b680-8929bb797da0.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "제출하라는 폼만 나오고 view-source가 나온다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n  include \"../../config.php\";\n  if($_GET['view_source']) view_source();\n?><html>\n<head>\n<title>Chellenge 39</title>\n</head>\n<body>\n<?php\n  $db = dbconnect();\n  if($_POST['id']){\n    $_POST['id'] = str_replace(\"\\\\\",\"\",$_POST['id']);\n    $_POST['id'] = str_replace(\"'\",\"''\",$_POST['id']);\n    $_POST['id'] = substr($_POST['id'],0,15);\n    $result = mysqli_fetch_array(mysqli_query($db,\"select 1 from member where length(id)<14 and id='{$_POST['id']}\"));\n    if($result[0] == 1){\n      solve(39);\n    }\n  }\n?>\n<form method=post action=index.php>\n<input type=text name=id maxlength=15 size=30>\n<input type=submit>\n</form>\n<a href=?view_source=1>view-source</a>\n</body>\n</html>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "소스는 위처럼 생겼고 \\\\즉 \\를 필터링하고 '를 ''로 만든다. "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "일단 str.replace(\"\\\\\")에서 처음 막혔는데 \\\\를 필터링하는줄 알았느데 \\를 필터링하는 거였다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 두번째로 막힌건 length(id)<14 and id='{$_POST['id']}\"에서 length에서 id값이 어디서 나오는 건지 몰랐다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "length에서 id값은 sql에서 DB가 튜플을 조회할 때 그 튜플의 id값의 길이이다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터베이스에서 where에서 %20즉 엔터는 무시된다. 그러므로 admin하고 공백으로 14글자를 채운 뒤에 '를하면 15, 16번째에 '가 들어간다 하지만 substr로 15번째부터 잘린다. 따라서 where 절에서 burp suite로 id값에 admin '으로 하면 문제가 풀린다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "15f21aa1-49e5-5035-9afa-497603941f28",
+          "src": "/assets/uploads/b9106314-18fc-53a7-8e21-d68cac4bdef6/15f21aa1-49e5-5035-9afa-497603941f28.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "7bb55acd-b14c-51d1-beeb-56467915b85e",
+          "src": "/assets/uploads/b9106314-18fc-53a7-8e21-d68cac4bdef6/7bb55acd-b14c-51d1-beeb-56467915b85e.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "PHP의 str_replace로 길이가 늘어난 문자열이 substr로 잘리면서 마지막 문자가 변조되는 취약점을 이용한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "length(id)는 DB 테이블에 저장된 값을 검사하며, MySQL은 문자열 비교 시 끝 공백ㅜ을 무시하는 특성이 있다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "admin 뒤에 공백 9개와 '를 입력해, ''가 '로 잘리게 만들고 공백 무시 특성을 통해 admin 계정으로 로그인에 성공했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/52",
+    "originalId": "52",
+    "publishedAt": "2026-01-23T22:13:52+09:00",
+    "updatedAt": "2026-01-23T23:53:28+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

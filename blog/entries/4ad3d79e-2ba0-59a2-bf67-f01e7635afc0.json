@@ -1,0 +1,820 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "4ad3d79e-2ba0-59a2-bf67-f01e7635afc0",
+  "kind": "posts",
+  "title": "[web] SSTI 알아보기",
+  "slug": "tistory-82",
+  "description": "0. SSTI란?SSTI는 사용자 입력이 서버 템플릿 엔진에서 코드처럼 해석되는 취약점이다.즉, 단순 문자열 출력이 아니라 템플릿 문법으로 실행된다는 점이 핵심이다. 1. Template 엔진이란?템플릿 엔진은 고정된 서식(Template)과 변하는 데이터(Data)를 결합하여 완성된 문서(주로 HTML)를 생성해 주는 소프트웨어 도구이다.그러면 template란?템플릿은 고정된 서식(Template)으로 변하는 데이터(Data)로 {{}}등 여기에 데이터가 들어가고 나머지 HTML구조등을 말한다. 템플릿 엔진은 {{}}안에 데이터를 해석해 템플릿과 합쳐주는 도구이다. 2. Jinja2는 무엇인가?Jinja2는 웹 프레임워크가 아니라 Python 템플릿 엔진 라이브러리다.Flask가 기본 템플릿 엔진으로..",
+  "category": "Security / Web Security",
+  "date": "2026-02-15",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-02-15T00:38:13+09:00",
+  "updatedAt": "2026-04-03T01:11:55+09:00",
+  "sourceDigest": "62528548b9160fec19270b7f420c45d34c5a5c921213975d1bd3911ad32d1709",
+  "assets": [
+    {
+      "id": "84fb92c6-5725-5987-a1da-d30c080ab00e",
+      "name": "tistory-82-84fb92c6-5725-5987-a1da-d30c080ab00e.png",
+      "type": "image/png",
+      "path": "/assets/uploads/4ad3d79e-2ba0-59a2-bf67-f01e7635afc0/84fb92c6-5725-5987-a1da-d30c080ab00e.png",
+      "sha": "dc5ea3e5b9030cd2d8e8a2c8967d7c3c8bd3f0ef"
+    },
+    {
+      "id": "c3c8e034-1c6a-58a1-adec-a8275dceba68",
+      "name": "tistory-82-c3c8e034-1c6a-58a1-adec-a8275dceba68.png",
+      "type": "image/png",
+      "path": "/assets/uploads/4ad3d79e-2ba0-59a2-bf67-f01e7635afc0/c3c8e034-1c6a-58a1-adec-a8275dceba68.png",
+      "sha": "284f07ddb8a1a720b998a73097c2a903385524d1"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "84fb92c6-5725-5987-a1da-d30c080ab00e",
+          "src": "/assets/uploads/4ad3d79e-2ba0-59a2-bf67-f01e7635afc0/84fb92c6-5725-5987-a1da-d30c080ab00e.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "0. SSTI란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SSTI는 "
+          },
+          {
+            "type": "text",
+            "text": "사용자 입력이 서버 템플릿 엔진에서 코드처럼 해석되는 취약점",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "이다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "즉, 단순 문자열 출력이 아니라 템플릿 문법으로 실행된다는 점이 핵심이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. Template 엔진이란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "템플릿 엔진은 고정된 서식(Template)과 변하는 데이터(Data)를 결합하여 완성된 문서(주로 HTML)를 생성해 주는 소프트웨어 도구이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그러면 template란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "템플릿은 고정된 서식(Template)으로 변하는 데이터(Data)로 {{}}등 여기에 데이터가 들어가고 나머지 HTML구조등을 말한다. 템플릿 엔진은 {{}}안에 데이터를 해석해 템플릿과 합쳐주는 도구이다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. Jinja2는 무엇인가?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Jinja2는 웹 프레임워크가 아니라 "
+          },
+          {
+            "type": "text",
+            "text": "Python 템플릿 엔진 라이브러리",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Flask가 기본 템플릿 엔진으로 Jinja2를 사용하기 때문에 자주 함께 언급된다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "웹 프레임워크 (Flask, Django 등) 사용자가 어떤 주소(URL)로 요청을 보냈는지 확인하여 연결(라우팅)하고, 데이터베이스에서 정보를 조회하거나 저장하며, 로그인 세션을 관리하는 등 웹 서버의 전체적인 흐름과 로직을 담당합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "템플릿 엔진 (Jinja2) 프레임워크가 로직 처리를 끝내고 넘겨준 데이터를 받아서, HTML 파일의 지정된 위치에 값을 채워 넣고 최종적으로 보여질 문서를 완성하는 텍스트 처리 작업만 담당합니다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "안전한 경우는 템플릿 파일을 고정하고 변수만 전달하는 방식이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "return render_template(\"index.html\", name=user_data)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제가 되는 경우는 사용자 입력을 템플릿으로 직접 실행하는 방식이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "return render_template_string(user_input)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 패턴에서는 사용자 입력이 템플릿 문법으로 해석되어 SSTI가 발생할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "주로 사용하는 ssti페이로드이다"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "{{config.__class__.__init__.__globals__['os'].popen('ls').read()}}"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 근데 그러면 "
+          },
+          {
+            "type": "text",
+            "text": " 어떤 코드를 실행할까?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Jinja2 템플릿 안에서는 import os 같은 파이썬의 정석적인 코드를 사용할 수 없도록 막혀있는 샌드박스 환경이다. 그런데 어떻게 센드박스 밖에 있는 함수를 실행 가능할까?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "웹 애플리케이션(Flask)이 실행될 때 파이썬 인터프리터는 하나의 거대한 프로세스로 동작합니다. 이 프로세스 안에는 이미 수많은 기본 라이브러리(str, int, list 등)와 프레임워크(Flask, Jinja2), 그리고 그들이 내부적으로 사용하는 모듈(os, sys 등)이 전부 로딩되어있다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파이썬에서 모든 것은 객체이다. 객체는 상속되어 있으며 부모를 찾아가서, 다시 그 부모의 다른 자식들을 조회하는 식으로 메모리에 로드된 모든 클래스에 접근할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "진입점으로 사용하는 객체 "
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "파이썬 기본 자료형 (Primitives) 가장 흔하게 사용되는 방식입니다. 별도의 변수 이름 없이 기호만으로 표현 가능하기 때문에, config 같은 특정 단어를 차단하는 보안 장비(WAF)를 우회하기 매우 좋습니다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "빈 문자열 \"\" 또는 '' 가장 기본적이고 많이 쓰이는 진입점입니다. 타입: str 경로: \"\".class 는 str 클래스를 반환합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "빈 리스트 [] 문자열 따옴표가 필터링될 때 대안으로 사용합니다. 타입: list 경로: [].class 는 list 클래스를 반환합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "빈 튜플 () 리스트와 유사하게 사용됩니다. 타입: tuple 경로: ().class 는 tuple 클래스를 반환합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "빈 딕셔너리 {} 타입: dict 경로: {}.class 는 dict 클래스를 반환합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "숫자 (예: 1, 0) 타입: int 경로: (1).class 는 int 클래스를 반환합니다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "2. Flask/Jinja2 전역 객체 (Globals) 프레임워크가 템플릿 렌더링을 위해 기본적으로 삽입해 둔 객체들입니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "config Flask의 설정 객체입니다. 앞서 설명했듯 1순위로 확인하는 타깃입니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "request 현재 요청 객체입니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "self 현재 렌더링 되고 있는 템플릿 그 자체(Template Instance)를 가리킵니다. self.__dict__를 통해 현재 템플릿에 로드된 변수 목록을 확인할 때도 쓰입니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "g Flask에서 요청 처리 기간 동안 데이터를 보관하는 전역 객체입니다"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "3. Jinja2 유틸리티 및 함수 (Helpers) 객체보다는 함수(Callable) 형태의 진입점이 필요할 때 사용합니다. 함수 객체는 "
+          },
+          {
+            "type": "text",
+            "text": "globals",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 속성을 직접 가지고 있는 경우가 많아, 상속 계층을 많이 타지 않고도 바로 모듈 영역으로 넘어갈 수 있는 지름길이 되기도 합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "lipsum 랜덤 텍스트 생성 함수입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "cycler 리스트의 값을 순환하며 반환하는 Jinja2의 헬퍼 클래스입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "joiner 문자열을 합칠 때 사용하는 헬퍼 클래스입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "c3c8e034-1c6a-58a1-adec-a8275dceba68",
+          "src": "/assets/uploads/4ad3d79e-2ba0-59a2-bf67-f01e7635afc0/c3c8e034-1c6a-58a1-adec-a8275dceba68.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "{{lipsum.__globals__.os}}@asd.com"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Jinja2가 파이프(|)를 해석하는 방식"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Jinja2 템플릿 엔진이 {{ \"값\" | 무언가 }}라는 코드를 만나면 내부적으로 다음과 같은 과정을 거칩니다."
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "파싱(Parsing):",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " | 뒤에 있는 단어(무언가)를 읽습니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "조회(Lookup):",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " 엔진 내부의 "
+                  },
+                  {
+                    "type": "text",
+                    "text": "filters라는 딕셔너리",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": "에서 그 단어를 찾습니다."
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "예: filters['length'], filters['upper'], filters['list']"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 엔진별 SSTI 식별용(무해) 페이로드"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Jinja2(Flask): {{7*7}} → 49"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Twig(PHP): {{7*7}} → 49"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "FreeMarker(Java): ${7*7} → 49"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Thymeleaf(Java): [[${7*7}]] → 설정에 따라 평가"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Smarty(PHP): {$smarty.version} → 버전 문자열"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Handlebars/Mustache: {{7*7}} → 보통 연산 미지원(그대로 출력될 수 있음)"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/82",
+    "originalId": "82",
+    "publishedAt": "2026-02-15T00:38:13+09:00",
+    "updatedAt": "2026-04-03T01:11:55+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

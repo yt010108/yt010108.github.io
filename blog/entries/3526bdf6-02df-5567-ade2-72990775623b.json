@@ -1,0 +1,430 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "3526bdf6-02df-5567-ade2-72990775623b",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-47 문제",
+  "slug": "tistory-60",
+  "description": "1. 문제 정보문제 번호 : old -47문제 점수 : 15점문제 유형: PHP mail 2. 문제 분석47번 문제에 들어가면 mail subject가 나오고 send 버튼을 누르면 mail has been sent가 나온다. 소스코드를 봐도 post요청을 하는거만 보인다.Mail subject : 3. 풀이서버에서 동작을 생각해보면 post로 받은 subject를 받고 PHP에서 mail함수에 인자를 넣고 보낼 것이다.PHP에서 주로 사용하는 메일 함수를 보자 mail( string $to, string $subject, string $message, array|string $additional_headers = [], string $additional_params = ..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-26",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-26T22:50:39+09:00",
+  "updatedAt": "2026-01-26T22:50:39+09:00",
+  "sourceDigest": "1a2aa2486efeb35e37741a0cb8f9a87e0816becc7c4cad0bd4a7db8a94963c7b",
+  "assets": [
+    {
+      "id": "eb35e1be-d199-5456-bd01-87c45498d246",
+      "name": "tistory-60-eb35e1be-d199-5456-bd01-87c45498d246.png",
+      "type": "image/png",
+      "path": "/assets/uploads/3526bdf6-02df-5567-ade2-72990775623b/eb35e1be-d199-5456-bd01-87c45498d246.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "df1ecbbd-91d0-5d90-9ef4-c3c3ec9aeafc",
+      "name": "tistory-60-df1ecbbd-91d0-5d90-9ef4-c3c3ec9aeafc.png",
+      "type": "image/png",
+      "path": "/assets/uploads/3526bdf6-02df-5567-ade2-72990775623b/df1ecbbd-91d0-5d90-9ef4-c3c3ec9aeafc.png",
+      "sha": "eeef108ce0e955e1a5e0bf4c7c375b32e12d2f15"
+    },
+    {
+      "id": "350aa581-1cf2-5f4e-9315-23980557bf59",
+      "name": "tistory-60-350aa581-1cf2-5f4e-9315-23980557bf59.png",
+      "type": "image/png",
+      "path": "/assets/uploads/3526bdf6-02df-5567-ade2-72990775623b/350aa581-1cf2-5f4e-9315-23980557bf59.png",
+      "sha": "2623e1f0f01fda3beb09b4c08d7522024a49da05"
+    },
+    {
+      "id": "9ee4910a-c92c-5411-b6c9-863914e2b089",
+      "name": "tistory-60-9ee4910a-c92c-5411-b6c9-863914e2b089.png",
+      "type": "image/png",
+      "path": "/assets/uploads/3526bdf6-02df-5567-ade2-72990775623b/9ee4910a-c92c-5411-b6c9-863914e2b089.png",
+      "sha": "745c22cbc2a1da4917d409b32cf838f8cb8f7239"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "eb35e1be-d199-5456-bd01-87c45498d246",
+          "src": "/assets/uploads/3526bdf6-02df-5567-ade2-72990775623b/eb35e1be-d199-5456-bd01-87c45498d246.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -47"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 15점"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 유형: PHP mail"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "47번 문제에 들어가면 mail subject가 나오고 send 버튼을 누르면 mail has been sent가 나온다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "df1ecbbd-91d0-5d90-9ef4-c3c3ec9aeafc",
+          "src": "/assets/uploads/3526bdf6-02df-5567-ade2-72990775623b/df1ecbbd-91d0-5d90-9ef4-c3c3ec9aeafc.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "소스코드를 봐도 post요청을 하는거만 보인다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<html>\n<head>\n<title>Challenge 47</title>\n</head>\n<body>\n<form method=post name=mailfrm>\nMail subject : <input type=text name=subject size=50 value=\"Flag of webhacking.kr old-47 chall\" maxlength=50><input type=submit value=send>\n</form>\n</pre>\n</body>\n</html>"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서버에서 동작을 생각해보면 post로 받은 subject를 받고 PHP에서 mail함수에 인자를 넣고 보낼 것이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PHP에서 주로 사용하는 메일 함수를 보자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "mail(\n    string $to,\n    string $subject,\n    string $message,\n    array|string $additional_headers = [],\n    string $additional_params = \"\"\n): bool"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://www.php.net/manual/en/function.mail.php",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.php.net/manual/en/function.mail.php"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 에서 자세한 내용이 확인 가능하다."
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "173bb4de-44b3-56bd-a778-8e8477d4310d",
+          "href": "https://www.php.net/manual/en/function.mail.php",
+          "title": "PHP: mail - Manual",
+          "description": "Send mail",
+          "image": "https://yt010108.github.io/assets/imported/tistory/f9139daeb2ce68b78a2821298c38fb04ec3ee53850224f0c5cad59e74dfd78f4.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "additional 해더로 'Bcc: birthdaycheck@example.com'; 를 보내면 참조가 가능하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 mail함수는 SMTP를 호출한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이메일 전송 프로토콜(SMTP)은 헤더와 본문을 구분하기 위해 빈 줄(Empty Line) 하나를 구분자로 사용한다. 이 빈 줄은 기술적으로 \\r\\n\\r\\n (CRLF 두 번)으로 표현된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 asd\\r\\n Bcc: birthdaycheck@example.com 을 보내면 birthdaycheck@example.com로 참조 메일로 삼아 메일이 간다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "+ 풀이에는 Cc(참조)나 Bcc(숨은 참조) 둘 다 상관없지만, 실제 공격자라면 원본 수신자에게 들키지 않기 위해 Bcc를 주로 사용한다고 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래 사진은 burp에서 http요청을 수정한 것이고"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "350aa581-1cf2-5f4e-9315-23980557bf59",
+          "src": "/assets/uploads/3526bdf6-02df-5567-ade2-72990775623b/350aa581-1cf2-5f4e-9315-23980557bf59.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "응답은 아래 사진과 같다"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "9ee4910a-c92c-5411-b6c9-863914e2b089",
+          "src": "/assets/uploads/3526bdf6-02df-5567-ade2-72990775623b/9ee4910a-c92c-5411-b6c9-863914e2b089.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "PHP mail() 함수의 Subject 파라미터가 입력값 검증 없이 헤더 처리에 사용되는 헤더 인젝션(Header Injection) 취약점을 이용했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "제목(Subject) 입력값에 개행 문자(%0D%0A, CRLF)를 삽입하여 강제로 줄을 바꾼 뒤, Cc 또는 Bcc 헤더를 추가하여 수신자를 조작했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이를 통해 서버가 원래 수신자에게 보내려던 플래그가 포함된 메일을 내 개인 이메일로도 발송되게 만들어 플래그를 획득했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/60",
+    "originalId": "60",
+    "publishedAt": "2026-01-26T22:50:39+09:00",
+    "updatedAt": "2026-01-26T22:50:39+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

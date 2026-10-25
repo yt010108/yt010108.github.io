@@ -1,0 +1,334 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "cd4c9845-805a-5597-a5db-662e17244c7f",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-24 문제",
+  "slug": "tistory-43",
+  "description": "1. 문제 정보문제 번호 : old -24문제 점수 : 10점2. 문제 분석 client 아이피랑 agent가 나오고 wrong ip가 나온다. 코드는 아래와 같다.client ip{$ip}agent{$agent}\"; if($ip==\"127.0.0.1\"){ solve(24); exit(); } else{ echo \"Wrong IP!\"; }?>view-source _server와 _cookie값을 추출해서 ip값으로 쓴다._cookie값으로 Remote_addr을 써서 검사를 통과해야한다. .., 12,7. 0.을 공백으로 바꾼다. $ip = htmlspecialchars($REMOTE_ADDR); $ip = str_replace(\"..\",\".\",$ip); $ip =..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-20",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-20T20:37:38+09:00",
+  "updatedAt": "2026-01-22T00:21:08+09:00",
+  "sourceDigest": "eefe7a58a11947fe8beb706107110db8b2f36c058c19792e0e790fb7d13889a7",
+  "assets": [
+    {
+      "id": "d833cbbf-e623-5280-a595-4cc0a7cbaab4",
+      "name": "tistory-43-d833cbbf-e623-5280-a595-4cc0a7cbaab4.png",
+      "type": "image/png",
+      "path": "/assets/uploads/cd4c9845-805a-5597-a5db-662e17244c7f/d833cbbf-e623-5280-a595-4cc0a7cbaab4.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "07c1048b-29c2-5161-842e-c5c1a464f2a3",
+      "name": "tistory-43-07c1048b-29c2-5161-842e-c5c1a464f2a3.png",
+      "type": "image/png",
+      "path": "/assets/uploads/cd4c9845-805a-5597-a5db-662e17244c7f/07c1048b-29c2-5161-842e-c5c1a464f2a3.png",
+      "sha": "f2e5398d18bb8ce741f31ed572de6b4945e5c785"
+    },
+    {
+      "id": "77c42537-3ea4-5c28-90ed-de09a3efe98f",
+      "name": "tistory-43-77c42537-3ea4-5c28-90ed-de09a3efe98f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/cd4c9845-805a-5597-a5db-662e17244c7f/77c42537-3ea4-5c28-90ed-de09a3efe98f.png",
+      "sha": "3dce90a814a3483f39fc857582c5c4e62aaf1e8b"
+    },
+    {
+      "id": "87045adc-a1d3-579a-b2d5-f894ef7ee56f",
+      "name": "tistory-43-87045adc-a1d3-579a-b2d5-f894ef7ee56f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/cd4c9845-805a-5597-a5db-662e17244c7f/87045adc-a1d3-579a-b2d5-f894ef7ee56f.png",
+      "sha": "215fb191a240f8522b559f0687fb1daf200401a9"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "d833cbbf-e623-5280-a595-4cc0a7cbaab4",
+          "src": "/assets/uploads/cd4c9845-805a-5597-a5db-662e17244c7f/d833cbbf-e623-5280-a595-4cc0a7cbaab4.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -24"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 10점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "07c1048b-29c2-5161-842e-c5c1a464f2a3",
+          "src": "/assets/uploads/cd4c9845-805a-5597-a5db-662e17244c7f/07c1048b-29c2-5161-842e-c5c1a464f2a3.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "client 아이피랑 agent가 나오고 wrong ip가 나온다. 코드는 아래와 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n  include \"../../config.php\";\n  if($_GET['view_source']) view_source();\n?><html>\n<head>\n<title>Challenge 24</title>\n</head>\n<body>\n<p>\n<?php\n  extract($_SERVER);\n  extract($_COOKIE);\n  $ip = $REMOTE_ADDR;\n  $agent = $HTTP_USER_AGENT;\n  if($REMOTE_ADDR){\n    $ip = htmlspecialchars($REMOTE_ADDR);\n    $ip = str_replace(\"..\",\".\",$ip);\n    $ip = str_replace(\"12\",\"\",$ip);\n    $ip = str_replace(\"7.\",\"\",$ip);\n    $ip = str_replace(\"0.\",\"\",$ip);\n  }\n  if($HTTP_USER_AGENT){\n    $agent=htmlspecialchars($HTTP_USER_AGENT);\n  }\n  echo \"<table border=1><tr><td>client ip</td><td>{$ip}</td></tr><tr><td>agent</td><td>{$agent}</td></tr></table>\";\n  if($ip==\"127.0.0.1\"){\n    solve(24);\n    exit();\n  }\n  else{\n    echo \"<hr><center>Wrong IP!</center>\";\n  }\n?><hr>\n<a href=?view_source=1>view-source</a>\n</body>\n</html>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "_server와 _cookie값을 추출해서 ip값으로 쓴다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "_cookie값으로 Remote_addr을 써서 검사를 통과해야한다. .., 12,7. 0.을 공백으로 바꾼다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "$ip = htmlspecialchars($REMOTE_ADDR); "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " $ip = str_replace(\"..\",\".\",$ip); "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " $ip = str_replace(\"12\",\"\",$ip); "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " $ip = str_replace(\"7.\",\"\",$ip); "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " $ip = str_replace(\"0.\",\"\",$ip);"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "replace를 통과하고 if($ip==\"127.0.0.1\")에 통과하기 위해서 "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "112277.12.0012.12.00.12.1를 REMOTE_ADDR에 cookie값으로 입력하면 통과한다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "77c42537-3ea4-5c28-90ed-de09a3efe98f",
+          "src": "/assets/uploads/cd4c9845-805a-5597-a5db-662e17244c7f/77c42537-3ea4-5c28-90ed-de09a3efe98f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "87045adc-a1d3-579a-b2d5-f894ef7ee56f",
+          "src": "/assets/uploads/cd4c9845-805a-5597-a5db-662e17244c7f/87045adc-a1d3-579a-b2d5-f894ef7ee56f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "extract($_SERVER) 뒤에 extract($_COOKIE)가 나와서 $REMOTE_ADDR 변수를 조작 가능한 쿠키 값으로 덮어 씌웠다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "str_replace가 .. → 12 → 7. → 0. 순으로 문자열을 지우는 점을 역이용했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "최종 Payload 쿠키 헤더에 REMOTE_ADDR=112277.12.0012.12.00.12.1을 입력해 전송하면 문제가 풀린다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/43",
+    "originalId": "43",
+    "publishedAt": "2026-01-20T20:37:38+09:00",
+    "updatedAt": "2026-01-22T00:21:08+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

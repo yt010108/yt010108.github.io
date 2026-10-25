@@ -1,0 +1,343 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "8fcc786a-b4e7-599b-a7dd-50b2f83795fd",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-36문제",
+  "slug": "tistory-63",
+  "description": "1. 문제 정보문제 번호 : old -36문제 점수 : 20점2. 문제 분석 36번 문제이다. 들어가면 아래처럼 index.php가 파워가 나가서 source 코드가 사라졌다고 한다. recover해보자. vi나 vim은 예기치 못한 종료가 있을 때 swp파일을 만든다. swp파일은 백업 파일로 .[filename].swp파일로 숨겨진다. 그래서 https://webhacking.kr/challenge/bonus-8/.index.php.swp파일을 주소창에 요청하면 파일이 다운로드 된다. 파일을 열어보면 알아 볼 수 없다.3. 풀이리눅스에서 index.php 파일을 만들고 아래 파일을 .index.php.swp파일로 이름을 바꿔 실행해보면 flag가 나온다 4. 요약 전력 차단으로 소스 코드가 유실..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-27",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-27T13:23:03+09:00",
+  "updatedAt": "2026-01-27T13:23:03+09:00",
+  "sourceDigest": "c682f21c920db8836e59129bfa7d9d5e0e3afb76b732b8a537cb2d1e9a1ca0c6",
+  "assets": [
+    {
+      "id": "b485a26d-e86a-5708-8f7f-7cb418db9aa4",
+      "name": "tistory-63-b485a26d-e86a-5708-8f7f-7cb418db9aa4.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8fcc786a-b4e7-599b-a7dd-50b2f83795fd/b485a26d-e86a-5708-8f7f-7cb418db9aa4.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "8ded9727-ac29-5fcd-a16b-2944ca4e9a00",
+      "name": "tistory-63-8ded9727-ac29-5fcd-a16b-2944ca4e9a00.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8fcc786a-b4e7-599b-a7dd-50b2f83795fd/8ded9727-ac29-5fcd-a16b-2944ca4e9a00.png",
+      "sha": "88bfa218d655670c3fad39fa65660062fb5f5368"
+    },
+    {
+      "id": "0dda1f8e-897f-5acc-a414-541adb250970",
+      "name": "tistory-63-0dda1f8e-897f-5acc-a414-541adb250970.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8fcc786a-b4e7-599b-a7dd-50b2f83795fd/0dda1f8e-897f-5acc-a414-541adb250970.png",
+      "sha": "c25f29462e1b01ddc44c95bf58e944acf1d657ad"
+    },
+    {
+      "id": "83bb6b06-0769-5e61-bf79-f24400014cf7",
+      "name": "tistory-63-83bb6b06-0769-5e61-bf79-f24400014cf7.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8fcc786a-b4e7-599b-a7dd-50b2f83795fd/83bb6b06-0769-5e61-bf79-f24400014cf7.png",
+      "sha": "4cf8600a1ca9bc0f3d707f471a3828c3d65fbccb"
+    },
+    {
+      "id": "3ea08f6d-2cd2-593a-9dd6-e1c31068f0ce",
+      "name": "tistory-63-3ea08f6d-2cd2-593a-9dd6-e1c31068f0ce.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8fcc786a-b4e7-599b-a7dd-50b2f83795fd/3ea08f6d-2cd2-593a-9dd6-e1c31068f0ce.png",
+      "sha": "d57ca535f7e4c05df0ffac9da90ca9b5204d4f3b"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "b485a26d-e86a-5708-8f7f-7cb418db9aa4",
+          "src": "/assets/uploads/8fcc786a-b4e7-599b-a7dd-50b2f83795fd/b485a26d-e86a-5708-8f7f-7cb418db9aa4.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -36"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 20점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "36번 문제이다. 들어가면 아래처럼 index.php가 파워가 나가서 source 코드가 사라졌다고 한다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "8ded9727-ac29-5fcd-a16b-2944ca4e9a00",
+          "src": "/assets/uploads/8fcc786a-b4e7-599b-a7dd-50b2f83795fd/8ded9727-ac29-5fcd-a16b-2944ca4e9a00.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "recover해보자."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "vi나 vim은 예기치 못한 종료가 있을 때 swp파일을 만든다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "swp파일은 백업 파일로 .[filename].swp파일로 숨겨진다. 그래서 "
+          },
+          {
+            "type": "text",
+            "text": "https://webhacking.kr/challenge/bonus-8/.index.php.swp",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://webhacking.kr/challenge/bonus-8/index.php"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "파일을 주소창에 요청하면 파일이 다운로드 된다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "0dda1f8e-897f-5acc-a414-541adb250970",
+          "src": "/assets/uploads/8fcc786a-b4e7-599b-a7dd-50b2f83795fd/0dda1f8e-897f-5acc-a414-541adb250970.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "83bb6b06-0769-5e61-bf79-f24400014cf7",
+          "src": "/assets/uploads/8fcc786a-b4e7-599b-a7dd-50b2f83795fd/83bb6b06-0769-5e61-bf79-f24400014cf7.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파일을 열어보면 알아 볼 수 없다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "리눅스에서 index.php 파일을 만들고 아래 파일을 .index.php.swp파일로 이름을 바꿔 실행해보면 flag가 나온다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "3ea08f6d-2cd2-593a-9dd6-e1c31068f0ce",
+          "src": "/assets/uploads/8fcc786a-b4e7-599b-a7dd-50b2f83795fd/3ea08f6d-2cd2-593a-9dd6-e1c31068f0ce.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "전력 차단으로 소스 코드가 유실되었다는 힌트를 통해 Vi 에디터의 임시 스왑 파일(.swp) 존재를 파악했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "URL에 /.index.php.swp를 입력하여 서버에 남아있던 숨겨진 백업 파일을 다운로드했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "리눅스 환경에서 해당 스왑 파일을 배치하고 복구 옵션(vi -r)을 사용하여 원본 코드를 되살려 플래그를 획득했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/63",
+    "originalId": "63",
+    "publishedAt": "2026-01-27T13:23:03+09:00",
+    "updatedAt": "2026-01-27T13:23:03+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

@@ -17,5 +17,8 @@ for (const item of index.entries) {
   posts.push({ ...record, sha: item.sha, searchText: text, readTime: Math.max(1, Math.ceil(text.trim().split(/\s+/).length / 200)), sample: false });
 }
 posts.sort((a, b) => b.date.localeCompare(a.date) || b.publishedAt.localeCompare(a.publishedAt));
-await writeFile("published.js", "window.BLOG_PUBLISHED = " + JSON.stringify(posts).replaceAll("<", "\\u003c") + ";\nwindow.BLOG_MANAGED_KINDS = " + JSON.stringify([...new Set(index.entries.map(item => item.kind))]) + ";\n");
+await writeFile("published.json", JSON.stringify({ format: "yt010108-public-content", version: 1, posts, managedKinds: [...new Set(index.entries.map(item => item.kind))] }) + "\n");
+// Cached versions of the reader request this script after detecting a new deployment.
+// Reload the HTML so those tabs switch to the JSON reader as well.
+await writeFile("published.js", "// Blog content is now loaded as JSON data.\nlocation.reload();\n");
 console.log("Prepared " + posts.length + " published post(s); " + (index.entries.length - posts.length) + " in trash.");

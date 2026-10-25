@@ -1,0 +1,2500 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "b08135ce-070d-5ec2-af54-4902ca65c557",
+  "kind": "posts",
+  "title": "[Project] kr-gov-job-mcp | AGENTIC PLAYER 10",
+  "slug": "tistory-110",
+  "description": "0. AGENTIC PLAYER 10 이번 프로젝트는 카카오의 AGENTIC PLAYER 10에 팀으로 참여했다. 이 대회는 아이디어만 제출하는 방식이 아니라, 실제 MCP 서버를 만들고 PlayMCP에 등록한 뒤 심사를 받는 형태다. 카카오를 통해서 mcp서버를 올리고 kakao ai채팅을 통해서 mcp를 사용하거나 GPT나 Claude를 통해서도 사용가능하다. 예선전은 카카오에 서빙하고 내부 심사를 거치며 20team을 선발하게 되며 본선전은 투표를 통해 순위가 결정된다. 예선은 최대 2개까지 작품을 제출 가능하고 팀으로 참여 가능하다. 다른 개발자 대회랑 다르게 이 대회는 챗봇에 프롬포트를 넣는 것이 아니라 MCP를 통해 사용자가 하려는 일 도와주는 도구를 만들고 그걸 직접 카카오 서버에 올려서..",
+  "category": "Project",
+  "date": "2026-07-08",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-07-08T01:35:57+09:00",
+  "updatedAt": "2026-08-08T14:08:40+09:00",
+  "sourceDigest": "8d6338095a2acab28b337e1c35a11ed34b2eac2f96f228d91d048cb756af39a3",
+  "assets": [
+    {
+      "id": "91e9c02d-7de3-5205-946b-5b3036cf4717",
+      "name": "tistory-110-91e9c02d-7de3-5205-946b-5b3036cf4717.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b08135ce-070d-5ec2-af54-4902ca65c557/91e9c02d-7de3-5205-946b-5b3036cf4717.png",
+      "sha": "03f0c458c735e51f266911be58fd71b283c5c036"
+    },
+    {
+      "id": "4c2e3520-3598-525b-a6e9-5a4302bc29bd",
+      "name": "tistory-110-4c2e3520-3598-525b-a6e9-5a4302bc29bd.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b08135ce-070d-5ec2-af54-4902ca65c557/4c2e3520-3598-525b-a6e9-5a4302bc29bd.png",
+      "sha": "d36ae1b3c843fd7308c90aad17f16b7f752446c2"
+    },
+    {
+      "id": "6248dd12-5e7d-5f2d-8fb4-273d50d56248",
+      "name": "tistory-110-6248dd12-5e7d-5f2d-8fb4-273d50d56248.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b08135ce-070d-5ec2-af54-4902ca65c557/6248dd12-5e7d-5f2d-8fb4-273d50d56248.png",
+      "sha": "bc06e173b310456ff27d6856f5c622f029eef24b"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "91e9c02d-7de3-5205-946b-5b3036cf4717",
+          "src": "/assets/uploads/b08135ce-070d-5ec2-af54-4902ca65c557/91e9c02d-7de3-5205-946b-5b3036cf4717.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "0. AGENTIC PLAYER 10 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번 프로젝트는 카카오의 AGENTIC PLAYER 10에 팀으로 참여했다. 이 대회는 아이디어만 제출하는 방식이 아니라, 실제 MCP 서버를 만들고 PlayMCP에 등록한 뒤 심사를 받는 형태다. 카카오를 통해서 mcp서버를 올리고 kakao ai채팅을 통해서 mcp를 사용하거나 GPT나 Claude를 통해서도 사용가능하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예선전은 카카오에 서빙하고 내부 심사를 거치며 20team을 선발하게 되며 본선전은 투표를 통해 순위가 결정된다. 예선은 최대 2개까지 작품을 제출 가능하고 팀으로 참여 가능하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다른 개발자 대회랑 다르게 이 대회는 챗봇에 프롬포트를 넣는 것이 아니라 MCP를 통해 사용자가 하려는 일 도와주는 도구를 만들고 그걸 직접 카카오 서버에 올려서 서빙하는 것이 AI agent를 자주 사용하고 공부하는 입장 매우 흥미로웠다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래 링크에서 ai채팅과 mcp를 사용해 볼 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "01aa6de1-ea74-5056-af9c-0924500c78f8",
+          "href": "https://playmcp.kakao.com",
+          "title": "PlayMCP | 새로운 AI 경험의 시작",
+          "description": "PlayMCP와 함께하는 AI 에이전트 세상, 새로운 AI 경험을 만들어 보세요.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/e01bea3ae2fdc076e1fc933ab94ce4d9cba9e27fb6a3b7a4c1366aff87c1cefd.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. MCP란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ChatGPT와 같은 LLM은 기본적으로 사용자가 입력한 텍스트와 모델이 학습 과정에서 습득한 정보를 기반으로 답변을 생성한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 실제 서비스를 만들다 보면 단순히 모델이 알고 있는 정보만으로는 부족하다 예를 들어 AI가 다음과 같은 작업을 수행한다고 생각해보자."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "날씨나 주가 같은 실시간 정보 조회"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "외부 API 호출"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "현재 채용 중인 공공기관의 채용공고 검색"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이러한 정보는 LLM 자체가 가지고 있는 정보가 아니다. 따라서 LLM이 외부 시스템과 상호작용하기 위해서는 외부 시스템에서 데이터를 가져오거나 기능을 실행할 수 있는 별도의 연결 구조가 필요하다. MCP는 바로 이 부분을 표준화한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Model Context Protocol(MCP)은 LLM(Large Language Model) 애플리케이션과 외부 데이터 소스 및 도구들 간의 원활한 통합을 가능하게 하는 개방형 프로토콜입니다. 간단하게 MCP는 AI가 외부 데이터와 도구를 정해진 방식으로 사용할 수 있게 연결하는 방식이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. MCP 구성"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Model Context Protocol(MCP)은 LLM(Large Language Model) 애플리케이션이 외부 데이터와 도구를 표준화된 방식으로 사용할 수 있도록 연결해주는 개방형 프로토콜이다. 쉽게 말하면, MCP는 AI가 외부 데이터와 기능을 정해진 방식으로 사용할 수 있도록 연결하는 표준이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "LLM은 기본적으로 학습된 정보와 사용자의 입력을 기반으로 답변을 생성한다. 하지만 실제 서비스에서는 최신 채용공고 조회, 데이터베이스 검색, GitHub 조회, 파일 분석처럼 외부 데이터나 기능이 필요한 경우가 많다. MCP는 이러한 외부 기능을 LLM이 사용할 수 있도록 연결해준다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "MCP는 크게 Host, Client, Server로 구성된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Host: 사용자가 사용하는 AI 애플리케이션으로 전체 흐름을 관리한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Client: Host와 MCP Server 사이의 통신을 담당한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Server: LLM이 사용할 수 있는 Tool과 데이터를 제공하고 실제 기능을 실행한다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "전체흐름은 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "사용자 요청\n  ↓\n호스트 애플리케이션이 요청을 LLM에 전달\n  ↓\nLLM이 사용 가능한 MCP 도구 목록을 참고\n  ↓\nLLM이 필요한 도구와 인자를 결정\n  ↓\n호스트의 MCP 클라이언트가 JSON-RPC로 MCP 서버에 tools/call 요청\n  ↓\nMCP 서버가 실제 함수 실행\n  ↓\nMCP 서버가 실행 결과 반환\n  ↓\n호스트가 결과를 LLM에게 전달\n  ↓\nLLM이 최종 답변 생성\n\n즉, LLM은 \"어떤 Tool을 사용할지 판단\"하고, MCP Server는 \"실제 작업을 수행\"한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "MCP를 사용하면 각각의 외부 서비스를 LLM과 개별적으로 연결하는 대신, "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "공통된 프로토콜을 통해 다양한 데이터와 기능을 쉽게 연결할 수 있다는 장점이 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 주제 선정"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "브레인스토밍 단계에서는 괜찮은 아이디어가 꽤 많았다. 나무위키와 공공데이터를 활용하는 MCP, 교육 봉사 매칭, 학원 업무 자동화, 간호사 일정 관리, 여행 계획, 쇼핑몰 가격 비교, 보안 담당자를 위한 SBOM까지 생활에서 출발한 주제부터 전공 관련 주제까지 냈다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "선정한 주제는 하나는 오픈소스에서 발생한 버그와 아직 해결되지 않은 이슈, SBOM을 살펴 개발자나 보안 담당자를 도와주는 MCP, 다른 하나는 한국 채용공고·공모전·인턴 정보를 찾고 취업 준비까지 이어 주는 MCP였다. 주제를 선정한 이유는 취준생 입장에서 채용공고·공모전·인턴 추천은 우리가 가장 잘 알고 직접 사용할 수 있는 주제라고 봤다. 오픈소스 버그/SBOM 모니터링은 팀이 지원하려는 직무와 잘 맞았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "두 주제 모두 나에게 매력적이었지만, 이번 PlayMCP 10에서는 내 아이디어 였던 공공기관 채용 준비 MCP를 주로 만들기로 했고 SBOM관련 프로젝트는 피드백 및 서브 개발로 넘어갔다. 그렇게 "
+          },
+          {
+            "type": "text",
+            "text": "kr-gov-job-mcp",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "가 이번 공모전에서 내가 맡은 MCP 프로젝트가 됐다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://github.com/yt010108/kr-gov-job-mcp",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/yt010108/kr-gov-job-mcp"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "4748f90a-6a03-51d3-8dc0-f99eaf2eef14",
+          "href": "https://github.com/yt010108/kr-gov-job-mcp",
+          "title": "GitHub - yt010108/kr-gov-job-mcp: 한국 공공기관 NCS 취업 정보 분석 MCP. 채용공고, 기관 분석, NCS 역량을 ",
+          "description": "한국 공공기관 NCS 취업 정보 분석 MCP. 채용공고, 기관 분석, NCS 역량을 근거 기반으로 연결합니다. - yt010108/kr-gov-job-mcp",
+          "image": "https://yt010108.github.io/assets/imported/tistory/f23110bc9d72cd23a8a2cc46b4bcc7d87e661e7b979aa875a4b9aa47e40ddd41.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 문제 정의 "
+          }
+        ]
+      },
+      {
+        "type": "blockquote",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "공공기관 취업 정보가 부족한 것이 아니라, 여러 곳에 흩어진 정보를 사용자가 직접 찾아 연결해야 하고 AI 역시 이러한 정보를 충분히 연결하지 못한다는 점이다."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공공기관의 채용정보나 기관 정보는 대부분 인터넷에서 직접 검색할 수 있다. 하지만"
+          },
+          {
+            "type": "text",
+            "text": " AI에게 특정 공공기관의 채용이나 취업 준비에 대해 질문했을 때는 검색 가능한 정보를 단순히 요약하거나, 기관 소개와 채용공고 같은 표면적인 정보만 제공",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "하는 경우가 많았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공공기관 취업을 제대로 준비하려면 여러 출처의 정보를 함께 확인해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "채용공고: Job-ALIO에서 현재 채용공고와 지원 자격, 우대사항 등을 확인"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "직무 정보: 공고에 첨부된 직무기술서를 통해 실제 수행 업무 확인"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "요구 역량: NCS를 통해 직무에 필요한 지식·기술·태도(KSA) 확인"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "기관 분석: ALIO의 주요사업과 연구·정책 자료를 통해 기관의 사업 방향 파악"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "기관 현안: 국회 지적사항 등을 통해 기관이 가진 현안과 개선 과제 확인"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "면접 준비: 위 정보를 지원 직무와 연결해 예상 질문과 답변 방향 정리"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제는 정보의 존재 여부가 아니라, 이러한 정보가 서로 분리된 채 제공된다는 점이었다. 실제 취업 준비에서는 단순히 채용공고나 기관 정보를 각각 확인하는 것만으로는 부족하고, 직무기술서와 NCS, 기관의 주요사업과 현안까지 함께 분석해 지원하려는 직무와 연결해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 설계"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공공기관 취업 준비에는 채용공고 검색, 직무 분석, NCS 분석, 기관 분석, 면접 준비 등 여러 단계가 필요하다. 각각의 역할을 독립적인 MCP Tool로 나누고, LLM이 사용자의 질문에 따라 단계마다 필요한 Tool을 선택해서 사용할 수 있도록 설계했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4.1 데이터 수집"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Job-ALIO는 현재 지원할 수 있는 공고와 공고의 요구사항을 확인하기 위한 데이터로 사용한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "직무기술서와 NCS는 해당 직무에서 실제로 요구하는 지식, 기술, 태도와 직무수행능력을 확인하기 위한 자료로 사용한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ALIO의 주요사업과 연구·정책 자료는 기관이 현재 어떤 사업을 수행하고 어떤 방향으로 움직이고 있는지 확인하기 위한 근거로 사용한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ALIO에 국회 지적사항은 단순히 기관의 단점을 찾기 위한 데이터가 아니라 현재 기관에서 개선이 필요한 부분을 파악하고, 지원하려는 직무가 해당 문제에 어떻게 기여할 수 있는지를 생각하기 위한 자료로 사용하기로 했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4.2 기능을 Tool 단위로 분리"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다음으로 각 기능을 하나의 MCP Tool 단위로 나누었다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "공고 탐색\nsearch_public_jobs\n\n공고 상세 확인\nfetch_job_detail\n\n직무 / NCS 분석\nmap_ncs_competencies\n\n지원 준비 분석\nanalyze_job_fit_report\n\n기관 사업 분석\nanalyze_institution_strategy\n\n기관 개선 과제 분석\nanalyze_institution_weakness\n\n면접 준비\nprepare_institution_interview\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "MCP에서는 LLM이 사용자의 요청과 Tool 설명을 보고 어떤 Tool이 필요한지 판단할 수 있기 때문에 각 기능의 역할을 명확하게 나누는 것이 중요하다고 생각했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "\"현재 KISA 채용공고 찾아줘\"\n→ search_public_jobs\n\n\"이 공고에서 어떤 역량이 필요한지 알려줘\"\n→ fetch_job_detail\n→ map_ncs_competencies\n\n\"KISA 면접 준비해줘\"\n→ analyze_institution_strategy\n→ prepare_institution_interview\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4.4 출처 기반 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번 프로젝트에서 중요하게 생각한 부분 중 하나는 분석 결과의 근거였다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기존 AI에게 공공기관 취업 정보를 질문했을 때 느꼈던 문제 중 하나가 답변이 실제 어떤 자료를 바탕으로 만들어졌는지 확인하기 어렵다는 점이었기 때문이다. 그래서 분석 결과에는 가능한 한 해당 결과를 만든 원본 데이터의 정보를 같이 남기는 방향으로 설계했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "분석 결과\n+\n원문 URL\n+\n사용한 데이터\n+\n확인이 필요한 항목\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 기관의 주요 사업 방향을 분석한다면 단순히"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "\"KISA는 사이버보안 사업을 강화하고 있다.\"\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "라고 결과만 반환하기보다는 해당 판단에 사용한 ALIO 주요사업이나 연구·정책 자료를 함께 연결하도록 했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공고 분석에서도 마찬가지로 Job-ALIO 공고와 직무기술서를 분석의 근거로 남기도록 했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4.5 추론 금지"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "근거 중심으로 설계하면서 같이 정한 원칙이 하나 더 있었다. 데이터가 부족한 경우 AI가 빈 부분을 추론해서 채우지 않도록 하는 것이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 직무기술서가 존재하지 않는데 일반적인 전산직 정보를 이용해 임의로 KSA를 생성한다면 실제 공고와 다른 정보를 사용자에게 제공할 수 있다. 그래서 다음과 같은 경우에는 결과를 임의로 생성하기보다 확인이 필요하다는 상태를 반환하도록 했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "직무기술서를 찾을 수 없음\n→ 확인 필요\n\nNCS 후보가 여러 개 존재\n→ 후보 반환 후 선택 필요\n\n기관 분석 근거 부족\n→ 추가 근거 필요\n\n외부 데이터 조회 실패\n→ warning 반환\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 프로젝트는 취업 준비에 실제로 사용하는 것을 목표로 했기 때문에 많은 정보를 생성하는 것보다 확인 가능한 정보를 제공하는 쪽을 더 중요하게 생각했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4.6 Tool 간 연결"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "각 Tool을 독립적으로 설계했지만 최종적으로는 하나의 취업 준비 흐름으로 연결할 필요가 있었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "처음 목표로 했던 과정은 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "기관 / 직무 입력\n       ↓\n채용공고 탐색\n       ↓\n공고 상세 확인\n       ↓\n직무기술서 / NCS 분석\n       ↓\n지원자 역량과 비교\n       ↓\n기관 주요사업 분석\n       ↓\n기관 현안 분석\n       ↓\n면접 준비\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "초기에는 LLM이 각각의 Tool을 상황에 맞게 호출하는 방식을 중심으로 설계했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 실제 사용에서는"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "\"KISA 정보보호 직무 준비해줘\"\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "와 같이 한 번의 질문으로 전체 과정을 요청할 가능성이 높았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그래서 기존 Tool을 다시 구현하지 않고 여러 Tool을 순서대로 조합하는 통합 Tool을 추가하는 방향으로 설계했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "prepare_application_strategy\n        │\n        ├─ 기관 / NCS 해석\n        ├─ 채용공고 탐색\n        ├─ 공고별 준비 분석\n        ├─ NCS / KSA 분석\n        ├─ 기관 분석\n        └─ 면접 준비\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "prepare_application_strategy는 각 기능을 직접 처리하는 Tool이라기보다 기존 Tool 사이의 실행 순서를 관리하는 Orchestration 역할을 담당하도록 했다.이렇게 하면 개별 Tool은 독립적으로 사용할 수 있으면서, 전체 취업 준비가 필요한 경우 하나의 통합 흐름으로도 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "결과적으로 설계 단계에서는"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "외부 데이터를 가져오는 것\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자체보다"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "사용자 질문\n→ 적절한 데이터 선택\n→ 여러 Tool을 통한 데이터 조회\n→ 공고 / 직무 / 기관 정보 연결\n→ 실제 취업 준비에 사용할 수 있는 결과 생성\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이라는 흐름을 만드는 것을 중심으로 잡았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다음으로 이 설계를 실제 사용자의 요청 관점에서 어떻게 연결했는지 전체 서비스 구조를 정리했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. 구현"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "설계한 기능 중 구현에서 핵심이 되었던 부분은 크게 세 가지였다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "첫 번째는 Job-ALIO의 실제 채용공고를 가져오는 search_public_jobs, 두 번째는 직무기술서에서 NCS와 KSA를 분석하는 map_ncs_competencies, 마지막은 여러 Tool을 하나의 흐름으로 연결하는 prepare_application_strategy였다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5.1 search_public_jobs 구현"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "search_public_jobs는 실제 Job-ALIO에서 공공기관 채용공고를 검색하는 Tool이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실제 외부 데이터 조회는 JobAlioWebClient가 담당한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "async def _search_job_alio(**kwargs):\n    async with JobAlioWebClient() as client:\n        return await client.search_jobs(**kwargs)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "MCP Tool에서는 검색 조건을 전달하고 결과를 다시 MCP 응답 형태로 반환한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "result = _run_async(\n    \"search_public_jobs\",\n    lambda: _search_job_alio(**search_kwargs),\n)\n\nreturn _serialize_search_result(\n    result,\n    query=search_kwargs,\n    warnings=warnings,\n    resolved_filters=resolved_filters,\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "검색 결과에는 이후 다른 Tool에서 계속 사용할 수 있도록 공고 ID를 함께 반환한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "search_public_jobs\n\n입력\n- 기관 코드\n- NCS 코드\n- 지역\n- 현재 모집 여부\n\n출력\n- job_id\n- 기관명\n- 공고명\n- 접수 상태\n- NCS 후보\n- 원문 URL\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "여기에서 반환한 job_id가 다음 단계의 기준이 된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "search_public_jobs\n        ↓\n      job_id\n        ↓\nfetch_job_detail\nmap_ncs_competencies\nanalyze_job_fit_report\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉 search_public_jobs는 단순 검색 Tool이라기보다 전체 취업 분석의 시작점 역할을 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5.2 fetch_job_detail 구현"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "search_public_jobs에서 찾은 공고를 실제로 분석하려면 공고의 상세 정보가 필요하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "fetch_job_detail은 공고 ID를 이용해 Job-ALIO의 상세 데이터를 조회한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "async def _fetch_job_alio_detail(job_id):\n    async with JobAlioWebClient() as client:\n        return await client.fetch_job_detail(job_id)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Tool에서는 전달받은 ID로 상세 정보를 가져온다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "detail = _run_async(\n    \"fetch_job_detail\",\n    lambda: _fetch_job_alio_detail(job_id),\n)\n\nreturn _serialize_detail_result(\n    detail,\n    query={\"job_id\": job_id},\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "여기서 가져오는 정보가 이후 분석의 핵심 데이터가 된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "JobAlioDetail\n\n├─ 지원자격\n├─ 우대사항\n├─ 전형 절차\n├─ NCS 코드\n├─ NCS 분류\n├─ 기관 원문 링크\n└─ 첨부파일\n     └─ 직무기술서\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "검색 단계와 상세 조회를 분리했기 때문에 먼저 여러 공고를 탐색하고, 실제 분석할 공고만 선택해서 상세 데이터를 가져올 수 있도록 했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5.3 map_ncs_competencies 구현"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공고 상세에서 직무기술서 후보를 확인한 다음에는 직무기술서의 실제 내용을 분석한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이를 담당하는 Tool이 map_ncs_competencies다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "먼저 Job-ALIO에서 공고 상세를 가져온다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "detail = _run_async(\n    _fetch_job_detail(job_id)\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "직무기술서가 PDF 첨부로 제공된 경우에는 해당 첨부파일의 텍스트를 추출한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "result = _run_async(\n    _extract_attachment(\n        selected.url,\n        selected.name,\n    )\n)\n\ntext = result.text\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "추출한 직무기술서 본문을 분석 입력으로 전달한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "prepared = prepare_ncs_mapping_input(\n    detail,\n    duty_description_text=text,\n    duty_description_source=source,\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "분석 결과는 NCS와 KSA를 각각 분리해서 저장한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "grouped = {\n    \"basic_competency\": [],\n    \"duty_competency\": [],\n    \"knowledge\": [],\n    \"skill\": [],\n    \"attitude\": [],\n}\n\nfor candidate in prepared.ksa_candidates:\n    grouped[candidate.category].append(candidate)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "최종 결과는 다음과 같은 구조를 가진다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "map_ncs_competencies\n        ↓\nNCS 코드\n직업기초능력\n직무수행능력\nKnowledge\nSkill\nAttitude\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "여기서 중요한 점은 직무기술서가 확인되지 않은 내용을 임의로 생성하지 않도록 했다는 것이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "직무기술서 후보가 여러 개라면 하나를 임의로 선택하지 않고 확인이 필요하다는 정보를 반환한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "if len(candidates) > 1 and not explicit_url:\n    extra_notes.append(\n        NcsVerificationNote(\n            field=\"attachment_candidates\",\n            reason=\"직무기술서 후보가 여러 개여서 임의로 선택하지 않았습니다.\",\n            suggested_check=\"attachment_url로 분석할 후보를 지정합니다.\",\n        )\n    )\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PDF의 텍스트를 정상적으로 추출하지 못한 경우에도 마찬가지로 어떤 부분을 다시 확인해야 하는지 반환하도록 했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5.4 analyze_job_fit_report 구현"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다음으로 구현한 기능은 사용자가 실제로 무엇을 준비해야 하는지 정리하는 기능이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "analyze_job_fit_report에서는 사용자의 목표 직무와 보유 역량을 입력으로 받는다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "applicant = ApplicantReadinessInput(\n    target_role=_to_text(\n        arguments.get(\"target_role\")\n    ),\n    known_skills=_to_text_list(\n        arguments.get(\"known_skills\")\n    ),\n    preparation_notes=_to_text(\n        arguments.get(\"preparation_notes\")\n    ),\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 정보와 Job-ALIO에서 가져온 공고 상세를 함께 분석한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "report = generate_job_fit_report(\n    detail,\n    applicant=applicant,\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "generate_job_fit_report()에서는 크게 두 가지를 만든다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "preparation_items = _preparation_items(\n    job_detail,\n    signals,\n    verification_notes,\n)\n\nknowledge_gaps = _knowledge_gaps(\n    job_detail,\n    applicant,\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "preparation_items는 실제 지원 전에 확인하거나 준비해야 하는 내용이고, knowledge_gaps는 공고의 NCS 요구사항과 사용자 입력을 비교했을 때 추가로 확인해야 하는 영역이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "합격 가능성을 임의의 점수로 계산하는 대신 준비 항목에 우선순위를 붙이는 방식을 사용했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "P0\n반드시 확인해야 하는 항목\n\nP1\n추가 준비가 필요한 항목\n\nP2\n지원 전 최종 확인 항목\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 직무기술서가 확인된 경우에는 가장 먼저 실제 요구역량을 확인하도록 한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "JobFitPreparationItem(\n    priority=\"P0\",\n    title=\"직무기술서에서 요구역량 확정\",\n    recommended_actions=[\n        \"필요지식, 필요기술, 직무수행태도를 정리합니다.\",\n        \"NCS 코드와 직무분류를 대조합니다.\",\n    ],\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이렇게 해서 일반적인 취업 조언보다 실제 지원하려는 공고를 기준으로 준비 내용을 만들도록 구현했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5.5 기관 분석 구현"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기관 분석은 ALIO의 자료를 이용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기관의 주요사업과 연구·정책 자료는 analyze_institution_strategy, 국회 지적사항은 analyze_institution_weakness에서 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "먼저 ALIO에서 기관 관련 자료를 가져온다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "alio_context = _live_alio_context(\n    institution_name=institution_name,\n    alio_id=alio_id,\n    evidence=evidence,\n    signals=signals,\n    fetch_live=True,\n    year=year,\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "수집한 자료를 분석 가능한 입력으로 변경한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "analysis_input = prepare_institution_analysis_input(\n    institution_name=institution_name,\n    evidence=alio_context.evidence,\n    signals=alio_context.signals,\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기관 주요사업과 연구·정책 자료는 전략 분석으로 전달한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "report = generate_institution_strategy_report(\n    analysis_input,\n    year=year,\n    job_family=job_family,\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "구조를 정리하면 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "ALIO 원본\n   ↓\nEvidence\n   ↓\nSignal\n   ↓\n기관 분석\n   ↓\n직무 연결\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "국회 지적사항 역시 같은 방식으로 근거를 수집하지만 결과는 기관의 개선 과제를 파악하는 방향으로 생성한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "국회 지적사항\n      ↓\n기관 현안\n      ↓\n개선 과제\n      ↓\n지원 직무에서의 기여 방향\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기관의 단점을 단정적으로 생성하기보다 실제 공개된 자료를 근거로 면접에서 활용 가능한 개선 관점을 만드는 것이 목적이었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5.6 prepare_institution_interview 구현"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기관 분석 결과는 최종적으로 면접 준비까지 연결한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "prepare_institution_interview에서는 기관명과 목표 직무를 기준으로 주요사업, 연구·정책 자료, 국회 지적사항 등의 근거를 면접용 정보로 변경한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "기관 주요사업\n      +\n연구 / 정책 자료\n      +\n국회 지적사항\n      ↓\nprepare_institution_interview\n      ↓\n면접 질문 카드\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이를 통해 단순히 기관 홈페이지의 인재상이나 설립 목적을 정리하는 것이 아니라 실제 기관 자료를 활용한 면접 준비를 목표로 했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5.7 prepare_application_strategy 구현"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "마지막으로 개별 Tool을 한 번의 요청으로 사용할 수 있도록 prepare_application_strategy를 구현했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 Tool의 역할은 새로운 분석 알고리즘을 수행하는 것이 아니라 앞에서 구현한 여러 MCP Tool을 순서대로 연결하는 것이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "입력으로는 기관명과 목표 직무를 기본적으로 받는다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "PREPARE_APPLICATION_STRATEGY_INPUT_SCHEMA = {\n    \"type\": \"object\",\n    \"properties\": {\n        \"institution_name\": {...},\n        \"target_role\": {...},\n        \"region\": {...},\n        \"known_skills\": {...},\n        \"ongoing_only\": {...},\n        \"limit\": {...},\n    },\n    \"required\": [\n        \"institution_name\",\n        \"target_role\",\n    ],\n}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사용자가 다음과 같이 요청했다고 생각해볼 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "\"KISA 정보보호 직무 준비해줘\"\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "먼저 기관명을 해석한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "institution_resolution = _safe_call(\n    lookup_institution,\n    {\n        \"code_type\": \"institution\",\n        \"query\": institution_name,\n        \"limit\": 5,\n    },\n    stage=\"institution_resolution\",\n    warnings=warnings,\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "동시에 자연어 직무를 NCS 코드로 해석한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "ncs_resolution = _safe_call(\n    resolve_ncs,\n    {\n        \"target_role\": target_role,\n        \"known_skills\": known_skills,\n        \"limit\": 5,\n    },\n    stage=\"ncs_resolution\",\n    warnings=warnings,\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기관 코드와 NCS 코드가 확인되면 실제 채용공고를 검색한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "search_result = _safe_call(\n    search_jobs,\n    {\n        \"institution_code\": institution_code,\n        \"ncs_code\": ncs_code,\n        \"ongoing_only\": ongoing_only,\n        \"limit\": limit,\n    },\n    stage=\"job_search\",\n    warnings=warnings,\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공고가 검색되면 각 공고를 대상으로 지원 준비와 NCS 분석을 진행한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "for job in jobs:\n    fit_report = _safe_call(\n        analyze_job_fit,\n        {\n            \"job_id\": job_id,\n            \"target_role\": target_role,\n            \"known_skills\": known_skills,\n        },\n        stage=f\"job_fit:{job_id}\",\n        warnings=warnings,\n    )\n\n    ncs_mapping = _safe_call(\n        map_ncs,\n        {\n            \"job_id\": job_id\n        },\n        stage=f\"ncs_mapping:{job_id}\",\n        warnings=warnings,\n    )\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 기관 분석과 면접 준비 결과까지 추가한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "최종적으로 하나의 요청이 다음 흐름으로 실행된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "\"KISA 정보보호 준비해줘\"\n          ↓\n기관 Resolver\n          ↓\nNCS Resolver\n          ↓\nJob-ALIO 공고 검색\n          ↓\n공고 상세\n          ↓\n직무기술서 / NCS / KSA\n          ↓\n지원 준비 분석\n          ↓\nALIO 기관 분석\n          ↓\n면접 준비\n          ↓\n통합 지원 전략\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "여러 외부 데이터와 Tool을 사용하다 보면 중간 단계 중 하나가 실패할 수도 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그래서 하나의 분석이 실패했다고 이미 성공한 결과까지 모두 버리지 않도록 하위 Tool 호출을 _safe_call()로 감쌌다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "def _safe_call(\n    runner,\n    arguments,\n    *,\n    stage,\n    warnings,\n):\n    try:\n        return dict(runner(arguments))\n    except Exception as exc:\n        warnings.append(\n            f\"{stage}: {exc}\"\n        )\n        return {}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 Job-ALIO 공고 검색과 NCS 분석에는 성공했지만 ALIO 조회에 실패했다면 공고와 NCS 결과는 그대로 반환하고 기관 분석 실패만 warnings에 남길 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "공고 검색       성공\nNCS 분석        성공\n기관 분석       실패\n\n        ↓\n\n공고 결과       반환\nNCS 결과        반환\n기관 분석       없음\nwarnings        실패 내용 기록\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "최종적으로 prepare_application_strategy가 각각 독립적으로 구현했던 MCP Tool을 하나의 취업 준비 흐름으로 연결하게 된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "search_public_jobs\n        ↓\nfetch_job_detail\n        ↓\nmap_ncs_competencies\n        ↓\nanalyze_job_fit_report\n        ↓\nanalyze_institution_strategy\n        ↓\nanalyze_institution_weakness\n        ↓\nprepare_institution_interview\n        ↓\nprepare_application_strategy\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이렇게 실제 공공데이터 조회와 분석을 각각의 Tool로 분리한 뒤 마지막에 하나의 흐름으로 연결하는 방식으로 구현했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6. MCP 서비스 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "현재 kr-gov-job-mcp는 PlayMCP에 등록되어 실제 서비스 중이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "현재까지 약 48명의 사용자가 서비스를 이용했으며, MCP Tool 호출 횟수는 200회를 기록했다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "4c2e3520-3598-525b-a6e9-5a4302bc29bd",
+          "src": "/assets/uploads/b08135ce-070d-5ec2-af54-4902ca65c557/4c2e3520-3598-525b-a6e9-5a4302bc29bd.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PlayMCP의 AI 채팅에서 kr-gov-job-mcp를 연결하면 일반적인 채팅처럼 질문하면서 서비스를 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어"
+          }
+        ]
+      },
+      {
+        "type": "blockquote",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "전산직으로 지원할만한 채용공고 찾아줘"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "와 같이 질문하면 MCP Tool을 호출해 실제 채용공고와 NCS, 기관 정보를 조회해 답변한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "6248dd12-5e7d-5f2d-8fb4-273d50d56248",
+          "src": "/assets/uploads/b08135ce-070d-5ec2-af54-4902ca65c557/6248dd12-5e7d-5f2d-8fb4-273d50d56248.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래 홈페이지에서 kr-gob-job도구를 ai채팅에서 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "f28c8a90-e896-511c-9064-f776e74757b0",
+          "href": "https://playmcp.kakao.com",
+          "title": "PlayMCP | 새로운 AI 경험의 시작",
+          "description": "PlayMCP와 함께하는 AI 에이전트 세상, 새로운 AI 경험을 만들어 보세요.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/e01bea3ae2fdc076e1fc933ab94ce4d9cba9e27fb6a3b7a4c1366aff87c1cefd.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "7. 피드백 "
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "결과를 보면서 가장 아쉬웠던 부분은 주제 선정이었다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "선정된 서비스를 보면 공항 출도착, 토익, 러닝, 캠핑, 장보기, 알레르기, 전세, 진료처럼 많은 사람들이 바로 이해하고 사용할 수 있는 주제가 많았다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "반면 kr-gov-job-mcp는 공공기관 취업준비생이라는 비교적 좁은 사용자를 대상으로 한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "기능적으로는 Job-ALIO, NCS, ALIO를 연결해 실제 취업 준비에 활용할 수 있도록 만들었지만, 공모전에서는 기술적인 완성도뿐 아니라 서비스의 대중성과 첫인상도 중요하다는 점을 느꼈다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "2b7c676d-54ac-58d1-9a02-176bde7588b0",
+          "href": "https://b.kakao.com/views/PlayMCP/AGENTIC_PlAYER_10",
+          "title": "AGENTIC PLAYER 10",
+          "description": "내가 만든 AI서비스를 카카오톡에서 공개할 기회!",
+          "image": "https://yt010108.github.io/assets/imported/tistory/791ea02085dc743499087aef91bae698e2c5fe3e8a03ec01db36b8bc04fdfd6e.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "태그"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PlayMCP10",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "MCP",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "공공기관채용",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "잡알리오",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "NCS",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "ALIO",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "Python",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "개발기록",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/110",
+    "originalId": "110",
+    "publishedAt": "2026-07-08T01:35:57+09:00",
+    "updatedAt": "2026-08-08T14:08:40+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

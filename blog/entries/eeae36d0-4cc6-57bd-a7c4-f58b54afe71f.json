@@ -1,0 +1,297 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "eeae36d0-4cc6-57bd-a7c4-f58b54afe71f",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-18문제",
+  "slug": "tistory-47",
+  "description": "1. 문제 정보문제 번호 : old -18문제 점수 : 10점2. 문제 분석sqli문제이다. view-source로 가서 php코드를 확인해보면 guest이면 hi guest를 출력하고 admin이면 문제가 풀린다. 하지만 preg_match로 공백, 슬래시, 괄호, 파이프, 퍼센트, select,0x를 필터링한다. 하지만 %09인 tab을 통해 공백처럼 사용가능하다.3. 풀이\"select id from chall18 where id='guest' and no=$_GET[no]\"이 쿼리문에서 id가 admin을 불러오기 위해서 no에 0을 넣고 or id='admin'을 입력하면 연산자 우선순위 때문에 or이 나중에 되서 admin이 불러와진다. 0%09or%09id=%27admin%27위처럼 페이로..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-22",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-22T03:16:24+09:00",
+  "updatedAt": "2026-01-22T03:17:18+09:00",
+  "sourceDigest": "eb30699085bf67652e6488aaa1d8561444425c6a350f73e5bb10ed7b8fd97311",
+  "assets": [
+    {
+      "id": "1aa7698f-4270-5d8a-b731-cd6c37dfd4c7",
+      "name": "tistory-47-1aa7698f-4270-5d8a-b731-cd6c37dfd4c7.png",
+      "type": "image/png",
+      "path": "/assets/uploads/eeae36d0-4cc6-57bd-a7c4-f58b54afe71f/1aa7698f-4270-5d8a-b731-cd6c37dfd4c7.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "b8ede74e-944e-5d50-939e-c1c4018d1d86",
+      "name": "tistory-47-b8ede74e-944e-5d50-939e-c1c4018d1d86.png",
+      "type": "image/png",
+      "path": "/assets/uploads/eeae36d0-4cc6-57bd-a7c4-f58b54afe71f/b8ede74e-944e-5d50-939e-c1c4018d1d86.png",
+      "sha": "47f7f9309c6288897e1dfcf566ce1a6aee2e3f4d"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "1aa7698f-4270-5d8a-b731-cd6c37dfd4c7",
+          "src": "/assets/uploads/eeae36d0-4cc6-57bd-a7c4-f58b54afe71f/1aa7698f-4270-5d8a-b731-cd6c37dfd4c7.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -18"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 10점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "sqli문제이다. view-source로 가서 php코드를 확인해보면"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "b8ede74e-944e-5d50-939e-c1c4018d1d86",
+          "src": "/assets/uploads/eeae36d0-4cc6-57bd-a7c4-f58b54afe71f/b8ede74e-944e-5d50-939e-c1c4018d1d86.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\nif($_GET['no']){\n  $db = dbconnect();\n  if(preg_match(\"/ |\\/|\\(|\\)|\\||&|select|from|0x/i\",$_GET['no'])) exit(\"no hack\");\n  $result = mysqli_fetch_array(mysqli_query($db,\"select id from chall18 where id='guest' and no=$_GET[no]\")); // admin's no = 2\n\n  if($result['id']==\"guest\") echo \"hi guest\";\n  if($result['id']==\"admin\"){\n    solve(18);\n    echo \"hi admin!\";\n  }\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "guest이면 hi guest를 출력하고 admin이면 문제가 풀린다. 하지만 preg_match로 공백, 슬래시, 괄호, 파이프, 퍼센트, select,0x를 필터링한다. 하지만 %09인 tab을 통해 공백처럼 사용가능하다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "\"select id from chall18 where id='guest' and no=$_GET[no]\""
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 쿼리문에서 id가 admin을 불러오기 위해서 no에 0을 넣고 or id='admin'을 입력하면 연산자 우선순위 때문에"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "or이 나중에 되서 admin이 불러와진다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "0%09or%09id=%27admin%27"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "위처럼 페이로드를 짰고 이걸 제출로 누르지말고 get의 파라미터로 줘야한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "제출로 누르면 url인코딩을 하는데 서버에서는 디코딩을 안하는 것 같다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "소스 코드는 preg_match로 공백과 괄호 등을 필터링하지만, 탭 문자(%09)로 공백을 대체했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "연산자 우선순위(AND > OR)를 이용해 SQL Injection이 가능하다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "최종적으로 ?no=0%09or%09id='admin'을 입력하면 필터링을 우회가능하다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/47",
+    "originalId": "47",
+    "publishedAt": "2026-01-22T03:16:24+09:00",
+    "updatedAt": "2026-01-22T03:17:18+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

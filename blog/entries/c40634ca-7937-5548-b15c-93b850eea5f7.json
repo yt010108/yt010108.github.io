@@ -1,0 +1,65 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "c40634ca-7937-5548-b15c-93b850eea5f7",
+  "kind": "posts",
+  "title": "AI 보안 레드티밍 가이드",
+  "slug": "tistory-128",
+  "description": "",
+  "category": "Security / Research",
+  "date": "2026-08-06",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-08-06T09:54:23+09:00",
+  "updatedAt": "2026-08-07T18:47:35+09:00",
+  "sourceDigest": "9dcba7f6d7f74ce5bbd057f6716899df7998e689ff03044346b14d4984791991",
+  "assets": [
+    {
+      "id": "04dc6ac0-c4a8-5730-8454-0070652a9c6e",
+      "name": "tistory-128-04dc6ac0-c4a8-5730-8454-0070652a9c6e.png",
+      "type": "image/png",
+      "path": "/assets/uploads/c40634ca-7937-5548-b15c-93b850eea5f7/04dc6ac0-c4a8-5730-8454-0070652a9c6e.png",
+      "sha": "92499a2298cc9444c21f18d95f5b054c219d65d6"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[최종]AI 보안 레드티밍 가이드 (4).pdf",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/assets/imported/tistory/23cd4941d739730de14f5f20063f1cdafe49803acb5bd0ea17c76d5f6d6195a7.pdf"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "04dc6ac0-c4a8-5730-8454-0070652a9c6e",
+          "src": "/assets/uploads/c40634ca-7937-5548-b15c-93b850eea5f7/04dc6ac0-c4a8-5730-8454-0070652a9c6e.png",
+          "alt": "",
+          "title": null
+        }
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/128",
+    "originalId": "128",
+    "publishedAt": "2026-08-06T09:54:23+09:00",
+    "updatedAt": "2026-08-07T18:47:35+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

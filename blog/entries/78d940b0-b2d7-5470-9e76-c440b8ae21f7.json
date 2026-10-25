@@ -1,0 +1,1907 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "78d940b0-b2d7-5470-9e76-c440b8ae21f7",
+  "kind": "posts",
+  "title": "[SK Rookies] 모델 기반 애플리케이션과 OpenAI API",
+  "slug": "tistory-137",
+  "description": "오늘 배운 내용8월 7일에는 학습한 머신러닝·딥러닝 모델을 파일로 저장하고 다시 불러와 애플리케이션에서 사용하는 방법을 공부했다. joblib, pickle, TensorFlow/Keras 모델 저장 방식을 살펴보고 Google Colab 개발 환경의 특징도 정리했다.같은 날 OpenAI API 자료에서는 API의 기본 개념, Python에서 Responses API를 호출하는 흐름, Function Calling, Built-in Tools, File Search 같은 도구 연동 개념을 학습했다. 마지막에는 Streamlit을 이용해 모델이나 API를 사용자 인터페이스와 연결하는 애플리케이션 구조를 다뤘다.모델을 파일로 저장하는 이유모델 학습은 시간이 오래 걸릴 수 있기 때문에 애플리케이션이 실행될 때..",
+  "category": "SK Rookies / 수업 정리",
+  "date": "2026-08-12",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-08-12T10:04:44+09:00",
+  "updatedAt": "2026-08-12T10:04:52+09:00",
+  "sourceDigest": "2b79f88a0d3cb1ff33128109efe050f1c322dccc586ed8e409dc0f36d05a6d45",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[원본에서 불러올 수 없는 이미지]"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "오늘 배운 내용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "8월 7일에는 학습한 머신러닝·딥러닝 모델을 파일로 저장하고 다시 불러와 애플리케이션에서 사용하는 방법을 공부했다. joblib, pickle, TensorFlow/Keras 모델 저장 방식을 살펴보고 Google Colab 개발 환경의 특징도 정리했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "같은 날 OpenAI API 자료에서는 API의 기본 개념, Python에서 Responses API를 호출하는 흐름, Function Calling, Built-in Tools, File Search 같은 도구 연동 개념을 학습했다. 마지막에는 Streamlit을 이용해 모델이나 API를 사용자 인터페이스와 연결하는 애플리케이션 구조를 다뤘다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "모델을 파일로 저장하는 이유"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모델 학습은 시간이 오래 걸릴 수 있기 때문에 애플리케이션이 실행될 때마다 다시 학습하는 것은 비효율적이다. 일반적으로 학습이 끝난 모델을 파일로 저장하고, 서비스나 분석 코드에서는 저장된 모델을 불러와 예측에 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "전체 흐름은 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터 준비"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "모델 학습"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "모델 파일 저장"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "필요할 때 모델 로드"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "새로운 입력 데이터 예측"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "애플리케이션 또는 API와 연결"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "joblib를 이용한 저장과 로드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "joblib은 NumPy 배열을 많이 포함하는 객체를 저장하고 불러오는 데 효율적인 도구로 소개된다. scikit-learn 모델 저장에 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "저장"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "from sklearn.linear_model import LinearRegression\nfrom sklearn.datasets import make_regression\nimport joblib\n\nX, y = make_regression(\n    n_samples=100,\n    n_features=1,\n    noise=0.1,\n    random_state=42\n)\n\nmodel = LinearRegression()\nmodel.fit(X, y)\n\njoblib.dump(model, \"linear_model.pkl\", compress=3)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "compress 옵션을 사용하면 파일 크기를 줄일 수 있지만 압축률이 높을수록 저장과 로드 시간이 증가할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "로드"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "loaded_model = joblib.load(\"linear_model.pkl\")\ny_pred = loaded_model.predict(X)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "저장한 모델 객체를 그대로 복원하여 predict() 같은 메서드를 다시 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "pickle을 이용한 저장과 로드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "pickle은 Python 객체를 직렬화(serialization)하고 다시 객체로 복원(deserialization)하는 표준 라이브러리다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "저장"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import pickle\n\nwith open(\"linear_model.pkl\", \"wb\") as f:\n    pickle.dump(model, f, protocol=pickle.HIGHEST_PROTOCOL)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "wb는 바이너리 쓰기 모드다. 자료에서는 ab를 이용해 기존 파일에 추가하는 모드도 함께 소개한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "로드"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "with open(\"linear_model.pkl\", \"rb\") as f:\n    loaded_model = pickle.load(f)\n\ny_pred = loaded_model.predict(X)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "rb는 바이너리 읽기 모드다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "joblib와 pickle"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "두 방식 모두 Python 객체를 파일에 저장할 수 있다. 자료에서는 큰 NumPy 배열을 포함하는 scikit-learn 객체에는 joblib이 효율적일 수 있고, 일반 Python 객체 직렬화에는 pickle을 사용할 수 있다고 설명한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모델 파일을 사용할 때는 모델을 만들었던 Python과 라이브러리 환경이 달라지면 호환 문제가 발생할 수 있으므로 실행 환경을 함께 관리하는 것이 중요하다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "TensorFlow/Keras 모델 저장"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "딥러닝 모델은 가중치뿐 아니라 신경망 구조와 학습 설정을 함께 저장해야 다시 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서는 Keras의 .keras 형식을 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "from tensorflow.keras.models import Sequential\nfrom tensorflow.keras.layers import Dense\n\nmodel = Sequential([\n    Dense(32, activation=\"relu\", input_shape=(10,)),\n    Dense(2, activation=\"softmax\")\n])\n\nmodel.compile(\n    optimizer=\"adam\",\n    loss=\"categorical_crossentropy\",\n    metrics=[\"accuracy\"]\n)\n\nmodel.save(\"classification_model.keras\")\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "모델 로드"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "from tensorflow.keras.models import load_model\n\nloaded_model = load_model(\"classification_model.keras\")\nprediction = loaded_model.predict(sample_data)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이렇게 학습과 서비스 실행을 분리하면 모델은 한 번 학습한 뒤 여러 번 추론에 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Google Colab"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Google Colab은 브라우저에서 Jupyter Notebook 형태로 Python 코드를 실행할 수 있는 개발 환경으로 다뤄진다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서 정리한 특징은 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "별도의 로컬 설치와 복잡한 환경 설정 없이 사용 가능"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "머신러닝과 딥러닝 실습에 필요한 계산 환경을 제공"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Google Drive를 이용한 파일 저장과 공유"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "여러 사용자가 노트북을 공유하고 협업 가능"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "GitHub의 공개 노트북을 불러오거나 저장하는 흐름과 연동 가능"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "코드, 설명 텍스트, 그래프를 하나의 노트북에서 함께 관리할 수 있어 데이터 분석과 AI 실습에 적합하다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "OpenAI API와 API의 개념"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "두 번째 자료에서는 OpenAI API를 예로 들어 소프트웨어가 외부 AI 모델과 통신하는 방법을 공부했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "API(Application Programming Interface)는 서로 다른 소프트웨어가 데이터와 기능을 주고받을 수 있게 연결하는 인터페이스다. 자료에서는 식당에서 손님이 주문을 전달하고 점원이 주방과 연결하는 과정에 비유한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "웹이나 앱의 ChatGPT 화면은 사용자가 직접 대화하는 완성된 인터페이스인 반면, API는 개발자가 자신이 만든 Python 프로그램, 서버 또는 애플리케이션 코드 안에서 모델 기능을 호출하는 방식으로 설명한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Python에서 API 호출 흐름"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "수업자료에서는 OpenAI Python 라이브러리의 클라이언트를 만들고 Responses API를 호출하는 예제를 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "from openai import OpenAI\n\nclient = OpenAI(api_key=openai_api_key)\n\nresponse = client.responses.create(\n    model=\"<model_name>\",\n    input=\"한 문장으로 간단한 이야기를 만들어줘.\"\n)\n\nprint(response.output_text)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기본 흐름은 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "API 키 준비"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "클라이언트 생성"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "사용할 모델과 입력 전달"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "API 서버가 모델을 실행"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "응답 객체에서 필요한 결과 확인"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "API 키는 서비스 접근 권한을 가진 값이므로 소스코드에 공개하지 않고 안전하게 관리하는 것이 중요하다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Responses API의 주요 입력"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서는 input과 instructions를 이용해 모델에 요청을 전달하는 구조를 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "input: 사용자가 처리하고 싶은 실제 입력"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "instructions: 모델이 어떤 역할과 방식으로 응답해야 하는지 지정하는 지침"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대화형 애플리케이션에서는 이전 응답과 새 입력을 연결하여 대화 흐름을 이어가는 방식도 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Function Calling"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Function Calling은 모델이 자연어 요청을 해석한 뒤 프로그램에 정의되어 있는 외부 함수를 어떤 인자로 호출해야 하는지 구조화된 형태로 요청하는 방식이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 사용자가 날씨를 물으면 모델이 직접 임의의 날씨를 만들어내는 것이 아니라 프로그램에 등록된 get_weather() 함수 호출이 필요하다고 판단하고 위치 정보를 인자로 구성할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "전체 흐름"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "개발자가 사용할 함수와 입력 스키마를 모델에 알려준다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "사용자가 자연어로 요청한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "모델이 함수 호출이 필요한지 판단한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "필요한 함수명과 인자를 반환한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "프로그램이 실제 함수를 실행한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "함수 실행 결과를 다시 모델에 전달한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "모델이 최종 사용자 응답을 만든다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서는 Function Calling을 외부 API 호출, 데이터베이스 조회, 구조화된 데이터 추출, 자동화 에이전트 같은 실무 기능으로 확장하는 방법으로 설명한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Built-in Tools"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서는 모델이 추가 기능을 이용할 수 있도록 제공되는 Built-in Tools의 개념도 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Web Search"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일반 모델 응답과 웹 검색을 연결한 응답의 차이를 비교한다. 일반 모델은 학습된 내부 지식을 중심으로 답변하지만 웹 검색을 연결하면 외부 검색 결과를 참고해 최신 정보나 출처가 필요한 작업을 처리하는 흐름으로 설명한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "File Search"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "업로드하거나 미리 구성한 문서 지식 기반에서 관련 내용을 검색해 모델이 답변에 활용하는 방식이다. 자료에서는 vector store와 file_search 도구를 연결하는 예제를 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "response = client.responses.create(\n    model=\"<model_name>\",\n    input=\"문서에서 관련 내용을 찾아 설명해줘.\",\n    tools=[{\n        \"type\": \"file_search\",\n        \"vector_store_ids\": [\"<vector_store_id>\"]\n    }]\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 구조는 내부 문서 기반 질의응답이나 지식 검색형 애플리케이션을 구성하는 데 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "AI 애플리케이션의 프론트엔드와 백엔드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료 후반에서는 AI 모델을 실제 사용자가 사용할 수 있는 애플리케이션으로 만들기 위한 기본 구조를 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Frontend"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사용자가 보는 화면과 입력을 담당한다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "질문 입력"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "버튼과 선택 위젯"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "모델 응답 표시"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이미지, 오디오, 비디오 등 콘텐츠 표시"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Backend"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사용자의 요청을 실제 모델이나 데이터 처리 로직과 연결한다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "OpenAI API 호출"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "머신러닝 모델 로드와 예측"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터베이스 조회"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "파일 처리"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "결과 반환"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "전체 흐름은 사용자 → Frontend → Backend/API → 모델 → 결과 → Frontend 형태로 이해할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Streamlit"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Streamlit은 Python 코드만으로 데이터 분석과 머신러닝 프로젝트의 웹 인터페이스를 만들 수 있는 도구로 소개된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "기본 실행 구조"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import streamlit as st\n\nst.title(\"AI Application\")\nst.write(\"질문을 입력하세요.\")\n\nquestion = st.text_input(\"질문\")\n\nif st.button(\"전송\"):\n    st.write(\"입력한 질문:\", question)\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Streamlit 콘텐츠 표시"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서는 여러 출력 요소를 실습한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "텍스트"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "st.title()"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "st.header()"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "st.subheader()"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "st.write()"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "st.markdown()"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "st.code()"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "st.latex()"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "입력 위젯"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "st.button()"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "st.radio()"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "st.slider()"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "st.text_input()"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "form을 이용한 입력 묶음"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "미디어"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "st.image()"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "st.audio()"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "st.video()"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Streamlit 챗봇 구조"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료의 마지막 실습에서는 사용자가 질문을 입력하면 대화 기록을 화면에 표시하는 챗봇 형태의 앱을 구성한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import streamlit as st\n\nst.title(\"Math Tutor Chatbot\")\nst.write(\"수학 문제에 대한 질문을 입력하세요.\")\n\nif \"messages\" not in st.session_state:\n    st.session_state.messages = []\n\nfor message in st.session_state.messages:\n    st.write(message)\n\nwith st.form(\"question_form\", clear_on_submit=True):\n    question = st.text_input(\"질문\")\n    submitted = st.form_submit_button(\"Send\")\n\nif submitted and question:\n    st.session_state.messages.append({\"role\": \"user\", \"content\": question})\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실제 AI 챗봇으로 확장할 때는 입력받은 질문을 백엔드의 API 호출 코드로 전달하고, 받은 응답을 세션 상태에 저장한 뒤 화면에 출력하는 구조로 연결할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "모델 기반 애플리케이션 전체 흐름"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번 수업의 두 자료를 연결하면 모델 학습부터 사용자 서비스까지 다음 흐름으로 정리할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터 수집과 전처리"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "머신러닝 또는 딥러닝 모델 학습"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "모델 성능 평가"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "모델 파일 저장"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "애플리케이션 실행 시 모델 로드"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "사용자 입력을 Frontend에서 수집"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Backend에서 로컬 모델 또는 외부 API 호출"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "결과를 사용자 화면에 표시"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "필요하면 Function Calling이나 File Search 같은 도구를 연결"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "복습하면서 확인할 점"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "학습한 모델은 파일로 저장하면 서비스 코드에서 다시 학습하지 않고 사용할 수 있다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "scikit-learn 모델은 joblib 또는 pickle, Keras 모델은 .keras 형식으로 저장하는 예제를 다뤘다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Colab은 브라우저 기반 Notebook 환경으로 실습과 공유에 활용할 수 있다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "API는 서로 다른 소프트웨어의 기능과 데이터를 연결하는 인터페이스다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Function Calling은 자연어 요청을 실제 외부 함수 실행과 연결하는 구조다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "File Search는 문서 지식 기반을 검색해 모델 입력에 활용하는 방식이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Streamlit은 Python 코드로 모델이나 API를 사용자 인터페이스와 연결하는 데 활용할 수 있다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/137",
+    "originalId": "137",
+    "publishedAt": "2026-08-12T10:04:44+09:00",
+    "updatedAt": "2026-08-12T10:04:52+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

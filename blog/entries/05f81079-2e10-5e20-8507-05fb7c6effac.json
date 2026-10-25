@@ -1,0 +1,1573 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "05f81079-2e10-5e20-8507-05fb7c6effac",
+  "kind": "posts",
+  "title": "[System hacking] Checksec",
+  "slug": "tistory-1",
+  "description": "checksec은 바이너리 파일에 적용된 보안 보호 기법을 확인하는 도구로 시스템 해킹이나 CTF 문제를 풀 때 가장 먼저 하는 일은 checksec 명령어를 통해 바이너리에 적용된 보안 기법을 확인하는 것이다.checksec가 아래의 보호기법을 탐지하는 방법과 아래 기법들이 무엇을 의미하는지 알아보자 1. Arch (Architecture), Stripped, DebuginfoArch :CPU 아키텍처와 데이터 저장 방식(Endian)을 나타낸다.(예: amd64-64-little )Stripped: 심볼 테이블 제거 여부를 나타낸다. No라면 함수 이름이나 변수명이 살아있다.Debuginfo: 디버깅 정보 포함 여부이다.2. RELRO (Relocation Read-Only) RELRO란?GOT o..",
+  "category": "Security / Pwnable",
+  "date": "2025-12-09",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2025-12-09T14:22:49+09:00",
+  "updatedAt": "2025-12-15T13:38:35+09:00",
+  "sourceDigest": "0e2ef6ae75237822b3038fa280b36511d16e4a5a40dc392327b90d68da74f30c",
+  "assets": [
+    {
+      "id": "477ec553-f3ff-561f-8563-252fea22a953",
+      "name": "tistory-1-477ec553-f3ff-561f-8563-252fea22a953.png",
+      "type": "image/png",
+      "path": "/assets/uploads/05f81079-2e10-5e20-8507-05fb7c6effac/477ec553-f3ff-561f-8563-252fea22a953.png",
+      "sha": "c411ea570f372df4090bafa441978767d2697963"
+    },
+    {
+      "id": "f56f8d4b-f557-5a32-9b54-8e34586983a6",
+      "name": "tistory-1-f56f8d4b-f557-5a32-9b54-8e34586983a6.png",
+      "type": "image/png",
+      "path": "/assets/uploads/05f81079-2e10-5e20-8507-05fb7c6effac/f56f8d4b-f557-5a32-9b54-8e34586983a6.png",
+      "sha": "4b287f591ccdb8708ff3bd0c029c4672310d10aa"
+    },
+    {
+      "id": "42223ca7-dc60-5e0a-a82a-ff5f3e8007a0",
+      "name": "tistory-1-42223ca7-dc60-5e0a-a82a-ff5f3e8007a0.png",
+      "type": "image/png",
+      "path": "/assets/uploads/05f81079-2e10-5e20-8507-05fb7c6effac/42223ca7-dc60-5e0a-a82a-ff5f3e8007a0.png",
+      "sha": "c33f9efd090067db87e0d60921ba343df0dfff57"
+    },
+    {
+      "id": "590406f6-0ba6-5c5b-9f16-3c3c3f774368",
+      "name": "tistory-1-590406f6-0ba6-5c5b-9f16-3c3c3f774368.png",
+      "type": "image/png",
+      "path": "/assets/uploads/05f81079-2e10-5e20-8507-05fb7c6effac/590406f6-0ba6-5c5b-9f16-3c3c3f774368.png",
+      "sha": "b90525e943f2567e836a9c4b397984b663fee507"
+    },
+    {
+      "id": "75d5809b-ee74-5740-b111-6ce0e7e13a6c",
+      "name": "tistory-1-75d5809b-ee74-5740-b111-6ce0e7e13a6c.png",
+      "type": "image/png",
+      "path": "/assets/uploads/05f81079-2e10-5e20-8507-05fb7c6effac/75d5809b-ee74-5740-b111-6ce0e7e13a6c.png",
+      "sha": "3ce5eb99be4f851a86faddef47a2310987c30e17"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "checksec은 바이너리 파일에 적용된 보안 보호 기법을 확인하는 도구로 시스템 해킹이나 CTF 문제를 풀 때 가장 먼저 하는 일은 checksec 명령어를 통해 바이너리에 적용된 보안 기법을 확인하는 것이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "checksec가 아래의 보호기법을 탐지하는 방법과 아래 기법들이 무엇을 의미하는지 알아보자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "477ec553-f3ff-561f-8563-252fea22a953",
+          "src": "/assets/uploads/05f81079-2e10-5e20-8507-05fb7c6effac/477ec553-f3ff-561f-8563-252fea22a953.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "1. Arch (Architecture), Stripped, Debuginfo"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Arch :CPU 아키텍처와 데이터 저장 방식(Endian)을 나타낸다.(예: amd64-64-little )"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Stripped"
+                  },
+                  {
+                    "type": "text",
+                    "text": ":",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " 심볼 테이블 제거 여부를 나타낸다. No라면 함수 이름이나 변수명이 살아있다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Debuginfo"
+                  },
+                  {
+                    "type": "text",
+                    "text": ":",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " 디버깅 정보 포함 여부이다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "2. RELRO (Relocation Read-Only)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "RELRO란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "GOT overwrite(함수 호출 주소를 변조하여 공격자가 원하는 코드를 실행하는 공격)를 보호하기 위한 기법이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "GOT는 프로그램이 실행되는 동안 외부 라이브러리 함수(예: printf, scanf 등)의 실제 메모리 주소를 저장하는 테이블이다. 이 테이블을 덮어씌워 해커가 원하는 함수를 실행하거나 문자열을 저장할 수 있기 때문에 got의 권한을 조정해 방어한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "적용 범위에 따라 RELRO는 partal RELRO와 Full RELRO로 나뉜다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "#PLT GOT(예정)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "partal RELRO"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "GOT를 프로그램 bss 위로 주소를 옮겨서 전역 변수 Overflow를 통한 GOT overwrite를 방지한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "gcc -o output source.c -Wl,-z,relro"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Full RELRO"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "GOT의 모든 심볼 주소를 컴파일 시에 채우고 GOT를 읽기 전용으로 만든다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "gcc -o output source.c -Wl,-z,relro,-z,now"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "컴파일 옵션"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "-Wl",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ": 뒤에 오는 옵션들을 콤마(,)로 구분하여 링커(Linker)에게 전달하라는 뜻이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "-z",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ": 링커에게 특정 키워드(relro, now 등)를 전달할 때 사용하는 플래그이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "relro",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ": 메모리에 로드된 후 재배치(Relocation) 영역을 읽기 전용으로 만든다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "now",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ": 함수 호출 시점이 아니라, 프로그램 시작 시점에 모든 심볼을 즉시 바인딩한다. (Full RELRO의 핵심)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Checksec 탐지 로직"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "GNU_RELRO와 Full RELRO, Partial RELRO를 헤더에서 찾아 RELRO를 확인한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " # check for RELRO support\n  if [[ $(${readelf} -l \"${1}\" 2> /dev/null) =~ \"no program headers\" ]]; then\n    echo_message '\\033[32mN/A          \\033[m   ' 'N/A,' '<file relro=\"n/a\"' \" \\\"${1}\\\": { \\\"relro\\\":\\\"n/a\\\",\"\n  elif ${readelf} -l \"${1}\" 2> /dev/null | grep -q 'GNU_RELRO'; then\n    if ${readelf} -d \"${1}\" 2> /dev/null | grep -q 'BIND_NOW' || ! ${readelf} -l \"${1}\" 2> /dev/null | grep -q '\\.got\\.plt'; then\n      echo_message '\\033[32mFull RELRO   \\033[m   ' 'Full RELRO,' '<file relro=\"full\"' \" \\\"${1}\\\": { \\\"relro\\\":\\\"full\\\",\"\n    else\n      echo_message '\\033[33mPartial RELRO\\033[m   ' 'Partial RELRO,' '<file relro=\"partial\"' \" \\\"${1}\\\": { \\\"relro\\\":\\\"partial\\\",\"\n    fi\n  else\n    echo_message '\\033[31mNo RELRO     \\033[m   ' 'No RELRO,' '<file relro=\"no\"' \" \\\"${1}\\\": { \\\"relro\\\":\\\"no\\\",\"\n  fi"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "3. Stack Canary"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "스택 카나리란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Stack Canary는 스택 버퍼 오버플로우(BOF)를 탐지하기 위한 기법이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "카나리는 함수 프롤로그에 스택에 fs:0x28의 값을 저장하고 함수 애필로그에 fs:0x28과 저장한 스택을 비교해 BOF를 탐지한다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "f56f8d4b-f557-5a32-9b54-8e34586983a6",
+          "src": "/assets/uploads/05f81079-2e10-5e20-8507-05fb7c6effac/f56f8d4b-f557-5a32-9b54-8e34586983a6.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "42223ca7-dc60-5e0a-a82a-ff5f3e8007a0",
+          "src": "/assets/uploads/05f81079-2e10-5e20-8507-05fb7c6effac/42223ca7-dc60-5e0a-a82a-ff5f3e8007a0.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "생성 조건"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "컴파일러는 오버헤드를 줄이기 위해 모든 함수에 카나리를 넣지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "지역 배열이 선언"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "지역 변수의 주소를 참조(&)하는 경우"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "우회 전략"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "TLS Leak / Master Canary: 스레드를 사용하는 환경에서 TLS 주소를 알아내 원본 카나리 값을 읽거나 변조한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Stack Canary Leak: Format String Bug를 이용해 스택에 있는 카나리 값을 유출한 뒤, BOF 시 해당 값을 그대로 덮어씌운다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "컴파일 옵션"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "끄기 (Disable)"
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "옵션"
+                          },
+                          {
+                            "type": "text",
+                            "text": " : ",
+                            "marks": [
+                              {
+                                "type": "bold"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "text": "gcc에서\"-fno-stack-protector\"으로 카나리를 끌 수 있다."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "켜기 (Enable): -fstack-protector-strong"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Checksec 탐지 로직"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "심볼 테이블에 스택 보호 관련 함수가 문자열을 확인한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "  # check for stack canary support\n  if ${readelf} -s \"${use_dynamic}\" \"${1}\" 2> /dev/null | grep \" UND \" | grep -Eq '__stack_chk_fail|__stack_chk_guard|__intel_security_cookie'; then\n    echo_message '\\033[32mCanary found   \\033[m   ' 'Canary found,' ' canary=\"yes\"' '\"canary\":\"yes\",'\n  else\n    echo_message '\\033[31mNo canary found\\033[m   ' 'No Canary found,' ' canary=\"no\"' '\"canary\":\"no\",'\n  fi"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "4. NX (No-Execute) / DEP (Data Execution Prevention)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "NX는 메모리의 스택이나 힙 영역에 실행 권한(Execute)을 제거하여 쉘코드 실행을 방지하기 위한 기법이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "스택(Stack)과 힙(Heap) 영역에는 실행 권한(Execute)이 없다. 따라서 쉘코드를 스택에 올리고 실행 흐름을 스택으로 돌려도 실행되지 않고 강제 종료된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "590406f6-0ba6-5c5b-9f16-3c3c3f774368",
+          "src": "/assets/uploads/05f81079-2e10-5e20-8507-05fb7c6effac/590406f6-0ba6-5c5b-9f16-3c3c3f774368.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "적용 전"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "75d5809b-ee74-5740-b111-6ce0e7e13a6c",
+          "src": "/assets/uploads/05f81079-2e10-5e20-8507-05fb7c6effac/75d5809b-ee74-5740-b111-6ce0e7e13a6c.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "적용 후"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "우회 전략 (Bypass)"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "실행 권한이 있는 코드 영역(Code Segment)이나 라이브러리 함수(system 등)를 이용한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "RTL (Return to Libc) 또는 ROP (Return Oriented Programming) 기법이 필수적이다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "컴파일 옵션"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "켜기 (기본): -z,noexecstack"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "끄기: -z,execstack"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Checksec 탐지 로직"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "GNU_STACK 헤더의 권한 설정을 확인한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "# check for NX support\n  # shellcheck disable=SC2126\n  if [[ $(${readelf} -l \"${1}\" 2> /dev/null) =~ \"no program headers\" ]]; then\n    echo_message '\\033[32mN/A        \\033[m   ' 'N/A,' ' nx=\"n/a\"' '\"nx\":\"n/a\",'\n  elif ${readelf} -l \"${1}\" 2> /dev/null | grep -q 'GNU_STACK'; then\n    if [[ $(${readelf} -l \"${1}\" 2> /dev/null | grep 'GNU_STACK' | grep -oP '(?<=0x).*(?=RW )' | grep -o . | sort -u | tr -d '\\n') != \" 0x\" ]]; then\n      echo_message '\\033[31mNX disabled\\033[m   ' 'NX disabled,' ' nx=\"no\"' '\"nx\":\"no\",'\n    else\n      echo_message '\\033[32mNX enabled \\033[m   ' 'NX enabled,' ' nx=\"yes\"' '\"nx\":\"yes\",'\n    fi\n  else\n    echo_message '\\033[31mNX disabled\\033[m   ' 'NX disabled,' ' nx=\"no\"' '\"nx\":\"no\",'\n  fi"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "5. PIE (Position Independent Executable)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PIE는 바이너리 코드 영역의 주소를 랜덤 화하여 고정된 주소를 이용한 공격을 막는 기법이다. ASLR을 코드 영역까지 확장한 개념으로 코드 영역까지 주소를 랜덤화 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ASLR은 커널단에서 설정하는 보호 기법이다. 프로그램이 실행될 때마다 라이브러리, 스택, 힙 영역의 시작 주소를 랜덤하게 변경하여 공격자가 메모리 주소를 예측하기 어렵게 만든다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PIE는 컴파일러가 바이너리를 만들 때 적용하는 보안 옵션이다. PIE가 적용된 바이너리는 고정된 주소가 아닌, 실행 시 로더에 의해 결정된 임의의 베이스 주소에 로드된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ASLR (OS 설정):",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " 스택, 힙, 라이브러리 영역의 주소를 랜덤화 (/proc/sys/kernel/randomize_va_space)."
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "0: 해제, 1: 스택/라이브러리 랜덤, 2: 전체 랜덤(힙 포함)"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "PIE (컴파일러 설정):",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " ASLR을 코드 영역(Code Base)까지 확장한 개념."
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "켜기: -fPIE -pie"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "끄기: -no-pie"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "우회 전략 (Bypass)"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Base Address Leak"
+                  },
+                  {
+                    "type": "text",
+                    "text": ":",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " FSB 등을 통해 스택에 남은 반환 주소 등을 유출하여 코드 베이스 주소를 구한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Partial Overwrite"
+                  },
+                  {
+                    "type": "text",
+                    "text": ":",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " 주소의 하위 12비트는 변하지 않는 특성을 이용해, 하위 바이트만 덮어써서 다른 함수로 흐름을 돌힌다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Checksec 탐지 로직 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ELF 파일의 타입을 확인한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "  # check for PIE support\n  if ${readelf} -h \"${1}\" 2> /dev/null | grep -q 'Type:[[:space:]]*EXEC'; then\n    echo_message '\\033[31mNo PIE       \\033[m   ' 'No PIE,' ' pie=\"no\"' '\"pie\":\"no\",'\n  elif ${readelf} -h \"${1}\" 2> /dev/null | grep -q 'Type:[[:space:]]*DYN'; then\n    if ${readelf} -d \"${1}\" 2> /dev/null | grep -q 'DEBUG'; then\n      echo_message '\\033[32mPIE enabled  \\033[m   ' 'PIE enabled,' ' pie=\"yes\"' '\"pie\":\"yes\",'\n    else\n      echo_message '\\033[33mDSO          \\033[m   ' 'DSO,' ' pie=\"dso\"' '\"pie\":\"dso\",'\n    fi\n  elif ${readelf} -h \"${1}\" 2> /dev/null | grep -q 'Type:[[:space:]]*REL'; then\n    echo_message '\\033[33mREL          \\033[m   ' 'REL,' ' pie=\"rel\"' '\"pie\":\"rel\",'\n  else\n    echo_message '\\033[33mNot an ELF file\\033[m   ' 'Not an ELF file,' ' pie=\"not_elf\"' '\"pie\":\"not_elf\",'\n  fi"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "6. Stack (Executable Stack),  RWX (Read-Write-Execute)"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Stack (Executable Stack): NX 설정이 모호하거나 커널 호환성 문제로 스택 실행 권한이 살아있는 경우이다. 쉘코드를 바로 실행할 수 있어 매우 취약하다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "RWX Segments"
+                  },
+                  {
+                    "type": "text",
+                    "text": ":",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " 읽기(Read), 쓰기(Write), 실행(Execute) 권한을 동시에 가진 세그먼트가 존재한다는 뜻이다. 이곳에 쉘코드를 쓰고 바로 실행할 수 있다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공략 가이드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "적용된 보호 기법"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "공략 기법"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "보호 기법 없음"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Shellcode Injection (쉘코드 주입 후 실행)"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "NX"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "RTL (Return to Libc) 또는 ROP (Return Oriented Programming)"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "NX + Canary"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Canary Leak (카나리 유출 후 복구) + ROP"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "NX + Canary + PIE"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Memory Leak (Base 주소 & 카나리 유출) + ROP"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Full RELRO"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Hook Overwrite"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "참고 자료:"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://github.com/slimm609/checksec/blob/main/checksec.bash",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/slimm609/checksec/blob/main/checksec.bash"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "dece74f2-e00b-586f-96bf-103f5be445af",
+          "href": "https://github.com/slimm609/checksec/blob/main/checksec.bash",
+          "title": "checksec/checksec.bash at main · slimm609/checksec",
+          "description": "Checksec. Contribute to slimm609/checksec development by creating an account on GitHub.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/0cccbca8ec617dbf55750fa05ea8e624849549b411b2dbdef99c9f25545cbd7e.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://bpsecblog.wordpress.com/2016/06/28/memory_protect_linux_5/",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://bpsecblog.wordpress.com/2016/06/28/memory_protect_linux_5/"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "66aac73a-e0db-5ca3-96f1-908d22421713",
+          "href": "https://bpsecblog.wordpress.com/2016/06/28/memory_protect_linux_5/",
+          "title": "linux 환경에서의 메모리 보호기법을 알아보자 – checksec.sh",
+          "description": "salen 선원이 linux 메모리 보호기법 시리즈에서 주구장창 등장하는 checksec.sh 를 자세히 들여다 보았습니다. 후다닥 퍼다 날라봅니다 :3 1. chechsec.sh 개요 지금껏 우리는 예제 프로그램을 만들고, 예",
+          "image": "https://yt010108.github.io/assets/imported/tistory/66aa78d9afd570e358a1bb72458cd438ce40bc41880b536b04771d2e7cc6c888.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://chp747.tistory.com/215",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://chp747.tistory.com/215"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "a8aba767-29a1-549f-b8ca-b50a5fcbae9e",
+          "href": "https://chp747.tistory.com/215",
+          "title": "어쩌다보니 시작한 checksec 분석글",
+          "description": "어쩌다보니 시작한 checksec 분석글 맨날 checksec.sh 같은 툴을 사용해서 편하게 확인하다보니 도구가 없는 이런 상황에서는 어떻게 확인해야 할 지 생각이 안났다 zzzz (반성하도록 하자.)헤더 정보",
+          "image": "https://yt010108.github.io/assets/imported/tistory/5e9f1dad16da5d90b28ea889e4c35e82b7203e670ced9d69c3c0304176d10d4a.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/1",
+    "originalId": "1",
+    "publishedAt": "2025-12-09T14:22:49+09:00",
+    "updatedAt": "2025-12-15T13:38:35+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

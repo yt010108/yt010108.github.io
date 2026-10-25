@@ -1,0 +1,2288 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "f68aa3a1-964a-5aa5-ad1d-5f3ac15de46d",
+  "kind": "posts",
+  "title": "모의해킹 방법론  OWASP WSTG",
+  "slug": "tistory-99",
+  "description": "웹 모의해킹을 공부하다 보면 SQL Injection, XSS, 인증 우회, IDOR 같은 취약점 이름을 먼저 접하게 된다. 처음에는 각각의 취약점과 페이로드를 익히는 것만으로도 충분해 보이지만, 실제 점검을 하려고 하면 곧 다른 질문이 생긴다.\"무엇부터 봐야 하지?\"\"어떤 순서로 테스트해야 하지?\"\"어디까지 확인해야 제대로 봤다고 할 수 있지?\"이때 기준점으로 삼기 좋은 문서가 OWASP WSTG(Web Security Testing Guide)다. WSTG는 웹 애플리케이션 보안 테스트를 위한 공개 방법론으로, 단순한 취약점 목록이 아니라 웹 모의해킹을 어떤 관점과 흐름으로 진행할지 정리한 가이드다.1. OWASP WSTG란?OWASP WSTG는 OWASP에서 제공하는 웹 보안 테스트 가이드다.OWA..",
+  "category": "Security / Web Security",
+  "date": "2026-04-21",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-04-21T17:09:25+09:00",
+  "updatedAt": "2026-08-07T18:39:51+09:00",
+  "sourceDigest": "e38155553b0e426a047ccd7bf503c8de619f2e6dd55e4e3fa66cac218cc5e457",
+  "assets": [
+    {
+      "id": "6ac88d91-102e-517c-97f0-b7e84b3b4a72",
+      "name": "tistory-99-6ac88d91-102e-517c-97f0-b7e84b3b4a72.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f68aa3a1-964a-5aa5-ad1d-5f3ac15de46d/6ac88d91-102e-517c-97f0-b7e84b3b4a72.png",
+      "sha": "a8babf453061b1afc00838dcf0d269b05cfc8afc"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "6ac88d91-102e-517c-97f0-b7e84b3b4a72",
+          "src": "/assets/uploads/f68aa3a1-964a-5aa5-ad1d-5f3ac15de46d/6ac88d91-102e-517c-97f0-b7e84b3b4a72.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "웹 모의해킹을 공부하다 보면 SQL Injection, XSS, 인증 우회, IDOR 같은 취약점 이름을 먼저 접하게 된다. 처음에는 각각의 취약점과 페이로드를 익히는 것만으로도 충분해 보이지만, 실제 점검을 하려고 하면 곧 다른 질문이 생긴다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "\"무엇부터 봐야 하지?\""
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "\"어떤 순서로 테스트해야 하지?\""
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "\"어디까지 확인해야 제대로 봤다고 할 수 있지?\""
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이때 기준점으로 삼기 좋은 문서가 OWASP WSTG(Web Security Testing Guide)다. WSTG는 웹 애플리케이션 보안 테스트를 위한 공개 방법론으로, 단순한 취약점 목록이 아니라 웹 모의해킹을 어떤 관점과 흐름으로 진행할지 정리한 가이드다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. OWASP WSTG란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "OWASP WSTG는 OWASP에서 제공하는 웹 보안 테스트 가이드다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "OWASP Top 10이 \"웹 애플리케이션에서 어떤 위험이 중요한가\"를 보여주는 문서라면, WSTG는 \"그 위험을 어떻게 테스트할 것인가\"에 더 가깝다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉, WSTG는 다음과 같은 질문에 답하기 위한 문서다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "질문"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "WSTG에서 다루는 내용"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "웹 모의해킹은 어떤 순서로 진행해야 하는가?"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "정보 수집부터 보고까지의 테스트 흐름"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "어떤 항목을 점검해야 하는가?"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "인증, 인가, 세션, 입력 검증, 비즈니스 로직 등 테스트 카테고리"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "테스트 결과는 어떻게 정리해야 하는가?"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "취약점 영향도, 재현 절차, 수정 권고안, 보고서 구성"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "자동화 도구만으로 충분한가?"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "수동 분석, 위협 모델링, 코드 리뷰, 침투테스트의 균형"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "WSTG의 핵심은 \"웹 애플리케이션을 체계적으로 테스트하기 위한 방법론\"이라고 볼 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. WSTG가 필요한 이유"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "웹 모의해킹을 단순히 스캐너를 돌리고 결과를 확인하는 작업으로 생각하면 중요한 취약점을 놓치기 쉽다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자동화 도구는 알려진 패턴을 찾는 데는 유용하지만, 애플리케이션의 업무 흐름이나 권한 구조, 비즈니스 로직까지 완전히 이해하지는 못한다. 예를 들어 결제 금액 조작, 승인 절차 우회, 다른 사용자의 리소스 접근 같은 문제는 서비스의 흐름을 직접 이해해야 발견할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "WSTG는 이런 한계를 보완하기 위해 다음과 같은 관점을 강조한다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "보안 테스트는 배포 후 한 번 하고 끝나는 작업이 아니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "요구사항, 설계, 개발, 배포, 운영 전 과정에서 보안을 고려해야 한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "자동화 도구와 수동 분석을 함께 사용해야 한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "취약점 발견뿐 아니라 재현, 영향도 평가, 수정 권고, 재검증까지 이어져야 한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "테스트는 항상 허가된 범위 안에서 수행되어야 한다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "결국 WSTG는 \"어떤 취약점을 아는가\"보다 \"어떤 절차로 검증하는가\"를 중요하게 본다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. WSTG의 테스트 원칙"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "WSTG에서 반복적으로 강조하는 원칙이 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "첫 번째는 은탄환은 없다는 점이다. 보안 스캐너나 웹 방화벽 하나로 모든 문제를 해결할 수는 없다. 도구는 반복 작업을 줄이고 기본적인 취약점을 찾는 데 도움을 주지만, 깊이 있는 분석은 결국 사람이 해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "두 번째는 일찍, 자주 테스트해야 한다는 점이다. 운영 환경에서 발견된 취약점은 수정 비용과 영향도가 크다. 반대로 설계나 개발 단계에서 발견한 문제는 비교적 적은 비용으로 수정할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "세 번째는 공격자 관점으로 생각해야 한다는 점이다. 정상적인 사용 흐름만 확인하는 것이 아니라, 예상하지 않은 입력, 권한 우회, 상태 변경, 반복 요청, 직접 API 호출 같은 비정상 흐름을 함께 봐야 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "네 번째는 결과를 반드시 문서화해야 한다는 점이다. 어떤 테스트를 했고, 무엇을 발견했고, 어떻게 재현되며, 어떤 영향이 있고, 어떻게 고쳐야 하는지 정리되어야 한다. 그래야 개발자와 의사결정자가 실제로 대응할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. WSTG의 전체 흐름"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "WSTG는 보안 테스트를 소프트웨어 개발 생명주기 전체에 포함해야 한다고 본다. 단순히 배포된 웹사이트를 공격해보는 것만이 아니라, 개발 전부터 운영 단계까지 계속 보안을 확인하는 구조다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "전체 흐름은 다음과 같이 정리할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "단계"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "주요 활동"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "개발 전"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "보안 정책, 표준, SDLC, 측정 기준 수립"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "요구사항/설계"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "보안 요구사항 검토, 아키텍처 리뷰, 위협 모델링"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "개발"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "코드 워크스루, 시큐어 코드 리뷰, 정적 분석"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "배포"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "웹 애플리케이션 침투테스트, 설정 점검"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "운영/유지보수"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "정기 보안 점검, 변경 후 재검증, 운영 관리 리뷰"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실무 모의해킹에서는 주로 배포 단계의 침투테스트에 집중하는 경우가 많다. 하지만 WSTG의 관점에서는 그 이전 단계의 설계 검토와 코드 리뷰, 이후 단계의 운영 점검까지 모두 보안 테스트의 일부다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. 웹 모의해킹 관점의 테스트 흐름"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실제로 웹 애플리케이션을 점검할 때는 보통 다음과 같은 흐름으로 접근한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "범위 확인 -> 정보 수집 -> 기능/엔드포인트 파악 -> 인증/인가 구조 분석\n-> 세션 점검 -> 입력값 검증 -> 비즈니스 로직 테스트\n-> 클라이언트/API 테스트 -> 결과 정리 -> 보고서 작성"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가장 먼저 해야 할 일은 범위 확인이다. 테스트 대상 도메인, IP, 계정, 환경, 제외 범위, 금지 행위를 명확히 해야 한다. 모의해킹은 반드시 허가된 범위 안에서만 수행되어야 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그다음에는 정보 수집을 통해 애플리케이션의 구조를 이해한다. 서버 정보, 프레임워크, 주요 경로, 파라미터, API, 인증 흐름, 사용자 역할 등을 파악한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이후에는 인증, 인가, 세션, 입력값, 비즈니스 로직, 클라이언트 측 동작, API를 차례로 검증한다. 마지막으로 발견한 내용을 재현 가능한 형태로 정리하고, 영향도와 수정 방안을 포함해 보고서를 작성한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6. WSTG의 주요 테스트 영역"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "WSTG v4.2는 웹 애플리케이션 보안 테스트를 크게 12개 영역으로 나눈다."
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "영역"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "설명"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Information Gathering"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "검색엔진 노출, 서버 식별, 프레임워크 식별, 엔드포인트 파악, 아키텍처 매핑"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Configuration and Deployment Management"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "서버 설정, 백업 파일, 관리자 페이지, HTTP 메서드, 보안 헤더, 클라우드 저장소 점검"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Identity Management"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "회원가입, 계정 생성, 역할 정의, 계정 열거, 사용자명 정책 검증"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Authentication"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "로그인, 비밀번호 정책, 기본 계정, 계정 잠금, 비밀번호 재설정, 대체 인증 경로 점검"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Authorization"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "권한 우회, 권한 상승, IDOR, 디렉터리 탐색, 직접 객체 접근 검증"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Session Management"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "쿠키 속성, 세션 고정, CSRF, 로그아웃, 세션 타임아웃, 세션 하이재킹 점검"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Input Validation"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "XSS, SQL Injection, NoSQL Injection, Command Injection, SSTI, SSRF 등 입력값 기반 취약점 검증"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Error Handling"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "과도한 오류 메시지, stack trace, 내부 경로, 디버그 정보 노출 확인"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Weak Cryptography"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "TLS 설정, 평문 전송, 약한 암호화, Padding Oracle, 민감정보 전송 방식 점검"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Business Logic"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "워크플로우 우회, 요청 위조, 횟수 제한 우회, 무결성 검증, 악성 파일 업로드 테스트"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Client-side Testing"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "DOM XSS, CORS, Clickjacking, WebSocket, Web Messaging, 브라우저 저장소 점검"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "API Testing"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "REST/JSON API와 GraphQL API의 인증, 인가, 입력값, 스키마 노출 문제 검증"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 12개 영역은 웹 모의해킹을 할 때 하나의 큰 지도처럼 사용할 수 있다. 모든 항목을 기계적으로 체크하는 것이 목적은 아니지만, 어느 영역을 봤고 어느 영역을 아직 보지 않았는지 판단하는 기준이 된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "7. 각 영역별로 보는 핵심 포인트"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. Information Gathering"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정보 수집은 테스트의 출발점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "검색엔진, 공개 저장소, robots.txt, sitemap.xml, Wayback Machine, DNS, 서브도메인, 서버 헤더 등을 통해 외부에 노출된 정보를 파악한다. 이 단계에서 엔드포인트와 입력 지점을 많이 찾아낼수록 이후 테스트의 품질이 좋아진다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. Configuration and Deployment Management"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "배포 설정 문제는 생각보다 자주 발견된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "백업 파일, 테스트 페이지, 관리자 콘솔, 디버그 모드, 불필요한 HTTP 메서드, 약한 보안 헤더, 잘못 공개된 클라우드 스토리지 등이 주요 점검 대상이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. Identity Management"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Identity Management는 계정과 사용자를 어떻게 식별하고 관리하는지 보는 영역이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "회원가입 과정, 계정 생성 정책, 사용자명 규칙, 역할 정의, 계정 존재 여부 노출 등을 확인한다. 인증 테스트와 비슷해 보이지만, 실제로는 \"로그인 전후의 사용자 식별과 계정 관리 체계\"를 보는 영역에 가깝다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. Authentication"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Authentication은 사용자가 정말 본인인지 확인하는 과정이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "로그인 요청이 암호화 채널을 통해 전송되는지, 기본 계정이 남아 있지 않은지, 비밀번호 정책이 적절한지, 계정 잠금이 동작하는지, 비밀번호 재설정 기능이 안전한지 확인한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. Authorization"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Authorization은 로그인한 사용자가 어떤 기능과 데이터에 접근할 수 있는지 확인하는 영역이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대표적인 예가 IDOR이다. 예를 들어 "
+          },
+          {
+            "type": "text",
+            "text": "/users/1001/orders",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "에 접근할 수 있는 사용자가 숫자만 바꿔 "
+          },
+          {
+            "type": "text",
+            "text": "/users/1002/orders",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "를 볼 수 있다면 인가 문제가 된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6. Session Management"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "세션은 인증 이후 사용자의 상태를 유지하는 핵심 요소다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "쿠키에 "
+          },
+          {
+            "type": "text",
+            "text": "HttpOnly",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", "
+          },
+          {
+            "type": "text",
+            "text": "Secure",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", "
+          },
+          {
+            "type": "text",
+            "text": "SameSite",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 같은 속성이 적절히 설정되어 있는지, 로그인 전후 세션이 회전되는지, 로그아웃 후 세션이 무효화되는지, 세션 타임아웃이 적절한지 확인한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "7. Input Validation"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "입력값 검증은 가장 익숙하면서도 가장 넓은 영역이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "XSS, SQL Injection, NoSQL Injection, LDAP Injection, XML Injection, Command Injection, SSTI, SSRF 등이 여기에 포함된다. 중요한 것은 단순히 페이로드를 넣어보는 것이 아니라, 입력값이 어디로 전달되고 어떤 sink에 도달하는지 이해하는 것이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "8. Error Handling"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "오류 메시지는 공격자에게 힌트를 줄 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "stack trace, 내부 파일 경로, SQL 오류, 프레임워크 정보, 디버그 출력이 노출되면 다른 취약점을 찾는 데 도움이 될 수 있다. 에러 처리 테스트는 단독 취약점이 되기도 하고, 다른 공격의 출발점이 되기도 한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "9. Weak Cryptography"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "암호화 점검은 전송과 저장 모두를 봐야 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "TLS 설정이 약하지 않은지, 민감정보가 평문으로 전송되지 않는지, 오래되었거나 취약한 암호 알고리즘을 사용하지 않는지, 토큰이나 키 관리가 안전한지 확인한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "10. Business Logic"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "비즈니스 로직 취약점은 자동화 도구가 놓치기 쉬운 대표적인 영역이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가격 조작, 쿠폰 중복 사용, 승인 절차 우회, 결제 전 상태 변경, 요청 재전송, 횟수 제한 우회 같은 문제는 서비스의 의도를 이해해야 찾을 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "11. Client-side Testing"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "브라우저에서 처리되는 로직도 중요한 테스트 대상이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DOM XSS, HTML Injection, CORS 설정, Clickjacking, WebSocket, Web Messaging, localStorage/sessionStorage에 저장된 민감정보 등을 확인한다. 클라이언트 코드는 사용자가 수정할 수 있다는 전제를 가지고 봐야 한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "12. API Testing"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "요즘 웹 서비스는 UI보다 API가 더 중요한 공격 표면이 되는 경우가 많다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "REST API, JSON API, GraphQL API에서 인증과 인가가 제대로 적용되는지, 불필요한 필드나 스키마가 노출되는지, 대량 조회나 객체 직접 접근이 가능한지 확인한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "8. 보고서 작성"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모의해킹에서 보고서는 단순한 결과 정리가 아니다. 발견한 취약점을 실제로 고칠 수 있게 만드는 전달물이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "좋은 보고서에는 최소한 다음 내용이 포함되어야 한다."
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "항목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "설명"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "취약점명"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "어떤 문제가 발견되었는지"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "영향도"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "공격자가 무엇을 할 수 있는지"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "재현 절차"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "개발자나 담당자가 같은 결과를 확인할 수 있는 단계"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "증적"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "요청/응답, 스크린샷, 로그 등"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원인"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "왜 문제가 발생했는지"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "수정 권고"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "어떻게 개선해야 하는지"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "위험도"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "High, Medium, Low 또는 CVSS 기반 우선순위"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "재검증 방법"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "수정 후 어떻게 다시 확인할지"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "WSTG에서도 테스트 결과를 문서화하고, 위험도를 기준으로 우선순위를 정하며, 개발자가 이해할 수 있는 방식으로 수정 방향을 제공하는 것을 중요하게 본다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "9. 정리"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "OWASP WSTG는 웹 모의해킹을 체계적으로 수행하기 위한 방법론이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "단순히 취약점 이름을 외우는 것에서 끝나는 것이 아니라, 정보 수집부터 인증, 인가, 세션, 입력값, 비즈니스 로직, 클라이언트, API, 보고까지 전체 흐름을 잡아준다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "웹 모의해킹을 공부하는 사람에게는 학습 로드맵이 되고, 실무자에게는 테스트 체크리스트이자 보고 기준이 된다. 조직 입장에서는 보안 테스트를 일회성 작업이 아니라 개발과 운영 과정에 포함시키는 기준으로 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "결국 WSTG의 핵심은 간단하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "무작정 취약점을 찾는 것이 아니라, 허가된 범위 안에서, 체계적인 순서로, 근거를 남기며, 재현 가능하게 보안 문제를 검증하는 것"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "웹 모의해킹을 처음 공부한다면 OWASP Top 10으로 주요 위험을 익히고, WSTG로 실제 테스트 방법론을 잡아가는 흐름이 좋다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "10. 참고 링크"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "OWASP Web Security Testing Guide",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://owasp.org/www-project-web-security-testing-guide/"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "OWASP WSTG v4.2",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://owasp.org/www-project-web-security-testing-guide/v42/"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "OWASP Top 10",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://owasp.org/www-project-top-ten/"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "006defd9-436b-5102-aeea-d44ffc2863c3",
+          "href": "https://owasp.org/www-project-top-ten/",
+          "title": "OWASP Top Ten Web Application Security Risks | OWASP Foundation",
+          "description": "The OWASP Top 10 is the reference standard for the most critical web application security risks. Adopting the OWASP Top 10 is perhaps the most effective first step towards changing your software development culture focused on producing secure code.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/3d0d321afa7acfbbc0243bd8aa26ae79d91f9ab8560ffa5a2e76152f37499479.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "wstg-v4.2.pdf",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/assets/imported/tistory/0f1cd587e62539c9badd23699a99a351bf3468c3601980efa0a3b4a5b6ab6f6e.pdf"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/99",
+    "originalId": "99",
+    "publishedAt": "2026-04-21T17:09:25+09:00",
+    "updatedAt": "2026-08-07T18:39:51+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

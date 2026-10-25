@@ -1,0 +1,660 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "ea543822-a181-5cfe-9cbb-f3d59459b69e",
+  "kind": "posts",
+  "title": "[DVWA] XXS",
+  "slug": "tistory-18",
+  "description": "1.Cross Site ScriptingCross Site Scripting 취약점은 웹 애플리케이션이 사용자로부터 입력받은 값을 제대로 검증하지 않고 웹 페이지에 그대로 출력할 때 발생하는 취약점이다. 공격자는 이 취약점을 이용해 악의적인 스크립트(주로 JavaScript)를 웹 페이지에 삽입한다.DVWA에서 Cross Site Scripting을 알아보자 2. 문제DVWA 웹 사이트에서 이름을 입력하면 hello라고 출력해주는 기능을 구현해 뒀다. 입력받은 name 값을 그대로 사용자에게 출력해서 문제가 생긴다. 실습해보자 low level 코드 을 입력으로 입력하면 가 사용자 브라우져에서 실행된다. low level에 구현된 소스코드는 아래와 같으며 get요청이 들어오면 name에 해당하는 ..",
+  "category": "Wargame / DVWA",
+  "date": "2025-12-31",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2025-12-31T17:14:28+09:00",
+  "updatedAt": "2026-01-20T13:27:11+09:00",
+  "sourceDigest": "830a30d8a4d47aa8b57d282cba990def305bcd035718e5c850e3a48cb0cf3795",
+  "assets": [
+    {
+      "id": "da8123e4-891a-5ede-b7a4-0033df3bfa9b",
+      "name": "tistory-18-da8123e4-891a-5ede-b7a4-0033df3bfa9b.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ea543822-a181-5cfe-9cbb-f3d59459b69e/da8123e4-891a-5ede-b7a4-0033df3bfa9b.png",
+      "sha": "a9f04382883eb644f3a5b4b4baf0e7f9efa0f51a"
+    },
+    {
+      "id": "e09f23ac-6ab7-50dc-82b7-a9aac994fe8c",
+      "name": "tistory-18-e09f23ac-6ab7-50dc-82b7-a9aac994fe8c.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ea543822-a181-5cfe-9cbb-f3d59459b69e/e09f23ac-6ab7-50dc-82b7-a9aac994fe8c.png",
+      "sha": "1df91ed6be1164c0bd49b39ec237d3cbf1d8322b"
+    },
+    {
+      "id": "01aee630-aad4-5c28-98d9-0443df782d56",
+      "name": "tistory-18-01aee630-aad4-5c28-98d9-0443df782d56.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ea543822-a181-5cfe-9cbb-f3d59459b69e/01aee630-aad4-5c28-98d9-0443df782d56.png",
+      "sha": "e6455135803bf1f9fdd514334e65e4e8f4af6eed"
+    },
+    {
+      "id": "c8caba9c-3427-57cf-b11e-812ffecdbcd2",
+      "name": "tistory-18-c8caba9c-3427-57cf-b11e-812ffecdbcd2.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ea543822-a181-5cfe-9cbb-f3d59459b69e/c8caba9c-3427-57cf-b11e-812ffecdbcd2.png",
+      "sha": "11afa60ae87090cb1cb6fe697ca42e32afeed6ff"
+    },
+    {
+      "id": "f22a0c89-cf1f-571c-bee5-0aff4d015e81",
+      "name": "tistory-18-f22a0c89-cf1f-571c-bee5-0aff4d015e81.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ea543822-a181-5cfe-9cbb-f3d59459b69e/f22a0c89-cf1f-571c-bee5-0aff4d015e81.png",
+      "sha": "ac299b75d5e2f80dc800112e7260be62435dff31"
+    },
+    {
+      "id": "23bfc279-ee55-5b1b-8baa-b083d0e6d09f",
+      "name": "tistory-18-23bfc279-ee55-5b1b-8baa-b083d0e6d09f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ea543822-a181-5cfe-9cbb-f3d59459b69e/23bfc279-ee55-5b1b-8baa-b083d0e6d09f.png",
+      "sha": "120abc69a14891278f5bc86ab42781412703930a"
+    },
+    {
+      "id": "8d4bbdd9-3b43-5f21-9054-39290f81586d",
+      "name": "tistory-18-8d4bbdd9-3b43-5f21-9054-39290f81586d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ea543822-a181-5cfe-9cbb-f3d59459b69e/8d4bbdd9-3b43-5f21-9054-39290f81586d.png",
+      "sha": "f9b0b7a4667875e24a83c1d670557d1729a8a868"
+    },
+    {
+      "id": "6774106b-36ec-5e87-b644-50cf2d6ca211",
+      "name": "tistory-18-6774106b-36ec-5e87-b644-50cf2d6ca211.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ea543822-a181-5cfe-9cbb-f3d59459b69e/6774106b-36ec-5e87-b644-50cf2d6ca211.png",
+      "sha": "09931a5c74aed5bb05f79c1027b3b499e27635e5"
+    },
+    {
+      "id": "00f8e062-a1db-589f-8e47-4590e5e19bc5",
+      "name": "tistory-18-00f8e062-a1db-589f-8e47-4590e5e19bc5.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ea543822-a181-5cfe-9cbb-f3d59459b69e/00f8e062-a1db-589f-8e47-4590e5e19bc5.png",
+      "sha": "c2081013619c6ff90b0357f5661646488caca69b"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "da8123e4-891a-5ede-b7a4-0033df3bfa9b",
+          "src": "/assets/uploads/ea543822-a181-5cfe-9cbb-f3d59459b69e/da8123e4-891a-5ede-b7a4-0033df3bfa9b.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1.Cross Site Scripting"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Cross Site Scripting 취약점은 웹 애플리케이션이 사용자로부터 입력받은 값을 제대로 검증하지 않고 웹 페이지에 그대로 출력할 때 발생하는 취약점이다. 공격자는 이 취약점을 이용해 악의적인 스크립트(주로 JavaScript)를 웹 페이지에 삽입한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DVWA에서 Cross Site Scripting을 알아보자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DVWA 웹 사이트에서 이름을 입력하면 hello라고 출력해주는 기능을 구현해 뒀다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "e09f23ac-6ab7-50dc-82b7-a9aac994fe8c",
+          "src": "/assets/uploads/ea543822-a181-5cfe-9cbb-f3d59459b69e/e09f23ac-6ab7-50dc-82b7-a9aac994fe8c.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "입력받은 name 값을 그대로 사용자에게 출력해서 문제가 생긴다. 실습해보자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " low level 코드"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "01aee630-aad4-5c28-98d9-0443df782d56",
+          "src": "/assets/uploads/ea543822-a181-5cfe-9cbb-f3d59459b69e/01aee630-aad4-5c28-98d9-0443df782d56.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<script> alert(\" 1\")</script>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "을 입력으로 입력하면 <script> alert(\" 1\")</script>가 사용자 브라우져에서 실행된다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "c8caba9c-3427-57cf-b11e-812ffecdbcd2",
+          "src": "/assets/uploads/ea543822-a181-5cfe-9cbb-f3d59459b69e/c8caba9c-3427-57cf-b11e-812ffecdbcd2.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "low level에 구현된 소스코드는 아래와 같으며 get요청이 들어오면 name에 해당하는 값을echo를 통해 사용자에게 그대로 전달한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\n// Is there any input?\nif( array_key_exists( \"name\", $_GET ) && $_GET[ 'name' ] != NULL ) {\n    // Feedback for end user\n    echo '<pre>Hello ' . $_GET[ 'name' ] . '</pre>';\n}\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "low level에서는 사용자가 작성한 name 값을 검증하지 않으므로 사용자 브라우저에 자바스크립트를 실행할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " medium level 코드"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "f22a0c89-cf1f-571c-bee5-0aff4d015e81",
+          "src": "/assets/uploads/ea543822-a181-5cfe-9cbb-f3d59459b69e/f22a0c89-cf1f-571c-bee5-0aff4d015e81.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "medium level에서는 아래와 같은 자바스크립트 코드를 입력하면 alert(\"1\")이 입력되는 것을 알 수있다. </scripts>가 대체된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<script> alert(\" 1\")</script>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "23bfc279-ee55-5b1b-8baa-b083d0e6d09f",
+          "src": "/assets/uploads/ea543822-a181-5cfe-9cbb-f3d59459b69e/23bfc279-ee55-5b1b-8baa-b083d0e6d09f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자바 스크립트에서는 대문자를 사용해도 똑같이 작동하므로 아래 코드를 입력하면"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<Script> alert(\"2\")</Script>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "8d4bbdd9-3b43-5f21-9054-39290f81586d",
+          "src": "/assets/uploads/ea543822-a181-5cfe-9cbb-f3d59459b69e/8d4bbdd9-3b43-5f21-9054-39290f81586d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "xss가 성공한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "medium level 코드는 black list를 사용해서<script>를 검증한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\n// Is there any input?\nif( array_key_exists( \"name\", $_GET ) && $_GET[ 'name' ] != NULL ) {\n    // Get input\n    $name = str_replace( '<script>', '', $_GET[ 'name' ] );\n\n    // Feedback for end user\n    echo \"<pre>Hello ${name}</pre>\";\n}\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "코드를 <script>내에 문자를 대문자로 바꿔 검증을 회피한다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "High level 코드"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "6774106b-36ec-5e87-b644-50cf2d6ca211",
+          "src": "/assets/uploads/ea543822-a181-5cfe-9cbb-f3d59459b69e/6774106b-36ec-5e87-b644-50cf2d6ca211.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "high level은 대문자를 변경해도 안된다. 아래와 같은 코드로 스크립트 없이 자바 스크립트를 실행할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "img src에서 x가 없어서 onerror가 실행된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<img src=\"x\" onerror=\"alert('XSS')\">"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "00f8e062-a1db-589f-8e47-4590e5e19bc5",
+          "src": "/assets/uploads/ea543822-a181-5cfe-9cbb-f3d59459b69e/00f8e062-a1db-589f-8e47-4590e5e19bc5.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "High level 코드는 / ... /i: 끝에 붙은 i 플래그는 대소문자를 구분하지 않겠다는 뜻이고 (.*)는 그 사이에 어떤 문자열든 반복되는 걸 제거아한다. 즉, script, SCRIPT, ScRiPt 모두 대상이 된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\n// Is there any input?\nif( array_key_exists( \"name\", $_GET ) && $_GET[ 'name' ] != NULL ) {\n    // Get input\n    $name = preg_replace( '/<(.*)s(.*)c(.*)r(.*)i(.*)p(.*)t/i', '', $_GET[ 'name' ] );\n\n    // Feedback for end user\n    echo \"<pre>Hello ${name}</pre>\";\n}\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Impossible level 코드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Impossible level 코드는 이전 코드의 불완전한 preg_replace (블랙리스트 방식) 대신, PHP의 표준 보안 함수인 htmlspecialchars를 사용해 입력을 검증한다. 이는 입력값을 무해한 텍스트로 변환하는 함수이다. ."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\n// Is there any input?\nif( array_key_exists( \"name\", $_GET ) && $_GET[ 'name' ] != NULL ) {\n    // Check Anti-CSRF token\n    checkToken( $_REQUEST[ 'user_token' ], $_SESSION[ 'session_token' ], 'index.php' );\n\n    // Get input\n    $name = htmlspecialchars( $_GET[ 'name' ] );\n\n    // Feedback for end user\n    echo \"<pre>Hello ${name}</pre>\";\n}\n\n// Generate Anti-CSRF token\ngenerateSessionToken();\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "사용자 입력값을 검증 없이 전달하면 xss취약점이 발생한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "블랙리스트 방식은 보다 안전한 함수를 사용해 xss취약점을 대비해야한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "<script> alert(\"1\")</script>"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "참고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://itcase.tistory.com/entry/39-웹-모의해킹-실습-6-XSSStored-XSSReflected",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://itcase.tistory.com/entry/39-웹-모의해킹-실습-6-XSSStored-XSSReflected"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "b0bbaa68-e75c-5928-be97-9ce32a41f798",
+          "href": "https://itcase.tistory.com/entry/39-%EC%9B%B9-%EB%AA%A8%EC%9D%98%ED%95%B4%ED%82%B9-%EC%8B%A4%EC%8A%B5-6-XSSStored-XSSReflected",
+          "title": "39. 웹 모의해킹 실습 (6) : XSS(Stored), XSS(Reflected)",
+          "description": "XSS(Stored, 저장형 XSS)  개념 공격자가 악성 스크립트를 웹 애플리케이션의 서버에 영구적으로 저장하고, 이를 다른 사용자가 웹 페이지를 방문할 때마다 실행되도록 하는 일반적인 형태의",
+          "image": "https://yt010108.github.io/assets/imported/tistory/0ac12698fc3488381bff86ebcf3bcc4bbdee429795a874884b8a61bc0ecd6d85.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/18",
+    "originalId": "18",
+    "publishedAt": "2025-12-31T17:14:28+09:00",
+    "updatedAt": "2026-01-20T13:27:11+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

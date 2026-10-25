@@ -1,0 +1,522 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "8bbc7a45-7da4-5fd7-a676-acd35dce4b6a",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-23문제",
+  "slug": "tistory-64",
+  "description": "1. 문제 정보문제 번호 : old -23문제 점수 : 20점문제 유형 : xss-null injection2. 문제 분석 23번 문제이다. xss을 시도해야하는 미션이 보인다. 를 입력하면 no hack이 보인다.그러면 서버 내 코드에서는 받은 문자열을 필터링하는 것을 알 수 있다 필터링되는 문자를 알아보기 위해 필요한 특수문자인 , /를 입력했더니 필터링이 안된다. 그러면 script가 필터링으로 생각해 입력해보았다. script는 필터링에 걸려 자바스크립트는 대소문자 구분이 없으므로 대문자를 섞어서 ScrIpt를 입력해도 똑같이 no hack이 출력된다. 그러면 xss에서 태그를 사용한 xss를 해도 안된다. 여러번 시도를 해보니 sc도 필터링 im도 필터링인걸 보아 연속된 문자열이 있으면 no..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-27",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-27T14:55:37+09:00",
+  "updatedAt": "2026-01-27T14:59:44+09:00",
+  "sourceDigest": "b8c1e02a7262d4de1a972f7a2362d5e00f4bd3a469412e9893e535b99c4e2ffb",
+  "assets": [
+    {
+      "id": "09c587c9-3b70-57cc-bda5-a674816bfb6f",
+      "name": "tistory-64-09c587c9-3b70-57cc-bda5-a674816bfb6f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8bbc7a45-7da4-5fd7-a676-acd35dce4b6a/09c587c9-3b70-57cc-bda5-a674816bfb6f.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "d002e9be-5f88-5974-8487-990afbce55b3",
+      "name": "tistory-64-d002e9be-5f88-5974-8487-990afbce55b3.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8bbc7a45-7da4-5fd7-a676-acd35dce4b6a/d002e9be-5f88-5974-8487-990afbce55b3.png",
+      "sha": "258bdd5747390286f213cc01c74b0e052772950d"
+    },
+    {
+      "id": "f9f6743b-1ede-5727-896e-fdf84b5a500b",
+      "name": "tistory-64-f9f6743b-1ede-5727-896e-fdf84b5a500b.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8bbc7a45-7da4-5fd7-a676-acd35dce4b6a/f9f6743b-1ede-5727-896e-fdf84b5a500b.png",
+      "sha": "501b809c3e9ca65b5455b8b941d969e767d9a98a"
+    },
+    {
+      "id": "9bc8dbeb-a261-57aa-92aa-cc73137d597c",
+      "name": "tistory-64-9bc8dbeb-a261-57aa-92aa-cc73137d597c.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8bbc7a45-7da4-5fd7-a676-acd35dce4b6a/9bc8dbeb-a261-57aa-92aa-cc73137d597c.png",
+      "sha": "e4b462b6369dbad020a5c2e22b4f297f588d091f"
+    },
+    {
+      "id": "dc262596-31b9-5c62-a954-8cf41352e0ec",
+      "name": "tistory-64-dc262596-31b9-5c62-a954-8cf41352e0ec.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8bbc7a45-7da4-5fd7-a676-acd35dce4b6a/dc262596-31b9-5c62-a954-8cf41352e0ec.png",
+      "sha": "45f677ee19343062e3ab8e5a71c2c522749269df"
+    },
+    {
+      "id": "16b06f00-8768-5009-9cb2-e43a54b29bb0",
+      "name": "tistory-64-16b06f00-8768-5009-9cb2-e43a54b29bb0.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8bbc7a45-7da4-5fd7-a676-acd35dce4b6a/16b06f00-8768-5009-9cb2-e43a54b29bb0.png",
+      "sha": "7157cafe3a3e7785a4e9c102ac456a0be8f486bc"
+    },
+    {
+      "id": "cfe9e43a-5ec0-512e-9ebf-6e64102c6725",
+      "name": "tistory-64-cfe9e43a-5ec0-512e-9ebf-6e64102c6725.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8bbc7a45-7da4-5fd7-a676-acd35dce4b6a/cfe9e43a-5ec0-512e-9ebf-6e64102c6725.png",
+      "sha": "6f49215651eded318a9d608a77b1ea15628c4157"
+    },
+    {
+      "id": "791775f4-fd0d-5ca8-b51b-4ac09cf594bd",
+      "name": "tistory-64-791775f4-fd0d-5ca8-b51b-4ac09cf594bd.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8bbc7a45-7da4-5fd7-a676-acd35dce4b6a/791775f4-fd0d-5ca8-b51b-4ac09cf594bd.png",
+      "sha": "83608b7c4c037fc24e6a657cd50f35279b589be5"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "09c587c9-3b70-57cc-bda5-a674816bfb6f",
+          "src": "/assets/uploads/8bbc7a45-7da4-5fd7-a676-acd35dce4b6a/09c587c9-3b70-57cc-bda5-a674816bfb6f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -23"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 20점"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 유형 : xss-null injection"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "23번 문제이다. xss을 시도해야하는 미션이 보인다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "d002e9be-5f88-5974-8487-990afbce55b3",
+          "src": "/assets/uploads/8bbc7a45-7da4-5fd7-a676-acd35dce4b6a/d002e9be-5f88-5974-8487-990afbce55b3.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "<script>alert(1);</script>를 입력하면 no hack이 보인다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그러면 서버 내 코드에서는 받은 문자열을 필터링하는 것을 알 수 있다"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "f9f6743b-1ede-5727-896e-fdf84b5a500b",
+          "src": "/assets/uploads/8bbc7a45-7da4-5fd7-a676-acd35dce4b6a/f9f6743b-1ede-5727-896e-fdf84b5a500b.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "필터링되는 문자를 알아보기 위해 필요한 특수문자인 <, >, /를 입력했더니 필터링이 안된다. 그러면 script가 필터링으로 생각해 입력해보았다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "9bc8dbeb-a261-57aa-92aa-cc73137d597c",
+          "src": "/assets/uploads/8bbc7a45-7da4-5fd7-a676-acd35dce4b6a/9bc8dbeb-a261-57aa-92aa-cc73137d597c.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "dc262596-31b9-5c62-a954-8cf41352e0ec",
+          "src": "/assets/uploads/8bbc7a45-7da4-5fd7-a676-acd35dce4b6a/dc262596-31b9-5c62-a954-8cf41352e0ec.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "16b06f00-8768-5009-9cb2-e43a54b29bb0",
+          "src": "/assets/uploads/8bbc7a45-7da4-5fd7-a676-acd35dce4b6a/16b06f00-8768-5009-9cb2-e43a54b29bb0.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "script는 필터링에 걸려 자바스크립트는 대소문자 구분이 없으므로 대문자를 섞어서 ScrIpt를 입력해도 똑같이 no hack이 출력된다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "f9f6743b-1ede-5727-896e-fdf84b5a500b",
+          "src": "/assets/uploads/8bbc7a45-7da4-5fd7-a676-acd35dce4b6a/f9f6743b-1ede-5727-896e-fdf84b5a500b.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그러면 xss에서 <img >태그를 사용한 xss를 해도 안된다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "f9f6743b-1ede-5727-896e-fdf84b5a500b",
+          "src": "/assets/uploads/8bbc7a45-7da4-5fd7-a676-acd35dce4b6a/f9f6743b-1ede-5727-896e-fdf84b5a500b.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "여러번 시도를 해보니 sc도 필터링 im도 필터링인걸 보아 연속된 문자열이 있으면 no hack으로 필터링 되는 것을 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문자가 이어지면 안되므로 문자 사이에 null을 넣어서 우회해보자. 버프 스위트로"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "<%00s%00c%00r%00i%00p%00t%00>%00a%00l%00e%00r%00t%00(1);</s%00c%00r%00i%00p%00t>와 같이 보내면 서버내 필터링을 우회하고 브라우저에서 자동으로 null을 없애서 <script>alert(1);</script>를 실행할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "cfe9e43a-5ec0-512e-9ebf-6e64102c6725",
+          "src": "/assets/uploads/8bbc7a45-7da4-5fd7-a676-acd35dce4b6a/cfe9e43a-5ec0-512e-9ebf-6e64102c6725.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "791775f4-fd0d-5ca8-b51b-4ac09cf594bd",
+          "src": "/assets/uploads/8bbc7a45-7da4-5fd7-a676-acd35dce4b6a/791775f4-fd0d-5ca8-b51b-4ac09cf594bd.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "script, img 등 영문자가 2글자 이상 연속되면 no hack이 출력되는 필터링을 확인했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "필터링 우회를 위해 Burp Suite를 사용하여 문자열 사이에 Null Byte(%00)를 삽입해 전송했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "서버는 널 바이트를 문자로 인식해 통과시키고, 브라우저는 이를 무시하고 실행하는 차이를 이용해 해결했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. 참고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://blog.arang.kr/posts/xss-bypass-waf-filtering",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://blog.arang.kr/posts/xss-bypass-waf-filtering"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "6a6b646f-322b-54cc-bdd4-bab92f53baf5",
+          "href": "https://blog.arang.kr/posts/xss-bypass-waf-filtering",
+          "title": "XSS Bypass WAF & Filtering 기법",
+          "description": "모의해킹 및 버그바운티 시 XSS 취약점 분석에서 얻은 WAF 우회 및 필터링 우회 기법",
+          "image": "https://yt010108.github.io/assets/imported/tistory/99bcbcf041a74009d7d19d329882642f8d6d113b96ccad2e2ed6655004839a23.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://4rgos.tistory.com/18",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://4rgos.tistory.com/18"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "92be7e12-1984-572f-87cd-8da2ca08c338",
+          "href": "https://4rgos.tistory.com/18",
+          "title": "xss (Cross Site Scripting)",
+          "description": "XSS는 웹 브라우저에서 동작하는 악의적인 스크립트이다. 일반적으로 사용자의 개인정보, 쿠키탈취등을 한다. 대부분 XSS취약점을 진단하고자 할 때 와 같은 형태로 공격구문을 넣는다. 이를 우",
+          "image": "https://yt010108.github.io/assets/imported/tistory/127c9eb7843dfacb62f454c314f42c15ed9c092989c045f1eaa57cedb3eab1b3.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/64",
+    "originalId": "64",
+    "publishedAt": "2026-01-27T14:55:37+09:00",
+    "updatedAt": "2026-01-27T14:59:44+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

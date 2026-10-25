@@ -1,0 +1,429 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "3e0acb63-8e03-5cb0-b8fc-a3d98d598905",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-42 문제",
+  "slug": "tistory-62",
+  "description": "1. 문제 정보문제 번호 : old -42문제 점수 : 20점문제 유형 : 권한 우회2. 문제 분석42번 문제를 들어가면 다운로드할 수 있는 file과 번호가 나온다. 다운로드를 누르면 다운로드가 실행된다.test.txt는 다운이 진행되지만 flag.docx는 권한 오류가 있다. 페이지 소스보기를 실행시 text.txt는 down을 get파라미터로 뒤에 어떤 값을 보낸다. 하지만 flag.docx는 그냥 alert만 실행한다.nosubjectfile2testtest.txt [download]1read meflag.docx [download] test.txt에 down의 문자열이 base64같아 문자열을 https://dencode.com/en/ DenCode | 인코딩 & 디코딩 온라인 도구인코딩 &..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-27",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-27T12:27:41+09:00",
+  "updatedAt": "2026-01-27T12:27:41+09:00",
+  "sourceDigest": "e4bd01351629e972cb8422915764d00bb773506a725b67dc166181b6887ab065",
+  "assets": [
+    {
+      "id": "c349a7b2-e21a-5d87-8de6-e7f6922659bf",
+      "name": "tistory-62-c349a7b2-e21a-5d87-8de6-e7f6922659bf.png",
+      "type": "image/png",
+      "path": "/assets/uploads/3e0acb63-8e03-5cb0-b8fc-a3d98d598905/c349a7b2-e21a-5d87-8de6-e7f6922659bf.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "ecf97fc8-1665-5444-ae02-bb565947698f",
+      "name": "tistory-62-ecf97fc8-1665-5444-ae02-bb565947698f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/3e0acb63-8e03-5cb0-b8fc-a3d98d598905/ecf97fc8-1665-5444-ae02-bb565947698f.png",
+      "sha": "454d2e99fe2904f813759d4b15878aab1da3052f"
+    },
+    {
+      "id": "f135219d-3747-5c39-98a5-29543feb6ee1",
+      "name": "tistory-62-f135219d-3747-5c39-98a5-29543feb6ee1.png",
+      "type": "image/png",
+      "path": "/assets/uploads/3e0acb63-8e03-5cb0-b8fc-a3d98d598905/f135219d-3747-5c39-98a5-29543feb6ee1.png",
+      "sha": "f7f7764af3e65bcf18151aff7102a2f97e7808e2"
+    },
+    {
+      "id": "f9459d9b-5e2b-503f-901e-cf8b7ff42b0f",
+      "name": "tistory-62-f9459d9b-5e2b-503f-901e-cf8b7ff42b0f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/3e0acb63-8e03-5cb0-b8fc-a3d98d598905/f9459d9b-5e2b-503f-901e-cf8b7ff42b0f.png",
+      "sha": "7b5fd5b8a63c17254753e971f5f352858d087c11"
+    },
+    {
+      "id": "eb5c259b-a25c-557a-903b-37d549d899dd",
+      "name": "tistory-62-eb5c259b-a25c-557a-903b-37d549d899dd.png",
+      "type": "image/png",
+      "path": "/assets/uploads/3e0acb63-8e03-5cb0-b8fc-a3d98d598905/eb5c259b-a25c-557a-903b-37d549d899dd.png",
+      "sha": "ef597f43a0bcbe3fd2c7e4e5fe70916e82e2bb58"
+    },
+    {
+      "id": "37ffaf8f-ba24-56e0-8c0a-2782c14f5203",
+      "name": "tistory-62-37ffaf8f-ba24-56e0-8c0a-2782c14f5203.png",
+      "type": "image/png",
+      "path": "/assets/uploads/3e0acb63-8e03-5cb0-b8fc-a3d98d598905/37ffaf8f-ba24-56e0-8c0a-2782c14f5203.png",
+      "sha": "ef90f56897900552157962f4ce3285c6eb232b09"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "c349a7b2-e21a-5d87-8de6-e7f6922659bf",
+          "src": "/assets/uploads/3e0acb63-8e03-5cb0-b8fc-a3d98d598905/c349a7b2-e21a-5d87-8de6-e7f6922659bf.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -42"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 20점"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 유형 : 권한 우회"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "42번 문제를 들어가면 다운로드할 수 있는 file과 번호가 나온다. 다운로드를 누르면 다운로드가 실행된다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "ecf97fc8-1665-5444-ae02-bb565947698f",
+          "src": "/assets/uploads/3e0acb63-8e03-5cb0-b8fc-a3d98d598905/ecf97fc8-1665-5444-ae02-bb565947698f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "test.txt는 다운이 진행되지만 flag.docx는 권한 오류가 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "f135219d-3747-5c39-98a5-29543feb6ee1",
+          "src": "/assets/uploads/3e0acb63-8e03-5cb0-b8fc-a3d98d598905/f135219d-3747-5c39-98a5-29543feb6ee1.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "페이지 소스보기를 실행시 text.txt는 down을 get파라미터로 뒤에 어떤 값을 보낸다. 하지만 flag.docx는 그냥 alert만 실행한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<html>\n<head>\n<title>Challenge 42</title>\n</head>\n<body>\n<table border=1 align=center width=300>\n<tr><td width=50>no</td><td>subject</td><td>file</td></tr>\n<tr><td>2</td><td>test</td><td>test.txt [<a href=?down=dGVzdC50eHQ=>download</a>]</tr>\n<tr><td>1</td><td>read me</td><td>flag.docx [<a href=javascript:alert(\"Access%20Denied\")>download</a>]</td></tr>\n</table>\n</body>\n</html>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "test.txt에 down의 문자열이 base64같아 문자열을 "
+          },
+          {
+            "type": "text",
+            "text": "https://dencode.com/en/",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://dencode.com/en/"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "ca714301-d812-5eb9-815b-42c187739946",
+          "href": "https://dencode.com/",
+          "title": "DenCode | 인코딩 & 디코딩 온라인 도구",
+          "description": "인코딩 & 디코딩을 수행할 수 있는 사이트입니다. HTML 이스케이프 / URL 인코딩 / Base64 / MD5 / SHA-1 / CRC32 / 외, 다양한 문자열, 수치, 일시, 색상 포맷에 대응하고 있습니다.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/4b7bfca530fe19facdf5392ecf9d4610c4a5029630b707d6a928a30d2304b93e.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "넣어보니 base64인코딩 된 것을 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "f9459d9b-5e2b-503f-901e-cf8b7ff42b0f",
+          "src": "/assets/uploads/3e0acb63-8e03-5cb0-b8fc-a3d98d598905/f9459d9b-5e2b-503f-901e-cf8b7ff42b0f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그러면 이제 flag.docx를 base64로 인코딩해서 요청해보자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "인코딩 문자열은 ZmxhZy5kb2N4이고"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "eb5c259b-a25c-557a-903b-37d549d899dd",
+          "src": "/assets/uploads/3e0acb63-8e03-5cb0-b8fc-a3d98d598905/eb5c259b-a25c-557a-903b-37d549d899dd.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://webhacking.kr/challenge/web-20/?down=ZmxhZy5kb2N4",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://webhacking.kr/challenge/web-20/?down=ZmxhZy5kb2N4"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "를 요청하면 파일이 다운로드 된다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "37ffaf8f-ba24-56e0-8c0a-2782c14f5203",
+          "src": "/assets/uploads/3e0acb63-8e03-5cb0-b8fc-a3d98d598905/37ffaf8f-ba24-56e0-8c0a-2782c14f5203.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "test.txt 다운로드 링크를 분석한 결과, 파일명을 Base64로 인코딩하여 down 파라미터(GET 요청)로 서버에 전송하는 구조임을 파악했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "flag.docx는 자바스크립트로 다운로드가 차단되어 있었으나, 파일명을 Base64로 인코딩(ZmxhZy5kb2N4)하여 URL 파라미터에 직접 입력했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "조작된 URL(?down=ZmxhZy5kb2N4)로 요청을 보내 클라이언트 측의 접근 제한을 우회하고 flag.docx 파일을 성공적으로 다운로드했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/62",
+    "originalId": "62",
+    "publishedAt": "2026-01-27T12:27:41+09:00",
+    "updatedAt": "2026-01-27T12:27:41+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

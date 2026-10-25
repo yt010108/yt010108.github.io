@@ -1,0 +1,423 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "91192f19-676d-5590-a775-3ef96747dd3d",
+  "kind": "posts",
+  "title": "[SK Rookies] 데이터 수집과 저장",
+  "slug": "tistory-134",
+  "description": "오늘 배운 내용7월 28일에는 AI 데이터 처리의 첫 단계인 데이터 수집을 공부했다. 수업에서는 requests, BeautifulSoup, SQLite를 직접 사용하며 수집부터 저장까지 연결했다.AI 데이터 처리 파이프라인AI 프로젝트는 보통 데이터 수집, 저장, 전처리, 피처 엔지니어링, 모델 학습과 평가, 서빙과 배포 순서로 이어진다. 수집 단계가 부실하면 이후 단계에서 결측치와 중복, 잘못된 형식을 고치는 데 더 많은 시간이 든다. 처음부터 데이터의 목적과 형태, 갱신 주기, 저장 위치를 함께 정하는 편이 좋다.데이터는 웹 스크래핑, API, 데이터베이스 조회, 공개 데이터셋, IoT 센서 등으로 모은다. 웹 화면은 스크래핑, 구조화된 응답은 API, 저장된 데이터는 SQL로 다루는 식이다.HTT..",
+  "category": "SK Rookies / 수업 정리",
+  "date": "2026-08-12",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-08-12T09:56:52+09:00",
+  "updatedAt": "2026-08-12T10:00:24+09:00",
+  "sourceDigest": "0ab234f57725e579cf1e1d0ebda0d811a6bd75f962dc213347b3b6dbaf41b253",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[원본에서 불러올 수 없는 이미지]"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "오늘 배운 내용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "7월 28일에는 AI 데이터 처리의 첫 단계인 데이터 수집을 공부했다. 수업에서는 requests, BeautifulSoup, SQLite를 직접 사용하며 수집부터 저장까지 연결했다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "AI 데이터 처리 파이프라인"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "AI 프로젝트는 보통 데이터 수집, 저장, 전처리, 피처 엔지니어링, 모델 학습과 평가, 서빙과 배포 순서로 이어진다. 수집 단계가 부실하면 이후 단계에서 결측치와 중복, 잘못된 형식을 고치는 데 더 많은 시간이 든다. 처음부터 데이터의 목적과 형태, 갱신 주기, 저장 위치를 함께 정하는 편이 좋다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터는 웹 스크래핑, API, 데이터베이스 조회, 공개 데이터셋, IoT 센서 등으로 모은다. 웹 화면은 스크래핑, 구조화된 응답은 API, 저장된 데이터는 SQL로 다루는 식이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HTTP 요청과 requests"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "웹 브라우저와 API 클라이언트는 HTTP 요청을 보내고 서버의 응답을 받는다. GET은 조회, POST는 생성, PUT은 수정, DELETE는 삭제에 주로 쓴다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import requests\n\nurl = \"<https://jsonplaceholder.typicode.com/posts>\"\nparams = {\"userId\": 1}\n\nresponse = requests.get(url, params=params, timeout=10)\nresponse.raise_for_status()\nposts = response.json()\n\nfor post in posts[:3]:\n    print(post[\"title\"])\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "status_code는 응답 상태를 나타내며 200번대는 요청이 정상 처리됐음을 의미한다. response.text는 본문을 문자열로, response.json()은 JSON 응답을 파이썬 객체로 바꾼다. API가 객체 하나를 반환하면 딕셔너리, 여러 항목을 반환하면 딕셔너리 목록인 경우가 많다. 반복문을 쓰기 전에 type()으로 구조를 확인하면 실수가 줄어든다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실제 요청에는 제한 시간을 뜻하는 timeout을 지정하고 raise_for_status()로 오류 응답을 확인하는 습관이 필요하다. API 키와 인증 정보는 코드에 직접 적지 않고 환경 변수나 별도의 비밀 저장소로 관리한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HTML과 DOM"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "HTML은 태그와 속성으로 웹 페이지의 구조를 표현한다. id는 요소의 고유 식별자, class는 여러 요소를 묶는 이름으로 자주 쓰인다. 브라우저는 HTML을 읽어 트리 형태의 DOM을 만들며, 웹 스크래핑은 이 구조에서 필요한 노드를 찾는 작업이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "HTML 화면만 보기보다 개발자 도구에서 반복되는 태그, class, id, 링크의 href 속성을 확인해야 선택자를 안정적으로 만든다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "BeautifulSoup으로 정보 추출하기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "BeautifulSoup은 HTML이나 XML 문서를 파싱해 태그, 속성, 텍스트를 찾는 라이브러리다. find()는 첫 번째 요소, find_all()은 조건에 맞는 모든 요소를 반환한다. select()와 select_one()은 CSS 선택자를 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "from bs4 import BeautifulSoup\n\nhtml = \"\"\"\n<div class=\"library\">\n  <div class=\"book\">\n    <h3 class=\"book-title\">딥러닝 입문</h3>\n    <p class=\"book-author\">김작가</p>\n  </div>\n  <div class=\"book\">\n    <h3 class=\"book-title\">자연어 처리</h3>\n    <p class=\"book-author\">최이과</p>\n  </div>\n</div>\n\"\"\"\n\nsoup = BeautifulSoup(html, \"html.parser\")\nbooks = []\n\nfor item in soup.select(\".book\"):\n    books.append({\n        \"title\": item.select_one(\".book-title\").get_text(strip=True),\n        \"author\": item.select_one(\".book-author\").get_text(strip=True),\n    })\n\nprint(books)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실습에서는 실제 웹 페이지를 요청한 뒤 모든 <a> 태그를 찾아 링크와 제목을 출력했다. 속성이 항상 존재한다고 가정하면 오류가 날 수 있으므로 tag.get(\"href\")처럼 안전하게 조회하고, 텍스트가 비어 있는지도 확인한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import requests\nfrom bs4 import BeautifulSoup\n\nresponse = requests.get(\n    \"<https://news.ycombinator.com/>\",\n    timeout=10,\n    headers={\"User-Agent\": \"study-data-collector/1.0\"},\n)\nresponse.raise_for_status()\nsoup = BeautifulSoup(response.text, \"html.parser\")\n\nfor tag in soup.find_all(\"a\"):\n    href = tag.get(\"href\")\n    title = tag.get_text(strip=True)\n    if href and title:\n        print(title, href)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "웹 페이지의 구조가 바뀌면 선택자도 깨진다. 수집 코드에는 값이 없는 경우를 처리하고, 예상한 개수와 실제 수집 개수를 비교하는 검증 과정이 필요하다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "크롤링할 때 지켜야 할 점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "크롤링 전에 이용약관과 robots.txt를 확인한다. 요청 간격을 두고, 공식 API가 있다면 API를 우선 검토한다. User-Agent는 수집 프로그램을 식별하도록 설정한다. 개인정보와 저작권이 있는 콘텐츠의 사용 조건도 살펴야 한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "REST API와 공개 데이터"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "REST API는 URL로 자원을 나타내고 HTTP 메서드로 작업을 구분한다. /users는 사용자 목록, /users/123은 특정 사용자를 가리키는 식이다. 요청 헤더에는 인증 정보와 콘텐츠 형식이 들어가고, POST나 PUT 요청의 본문에는 주로 JSON 데이터를 담는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공개 API는 이용 신청과 인증키 발급을 마친 뒤 호출한다. 응답에서 필요한 필드만 남기고 결측치, 중복, 자료형을 정리한다. 호출 제한과 갱신 주기도 기록해 둔다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "파일 형식 선택하기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CSV는 가볍고 대부분의 분석 도구에서 읽을 수 있어 단순한 표 데이터를 주고받기 좋다. Excel은 여러 시트와 서식이 필요한 보고서에 편리하다. JSON은 중첩된 키-값 구조를 표현할 수 있어 API 응답을 저장할 때 알맞다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import pandas as pd\n\nframe = pd.DataFrame(books)\nframe.to_csv(\"books.csv\", index=False, encoding=\"utf-8-sig\")\nframe.to_excel(\"books.xlsx\", index=False)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "행과 열만 필요하면 CSV, 사람이 직접 편집한다면 Excel, 계층 구조를 유지해야 한다면 JSON이 알맞다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "SQLite로 데이터 관리하기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SQLite는 별도 서버 없이 하나의 파일로 사용하는 관계형 데이터베이스다. Python 표준 라이브러리의 sqlite3로 연결하며, 작은 프로젝트나 수집 실습에 부담이 적다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import sqlite3\n\nusers = [\n    (\"hot\", 25, \"Seoul\"),\n    (\"king\", 21, \"Suwon\"),\n    (\"son\", 30, \"London\"),\n]\n\nwith sqlite3.connect(\"first.db\") as connection:\n    cursor = connection.cursor()\n    cursor.execute(\"\"\"\n        CREATE TABLE IF NOT EXISTS user (\n            id INTEGER PRIMARY KEY AUTOINCREMENT,\n            name TEXT NOT NULL,\n            age INTEGER, city TEXT\n        )\n    \"\"\")\n    cursor.executemany(\"INSERT INTO user (name, age, city) VALUES (?, ?, ?)\", users)\n    cursor.execute(\"SELECT name, city, age FROM user WHERE age > ?\", (25,))\n    rows = cursor.fetchall()\n\nprint(rows)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "값은 SQL 문자열에 직접 붙이지 않고 ? 자리표시자로 전달한다. 이 방식은 따옴표 처리 실수를 줄이고 SQL 인젝션도 막는다. INSERT, UPDATE, DELETE처럼 데이터를 바꾸는 작업은 커밋해야 파일에 반영된다. 문제가 생겼다면 롤백으로 작업을 되돌린다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Pandas와 SQLite는 바로 연결된다. DataFrame.to_sql()은 데이터프레임을 테이블에 저장하고, pd.read_sql()은 조회 결과를 다시 데이터프레임으로 불러온다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import pandas as pd\nimport sqlite3\n\nwith sqlite3.connect(\"users.db\") as connection:\n    frame.to_sql(\"books\", connection, index=False, if_exists=\"replace\")\n    restored = pd.read_sql(\"SELECT * FROM books\", connection)\n\nprint(restored)\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "복습하면서 확인할 점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "수집 뒤에는 응답 상태와 자료형, HTML 선택자, 저장 결과를 차례로 검사한다. 요청 제한과 개인정보, 이용 조건을 지키는 일도 수집 로직의 일부다. 과정을 코드와 함께 기록해야 다음 실행에서 같은 결과를 재현한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/134",
+    "originalId": "134",
+    "publishedAt": "2026-08-12T09:56:52+09:00",
+    "updatedAt": "2026-08-12T10:00:24+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

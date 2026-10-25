@@ -1,0 +1,583 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "f4cc579e-13cc-539f-892e-99d18f1c4dc8",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-5 문제",
+  "slug": "tistory-79",
+  "description": "1. 문제 정보문제 번호 : old -5문제 점수 : 30점2. 문제 분석문제에 들어가면 join과 login이 보인다. 조인을 누르면 access denied가 뜬다. 로그인을 보자 로그인 창이 나오고 아이디 비밀번호를 마구잡이로 입력해도 안된다. https://webhacking.kr/challenge/web-05/mem/login.php에서 mem이 새로 있길래 혹시 웹서버의 Directory Listing(디렉토리 리스팅) 취약점이 있을 거 같아서 요청해보니까 index가 나왔다, join을 들어가보니 join에서 bye가 뜨고 엑세스가 거부되었다. 코드를 봐보자 l='a';ll='b';lll='c';llll='d';lllll='e';llllll='f';lllllll='g';llllllll..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-02-05",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-02-05T21:20:26+09:00",
+  "updatedAt": "2026-02-05T21:20:26+09:00",
+  "sourceDigest": "eb792515530fb23c320c87c243f3ecc46fd7094568ba454cb5fbc9af66d04581",
+  "assets": [
+    {
+      "id": "832fb86e-312d-5265-8c1a-0d7fb23f4ded",
+      "name": "tistory-79-832fb86e-312d-5265-8c1a-0d7fb23f4ded.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/832fb86e-312d-5265-8c1a-0d7fb23f4ded.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "925df438-adcd-5dd1-bdc3-34ed4f0d3d93",
+      "name": "tistory-79-925df438-adcd-5dd1-bdc3-34ed4f0d3d93.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/925df438-adcd-5dd1-bdc3-34ed4f0d3d93.png",
+      "sha": "dad2ba34e31b89fb5b64156500851ac0dd2d7879"
+    },
+    {
+      "id": "80da1b2b-41d1-566f-a412-af022a4ada71",
+      "name": "tistory-79-80da1b2b-41d1-566f-a412-af022a4ada71.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/80da1b2b-41d1-566f-a412-af022a4ada71.png",
+      "sha": "cbe64543f1672985efd3a2d4f45f69d5e1fb6bba"
+    },
+    {
+      "id": "095b8843-de96-57e6-a336-7dd13cd2e370",
+      "name": "tistory-79-095b8843-de96-57e6-a336-7dd13cd2e370.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/095b8843-de96-57e6-a336-7dd13cd2e370.png",
+      "sha": "1120e59bc57eff987dfa6e96b4de3f240c6188da"
+    },
+    {
+      "id": "35351b45-7cd6-5b09-b519-916b58f22a80",
+      "name": "tistory-79-35351b45-7cd6-5b09-b519-916b58f22a80.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/35351b45-7cd6-5b09-b519-916b58f22a80.png",
+      "sha": "345dbc57f3fbb4b6ebbd15eec269f7a1e28ac8a1"
+    },
+    {
+      "id": "404f0c04-a952-54e3-86a4-3ad136a497ff",
+      "name": "tistory-79-404f0c04-a952-54e3-86a4-3ad136a497ff.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/404f0c04-a952-54e3-86a4-3ad136a497ff.png",
+      "sha": "36f48d9ed83884738396d14d00979189b73c4af9"
+    },
+    {
+      "id": "24fc7c48-eb6e-5a3d-93c6-e7935d00e43d",
+      "name": "tistory-79-24fc7c48-eb6e-5a3d-93c6-e7935d00e43d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/24fc7c48-eb6e-5a3d-93c6-e7935d00e43d.png",
+      "sha": "b9326cc1dd305ebf1d14c3e6b2e902a05deef5c4"
+    },
+    {
+      "id": "62b98202-95e1-5b29-bd7a-c8cc2b11303f",
+      "name": "tistory-79-62b98202-95e1-5b29-bd7a-c8cc2b11303f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/62b98202-95e1-5b29-bd7a-c8cc2b11303f.png",
+      "sha": "6250fa92869f590ac14bdaa9901ddf2b4f44f889"
+    },
+    {
+      "id": "2a266ad6-f116-5afe-a7ea-a60bb6894311",
+      "name": "tistory-79-2a266ad6-f116-5afe-a7ea-a60bb6894311.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/2a266ad6-f116-5afe-a7ea-a60bb6894311.png",
+      "sha": "10a987de3b15fa5fdfe7bf5837c1cc526fbd9938"
+    },
+    {
+      "id": "508014ad-6b3c-5feb-bec7-1250f330d458",
+      "name": "tistory-79-508014ad-6b3c-5feb-bec7-1250f330d458.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/508014ad-6b3c-5feb-bec7-1250f330d458.png",
+      "sha": "f8f46f9a08b2d2b0c0836e2aa47135b983265fd0"
+    },
+    {
+      "id": "e41249c9-c545-5628-8b30-430521b0add9",
+      "name": "tistory-79-e41249c9-c545-5628-8b30-430521b0add9.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/e41249c9-c545-5628-8b30-430521b0add9.png",
+      "sha": "9e5149bd2557c415926736da18ceaa9a4aa941b6"
+    },
+    {
+      "id": "99b240dd-0620-5b16-ac9f-e00358429967",
+      "name": "tistory-79-99b240dd-0620-5b16-ac9f-e00358429967.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/99b240dd-0620-5b16-ac9f-e00358429967.png",
+      "sha": "7eda97f0677fa59a2409f0295dc1beb3da181e1d"
+    },
+    {
+      "id": "39e3f964-b5bd-5109-a1cd-c7db59355893",
+      "name": "tistory-79-39e3f964-b5bd-5109-a1cd-c7db59355893.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/39e3f964-b5bd-5109-a1cd-c7db59355893.png",
+      "sha": "ebbfd984ca23f57e692fab93ad90a9a4b4980dff"
+    },
+    {
+      "id": "66ae49ff-7e8f-5afb-847d-2e01f43d8eac",
+      "name": "tistory-79-66ae49ff-7e8f-5afb-847d-2e01f43d8eac.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/66ae49ff-7e8f-5afb-847d-2e01f43d8eac.png",
+      "sha": "d2c89c16e719b84e942b428b115a34eb5e7bfc98"
+    },
+    {
+      "id": "dbb80bbd-8c03-5c49-82d7-0bf3ac5dd681",
+      "name": "tistory-79-dbb80bbd-8c03-5c49-82d7-0bf3ac5dd681.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/dbb80bbd-8c03-5c49-82d7-0bf3ac5dd681.png",
+      "sha": "739db15cbfe27eb3e960476e1fe5f429262417b5"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "832fb86e-312d-5265-8c1a-0d7fb23f4ded",
+          "src": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/832fb86e-312d-5265-8c1a-0d7fb23f4ded.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -5"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 30점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제에 들어가면 join과 login이 보인다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "925df438-adcd-5dd1-bdc3-34ed4f0d3d93",
+          "src": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/925df438-adcd-5dd1-bdc3-34ed4f0d3d93.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "조인을 누르면 access denied가 뜬다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "80da1b2b-41d1-566f-a412-af022a4ada71",
+          "src": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/80da1b2b-41d1-566f-a412-af022a4ada71.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "]"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "로그인을 보자 로그인 창이 나오고 아이디 비밀번호를 마구잡이로 입력해도 안된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "095b8843-de96-57e6-a336-7dd13cd2e370",
+          "src": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/095b8843-de96-57e6-a336-7dd13cd2e370.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://webhacking.kr/challenge/web-05/mem/login.php",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://webhacking.kr/challenge/web-05/mem/login.php"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "에서 mem이 새로 있길래 혹시 웹서버의 Directory Listing(디렉토리 리스팅) 취약점이 있을 거 같아서 요청해보니까 index가 나왔다,"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "35351b45-7cd6-5b09-b519-916b58f22a80",
+          "src": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/35351b45-7cd6-5b09-b519-916b58f22a80.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "join을 들어가보니 join에서 bye가 뜨고 엑세스가 거부되었다. 코드를 봐보자"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "404f0c04-a952-54e3-86a4-3ad136a497ff",
+          "src": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/404f0c04-a952-54e3-86a4-3ad136a497ff.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "l='a';ll='b';lll='c';llll='d';lllll='e';llllll='f';lllllll='g';llllllll='h';lllllllll='i';llllllllll='j';lllllllllll='k';llllllllllll='l';lllllllllllll='m';llllllllllllll='n';lllllllllllllll='o';llllllllllllllll='p';lllllllllllllllll='q';llllllllllllllllll='r';lllllllllllllllllll='s';llllllllllllllllllll='t';lllllllllllllllllllll='u';llllllllllllllllllllll='v';lllllllllllllllllllllll='w';llllllllllllllllllllllll='x';lllllllllllllllllllllllll='y';llllllllllllllllllllllllll='z';I='1';II='2';III='3';IIII='4';IIIII='5';IIIIII='6';IIIIIII='7';IIIIIIII='8';IIIIIIIII='9';IIIIIIIIII='0';li='.';ii='<';iii='>';lIllIllIllIllIllIllIllIllIllIl=lllllllllllllll+llllllllllll+llll+llllllllllllllllllllllllll+lllllllllllllll+lllllllllllll+ll+lllllllll+lllll;\nlIIIIIIIIIIIIIIIIIIl=llll+lllllllllllllll+lll+lllllllllllllllllllll+lllllllllllll+lllll+llllllllllllll+llllllllllllllllllll+li+lll+lllllllllllllll+lllllllllllllll+lllllllllll+lllllllll+lllll;if(eval(lIIIIIIIIIIIIIIIIIIl).indexOf(lIllIllIllIllIllIllIllIllIllIl)==-1) {alert('bye');throw \"stop\";}if(eval(llll+lllllllllllllll+lll+lllllllllllllllllllll+lllllllllllll+lllll+llllllllllllll+llllllllllllllllllll+li+'U'+'R'+'L').indexOf(lllllllllllll+lllllllllllllll+llll+lllll+'='+I)==-1){alert('access_denied');throw \"stop\";}else{document.write('<font size=2 color=white>Join</font><p>');document.write('.<p>.<p>.<p>.<p>.<p>');document.write('<form method=post action='+llllllllll+lllllllllllllll+lllllllll+llllllllllllll+li+llllllllllllllll+llllllll+llllllllllllllll\n+'>');document.write('<table border=1><tr><td><font color=gray>id</font></td><td><input type=text name='+lllllllll+llll+' maxlength=20></td></tr>');document.write('<tr><td><font color=gray>pass</font></td><td><input type=text name='+llllllllllllllll+lllllllllllllllllllllll+'></td></tr>');document.write('<tr align=center><td colspan=2><input type=submit></td></tr></form></table>');}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "무슨 난독화를 해뒀다, 자세히 보면 if문 두개로 검증하고 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "else문을 자바스크립트 console에 입력하면 입력창이 입력창이 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "24fc7c48-eb6e-5a3d-93c6-e7935d00e43d",
+          "src": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/24fc7c48-eb6e-5a3d-93c6-e7935d00e43d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "62b98202-95e1-5b29-bd7a-c8cc2b11303f",
+          "src": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/62b98202-95e1-5b29-bd7a-c8cc2b11303f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "id: asd, pw: asd로 회원가입 요청을 보내고 로그인해봤다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "2a266ad6-f116-5afe-a7ea-a60bb6894311",
+          "src": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/2a266ad6-f116-5afe-a7ea-a60bb6894311.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "508014ad-6b3c-5feb-bec7-1250f330d458",
+          "src": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/508014ad-6b3c-5feb-bec7-1250f330d458.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "admin으로 로그인해야한다. 하지만 admin으로 아이디를 만드려면 이미 존재하는 아이디라고 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "e41249c9-c545-5628-8b30-430521b0add9",
+          "src": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/e41249c9-c545-5628-8b30-430521b0add9.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "여기서 널 바이트 주입(%00)을 사용해서 버프 스위트로 admin%00로 보내면 회원가입이 된다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "99b240dd-0620-5b16-ac9f-e00358429967",
+          "src": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/99b240dd-0620-5b16-ac9f-e00358429967.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "로그인에서 다시 버프 스위트로 %00를 포함하면"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "39e3f964-b5bd-5109-a1cd-c7db59355893",
+          "src": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/39e3f964-b5bd-5109-a1cd-c7db59355893.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "66ae49ff-7e8f-5afb-847d-2e01f43d8eac",
+          "src": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/66ae49ff-7e8f-5afb-847d-2e01f43d8eac.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "dbb80bbd-8c03-5c49-82d7-0bf3ac5dd681",
+          "src": "/assets/uploads/f4cc579e-13cc-539f-892e-99d18f1c4dc8/dbb80bbd-8c03-5c49-82d7-0bf3ac5dd681.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "풀리게 된다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "old-5 문제의 회원가입 페이지 접근 제한을 해결하기 위해 자바스크립트 난독화를 분석하고, 조건문을 우회하여 console에서 직접 가입 폼을 생성했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이미 존재하는 admin 계정과의 중복 체크를 피하기 위해, 아이디 뒤에 %00을 붙여 서버의 문자열 처리 허점을 이용한 중복 가입을 성공했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "로그인 시에도 동일하게 널 바이트를 포함한 요청을 보내, 서버가 이를 admin 계정으로 오인하게 만들어 문제를 해결했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/79",
+    "originalId": "79",
+    "publishedAt": "2026-02-05T21:20:26+09:00",
+    "updatedAt": "2026-02-05T21:20:26+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

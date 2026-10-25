@@ -1,0 +1,296 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "6aeaa9c3-9a11-53ea-9288-d935c36c623a",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-54 문제",
+  "slug": "tistory-45",
+  "description": "1. 문제 정보문제 번호 : old -54문제 점수 : 10점2. 문제 분석54번 문제에 들어가면 password is 뒤에 문자가 바뀌고 마지막에 ?로 바뀐다. function run(){ if(window.ActiveXObject){ try { return new ActiveXObject('Msxml2.XMLHTTP'); } catch (e) { try { return new ActiveXObject('Microsoft.XMLHTTP'); } catch (e) { return null; } } }else if(window.XMLHttpRequest){ return new XMLHttpRequest(); }else{ return null; ..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-21",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-21T23:43:18+09:00",
+  "updatedAt": "2026-01-22T02:23:13+09:00",
+  "sourceDigest": "face1e960c5c4a2130a737e65839b23a6eeeb2177308698545255940122bc906",
+  "assets": [
+    {
+      "id": "d9bd1568-ef38-5941-832c-8ae73d2f7d7f",
+      "name": "tistory-45-d9bd1568-ef38-5941-832c-8ae73d2f7d7f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/6aeaa9c3-9a11-53ea-9288-d935c36c623a/d9bd1568-ef38-5941-832c-8ae73d2f7d7f.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "0a965b82-08bc-53b8-882c-e803a46b7308",
+      "name": "tistory-45-0a965b82-08bc-53b8-882c-e803a46b7308.png",
+      "type": "image/png",
+      "path": "/assets/uploads/6aeaa9c3-9a11-53ea-9288-d935c36c623a/0a965b82-08bc-53b8-882c-e803a46b7308.png",
+      "sha": "5cb61024f7c98cd2496c8b2fb17f9a8b87ccd415"
+    },
+    {
+      "id": "2fb0b54a-cfc4-5fad-a29e-8f52b702698f",
+      "name": "tistory-45-2fb0b54a-cfc4-5fad-a29e-8f52b702698f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/6aeaa9c3-9a11-53ea-9288-d935c36c623a/2fb0b54a-cfc4-5fad-a29e-8f52b702698f.png",
+      "sha": "8bcd3a7ed83b5e41b00b8cce20dc334faedf8de9"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "d9bd1568-ef38-5941-832c-8ae73d2f7d7f",
+          "src": "/assets/uploads/6aeaa9c3-9a11-53ea-9288-d935c36c623a/d9bd1568-ef38-5941-832c-8ae73d2f7d7f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -54"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 10점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "0a965b82-08bc-53b8-882c-e803a46b7308",
+          "src": "/assets/uploads/6aeaa9c3-9a11-53ea-9288-d935c36c623a/0a965b82-08bc-53b8-882c-e803a46b7308.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "54번 문제에 들어가면 password is 뒤에 문자가 바뀌고 마지막에 ?로 바뀐다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "function run(){\n  if(window.ActiveXObject){\n   try {\n    return new ActiveXObject('Msxml2.XMLHTTP');\n   } catch (e) {\n    try {\n     return new ActiveXObject('Microsoft.XMLHTTP');\n    } catch (e) {\n     return null;\n    }\n   }\n  }else if(window.XMLHttpRequest){\n   return new XMLHttpRequest();\n \n  }else{\n   return null;\n  }\n }\nx=run();\nfunction answer(i){\n  x.open('GET','?m='+i,false);\n  x.send(null);\n  aview.innerHTML=x.responseText;\n  i++;\n  if(x.responseText) setTimeout(\"answer(\"+i+\")\",20);\n  if(x.responseText==\"\") aview.innerHTML=\"?\";\n}\nsetTimeout(\"answer(0)\",1000);"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "XMLHttpRequest 객체를 생성하여 변수 x에 저장하고 setTimeout(\"answer(0)\",1000);를 통해 answer를 호출한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "aview.innerHTML = x.responseText; 부분에서 등호(=)를 사용하고 있기 때문에, 이전 글자가 누적되지 않고 새로운 글자로 계속 덮어쓰기 된다. 그래서 우리 눈에는 글자가 하나씩 지나가는 것처럼 보인다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "aview.innerHTML=x.responseText; <- 이걸 +=로 바꾸고 "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " if(x.responseText==\"\") aview.innerHTML=\"?\";를 지우고 콘솔창에 입력하면 password가 나오고 auth로 입력하면 풀린다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "GET /challenge/bonus-4/ HTTP/1.1\nHost: webhacking.kr\nCookie: PHPSESSID=h5jhp4l7gatm2eda96tjphvan7; REMOTE_ADDR=112277.12.0012.12.00.12.1\nCache-Control: max-age=0\nSec-Ch-Ua: \"Not(A:Brand\";v=\"8\", \"Chromium\";v=\"144\"\nSec-Ch-Ua-Mobile: ?0\nSec-Ch-Ua-Platform: \"Windows\"\nAccept-Language: ko-KR,ko;q=0.9\nUpgrade-Insecure-Requests: 1\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7\nSec-Fetch-Site: none\nSec-Fetch-Mode: navigate\nSec-Fetch-User: ?1\nSec-Fetch-Dest: document\nAccept-Encoding: gzip, deflate, br\nPriority: u=0, i\nConnection: keep-alive\nX-Forwarded-For: 1.1.1.1"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "2fb0b54a-cfc4-5fad-a29e-8f52b702698f",
+          "src": "/assets/uploads/6aeaa9c3-9a11-53ea-9288-d935c36c623a/2fb0b54a-cfc4-5fad-a29e-8f52b702698f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "기존 자바스크립트가 innerHTML = 을 사용하여 글자를 덮어씌우는 바람에 전체 문자열을 볼 수 없었다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "브라우저 콘솔에서 연산자를 +=로 수정하여 글자가 누적되도록 함수를 재정의했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "마지막에 ?로 초기화하는 부분까지 제거하여 온전한 Password 문자열을 획득했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/45",
+    "originalId": "45",
+    "publishedAt": "2026-01-21T23:43:18+09:00",
+    "updatedAt": "2026-01-22T02:23:13+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

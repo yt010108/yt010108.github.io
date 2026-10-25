@@ -1,0 +1,834 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "f51865ee-2c76-5fbe-a80e-61e93879c934",
+  "kind": "posts",
+  "title": "[DVWA] Command Injection",
+  "slug": "tistory-12",
+  "description": "1. Command InjectionCommand Injection은 웹 애플리케이션을 통해 시스템 쉘에 임의의 명령어를 전달하여 실행시키는 취약점이다DVWA에서 command injection을 해보자2. 문제 DVWA 웹 사이트에서 ping을 대신해 주는 기능을 구현해 뒀다.Enter an IP address를 입력하면 해당 주소로 ping이 가고 결괏값을 출력해 준다. 버프 스위트로 패킷을 보면 post 요청으로 ip변수에 Enter an IP address값이 들어가는 것을 알 수 있다. low level 코드low level에 구현된 소스코드는 아래와 같으며 post요청이 들어오면 ip에 해당하는 값을 target 변수에 넣고 shell_exec()에 ping과 $target에 있는 값이 연결..",
+  "category": "Wargame / DVWA",
+  "date": "2025-12-19",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2025-12-19T18:41:25+09:00",
+  "updatedAt": "2026-01-20T13:23:33+09:00",
+  "sourceDigest": "ebf2fa20d4f005059518a11f6be594a3fc306709530f764ad95c04f53552bb4b",
+  "assets": [
+    {
+      "id": "9545326e-6fc5-523f-aa93-5127bae933ec",
+      "name": "tistory-12-9545326e-6fc5-523f-aa93-5127bae933ec.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f51865ee-2c76-5fbe-a80e-61e93879c934/9545326e-6fc5-523f-aa93-5127bae933ec.png",
+      "sha": "a9f04382883eb644f3a5b4b4baf0e7f9efa0f51a"
+    },
+    {
+      "id": "09d9866f-be9b-5fd0-b598-43e1004a2bf0",
+      "name": "tistory-12-09d9866f-be9b-5fd0-b598-43e1004a2bf0.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f51865ee-2c76-5fbe-a80e-61e93879c934/09d9866f-be9b-5fd0-b598-43e1004a2bf0.png",
+      "sha": "0f0fc0ef6fc08f0ff4dfdfc12152d8a9c3db026c"
+    },
+    {
+      "id": "23cad678-1e2e-5592-a2e1-c41f2117a00c",
+      "name": "tistory-12-23cad678-1e2e-5592-a2e1-c41f2117a00c.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f51865ee-2c76-5fbe-a80e-61e93879c934/23cad678-1e2e-5592-a2e1-c41f2117a00c.png",
+      "sha": "ae5e1265e8c56ec02ed3f6d734ffaa022aa0ca4e"
+    },
+    {
+      "id": "678595cb-9838-5c15-aefc-bda565f267c0",
+      "name": "tistory-12-678595cb-9838-5c15-aefc-bda565f267c0.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f51865ee-2c76-5fbe-a80e-61e93879c934/678595cb-9838-5c15-aefc-bda565f267c0.png",
+      "sha": "922d72d6a03ed8dece73b1fe22cff9e7a87c9197"
+    },
+    {
+      "id": "acfc05c9-1a07-5ced-a7c4-03dad0ceac12",
+      "name": "tistory-12-acfc05c9-1a07-5ced-a7c4-03dad0ceac12.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f51865ee-2c76-5fbe-a80e-61e93879c934/acfc05c9-1a07-5ced-a7c4-03dad0ceac12.png",
+      "sha": "1f512ce066ddc4a6adc80582b71da6594a346662"
+    },
+    {
+      "id": "949ef066-0d32-52a1-9c13-fbccaef062a5",
+      "name": "tistory-12-949ef066-0d32-52a1-9c13-fbccaef062a5.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f51865ee-2c76-5fbe-a80e-61e93879c934/949ef066-0d32-52a1-9c13-fbccaef062a5.png",
+      "sha": "050bdb7fa4f0da73ad6ebcb8517f05f946bfbcf9"
+    },
+    {
+      "id": "e392eb9f-091f-58c6-9f6a-38fd98532609",
+      "name": "tistory-12-e392eb9f-091f-58c6-9f6a-38fd98532609.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f51865ee-2c76-5fbe-a80e-61e93879c934/e392eb9f-091f-58c6-9f6a-38fd98532609.png",
+      "sha": "2926519938da6b992f62556e12a73a104e81c0eb"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "9545326e-6fc5-523f-aa93-5127bae933ec",
+          "src": "/assets/uploads/f51865ee-2c76-5fbe-a80e-61e93879c934/9545326e-6fc5-523f-aa93-5127bae933ec.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. Command Injection"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Command Injection은 웹 애플리케이션을 통해 시스템 쉘에 임의의 명령어를 전달하여 실행시키는 취약점이다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DVWA에서 command injection을 해보자"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "09d9866f-be9b-5fd0-b598-43e1004a2bf0",
+          "src": "/assets/uploads/f51865ee-2c76-5fbe-a80e-61e93879c934/09d9866f-be9b-5fd0-b598-43e1004a2bf0.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DVWA 웹 사이트에서 ping을 대신해 주는 기능을 구현해 뒀다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Enter an IP address를 입력하면 해당 주소로 ping이 가고 결괏값을 출력해 준다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "23cad678-1e2e-5592-a2e1-c41f2117a00c",
+          "src": "/assets/uploads/f51865ee-2c76-5fbe-a80e-61e93879c934/23cad678-1e2e-5592-a2e1-c41f2117a00c.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "678595cb-9838-5c15-aefc-bda565f267c0",
+          "src": "/assets/uploads/f51865ee-2c76-5fbe-a80e-61e93879c934/678595cb-9838-5c15-aefc-bda565f267c0.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "burp suite결과"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "버프 스위트로 패킷을 보면 post 요청으로 ip변수에 Enter an IP address값이 들어가는 것을 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " low level 코드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "low level에 구현된 소스코드는 아래와 같으며 post요청이 들어오면 ip에 해당하는 값을 target 변수에 넣고 shell_exec()에 ping과 $target에 있는 값이 연결되어 shell에 들어가고 그 결괏값을 반환한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\nif( isset( $_POST[ 'Submit' ]  ) ) {\n    // Get input\n    $target = $_REQUEST[ 'ip' ];\n\n    // Determine OS and execute the ping command.\n    if( stristr( php_uname( 's' ), 'Windows NT' ) ) {\n        // Windows\n        $cmd = shell_exec( 'ping  ' . $target );\n    }\n    else {\n        // *nix\n        $cmd = shell_exec( 'ping  -c 4 ' . $target );\n    }\n\n    // Feedback for the end user\n    echo \"<pre>{$cmd}</pre>\";\n}\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "리눅스에 메타캐릭터(meta character)들을 사용해서 여러 명령을 하나의 줄에서 실행할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "메타 캐릭터는 shell이 특별한 의미로 해석하는 기호나 문자들이며 작은따옴표('), 큰따옴표(\"), 역따옴표(`), $, |, ;, & 등이 있으며, 이를 활용하면 한 줄에 여러 명령을 실행하거나 명령어의 입출력을 제어할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "다중 명령어 실행 "
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "; (세미콜론)",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "hardBreak"
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "앞 명령어의 성공/실패 여부와 무관하게 뒤의 명령어를 무조건 이어서 실행한다."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "&& (AND 연산자)",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "앞의 명령어가 성공했을 때만 뒤의 명령어를 실행한다."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "|| (OR 연산자)",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "앞의 명령어가 실패했을 때만 뒤의 명령어를 실행한다."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "& (백그라운드)",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "명령어 뒤에 붙이면 해당 명령을 백그라운드(Background) 프로세스로 실행한다."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "| (파이프)",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "앞 명령어의 출력 결과를 뒤 명령어의 입력 값으로 전달한다."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "명령어 치환 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "명령어의 실행 결과를 문자열로 바꾸어 다른 명령어의 인자로 사용합니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "$( ) 또는 ` ` (역따옴표/Backtick)"
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "괄호나 역따옴표 사이의 명령어를 먼저 실행하고, 그 출력 결과를 해당 위치에 대입한다."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "low level에서는 사용자가 Enter an IP address 값을 검증하지 않으므로 ;를 사용해 8.8.8.8;ls를 사용하면 ping 8.8.8.8의 값과 ls 값이 같이 출력되는 것을 볼 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "acfc05c9-1a07-5ced-a7c4-03dad0ceac12",
+          "src": "/assets/uploads/f51865ee-2c76-5fbe-a80e-61e93879c934/acfc05c9-1a07-5ced-a7c4-03dad0ceac12.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " medium level 코드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "medium level 코드는 black list를 사용해서 ip에 &&와 ;를 검증하고 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " <?php\nif( isset( $_POST[ 'Submit' ]  ) ) {\n    // Get input\n    $target = $_REQUEST[ 'ip' ];\n    // Set blacklist\n    $substitutions = array(\n        '&&' => '',\n        ';'  => '',\n    );\n    // Remove any of the charactars in the array (blacklist).\n    $target = str_replace( array_keys( $substitutions ), $substitutions, $target );\n    // Determine OS and execute the ping command.\n    if( stristr( php_uname( 's' ), 'Windows NT' ) ) {\n        // Windows\n        $cmd = shell_exec( 'ping  ' . $target );\n    }\n    else {\n        // *nix\n        $cmd = shell_exec( 'ping  -c 4 ' . $target );\n    }\n    // Feedback for the end user\n    echo \"<pre>{$cmd}</pre>\";\n}\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "black list에 없으면서 사용 가능한 메타 캐릭터 중 &를 사용하면 결괏값을 볼 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "8.8.8.8&ls"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "949ef066-0d32-52a1-9c13-fbccaef062a5",
+          "src": "/assets/uploads/f51865ee-2c76-5fbe-a80e-61e93879c934/949ef066-0d32-52a1-9c13-fbccaef062a5.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "High level 코드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "High level 코드도 블랙리스트를 사용해서 메타 캐릭터를 검증하고 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\nif( isset( $_POST[ 'Submit' ]  ) ) {\n    // Get input\n    $target = trim($_REQUEST[ 'ip' ]);\n    // Set blacklist\n    $substitutions = array(\n        '&'  => '',\n        ';'  => '',\n        '| ' => '',\n        '-'  => '',\n        '$'  => '',\n        '('  => '',\n        ')'  => '',\n        '`'  => '',\n        '||' => '',\n    );\n    // Remove any of the charactars in the array (blacklist).\n    $target = str_replace( array_keys( $substitutions ), $substitutions, $target );\n    // Determine OS and execute the ping command.\n    if( stristr( php_uname( 's' ), 'Windows NT' ) ) {\n        // Windows\n        $cmd = shell_exec( 'ping  ' . $target );\n    }\n    else {\n        // *nix\n        $cmd = shell_exec( 'ping  -c 4 ' . $target );\n    }\n    // Feedback for the end user\n    echo \"<pre>{$cmd}</pre>\";\n}\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자세히 보면 '| '로 되어 있는데 '|'보다 공백이 하나 더 들어가 있어 |를 검증하지 못한다. 따라서 8.8.8.8 |ls를 사용하면 high도 커맨드 인젝션이 가능하다. 이는 개발자의 코딩 실수로 보이며, 블랙리스트 방식이 예측하지 못한 문자열 조합이나 오타로 인해 얼마나 쉽게 우회될 수 있는지를 보여주는 좋은 사례다"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "e392eb9f-091f-58c6-9f6a-38fd98532609",
+          "src": "/assets/uploads/f51865ee-2c76-5fbe-a80e-61e93879c934/e392eb9f-091f-58c6-9f6a-38fd98532609.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Impossible level 코드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Impossible leve코드는 explode로. 을 기반으로 ip를 나눈 후 각각 숫자인지 판별한다. 그리고 target변수로 합쳐서 ping의 인자로 들어간다. 이 코드는 유저가 숫자와. 이 아닌 다른 코드르 넣으면 필터링하므로 커맨드 인젝션이 불가능하다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\nif( isset( $_POST[ 'Submit' ]  ) ) {\n    // Check Anti-CSRF token\n    checkToken( $_REQUEST[ 'user_token' ], $_SESSION[ 'session_token' ], 'index.php' );\n    // Get input\n    $target = $_REQUEST[ 'ip' ];\n    $target = stripslashes( $target );\n    // Split the IP into 4 octects\n    $octet = explode( \".\", $target );\n    // Check IF each octet is an integer\n    if( ( is_numeric( $octet[0] ) ) && ( is_numeric( $octet[1] ) ) && ( is_numeric( $octet[2] ) ) && ( is_numeric( $octet[3] ) ) && ( sizeof( $octet ) == 4 ) ) {\n        // If all 4 octets are int's put the IP back together.\n        $target = $octet[0] . '.' . $octet[1] . '.' . $octet[2] . '.' . $octet[3];\n        // Determine OS and execute the ping command.\n        if( stristr( php_uname( 's' ), 'Windows NT' ) ) {\n            // Windows\n            $cmd = shell_exec( 'ping  ' . $target );\n        }\n        else {\n            // *nix\n            $cmd = shell_exec( 'ping  -c 4 ' . $target );\n        }\n        // Feedback for the end user\n        echo \"<pre>{$cmd}</pre>\";\n    }\n    else {\n        // Ops. Let the user name theres a mistake\n        echo '<pre>ERROR: You have entered an invalid IP.</pre>';\n    }\n}\n// Generate Anti-CSRF token\ngenerateSessionToken();\n?>"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "사용자 입력값을 검증 없이 시스템 함수(shell_exec 등)에 전달하면 Command Injection 취약점이 발생한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "블랙리스트 방식(특정 문자 차단)은 우회 가능성이 높고 개발자의 실수가 발생하기 쉽다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "입력값의 타입과 형식을 엄격히 제한하는 화이트리스트 방식 검증이 가장 안전하다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " "
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "참고 자료:"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://net123.tistory.com/138",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://net123.tistory.com/138"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "126a2e7d-edee-5712-b0ce-928ec98a1c59",
+          "href": "https://net123.tistory.com/138",
+          "title": "Linux I - 07. 리눅스 기본 명령어 (메타 케릭터/리다이렉션/파이프)",
+          "description": "Linux I - 07. 리눅스 기본 명령어 (메타 케릭터/리다이렉션/파이프) [root@CentOS ~]# echo $PS1 [\\u@\\h \\W]\\$ [root@CentOS ~]# PS1=\"[\\u@\\h \\$PWD]# \" [root@CentOS /root]# cd .. [root@CentOS /]# mkdir test [root@CentOS /]# cd test [root@CentO",
+          "image": "https://yt010108.github.io/assets/imported/tistory/5e9f1dad16da5d90b28ea889e4c35e82b7203e670ced9d69c3c0304176d10d4a.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/12",
+    "originalId": "12",
+    "publishedAt": "2025-12-19T18:41:25+09:00",
+    "updatedAt": "2026-01-20T13:23:33+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

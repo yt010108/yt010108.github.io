@@ -1,0 +1,276 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "07ac5847-b7ab-5452-bdf7-b5cbaf2e6d65",
+  "kind": "posts",
+  "title": "PI Harness 프로젝트들",
+  "slug": "tistory-162",
+  "description": "Reverserhttps://github.com/yt010108/Reverser AI 리버싱 문제 풀이 하네스 1편https://yt5246.tistory.com/142 [Project] Reverser 제작(PI Reversing Harness)-1AI가 발전하면서 CTF처럼 시간이 제한되어 있는 문제 풀이에서는 AI 사용이 필수적이다. 또한 AI가 발전하면서 Agent를 통한 문제 풀이가 일반적이다.codex를 사용한 문제 풀이를 진행하다 보면 쉬운yt5246.tistory.com 2편https://yt5246.tistory.com/143 [Project] Reverser 제작(PI Reversing Harness)-21편에서는 Pi, Python Harness, Docker Worker를 연결해 리..",
+  "category": "AI",
+  "date": "2026-09-28",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-09-28T02:03:46+09:00",
+  "updatedAt": "2026-09-28T02:03:46+09:00",
+  "sourceDigest": "bc9f27b55700d6220e050482a1e356333b9adad209048d70887ed7002546d796",
+  "assets": [
+    {
+      "id": "4a52158c-1920-5576-841e-0575fd193518",
+      "name": "tistory-162-4a52158c-1920-5576-841e-0575fd193518.png",
+      "type": "image/png",
+      "path": "/assets/uploads/07ac5847-b7ab-5452-bdf7-b5cbaf2e6d65/4a52158c-1920-5576-841e-0575fd193518.png",
+      "sha": "475147350ed3ba2d39cbedb21d7f7daa637bc177"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "4a52158c-1920-5576-841e-0575fd193518",
+          "src": "/assets/uploads/07ac5847-b7ab-5452-bdf7-b5cbaf2e6d65/4a52158c-1920-5576-841e-0575fd193518.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Reverser"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://github.com/yt010108/Reverser",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/yt010108/Reverser"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "AI 리버싱 문제 풀이 하네스 1편"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://yt5246.tistory.com/142",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/#/post/b94d38fd-8751-5c77-ac8b-0f09e9a3cfd4"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "fda3d4a3-41b2-5bd1-a482-c1da6889e802",
+          "href": "https://yt010108.github.io/#/post/b94d38fd-8751-5c77-ac8b-0f09e9a3cfd4",
+          "title": "[Project] Reverser 제작(PI Reversing Harness)-1",
+          "description": "AI가 발전하면서 CTF처럼 시간이 제한되어 있는 문제 풀이에서는 AI 사용이 필수적이다. 또한 AI가 발전하면서 Agent를 통한 문제 풀이가 일반적이다.codex를 사용한 문제 풀이를 진행하다 보면 쉬운 ",
+          "image": "https://yt010108.github.io/assets/imported/tistory/be66173adb9edbd4c161647a42d36cf50407a53178a32fee0abe643c2490430a.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "2편"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://yt5246.tistory.com/143",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/#/post/40014620-6914-53cb-8d6d-b80276920c78"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "b0caf569-33a9-5da1-b979-df2c2b94ef73",
+          "href": "https://yt010108.github.io/#/post/40014620-6914-53cb-8d6d-b80276920c78",
+          "title": "[Project] Reverser 제작(PI Reversing Harness)-2",
+          "description": "1편에서는 Pi, Python Harness, Docker Worker를 연결해 리버싱 CTF 문제를 분석하는 Reverser의 기본 구조를 정리했다.1편: Reverser 제작: Pi 기반 리버싱 CTF Harness - 1 [Project] Reverser 제작(PI Reversing Harness)-1AI가 ",
+          "image": "https://yt010108.github.io/assets/imported/tistory/be66173adb9edbd4c161647a42d36cf50407a53178a32fee0abe643c2490430a.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "3편"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://yt5246.tistory.com/144",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/#/post/8cc6e116-a226-5a95-a874-950a9ea1129d"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "d3b4d22d-c1b4-5fec-a68e-fae99cde956a",
+          "href": "https://yt010108.github.io/#/post/8cc6e116-a226-5a95-a874-950a9ea1129d",
+          "title": "[Project] Reverser 제작(PI Reversing Harness)-3",
+          "description": "1편에서는 Reverser의 기본 구조를 만들었고 2편에서는 풀이 중 막힘을 감지하는 피드백 루프를 정리했다.1편: https://yt5246.tistory.com/142 [Project] Reverser 제작(PI Reversing Harness)-1CTF 리버싱 문제를 풀다 ",
+          "image": "https://yt010108.github.io/assets/imported/tistory/be66173adb9edbd4c161647a42d36cf50407a53178a32fee0abe643c2490430a.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Recon"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://github.com/yt010108/Recon",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/yt010108/Recon"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "AI 웹 Recon 하네스 1편"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://yt5246.tistory.com/149",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/#/post/ba4d16c1-a960-5e2e-a838-a7b025386537"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "d844d07f-28b0-5a31-9cab-2830ca687ed8",
+          "href": "https://yt010108.github.io/#/post/ba4d16c1-a960-5e2e-a838-a7b025386537",
+          "title": "[Project] Recon제작(PI Reversing Harness)-1",
+          "description": "버그 바운티나 모의해킹을 진행하면 가장 먼저 하는 작업 중 하나가 Recon이다.서브도메인을 찾고, 살아 있는 웹 서비스를 확인하고, URL과 파라미터를 수집한다. 필요하면 디렉터리 탐색과 템플",
+          "image": "https://yt010108.github.io/assets/imported/tistory/398bce78235f38e6a44c277c7a04a031d9de7bdd4b9833714919e178be44eb05.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/162",
+    "originalId": "162",
+    "publishedAt": "2026-09-28T02:03:46+09:00",
+    "updatedAt": "2026-09-28T02:03:46+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

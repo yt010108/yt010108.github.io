@@ -13,6 +13,13 @@ const hash = bytes => createHash("sha1").update("blob " + bytes.length + "\0").u
 const json = value => Buffer.from(JSON.stringify(value, null, 2) + "\n");
 const TOKEN = "github_pat_" + "testonly".repeat(5);
 const ROOT = "/repos/" + REPOSITORY;
+
+test("imported heading levels stay intact in the article and table of contents", () => {
+  const doc = { type: "doc", content: [1, 2, 3, 4, 5, 6].map(level => ({ type: "heading", attrs: { level }, content: [{ type: "text", text: "Section <" + level + ">" }] })) };
+  const { html, headings } = renderDocument(doc);
+  assert.deepEqual(headings.map(({ level, id }) => ({ level, id })), [1, 2, 3, 4, 5, 6].map(level => ({ level, id: "section-" + level })));
+  for (const level of [1, 2, 3, 4, 5, 6]) assert.ok(html.includes(`<h${level} id="section-${level}">Section &lt;${level}&gt;</h${level}>`));
+});
 function server() {
   const blobs = new Map(), trees = new Map(), commits = new Map(), requests = [];
   const addBlob = bytes => { const sha = hash(bytes); blobs.set(sha, bytes); return sha; };
@@ -245,7 +252,13 @@ test("The production content build includes published entries and excludes trash
     const script = resolve("scripts/build-content.mjs");
     const built = spawnSync(process.execPath, [script], { cwd: temp, encoding: "utf8" });
     assert.equal(built.status, 0, built.stderr);
-    const output = await readFile(resolve(temp, "published.js"), "utf8");
+    const output = await readFile(resolve(temp, "published.json"), "utf8");
+    const feed = JSON.parse(output);
+    assert.equal(feed.format, "yt010108-public-content");
+    assert.equal(feed.version, 1);
+    assert.equal(feed.posts.length, 1);
+    assert.deepEqual(feed.managedKinds.sort(), ["notes", "posts"]);
+    assert.doesNotMatch(await readFile(resolve(temp, "published.js"), "utf8"), /보안 연구 기록/);
     assert.match(output, /보안 연구 기록/); assert.doesNotMatch(output, /비공개 목록 테스트/);
     const imagePath = "assets/uploads/" + entry.id + "/" + imageId + ".png";
     assert.ok(output.includes("/" + imagePath));

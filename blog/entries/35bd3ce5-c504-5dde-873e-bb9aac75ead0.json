@@ -1,0 +1,48 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "35bd3ce5-c504-5dde-873e-bb9aac75ead0",
+  "kind": "posts",
+  "title": "국가 사이버보안 기본지침",
+  "slug": "tistory-127",
+  "description": "",
+  "category": "Security / Research",
+  "date": "2026-08-06",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-08-06T09:53:38+09:00",
+  "updatedAt": "2026-08-07T18:47:35+09:00",
+  "sourceDigest": "f4f138fb4c78e978d73a4e44300a30b88b86cc0a2097c00cd074d9c017fdd4a6",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[국가정보원] 국가 사이버보안 기본지침.pdf",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/assets/imported/tistory/2641449f2ce05d6871d733a5a4a9e210d996b9153a9466a74edc73a386502945.pdf"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/127",
+    "originalId": "127",
+    "publishedAt": "2026-08-06T09:53:38+09:00",
+    "updatedAt": "2026-08-07T18:47:35+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

@@ -1,0 +1,657 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "a01201bf-8c72-594c-a4b7-6cf2fac1d23f",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-59 문제",
+  "slug": "tistory-73",
+  "description": "1. 문제 정보문제 번호 : old -61문제 점수 : 20점 2. 문제 분석문제에 들어가면 join과 login에 맞춰 제출 버튼이 나온다. 아마도 join으로 회원가입 후 login으로 들어가는 것 같다.join에 a랑1을 입력하고 login을 해보면 이렇게 나온다 소스코드를 봐보자 소스코드를 보면 lv값이 admin이여야 solve함수가 호출된다. lv : {$result['lv']}\"; if($result['lv'] == \"admin\"){ mysqli_query($db,\"delete from chall59\"); solve(59); } echo \"view-source\"; exit(); } } if($_POST['id'] && isset($_POS..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-02-02",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-02-02T03:18:37+09:00",
+  "updatedAt": "2026-02-02T03:25:40+09:00",
+  "sourceDigest": "e44083db791b805675dd99e7d3b4c6ceba88d66a721ea5d0bc025449a3c61df4",
+  "assets": [
+    {
+      "id": "2b6f18e9-dc78-537a-b283-ab3fa2170df7",
+      "name": "tistory-73-2b6f18e9-dc78-537a-b283-ab3fa2170df7.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a01201bf-8c72-594c-a4b7-6cf2fac1d23f/2b6f18e9-dc78-537a-b283-ab3fa2170df7.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "3a495d8b-4523-5131-8d1e-40d082cb9d59",
+      "name": "tistory-73-3a495d8b-4523-5131-8d1e-40d082cb9d59.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a01201bf-8c72-594c-a4b7-6cf2fac1d23f/3a495d8b-4523-5131-8d1e-40d082cb9d59.png",
+      "sha": "d6be914478f6d72259d4653a6926f5c9ed964cde"
+    },
+    {
+      "id": "b912a0b7-4748-521a-a292-2e986ee3e14f",
+      "name": "tistory-73-b912a0b7-4748-521a-a292-2e986ee3e14f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a01201bf-8c72-594c-a4b7-6cf2fac1d23f/b912a0b7-4748-521a-a292-2e986ee3e14f.png",
+      "sha": "e22f6e4b793c1d2e661bd1012c079a026abc0822"
+    },
+    {
+      "id": "6a2d521d-be26-5d66-b463-cdbf5c26d961",
+      "name": "tistory-73-6a2d521d-be26-5d66-b463-cdbf5c26d961.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a01201bf-8c72-594c-a4b7-6cf2fac1d23f/6a2d521d-be26-5d66-b463-cdbf5c26d961.png",
+      "sha": "21925cab87723906ce7db1e44fcdef19dea7aa6b"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "2b6f18e9-dc78-537a-b283-ab3fa2170df7",
+          "src": "/assets/uploads/a01201bf-8c72-594c-a4b7-6cf2fac1d23f/2b6f18e9-dc78-537a-b283-ab3fa2170df7.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -61"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 20점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제에 들어가면 join과 login에 맞춰 제출 버튼이 나온다. 아마도 join으로 회원가입 후 login으로 들어가는 것 같다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "3a495d8b-4523-5131-8d1e-40d082cb9d59",
+          "src": "/assets/uploads/a01201bf-8c72-594c-a4b7-6cf2fac1d23f/3a495d8b-4523-5131-8d1e-40d082cb9d59.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "join에 a랑1을 입력하고 login을 해보면"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "b912a0b7-4748-521a-a292-2e986ee3e14f",
+          "src": "/assets/uploads/a01201bf-8c72-594c-a4b7-6cf2fac1d23f/b912a0b7-4748-521a-a292-2e986ee3e14f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이렇게 나온다 소스코드를 봐보자 소스코드를 보면 lv값이 admin이여야 solve함수가 호출된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n  include \"../../config.php\";\n  if($_GET['view_source']) view_source();\n  $db = dbconnect();\n  if($_POST['lid'] && isset($_POST['lphone'])){\n    $_POST['lid'] = addslashes($_POST['lid']);\n    $_POST['lphone'] = addslashes($_POST['lphone']);\n    $result = mysqli_fetch_array(mysqli_query($db,\"select id,lv from chall59 where id='{$_POST['lid']}' and phone='{$_POST['lphone']}'\"));\n    if($result['id']){\n      echo \"id : {$result['id']}<br>lv : {$result['lv']}<br><br>\";\n      if($result['lv'] == \"admin\"){\n      mysqli_query($db,\"delete from chall59\");\n      solve(59);\n    }\n    echo \"<br><a href=./?view_source=1>view-source</a>\";\n    exit();\n    }\n  }\n  if($_POST['id'] && isset($_POST['phone'])){\n    $_POST['id'] = addslashes($_POST['id']);\n    $_POST['phone'] = addslashes($_POST['phone']);\n    if(strlen($_POST['phone'])>=20) exit(\"Access Denied\");\n    if(preg_match(\"/admin/i\",$_POST['id'])) exit(\"Access Denied\");\n    if(preg_match(\"/admin|0x|#|hex|char|ascii|ord|select/i\",$_POST['phone'])) exit(\"Access Denied\");\n    mysqli_query($db,\"insert into chall59 values('{$_POST['id']}',{$_POST['phone']},'guest')\");\n  }\n?>\n<html><head><title>Challenge 59</title></head><body>\n<form method=post>\n<table border=1>\n<tr><td></td><td>ID</td><td>PHONE</td><td></td></tr>\n<tr><td>JOIN</td><td><input name=id></td><td><input name=phone></td><td><input type=submit></td></tr>\n<tr><td>LOGIN</td><td><input name=lid></td><td><input name=lphone></td><td><input type=submit></td></tr>\n</form>\n<br>\n<a href=./?view_source=1>view-source</a>\n</body></html>"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " $_POST['id'] = addslashes($_POST['id']);\n    $_POST['phone'] = addslashes($_POST['phone']);\n    if(strlen($_POST['phone'])>=20) exit(\"Access Denied\");\n    if(preg_match(\"/admin/i\",$_POST['id'])) exit(\"Access Denied\");\n    if(preg_match(\"/admin|0x|#|hex|char|ascii|ord|select/i\",$_POST['phone'])) exit(\"Access Denied\");\n    mysqli_query($db,\"insert into chall59 values('{$_POST['id']}',{$_POST['phone']},'guest')\");"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일단 join을 보면 addslashs와 preg_match로 필터링하고 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 post['phone']값을 그대로 넣으므로 인젝션에 취약하다. guest부분을 admin으로 바꿔보자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "19문자가 최대니까 하나씩 해보면"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일단 )-- 로 4글자가 들어가고 앞에 비밀번호 아무거나 1, 이 들어가면 일단 6글자가 나온다. 13글자로 admin을 우회해보자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터베이스에서 문자열을 만드는 함수들은 아래와 같다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "CONCAT(str1, str2, ...): 인자들을 연결한다. 예: CONCAT('ad', 'min') -> 'admin'"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ELT(N, str1, str2, ...): N번째 문자열을 반환한다. 예: ELT(1, 'admin', 'guest') -> 'admin'"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "MAKE_SET(bits, str1, str2): 비트 값에 따라 문자열을 조합한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "EXPORT_SET(bits, on, off, separator, number_of_bits): 비트 설정에 따라 문자열을 생성한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "REVERSE(str): 문자열을 거꾸로 뒤집는다. 예: REVERSE('nimda') -> 'admin'"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "REPLACE(str, from_str, to_str): 특정 문자를 치환한다. 예: REPLACE('abdmin', 'b', '') -> 'admin'"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "INSERT(str, pos, len, newstr): 특정 위치에 문자열을 삽입한다. 예: INSERT('guest', 1, 5, 'admin') -> 'admin'"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "SUBSTR(str, pos, len) / MID(str, pos, len): 문자열을 자른다. 예: SUBSTR('administrator', 1, 5) -> 'admin'"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "LEFT(str, len) / RIGHT(str, len): 왼쪽이나 오른쪽에서 문자를 가져온다. 예: LEFT('admin123', 5) -> 'admin'"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "LPAD(str, len, padstr) / RPAD(str, len, padstr): 특정 길이만큼 문자를 채운다. 예: LPAD('admin', 5, 'x') -> 'admin'"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "CONV(N, from_base, to_base): 진법을 변환한다. 예: CONV(17466782, 10, 36) -> 'ADMIN' (대문자 반환 주의)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "UNHEX(str): 16진수 문자열을 문자로 변환한다.(필터링)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "CHAR(N, ...): ASCII 코드를 문자로 변환한다. (필터링됨)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "FROM_BASE64(str): Base64 문자열을 디코딩한다. (MySQL 5.6 이상) 예: FROM_BASE64('YWRtaW4=') -> 'admin'"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "COMPRESS(str) / UNCOMPRESS(str): 문자열을 압축/해제한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "AES_DECRYPT(crypt_str, key_str): 암호화된 데이터를 복호화하여 문자열을 얻는다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "LOAD_FILE(file_name): 파일 내용을 문자열로 읽어온다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "UUID(): 랜덤한 UUID 문자열을 생성한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "VERSION() / USER() / DATABASE(): 시스템 정보를 문자열로 반환한다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일단 여기에서 ''가 필요한 함수를 제외하고 13글자에 최대치를 만족하기 어렵다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 문자열이 필요한데 우리는 id에서 가져올 수 있다. 그래서 1,reverse(id))-- 를 사용하면 lv가 admin인 계정을 만들 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "id를 nimda로 입력하고 1,reverse(id))-- 를 입력하면 계정이 만들어지고 nimda,1로 로그인하면문제가 풀린다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "6a2d521d-be26-5d66-b463-cdbf5c26d961",
+          "src": "/assets/uploads/a01201bf-8c72-594c-a4b7-6cf2fac1d23f/6a2d521d-be26-5d66-b463-cdbf5c26d961.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "phone 파라미터의 20자 길이 제한과 0x, char 등의 강력한 필터링으로 인해 admin 문자열을 직접 생성하는 우회 기법이 불가능함을 파악함."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "INSERT 쿼리 내에서 앞서 선언된 id 컬럼의 값을 뒤쪽 인자에서 참조할 수 있다는 SQL의 특성을 이용해 id에 'nimda'를 입력함."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "phone 파라미터에 1,reverse(id))--를 주입하여 lv 컬럼에 'nimda'가 뒤집힌 'admin'이 들어가도록 쿼리를 조작해 해결함."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/73",
+    "originalId": "73",
+    "publishedAt": "2026-02-02T03:18:37+09:00",
+    "updatedAt": "2026-02-02T03:25:40+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

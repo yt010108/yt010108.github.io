@@ -1,0 +1,333 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "549f744e-5fd2-51c2-a134-3e15886f3b9f",
+  "kind": "posts",
+  "title": "[Ghidra] 리버스 엔지니어링 기드라 실전 가이드 스터디 - 00",
+  "slug": "tistory-20",
+  "description": "1. 스터디 시작 배경리버스 엔지니어링을 처음 접한 건 4학년 1학기 소프트웨어 리버스 엔지니어링 수업이었습니다. 당시엔 어려웠지만 컴퓨터 구조를 이해하는 데 큰 도움이 되었습니다. 수업 이후 한동안 손을 놓고 있었으나, 보안 분야를 깊이 공부할수록 리버싱 역량이 필요하다는 것을 느꼈지만. 혼자서는 꾸준히 공부하기 어려울 것 같아, 계획적으로 학습하고 서로 긍정적인 자극을 주고받기 위해 리버싱 스터디에 참여하게 되었습니다. 2. 교재 선정: 리버스 엔지니어링 기드라 실전 가이드 『리버스 엔지니어링 기드라 실전 가이드』를 주 교재로 선정했습니다.업계 표준인 IDA Pro는 비용 부담이 큰 반면, NSA에서 공개한 기드라(Ghidra)는 무료이면서도 강력한 디컴파일 기능을 제공하여 접근성이 높기 때문입니다...",
+  "category": "Security / Reversing",
+  "date": "2026-01-04",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-04T17:28:09+09:00",
+  "updatedAt": "2026-01-04T22:43:03+09:00",
+  "sourceDigest": "55e232e527d118014707fea3aa06c6b4954685d4a04559ebe2644c9aa1195309",
+  "assets": [
+    {
+      "id": "72e241f3-6b70-568f-9859-c520247e9333",
+      "name": "tistory-20-72e241f3-6b70-568f-9859-c520247e9333.jpg",
+      "type": "image/jpeg",
+      "path": "/assets/uploads/549f744e-5fd2-51c2-a134-3e15886f3b9f/72e241f3-6b70-568f-9859-c520247e9333.jpg",
+      "sha": "81eecea152274b4d569428cef432689bb7b027c0"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 스터디 시작 배경",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "리버스 엔지니어링을 처음 접한 건 4학년 1학기 소프트웨어 리버스 엔지니어링 수업이었습니다. 당시엔 어려웠지만 컴퓨터 구조를 이해하는 데 큰 도움이 되었습니다. 수업 이후 한동안 손을 놓고 있었으나, 보안 분야를 깊이 공부할수록 리버싱 역량이 필요하다는 것을 느꼈지만. 혼자서는 꾸준히 공부하기 어려울 것 같아, 계획적으로 학습하고 서로 긍정적인 자극을 주고받기 위해 리버싱 스터디에 참여하게 되었습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 교재 선정: 리버스 엔지니어",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "링 기드라 실전 가이드",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "72e241f3-6b70-568f-9859-c520247e9333",
+          "src": "/assets/uploads/549f744e-5fd2-51c2-a134-3e15886f3b9f/72e241f3-6b70-568f-9859-c520247e9333.jpg",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "『리버스 엔지니어링 기드라 실전 가이드』를 주 교재로 선정했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "업계 표준인 IDA Pro는 비용 부담이 큰 반면, NSA에서 공개한 기드라(Ghidra)는 무료이면서도 강력한 디컴파일 기능을 제공하여 접근성이 높기 때문입니다. 책이 약 900페이지에 달하는 방대한 분량이지만, 기초부터 멀웨어 분석까지 상세한 설명이 담겨 있어 도전해 보기로 했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 학습 목표",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "목표:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " 기드라 사용법뿐만 아니라 리버스 엔지니어링의 핵심 원리를 깊이 있게 이해한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "기록:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " 공부한 내용을 단순히 눈으로만 보지 않고, 블로그에 정리하여 온전히 '내 것'으로 만든다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "발표와 피드백:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " 매주 스터디 발표를 준비하며 내용을 재검증하고 부족한 부분을 채워 나간다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 스터디 기간 및 계획",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "기간:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " 12월 29일 ~ 3월 (약 3개월)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "계획:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " 주 1회 이상 학습한 챕터의 핵심 내용과 실습 과정을 업로드할 예정입니다. 책 내용을 단순 요약하기보다는, 실습하며 겪은 시행착오와 문제 해결 과정 위주로 기록하겠습니다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. 마무리",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "쉽지 않은 과정이겠지만, 꾸준히 기록하며 완주해보겠습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/20",
+    "originalId": "20",
+    "publishedAt": "2026-01-04T17:28:09+09:00",
+    "updatedAt": "2026-01-04T22:43:03+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

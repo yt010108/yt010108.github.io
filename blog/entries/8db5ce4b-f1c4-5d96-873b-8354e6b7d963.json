@@ -1,0 +1,1435 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "8db5ce4b-f1c4-5d96-873b-8354e6b7d963",
+  "kind": "posts",
+  "title": "정보보안기사 취득 후기",
+  "slug": "tistory-148",
+  "description": "안녕하세요정보보안기사 시험 후기 및 취득 후기입니다. 개요정보보안기사에 도전한 이유는 정보보안기사가 정보보안 관련해서 폭넓은 이해를 할 수 있다는 점과보안 도메인 취업을 준비하면서 언젠가는 따야 하는 자격증으로 생각했습니다. 또한 리눅스마스터, 네트워크 관리사, 정보처리기사를 도전한 후에 끝판왕 느낌으로 도전한 시험입니다. 보안기사를 준비하면서 개인적으로 얻은 팁이나 생각을 공유하려고 글을 작성합니다.참고로 제 베이스는 앞에 자격증을 준비하면서 얻은 지식 그리고보안 관련 프로젝트나 학교 보안 수업 베이스를 기반으로 시작했습니다. 정보보안기사 시험정보보안기사는 KCA에서 주관하는 국가 자격시험입니다. 학과에 관계없이 4년제 대학 4학년 재학생부터 응시 가능합니다. 정보보안기사는 어려운 난이도로 유..",
+  "category": "Certificate",
+  "date": "2026-08-28",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-08-28T10:11:54+09:00",
+  "updatedAt": "2026-09-01T10:22:41+09:00",
+  "sourceDigest": "339f70f822ddc19f42b695cec97e9e518fd18bd697142220b3eb1fde918ee841",
+  "assets": [
+    {
+      "id": "1758cb14-53fc-55d7-9351-98eaf7f768cc",
+      "name": "tistory-148-1758cb14-53fc-55d7-9351-98eaf7f768cc.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8db5ce4b-f1c4-5d96-873b-8354e6b7d963/1758cb14-53fc-55d7-9351-98eaf7f768cc.png",
+      "sha": "cfb6913836720283d7631be05e0d6f771d082a19"
+    },
+    {
+      "id": "d3da20ca-84ce-52c7-a480-8c2e0bfcd91b",
+      "name": "tistory-148-d3da20ca-84ce-52c7-a480-8c2e0bfcd91b.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8db5ce4b-f1c4-5d96-873b-8354e6b7d963/d3da20ca-84ce-52c7-a480-8c2e0bfcd91b.png",
+      "sha": "4f3451c4801dfe5fd5fc6bdbb02964c615383da8"
+    },
+    {
+      "id": "3ce3d683-143d-570d-951c-c41fcfe955e6",
+      "name": "tistory-148-3ce3d683-143d-570d-951c-c41fcfe955e6.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8db5ce4b-f1c4-5d96-873b-8354e6b7d963/3ce3d683-143d-570d-951c-c41fcfe955e6.png",
+      "sha": "d21d7eed9c72be69f932aff69b9ab8d7374cbcd5"
+    },
+    {
+      "id": "e722140a-aeff-5289-890e-82ce13ea1798",
+      "name": "tistory-148-e722140a-aeff-5289-890e-82ce13ea1798.jpg",
+      "type": "image/jpeg",
+      "path": "/assets/uploads/8db5ce4b-f1c4-5d96-873b-8354e6b7d963/e722140a-aeff-5289-890e-82ce13ea1798.jpg",
+      "sha": "33e9b3128373f6a1bbf792529b8cecff3124f8fb"
+    },
+    {
+      "id": "0fef565f-3c9b-55c0-93f4-0e537fde9839",
+      "name": "tistory-148-0fef565f-3c9b-55c0-93f4-0e537fde9839.png",
+      "type": "image/png",
+      "path": "/assets/uploads/8db5ce4b-f1c4-5d96-873b-8354e6b7d963/0fef565f-3c9b-55c0-93f4-0e537fde9839.png",
+      "sha": "b96cd91468fa8610237f4ed45d4ce5600c93fdb7"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "안녕하세요"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "정보보안기사 시험 후기 및 취득 후기입니다."
+          },
+          {
+            "type": "hardBreak"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "1758cb14-53fc-55d7-9351-98eaf7f768cc",
+          "src": "/assets/uploads/8db5ce4b-f1c4-5d96-873b-8354e6b7d963/1758cb14-53fc-55d7-9351-98eaf7f768cc.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "GPT로 만든 이미지입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "개요"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정보보안기사에 도전한 이유는 정보보안기사가 정보보안 관련해서 폭넓은 이해를 할 수 있다는 점과"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "보안 도메인 취업을 준비하면서 언젠가는 따야 하는 자격증으로 생각했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "또한 리눅스마스터, 네트워크 관리사, 정보처리기사를 도전한 후에 끝판왕 느낌으로 도전한 시험입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "보안기사를 준비하면서 개인적으로 얻은 팁이나 생각을 공유하려고 글을 작성합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "참고로 제 베이스는 앞에 자격증을 준비하면서 얻은 지식 그리고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "보안 관련 프로젝트나 학교 보안 수업 베이스를 기반으로 시작했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "정보보안기사 시험"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정보보안기사는 KCA에서 주관하는 국가 자격시험입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "학과에 관계없이 4년제 대학 4학년 재학생부터 응시 가능합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정보보안기사는 어려운 난이도로 유명하고 실기 합격률이 되게 낮습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "d3da20ca-84ce-52c7-a480-8c2e0bfcd91b",
+          "src": "/assets/uploads/8db5ce4b-f1c4-5d96-873b-8354e6b7d963/d3da20ca-84ce-52c7-a480-8c2e0bfcd91b.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정보보안기사 kisa"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "3ce3d683-143d-570d-951c-c41fcfe955e6",
+          "src": "/assets/uploads/8db5ce4b-f1c4-5d96-873b-8354e6b7d963/3ce3d683-143d-570d-951c-c41fcfe955e6.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정보보안기사 kca"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정보보안기사가 쉬워졌다고 하지만 평균 15 퍼정도로 되게 낮은 걸 볼 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 합격률의 폭이 매우 큰 것을 알 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "필기 시험"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "필기는 총 5과목이며, 5과목 평균 점수 60점 이상의 점수를 받아야 합격을 할 수 있습니다. 각 과목당 20문제가 출제되는데, 40점 이하 과목이 있으면 나머지 과목이 만점이라도 과락으로 불합격입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "각 과목은 아래와 같습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "시스템 보안"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "네트워크 보안"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "애플리케이션 보안"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "정보보안 일반"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "정보보안관리 및 법규"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "필기공부"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "저는 번개장터에서 새 이기적 정보보안기사 2024 책, 2025 올인원책, 알기사 2024를"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "합격자 분이 시험 합격에서 3만 원 5천 원에 떨이하는 걸 운 좋게 받았습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "저는 필기를 아래책으로 공부했습니다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "e722140a-aeff-5289-890e-82ce13ea1798",
+          "src": "/assets/uploads/8db5ce4b-f1c4-5d96-873b-8354e6b7d963/e722140a-aeff-5289-890e-82ce13ea1798.jpg",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "한 2주 정도 개념 정리 및 회독하고 아래 cbt랑 문제집 풀었습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사실 필기는 잘 기억이 안 나네요...."
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "aa5f4f8d-5251-5ed0-b746-9823bd2b45fa",
+          "href": "https://www.comcbt.com/xe/ccw/9718307",
+          "title": "정보보안기사 필기 기출문제 및 CBT 2023년 03월 11일(21회) - 정보보안기사 필기 기출문제 전자문제",
+          "description": "위 이미지를 클릭하시면 전자문제집 CBT 서버에 접속 됩니다. (해설, 모의고사, 오답노트, 워드, 컴활, 기능사 등 상설검정 CBT 프로그램 기능 포함) 전자문제집 CBT란? 인터넷으로 문제를 풀고 자동",
+          "image": "https://yt010108.github.io/assets/imported/tistory/7382d94c0c0bf5aabe367d3c928de3a72416794cf49c6deaf8646c65dbc35d4f.jpg",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "실기 시험"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대망의 실기시험입니다. 실기시험은 대략 필기시험 통과 후 1달 정도의 시간이 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실기는 단답형 12문제 x 3점, 서술형 4문제 x 12점, 실무형 2문제 중 1문제 선택 x 16점으로 총 17문제, 100점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "총 합 60점을 받으면 합격합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "주로 출제되는 내용은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "시스템 해킹, 윈도우 및 리눅스 시스템 보안 설정"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "네트워크 해킹, 네트워크 보안, 암호학 및 기술"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "어플리케이션 보안, 웹 해킹, 아파치 웹 서버 보안 설정"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "주요정보통신기반시설 취약점 점검 및 보호대책 수립"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "침해사고 대응 및 분석(iptables, snort), 기초 악성코드 및 포렌식 분야"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "정보보호계획 수립, 위험분석"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "정보통신망법, 개인정보보호법, ISMS 인증심사 관련(이하 법, 고시, 시행령을 포함하기 때문에 범위가 매우 넓다)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "그 외 전 세계적으로 알려진 "
+                  },
+                  {
+                    "type": "text",
+                    "text": "보안 이슈",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "저는 정보보안기사 합격률이 낮은 건 제 생각에는 못 풀거나 처음 보는 문제가 있어서"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "최대 점수가 일단 12점은 틀리고 시작한다고 생각합니다. 그래서 최대한 많은 시험을 보려고 생각했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "특히 합격률이 차이가 크고 문제에 따른 운이 크다고 생각했어요"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실기 시험은 필기 합격 후 2년간의 필기 면제 기간이 주어져서 한 번에 합격하면 좋겠지만"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "여러 번 시험을 볼 각오로 시험에 임했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "실기 공부"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "저는 실기 시험은 알기사 개념책으로 공부했고 알기사 문제는 풀지 않고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래 블로그에서 기출문제를 다운로드하여서 기출문제를 바탕으로 공부했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "158509bf-3e51-5d7d-b5af-2f304d0307c7",
+          "href": "https://thodi-lab.tistory.com/250",
+          "title": "[정보보안기사 실기] 1회~28회 서술형 기출문제 PDF 정리",
+          "description": "**제 자료가 100% 정답은 아니니 참고만 해주세요 !잘못된 부분은 제보를 받아 수정하고 있으나 미처 고치지 못한 부분 은 직접 찾아서 확인해주시기 바랍니다 [정보보안기사 실기] 1회~28회 단답",
+          "image": "https://yt010108.github.io/assets/imported/tistory/3b84aea8f8836149b5af20cd6b81601f0953a30ef49222a671755da8fc977205.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자연스럽게 단답형부터 시작하고 좀 더 확실한 부분이라고 생각해"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "제1회 차 전략은 단답형 위주로 공부하고 서술형 실무형에서 2~3문제를 맞혀서 나머지 점수를 받자였습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실무형이랑 서술형은 보안 관련해서는 어느 정도 쓸 수 있을 거 같았습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "물론 기출문제에 서술형 문제는 전부 손으로 서술하는 게 중요하다고 생각해 아이패드로 써 가면서 공부했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "첫 번째 시험을 보고 생각과 너무 달랐습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일단 시험은 어려웠고 특히 단답형이 개인적으로 더 어려웠습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일단 실무형이 생각보다 할 만했고 서술형 버리는 문제 1문제, 하나까지는 맞았지만"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "단답형이 생각과 되게 달랐습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일단 결론부터 말하면 실무형은 무조건 맞추셔야 하고 서술형에 투자하시는 게 좋아 보입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://cafe.naver.com/f-e/cafes/27248370/articles/67775?boardtype=L&menuid=18&referrerAllArticles=false",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://cafe.naver.com/f-e/cafes/27248370/articles/67775?boardtype=L&menuid=18&referrerAllArticles=false"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "51fb5474-4b91-53bc-80ad-44edb17dfed8",
+          "href": "https://cafe.naver.com/algisa/67775",
+          "title": "[2026.4.11. 시행] 2026년 1회 정보보안기사 실기 가답안",
+          "description": "대한민국 모임의 시작, 네이버 카페",
+          "image": "https://yt010108.github.io/assets/imported/tistory/26964cfc395a2bb556dac2bfb2f7575ec6d4a86a6d6d77661e73498474da5aab.jpg",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1 회차 시험"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "26년 1회 차 시험 정보는 위에 카페에서 확인할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일단 자세하게는 단답형에 dns스푸핑, iptables에 icmp차단하는 문제에 명령어를 맞추는 문제에서 type에 echo-request 부분,"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "보통 위험관리 5단계로 책에 나와있지만 6단계여서 마지막 6번 항목, sendmail 기출이었지만 sendmail.cf 틀렸고 lls에서"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모듈 문제, 집적정보통신시설 사업자 이렇게 틀렸습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "반타작했네요."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "알기사에서는 문제가 책에서 어디에 나오는지 추적표를 만들어주시는데 dns스푸핑, sendmail 빼고 틀린 문제 나머지는 전부 신규"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제였습니다. 생각보다 기출이 나오긴 하지만 신규 문제는 관련 경험 같은 거 없으면 맞추기 너무 힘들어 보입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서술형은 ciso역할 3개 정도 쓰고 , xss 맞히고 tls는 아는 대로 썼습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 생체인식정보보호 6가지 원칙 문제가 나왔는데 맞히신 분을 그리고 가답안 답을 제대로 하시는 분을 못 봤네요"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 문제가 진짜 난이도 조절 문제로 보이고 참고로 개인정보위원회에 생체정보 보호 안내서에서 가져온 문제입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실무형 문제는 피들러 도구 사용한 웹 취약점 점검, csrf문제가 나왔는데 피들러는 xxs 같았지만"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "csrf문제가 쉬워 보여서 csrf문제 풀었습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "생각보다 객관식이 많이 어려웠고 법 관련 문제가 기출에 많아서 걱정했었는데 별로 안 나왔습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "제1회 차 최종 점수는 48점이었습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "객관식 16점, 서술형 실무형 32점으로 3개 정도 맞췄네요"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개인적으로 어려운 시험이기도 하고 합격률 6%라 선방했다고 생각했던 같습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2 회차 준비"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "2회 차 준비는 3주 정도 공부했던 거 같아요 일단 1회 차에서 개념은 어느 정도 했다고 생각했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "2회 차에서 가장 중심적으로 공부한 것은 1회 차에서 단답형 문제는 처음 나오는 문제면 맞추기 힘드니"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서술형+실무형에서 최대한 점수를 받자였습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "저는 기존에 위에 블로그에 적힌 자료를 가지고 공부했지만 서술형에서 어디까지 설명해야 하고 피드백을"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "어떻게 해야 하는지 참 애매했던 거 같아요 그래서 제가 찾은 방법은"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래 블로그에서 어떻게 서술형을 써야 하는지 익히고 썼던 거 같아요"
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "62a142c8-2b37-5dda-aeee-e35e37c828c3",
+          "href": "https://blog.naver.com/stereok2/224130288134",
+          "title": "28회 정보보안기사 실기시험 문제분석(모범답안, 고득점 포인트)",
+          "description": "2025년 4월 12일 시행된, 제28회 보안기사 실기 시험(25년 1회차)에 대한 문제 분석입니다. 먼저, 문제 분...",
+          "image": "https://yt010108.github.io/assets/imported/tistory/5629aa201a73e2475fb2344967aea912834026dd186fbe6966c1acb9efe9982d.jpg",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 codex를 사용해서 문제를 채점하고 부족한 점, 더 알아야 할 점 채점관이 어떻게 채점하고 어떤 부분이 키워드인지"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "생각하면서 작성하려고 노력했습니다. 그리고 오답노트를 HTML로 웹에 올려서 핸드폰으로 봤습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "물론 설명이나 codex가 가끔 그 문제 핀트를 잘못 잡는 경우가 있었지만 codex도움으로 조금 더 폭넓고 정확하게 공부할 수 있었던 거 같습니다. 채점과 피드백을 받으니까 서술하는 실력도 좋아지는 거 같았어요"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "3주 남았을 때에는 알기사 정독 한번 하고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "2주 남았을 때에는 단답형, 주관식 문제 풀이 및 피드백"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "1주일 남기고는 단답형 + 주관식 기출 돌렸습니다. + 유튜브에 강의 보면서 제가 적은 답이랑 비교했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "유튜브는 수제비나 이기적 둘 다 운동하면서 들었습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "ff106a8d-8127-547c-95dc-f64d4b82cf6e",
+          "href": "https://www.youtube.com/watch?v=6MU2gfROV-4&list=PLraQPczZnB1po9n8VcXZk-PGnosaCM7Sn",
+          "title": "정보보안기사 실기 2026년 2회(32회) 실무형, 서술형 기출문제 풀이",
+          "description": "YouTube에서 동영상 보기",
+          "image": "https://yt010108.github.io/assets/imported/tistory/2a2283f9cdae310207db83c4f1f4ed1773a837c102c00e61f8d4f5079f27ec99.jpg",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2 회차 시험"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개인적으로 2회 차 시험은 쉬웠다고 생각했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "1회 차에 느꼈던 처음 보는 문제에 대한 고민이 거의 없었던 거 같아요"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "1회 차에 합격률이 낮아서 난이도 조절을 한 느낌이었습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "resolve.conf, 모의침투, 대칭키 암호화 문제(des 썼네요), 인터넷망 차단문제"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "감사 정책 문제 이렇게 틀렸습니다. 21점이네요"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서술형은 윈도우 ftp문제점, dos, r계열 보안 설정, 메일보안 나왔는데 ftp랑 메일보안은"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아는 대로 일단 썼고 dos랑 r 계열은 맞춘 거 같아 그리고 실무형은 권한 관련 문제라"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 기출에 서술형으로 나왔던 문제라 맞췄습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서술형에서 30점 정도 얻었고 dos, r 맞히고 ftp랑 메일보안 부분 점수받은 거 같습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "최종 점수는 67점으로 합격했네요"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "0fef565f-3c9b-55c0-93f4-0e537fde9839",
+          "src": "/assets/uploads/8db5ce4b-f1c4-5d96-873b-8354e6b7d963/0fef565f-3c9b-55c0-93f4-0e537fde9839.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "후기 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "1회 차 시험 보고 시험 문제에 따라"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "합격률이 크게 차이 나니 여러 번 봐야겠다고 생각했지만"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "1회 차가 어려워서 2회 차 쉽게 내서 운 좋게 합격했네요"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "시간도 많이 쓰고 어려운 시험이라 합격해서 다행이라고 생각합니다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "조금이라도 도움이 되었으면 좋겠네요"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "읽어주셔서 감사합니다."
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/148",
+    "originalId": "148",
+    "publishedAt": "2026-08-28T10:11:54+09:00",
+    "updatedAt": "2026-09-01T10:22:41+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

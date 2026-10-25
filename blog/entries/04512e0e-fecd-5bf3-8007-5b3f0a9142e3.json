@@ -1,0 +1,433 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "04512e0e-fecd-5bf3-8007-5b3f0a9142e3",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-19 문제",
+  "slug": "tistory-67",
+  "description": "1. 문제 정보문제 번호 : old -19문제 점수 : 25점2. 문제 분석문제 19번에 들어가면 파일이 업로드하는 창이 나온다.파일을 올리면 done이 나오고 아무 일도 안 일어난다. 소스코드를 보면 ., ,/를 파일 이름에서 필터링한다../{upload}/에 파일이 올라간다. ini_set 함수는 PHP 환경 설정을 코드로 직접 제어할 수 있게 해 준다.ini_set으로 변경한 설정은 해당 스크립트(페이지)의 실행이 끝나면 없어진다.display_errors 값: 0 (끄기) 또는 1 (켜기) 설명: 스크립트 실행 중 발생한 에러를 화면에 보여줄지 결정한다. 주로 개발 중에는 1로 설정해 디버깅을 하지만, 실제 운영 중인 사이트에서는 경로 정보나 DB 구조 같은 민감한 정보가 노출될 수 있어 반드시 ..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-29",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-29T23:23:37+09:00",
+  "updatedAt": "2026-01-30T00:24:28+09:00",
+  "sourceDigest": "60a4ecef8abd7a8035510888d7d5065d94853ed7824d527a62be130f220750f7",
+  "assets": [
+    {
+      "id": "ab555f92-208c-579d-ba8a-108c6a732a67",
+      "name": "tistory-67-ab555f92-208c-579d-ba8a-108c6a732a67.png",
+      "type": "image/png",
+      "path": "/assets/uploads/04512e0e-fecd-5bf3-8007-5b3f0a9142e3/ab555f92-208c-579d-ba8a-108c6a732a67.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "a3bd224d-72a3-55fd-9c45-d625feda7738",
+      "name": "tistory-67-a3bd224d-72a3-55fd-9c45-d625feda7738.png",
+      "type": "image/png",
+      "path": "/assets/uploads/04512e0e-fecd-5bf3-8007-5b3f0a9142e3/a3bd224d-72a3-55fd-9c45-d625feda7738.png",
+      "sha": "d8615d1e9e081296bf7e6f34382a3bf620b055aa"
+    },
+    {
+      "id": "5facaf2b-1598-58d1-b56e-37a0d7742d72",
+      "name": "tistory-67-5facaf2b-1598-58d1-b56e-37a0d7742d72.png",
+      "type": "image/png",
+      "path": "/assets/uploads/04512e0e-fecd-5bf3-8007-5b3f0a9142e3/5facaf2b-1598-58d1-b56e-37a0d7742d72.png",
+      "sha": "a6f936a1d88842b296de2db90dc4602e41640041"
+    },
+    {
+      "id": "8632116f-2170-5279-bc76-a661a2e8453b",
+      "name": "tistory-67-8632116f-2170-5279-bc76-a661a2e8453b.png",
+      "type": "image/png",
+      "path": "/assets/uploads/04512e0e-fecd-5bf3-8007-5b3f0a9142e3/8632116f-2170-5279-bc76-a661a2e8453b.png",
+      "sha": "ef9d2608ebe3d8d5dab490af569fcbe97aff9069"
+    },
+    {
+      "id": "1b35c0ec-d41c-5e0b-ac27-ec3cf166692e",
+      "name": "tistory-67-1b35c0ec-d41c-5e0b-ac27-ec3cf166692e.png",
+      "type": "image/png",
+      "path": "/assets/uploads/04512e0e-fecd-5bf3-8007-5b3f0a9142e3/1b35c0ec-d41c-5e0b-ac27-ec3cf166692e.png",
+      "sha": "5abaadb176542095720e08f4001409a3cd8b638b"
+    },
+    {
+      "id": "617340e4-84c2-5106-9978-dc8df00fb486",
+      "name": "tistory-67-617340e4-84c2-5106-9978-dc8df00fb486.png",
+      "type": "image/png",
+      "path": "/assets/uploads/04512e0e-fecd-5bf3-8007-5b3f0a9142e3/617340e4-84c2-5106-9978-dc8df00fb486.png",
+      "sha": "ad84885723de9891338a5136010a6688aea8e716"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "ab555f92-208c-579d-ba8a-108c6a732a67",
+          "src": "/assets/uploads/04512e0e-fecd-5bf3-8007-5b3f0a9142e3/ab555f92-208c-579d-ba8a-108c6a732a67.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -19"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 25점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제 19번에 들어가면 파일이 업로드하는 창이 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "a3bd224d-72a3-55fd-9c45-d625feda7738",
+          "src": "/assets/uploads/04512e0e-fecd-5bf3-8007-5b3f0a9142e3/a3bd224d-72a3-55fd-9c45-d625feda7738.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파일을 올리면 done이 나오고 아무 일도 안 일어난다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "5facaf2b-1598-58d1-b56e-37a0d7742d72",
+          "src": "/assets/uploads/04512e0e-fecd-5bf3-8007-5b3f0a9142e3/5facaf2b-1598-58d1-b56e-37a0d7742d72.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "소스코드를 보면 ., <, >,/를 파일 이름에서 필터링한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "./{upload}/에 파일이 올라간다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ini_set 함수는 PHP 환경 설정을 코드로 직접 제어할 수 있게 해 준다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ini_set으로 변경한 설정은 해당 스크립트(페이지)의 실행이 끝나면 없어진다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "display_errors 값: 0 (끄기) 또는 1 (켜기) 설명: 스크립트 실행 중 발생한 에러를 화면에 보여줄지 결정한다. 주로 개발 중에는 1로 설정해 디버깅을 하지만, 실제 운영 중인 사이트에서는 경로 정보나 DB 구조 같은 민감한 정보가 노출될 수 있어 반드시 0으로 꺼두어야 한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n  include \"../../config.php\";\n  include \"./inc.php\";\n  if($_GET['view_source']) view_source();\n  error_reporting(E_ALL);\n  ini_set(\"display_errors\", 1);\n?><html>\n<head>\n<title>Challenge 41</title>\n</head>\n<body>\n<?php\n  if(isset($_FILES['up']) && $_FILES['up']){\n    $fn = $_FILES['up']['name'];\n    $fn = str_replace(\".\",\"\",$fn);\n    $fn = str_replace(\"<\",\"\",$fn);\n    $fn = str_replace(\">\",\"\",$fn);\n    $fn = str_replace(\"/\",\"\",$fn);\n\n    $cp = $_FILES['up']['tmp_name'];\n    copy($cp,\"./{$upload_dir}/{$fn}\");\n    $f = @fopen(\"./{$upload_dir}/{$fn}\",\"w\");\n    @fwrite($f,$flag);\n    @fclose($f);\n    echo(\"Done~\");\n  }\n?>\n<form method=post enctype=\"multipart/form-data\">\n<input type=file name=up><input type=submit value='upload'>\n</form>\n<a href=./?view_source=1>view-source</a>\n</body>\n</html>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 문제의 핵심은 코드가 숨기고 있는 $upload_dir 경로를 알아내는 것이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ini_set(\"display_errors\", 1); 설정이 여기서 결정적인 힌트가 된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서버가 에러를 감추지 않고 우리에게 보여주도록 설정되어 있기 때문이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "운영체제마다 파일 이름이나 전체 경로의 길이에 제한이 있다. 만약 이 제한을 넘어서는 아주 긴 이름의 파일을 업로드하려고 시도하면, PHP의 copy 함수는 파일을 복사하지 못하고 에러를 발생시킬 것이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "burp suite로 파일이름을 아주 길게 요청하면"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "8632116f-2170-5279-bc76-a661a2e8453b",
+          "src": "/assets/uploads/04512e0e-fecd-5bf3-8007-5b3f0a9142e3/8632116f-2170-5279-bc76-a661a2e8453b.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "에러 메시지가 나오고 파일 경로가 나오게 된다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "1b35c0ec-d41c-5e0b-ac27-ec3cf166692e",
+          "src": "/assets/uploads/04512e0e-fecd-5bf3-8007-5b3f0a9142e3/1b35c0ec-d41c-5e0b-ac27-ec3cf166692e.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파일이름에. 을 뺀 상태로 요청하면 Flag가 나온다"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "617340e4-84c2-5106-9978-dc8df00fb486",
+          "src": "/assets/uploads/04512e0e-fecd-5bf3-8007-5b3f0a9142e3/617340e4-84c2-5106-9978-dc8df00fb486.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ini_set 설정으로 인해 에러 메시지가 출력된다는 점을 이용해 소스코드에 은닉된 업로드 경로를 파악해야 한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "파일 이름을 시스템 허용 길이보다 길게 조작하여 전송함으로써 강제로 에러를 유발하면 경고 메시지에서 전체 경로가 노출된다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "확인된 경로를 통해 업로드한 파일에 접근하면 소스코드 로직에 의해 파일 내부에 쓰인 플래그를 획득할 수 있다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/67",
+    "originalId": "67",
+    "publishedAt": "2026-01-29T23:23:37+09:00",
+    "updatedAt": "2026-01-30T00:24:28+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

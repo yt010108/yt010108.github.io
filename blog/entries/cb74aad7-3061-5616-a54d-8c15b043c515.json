@@ -1,0 +1,2147 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "cb74aad7-3061-5616-a54d-8c15b043c515",
+  "kind": "posts",
+  "title": "Claude Opus가 발견한 암호화폐 취약점(Zcash)",
+  "slug": "tistory-107",
+  "description": "0. Zcash란?Zcash는 2016년 Electric Coin Co.에서 출시한 개인정보 보호에 초점을 맞춘 레이어 1 암호화폐입니다. 비트 코인 ​​코드베이스를 기반으로 구축되었으며, zk-SNARK 라는 핵심적인 기능을 추가했습니다 . 비트코인 ​​거래가 완전히 투명한 반면, Zcash는 사용자에게 투명한 주소(t-address) 또는 보호된 주소(z-address) 중에서 선택할 수 있도록 하여, 필요에 따라 완벽한 암호화 개인정보 보호를 유지하면서 가치를 이동할 수 있도록 합니다. 1. 핵심 요약: 무엇인가?Zcash(지캐시)의 주요 프라이버시 기능인 'Orchard' 풀에서 사실상 무한대의 ZEC를 위조할 수 있는 치명적인 취약점이 발견되었습니다. 이 취약점은 2022년 Orchard 활성..",
+  "category": "Security / Research",
+  "date": "2026-06-06",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-06-06T02:02:47+09:00",
+  "updatedAt": "2026-08-07T19:02:17+09:00",
+  "sourceDigest": "bd4e0ce5e9f1ae337a1a3ef6b5dd87184e3bd02013a8c9a50f6991e3aee067b1",
+  "assets": [
+    {
+      "id": "7c497c49-0b37-5403-8c1f-40c9efec0375",
+      "name": "tistory-107-7c497c49-0b37-5403-8c1f-40c9efec0375.png",
+      "type": "image/png",
+      "path": "/assets/uploads/cb74aad7-3061-5616-a54d-8c15b043c515/7c497c49-0b37-5403-8c1f-40c9efec0375.png",
+      "sha": "0ef1c4eec5a69c03928633953f67dac7b99e20ab"
+    },
+    {
+      "id": "0e366c08-55dd-53d4-8df9-6d0d1c400322",
+      "name": "tistory-107-0e366c08-55dd-53d4-8df9-6d0d1c400322.png",
+      "type": "image/png",
+      "path": "/assets/uploads/cb74aad7-3061-5616-a54d-8c15b043c515/0e366c08-55dd-53d4-8df9-6d0d1c400322.png",
+      "sha": "add5ed9e05334555bd9ff8f14a4b5a6437757fa6"
+    },
+    {
+      "id": "1f5d4b20-2e30-5ae2-859e-9b66c6ede4da",
+      "name": "tistory-107-1f5d4b20-2e30-5ae2-859e-9b66c6ede4da.png",
+      "type": "image/png",
+      "path": "/assets/uploads/cb74aad7-3061-5616-a54d-8c15b043c515/1f5d4b20-2e30-5ae2-859e-9b66c6ede4da.png",
+      "sha": "eb86ef5eeeaa3ab547ff61e488bf73077d7e59b4"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "7c497c49-0b37-5403-8c1f-40c9efec0375",
+          "src": "/assets/uploads/cb74aad7-3061-5616-a54d-8c15b043c515/7c497c49-0b37-5403-8c1f-40c9efec0375.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "0. Zcash란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Zcash는 2016년 Electric Coin Co.에서 출시한 개인정보 보호에 초점을 맞춘 레이어 1 암호화폐입니다. 비트 코인 ​​코드베이스를 기반으로 구축되었으며, zk-SNARK 라는 핵심적인 기능을 추가했습니다 . 비트코인 ​​거래가 완전히 투명한 반면, Zcash는 사용자에게 투명한 주소(t-address) 또는 보호된 주소(z-address) 중에서 선택할 수 있도록 하여, 필요에 따라 완벽한 암호화 개인정보 보호를 유지하면서 가치를 이동할 수 있도록 합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 핵심 요약: 무엇인가?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Zcash(지캐시)의 주요 프라이버시 기능인 'Orchard' 풀에서 "
+          },
+          {
+            "type": "text",
+            "text": "사실상 무한대의 ZEC를 위조할 수 있는 치명적인 취약점",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "이 발견되었습니다. 이 취약점은 2022년 Orchard 활성화 당시부터 존재했지만, "
+          },
+          {
+            "type": "text",
+            "text": "4년 동안 아무도 발견하지 못했고",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", 오직 최신 AI 모델(Claude Opus 4.8)과 고급 해커(Taylor Hornby)의 협업으로만 발견이 가능했습니다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 기술적 배경: Orchard?"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2.1 Zcash 프라이버시의 핵심: zk-SNARKs"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Zcash는 영지식 증명(zk-SNARKs) 기술을 사용해 거래 내역을 블록체인에 남기지 않으면서도 유효성을 검증합니다. Orchard는 Zcash의 4번째 프라이버시 프로토콜로, 이전 Sapling, Pink, Blossom에 이어 "
+          },
+          {
+            "type": "text",
+            "text": "더 강력한 보안과 효율성",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "을 목표로 2022년 5월 활성화되었습니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2.2 Orchard 회로의 구조적 문제"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Orchard의 zk-SNARK 회로는 수학적으로 복잡한 제약 시스템(constraint system)을 기반으로 합니다. 취약점의 근본 원인은 "
+          },
+          {
+            "type": "text",
+            "text": "회로 내 특정 요소가 제대로 고정되지 않아(under-constrained)",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", 공격자가 타원곡선 상에서 임의의 거짓 입력값을 삽입해도 검증기(verifier)가 이를 감지하지 못한다는 점입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉, \"돈이 없다\"는 증명(zk-SNARK)을 생성할 때, 실제로 돈이 없어도 위조된 지폐를 유통할 수 있는 구조적 결함이 있었다는 뜻입니다.",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 발견 과정: AI가 찾아낸 4년 묵은 문제"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3.1 Taylor Hornby와 AI 기반 오토디텍터"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Taylor Hornby는 Shielded Labs에서 AI 기반 보안 감사 전문가로 고용되었습니다. 그는 "
+          },
+          {
+            "type": "text",
+            "text": "2026년 5월 28일 출시된 Claude Opus 4.8",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "을 활용하여 Orchard 회로의 제약 조건을 분석했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "AI의 역할:",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Opus 4.8이 생성한 표적 프롬프트(targeted prompts)와 맞춤형 AI 해니스(harness)를 통해 회로 분석"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "인간 보안 연구자가 수작업으로 수개월 걸릴 작업을 "
+                  },
+                  {
+                    "type": "text",
+                    "text": "단 1주일 만에 분석 완료",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "취약점의 핵심: \"회로의 한 요소가 제대로 고정되지 않아 임의의 거짓 입력값이 통과\""
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3.2 검증: 실제 위조 지폐 생성"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Taylor는 로컬 regtest 환경에서 "
+          },
+          {
+            "type": "text",
+            "text": "사실상 무제한의 가짜 ZEC를 생성",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "하는 데 성공했습니다. 이는 이론적 취약점이 아니라 "
+          },
+          {
+            "type": "text",
+            "text": "실제 작동하는 Proof-of-Concept(검증)",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "입니다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 가장 큰 문제: \"악용되었는지 여부를 암호학적으로 증명할 수 없다\""
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Orchard의 프라이버시 설계가 "
+          },
+          {
+            "type": "text",
+            "text": "동시에 최대의 치명적인 약점",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "이 되었습니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Orchard는 zk-SNARKs를 사용해 거래 내역을 완전히 은닉"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "만약 공격자가 Orchard를 통해 위조 ZEC를 유통했다면, 그 거래는 "
+                  },
+                  {
+                    "type": "text",
+                    "text": "정당한 거래처럼 보임",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "프라이버시로 인해 외부에서 \"이 지폐는 위조된 것\"임을 "
+                  },
+                  {
+                    "type": "text",
+                    "text": "암호학적으로 증명하는 방법 자체가 존재하지 않음",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉, Orchard 활성화(2022년 5월) 이후 현재까지 위조 ZEC가 유통되었는지 여부를 Zcash 생태계가 확인하는 것은 불가능합니다.",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. 시장 반응: ZEC 가격 폭락 50%의 전말"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5.0 취약점 보도 이전: 왜 ZEC가 5월 초~중순에 91% 급등했는가?"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "0e366c08-55dd-53d4-8df9-6d0d1c400322",
+          "src": "/assets/uploads/cb74aad7-3061-5616-a54d-8c15b043c515/0e366c08-55dd-53d4-8df9-6d0d1c400322.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Orchard 취약점(5월 29일 발견)이 공개되기 "
+          },
+          {
+            "type": "text",
+            "text": "무려 2~3주 전",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "인 5월 초부터 ZEC는 "
+          },
+          {
+            "type": "text",
+            "text": "$351에서 $670로 ",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "최근 프라이버시 서사를 가지고 많이 오른 코인입니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5.1 ZEC 가격의 롤러코스터: 취약점 이후 48시간 동안의 충격"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "1f5d4b20-2e30-5ae2-859e-9b66c6ede4da",
+          "src": "/assets/uploads/cb74aad7-3061-5616-a54d-8c15b043c515/1f5d4b20-2e30-5ae2-859e-9b66c6ede4da.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "날짜"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "사건"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ZEC 가격"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "변동"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "5월 1일 → 21일",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "전월 상승세"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "$351 → $670",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "+91% 급등",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "11월 2025",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "사이클 고점"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "$723",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "—"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "5월 29일",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Taylor Hornby 취약점 발견"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "$545",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "—"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "6월 1일",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "긴급 소프트포크 (Orchard 비활성화)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "$544",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "—"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "6월 3일",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "NU6.2 하드포크 (Orchard 복구)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "$603",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "+11%",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "6월 4일",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "최종 고점",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "text": " ($624). "
+                      },
+                      {
+                        "type": "text",
+                        "text": "Arthur Hayes 전량 매도",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "$624",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "—"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "6월 5일",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "청산 연쇄 → 폭락",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "$309",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "-50.5%",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "6월 6일",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "시장 안정화 중 (TradingView 기준)"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "~$367",
+                        "marks": [
+                          {
+                            "type": "bold"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "—"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "핵심 사실:",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ZEC는 "
+                  },
+                  {
+                    "type": "text",
+                    "text": "48시간 만에 $624 → $309로 폭락",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " (약 "
+                  },
+                  {
+                    "type": "text",
+                    "text": "-50%",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ")"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "가장 큰 타격 요인: 취약점 자체보다 "
+                  },
+                  {
+                    "type": "text",
+                    "text": "Arthur Hayes(매스트롬 CIO)의 전량 청산",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Hayes는 \"프라이버시 서사는 '완벽함'을 요구한다\"며 ZEC 포지션 완전 정리"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "누락된 자금 없음, 실제 해킹 없음",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " — 하지만 \"악용 여부 검증 불가\"가 신뢰 붕괴 초래"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5.2 왜 이토록 폭락했는가?"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "불확실성의 무게:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " \"위조 ZEC가 이미 유통되었을 수 있다\"는 가능성이 시장 신뢰를 근본부터 뒤흔들음"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Arthur Hayes의 청산:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " ZEC의 2위 최대 보유자(Maelstrom \"Holy Trinity\" 펀드)의 전량 매도는 "
+                  },
+                  {
+                    "type": "text",
+                    "text": "심리적 붕괴",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": "의 도화선"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "레버리지 포지션 청산 연쇄:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " 급등장(+91%)에서 진입한 레버리지 포지션들이 강제 청산되며 폭락 가속화"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "거래량 급증:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " 폭락일 거래량이 30일 평균보다 "
+                  },
+                  {
+                    "type": "text",
+                    "text": "68% 급증",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " — 강제 청산 확인됨"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5.3 현재 상황 (6월 6일 기준)"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ZEC는 "
+                  },
+                  {
+                    "type": "text",
+                    "text": "$300-367 구간에서 안정화",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " 시도 중"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "$300",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": "은 심리적 지지선 + 200일 이동평균(~$311)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "$260",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": "은 전 랠리 이전 기반 / 주요 거래량 노드"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "$540-560",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": "은 복귀 시 첫 주요 저항선"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "전체 시장 backdrop도 나쁨:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " BTC $61,823 (-2.93%), ETH $1,650 (-7.04%), SOL $65 (-6.41%) — crypto 전체의 가장 나쁜 주 중 하나"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6. 시사점: AI 보안 시대의 도래"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6.1 AI 기반 오토디텍터의 현실화"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Taylor Hornby의 발견은 "
+          },
+          {
+            "type": "text",
+            "text": "AI가 인간의 보안 연구 한계를 넘어서고 있음",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "을 보여줍니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "인간 보안 연구자",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ": 수개월~수년간 분석해야 하는 복잡한 회로"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "AI(Opus 4.8 + 커스텀 해니스)",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ": 수일 만에 취약점 발견 → "
+                  },
+                  {
+                    "type": "text",
+                    "text": "30~60배 효율성 향상",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "AI를 통한 보안과 AI를 통한 공격이 훨신 더 정교하고 사람이 기존에 못 찾은 취약점을 AI로 발견할 수 있고 크게 가격에 영향을 준 사건이다. 이를 통해 클로드 같은 AI를 어떻게 사용하냐에 따라서 그냥 일상 에이전트가 될 수 있고 해킹 도구가 될 수 있다. "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "AI를 잘 사용하고 어떻게 활용해야할 지 공격자 입장과 방어자 입장에서 생각해 보는 것이 중요할 거 같다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "8. 결론: 재앙이 될 뻔한 위기가 보여준 3가지 교훈"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 사건은 Zcash 생태계에게 "
+          },
+          {
+            "type": "text",
+            "text": "재앙이 될 뻔했던 위기",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "이자 "
+          },
+          {
+            "type": "text",
+            "text": "동시에 AI 보안의 가능성을 보여준 전환점",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "이었습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "교훈 1: AI 보안 연구의 혁명적 잠재력",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Claude Opus 4.8 기반 AI가 4년간 인간 전문가가 발견하지 못한 치명적 취약점 발견"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "보안 감사의 패러다임 전환: 인간 + AI 협업이 새로운 표준"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "교훈 2: 프라이버시의 역설 — 완벽함의 무게",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "\"프라이버시 서사는 '완벽함'을 요구한다\" — Arthur Hayes"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "\"이 지폐가 위조된 것인지 암호학적으로 증명할 수 없다\" — 가장 큰 신뢰 타격 요인"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "\"프라이버시 프로젝트는 완벽해야 한다\"는 시장의 무조건적 기대는 동시에 최대의 약점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "교훈 3: 시장의 과잉 반응 vs 합리적 판단",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ZEC는 -50% 폭락했으나, "
+                  },
+                  {
+                    "type": "text",
+                    "text": "실제 자금 유실 없음, 실제 해킹 없음",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "-500% 상승에서 -50%는 여전히 "
+                  },
+                  {
+                    "type": "text",
+                    "text": "+350% 이상의 수익",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " (2025년 8월 저가 $35 기준)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "장기는 여전히 긍정적: SEC 조사 종결, 멀티코인 자본 공개, 프라이버시 수요 증가"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "조사 출처",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ": @zooko (Zooko Wilcox, Jason McGee, Taylor Hornby) X 포스트 | Shielded Labs 공시 | BitMEX Blog | CoinDesk | CoinRank | TradingView | 2026년 6월 4일~6일 기준"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "주요 참조",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ": Zcash Orchard 취약점 공시, NU6.2 하드포크 공시, Arthur Hayes 청산 관련 보도"
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/107",
+    "originalId": "107",
+    "publishedAt": "2026-06-06T02:02:47+09:00",
+    "updatedAt": "2026-08-07T19:02:17+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

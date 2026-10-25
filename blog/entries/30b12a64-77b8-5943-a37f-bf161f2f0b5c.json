@@ -1,0 +1,1592 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "30b12a64-77b8-5943-a37f-bf161f2f0b5c",
+  "kind": "posts",
+  "title": "[WebGoat] (A2) Cryptographic Failures",
+  "slug": "tistory-29",
+  "description": "Cryptographic Failures이란? WebGoat의 (A2) Cryptographic Failures(암호화 실패)는 OWASP Top 10 2021의 두 번째 항목으로, 민감한 데이터(비밀번호, 신용카드 정보, 개인 식별 정보 등)를 보호하기 위한 암호화 메커니즘이 없거나 잘못 구현되었을 때 발생하는 취약점이다. Goals이 강의에서는 웹 애플리케이션에서 일반적으로 사용되는 다양한 암호화 기술 유형에 대해 설명합니다. EncodingHasingEncryptionSingingKeystoresSecurity defaultsEncoding(Base64)인코딩은 엄밀히 말하면 암호화는 아니지만, 암호화 기능과 관련된 다양한 표준에서 많이 사용됩니다. 특히 Base64 인코딩이 그렇습니다.Base64..",
+  "category": "Wargame / WebGoat",
+  "date": "2026-01-19",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-19T20:45:31+09:00",
+  "updatedAt": "2026-01-20T16:01:25+09:00",
+  "sourceDigest": "86381cfd6953d73b687a54459e637952db840be6a9d72c376b147f8796eb3b5d",
+  "assets": [
+    {
+      "id": "9032d2b7-11e5-522b-9ece-f2130f0fa831",
+      "name": "tistory-29-9032d2b7-11e5-522b-9ece-f2130f0fa831.png",
+      "type": "image/png",
+      "path": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/9032d2b7-11e5-522b-9ece-f2130f0fa831.png",
+      "sha": "ac97b0e691257672450f413e52ca649d130fc7ce"
+    },
+    {
+      "id": "c23d94f1-4281-5cea-becf-95343e2598e9",
+      "name": "tistory-29-c23d94f1-4281-5cea-becf-95343e2598e9.png",
+      "type": "image/png",
+      "path": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/c23d94f1-4281-5cea-becf-95343e2598e9.png",
+      "sha": "17ff429e066b5dd60a00099ec96ac5b762ebb8c0"
+    },
+    {
+      "id": "3074c83d-1616-5d07-b6dc-732ced97ea06",
+      "name": "tistory-29-3074c83d-1616-5d07-b6dc-732ced97ea06.png",
+      "type": "image/png",
+      "path": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/3074c83d-1616-5d07-b6dc-732ced97ea06.png",
+      "sha": "e02f120831c8e0e843ec29dace2a901b441ab882"
+    },
+    {
+      "id": "de6156d0-5d3e-513a-9695-181b2b6222a2",
+      "name": "tistory-29-de6156d0-5d3e-513a-9695-181b2b6222a2.png",
+      "type": "image/png",
+      "path": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/de6156d0-5d3e-513a-9695-181b2b6222a2.png",
+      "sha": "82915346af90aceeecb382607a2aaa7baed1d956"
+    },
+    {
+      "id": "42c26159-1551-5fe9-a649-8de84686ddfc",
+      "name": "tistory-29-42c26159-1551-5fe9-a649-8de84686ddfc.png",
+      "type": "image/png",
+      "path": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/42c26159-1551-5fe9-a649-8de84686ddfc.png",
+      "sha": "3418c7655a5bafc110ffbffe97d5fd84b10770b5"
+    },
+    {
+      "id": "06e8aadf-a048-5c11-89f5-da7cc72fa8f2",
+      "name": "tistory-29-06e8aadf-a048-5c11-89f5-da7cc72fa8f2.png",
+      "type": "image/png",
+      "path": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/06e8aadf-a048-5c11-89f5-da7cc72fa8f2.png",
+      "sha": "f844f21883d2fc0293e8d80558c88c021b23c555"
+    },
+    {
+      "id": "5ced4fcd-71a1-5c02-8880-adf56b068f9d",
+      "name": "tistory-29-5ced4fcd-71a1-5c02-8880-adf56b068f9d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/5ced4fcd-71a1-5c02-8880-adf56b068f9d.png",
+      "sha": "5771441bd635637a648104e1706503c7a8818b1a"
+    },
+    {
+      "id": "3a64c182-556f-5c09-bbe7-76e2785900f8",
+      "name": "tistory-29-3a64c182-556f-5c09-bbe7-76e2785900f8.png",
+      "type": "image/png",
+      "path": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/3a64c182-556f-5c09-bbe7-76e2785900f8.png",
+      "sha": "570bb03e91d353e32329bc55dc5fca5b703ac389"
+    },
+    {
+      "id": "63c08c13-1adb-59fd-8d97-7a691728ed2d",
+      "name": "tistory-29-63c08c13-1adb-59fd-8d97-7a691728ed2d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/63c08c13-1adb-59fd-8d97-7a691728ed2d.png",
+      "sha": "87f77e56122cf921deb336b544a77a4c7a3436af"
+    },
+    {
+      "id": "b9d54e9f-23ae-5273-a303-0dfa8b0493c7",
+      "name": "tistory-29-b9d54e9f-23ae-5273-a303-0dfa8b0493c7.png",
+      "type": "image/png",
+      "path": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/b9d54e9f-23ae-5273-a303-0dfa8b0493c7.png",
+      "sha": "b2614e27fa30ed93d08187e4be0ff7598d04700c"
+    },
+    {
+      "id": "f4d3e413-920f-582c-b3f6-23aa49ab5f6d",
+      "name": "tistory-29-f4d3e413-920f-582c-b3f6-23aa49ab5f6d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/f4d3e413-920f-582c-b3f6-23aa49ab5f6d.png",
+      "sha": "ff764748f8eccd9d14b568e22e320e9d7e1523b3"
+    },
+    {
+      "id": "e306a0a1-59ce-5e6c-8a3b-21cd2cd50c99",
+      "name": "tistory-29-e306a0a1-59ce-5e6c-8a3b-21cd2cd50c99.png",
+      "type": "image/png",
+      "path": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/e306a0a1-59ce-5e6c-8a3b-21cd2cd50c99.png",
+      "sha": "976a47c94e7483f51d25678f9d916eb76af01c48"
+    },
+    {
+      "id": "f8c37c23-66a4-5ae2-8b97-ccae2e297124",
+      "name": "tistory-29-f8c37c23-66a4-5ae2-8b97-ccae2e297124.png",
+      "type": "image/png",
+      "path": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/f8c37c23-66a4-5ae2-8b97-ccae2e297124.png",
+      "sha": "a40d50bfbdfe164007f74b7913abd6e7a70baf4c"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "9032d2b7-11e5-522b-9ece-f2130f0fa831",
+          "src": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/9032d2b7-11e5-522b-9ece-f2130f0fa831.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Cryptographic Failures이란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "WebGoat의 (A2) Cryptographic Failures(암호화 실패)는 OWASP Top 10 2021의 두 번째 항목으로, 민감한 데이터(비밀번호, 신용카드 정보, 개인 식별 정보 등)를 보호하기 위한 암호화 메커니즘이 없거나 잘못 구현되었을 때 발생하는 취약점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Goals"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 강의에서는 웹 애플리케이션에서 일반적으로 사용되는 다양한 암호화 기술 유형에 대해 설명합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Encoding"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Hasing"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Encryption"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Singing"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Keystores"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Security defaults"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Encoding(Base64)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "인코딩은 엄밀히 말하면 암호화는 아니지만, 암호화 기능과 관련된 다양한 표준에서 많이 사용됩니다. 특히 Base64 인코딩이 그렇습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Base64 인코딩은 모든 종류의 바이트를 특정 바이트 범위로 변환하는 기술입니다. 이 특정 범위는 ASCII 문자로 읽을 수 있는 바이트입니다. 따라서 비밀 키나 개인 키와 같은 바이너리 데이터를 더 쉽게 전송할 수 있습니다. 인코딩된 데이터를 출력하거나 직접 적어둘 수도 있습니다. 또한 인코딩은 되돌릴 수 있습니다. 인코딩된 버전을 가지고 있다면 원래 버전을 복원할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "위키피디아에서 더 자세한 내용을 찾아볼 수 있습니다. 기본적으로 모든 바이트를 순회하며 각 6비트 세트를 읽을 수 있는 바이트(8비트)로 변환합니다. 결과적으로 인코딩된 바이트의 크기가 약 33% 증가합니다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "안녕하세요 ==> SGVsbG8= \n0x4d 0x61 ==> TWE="
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "기본 인증"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "웹 애플리케이션에서는 기본 인증 방식이 종종 사용됩니다. 이 방식은 base64 인코딩을 사용하므로, 서버로 전송되는 사용자 이름과 비밀번호를 타인이 읽지 못하도록 전송 계층 보안(TLS, 또는 일반적으로 HTTPS라고 함)을 최소한으로 사용하는 것이 중요합니다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "$echo -n \"myuser:mypassword\" | base64\nbXl1c2VyOm15cGFzc3dvcmQ="
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "The HTTP header will look like:"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Authorization: Basic bXl1c2VyOm15cGFzc3dvcmQ="
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "문제"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "c23d94f1-4281-5cea-becf-95343e2598e9",
+          "src": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/c23d94f1-4281-5cea-becf-95343e2598e9.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "2번 문제"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래 사이트에서 디코드 해보면 yt1234:secret가 나온다"
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "a86329c2-7680-5e95-8f06-56f5919e742b",
+          "href": "https://dencode.com/",
+          "title": "DenCode | Encoding & Decoding Online Tools",
+          "description": "Encoding and Decoding site. e.g. HTML Escape / URL Encoding / Base64 / MD5 / SHA-1 / CRC32 / and many other String, Number, DateTime, Color, Hash formats!",
+          "image": "https://yt010108.github.io/assets/imported/tistory/4b7bfca530fe19facdf5392ecf9d4610c4a5029630b707d6a928a30d2304b93e.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Other Encoding"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "URL 인코딩"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "URL 인코딩은 폼 데이터와 요청 매개변수를 서버로 전송할 때 많이 사용됩니다. URL에는 공백이 허용되지 않으므로 공백은 %20으로 대체됩니다. 다른 문자들도 유사하게 대체됩니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HTML 인코딩"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "HTML 인코딩은 텍스트가 브라우저에 그대로 표시되도록 하며, 브라우저가 텍스트를 HTML로 해석하지 않도록 합니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "UUEncode"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이메일 첨부파일을 전송할 때 유닉스-투-유닉스 인코딩 방식이 사용되었습니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "XOR 인코딩"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "암호화는 암호를 저장할 때 초기 단계의 간단한 난독화 기법으로 사용되는 경우가 있습니다. IBM WebSphere Application Server(예: IBM WebSphere Application Server)는 구성 파일에 암호를 저장하기 위해 특정 XOR 암호화 방식을 사용합니다. IBM은 이러한 파일에 대한 접근을 보호하고 기본 XOR 암호화 방식을 사용자 지정 암호화 방식으로 대체할 것을 권장합니다. 그러나 이러한 권장 사항을 따르지 않을 경우, 기본 설정이 취약점으로 작용할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "문제"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "3074c83d-1616-5d07-b6dc-732ced97ea06",
+          "src": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/3074c83d-1616-5d07-b6dc-732ced97ea06.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://strelitzia.net/wasXORdecoder/wasXORdecoder.html",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://strelitzia.net/wasXORdecoder/wasXORdecoder.html"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "a054462e-eec2-5905-94e2-dcb14a60f105",
+          "href": "https://strelitzia.net/wasXORdecoder/wasXORdecoder.html",
+          "title": "WebSphere {xor} password decoder and encoder",
+          "description": "",
+          "image": "",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "위 사이트에서 {xor}Oz4rPj0+LDovPiwsKDAtOw==를 디코드할 수 있다.databasepassword"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Hashing"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Plain Hashing"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "해싱은 원본 데이터의 변경 여부를 감지하는 데 주로 사용되는 암호화 기법의 한 종류입니다. 원본 데이터로부터 해시값이 생성되며, 이는 되돌릴 수 없는 암호화 기술을 기반으로 합니다. 원본 데이터가 단 1바이트라도 변경되면 생성되는 해시값 또한 달라집니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "어떤 면에서는 안전한 기술처럼 보일 수 있습니다. 하지만 비밀번호에 사용할 때는 결코 좋은 해결책이 아닙니다. 문제는 비밀번호 사전을 이용해 비밀번호를 생성하고, 이러한 비밀번호들을 변형하여 온갖 종류의 비밀번호를 만들어낼 수 있다는 점입니다. 각 비밀번호마다 해시값을 계산할 수 있고, 이 모든 정보를 대규모 데이터베이스에 저장할 수 있습니다. 따라서 비밀번호일 가능성이 있는 해시값을 발견하면 데이터베이스에서 해당 해시값을 검색하여 실제 비밀번호를 알아낼 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "MD5, SHA-1과 같은 일부 해싱 알고리즘은 더 이상 사용해서는 안 됩니다. 이러한 해시 함수는 페이로드를 변경하여 동일한 해시 값을 얻는 것이 가능하기 때문입니다. 이는 상당한 컴퓨팅 성능을 요구하지만, 여전히 실행 가능한 방법입니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Salted Hashes"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "평문으로 저장된 비밀번호는 당연히 데이터베이스에 저장해서는 안 됩니다. 평문으로 저장된 해시값도 마찬가지입니다. 비밀번호 관련 정보를 안전하게 저장해야 할 때 어떤 방법을 사용해야 하는지 설명합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "문제"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "de6156d0-5d3e-513a-9695-181b2b6222a2",
+          "src": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/de6156d0-5d3e-513a-9695-181b2b6222a2.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://crackstation.net/",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://crackstation.net/"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "4f00e060-d1a7-5592-b84b-f84be63c54dd",
+          "href": "https://crackstation.net/",
+          "title": "CrackStation - Online Password Hash Cracking - MD5, SHA1, Linux, Rainbow Tables, etc.",
+          "description": "Free Password Hash Cracker Enter up to 20 non-salted hashes, one per line: Supports: LM, NTLM, md2, md4, md5, md5(md5_hex), md5-half, sha1, sha224, sha256, sha384, sha512, ripeMD160, whirlpool, MySQL 4.1+ (sha1(sha1_bin)), QubesV3.1BackupDefaults How Crack",
+          "image": "",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "위 사이트에서 해시 값 유츄가 가능하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "42c26159-1551-5fe9-a649-8de84686ddfc",
+          "src": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/42c26159-1551-5fe9-a649-8de84686ddfc.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "06e8aadf-a048-5c11-89f5-da7cc72fa8f2",
+          "src": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/06e8aadf-a048-5c11-89f5-da7cc72fa8f2.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Symmetric encryption"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대칭 암호화는 암호화와 복호화 모두에 사용되는 공유 비밀 키를 기반으로 합니다. 따라서 비밀 키를 교환하는 양측은 동일한 키를 공유합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예시 프로토콜은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "AES"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "3DES"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Asymmetric encryption"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대칭 암호화는 키 쌍으로 구성된 수학적 원리에 기반합니다. 이 두 키는 일반적으로 개인 키와 공개 키라고 불립니다. 개인 키는 철저하게 보호되어야 하며, 오직 한 사람만이 알고 있어야 합니다. 다른 모든 사람들은 공개 키를 자유롭게 사용할 수 있습니다. 개인 키로 암호화된 데이터는 공개 키를 가진 사람이라면 누구나 복호화할 수 있으며, 공개 키로 암호화된 데이터는 개인 키로만 복호화할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예시 프로토콜은 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "RSA"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "DSA"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HTTPS는 대칭 키와 비대칭 키를 모두 사용합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "브라우저를 열고 HTTPS 사이트에 접속하면 어떤 일이 발생하는지 간단히 설명드리겠습니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "브라우저가 서버에 연결하여 웹 서버 인증서를 가져옵니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "브라우저는 발급자의 인증서가 신뢰 저장소에 있는지 확인하여 해당 발급자를 신뢰하는지 여부를 판단합니다. 이 신뢰 저장소는 운영 체제 및 브라우저 업데이트를 통해 관리되며, 일부 기업 네트워크에서는 회사에서 직접 관리하기도 합니다. 브라우저는 인증서에서 공개 키를 얻습니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이제 브라우저는 대칭 키를 생성하는 데 사용할 임의의 바이트를 생성하고 이를 서버의 공개 키로 암호화합니다. 따라서 서버만 이를 해독할 수 있습니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이 과정이 끝나면 브라우저와 웹 서버는 (비대칭 키 교환 과정에서) 교환된 대칭 키를 사용하여 브라우저와 웹 서버 간에 주고받는 메시지를 암호화하고 복호화합니다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대칭 키는 대규모 데이터 세트를 처리하는 데 더 용이하고 처리 능력도 덜 요구하기 때문에 사용됩니다. 하지만 이 페이지의 내용은 암호학에 대한 기본적인 이해만을 위한 것입니다. 더 자세한 정보는 인터넷에서 찾아보시기 바랍니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Signiture"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서명은 데이터의 유효성을 확인하는 데 사용할 수 있는 해시 값입니다. 서명은 유효성을 검증하는 데이터와 별도로 제공될 수도 있고, CMS나 SOAP의 경우처럼 동일한 파일에 포함될 수도 있습니다. (이 경우 파일의 일부에는 데이터가, 다른 일부에는 서명이 포함됩니다.)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서명은 데이터의 무결성이 중요한 경우에 사용됩니다. 이는 A 당사자가 B 당사자에게 전송한 데이터가 변조되지 않았음을 보장하기 위한 것입니다. A 당사자는 데이터의 해시값을 계산하고 비대칭 개인 키를 사용하여 해당 해시값을 암호화함으로써 데이터에 서명합니다. B 당사자는 데이터의 해시값을 계산하고 서명을 복호화하여 두 해시값이 일치하는지 비교함으로써 데이터의 유효성을 검증할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "RAW 서명"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서명 원본은 일반적으로 상대방 측에서 다음과 같이 계산합니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터의 해시값을 생성합니다(예: SHA-256 해시)."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "비대칭 개인 키(예: RSA 2048비트 키)를 사용하여 해시를 암호화합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "(선택적으로) 바이너리 암호화 해시를 base64 인코딩을 사용하여 인코딩합니다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "상대방(Party-B)도 공개 키가 포함된 인증서를 받아야 합니다. 이는 이전에 이미 교환되었을 수도 있습니다. 따라서 최소한 데이터, 서명, 인증서 이렇게 세 가지 파일이 관련되어 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "CMS 서명"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CMS 서명은 데이터, 서명, 공개 키가 포함된 인증서를 모두 하나의 파일에 담아 A 당사자에서 B 당사자로 전송하는 표준화된 방식입니다. 인증서가 유효하고 폐지되지 않은 한, B 당사자는 제공된 공개 키를 사용하여 서명을 확인할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "SOAP 서명"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SOAP 서명에는 데이터, 서명, 그리고 선택적으로 인증서가 모두 하나의 XML 페이로드에 포함됩니다. 데이터 해시를 계산하는 과정에는 특별한 단계가 필요합니다. 이는 시스템 간에 전송되는 SOAP XML에 추가 요소나 타임스탬프가 포함될 수 있기 때문입니다. 또한, SOAP 서명은 서로 다른 당사자가 메시지의 각기 다른 부분에 서명할 수 있는 기능을 제공합니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "이메일 서명"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이메일을 보내는 것은 그리 어렵지 않습니다. 몇 가지 데이터를 입력하고 서버로 전송하면 서버가 이를 전달하고, 최종적으로 수신자에게 도착합니다. 하지만 '보낸 사람' 필드에 본인의 이메일 주소가 아닌 다른 주소를 사용하여 이메일을 보낼 수도 있습니다. 수신자에게 이메일을 보낸 사람이 발신자임을 보장하기 위해 이메일에 서명을 추가할 수 있습니다. 신뢰할 수 있는 제3자 기관에서 발신자의 신원을 확인하고 이메일 서명 인증서를 발급합니다. 발급된 개인 키를 이메일 애플리케이션에 설치하고, 발신하는 이메일에 서명하도록 설정합니다. 인증서는 특정 이메일 주소에 발급되며, 이메일을 수신하는 모든 사람은 발신자가 인증되었음을 확인할 수 있습니다. 수신자의 도구가 신뢰할 수 있는 제3자 기관에서 발급한 공개 인증서를 사용하여 서명을 검증하기 때문입니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "PDF, Word 또는 기타 서명"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Adobe PDF 문서와 Microsoft Word 문서도 서명을 지원하는 문서 형식의 예입니다. 서명은 데이터와 같은 문서 내에 포함되므로 데이터의 일부와 메타데이터의 일부를 구분하는 설명이 함께 제공됩니다. 정부는 일반적으로 인증서가 포함된 PDF 파일을 공식 문서와 함께 발송합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "5ced4fcd-71a1-5c02-8880-adf56b068f9d",
+          "src": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/5ced4fcd-71a1-5c02-8880-adf56b068f9d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "mport subprocess\nimport base64\nimport os\n\n# 1. 원본 키 데이터 (공백/줄바꿈 깨진 것 보정)\nraw_key_data = \"\"\"MIIEugIBADANBgkqhkiG9w0BAQEFAASCBKQwggSgAgEAAoIBAQCg4N2Q0I1ajf1mmcularXmKATRyKicgDFqTeQafcR/P/v64j+8XTpSFTq8EyP3TsB7wpYAp/Ur1UE5nfHdkAtB8byHne734TnIesvYxyaX6Xar1DKS2LuerbRG4lmygLEE6Cbbj6oxkD+c+8Ivf74Ifb 3wfCMytKUrtL17DoJ/w4FeJadrPJxRsgvL+VFm48HoTC8LhkhtEawLsipa4wRo5smsa5+KnLENhjKBZ8JWblO14OrU4kyWLM5DKy+ 2h2zyMHmImZMacOdtD/I48ICS7V087/XQEcLAkfco13i/b+7zZr6TEsG2IYcMdRjgv85PEkLufKDucLM3K4YHkAvfAgERAoIBAC9RM huIoguTLGl4hzCm6jSiW8U7BGpD0kxxQxbZskOLShyc5ZHBEScza6C6Vd9TZcoMDgAxZjoRi6eIzqqTxxNlN3Muc3YVEP66tGzvR5YXfUGYw5SaGRCNcUIGVp3pnXnp7U+iuZYbXgD+wKSO+6gk+6EVc8Oeiu68sDNAgLwp+Xu56OSNamlu6hGd44n2UBbSS+DKA9qIRiH +dg9kGUAhUT6zu/ptGoDUWsyF8G266ylOEZ3Hd8FPktZ/P/mD5IML8lro3gBwlxjjkYURWtN+wD+7Yc41kwrIfzSHlOWoOXt/spuD6g5dbwN+z29pDbOOQ4e2tyT058uTSqrCBAECgYEAuXs2EVGe8dxbAIfqaq2V4TAElVu0FON6tAcZbnCHIqtOyj95d1IdhOtCpDgYSV MB9lMihVNi1HOaZ9O0sXzUj/BIMsXfER2XQ9CYb3aCxbyt7W03p2S5bWez6ajJXeOqsGPcyu+iAcOeDPHo4c7gQrHvD7whwPrYPT/59YdFC9cCgYEA3gsRF91Wc9uqvDtcerEIagRJZIBWjNXHoyqd90+hJX0mt/4oqRg/a59xjMUhrfS9pDy09mkMepFQpmL5CxyMB0RZ QfQJKMgnoeFxxzEyuTpdSJChm3sIlJqaw2cN7WiJR+uklF99Co55AKhDdcpHKdQ/gMtUCtxXyEMJkqIdvzkCgYAgu2Pk8Ek5vXl4kHSpae1F20waW3ohzcpcAUC5Iuqrw+C6R2/JwzJiwBrRr4vQtEuj8I2fDrcWbsDlJVwfUkOg7irbyJDGyPyTfyn1jWJfIUvems2WArd PisVleCOJCg8QEZ9vGzq1BGcvdfvrnPpmH2ZsMEIxHTU3/DsrVBs+UwKBgDQ+1thwUJO7NztZQu+xLygBAjXD2CEjPghGQ0k/6a53zN//kRi6aUZ/3nt5rZJXtCak30kJqJVPXkVEdtVwIPKmq5cMPmPy3CYW7ZhHz7Mcyqepj2/gtrmNyg/cA0bra5hzrkEHaLcwlPEYi FfzXAnXlnioUAKOMsW1a6oIBv/RAoGABrPEPNf3la5l49ld80XiTitxHrUilF2GZuPpnayZyqHS8/NO9qOy3+3ADbdPTiFMYryrQiDSN10+0Ks5UXK76ZMgIDjPNARH0/jQmzvjf9wODjOkHglcVNtlxF0rTknYl5/FUjGoltvYRrwb0tc7biMZRU6QXJRq5N5tSfb5jPg=\"\"\"                       clean_key = raw_key_data.replace(\" \", \"\").replace(\"\\n\", \"\")\npem_key = f\"-----BEGIN RSA PRIVATE KEY-----\\n{clean_key}\\n-----END RSA PRIVATE KEY-----\"\n\n# 파일로 임시 저장 (openssl 명령어가 읽을 수 있도록)\nwith open(\"temp_priv.pem\", \"w\") as f:\n    f.write(pem_key)\n\ntry:\n    # 2. OpenSSL 명령어로 모듈러스 추출\n    # 명령어: openssl rsa -in temp_priv.pem -modulus -noout\n    result = subprocess.run(\n        [\"openssl\", \"rsa\", \"-in\", \"temp_priv.pem\", \"-modulus\", \"-noout\"],\n        capture_output=True, text=True, check=True\n    )\n    # 결과 예시: Modulus=A0E0...\n    modulus_raw = result.stdout.strip().replace(\"Modulus=\", \"\")\n    modulus_hex = modulus_raw.lower() # 소문자로 변환\n\n    print(f\"=== 1. 모듈러스 (16진수) ===\\n{modulus_hex}\\n\")\n\n    # 3. 서명 생성 (SHA256 사용)\n    # echo -n \"모듈러스값\" | openssl dgst -sha256 -sign temp_priv.pem | base64\n    # -n 옵션을 흉내내기 위해 input 매개변수에 바이트를 직접 넣음\n    sign_process = subprocess.run(\n        [\"openssl\", \"dgst\", \"-sha256\", \"-sign\", \"temp_priv.pem\"],\n        input=modulus_hex.encode('utf-8'), # 16진수 문자열 자체를 메시지로 입력\n        capture_output=True, check=True\n    )\n\n    # 결과 Base64 인코딩\n    signature_b64 = base64.b64encode(sign_process.stdout).decode('utf-8')\n    print(f\"=== 2. 서명 값 (Base64) ===\\n{signature_b64}\")\n\nexcept Exception as e:\n    print(f\"오류 발생: {e}\")\nfinally:\n    # 임시 파일 삭제\n    if os.path.exists(\"temp_priv.pem\"):\n        os.remove(\"temp_priv.pem\")"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "위처럼 파이썬 파일을 짜서 요청하면 답이 나온다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "keystore"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "키스토어는 키를 저장하는 곳입니다. "
+          },
+          {
+            "type": "text",
+            "text": "키스토어",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 외에도 트러스트 "
+          },
+          {
+            "type": "text",
+            "text": "스토어라는",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 용어가 자주 사용됩니다. 트러스트스토어는 키스토어와 동일한 개념이지만, 일반적으로 신뢰할 수 있는 인증서 또는 인증 기관의 인증서(즉, 공개 키와 발급자 정보)만 저장합니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "파일 기반 키 저장소"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파일 기반 키 저장소는 말 그대로 파일 시스템에 인증서를 저장하는 방식입니다. 공개 인증서를 파일 기반 키 저장소에 저장하는 것은 매우 일반적인 방법입니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터베이스 키 저장소"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "물론 키와 특히 공개 인증서는 데이터베이스에 저장할 수도 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "하드웨어 키스토어"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하드웨어 키 저장소는 실제 개인 키를 저장하는 하드웨어 장치를 갖춘 시스템입니다. 이는 개인 키의 보안이 매우 중요한 최고 수준의 보안 환경에서 주로 사용됩니다. 파일 기반 또는 데이터베이스 기반 키 저장소와 비교했을 때, 하드웨어 키 저장소를 사용하면 키 저장소를 복제하여 알 수 없거나 신뢰할 수 없는 환경으로 전송하는 것이 불가능합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "웹사이트용 서버 인증서를 제공하는 일부 인증 기관은 개인 키 생성 서비스도 제공합니다. 그러나 이는 엄밀히 말하면 더 이상 개인 키로 간주되지 않습니다. 모든 키 저장소 유형에 대해 개인 키는 안전하게 보관하고, 인증서 서명 요청(CSR)을 사용하여 서명 인증서 또는 서버 인증서를 발급받아야 합니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "운영 체제, 브라우저 및 기타 애플리케이션에서 관리되는 키 저장소"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "웹사이트에 접속했을 때 브라우저에서 인증서가 유효하다고 표시되면, 해당 웹사이트에 사용된 인증서가 신뢰할 수 있는 인증 기관(CA)에서 발급되었다는 의미입니다. 하지만 이러한 신뢰할 수 있는 인증 기관 목록은 관리됩니다. 일부 CA는 목록에서 제외되거나 취소될 수 있습니다. 이러한 업데이트는 브라우저 업데이트 설치 시 백그라운드에서 이루어집니다. 브라우저뿐만 아니라 운영 체제도 신뢰할 수 있는 인증 기관 목록을 관리합니다. 또한 Java 런타임(JRE)도 cacerts 파일에 자체 목록을 저장합니다. 운영 체제와 Java JRE 업데이트를 통해 이 목록은 최신 상태로 유지됩니다. 기업 환경에서는 일반적으로 회사에서 이러한 목록을 관리하며, 회사 루트 인증서도 포함됩니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "DNS CAA 레코드를 사용한 웹사이트 인증서 추가 확인"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일부 기업은 인터넷 트래픽의 전부 또는 대부분을 검사합니다. 심지어 종단 간 보안 연결이 되어 있다고 생각하는 트래픽조차도 검사 대상에 포함됩니다. 그 과정은 다음과 같습니다. 직원이 브라우저를 열고 구글에서 정보를 검색합니다. 브라우저는 HTTPS를 사용하여 구글 사이트로 이동합니다. 링크는 정상적으로 보이고 브라우저에는 자물쇠 아이콘이 표시됩니다. 그러나 인증서를 검사해 보면 회사 루트 CA(인증 기관) 중 하나에서 발급된 것을 알 수 있습니다! 즉, 회사 서버와 구글 사이에 종단 간 보안 연결이 설정되어 있고, 그 서버가 구글과 보안 연결을 유지하고 있는 것입니다. 이러한 중간자 공격을 방지하기 위해 최신 브라우저는 DNS CAA 레코드를 확인하여 특정 발급자가 특정 웹사이트에 접속할 수 있도록 허용되었는지 여부를 확인합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자세한 내용은 "
+          },
+          {
+            "type": "text",
+            "text": "위키백과 DNS CAA 항목을 참조하십시오.",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://en.wikipedia.org/wiki/DNS_Certification_Authority_Authorization"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "렛츠인크립트에서 무료 인증서를 받으세요"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "렛츠인크립트",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://letsencrypt.org/"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 는 무료 자동화 오픈소스 인증기관입니다. 렛츠인크립트를 이용하면 관리하는 웹사이트에 유효한 인증서를 발급받을 수 있습니다. 특정 프로토콜을 준수하고 실행하면 신원 확인이 완료되고 인증서가 발급됩니다. 인증서 발급은 무료이며, 이는 공인 인증서 사용을 장려하고 인터넷상에서 자체 서명 인증서 사용을 줄이기 위한 것입니다. 인증서의 유효기간은 90일이므로 자동 갱신이 필요합니다. (이를 통해 신원/소유권 증명이 빈번하게 이루어집니다.)"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "문제"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "3a64c182-556f-5c09-bbe7-76e2785900f8",
+          "src": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/3a64c182-556f-5c09-bbe7-76e2785900f8.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "도커로 들어가서 입력을 보면"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "63c08c13-1adb-59fd-8d97-7a691728ed2d",
+          "src": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/63c08c13-1adb-59fd-8d97-7a691728ed2d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "도커 실행"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "b9d54e9f-23ae-5273-a303-0dfa8b0493c7",
+          "src": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/b9d54e9f-23ae-5273-a303-0dfa8b0493c7.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "컨테이너 찾기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "f4d3e413-920f-582c-b3f6-23aa49ab5f6d",
+          "src": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/f4d3e413-920f-582c-b3f6-23aa49ab5f6d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "interactive모드로 진입"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "e306a0a1-59ce-5e6c-8a3b-21cd2cd50c99",
+          "src": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/e306a0a1-59ce-5e6c-8a3b-21cd2cd50c99.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "root로 진입 및 내용보기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "f8c37c23-66a4-5ae2-8b97-ccae2e297124",
+          "src": "/assets/uploads/30b12a64-77b8-5943-a37f-bf161f2f0b5c/f8c37c23-66a4-5ae2-8b97-ccae2e297124.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "root@af667f71387e:~# echo \"U2FsdGVkX199jgh5oANElFdtCxIEvdEvciLi+v+5loE+VCuy6Ii0b+5byb5DXp32RPmT02Ek1pf55ctQN+DHbwCPiVRfFQamDmbHBUpD7as=\" | openssl enc -aes-256-cbc -d -a -k ThisIsMySecretPassw0rdF0rY0u\nLeaving passwords in docker images is not so secure\nroot@af667f71387e:~#"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/29",
+    "originalId": "29",
+    "publishedAt": "2026-01-19T20:45:31+09:00",
+    "updatedAt": "2026-01-20T16:01:25+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

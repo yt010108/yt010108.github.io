@@ -1,0 +1,613 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "018f4e2c-5054-5530-bc4e-3896fc939070",
+  "kind": "posts",
+  "title": "[SK Rookies]VPN 기술 | IPsec·L2VPN·SSLVPN·Monitoring",
+  "slug": "tistory-157",
+  "description": "오늘 배운 내용VPN의 기본 개념과 안전한 연결 요소를 시작으로 IPsec Site-to-Site VPN, L2VPN과 GRE, SSL/TLS, 그리고 SNMP·Syslog·NTP 기반 장비 모니터링까지 다룬다.VPN 기본VPN은 인터넷망을 통해 사설망을 연결하는 기술로 설명된다. 장점으로 비용 절약, 보안성, 확장성, Broadband 기술과의 호환성을 제시한다.종류는 Site-to-Site VPN, Remote-Access VPN, GRE, DMVPN으로 나누며, 구성 요소로 인터넷 연결, VPN Gateway, Router, Firewall, VPN Concentrator, ASA, VPN 터널 생성·관리 소프트웨어를 소개한다.안전한 VPN 연결 요소자료에서는 캡슐화/터널링, 암호화, Hash, 인..",
+  "category": "SK Rookies / 수업 정리",
+  "date": "2026-09-05",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-09-05T23:49:56+09:00",
+  "updatedAt": "2026-09-05T23:51:01+09:00",
+  "sourceDigest": "76af5542f4e16a7d0861d90d79445a3b4a9b272e64f1842eac7b2233b8c0901a",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "오늘 배운 내용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "VPN의 기본 개념과 안전한 연결 요소를 시작으로 IPsec Site-to-Site VPN, L2VPN과 GRE, SSL/TLS, 그리고 SNMP·Syslog·NTP 기반 장비 모니터링까지 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "VPN 기본"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "VPN은 인터넷망을 통해 사설망을 연결하는 기술로 설명된다. 장점으로 비용 절약, 보안성, 확장성, Broadband 기술과의 호환성을 제시한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "종류는 Site-to-Site VPN, Remote-Access VPN, GRE, DMVPN으로 나누며, 구성 요소로 인터넷 연결, VPN Gateway, Router, Firewall, VPN Concentrator, ASA, VPN 터널 생성·관리 소프트웨어를 소개한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "안전한 VPN 연결 요소"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서는 캡슐화/터널링, 암호화, Hash, 인증을 핵심 요소로 제시한다. Hash 알고리즘으로 MD5와 SHA-1, 인증 방법으로 Pre-shared Key와 RSA 서명, 암호화 알고리즘으로 DES, 3DES, AES, RSA를 소개한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "IPsec VPN"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "IPsec은 IP 보안을 위한 VPN Protocol 모음이며 인터넷에서 데이터를 안전하게 주고받기 위한 표준으로 설명된다. 인증, 암호화, 무결성을 제공한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "프레임워크 구성 요소는 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "IKE: Internet Key Exchange"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "AH: 인증과 무결성"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ESP: 기밀성(선택), 인증(선택), 무결성"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "운영 모드는 Transport Mode와 Tunnel Mode로 구분한다. 자료에서는 Transport Mode를 Remote-Access VPN/Client S/W와, Tunnel Mode를 Site-to-Site VPN과 연결해 설명한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "IPsec 동작 흐름"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "알고리즘/정책 협상"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "DH 알고리즘을 이용한 키 교환"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "PSK 또는 인증서를 이용한 상호 인증"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "SA 설정 후 데이터 암호화 시작"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Site-to-Site 구현 단계는 IKE Phase 1(ISAKMP Tunnel) → IKE Phase 2(IPsec Tunnel) → Crypto Map 적용 순서다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "IKE Phase 1"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "R1(config)#crypto isakmp policy 1\nR1(config-isakmp)#authentication pre-share\nR1(config-isakmp)#hash sha\nR1(config-isakmp)#encryption aes 128\nR1(config-isakmp)#group 2\nR1(config-isakmp)#lifetime 86400\nR1(config)#crypto isakmp key C1sc0Press address 172.16.0.2\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "상대 Router에도 Peer Address를 반대로 지정해 같은 정책을 구성한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "IKE Phase 2와 Crypto Map"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "R1(config)#crypto ipsec transform-set MYSET esp-aes esp-sha\nR1(config)#access-list 101 permit ip 192.168.1.0 0.0.0.255 192.168.2.0 0.0.0.255\nR1(config)#crypto map R1_TO_R2 10 ipsec-isakmp\nR1(config-crypto-map)#set peer 172.16.0.2\nR1(config-crypto-map)#match address 101\nR1(config-crypto-map)#set transform-set MYSET\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Crypto Map은 외부 Interface에 적용하고 원격 Network로 가는 Route를 설정한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "R1(config)#int s0/0\nR1(config-if)#crypto map R1_TO_R2\nR1(config)#ip route 192.168.2.0 255.255.255.0 172.16.0.2\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "확인 명령은 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "R1#sh crypto engine connections active\nR1#sh crypto session\nR1#sh crypto isakmp sa\nR1#sh crypto ipsec sa\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "L2VPN"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "L2VPN은 L2 Frame을 터널링해 MAC Frame 단위 통신을 ISP망을 통해 다른 지점까지 연결하는 가상 사설망으로 설명된다. 지사와 본사를 같은 VLAN처럼 연결하거나, VM/Server 간 L2 통신, STP/CDP 같은 L2 Protocol 유지가 필요할 때 사용하는 사례를 제시한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "주요 구성 요소는 CE(Customer Edge), PE(Provider Edge), P(Provider), Pseudowire다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기술 유형은 VPWS의 1:1 Point-to-Point, VPLS의 1:N 또는 N:N, EVPN의 MPLS+BGP+VXLAN 기반 방식으로 구분한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "GRE Tunnel"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "GRE 예제는 두 지점을 인터넷 IP망으로 연결하고 Router 사이에 Tunnel0를 만든다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<R1>\ninterface Tunnel0\n ip address 10.0.0.1 255.255.255.0\n tunnel source 192.168.1.1\n tunnel destination 192.168.2.1\ninterface FastEthernet0/0\n ip address 192.168.1.1 255.255.255.0\nip route 192.168.2.0 255.255.255.0 FastEthernet0/0\nip route 10.0.0.0 255.255.255.0 Tunnel0\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "R2는 Tunnel IP와 Source/Destination을 반대로 설정한다. 자료에서는 ping 10.0.0.20 성공 여부로 GRE Tunnel 정상 동작을 확인한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "SSL과 TLS"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SSL은 웹사이트와 사용자 사이의 데이터를 암호화해 주고받는 보안 기술로 설명된다. 동작 흐름은 Client Hello → Server Hello와 인증서 전달 → Pre-Master Secret 전달 → 양쪽의 Session Key 생성 → Session Key 기반 암호화 통신이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료의 SSL/TLS 비교에서는 SSL 2.0/3.0을 폐기된 버전으로, TLS 1.0~1.3을 후속 기술로 정리하며 TLS 1.2 이상을 현재 업계 표준으로 설명한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Device Monitoring - SNMP"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SNMP는 관리자와 Agent 사이의 통신 Message 형식을 제공한다. 구성 요소는 SNMP Manager, SNMP Agent, MIB, SNMP Message(Get/Set/Trap)다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "버전은 SNMPv1, SNMPv2c, SNMPv3을 다룬다. v3는 패킷 인증과 암호화를 지원하고, v1/v2c는 Community String으로 접근 제어하며 RO/RW 유형을 사용한다고 설명한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "R1(config)#ip access-list standard SNMP_ACL\nR1(config-std-nacl)#permit host 172.16.3.110\nR1(config)#snmp-server community 4md!n0n1y RO SNMP_ACL\nR1(config)#snmp-server location Lima, OH\nR1(config)#snmp-server contact Jess Jang\nR1#show snmp\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Syslog"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Syslog는 UDP 514를 사용하며 로깅 정보 수집, 캡처할 정보 유형 선택, 캡처된 Message의 대상 지정을 제공한다. 심각도는 0 Emergency부터 7 Debugging까지 제시된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "R1#show logging\nR1(config)#logging 192.168.1.100\nR1(config)#logging trap 4\nR1(config)#logging source-interface g0/0\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "NTP"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "NTP는 장치 사이의 Timestamp가 일관되도록 시계를 동기화한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "R1(config)#ntp server 172.16.2.2\nR1#show ntp status\nR1#show ntp associations\nR1(config)#ntp master\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "복습하면서 확인할 점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "VPN 전체 구조에서 Tunnel·암호화·Hash·인증을 먼저 구분한다. IPsec은 Phase 1 → Phase 2 → Crypto Map 순서로 명령 흐름을 외우기보다 각 단계가 무엇을 결정하는지 연결해서 본다. L2VPN과 GRE의 목적을 구분하고, 마지막으로 SNMP는 상태 수집, Syslog는 로그 수집, NTP는 시간 동기화라는 역할을 나눠 기억한다."
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/157",
+    "originalId": "157",
+    "publishedAt": "2026-09-05T23:49:56+09:00",
+    "updatedAt": "2026-09-05T23:51:01+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

@@ -1,0 +1,1363 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "a96e2909-9cb4-5ad7-9c21-8c1c4fdb051b",
+  "kind": "posts",
+  "title": "[SK Rookies]머신러닝 지도학습",
+  "slug": "tistory-117",
+  "description": "오늘 배운 내용7월 31일에는 머신러닝의 기본 개념과 지도학습을 공부했다. 입력 데이터와 정답 라벨을 이용해 모델이 관계를 학습하는 구조를 이해하고, 지도학습의 대표 문제인 회귀와 분류를 실습했다. 데이터 분할, 선형 회귀, 로지스틱 회귀, 분류 성능 평가, 데이터 불균형, KNN과 하이퍼파라미터 선택까지 이어서 다뤘다.머신러닝이란?머신러닝은 사람이 규칙을 직접 모두 작성하는 대신 데이터를 이용해 컴퓨터가 패턴과 규칙을 학습하도록 하는 방법이다. 학습한 규칙을 이용해 새로운 데이터의 결과를 예측하거나 의사결정을 내린다.전통적인 프로그래밍은 사람이 규칙을 만들고 입력 데이터에 적용하는 방식이라면, 머신러닝은 데이터와 결과를 바탕으로 규칙을 학습한다는 차이가 있다.지도학습 Supervised Learning..",
+  "category": "SK Rookies / 수업 정리",
+  "date": "2026-07-31",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-07-31T14:40:05+09:00",
+  "updatedAt": "2026-08-12T10:00:45+09:00",
+  "sourceDigest": "8571378274acd8fca3cea12bf474c9f2f69766ddfdc18ff58ebfdcf6b94faa05",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[원본에서 불러올 수 없는 이미지]"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "오늘 배운 내용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "7월 31일에는 머신러닝의 기본 개념과 지도학습을 공부했다. 입력 데이터와 정답 라벨을 이용해 모델이 관계를 학습하는 구조를 이해하고, 지도학습의 대표 문제인 회귀와 분류를 실습했다. 데이터 분할, 선형 회귀, 로지스틱 회귀, 분류 성능 평가, 데이터 불균형, KNN과 하이퍼파라미터 선택까지 이어서 다뤘다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "머신러닝이란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "머신러닝은 사람이 규칙을 직접 모두 작성하는 대신 데이터를 이용해 컴퓨터가 패턴과 규칙을 학습하도록 하는 방법이다. 학습한 규칙을 이용해 새로운 데이터의 결과를 예측하거나 의사결정을 내린다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "전통적인 프로그래밍은 사람이 규칙을 만들고 입력 데이터에 적용하는 방식이라면, 머신러닝은 데이터와 결과를 바탕으로 규칙을 학습한다는 차이가 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "지도학습 Supervised Learning"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "지도학습은 입력 데이터 X와 정답 라벨 y를 함께 제공하여 모델이 두 값 사이의 관계를 학습하도록 하는 방법이다. 학습이 끝나면 새로운 입력 데이터에 대한 값을 예측한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 학생의 공부 시간으로 시험 점수를 예측하거나, 이메일 내용을 보고 스팸인지 정상인지 분류하는 문제가 지도학습에 해당한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "지도학습과 비지도학습"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "지도학습: 정답 라벨이 있다. 입력과 정답의 관계를 학습한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "비지도학습: 정답 라벨이 없다. 데이터 자체의 패턴, 구조, 그룹을 찾는다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Feature와 Target"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "머신러닝 데이터는 일반적으로 입력 특성과 목표값으로 나눈다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Feature: 예측에 사용하는 입력 변수"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Target: 모델이 맞혀야 하는 정답 또는 목표 변수"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 주택 가격 예측에서는 면적, 방 수, 위치 등이 Feature가 되고 실제 주택 가격이 Target이 된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터 준비와 전처리"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모델 학습 전에 데이터 품질을 확인하고 필요한 변환을 적용한다. 결측값과 이상치를 처리하고, 범주형 데이터를 숫자로 바꾸거나 값의 범위를 맞추는 스케일링을 수행할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "지도학습에서는 학습 데이터와 평가 데이터를 분리하는 것도 중요하다. 같은 데이터로 학습과 평가를 모두 하면 모델이 새로운 데이터에서도 잘 작동하는지 확인할 수 없다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "from sklearn.model_selection import train_test_split\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X,\n    y,\n    test_size=0.2,\n    random_state=42\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "회귀 Regression"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "회귀는 연속적인 숫자 값을 예측하는 문제다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예시:"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "주택 가격 예측"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "매출액 예측"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "온도 예측"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "환자의 수치형 지표 예측"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "선형 회귀 Linear Regression"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "선형 회귀는 입력 변수와 목표값의 관계를 직선으로 표현하는 대표적인 회귀 알고리즘이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "단순 선형 회귀에서는 한 개의 입력 변수 X를 이용해 목표값 y를 설명한다. 모델은 데이터와 가장 잘 맞는 기울기와 절편을 학습한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "from sklearn.linear_model import LinearRegression\n\nmodel = LinearRegression()\nmodel.fit(X_train, y_train)\n\ny_pred = model.predict(X_test)\n\nprint(\"기울기:\", model.coef_)\nprint(\"절편:\", model.intercept_)\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "회귀 모델 성능 평가"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "회귀 모델은 실제값과 예측값의 차이를 이용해 성능을 평가한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "MAE"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예측 오차 절댓값의 평균이다. 값이 작을수록 예측이 실제값에 가깝다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "MSE"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "오차를 제곱한 뒤 평균한 값이다. 큰 오차에 더 큰 패널티를 준다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "RMSE"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "MSE에 제곱근을 적용해 원래 목표값과 같은 단위로 해석할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "R²"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모델이 목표값의 변동을 얼마나 설명하는지 나타낸다. 일반적으로 1에 가까울수록 데이터 변화를 잘 설명한다고 본다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score\nimport numpy as np\n\nmae = mean_absolute_error(y_test, y_pred)\nmse = mean_squared_error(y_test, y_pred)\nrmse = np.sqrt(mse)\nr2 = r2_score(y_test, y_pred)\n\nprint(mae, mse, rmse, r2)\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "분류 Classification"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "분류는 데이터를 미리 정의된 범주 중 하나로 예측하는 문제다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예시:"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "정상 메일 / 스팸 메일"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "양성 / 음성"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "정상 거래 / 이상 거래"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "여러 종류의 꽃 분류"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "로지스틱 회귀 Logistic Regression"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이름에는 회귀가 들어가지만 분류에 사용하는 알고리즘이다. 입력값을 이용해 특정 클래스에 속할 확률을 계산하고, 기준값에 따라 클래스를 결정한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "from sklearn.linear_model import LogisticRegression\n\nclf = LogisticRegression(max_iter=1000)\nclf.fit(X_train, y_train)\n\npred = clf.predict(X_test)\nprob = clf.predict_proba(X_test)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이진 분류에서는 두 클래스 중 하나를 결정하고, 다중 분류에서는 여러 클래스 중 하나를 예측한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "분류 성능 평가"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "분류에서는 단순히 맞힌 비율뿐 아니라 어떤 종류의 오류가 발생했는지를 함께 봐야 한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "혼동행렬 Confusion Matrix"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실제값과 예측값의 조합을 표로 확인한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이진 분류에서는 다음 개념을 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "TP: 실제 양성을 양성으로 예측"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "TN: 실제 음성을 음성으로 예측"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "FP: 실제 음성을 양성으로 잘못 예측"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "FN: 실제 양성을 음성으로 잘못 예측"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Accuracy"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "전체 데이터 중 맞게 예측한 비율이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Precision"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모델이 양성이라고 예측한 데이터 중 실제 양성의 비율이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Recall"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실제 양성 데이터 중 모델이 양성으로 찾아낸 비율이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "F1-score"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Precision과 Recall의 균형을 보는 지표다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "from sklearn.metrics import (\n    accuracy_score,\n    precision_score,\n    recall_score,\n    f1_score,\n    confusion_matrix\n)\n\nprint(\"Accuracy:\", accuracy_score(y_test, pred))\nprint(\"Precision:\", precision_score(y_test, pred, average=\"weighted\"))\nprint(\"Recall:\", recall_score(y_test, pred, average=\"weighted\"))\nprint(\"F1:\", f1_score(y_test, pred, average=\"weighted\"))\nprint(confusion_matrix(y_test, pred))\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터 불균형"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "한 클래스의 데이터가 다른 클래스보다 지나치게 많으면 Accuracy만으로는 모델 성능을 제대로 판단하기 어렵다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 정상 거래가 99%, 이상 거래가 1%라면 모든 데이터를 정상이라고 예측해도 Accuracy는 매우 높게 나올 수 있다. 이런 문제에서는 Precision, Recall, F1-score와 클래스별 혼동행렬을 함께 확인해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "KNN K-Nearest Neighbors"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "KNN은 예측하려는 데이터와 가까운 K개의 이웃을 찾아 이웃들의 정보를 이용하는 알고리즘이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "분류에서는 가까운 이웃 중 가장 많이 나타나는 클래스를 선택한다. 자료에서는 Iris 데이터셋을 이용해 KNN 분류를 실습한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "from sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.neighbors import KNeighborsClassifier\nfrom sklearn.metrics import accuracy_score\n\niris = load_iris()\nX = iris.data\ny = iris.target\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42\n)\n\nknn = KNeighborsClassifier(n_neighbors=5)\nknn.fit(X_train, y_train)\n\npred = knn.predict(X_test)\nprint(\"Accuracy:\", accuracy_score(y_test, pred))\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "K 값의 영향"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "K가 너무 작으면 주변의 일부 데이터나 노이즈에 민감해질 수 있다. 반대로 너무 크면 서로 다른 그룹의 데이터까지 포함해 경계가 지나치게 단순해질 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 여러 K 값을 비교해 적절한 값을 선택한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "from sklearn.model_selection import cross_val_score\nfrom sklearn.neighbors import KNeighborsClassifier\n\nscores = {}\n\nfor k in range(1, 16):\n    model = KNeighborsClassifier(n_neighbors=k)\n    cv_score = cross_val_score(model, X, y, cv=5).mean()\n    scores[k] = cv_score\n\nbest_k = max(scores, key=scores.get)\nprint(\"Best K:\", best_k)\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "KNN 성능에 영향을 주는 요소"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서는 KNN의 성능이 데이터 전처리와 하이퍼파라미터에 크게 영향을 받는다고 설명한다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "n_neighbors: 이웃 수"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "거리 계산 방식"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터 스케일링"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "학습/검증 데이터 구성"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "교차 검증 방식"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "KNN은 거리 기반 알고리즘이므로 피처별 값의 범위가 크게 다르면 스케일링이 중요하다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "from sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.neighbors import KNeighborsClassifier\n\npipe = Pipeline([\n    (\"scaler\", StandardScaler()),\n    (\"knn\", KNeighborsClassifier(n_neighbors=5))\n])\n\npipe.fit(X_train, y_train)\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "지도학습 전체 흐름"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 정의"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Feature와 Target 구성"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터 전처리"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "학습/평가 데이터 분할"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "알고리즘 선택"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "모델 학습"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "예측"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "성능 평가"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "하이퍼파라미터 조정"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "반복 검증"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "복습하면서 확인할 점"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "지도학습은 X와 정답 y를 함께 사용한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "연속적인 숫자를 예측하면 회귀, 범주를 예측하면 분류 문제다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "선형 회귀는 입력과 목표값의 선형 관계를 학습한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "로지스틱 회귀는 분류 확률을 이용해 클래스를 결정한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "불균형 데이터에서는 Accuracy만 보지 말고 Precision, Recall, F1-score를 함께 확인한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "KNN은 거리 기반이므로 스케일링과 K 선택이 중요하다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료 출처: 7.31 ai_basic_4_머신러닝_기초__지도학습.pdf"
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/117",
+    "originalId": "117",
+    "publishedAt": "2026-07-31T14:40:05+09:00",
+    "updatedAt": "2026-08-12T10:00:45+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

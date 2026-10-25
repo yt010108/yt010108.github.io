@@ -206,10 +206,13 @@
 .writer-link-site { margin-top: auto; padding-top: 10px; color: var(--quiet); font-size: 12px; overflow-wrap: anywhere; }
 .writer-link-status { color: var(--quiet); font-size: 11px; }
 #preview-body .writer-link-status { display: none; }
-.writer-prose h1, .writer-prose h2, .writer-prose h3 { color: var(--text); font-weight: 500; letter-spacing: -.04em; margin: 30px 0 15px; line-height: 1.55; }
+.writer-prose :is(h1,h2,h3,h4,h5,h6) { color: var(--text); font-weight: 500; letter-spacing: -.04em; margin: 30px 0 15px; line-height: 1.55; }
 .writer-prose h1 { font-size: 29px; }
 .writer-prose h2 { font-size: 24px; }
 .writer-prose h3 { font-size: 20px; }
+.writer-prose h4 { font-size: 18px; }
+.writer-prose h5 { font-size: 16px; }
+.writer-prose h6 { font-size: 15px; }
 .writer-prose :is(ul, ol) { padding-left: 24px; margin: 16px 0 22px; }
 .writer-prose li > p { margin: 0; }
 .writer-prose li { margin: 5px 0; }

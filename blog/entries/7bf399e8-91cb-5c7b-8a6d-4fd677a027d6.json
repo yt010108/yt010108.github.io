@@ -1,0 +1,521 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "7bf399e8-91cb-5c7b-8a6d-4fd677a027d6",
+  "kind": "posts",
+  "title": "[SK Rookies]  네트워크 보안 | 보안 기본 개념",
+  "slug": "tistory-153",
+  "description": "오늘 배운 내용네트워크 보안이 무엇을 보호하는지, 왜 필요한지, 어떤 위협과 보안 기술이 있는지를 전체적으로 훑는 입문 자료다. 이후 LAN Security, ACL, VPN을 배우기 전에 용어와 큰 그림을 잡는 데 초점이 있다.네트워크 보안이란자료에서는 Network Security를 네트워크 인프라, 장비, 데이터, 사용자 등을 외부 위협이나 내부 침해로부터 보호하기 위한 기술·정책·절차의 집합으로 정의한다.네트워크 보안의 목적보안의 기본 목적은 CIA 세 가지로 정리된다.Confidentiality: 인가된 사용자만 정보에 접근Integrity: 정보가 변조되지 않도록 보장Availability: 필요할 때 정보에 접근할 수 있도록 유지왜 필요한가네트워크 자체가 공격 경로가 될 수 있고, 사용자 인..",
+  "category": "SK Rookies / 수업 정리",
+  "date": "2026-09-05",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-09-05T23:47:52+09:00",
+  "updatedAt": "2026-09-05T23:51:01+09:00",
+  "sourceDigest": "c676748c118a7ce6a2e7fb994f7c372528d180943d44d84e6eb493e90f196093",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[원본에서 불러올 수 없는 이미지]"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[원본에서 불러올 수 없는 이미지]"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "오늘 배운 내용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "네트워크 보안이 무엇을 보호하는지, 왜 필요한지, 어떤 위협과 보안 기술이 있는지를 전체적으로 훑는 입문 자료다. 이후 LAN Security, ACL, VPN을 배우기 전에 용어와 큰 그림을 잡는 데 초점이 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "네트워크 보안이란"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서는 Network Security를 네트워크 인프라, 장비, 데이터, 사용자 등을 외부 위협이나 내부 침해로부터 보호하기 위한 기술·정책·절차의 집합으로 정의한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "네트워크 보안의 목적"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "보안의 기본 목적은 CIA 세 가지로 정리된다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Confidentiality: 인가된 사용자만 정보에 접근"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Integrity: 정보가 변조되지 않도록 보장"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Availability: 필요할 때 정보에 접근할 수 있도록 유지"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "왜 필요한가"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "네트워크 자체가 공격 경로가 될 수 있고, 사용자 인증 요구가 증가하며, 민감 정보 보호와 서비스 중단 방지가 필요하기 때문이다. 자료에서는 DDoS와 같은 서비스 중단 공격도 대표 예로 든다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "주요 보안 위협"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "사회공학: 피싱 등 심리 기법을 이용한 공격"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "DoS/DDoS: 서비스 중단 공격"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Spoofing: MAC/IP 위장"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Packet Sniffing: 패킷 탈취"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "MITM: 중간자 공격"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "보안을 적용하는 대상"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "보안은 장비 하나에만 적용하는 것이 아니라 여러 영역에 걸쳐 적용한다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "네트워크 장비: Router, Switch, Firewall 등"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "사용자 계정: 인증과 권한 설정"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터 흐름: Traffic Filtering과 암호화"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "운영 정책: 로그, 백업, 업데이트"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "네트워크 보안 기법"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서 소개하는 주요 기법은 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Firewall: 트래픽 필터링"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Port Security: MAC 수 제한"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "IDS/IPS: 침입 탐지 및 차단"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "VLAN: 네트워크 분리"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ACL: IP/Port 제어"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "DHCP Snooping, ARP Inspection: ARP/DHCP Spoofing 대응"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "VPN, IPsec, 인증서 기반 보안"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "보안 장비의 역할"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Firewall은 접근 제어, IDS는 침입 탐지, IPS는 탐지와 차단을 수행한다. NAC는 인증된 장비만 접속하도록 제어하며, 보안 스위치는 다양한 LAN 보안 기능을 제공한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "복습하면서 확인할 점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CIA의 세 요소를 먼저 구분한다. 그다음 공격 유형과 방어 기술을 짝지어 기억한다. 예를 들어 Spoofing과 DHCP Snooping/ARP Inspection, 비인가 단말 접속과 NAC·Port Security, 네트워크 분리와 VLAN처럼 연결해 보면 이후 자료를 이해하기 쉽다."
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/153",
+    "originalId": "153",
+    "publishedAt": "2026-09-05T23:47:52+09:00",
+    "updatedAt": "2026-09-05T23:51:01+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

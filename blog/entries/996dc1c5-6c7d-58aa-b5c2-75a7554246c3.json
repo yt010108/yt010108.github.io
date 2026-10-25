@@ -1,0 +1,350 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "996dc1c5-6c7d-58aa-b5c2-75a7554246c3",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-15문제",
+  "slug": "tistory-38",
+  "description": "1. 문제 정보문제 번호 : old -15문제 점수 : 5점2. 문제 분석문제를 들어가면 access_denied가 뜨고 확인을 누르면 webhacking.kr로 이동한다. 버프 스위트로 request를 인터셉트 해보자 get 요청으로 js-2를 불러온다. 응답은 아래와 같다 응답을 보면 alert()다음에 location.href로 /로 이동하는 것을 알 수 있고 그 다음에 document.write로 ?getFlag 하이퍼링크를 html에 작성하는 것을 알 수 있다. 하지만 alert다음에 /로 이동하므로 볼 수 없다. location.href는 웹 브라우저의 현재 페이지 URL 정보를 다루는 JavaScript 속성이다.href 속성값에 있는 ?는 쿼리 스트링(Query String) 기호로 웹 ..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-20",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-20T16:24:22+09:00",
+  "updatedAt": "2026-01-27T00:20:14+09:00",
+  "sourceDigest": "34b8278bee8528f37fd45536c3c0738b5ecb14a0d78cfe1038001750d0f9d5aa",
+  "assets": [
+    {
+      "id": "2fe35a20-6d26-5e99-aeea-60af70428ffd",
+      "name": "tistory-38-2fe35a20-6d26-5e99-aeea-60af70428ffd.png",
+      "type": "image/png",
+      "path": "/assets/uploads/996dc1c5-6c7d-58aa-b5c2-75a7554246c3/2fe35a20-6d26-5e99-aeea-60af70428ffd.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "9fd6151d-f6f9-56ba-8c83-bf32a59e292f",
+      "name": "tistory-38-9fd6151d-f6f9-56ba-8c83-bf32a59e292f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/996dc1c5-6c7d-58aa-b5c2-75a7554246c3/9fd6151d-f6f9-56ba-8c83-bf32a59e292f.png",
+      "sha": "a231b28b9ac03482e1b05e0ece067cf1eb0c5c82"
+    },
+    {
+      "id": "c5e201e8-9013-5d3f-a3bc-1c5e205ba1e3",
+      "name": "tistory-38-c5e201e8-9013-5d3f-a3bc-1c5e205ba1e3.png",
+      "type": "image/png",
+      "path": "/assets/uploads/996dc1c5-6c7d-58aa-b5c2-75a7554246c3/c5e201e8-9013-5d3f-a3bc-1c5e205ba1e3.png",
+      "sha": "8c9a2e453b0ff172d21c5dc2023f53a074f5d4c8"
+    },
+    {
+      "id": "0bbd838c-85ad-595b-837b-e58ca46cbbbb",
+      "name": "tistory-38-0bbd838c-85ad-595b-837b-e58ca46cbbbb.png",
+      "type": "image/png",
+      "path": "/assets/uploads/996dc1c5-6c7d-58aa-b5c2-75a7554246c3/0bbd838c-85ad-595b-837b-e58ca46cbbbb.png",
+      "sha": "4f0133fccb14b19273caccc1fbc26dd75197ba90"
+    },
+    {
+      "id": "b5e8a4ea-6b5d-556e-8f45-d72b5931e242",
+      "name": "tistory-38-b5e8a4ea-6b5d-556e-8f45-d72b5931e242.png",
+      "type": "image/png",
+      "path": "/assets/uploads/996dc1c5-6c7d-58aa-b5c2-75a7554246c3/b5e8a4ea-6b5d-556e-8f45-d72b5931e242.png",
+      "sha": "8d0110790ccbdd01dfb2f8d34dd006d7177eed51"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "2fe35a20-6d26-5e99-aeea-60af70428ffd",
+          "src": "/assets/uploads/996dc1c5-6c7d-58aa-b5c2-75a7554246c3/2fe35a20-6d26-5e99-aeea-60af70428ffd.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -15"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 5점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "9fd6151d-f6f9-56ba-8c83-bf32a59e292f",
+          "src": "/assets/uploads/996dc1c5-6c7d-58aa-b5c2-75a7554246c3/9fd6151d-f6f9-56ba-8c83-bf32a59e292f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제를 들어가면 access_denied가 뜨고 확인을 누르면 webhacking.kr로 이동한다. 버프 스위트로 request를 인터셉트 해보자"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "c5e201e8-9013-5d3f-a3bc-1c5e205ba1e3",
+          "src": "/assets/uploads/996dc1c5-6c7d-58aa-b5c2-75a7554246c3/c5e201e8-9013-5d3f-a3bc-1c5e205ba1e3.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "get 요청으로 js-2를 불러온다. 응답은 아래와 같다"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "0bbd838c-85ad-595b-837b-e58ca46cbbbb",
+          "src": "/assets/uploads/996dc1c5-6c7d-58aa-b5c2-75a7554246c3/0bbd838c-85ad-595b-837b-e58ca46cbbbb.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "응답을 보면 alert()다음에 location.href로 /로 이동하는 것을 알 수 있고 그 다음에 document.write로 ?getFlag 하이퍼링크를 html에 작성하는 것을 알 수 있다. 하지만 alert다음에 /로 이동하므로 볼 수 없다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "location.href는 웹 브라우저의 현재 페이지 URL 정보를 다루는 JavaScript 속성이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "href 속성값에 있는 ?는 쿼리 스트링(Query String) 기호로 웹 서버에 데이터를 전달할 때 사용한다. ? 뒤에 오는 내용은 파라미터(변수)로 처리한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PHP언어로 쓰인 것을 PHP세션에서 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "?쿼리 스트링은 주로 값을 할당하지만 if (isset($_GET['getflag']))같이 함수를 써서 get에 함수 인자가 왔는 지 확인한다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그러면 하이퍼링크 주소는 아래와 같으니까 이걸 주소창에 입력하면 document.write에 입력한 주소로 이동할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://webhacking.kr/challenge/js-2/?getFlag",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://webhacking.kr/challenge/js-2/"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "b5e8a4ea-6b5d-556e-8f45-d72b5931e242",
+          "src": "/assets/uploads/996dc1c5-6c7d-58aa-b5c2-75a7554246c3/b5e8a4ea-6b5d-556e-8f45-d72b5931e242.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "alert 다음에 바로 /로 이동해서 다음 스크립트를 확인할 수 없었지만 그 주소를 찾아서 입력해서 풀었다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "<a href=...>는 하이퍼링크 HTML문법이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "경로 없이 ?로 시작하므로, 현재 페이지의 URL 뒤에 getFlag라는 파라미터를 붙여서 요청한다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/38",
+    "originalId": "38",
+    "publishedAt": "2026-01-20T16:24:22+09:00",
+    "updatedAt": "2026-01-27T00:20:14+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

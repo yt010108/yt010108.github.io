@@ -1,0 +1,1217 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "990800c3-9568-5715-8ccc-d2a842adc9cc",
+  "kind": "posts",
+  "title": "[오픈소스] Heretic을 통한 가드레일 우회",
+  "slug": "tistory-159",
+  "description": "오픈소스 LLM을 살펴보다 보면 같은 모델이라도 어떤 버전은 특정 질문에 답하고, 어떤 버전은 바로 거부하는 모습을 볼 수 있습니다.이 차이에는 모델의 안전성 학습과 정렬(alignment)이 영향을 줍니다. 그런데 최근에는 모델을 다시 대규모로 파인튜닝하지 않고도 이런 거부 행동을 크게 바꾸는 방법이 등장했습니다.그중 하나가 오픈소스 프로젝트 Heretic입니다.Heretic은 Transformer 기반 언어 모델에서 거부(refusal) 행동과 연관된 내부 표현을 찾아 약화하는 과정을 자동화한 도구입니다.Heretic은 무엇인가?Heretic의 GitHub 설명은 상당히 직설적입니다.Fully automatic censorship removal for language models프로젝트가 사용하는 핵..",
+  "category": "AI",
+  "date": "2026-09-16",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-09-16T10:57:12+09:00",
+  "updatedAt": "2026-09-16T10:57:12+09:00",
+  "sourceDigest": "d6418bed77fa039acd18f195bb5e122c228699968e61256a1cee0afca4b3c8e9",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "오픈소스 LLM을 살펴보다 보면 같은 모델이라도 어떤 버전은 특정 질문에 답하고, 어떤 버전은 바로 거부하는 모습을 볼 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 차이에는 모델의 안전성 학습과 정렬(alignment)이 영향을 줍니다. 그런데 최근에는 모델을 다시 대규모로 파인튜닝하지 않고도 이런 거부 행동을 크게 바꾸는 방법이 등장했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그중 하나가 오픈소스 프로젝트 "
+          },
+          {
+            "type": "text",
+            "text": "Heretic",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Heretic은 Transformer 기반 언어 모델에서 거부(refusal) 행동과 연관된 내부 표현을 찾아 약화하는 과정을 자동화한 도구입니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Heretic은 무엇인가?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Heretic의 GitHub 설명은 상당히 직설적입니다."
+          }
+        ]
+      },
+      {
+        "type": "blockquote",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Fully automatic censorship removal for language models"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "프로젝트가 사용하는 핵심 기술은 "
+          },
+          {
+            "type": "text",
+            "text": "directional ablation",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", 흔히 "
+          },
+          {
+            "type": "text",
+            "text": "abliteration",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "이라고 불리는 방법입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일반적인 파인튜닝은 데이터셋을 준비하고 모델을 다시 학습시켜 행동을 바꿉니다. 반면 abliteration은 이미 학습된 모델 내부에서 특정 행동과 연관된 방향을 찾아 그 영향을 제거하거나 약화합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉, Heretic은 새로운 지식을 학습시키는 도구라기보다 기존 모델의 특정 행동을 만드는 내부 신호를 수정하는 도구에 가깝습니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "왜 '방향'을 제거하면 거부 행동이 달라질까?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 아이디어의 배경에는 2024년 NeurIPS에 발표된 연구가 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "논문 제목은 "
+          },
+          {
+            "type": "text",
+            "text": "Refusal in Language Models Is Mediated by a Single Direction",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "연구진은 13개의 오픈소스 채팅 모델을 분석했고, 최대 72B 규모 모델까지 실험했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "결과는 흥미로웠습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모델 내부의 residual stream에서 특정한 한 방향을 제거하면 유해하다고 판단된 요청에 대한 거부 행동이 크게 줄었고, 반대로 해당 방향을 추가하면 정상적인 요청에도 거부 반응이 나타났습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 연구는 LLM의 거부 행동 가운데 상당 부분이 매우 복잡하게 분산된 것이 아니라 특정 저차원 방향과 강하게 연결될 수 있음을 보여줬습니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Abliteration은 무엇인가?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Abliteration",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "은 ablation과 obliteration을 합친 표현입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "쉽게 말하면 모델 내부에서 다음과 같은 차이를 찾는 과정입니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "정상 요청을 처리할 때의 내부 활성값"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "거부할 만한 요청을 처리할 때의 내부 활성값"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "두 그룹의 차이를 분석하면 거부 행동과 관련된 방향을 추정할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그다음 모델의 weight를 수정해 해당 방향이 출력에 미치는 영향을 줄입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "중요한 점은 모델 전체를 다시 학습시키는 것이 아니라 기존 가중치에 직접 수학적인 변형을 적용한다는 것입니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Heretic이 기존 Abliteration과 다른 점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Abliteration 자체는 Heretic이 처음 만든 개념은 아닙니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Heretic의 특징은 이 과정을 자동화한다는 점입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "어떤 레이어를 수정할지, 어느 정도 강도로 적용할지 같은 값은 모델마다 달라질 수 있습니다. 사람이 직접 여러 조합을 시험하면 상당한 시행착오가 필요합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Heretic은 Optuna 기반의 TPE(Tree-structured Parzen Estimator) 최적화를 사용해 이런 파라미터를 자동으로 탐색합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "최적화 과정에서는 크게 두 가지를 함께 봅니다."
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "거부 응답이 얼마나 줄었는지"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "원본 모델과 수정된 모델의 출력 분포가 얼마나 달라졌는지"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "두 번째 항목에는 KL divergence가 사용됩니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "거부율만 낮추려고 모델을 과하게 수정하면 일반적인 능력까지 손상될 수 있기 때문에, 원본 모델과의 차이도 동시에 줄이려는 것입니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "실제 성능은 어느 정도일까?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Heretic 프로젝트가 공개한 Gemma 3 12B 테스트에서는 다음과 같은 결과가 제시돼 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "모델"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "유해 프롬프트 100개 중 거부 횟수"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원본 대비 KL divergence"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Gemma 3 12B 원본"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "97"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "수동 Abliteration 모델 A"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "3"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "1.04"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "수동 Abliteration 모델 B"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "3"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "0.45"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Heretic 버전"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "3"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "0.16"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "프로젝트 측 결과만 보면 거부율을 크게 낮추면서도 원본 모델과의 차이를 상대적으로 작게 유지한 셈입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다만 이 결과는 Heretic 프로젝트가 제공한 자체 평가입니다. 하드웨어와 소프트웨어 환경에 따라 수치가 달라질 수 있고, KL divergence 하나만으로 실제 모델 품질 전체를 판단할 수도 없습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "프로젝트 역시 자동화된 벤치마크가 사람의 평가를 완전히 대신할 수 없다고 설명합니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "ChatGPT나 Claude에도 적용할 수 있을까?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일반 사용자가 ChatGPT나 Claude 같은 서비스에 Heretic을 적용하는 것은 불가능합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Heretic은 모델의 실제 weight에 접근해 수정하는 방식이기 때문입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 주 대상은 사용자가 직접 다운로드하고 실행할 수 있는 오픈웨이트 모델입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "현재 프로젝트는 대부분의 dense Transformer 모델, 여러 멀티모달 모델, 일부 MoE 및 하이브리드 구조를 지원한다고 설명하고 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "반대로 모델 가중치에 접근할 수 없는 폐쇄형 API 서비스에는 이런 방식으로 적용할 수 없습니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "'검열 제거'라는 표현만 보면 안 되는 이유"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Heretic을 단순히 \"AI 검열 해제 프로그램\"이라고만 보면 기술적으로 중요한 부분을 놓치기 쉽습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 프로젝트에서 더 흥미로운 점은 LLM의 행동이 내부적으로 어떻게 표현되는지를 보여준다는 데 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "안전성 정렬은 모델 전체에 복잡하게 퍼져 있을 것처럼 보이지만, 일부 거부 행동은 특정 방향을 조작하는 것만으로 크게 변할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이는 현재의 안전성 튜닝이 생각보다 취약할 수 있다는 의미이기도 합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "동시에 모델 행동을 수정할 때 단순한 파인튜닝 외에도 내부 표현을 직접 분석하는 접근이 가능하다는 점을 보여줍니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "한계와 주의점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Heretic으로 거부 행동을 줄였다고 해서 모델이 더 똑똑해지는 것은 아닙니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "오히려 안전성 학습으로 막혀 있던 위험한 출력까지 생성할 가능성이 커질 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "또한 특정 거부 행동을 제거하는 과정에서 일반적인 추론 능력, 사실 정확성, 언어 품질 등 다른 특성이 영향을 받을 가능성도 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 Heretic은 \"성능 향상 도구\"라기보다 LLM의 정렬과 내부 표현을 연구하거나 실험하기 위한 프로젝트로 보는 것이 더 정확합니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "정리"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Heretic을 한 문장으로 정리하면 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "type": "blockquote",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "LLM 내부에서 거부 행동과 관련된 방향을 찾아, 원본 모델의 변화를 최소화하면서 그 영향을 자동으로 약화하는 도구"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대규모 파인튜닝 없이 모델 행동을 크게 바꿀 수 있다는 점에서 흥미롭고, 동시에 현재 LLM 안전성 정렬의 구조적 한계를 보여주는 사례이기도 합니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "참고자료"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Heretic GitHub: "
+                  },
+                  {
+                    "type": "text",
+                    "text": "https://github.com/p-e-w/heretic",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://github.com/p-e-w/heretic"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Refusal in Language Models Is Mediated by a Single Direction: "
+                  },
+                  {
+                    "type": "text",
+                    "text": "https://arxiv.org/abs/2406.11717",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://arxiv.org/abs/2406.11717"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "NeurIPS 2024 논문 페이지: "
+                  },
+                  {
+                    "type": "text",
+                    "text": "https://papers.neurips.cc/paper_files/paper/2024/hash/f545448535dfde4f9786555403ab7c49-Abstract-Conference.html",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://papers.neurips.cc/paper_files/paper/2024/hash/f545448535dfde4f9786555403ab7c49-Abstract-Conference.html"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "태그"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "AI",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "인공지능",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "LLM",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "Heretic",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "Abliteration",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "오픈소스AI",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "Gemma",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "Qwen",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "Llama",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "AI안전성",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "Alignment",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/159",
+    "originalId": "159",
+    "publishedAt": "2026-09-16T10:57:12+09:00",
+    "updatedAt": "2026-09-16T10:57:12+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

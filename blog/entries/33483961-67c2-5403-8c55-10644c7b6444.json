@@ -1,0 +1,409 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "33483961-67c2-5403-8c55-10644c7b6444",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-51 문제",
+  "slug": "tistory-69",
+  "description": "1. 문제 정보문제 번호 : old -51문제 점수 : 25점2. 문제 분석 문제에 들어가면 admin page라고 나오고 id와 pw를 입력받는다.페이지 소스보기를 통해서 소스를 보면 id에는 addslash, pw에는 md5처리를 하고 데이터베이스에 입력한다.Admin pageWrong\"; }?>IDPW....view-source3. 풀이만약 데이터베이스 설정이 멀티바이트 문자셋을 사용한다면 %aa'를 사용해서 %aa%5c%27에서 %aa%5c'를 GBK 인코딩 환경이라면 窶 (구)라는 한자로 바꿔 addslash를 우회할 수 있다,하지만 입력을 하면 안된다. 그러면 md5($_POST['pw'],true); 함수를 봐보자 md5는 해쉬 함수이다. md5(string $string, bool ..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-30",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-30T17:24:08+09:00",
+  "updatedAt": "2026-01-30T17:24:08+09:00",
+  "sourceDigest": "f321a451efc4d471c3cf966876d29426a92aacf60fa2e2c29f50ef4c60bf51fc",
+  "assets": [
+    {
+      "id": "9075554c-f9e5-5e2c-a9aa-0206b632c814",
+      "name": "tistory-69-9075554c-f9e5-5e2c-a9aa-0206b632c814.png",
+      "type": "image/png",
+      "path": "/assets/uploads/33483961-67c2-5403-8c55-10644c7b6444/9075554c-f9e5-5e2c-a9aa-0206b632c814.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "0333f240-0bca-5080-bcc8-e1f6627e48eb",
+      "name": "tistory-69-0333f240-0bca-5080-bcc8-e1f6627e48eb.png",
+      "type": "image/png",
+      "path": "/assets/uploads/33483961-67c2-5403-8c55-10644c7b6444/0333f240-0bca-5080-bcc8-e1f6627e48eb.png",
+      "sha": "e8cedee7a969f1341e8a4e7d4058a6df3c8149f1"
+    },
+    {
+      "id": "9ce985dc-6756-5bef-ada6-1ddf48362b08",
+      "name": "tistory-69-9ce985dc-6756-5bef-ada6-1ddf48362b08.png",
+      "type": "image/png",
+      "path": "/assets/uploads/33483961-67c2-5403-8c55-10644c7b6444/9ce985dc-6756-5bef-ada6-1ddf48362b08.png",
+      "sha": "ee6fe9b65f690870dbc1f4cfbde0cfd69a9992bb"
+    },
+    {
+      "id": "c47f80f4-5b5a-5628-a688-b72147246efe",
+      "name": "tistory-69-c47f80f4-5b5a-5628-a688-b72147246efe.png",
+      "type": "image/png",
+      "path": "/assets/uploads/33483961-67c2-5403-8c55-10644c7b6444/c47f80f4-5b5a-5628-a688-b72147246efe.png",
+      "sha": "2ffa216f797135b06d058ea369e48a81640ceaba"
+    },
+    {
+      "id": "c5a7078e-c200-5a60-bcba-dfbc4b5860f3",
+      "name": "tistory-69-c5a7078e-c200-5a60-bcba-dfbc4b5860f3.png",
+      "type": "image/png",
+      "path": "/assets/uploads/33483961-67c2-5403-8c55-10644c7b6444/c5a7078e-c200-5a60-bcba-dfbc4b5860f3.png",
+      "sha": "0ce9841660cb62a934e93a009914d304baf96260"
+    },
+    {
+      "id": "5dd5af96-6025-50db-b950-99449baa158a",
+      "name": "tistory-69-5dd5af96-6025-50db-b950-99449baa158a.png",
+      "type": "image/png",
+      "path": "/assets/uploads/33483961-67c2-5403-8c55-10644c7b6444/5dd5af96-6025-50db-b950-99449baa158a.png",
+      "sha": "b8f35dc8fe78264d32b6e90576d763531c599bd1"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "9075554c-f9e5-5e2c-a9aa-0206b632c814",
+          "src": "/assets/uploads/33483961-67c2-5403-8c55-10644c7b6444/9075554c-f9e5-5e2c-a9aa-0206b632c814.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -51"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 25점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "0333f240-0bca-5080-bcc8-e1f6627e48eb",
+          "src": "/assets/uploads/33483961-67c2-5403-8c55-10644c7b6444/0333f240-0bca-5080-bcc8-e1f6627e48eb.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제에 들어가면 admin page라고 나오고 id와 pw를 입력받는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "페이지 소스보기를 통해서 소스를 보면 id에는 addslash, pw에는 md5처리를 하고 데이터베이스에 입력한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n  include \"../../config.php\";\n  if($_GET['view_source']) view_source();\n?><html>\n<head>\n<title>Challenge 51</title>\n<style>\ntable{ color:lightgreen;}\n</style>\n</head>\n<body bgcolor=black><br><br>\n<font color=silver>\n<center><h1>Admin page</h1></center>\n</font>\n<?php\n  if($_POST['id'] && $_POST['pw']){\n    $db = dbconnect();\n    $input_id = addslashes($_POST['id']);\n    $input_pw = md5($_POST['pw'],true);\n    $result = mysqli_fetch_array(mysqli_query($db,\"select id from chall51 where id='{$input_id}' and pw='{$input_pw}'\"));\n    if($result['id']) solve(51);\n    if(!$result['id']) echo \"<center><font color=green><h1>Wrong</h1></font></center>\";\n  }\n?>\n<br><br><br>\n<form method=post>\n<table border=0 align=center bgcolor=gray width=200 height=100>\n<tr align=center><td>ID</td><td><input type=text name=id></td></tr>\n<tr align=center><td>PW</td><td><input type=password name=pw></td></tr>\n<tr><td colspan=2 align=center><input type=submit></td></tr>\n</table>\n<font color=silver>\n<div align=right><br>.<br>.<br>.<br>.<br><a href=./?view_source=1>view-source</a></div>\n</font>\n</form>\n</body>\n</html>"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "만약 데이터베이스 설정이 멀티바이트 문자셋을 사용한다면 %aa'를 사용해서 %aa%5c%27에서 %aa%5c'를 GBK 인코딩 환경이라면 窶 (구)라는 한자로 바꿔 addslash를 우회할 수 있다,"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 입력을 하면 안된다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "9ce985dc-6756-5bef-ada6-1ddf48362b08",
+          "src": "/assets/uploads/33483961-67c2-5403-8c55-10644c7b6444/9ce985dc-6756-5bef-ada6-1ddf48362b08.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "c47f80f4-5b5a-5628-a688-b72147246efe",
+          "src": "/assets/uploads/33483961-67c2-5403-8c55-10644c7b6444/c47f80f4-5b5a-5628-a688-b72147246efe.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그러면 md5($_POST['pw'],true); 함수를 봐보자 md5는 해쉬 함수이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "md5(string $string, bool $binary = false): string"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "함수의 정의로 두번째 인자인 바이너리 옵션을 true로 하면 16bit 바이너리 형태로 반환한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "pw값으로 129581926211651571912466741651878684928 를 입력하면"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "b\"\\x06\\xdaT0D\\x9f\\x8fo#\\xdf\\xc1'or'8\"가 되어서 sql이 항상 참으로 성공하게 된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import hashlib\n\ndata = \"129581926211651571912466741651878684928\"\n\nbinary_result = hashlib.md5(data.encode()).digest()\n\n# 1. 실제 바이너리 데이터 출력 (깨져 보일 수 있음)\nprint(\"Binary Output:\", binary_result)\n\n\n# 2. 16진수로 변환해서 보기 (검증용)\nprint(\"Hex Output:\", binary_result.hex())"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파이썬 코드로 확인해보면 아래처럼 나온다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "c5a7078e-c200-5a60-bcba-dfbc4b5860f3",
+          "src": "/assets/uploads/33483961-67c2-5403-8c55-10644c7b6444/c5a7078e-c200-5a60-bcba-dfbc4b5860f3.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "5dd5af96-6025-50db-b950-99449baa158a",
+          "src": "/assets/uploads/33483961-67c2-5403-8c55-10644c7b6444/5dd5af96-6025-50db-b950-99449baa158a.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "서버가 멀티바이트 문자셋을 사용하지 않아 ID 필드의 addslashes 우회 공격은 불가능함을 확인하고 PW 필드의 md5(Raw Binary) 취약점으로 대상을 변경했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "md5 함수의 결과인 바이너리 데이터가 SQL 쿼리에 그대로 삽입될 때 인젝션 구문이 형성되는 원리를 이용했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "해싱 후 'or'8 패턴이 생성되는 값을 입력하여 쿼리문을 항상 참으로 조작함으로써 관리자 인증에 성공했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/69",
+    "originalId": "69",
+    "publishedAt": "2026-01-30T17:24:08+09:00",
+    "updatedAt": "2026-01-30T17:24:08+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

@@ -1,0 +1,392 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "197a328e-68c9-5505-8384-75446be02536",
+  "kind": "posts",
+  "title": "[Ghidra] 리버스 엔지니어링 기드라 실전 가이드 스터디 - chapter 5(level3)",
+  "slug": "tistory-54",
+  "description": "1. level3 crackme(bof)level 3 크랙미 디스어셈블 결과이다. param_2를 입력받아 welcome param_2를 하고 주사위 게임을 해서 10번 연속으로 맞춰야 게임을 이길 수 있다.undefined8 main(int param_1,undefined8 *param_2){ int iVar1; undefined8 uVar2; char name [24]; uint seed; uint random_val; FILE *File; uint i; uint local_c; if (param_1 == 2) { seed = 0; File = fopen(\"/dev/urandom\",\"r\"); fread(&seed,4,1,File); fclose(File); ..",
+  "category": "Security / Reversing",
+  "date": "2026-01-24",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-24T03:29:14+09:00",
+  "updatedAt": "2026-01-24T03:30:02+09:00",
+  "sourceDigest": "b001fb4375905619128514464ed16b9b1b3914343b0e8fb80c3f953c70398092",
+  "assets": [
+    {
+      "id": "7fcb7ee9-bf04-53a3-9027-363611263d31",
+      "name": "tistory-54-7fcb7ee9-bf04-53a3-9027-363611263d31.jpg",
+      "type": "image/jpeg",
+      "path": "/assets/uploads/197a328e-68c9-5505-8384-75446be02536/7fcb7ee9-bf04-53a3-9027-363611263d31.jpg",
+      "sha": "81eecea152274b4d569428cef432689bb7b027c0"
+    },
+    {
+      "id": "2c5f8e05-190d-514d-adc3-597d8c856dda",
+      "name": "tistory-54-2c5f8e05-190d-514d-adc3-597d8c856dda.png",
+      "type": "image/png",
+      "path": "/assets/uploads/197a328e-68c9-5505-8384-75446be02536/2c5f8e05-190d-514d-adc3-597d8c856dda.png",
+      "sha": "2cce29cdc044f84493574b4cba0bb1343b1fb13e"
+    },
+    {
+      "id": "f19b0764-ddc1-5120-970f-9869cd9e1ab0",
+      "name": "tistory-54-f19b0764-ddc1-5120-970f-9869cd9e1ab0.png",
+      "type": "image/png",
+      "path": "/assets/uploads/197a328e-68c9-5505-8384-75446be02536/f19b0764-ddc1-5120-970f-9869cd9e1ab0.png",
+      "sha": "a6595e5fe653973c4ac67346cc1db1b20005a325"
+    },
+    {
+      "id": "708daf2b-2899-5833-8d8e-74d110dc247d",
+      "name": "tistory-54-708daf2b-2899-5833-8d8e-74d110dc247d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/197a328e-68c9-5505-8384-75446be02536/708daf2b-2899-5833-8d8e-74d110dc247d.png",
+      "sha": "d6eb2fb74d4906ede7b7464f23100bb15b37f7c0"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "7fcb7ee9-bf04-53a3-9027-363611263d31",
+          "src": "/assets/uploads/197a328e-68c9-5505-8384-75446be02536/7fcb7ee9-bf04-53a3-9027-363611263d31.jpg",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. level3 crackme(bof)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "level 3 크랙미 디스어셈블 결과이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "param_2를 입력받아 welcome param_2를 하고 주사위 게임을 해서 10번 연속으로 맞춰야 게임을 이길 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "undefined8 main(int param_1,undefined8 *param_2)\n\n{\n  int iVar1;\n  undefined8 uVar2;\n  char name [24];\n  uint seed;\n  uint random_val;\n  FILE *File;\n  uint i;\n  uint local_c;\n  \n  if (param_1 == 2) {\n    seed = 0;\n    File = fopen(\"/dev/urandom\",\"r\");\n    fread(&seed,4,1,File);\n    fclose(File);\n    strcpy(name,(char *)param_2[1]);\n    printf(\"Welcome %s.\\n\",name);\n    srand(seed);\n    puts(\"Guess the outcome of my rolled dice.\");\n    puts(\"Please clear this game without patching the binary...\");\n    for (i = 1; (int)i < 0xb; i = i + 1) {\n      printf(\"My Dice rolled... Try your luck![%d/10]\\n\",(ulong)i);\n      puts(\"1? or 2? ... 6?\");\n      iVar1 = rand();\n      random_val = iVar1 % 6 + 1;\n      iVar1 = getchar();\n      local_c = iVar1 % 0x30;\n      if (local_c == 10) {\n        iVar1 = getchar();\n        local_c = iVar1 % 0x30;\n      }\n      printf(\"My dice: %d, Your guess: %d\\n\",(ulong)random_val,(ulong)local_c);\n      if (local_c != random_val) {\n        puts(\"You Lose!\");\n        return 1;\n      }\n      puts(\"You Win!\\n\");\n    }\n    printf(\"Congratz %s!\\n\",name);\n    uVar2 = 0;\n  }\n  else {\n    printf(\"%s your_name_is_here\\n\",*param_2);\n    uVar2 = 0xffffffff;\n  }\n  return uVar2;\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 의사 난수"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "의사난수는 렌덤하게 보이지만 확정적인 계산으로 요구되는 수치로 된 수열이다. 규칙성, 재현성이 없는 수치를 컴퓨터가 작성한 수식으로 만들어 시드값을 계산하면서 랜덤하게 보이는 값을 나타낸 것이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "컴퓨터는 논리적인 기계이므로 스스로 예측 불가능한 '진짜 우연'을 만들어낼 수 없다. 따라서 복잡한 계산식을 통해 마치 무작위인 것처럼 보이는 수의 나열을 만들어내는데, 이를 의사난수라고 한다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 버퍼오버플로우(BOF)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "버퍼 오버플로우는 할당된 영역보다 더 많은 데이터를 입력해 인접한 버퍼까지 데이터가 침범하는 것이다. c언어에서는 취약한 함수들이 있다. getpw, gets, sprintf, strcat, strcpy, vsprintf이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "level3문제는 name값이 24 byte영역을 가지고 strcpy로 입력을 받는다. 바로 아래 주소에 seed값이 있어 seed값까지 총 28byte를 strcpy로 덮어 씌우면 seed값을 고정할 수 있어 값을 예측할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 실행"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "name 값을 넘어서 a로 28글자를 입력해 28byte를 입력하면 seed값을 0x61616161로 고정할 수 있다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "그러면 시드값이 고정이고 계속 같은 값을 낼테니 해보면 564662362순으로 주사위가 나타난다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "2c5f8e05-190d-514d-adc3-597d8c856dda",
+          "src": "/assets/uploads/197a328e-68c9-5505-8384-75446be02536/2c5f8e05-190d-514d-adc3-597d8c856dda.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "f19b0764-ddc1-5120-970f-9869cd9e1ab0",
+          "src": "/assets/uploads/197a328e-68c9-5505-8384-75446be02536/f19b0764-ddc1-5120-970f-9869cd9e1ab0.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. PyGhidra를 사용한 취약한 함수 찾기 스크립트"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파이썬 스크립트로 bof에 취약한 함수들을 찾아보자."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "\n#TODO Add User Code Here\ndef list_xrefs_call_functions(func_names):\n    manager = currentProgram.getFunctionManager()\n    for func in manager.getFunctions(True):#true는 정방향\n        if func.getName() in func_names:\n            for xref in getReferencesTo(func.getEntryPoint()):\n                if xref.getReferenceType().toString() == 'UNCONDITIONAL_CALL':#call하는가?\n                    print('{} is called at {}'.format(func.getName(), xref.getFromAddress()))\n\n\ndagerous_fun_names = [\"getpw\", \"gets\", \"sprintf\", \"strcat\", \"strcpy\", \"vsprintf\"]\n\nlist_xrefs_call_functions(dagerous_fun_names)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기드라 스크립트로 돌리면 아래 문자열이 나온다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "708daf2b-2899-5833-8d8e-74d110dc247d",
+          "src": "/assets/uploads/197a328e-68c9-5505-8384-75446be02536/708daf2b-2899-5833-8d8e-74d110dc247d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "strcpy가 0x00100910에 사용된 것을 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이 프로그램은 입력 길이를 검증하지 않는 strcpy 함수를 사용하여, 24바이트 크기의 name 버퍼를 넘어서는 입력 시 인접한 시드변수 영역까지 침범하는 버퍼 오버플로우 취약점이 존재한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "a를 28개 입력하여 시드 값을 고정(0x61616161)하면 의사난수의 결과가 결정론적 패턴(5, 6, 4...)으로 바뀌어, 주사위 값을 미리 예측하고 게임을 클리어할 수 있다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "기드라의 파이썬 스크립팅(PyGhidra) 기능을 활용하면 strcpy와 같이 보안에 취약한 함수들이 바이너리 내 어디서 호출되는지 자동으로 탐색하여 분석 시간을 단축할 수 있다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/54",
+    "originalId": "54",
+    "publishedAt": "2026-01-24T03:29:14+09:00",
+    "updatedAt": "2026-01-24T03:30:02+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

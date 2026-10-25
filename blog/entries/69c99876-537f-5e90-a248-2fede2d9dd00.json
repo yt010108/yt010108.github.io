@@ -1,0 +1,1620 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "69c99876-537f-5e90-a248-2fede2d9dd00",
+  "kind": "posts",
+  "title": "[WebGoat] Introduction & General",
+  "slug": "tistory-23",
+  "description": "WebGoat란? WebGoat는 OWASP(Open Web Application Security Project)에서 개발 및 관리하는 의도적으로 취약하게 만든 웹 애플리케이션으로 WebGoat를 통해 OWASP top10 취약점과 그 외 취약점들을 실습하고 익힐 수 있다. 더 자세한 내용은 OWASP 공식 홈페이지에서 확인할 수 있다. OWASP WebGoat | OWASP FoundationOWASP WebGoat on the main website for The OWASP Foundation. OWASP is a nonprofit foundation that works to improve the security of software.owasp.org HTTP BasicHTTP 작동 방식:모든 H..",
+  "category": "Wargame / WebGoat",
+  "date": "2026-01-12",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-12T16:35:52+09:00",
+  "updatedAt": "2026-01-20T13:56:25+09:00",
+  "sourceDigest": "7cacf709a55e6866fa6419931571b1031402697700de04fc2e5c3a41050b0124",
+  "assets": [
+    {
+      "id": "5b84adb3-2434-5db3-b66c-08a14a1d1eea",
+      "name": "tistory-23-5b84adb3-2434-5db3-b66c-08a14a1d1eea.png",
+      "type": "image/png",
+      "path": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/5b84adb3-2434-5db3-b66c-08a14a1d1eea.png",
+      "sha": "ac97b0e691257672450f413e52ca649d130fc7ce"
+    },
+    {
+      "id": "ecf36291-1bd4-5aa7-ab25-fe8d3293e778",
+      "name": "tistory-23-ecf36291-1bd4-5aa7-ab25-fe8d3293e778.png",
+      "type": "image/png",
+      "path": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/ecf36291-1bd4-5aa7-ab25-fe8d3293e778.png",
+      "sha": "21da59f7afa6d2389076b311d14a796268cfdcb3"
+    },
+    {
+      "id": "23a1d6a5-1d00-5a03-b545-6a1a81b88357",
+      "name": "tistory-23-23a1d6a5-1d00-5a03-b545-6a1a81b88357.png",
+      "type": "image/png",
+      "path": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/23a1d6a5-1d00-5a03-b545-6a1a81b88357.png",
+      "sha": "ef2a919c9c48d2a85ca06f1c3b02e69bb728bb3c"
+    },
+    {
+      "id": "9ba25ddd-40ad-572d-8806-a5323607014d",
+      "name": "tistory-23-9ba25ddd-40ad-572d-8806-a5323607014d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/9ba25ddd-40ad-572d-8806-a5323607014d.png",
+      "sha": "9aebe75edb0c9651ff18ac1a209bebeb570c1eea"
+    },
+    {
+      "id": "d00361f1-db04-5ec9-a19d-2641e595ec75",
+      "name": "tistory-23-d00361f1-db04-5ec9-a19d-2641e595ec75.png",
+      "type": "image/png",
+      "path": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/d00361f1-db04-5ec9-a19d-2641e595ec75.png",
+      "sha": "704d044050d730b3f5ff667f6289a1999a7fbc4c"
+    },
+    {
+      "id": "50007ed9-b1d5-5255-b0af-ca3f47b7839a",
+      "name": "tistory-23-50007ed9-b1d5-5255-b0af-ca3f47b7839a.png",
+      "type": "image/png",
+      "path": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/50007ed9-b1d5-5255-b0af-ca3f47b7839a.png",
+      "sha": "fd109e2096fa5f5f539413e680d3001f4181d8f8"
+    },
+    {
+      "id": "cb52a94d-67db-54d4-8553-aa03a4fe8e97",
+      "name": "tistory-23-cb52a94d-67db-54d4-8553-aa03a4fe8e97.png",
+      "type": "image/png",
+      "path": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/cb52a94d-67db-54d4-8553-aa03a4fe8e97.png",
+      "sha": "5262b76dd8c9a18d3298d7e5a17efbb604629f19"
+    },
+    {
+      "id": "b9c75bb5-77d0-5f5a-a0fb-72d21b6ff811",
+      "name": "tistory-23-b9c75bb5-77d0-5f5a-a0fb-72d21b6ff811.png",
+      "type": "image/png",
+      "path": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/b9c75bb5-77d0-5f5a-a0fb-72d21b6ff811.png",
+      "sha": "19fc1fa8b8cc7ebad96e1d6eb2e3df4405f93540"
+    },
+    {
+      "id": "8bff3b8c-c4e9-56be-b186-02ffa8ab9f1f",
+      "name": "tistory-23-8bff3b8c-c4e9-56be-b186-02ffa8ab9f1f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/8bff3b8c-c4e9-56be-b186-02ffa8ab9f1f.png",
+      "sha": "76c7764664ced598ed01133896d724b3949f9e10"
+    },
+    {
+      "id": "b929bcee-2f7d-5641-92ee-8f1a78b83662",
+      "name": "tistory-23-b929bcee-2f7d-5641-92ee-8f1a78b83662.png",
+      "type": "image/png",
+      "path": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/b929bcee-2f7d-5641-92ee-8f1a78b83662.png",
+      "sha": "42abfa8054e76e9c1b77dfccfbfca1c2d20a76c2"
+    },
+    {
+      "id": "aa39d602-890c-5cc9-ba9b-fde8a08569dc",
+      "name": "tistory-23-aa39d602-890c-5cc9-ba9b-fde8a08569dc.png",
+      "type": "image/png",
+      "path": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/aa39d602-890c-5cc9-ba9b-fde8a08569dc.png",
+      "sha": "34e640a430307257ceb6ead502ef676c0cd1b57d"
+    },
+    {
+      "id": "40b7bb59-1d76-505c-aad0-9c01c07a8b9b",
+      "name": "tistory-23-40b7bb59-1d76-505c-aad0-9c01c07a8b9b.png",
+      "type": "image/png",
+      "path": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/40b7bb59-1d76-505c-aad0-9c01c07a8b9b.png",
+      "sha": "2207d1e0c5d5550fb61101922fa03fe4a98d8ae8"
+    },
+    {
+      "id": "48877373-b884-527a-ad30-979bd4af8590",
+      "name": "tistory-23-48877373-b884-527a-ad30-979bd4af8590.png",
+      "type": "image/png",
+      "path": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/48877373-b884-527a-ad30-979bd4af8590.png",
+      "sha": "5d6795ba99f1b2b92e9ebfd5053483f2b7acfc67"
+    },
+    {
+      "id": "7c49cf19-3da8-575d-8596-644117795c45",
+      "name": "tistory-23-7c49cf19-3da8-575d-8596-644117795c45.png",
+      "type": "image/png",
+      "path": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/7c49cf19-3da8-575d-8596-644117795c45.png",
+      "sha": "1e110c49d6809821a1af8f11dd78b3c9345ae069"
+    },
+    {
+      "id": "c8531a6f-acce-5626-8700-c34ffb09efd3",
+      "name": "tistory-23-c8531a6f-acce-5626-8700-c34ffb09efd3.png",
+      "type": "image/png",
+      "path": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/c8531a6f-acce-5626-8700-c34ffb09efd3.png",
+      "sha": "f30a8f3b83b45e7b9cb857a23e52a2a8958a2304"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "5b84adb3-2434-5db3-b66c-08a14a1d1eea",
+          "src": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/5b84adb3-2434-5db3-b66c-08a14a1d1eea.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "WebGoat란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "WebGoat는 OWASP(Open Web Application Security Project)에서 개발 및 관리하는 의도적으로 취약하게 만든 웹 애플리케이션으로 WebGoat를 통해 OWASP top10 취약점과 그 외 취약점들을 실습하고 익힐 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "더 자세한 내용은 OWASP 공식 홈페이지에서 확인할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "7d7dddb9-e299-539a-813e-2d2b4c39e4f8",
+          "href": "https://owasp.org/www-project-webgoat/",
+          "title": "OWASP WebGoat | OWASP Foundation",
+          "description": "OWASP WebGoat on the main website for The OWASP Foundation. OWASP is a nonprofit foundation that works to improve the security of software.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/3d0d321afa7acfbbc0243bd8aa26ae79d91f9ab8560ffa5a2e76152f37499479.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HTTP Basic"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HTTP 작동 방식:"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모든 HTTP 트랜잭션은 동일한 일반적인 형식을 따릅니다. 각 클라이언트 요청과 서버 응답은 요청 또는 응답 라인, 헤더 섹션 및 엔티티 본문의 세 부분으로 구성됩니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "클라이언트는 다음과 같이 거래를 시작합니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "클라이언트는 서버에 접속하여 문서 요청을 보냅니다. GET 요청에는 URL 매개변수가 포함될 수 있으며, 이러한 매개변수는 웹 접속 로그에서 확인할 수 있습니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "GET /index.html?param=value HTTP/1.0"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "다음으로 클라이언트는 서버에 자신의 구성과 허용할 문서 형식을 알리기 위해 선택적 헤더 정보를 전송합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "User-Agent: Mozilla/4.06 Accept: image/gif,image/jpeg, "
+                  },
+                  {
+                    "type": "text",
+                    "text": "/",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "POST 요청에서 사용자가 제공하는 데이터는 선택적 헤더 뒤에 오며, POST URL 자체에는 포함되지 않습니다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2번 문제 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이름을 입력하고 go 버튼을 누르면 가는 http요청을 확인하는 문제이다. 개발자도구 network탭에서 HTTP POST요청으로 name이 전해지는 것을 확인할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "ecf36291-1bd4-5aa7-ab25-fe8d3293e778",
+          "src": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/ecf36291-1bd4-5aa7-ab25-fe8d3293e778.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "23a1d6a5-1d00-5a03-b545-6a1a81b88357",
+          "src": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/23a1d6a5-1d00-5a03-b545-6a1a81b88357.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "9ba25ddd-40ad-572d-8806-a5323607014d",
+          "src": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/9ba25ddd-40ad-572d-8806-a5323607014d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3번 문제 "
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "d00361f1-db04-5ec9-a19d-2641e595ec75",
+          "src": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/d00361f1-db04-5ec9-a19d-2641e595ec75.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "제출하는 폼의 HTTP메소드를 찾는 문제이다. asd,asd로 채우고 요청을 해보면 POST요청인 것을 알 수 있다. 그리고 payload를 보면 magic number가 27인 것을 확인할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "50007ed9-b1d5-5255-b0af-ca3f47b7839a",
+          "src": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/50007ed9-b1d5-5255-b0af-ca3f47b7839a.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "cb52a94d-67db-54d4-8553-aa03a4fe8e97",
+          "src": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/cb52a94d-67db-54d4-8553-aa03a4fe8e97.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HTTP Proxies"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HTTP 프록시란 무엇인가요?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "프록시는 HTTP 클라이언트를 백엔드 리소스에 연결해주는 포워딩 애플리케이션입니다. HTTP 클라이언트는 브라우저나 curl, SOAP UI, Postman 등의 애플리케이션일 수 있습니다. 일반적으로 이러한 프록시는 클라이언트 자체에서 인터넷에 직접 연결할 수 없을 때 라우팅 및 인터넷 접속을 위해 사용됩니다. 따라서 HTTP 프록시는 애플리케이션 테스트 시에도 유용합니다. 프록시 로그 기록을 통해 클라이언트에서 서버로 실제로 전송된 내용을 확인할 수 있습니다. 요청 및 응답 헤더와 XML, JSON 또는 기타 페이로드를 분석할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "HTTP 프록시는 클라이언트로부터 요청을 받아 중계합니다. 또한 일반적으로 요청을 기록하기도 합니다. 프록시는 중간자 역할을 합니다. 클라이언트나 브라우저가 HTTP 프록시의 인증서를 신뢰하는 한, HTTPS 사용 여부와 관계없이 정상적으로 작동합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "WebGoat에서는 프록시로 zap을 사용하지만 저는 좀 더 대중적인 burp suite를 사용해서 문제를 풀었습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5번 문제"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "b9c75bb5-77d0-5f5a-a0fb-72d21b6ff811",
+          "src": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/b9c75bb5-77d0-5f5a-a0fb-72d21b6ff811.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "POST를 GET으로 바꾸고 헤더를 추가하고 그리고 querystring으로 파라미터를 제출해라가 문제입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "8bff3b8c-c4e9-56be-b186-02ffa8ab9f1f",
+          "src": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/8bff3b8c-c4e9-56be-b186-02ffa8ab9f1f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "burp에서 post요청을 가로채서 post를 get으로 바꾸고 Content-Length지우고, x-request-intercepted:true 추가해주고 application querystring으로 파라미터를 추가하고 요청하면 성공"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "GET /WebGoat/HttpProxies/intercept-request?changeMe=Requests+are+tampered+easily HTTP/1.1\nHost: 127.0.0.1:8080\nsec-ch-ua-platform: \"Windows\"\nAccept-Language: ko-KR,ko;q=0.9\nsec-ch-ua: \"Chromium\";v=\"143\", \"Not A(Brand\";v=\"24\"\nsec-ch-ua-mobile: ?0\nX-Requested-With: XMLHttpRequest\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36\nAccept: */*\nOrigin: http://127.0.0.1:8080\nSec-Fetch-Site: same-origin\nSec-Fetch-Mode: cors\nSec-Fetch-Dest: empty\nReferer: http://127.0.0.1:8080/WebGoat/start.mvc?username=yt1234\nAccept-Encoding: gzip, deflate, br\nx-request-intercepted: true\nCookie: JSESSIONID=948757237151EDB8F2296DA41A5ED9A7\nContent-Length: 22\n\nConnection: keep-alive"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "b929bcee-2f7d-5641-92ee-8f1a78b83662",
+          "src": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/b929bcee-2f7d-5641-92ee-8f1a78b83662.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Developer Tools"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "구글 크롬 개발자 도구"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "특정 과제를 완료하려면 JavaScript 소스 코드를 살펴보거나 JavaScript 명령어를 직접 실행해야 할 때가 있습니다. Google Chrome은 이러한 작업을 비롯한 다양한 작업을 수행할 수 있도록 여러 도구를 제공합니다. 이러한 도구는 Google Chrome에만 있는 것은 아니지만, 거의 모든 최신 웹 브라우저에는 자체적인 도구들이 있습니다. 이 글에서는 Google Chrome에서 제공하는 도구들을 중점적으로 다루겠습니다. 물론 Firefox나 Safari와 같은 다른 브라우저를 사용하셔도 되지만, 이 경우 일부 단계가 다를 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다음 튜토리얼은 이러한 도구에 대한 모든 것을 가르치는 것이 아니라는 점을 명심하십시오. 이 튜토리얼은 특정 작업을 완료하는 데 필요한 핵심 지식에만 초점을 맞출 것입니다. 또한, 이러한 도구에 이미 익숙하다면 이 부분을 건너뛰셔도 됩니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "시작하려면 "
+          },
+          {
+            "type": "text",
+            "text": "개발자 도구를 여세요",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " . 개발자 도구를 여는 방법은 여러 가지가 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "브라우저 창의 아무 곳이나 마우스 오른쪽 버튼으로 클릭하고 \"검사\" 옵션을 선택하세요 ."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "브라우저 메뉴(오른쪽 상단의 점 3개)로 이동한 다음 \"도구 더보기\" 를 클릭하고 \"개발자 도구\" 옵션을 선택하세요 ."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "키보드 단축키 Ctrl + Shift + I를 사용하세요."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "요소 탭"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "요소 탭에서는 웹사이트를 정의하고 스타일을 지정하는 데 사용된 HTML 및 CSS 코드를 볼 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HTML 소스"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "마우스 커서를 특정 줄 위에 올리면 웹사이트의 해당 부분이 파란색으로 바뀌는 것을 볼 수 있습니다. 이는 해당 HTML 줄이 웹사이트의 이 부분을 정의한다는 의미입니다. '요소' 탭에서는 모든 HTML 요소를 수정할 수 있습니다. 예를 들어, 단락(<p>…​</p>) 태그를 클릭하면 웹사이트 내용을 편집할 수 있습니다. 변경 사항을 적용한 후 Enter 키를 누르면 Chrome이 웹사이트를 업데이트하여 수정 내용을 반영합니다. 또한 사용된 HTML 태그, 태그의 클래스 및 ID 등을 변경할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "콘솔 탭"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "콘솔 탭에서는 로드된 JavaScript 파일이 출력한 모든 내용을 볼 수 있습니다. 빨간색으로 표시된 내용이 있더라도 걱정하지 마세요. 오류이지만 대부분 해결되었을 것입니다. 콘솔 탭에서 JavaScript 코드를 직접 실행할 수도 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "단축키를 사용하여 콘솔을 지우는 것으로 시작하세요.CTRL+L. JavaScript를 실행하려면 콘솔을 클릭하고 다음과 같이 입력한 다음 console.log(\"Hello WebGoat!\");Enter 키를 누르세요. Hello WebGoat그러면 콘솔에 `@JavaScript.js`가 나타날 것입니다. 콘솔에서는 간단한 산술 연산도 수행할 수 있습니다. 예를 들어 `@JavaScript.js`를 입력하고 1+3Enter 키를 누르면 콘솔에 `4`가 표시됩니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "참고: 콘솔에 오류 메시지가 나타날 수 있습니다 undefined. 이 메시지는 무시하셔도 됩니다. 이는 호출한 JavaScript 함수가 아무것도 반환하지 않았다는 의미일 뿐입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4번 문제 "
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "aa39d602-890c-5cc9-ba9b-fde8a08569dc",
+          "src": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/aa39d602-890c-5cc9-ba9b-fde8a08569dc.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개발자도구 콘솔창에 "
+          },
+          {
+            "type": "text",
+            "text": "webgoat.customjs.phoneHome()",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ".를 입력하면 응답이 오고 응답을 입력하면 성공한다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "40b7bb59-1d76-505c-aad0-9c01c07a8b9b",
+          "src": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/40b7bb59-1d76-505c-aad0-9c01c07a8b9b.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "48877373-b884-527a-ad30-979bd4af8590",
+          "src": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/48877373-b884-527a-ad30-979bd4af8590.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "소스 탭"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "소스 탭에서는 파일 시스템을 확인하고 웹사이트를 만드는 데 사용된 모든 HTML, CSS 및 JavaScript 파일을 볼 수 있습니다. 파일을 클릭하면 해당 파일의 내용을 볼 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "네트워크 탭"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "네트워크 탭에서는 웹사이트가 수행한 HTTP 요청 및 응답을 볼 수 있습니다. 특정 요청에 대한 자세한 정보를 보려면 해당 요청을 클릭하세요. 파란색 점 위에 있는 \"타임라인\"은 이러한 요청과 응답이 수행된 시점을 나타냅니다. 타임라인을 클릭하고 드래그하면 특정 기간 동안 수행된 요청만 볼 수 있습니다. 아래 창에는 해당 기간 동안 수행된 요청과 응답만 표시됩니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6번 문제"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "7c49cf19-3da8-575d-8596-644117795c45",
+          "src": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/7c49cf19-3da8-575d-8596-644117795c45.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Network탭에서 go 버튼을 누를 때 요청의 networkNum을 찾아라 개발자 도구를 열고 네트워크 탭에서 찾을 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "c8531a6f-acce-5626-8700-c34ffb09efd3",
+          "src": "/assets/uploads/69c99876-537f-5e90-a248-2fede2d9dd00/c8531a6f-acce-5626-8700-c34ffb09efd3.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "CIA 삼원칙"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CIA 삼원칙(기밀성, 무결성, 가용성)은 정보 보안 모델입니다. 이 삼원칙의 세 가지 요소는 정보 보안에서 가장 중요한 구성 요소로 여겨지며, 안전한 시스템에서 반드시 보장되어야 합니다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "이 세 가지 요소 중 하나라도 침해될 경우 심각한 결과를 초래할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "기밀성"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기밀성이란 \"정보가 승인되지 않은 개인, 단체 또는 프로세스에 제공되거나 공개되지 않도록 하는 속성\"입니다. 다시 말해, 기밀성은 승인되지 않은 사용자가 민감한 자료에 접근할 수 없도록 해야 함을 의미합니다. 기밀성은 가용성과 균형을 이루어야 합니다. 승인된 사용자는 자신이 권한을 부여받은 자료에 접근할 수 있어야 합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기밀성은 \"개인정보 보호\"와 유사하지만, 두 단어는 서로 바꿔 쓸 수 없습니다. 기밀성은 개인정보 보호의 구성 요소이며, 권한이 없는 주체로부터 자원을 보호하기 위해 구현됩니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기밀 유지를 저해하는 사례:"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "해커가 회사의 비밀번호 데이터베이스에 접근했습니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "중요한 내용이 담긴 이메일이 잘못된 사람에게 전송되었습니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "해커는 정보 전송을 가로채거나 도청하여 민감한 정보를 읽습니다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기밀 유지를 보장하는 방법의 예시"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터 암호화"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "적절하게 구현된 인증 및 접근 제어"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph"
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "안전하게 저장된 비밀번호"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "다중 요소 인증(MFA)"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "생체 인증"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "정보가 나타나는 장소/시간의 수를 최소화합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "적절하게 보안된 서버실과 같은 물리적 보안 통제"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "무결성"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "무결성이란 \"정확성과 완전성의 속성\"입니다. 다시 말해, 무결성은 데이터의 전체 수명 주기 동안 데이터의 일관성, 정확성 및 신뢰성을 유지하는 것을 의미합니다. 데이터는 전송 중에 변경되어서는 안 되며, 권한이 없는 주체가 데이터를 수정해서는 안 됩니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "무결성을 훼손하는 사례:"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터 입력 시 발생하는 인적 오류"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터 전송 중 오류 발생"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "소프트웨어 버그 및 하드웨어 오류"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "해커들은 접근 권한이 없는 정보를 변경합니다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "무결성을 보장하는 방법의 예"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "제대로 작동하는 인증 방법 및 접근 제어"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "해시 함수를 이용한 무결성 검사"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "백업 및 이중화"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "감사 및 로깅"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "가용성"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가용성이란 \"권한이 있는 주체가 요청 시 언제든지 접근하고 사용할 수 있는 속성\"을 의미합니다. 다시 말해, 권한이 있는 사람은 허용된 자원에 항상 접근할 수 있어야 합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가용성을 저해하는 사례:"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "서비스 거부 공격(DOS)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "하드웨어 오류"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "화재 또는 기타 자연재해"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "소프트웨어 또는 네트워크 설정 오류"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가용성을 보장하는 방법의 예"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "침입 탐지 시스템(IDS)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "네트워크 트래픽 제어"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "방화벽"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "하드웨어 및 기본 인프라의 물리적 보안"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "화재, 물 및 기타 요소로부터 보호"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "하드웨어 유지보수"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "중복성"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5번"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "답 4112"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Solution 4: Confidentiality can't be harmed by an intruder."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Solution 1: By changing the names and emails of one or more users stored in a database."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Solution 1: By exploiting bugs in the systems software to bypass authentication mechanisms for databases."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Solution 2: The systems security is compromised even if only one goal is harmed."
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/23",
+    "originalId": "23",
+    "publishedAt": "2026-01-12T16:35:52+09:00",
+    "updatedAt": "2026-01-20T13:56:25+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

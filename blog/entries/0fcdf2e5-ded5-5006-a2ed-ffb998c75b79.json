@@ -1,0 +1,576 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "0fcdf2e5-ded5-5006-a2ed-ffb998c75b79",
+  "kind": "posts",
+  "title": "[SK Rookies] Traffic Control과 NAT | ACL·NAT",
+  "slug": "tistory-155",
+  "description": "오늘 배운 내용이 자료는 라우터에서 트래픽을 제어하는 ACL과 사설 주소를 공인 주소로 변환하는 NAT를 함께 다룬다. ACL의 처리 순서와 적용 위치를 이해한 뒤 Standard, Extended, Named, VTY ACL을 구성하고, 이어서 Static NAT, Dynamic NAT, NAT Overload를 설정하는 흐름이다.ACL이란ACL(Access Control Lists)은 라우터를 통과하는 Packet 중 불필요하거나 나쁜 의도를 가진 Packet의 접근을 제어하기 위한 도구로 설명된다.핵심 동작은 세 가지다.Top-down 처리First-Match암묵적 denyProtocol별, 방향별, interface별 하나의 ACL을 적용한다는 원칙도 함께 제시된다. ACL은 Packet Filt..",
+  "category": "SK Rookies / 수업 정리",
+  "date": "2026-09-05",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-09-05T23:48:48+09:00",
+  "updatedAt": "2026-09-05T23:51:01+09:00",
+  "sourceDigest": "7ddec4a8a974423a353b33b8f19815092defdca6a12bf062a4623d19ef69cbb9",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[원본에서 불러올 수 없는 이미지]"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "오늘 배운 내용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 자료는 라우터에서 트래픽을 제어하는 ACL과 사설 주소를 공인 주소로 변환하는 NAT를 함께 다룬다. ACL의 처리 순서와 적용 위치를 이해한 뒤 Standard, Extended, Named, VTY ACL을 구성하고, 이어서 Static NAT, Dynamic NAT, NAT Overload를 설정하는 흐름이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "ACL이란"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ACL(Access Control Lists)은 라우터를 통과하는 Packet 중 불필요하거나 나쁜 의도를 가진 Packet의 접근을 제어하기 위한 도구로 설명된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "핵심 동작은 세 가지다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Top-down 처리"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "First-Match"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "암묵적 deny"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Protocol별, 방향별, interface별 하나의 ACL을 적용한다는 원칙도 함께 제시된다. ACL은 Packet Filtering뿐 아니라 NAT, QoS, 경로 조정 등에 사용된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "ACL 종류"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "조건식 기준으로 Standard ACL과 Extended ACL, 식별 방식으로 Numbered ACL과 Named ACL, 적용 방향으로 Inbound와 Outbound ACL로 나눈다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Standard ACL"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Standard ACL은 Source Address만 확인한다. 번호 범위는 1–99, 1300–1999이며 목적지에 가까운 곳, Outbound Interface에 적용하는 방식으로 설명된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Router(config)#access-list # permit/deny condition\nRouter(config-if)#protocol access-group # in/out\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예제에서는 특정 Host 또는 Network를 deny하고 나머지를 permit하는 구성을 보여준다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Router(config)#access-list 1 deny 192.168.2.80 0.0.0.0\nRouter(config)#access-list 1 permit 0.0.0.0 255.255.255.255\nRouter(config)#int e0/0\nRouter(config-if)#ip access-group 1 out\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Wildcard Bits"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Wildcard Mask에서 bit가 0이면 해당 IP Address bit와 반드시 일치하고, bit가 1이면 Don't Care로 처리한다. ACL 주소 조건을 만들 때 이 규칙을 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Extended ACL"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Extended ACL은 Source/Destination Address, Protocol, Port를 조건으로 사용할 수 있다. 번호 범위는 100–199, 2000–2699이며 출발지에 가까운 곳, Inbound Interface에 적용하는 방식으로 설명된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Router(config)#access-list # permit/deny protocol source source-wc eq port# destination destination-wc eq port# [established/log]\nRouter(config-if)#protocol access-group # in/out\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예제에서는 Web 서비스만 허용하거나 Telnet만 차단하는 방식이 나온다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Router(config)#access-list 101 permit tcp 192.168.1.0 0.0.0.255 192.168.2.80 0.0.0.0 eq 80\nRouter(config)#int e0/1\nRouter(config-if)#ip access-group 101 out\n"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Router(config)#access-list 101 deny tcp 192.168.2.0 0.0.0.255 192.168.1.0 0.0.0.255 eq telnet\nRouter(config)#access-list 101 permit ip any any\nRouter(config)#int e0/1\nRouter(config-if)#ip access-group 101 in\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Named ACL"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Named ACL은 Standard와 Extended ACL 모두에 적용할 수 있고 이름과 Sequence Number를 사용해 문장을 추가·삭제·수정할 수 있다는 점을 장점으로 제시한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Router(config)#ip access-list standard/extened name\nRouter(config std/ext-nacl)#[sequence#] permit/deny condition\nRouter(config-if)#ip access-group name in/out\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예제는 noAccessHost, noTelnet 같은 이름을 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "VTY ACL"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "VTY ACL은 Standard ACL을 사용해 Router로의 Telnet 접근 또는 다른 장비로 Telnet 접근하는 것을 제어한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Router(config)#line vty 0 4\nRouter(config-line)#access-class # in/out\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ACL 확인에는 다음 명령을 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Router#show access-lists\nRouter#show ip int e0/0\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "NAT 기본 개념"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "NAT는 Inside/Outside, Global/Local 용어를 사용한다. 자료에서는 RFC 3022, 사설 IP 주소를 이용한 공인 IP 주소 절약, 내부 IP 주소 은닉, ISP 변경 가능성을 특징으로 제시한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "NAT의 종류는 Static NAT, Dynamic NAT, NAT Overload다. 한계로 성능 저하, 종단간 기능 저하, 종단간 IP 추적 어려움, 복잡한 터널링, 서비스 중단 가능성을 언급한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Static NAT"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Static NAT는 1:1 연결이며 외부에서 내부 서버로 접근할 수 있는 방식으로 설명된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Router(config)#ip nat inside source static 192.168.1.80 203.239.185.80\nRouter(config)#int e0/0\nRouter(config-if)#ip nat inside\nRouter(config)#int s0/0\nRouter(config-if)#ip nat outside\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Dynamic NAT"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Dynamic NAT는 n:m 연결, 주소 Pool 사용, 외부에서 내부로 직접 접근하지 않는 형태로 설명된다. Global Address Pool과 Standard ACL을 만든 뒤 변환 규칙을 연결한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Router(config)#ip nat pool Sample 203.239.185.1 203.239.185.50 netmask 255.255.255.0\nRouter(config)#access-list 1 permit 192.168.1.0 0.0.0.255\nRouter(config)#ip nat inside source list 1 pool Sample\nRouter(config)#int e0/0\nRouter(config-if)#ip nat inside\nRouter(config)#int s0/0\nRouter(config-if)#ip nat outside\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "NAT Overload"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "NAT Overload는 m:1 연결이며 PAT로 설명된다. Dynamic NAT와 유사하지만 하나의 외부 Interface Address를 여러 내부 Host가 공유하는 구성 예가 나온다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Router(config)#access-list 1 permit 192.168.1.0 0.0.0.255\nRouter(config)#ip nat inside source list 1 int s0/0 overload\nRouter(config)#int e0/0\nRouter(config-if)#ip nat inside\nRouter(config)#int s0/0\nRouter(config-if)#ip nat outside\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "변환 상태는 다음 명령으로 확인한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Router#show ip nat translations\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "복습하면서 확인할 점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ACL은 Top-down → First-Match → implicit deny 흐름을 먼저 기억한다. Standard는 Source만, Extended는 Source/Destination/Protocol/Port까지 본다는 차이를 정리한다. NAT는 Static 1:1, Dynamic n:m, Overload m:1/PAT로 구분하고, 모든 구성에서 Inside/Outside Interface 지정이 빠지지 않는지 확인한다."
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/155",
+    "originalId": "155",
+    "publishedAt": "2026-09-05T23:48:48+09:00",
+    "updatedAt": "2026-09-05T23:51:01+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

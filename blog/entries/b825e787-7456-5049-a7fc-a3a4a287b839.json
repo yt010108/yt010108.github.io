@@ -1,0 +1,2773 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "b825e787-7456-5049-a7fc-a3a4a287b839",
+  "kind": "posts",
+  "title": "[WebGoat] (A3) Injection-sqli",
+  "slug": "tistory-30",
+  "description": "Injection-SQL 이란?이 모듈은 OWASP Top 10의 보안 취약점 중 'A03:2021 - Injection (인젝션)' 항목에 해당하는 SQL Injection(SQL 삽입 공격)을 다룹니다.sqli는 공격자가 웹 애플리케이션의 입력값(로그인 ID, 검색어 등)에 악의적인 SQL 구문을 조작하여 삽입함으로써, 데이터베이스(DB)가 개발자의 의도와 다른 명령을 실행하게 만드는 공격 기법입니다.개념이 강의에서는 구조화 질의 언어(SQL)가 무엇이며, 개발자의 원래 의도와는 다른 작업을 수행하도록 SQL을 어떻게 변형할 수 있는지 설명합니다.목표사용자는 SQL의 작동 방식과 용도에 대한 기본적인 이해를 갖추고 있어야 합니다.사용자는 SQL 인젝션이 무엇이며 어떻게 작동하는지에 대한 기본적인 이해..",
+  "category": "Wargame / WebGoat",
+  "date": "2026-01-19",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-19T23:10:32+09:00",
+  "updatedAt": "2026-02-13T00:09:50+09:00",
+  "sourceDigest": "4bad09e5e756fa1510a9df172fd3193e2770e9ff2c4c8b7ec7c4a47f5befc7ad",
+  "assets": [
+    {
+      "id": "b22b2873-e064-5d01-84cd-5f12565bfc10",
+      "name": "tistory-30-b22b2873-e064-5d01-84cd-5f12565bfc10.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/b22b2873-e064-5d01-84cd-5f12565bfc10.png",
+      "sha": "ac97b0e691257672450f413e52ca649d130fc7ce"
+    },
+    {
+      "id": "d7a243fc-f66b-5590-8e87-c5c99ebd767b",
+      "name": "tistory-30-d7a243fc-f66b-5590-8e87-c5c99ebd767b.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/d7a243fc-f66b-5590-8e87-c5c99ebd767b.png",
+      "sha": "d581470b2f2bd16c2aba44dc2dd73b9cab85a063"
+    },
+    {
+      "id": "7270db1b-085f-5036-8052-498025fd0b25",
+      "name": "tistory-30-7270db1b-085f-5036-8052-498025fd0b25.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/7270db1b-085f-5036-8052-498025fd0b25.png",
+      "sha": "12d691522a0437a8cc0e23a977025b65fd6a146f"
+    },
+    {
+      "id": "7ff94663-5c09-5df5-8f9a-67453f76f0d6",
+      "name": "tistory-30-7ff94663-5c09-5df5-8f9a-67453f76f0d6.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/7ff94663-5c09-5df5-8f9a-67453f76f0d6.png",
+      "sha": "db751e840059c94b7ad7dc968a9dfe74510a20e0"
+    },
+    {
+      "id": "ef875a93-9c03-51d6-9d11-009adfa21661",
+      "name": "tistory-30-ef875a93-9c03-51d6-9d11-009adfa21661.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/ef875a93-9c03-51d6-9d11-009adfa21661.png",
+      "sha": "46a3388dee694acafc53dc6dbfebe8fa0909a696"
+    },
+    {
+      "id": "6fe561c2-c126-5394-9479-34eaf4304666",
+      "name": "tistory-30-6fe561c2-c126-5394-9479-34eaf4304666.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/6fe561c2-c126-5394-9479-34eaf4304666.png",
+      "sha": "bea5dc480b0417b89566fe418a58c3c5cc74f4e1"
+    },
+    {
+      "id": "48208e05-437f-52c7-baea-08c7bd070f59",
+      "name": "tistory-30-48208e05-437f-52c7-baea-08c7bd070f59.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/48208e05-437f-52c7-baea-08c7bd070f59.png",
+      "sha": "658f2a951963a86bc8c7da083948fc4803790be4"
+    },
+    {
+      "id": "9932a43b-67d4-50e4-91c6-9c2803517325",
+      "name": "tistory-30-9932a43b-67d4-50e4-91c6-9c2803517325.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/9932a43b-67d4-50e4-91c6-9c2803517325.png",
+      "sha": "89eb87f9aa0ec518ae5ff0da064f2904c0eb6a85"
+    },
+    {
+      "id": "0fb65693-90b9-5265-9a18-7e48885030d7",
+      "name": "tistory-30-0fb65693-90b9-5265-9a18-7e48885030d7.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/0fb65693-90b9-5265-9a18-7e48885030d7.png",
+      "sha": "5c7a6eca7948c586a13773807604fb637d13a7b2"
+    },
+    {
+      "id": "91024216-8d1f-5ab0-8044-08a25d599a5a",
+      "name": "tistory-30-91024216-8d1f-5ab0-8044-08a25d599a5a.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/91024216-8d1f-5ab0-8044-08a25d599a5a.png",
+      "sha": "8d694a9ce8876a3cd2451fa1e48678630cf4dafd"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "b22b2873-e064-5d01-84cd-5f12565bfc10",
+          "src": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/b22b2873-e064-5d01-84cd-5f12565bfc10.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Injection-SQL 이란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 모듈은 OWASP Top 10의 보안 취약점 중 'A03:2021 - Injection (인젝션)' 항목에 해당하는 SQL Injection(SQL 삽입 공격)을 다룹니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "sqli는 공격자가 웹 애플리케이션의 입력값(로그인 ID, 검색어 등)에 악의적인 SQL 구문을 조작하여 삽입함으로써, 데이터베이스(DB)가 개발자의 의도와 다른 명령을 실행하게 만드는 공격 기법입니다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "개념"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 강의에서는 구조화 질의 언어(SQL)가 무엇이며, 개발자의 원래 의도와는 다른 작업을 수행하도록 SQL을 어떻게 변형할 수 있는지 설명합니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "목표"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "사용자는 SQL의 작동 방식과 용도에 대한 기본적인 이해를 갖추고 있어야 합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "사용자는 SQL 인젝션이 무엇이며 어떻게 작동하는지에 대한 기본적인 이해를 갖게 될 것입니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "사용자는 다음 사항에 대한 지식을 입증해야 합니다"
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "DML, DDL 및 DCL"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "문자열 SQL 인젝션"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "숫자 SQL 인젝션"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "SQL 인젝션이 CIA 삼원칙을 위반하는 방법"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL이란 무엇인가요?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL은 관계형 데이터베이스를 관리하고 그 안에 있는 데이터에 대해 다양한 작업을 수행하는 데 사용되는 표준화된(1986년 ANSI, 1987년 ISO) 프로그래밍 언어입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터베이스는 데이터의 모음입니다. 데이터는 행, 열, 테이블로 구성되며, 관련 정보를 더 효율적으로 찾을 수 있도록 색인이 지정되어 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "직원 데이터가 포함된 SQL 테이블 예시입니다. 테이블 이름은 'employees'입니다."
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "userid"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "first_name"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "last_name"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "department"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "salary"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 2
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "auth_tan"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "32147"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Paulina"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Travers"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Accounting"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "$46.000"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 2
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "P45JSI"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "89762"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Tobi"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Barnett"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Development"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "$77.000"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 2
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "TA9LL1"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "96134"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Bob"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Franco"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Marketing"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "$83.700"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 2
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "LO9S2V"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "34477"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Abraham"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Holman"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Development"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "$50.000"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 2
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "UU2ALK"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "37648"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "John"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Smith"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Marketing"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "$64.350"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "3SL99A"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "한 회사가 데이터베이스에 다음과 같은 직원 정보를 저장합니다: 고유 직원 번호('userid'), 성, 이름, 부서, 급여 및 거래 인증 번호('auth_tan'). 이러한 각 정보는 별도의 열에 저장되며, 각 행은 회사의 직원 한 명을 나타냅니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL 쿼리를 사용하면 데이터베이스 테이블과 인덱스 구조를 수정하고 데이터 행을 추가, 업데이트 및 삭제할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL 명령어는 크게 세 가지 범주로 나뉩니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터 조작 언어(DML)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터 정의 언어(DDL)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터 제어 언어(DCL)"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이러한 각 명령 유형은 공격자가 시스템의 기밀성, 무결성 및/또는 가용성을 손상시키는 데 사용될 수 있습니다. 다음 단원을 통해 SQL 명령 유형과 이러한 명령 유형이 보안 목표와 어떻게 관련되는지 자세히 알아보세요."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL 학습에 여전히 어려움을 느끼시거나 추가 정보 또는 연습이 필요하시면 "
+          },
+          {
+            "type": "text",
+            "text": "http://www.sqlcourse.com/ 에서",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "http://www.sqlcourse.com/"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 무료로 제공되는 온라인 교육 자료를 활용해 보세요."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "문제 2"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "d7a243fc-f66b-5590-8e87-c5c99ebd767b",
+          "src": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/d7a243fc-f66b-5590-8e87-c5c99ebd767b.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "select department from employees where first_name = 'Bob'"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터 조작 언어(DML)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이름에서 알 수 있듯이 데이터 조작 언어(DML)는 데이터 조작을 다룹니다. SELECT, INSERT, UPDATE, DELETE를 포함한 가장 일반적인 SQL 문들은 대부분 DML 문으로 분류될 수 있습니다. DML 문은 레코드를 요청(SELECT), 레코드 추가(INSERT), 레코드 삭제(DELETE), 기존 레코드 수정(UPDATE)에 사용될 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공격자가 SQL 데이터베이스에 DML 문을 \"삽입\"하는 데 성공하면 시스템의 기밀성(SELECT 문 사용), 무결성(UPDATE 문 사용) 및 가용성(DELETE 또는 UPDATE 문 사용)을 침해할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "DML 명령어는 데이터를 저장, 검색, 수정 및 삭제하는 데 사용됩니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "SELECT - 데이터베이스에서 데이터를 검색합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "INSERT - 데이터베이스에 데이터를 삽입합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "UPDATE - 데이터베이스 내 기존 데이터를 업데이트합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "DELETE - 데이터베이스에서 레코드를 삭제합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "예:"
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "데이터 검색:"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "직원 테이블에서 사용자 ID가 96134인 전화번호를 선택합니다 ."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "이 명령은 사용자 ID가 96134인 직원의 전화번호를 검색합니다."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "문제3"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "7270db1b-085f-5036-8052-498025fd0b25",
+          "src": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/7270db1b-085f-5036-8052-498025fd0b25.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터 정의 언어(DDL)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터 정의 언어(DDL)는 데이터 구조를 정의하는 명령어를 포함합니다. DDL 명령어는 일반적으로 데이터베이스의 스키마를 정의하는 데 사용됩니다. 스키마는 데이터베이스의 전체 구조 또는 구성을 나타내며, SQL 데이터베이스에서는 테이블, 인덱스, 뷰, 관계, 트리거 등의 객체를 포함합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공격자가 DDL 유형의 SQL 명령을 데이터베이스에 성공적으로 \"주입\"하면 시스템의 무결성(ALTER 및 DROP 문 사용)과 가용성(DROP 문 사용)을 손상시킬 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "DDL 명령어는 데이터베이스 객체의 구조를 생성, 수정 및 삭제하는 데 사용됩니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "CREATE - 테이블 및 뷰와 같은 데이터베이스 객체를 생성합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ALTER - 기존 데이터베이스의 구조를 변경합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "DROP - 데이터베이스에서 객체를 삭제합니다"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "예:"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph"
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "CREATE TABLE employees("
+                          },
+                          {
+                            "type": "hardBreak"
+                          },
+                          {
+                            "type": "text",
+                            "text": " userid varchar(6) not null primary key,"
+                          },
+                          {
+                            "type": "hardBreak"
+                          },
+                          {
+                            "type": "text",
+                            "text": " first_name varchar(20),"
+                          },
+                          {
+                            "type": "hardBreak"
+                          },
+                          {
+                            "type": "text",
+                            "text": " last_name varchar(20),"
+                          },
+                          {
+                            "type": "hardBreak"
+                          },
+                          {
+                            "type": "text",
+                            "text": " department varchar(20),"
+                          },
+                          {
+                            "type": "hardBreak"
+                          },
+                          {
+                            "type": "text",
+                            "text": " salary varchar(10),"
+                          },
+                          {
+                            "type": "hardBreak"
+                          },
+                          {
+                            "type": "text",
+                            "text": " auth_tan varchar(6)"
+                          },
+                          {
+                            "type": "hardBreak"
+                          },
+                          {
+                            "type": "text",
+                            "text": ");"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "이 문장은 2페이지에 제시된 직원 예시 표를 생성합니다."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "문제 4"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "7ff94663-5c09-5df5-8f9a-67453f76f0d6",
+          "src": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/7ff94663-5c09-5df5-8f9a-67453f76f0d6.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터 제어 언어(DCL)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터 제어 언어(DCL)는 데이터베이스에서 접근 제어 로직을 구현하는 데 사용됩니다. DCL을 사용하면 테이블, 뷰, 함수와 같은 데이터베이스 객체에 대한 사용자 권한을 부여하거나 취소할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공격자가 DCL 유형의 SQL 명령어를 데이터베이스에 성공적으로 \"주입\"하면, GRANT 명령어를 사용하여 시스템의 기밀성을, REVOKE 명령어를 사용하여 시스템의 가용성을 침해할 수 있습니다. 예를 들어, 공격자는 자신에게 데이터베이스에 대한 관리자 권한을 부여하거나 실제 관리자의 권한을 취소할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "DCL 명령어는 데이터베이스 객체에 대한 접근 제어를 구현하는 데 사용됩니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "GRANT - 사용자에게 데이터베이스 객체에 대한 접근 권한을 부여합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "REVOKE - GRANT 명령어를 사용하여 이전에 부여된 사용자 권한을 철회합니다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "문제5"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "ef875a93-9c03-51d6-9d11-009adfa21661",
+          "src": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/ef875a93-9c03-51d6-9d11-009adfa21661.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL 인젝션이란 무엇인가요?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL 인젝션(SQLi라고도 함)은 가장 흔한 웹 해킹 기법 중 하나입니다. "
+          },
+          {
+            "type": "text",
+            "text": "SQL 인젝션 공격은 클라이언트가 애플리케이션에 입력하는 SQL 쿼리를 통해 악성 코드를 삽입하는 방식입니다.",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 제대로 대응하지 않으면 SQL 인젝션은 데이터 무결성과 보안에 심각한 영향을 미칠 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL 인젝션은 검색 필드 입력과 같이 클라이언트에서 필터링되지 않은 데이터가 애플리케이션 자체의 SQL 인터프리터로 전달될 때 발생할 수 있습니다. 애플리케이션이 준비된 문(prepared statement) 등을 사용하여 사용자 입력을 올바르게 검증하지 않거나 특수 문자를 필터링하지 않으면 해커는 기본 SQL 문을 조작하여 악용할 수 있습니다. 예를 들어, "
+          },
+          {
+            "type": "text",
+            "text": "--",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " (해당 줄의 나머지 부분을 주석 처리함) 또는 "
+          },
+          {
+            "type": "text",
+            "text": ";",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "(SQL 쿼리를 종료함) 과 같은 SQL 메타 문자를 필터링하지 않으면 SQL 인젝션이 발생할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL 인젝션 예시"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어, 사용자가 폼 필드에 사용자 이름을 입력하는 것만으로 사용자 정보를 조회할 수 있는 웹 애플리케이션을 생각해 보세요. 사용자의 입력은 서버로 전송되어 SQL 쿼리에 삽입되고, SQL 인터프리터에 의해 처리됩니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터베이스에서 사용자 정보를 검색하는 SQL 쿼리는 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "\"SELECT * FROM users WHERE name = '\" + userName + \"'\";"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "변수 "
+          },
+          {
+            "type": "text",
+            "text": "userName은",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 클라이언트로부터 입력받은 값을 저장하고 이를 쿼리에 \"주입\"합니다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "입력값이 Smith인 경우 쿼리는 다음과 같이 됩니다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "\"SELECT * FROM users WHERE name = 'Smith'\";"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그러면 이름이 Smith인 사용자의 모든 데이터를 검색합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "공격자가 SQL 인터프리터에서 \"특수한\" 의미를 갖는 문자나 문자열(예: 세미콜론 "
+          },
+          {
+            "type": "text",
+            "text": "(;)",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " , "
+          },
+          {
+            "type": "text",
+            "text": "--",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " , 또는 따옴표( "
+          },
+          {
+            "type": "text",
+            "text": "'",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " ))이 포함된 데이터를 입력하고, 해당 데이터가 올바르게 검증되거나 정제되지 않으면 공격자는 SQL 쿼리의 의도된 동작을 변경하여 데이터베이스에서 다른 (악의적인) 작업을 수행할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "여기에 입력란이 있습니다. 쿼리가 어떻게 바뀌는지 더 잘 이해하려면 여기에 SQL 쿼리를 입력해 보세요."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사용자 이름:"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "\"SELECT * FROM users WHERE name = ''\";"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "예시"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL 인젝션은 단순히 사용자 한 명의 데이터를 읽는 것 이상의 다양한 용도로 사용될 수 있습니다. 다음은 해커가 SQL 인젝션 취약점을 악용하기 위해 폼 필드(또는 사용자 입력을 받는 모든 곳)에 입력할 수 있는 데이터의 몇 가지 예입니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Smith' OR '1' = '1"
+                  },
+                  {
+                    "type": "hardBreak"
+                  },
+                  {
+                    "type": "text",
+                    "text": "이 결과는 SELECT * FROM users WHERE name = 'Smith' OR TRUE;users 테이블의 모든 항목을 반환합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Smith' OR 1 = 1; --"
+                  },
+                  {
+                    "type": "hardBreak"
+                  },
+                  {
+                    "type": "text",
+                    "text": "SELECT * FROM users WHERE name = 'Smith' OR TRUE;--';첫 번째 예시와 마찬가지로, 이 결과 역시 users 테이블의 모든 항목을 반환합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Smith'; DROP TABLE users; TRUNCATE audit_log; --"
+                  },
+                  {
+                    "type": "hardBreak"
+                  },
+                  {
+                    "type": "text",
+                    "text": "여러 SQL 명령어를 연결하여 users 테이블을 삭제하고 audit_log 테이블의 모든 항목을 삭제합니다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL 인젝션의 결과"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL 인젝션 공격이 성공하면 다음과 같은 결과가 발생할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터베이스에서 민감한 데이터를 읽고 수정하세요."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터베이스에 대한 관리 작업을 실행합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph"
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "종료 감사 또는 DBMS"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "테이블과 로그를 잘라냅니다."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "사용자 추가"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "DBMS 파일 시스템에 있는 특정 파일의 내용을 복구합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "운영 체제에 명령을 내립니다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL 인젝션 공격은 공격자가 다음과 같은 작업을 수행할 수 있도록 합니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "신분 도용"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "기존 데이터를 변조합니다"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "거래 취소 또는 잔액 변경과 같은 부인 문제를 야기합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "시스템상의 모든 데이터를 완전히 공개하도록 허용합니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터를 삭제하거나 접근할 수 없도록 만드십시오."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터베이스 서버의 관리자가 되십시오"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL 인젝션의 심각도"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL 인젝션 공격의 심각성은 다음과 같은 요인에 의해 제한됩니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "공격수의 기술과 상상력"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "심층 방어 대책"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph"
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "입력 유효성 검사"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "최소 특권"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터베이스 기술"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "모든 데이터베이스가 명령 체인을 지원하는 것은 아닙니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "마이크로소프트 액세스"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "MySQL 커넥터/J 및 C"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "신탁"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL 인젝션 공격은 PHP, Classic ASP, Cold Fusion 및 이전 언어에서 더 흔하게 발생합니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "매개변수화된 쿼리 지원을 제공하지 않는 언어"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "최신 버전에는 매개변수화된 쿼리 기능이 추가되었습니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "웹 기술의 초기 사용자(즉, 기존 코드 사용자)"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "모든 데이터베이스가 동일한 것은 아닙니다(SQL Server)."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "명령 셸:master.dbo.xp_cmdshell 'cmd.exe dir c:'"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "레지스트리 명령어: xp_regread, xp_regdeletekey, …"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "9번 문제 "
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "6fe561c2-c126-5394-9479-34eaf4304666",
+          "src": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/6fe561c2-c126-5394-9479-34eaf4304666.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "10번 문제"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "48208e05-437f-52c7-baea-08c7bd070f59",
+          "src": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/48208e05-437f-52c7-baea-08c7bd070f59.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "문자열 SQL 인젝션을 이용한 기밀성 침해"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL 인젝션에 취약한 시스템은 CIA 트라이어드(CIA 트라이어드)의 여러 구성 요소를 쉽게 손상시킬 수 있습니다 (CIA 트라이어드에 익숙하지 않다면 일반 카테고리의 CIA 트라이어드 강의를 참조하세요) . 다음 세 강의에서는 SQL 문자열 인젝션 이나 쿼리 체이닝 과 같은 기법을 사용하여 CIA 트라이어드의 각 구성 요소를 손상시키는 방법을 배우게 됩니다 ."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번 수업에서는 기밀성",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 에 대해 살펴보겠습니다 . 기밀성은 SQL 인젝션 공격을 통해 공격자에 의해 쉽게 침해될 수 있습니다. 예를 들어, SQL 인젝션 공격이 성공하면 공격자는 데이터베이스에서 신용카드 번호와 같은 민감한 데이터를 읽어낼 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "문자열 SQL 인젝션이란 무엇인가요?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사용자가 입력한 문자열을 단순히 SQL 쿼리에 연결하는 방식으로 SQL 쿼리를 생성하는 애플리케이션은 문자열 SQL 인젝션 공격에 매우 취약할 가능성이 높습니다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "특히, 사용자가 입력한 문자열이 아무런 검증이나 전처리 없이 SQL 쿼리에 바로 연결되는 경우, 입력 필드에 따옴표를 삽입하는 것만으로도 쿼리의 동작을 변경할 수 있습니다. 예를 들어, 문자열 매개변수 끝에 따옴표를 붙이고 그 뒤에 원하는 SQL 쿼리를 입력하는 방식입니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "11번 문제"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "9932a43b-67d4-50e4-91c6-9c2803517325",
+          "src": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/9932a43b-67d4-50e4-91c6-9c2803517325.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "12번 문제"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "쿼리 체이닝으로 인한 무결성 손상"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "지난 수업에서 데이터의 기밀성을 손상시킨 데 이어, 이번에는 SQL 쿼리 체이닝을 사용하여 데이터의 무결성을 손상시켜 보겠습니다 ."
+          },
+          {
+            "type": "text",
+            "text": " ",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "심각한 취약점이 존재할 경우, SQL 인젝션 공격을 통해 데이터베이스 내 모든 데이터의 무결성을 손상시킬 수 있습니다. SQL 인젝션 공격이 성공하면 공격자는 접근 권한이 없는 정보까지 변경할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL 쿼리 체이닝이란 무엇인가요?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "쿼리 체이닝은 말 그대로 하나의 쿼리 뒤에 하나 이상의 쿼리를 연결하는 기술입니다. 이를 위해 세미콜론 "
+          },
+          {
+            "type": "text",
+            "text": "(; )",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 메타문자를 사용합니다. 세미콜론은 SQL 문의 끝을 나타내며, 첫 번째 쿼리 바로 뒤에 새 줄을 시작하지 않고도 다음 쿼리를 시작할 수 있도록 해줍니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "0fb65693-90b9-5265-9a18-7e48885030d7",
+          "src": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/0fb65693-90b9-5265-9a18-7e48885030d7.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " "
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "가용성 저하"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이전 수업에서 기밀성과 진실성을 성공적으로 훼손한 데 이어, 이제 CIA 삼요소 중 세 번째 요소인 가용성을",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 훼손해 보겠습니다 ."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가용성을 침해하는 방법은 여러 가지가 있습니다. 계정이 삭제되거나 비밀번호가 변경되면 실제 소유자는 더 이상 해당 계정에 접근할 수 없습니다. 공격자는 데이터베이스의 일부를 삭제하거나 전체 데이터베이스를 삭제하여 데이터에 접근할 수 없도록 만들 수도 있습니다. 관리자 또는 다른 사용자의 접근 권한을 취소하는 것 또한 가용성을 위협하는 또 다른 방법입니다. 이렇게 하면 해당 사용자는 데이터베이스의 특정 부분이나 전체 데이터베이스에 접근할 수 없게 됩니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "13번 문제 "
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "91024216-8d1f-5ab0-8044-08a25d599a5a",
+          "src": "/assets/uploads/b825e787-7456-5049-a7fc-a3a4a287b839/91024216-8d1f-5ab0-8044-08a25d599a5a.png",
+          "alt": "",
+          "title": null
+        }
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/30",
+    "originalId": "30",
+    "publishedAt": "2026-01-19T23:10:32+09:00",
+    "updatedAt": "2026-02-13T00:09:50+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

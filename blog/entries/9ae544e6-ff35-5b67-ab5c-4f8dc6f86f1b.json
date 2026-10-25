@@ -1,0 +1,309 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "9ae544e6-ff35-5b67-ab5c-4f8dc6f86f1b",
+  "kind": "posts",
+  "title": "[SK Rookies] FHRP | HSRP 기반 게이트웨이 이중화",
+  "slug": "tistory-158",
+  "description": "오늘 배운 내용FHRP의 목적과 종류를 살펴보고, HSRP에서 Active Router와 Standby Router가 어떻게 Virtual Gateway를 공유하는지 구성과 확인 명령으로 정리한다.FHRP란FHRP는 Gateway를 이중화하기 위한 기술이다. 자료에서는 세 가지 종류를 소개한다.HSRP: Hot Standby Router ProtocolVRRP: Virtual Router Redundancy ProtocolGLBP: Gateway Load Balancing ProtocolHSRP 동작HSRP Group 안에서 한 Router가 Active, 다른 Router가 Standby 역할을 수행한다. 두 장비는 Hello Message를 교환하며 하나의 Virtual Router/Virtual I..",
+  "category": "SK Rookies / 수업 정리",
+  "date": "2026-09-05",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-09-05T23:50:22+09:00",
+  "updatedAt": "2026-09-05T23:51:01+09:00",
+  "sourceDigest": "19d976e6a0c87545f666d26c12a37682f6d357a1fae9223078b086f4a48843f2",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[원본에서 불러올 수 없는 이미지]"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "오늘 배운 내용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "FHRP의 목적과 종류를 살펴보고, HSRP에서 Active Router와 Standby Router가 어떻게 Virtual Gateway를 공유하는지 구성과 확인 명령으로 정리한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "FHRP란"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "FHRP는 Gateway를 이중화하기 위한 기술이다. 자료에서는 세 가지 종류를 소개한다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "HSRP: Hot Standby Router Protocol"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "VRRP: Virtual Router Redundancy Protocol"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "GLBP: Gateway Load Balancing Protocol"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HSRP 동작"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "HSRP Group 안에서 한 Router가 Active, 다른 Router가 Standby 역할을 수행한다. 두 장비는 Hello Message를 교환하며 하나의 Virtual Router/Virtual IP를 Gateway처럼 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료의 예에서는 Virtual IP가 192.168.1.1이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Active Router 설정"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "R1은 실제 IP 192.168.1.253을 사용하고 HSRP Group 1의 Virtual IP를 192.168.1.1로 설정한다. Priority 200과 Preempt를 함께 구성한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "R1(config)#interface g0/0\nR1(config-if)#ip address 192.168.1.253 255.255.0.0\nR1(config-if)#standby 1 ip 192.168.1.1\nR1(config-if)#standby 1 priority 200\nR1(config-if)#standby 1 preempt\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Standby Router 설정"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료의 R2 설정은 다음과 같이 표기되어 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "R2(config)#interface g0/0\nR2(config-if)#ip address 192.168.1.254.255.255.255.0\nR2(config-if)#standby 1 ip 192.168.1.1\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "위 IP Address 줄은 PDF 원문에서도 192.168.1.254.255.255.255.0 형태로 붙어서 표기되어 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HSRP 상태 확인"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Active Router에서는 show standby 결과가 State is Active로 나타난다. 예제에서 Virtual IP는 192.168.1.1, Active Router는 Local, Standby Router는 192.168.1.254, Priority는 200이다. Preemption은 Enabled 상태다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "R1#show standby\nR1#show standby brief\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Standby Router에서는 State is Standby로 나타난다. 예제에서 Active Router는 192.168.1.253, Standby Router는 Local, Priority는 기본값 100이며 Preemption은 Disabled 상태다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "R2#show standby\nR2#show standby brief\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "복습하면서 확인할 점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "FHRP의 목적은 Gateway 이중화다. HSRP에서는 실제 Router IP와 Virtual IP를 구분하고, Active/Standby 역할, Priority, Preempt의 관계를 확인한다. show standby에서 State, Virtual IP, Active/Standby Router, Priority, Preemption 상태를 읽을 수 있어야 한다."
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/158",
+    "originalId": "158",
+    "publishedAt": "2026-09-05T23:50:22+09:00",
+    "updatedAt": "2026-09-05T23:51:01+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

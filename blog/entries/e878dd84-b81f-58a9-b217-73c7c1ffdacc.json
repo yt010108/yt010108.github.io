@@ -1,0 +1,386 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "e878dd84-b81f-58a9-b217-73c7c1ffdacc",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-20문제",
+  "slug": "tistory-37",
+  "description": "1. 문제 정보문제 번호 : old -20문제 점수 : 20점2. 문제 분석 20번 문제는 닉네임과 코맨트 그리고 captcha를 2초안에 통과해야하는 문제이다. 어플리케이션에서 쿠키를 봤을 때 st가 새로고침할 때마다 증가하므로 스타트 타임인 것을 알 수 있다. 3. 풀이그냥 st를 좀 크게 설정해서 보내보자 그러면 no Cheat가 나온다. 파이썬으로 GET요청을 파싱해서 POST요청을 보내보면 import requestsimport re # 정규표현식 모듈# 1. 설정 정보url = \"https://webhacking.kr/challenge/code-4/\"cookies = { \"PHPSESSID\": \"\" # 본인의 세션 ID }s = requests.Session()s.cookies..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-20",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-20T16:06:35+09:00",
+  "updatedAt": "2026-01-27T12:59:21+09:00",
+  "sourceDigest": "d2db7c8447fd6fc487756ebc94117a989e4e1b1786aba881c56876a5764da779",
+  "assets": [
+    {
+      "id": "341d60fb-fc04-53cd-a625-4c88daed1126",
+      "name": "tistory-37-341d60fb-fc04-53cd-a625-4c88daed1126.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e878dd84-b81f-58a9-b217-73c7c1ffdacc/341d60fb-fc04-53cd-a625-4c88daed1126.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "078f225b-cd74-5d74-942d-024484c6ae37",
+      "name": "tistory-37-078f225b-cd74-5d74-942d-024484c6ae37.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e878dd84-b81f-58a9-b217-73c7c1ffdacc/078f225b-cd74-5d74-942d-024484c6ae37.png",
+      "sha": "c462df306c26d06f713e75b6af1d86fc139106a8"
+    },
+    {
+      "id": "637f4d03-a2bd-5a68-96ad-ffd496627484",
+      "name": "tistory-37-637f4d03-a2bd-5a68-96ad-ffd496627484.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e878dd84-b81f-58a9-b217-73c7c1ffdacc/637f4d03-a2bd-5a68-96ad-ffd496627484.png",
+      "sha": "79ac0ef7ad78ee00c934ea1a1b1a16a7ebd6800f"
+    },
+    {
+      "id": "0641d084-acec-5d82-b26f-5cd25a729c18",
+      "name": "tistory-37-0641d084-acec-5d82-b26f-5cd25a729c18.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e878dd84-b81f-58a9-b217-73c7c1ffdacc/0641d084-acec-5d82-b26f-5cd25a729c18.png",
+      "sha": "064a18ca7a45b2724681cfc2df85d3ada708ee68"
+    },
+    {
+      "id": "1e0e1429-8580-531e-aad9-927261d3ff86",
+      "name": "tistory-37-1e0e1429-8580-531e-aad9-927261d3ff86.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e878dd84-b81f-58a9-b217-73c7c1ffdacc/1e0e1429-8580-531e-aad9-927261d3ff86.png",
+      "sha": "cc70fedcb8e141f6838b4e8659922537896d682e"
+    },
+    {
+      "id": "7dd10c86-d9fa-5ba4-a9a2-5001750dfa2a",
+      "name": "tistory-37-7dd10c86-d9fa-5ba4-a9a2-5001750dfa2a.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e878dd84-b81f-58a9-b217-73c7c1ffdacc/7dd10c86-d9fa-5ba4-a9a2-5001750dfa2a.png",
+      "sha": "f1a8599826bd0be385a8b6e0ab6572fd6c706f16"
+    },
+    {
+      "id": "43f945fc-c3cb-5500-a1f6-20b7faf0227a",
+      "name": "tistory-37-43f945fc-c3cb-5500-a1f6-20b7faf0227a.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e878dd84-b81f-58a9-b217-73c7c1ffdacc/43f945fc-c3cb-5500-a1f6-20b7faf0227a.png",
+      "sha": "875829588e0fad42c12b7b1cd727f87792163c40"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "341d60fb-fc04-53cd-a625-4c88daed1126",
+          "src": "/assets/uploads/e878dd84-b81f-58a9-b217-73c7c1ffdacc/341d60fb-fc04-53cd-a625-4c88daed1126.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -20"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 20점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "20번 문제는 닉네임과 코맨트 그리고 captcha를 2초안에 통과해야하는 문제이다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "078f225b-cd74-5d74-942d-024484c6ae37",
+          "src": "/assets/uploads/e878dd84-b81f-58a9-b217-73c7c1ffdacc/078f225b-cd74-5d74-942d-024484c6ae37.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "어플리케이션에서 쿠키를"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "637f4d03-a2bd-5a68-96ad-ffd496627484",
+          "src": "/assets/uploads/e878dd84-b81f-58a9-b217-73c7c1ffdacc/637f4d03-a2bd-5a68-96ad-ffd496627484.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "0641d084-acec-5d82-b26f-5cd25a729c18",
+          "src": "/assets/uploads/e878dd84-b81f-58a9-b217-73c7c1ffdacc/0641d084-acec-5d82-b26f-5cd25a729c18.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "봤을 때 st가 새로고침할 때마다 증가하므로 스타트 타임인 것을 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그냥 st를 좀 크게 설정해서 보내보자"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "1e0e1429-8580-531e-aad9-927261d3ff86",
+          "src": "/assets/uploads/e878dd84-b81f-58a9-b217-73c7c1ffdacc/1e0e1429-8580-531e-aad9-927261d3ff86.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그러면 no Cheat가 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "7dd10c86-d9fa-5ba4-a9a2-5001750dfa2a",
+          "src": "/assets/uploads/e878dd84-b81f-58a9-b217-73c7c1ffdacc/7dd10c86-d9fa-5ba4-a9a2-5001750dfa2a.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파이썬으로 GET요청을 파싱해서 POST요청을 보내보면"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import requests\nimport re  # 정규표현식 모듈\n\n# 1. 설정 정보\nurl = \"https://webhacking.kr/challenge/code-4/\"\ncookies = {\n    \"PHPSESSID\": \"\"  # 본인의 세션 ID \n}\n\ns = requests.Session()\ns.cookies.update(cookies)\n\ntry:\n    # [STEP 1] GET 요청 (페이지 방문, 쿠키 획득)\n    res_get = s.get(url)\n    \n    match = re.search(r'name=captcha_ value=\"([^\"]+)\"', res_get.text)\n    \n    if match:\n        captcha_value = match.group(1)\n        print(f\"[*] 획득한 캡차 값: {captcha_value}\")\n    else:\n        print(\"[!] 캡차 값을 찾지 못했습니다. 로그인 상태를 확인하세요.\")\n        exit()\n\n    payload = {\n        \"id\": \"gemini\",\n        \"cmt\": \"success\",\n        \"captcha\": captcha_value\n    }\n\n    res_post = s.post(url, data=payload)\n\n    if \"flag\" in res_post.text or \"solve\" in res_post.text:\n        print(\"\\n[SUCCESS] 결과 응답:\")\n        print(res_post.text)\n    else:\n        print(\"\\n[FAIL] 응답 결과 (일부분):\")\n        print(res_post.text[:300])\n\nexcept Exception as e:\n    print(f\"Error: {e}\")"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "43f945fc-c3cb-5500-a1f6-20b7faf0227a",
+          "src": "/assets/uploads/e878dd84-b81f-58a9-b217-73c7c1ffdacc/43f945fc-c3cb-5500-a1f6-20b7faf0227a.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "풀린다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "2초라는 짧은 제한 시간과 동적 캡차 검증을 통과해야 하는 문제로 st 쿠키 조작 시에는 'No Cheat'가 출력된다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이를 해결하기 위해 requests 모듈로 세션을 유지하며 캡차 값을 파싱하는 자동화 스크립트를 작성했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "스크립트를 통해 GET 요청으로 얻은 캡차 값을 포함해 제한 시간 내에 빠르게 POST 요청을 전송하여 문제를 해결했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/37",
+    "originalId": "37",
+    "publishedAt": "2026-01-20T16:06:35+09:00",
+    "updatedAt": "2026-01-27T12:59:21+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

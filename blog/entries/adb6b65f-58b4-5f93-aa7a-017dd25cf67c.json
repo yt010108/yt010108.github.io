@@ -1,0 +1,692 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "adb6b65f-58b4-5f93-aa7a-017dd25cf67c",
+  "kind": "posts",
+  "title": "오라클 클라우드 A1 Flex 무료 서버 획득기(feat. Codex)",
+  "slug": "tistory-105",
+  "description": "예전부터 오라클 클라우드 무료 서버 이야기는 많이 봤다.특히 Oracle Cloud Always Free에서 제공하는 A1 Flex 서버는 무료인데도 사양이 꽤 좋아서 관심이 갔다. 오라클 A1 Flex는 조건만 맞으면 4 OCPU / 24GB RAM까지 사용할 수 있다. 다만 문제는 이게 생각보다 잘 안 만들어진다는 점이다.나도 예전에 몇 번 시도해봤는데, 자리가 없어서 A1 Flex는 포기하고 VM.Standard.E2.1.Micro 로 1 OCPU / 1GB RAM 을 사용했었다.이번에는 헤르메스 에이전트를 하고 싶은 마음도 있고 쓰레드에서 A1 Flex를 코덱스로 자동화 성공하는 사람들이 많아서 해보자는 생각으로 다시 도전했고, 결론적으로 3일 정도 걸려서 성공했다. 00. 준비먼저 Orac..",
+  "category": "AI / hermes",
+  "date": "2026-06-02",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-06-02T20:48:38+09:00",
+  "updatedAt": "2026-06-05T19:04:39+09:00",
+  "sourceDigest": "69bc2ec5ccc3f6f0010f09aba17ba8aeba82c84e8af7acf4f3a1f5ef937f1c5c",
+  "assets": [
+    {
+      "id": "512178f6-c236-54f4-9e39-1b27ca266178",
+      "name": "tistory-105-512178f6-c236-54f4-9e39-1b27ca266178.png",
+      "type": "image/png",
+      "path": "/assets/uploads/adb6b65f-58b4-5f93-aa7a-017dd25cf67c/512178f6-c236-54f4-9e39-1b27ca266178.png",
+      "sha": "f2839542333342bbfb418443d3dd3ff88c783e80"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "512178f6-c236-54f4-9e39-1b27ca266178",
+          "src": "/assets/uploads/adb6b65f-58b4-5f93-aa7a-017dd25cf67c/512178f6-c236-54f4-9e39-1b27ca266178.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예전부터 오라클 클라우드 무료 서버 이야기는 많이 봤다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "특히 "
+          },
+          {
+            "type": "text",
+            "text": "Oracle Cloud Always Free",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "에서 제공하는 "
+          },
+          {
+            "type": "text",
+            "text": "A1 Flex",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 서버는 무료인데도 사양이 꽤 좋아서 관심이 갔다. 오라클 A1 Flex는 조건만 맞으면 "
+          },
+          {
+            "type": "text",
+            "text": "4 OCPU / 24GB RAM",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "까지 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다만 문제는 이게 생각보다 잘 안 만들어진다는 점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "나도 예전에 몇 번 시도해봤는데, 자리가 없어서 A1 Flex는 포기하고 VM.Standard.E2.1.Micro 로 1 OCPU / 1GB RAM 을 사용했었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번에는 헤르메스 에이전트를 하고 싶은 마음도 있고 쓰레드에서 A1 Flex를 코덱스로 자동화 성공하는 사람들이 많아서 해보자는 생각으로 다시 도전했고, 결론적으로 3일 정도 걸려서 성공했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "00. 준비"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "먼저 Oracle Cloud 계정이 필요하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기본적으로 무료 티어 계정으로 시작할 수 있는데, 나는 이번에 무료 티어에서 유료 티어로 전환한 뒤 진행했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "유료 티어로 전환한다고 해서 바로 돈이 나가는 건 아니다. 카드 등록은 필요하지만, Always Free 범위 안의 리소스만 사용하면 비용이 발생하지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "유료 티어 상태에서는 무료 한도를 벗어나는 리소스를 만들 수도 있기 때문에, 인스턴스를 만들고 나서 반드시 아래 항목을 확인하는 게 좋다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Shape: VM.Standard.A1.Flex\nOCPU: 4 이하\nMemory: 24GB 이하\nBoot Volume: 무료 한도 확인\nPublic IP: 무료 범위 확인\nAlways Free 표시 여부 확인"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "나는 생성 후에도 콘솔과 OCI CLI로 상태를 다시 확인했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "01. Out of host capacity"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "처음에는 웹에서 그냥 만들려고 했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그런데 계속 실패했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가장 많이 본 에러는 이거였다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Out of host capacity"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 에러는 말 그대로 해당 리전에 지금 배정 가능한 서버 자원이 없다는 뜻에 가깝다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉 지금 춘천 리전에 남는 A1 Flex 자리가 없는 상황이었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "02. 전략 변경"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "계속 웹에서 클릭하는 건 너무 비효율적이었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그래서 OCI CLI 연결해서 자동으로 재시도하는 방식으로 바꿨다. 코덱스한테 쓰레드에서 본대로 cli연결한 후에 1시간 마다 자동 스크립트를 돌렸다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대략적인 흐름은 이랬다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 4 OCPU / 24GB RAM 생성 시도\n2. 실패하면 에러 확인\n3. Out of host capacity면 대기\n4. 일정 시간 뒤 다시 시도\n5. 필요하면 2 OCPU / 12GB RAM도 시도\n6. 성공하면 알림"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실제로 A1 Flex는 생성 자체가 어려운 경우가 많아서, 처음부터 최대 사양만 고집하기보다 작은 사양으로 먼저 잡는 전략도 괜찮다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "나는 결국 3일 정도 재시도 끝에 "
+          },
+          {
+            "type": "text",
+            "text": "4 OCPU / 24GB RAM",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "으로 성공했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "03. 프롬포트"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래는 코덱스한테 보내면 자동으로 만들어줄 프롬포트다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "아래 그대로 나중에 Codex한테 붙여넣으면 됩니다.\n\n내 Oracle Cloud 계정에서 OCI CLI를 사용해서 Always Free 범위 안의 A1 Flex 인스턴스 생성을 진행해줘.\n\n목표는 아래와 같아.\n\n- 리전: 현재 OCI CLI 프로필에 설정된 리전 우선\n- 인스턴스: Oracle Cloud Always Free 대상\n- Shape: VM.Standard.A1.Flex\n- 1순위: 4 OCPU / 24GB RAM\n- 2순위: 2 OCPU / 12GB RAM\n- OS: Ubuntu 22.04 ARM 또는 사용 가능한 최신 Ubuntu ARM LTS\n- 계정 과금 방지를 위해 Always Free 한도 안에서만 진행\n- 생성 전에 compartment, availability domain, subnet, image, shape availability를 확인\n- VCN/subnet이 없으면 Always Free에 맞게 기본 네트워크를 만들어도 됨\n- SSH public key는 내 PC의 기본 키 또는 새로 만든 키를 사용\n- 생성 성공 후 public IP, shape, OCPU, RAM, image, lifecycle state를 확인\n- Always Free 범위인지 다시 검증\n- 실패 원인이 Out of host capacity면 설정 오류로 판단하지 말고 재시도 전략을 세워줘\n\n주의사항:\n\n- 유료 리소스 생성 가능성이 있으면 실행 전에 반드시 나에게 확인해줘.\n- boot volume, block volume, public IP, load balancer, 추가 VNIC 등 과금 가능성이 있는 리소스는 무료 한도 안인지 확인해줘.\n- 인스턴스를 만들기 전에 실행할 OCI CLI 명령과 예상 영향을 먼저 설명해줘.\n- 생성 후 SSH 접속 방법까지 정리해줘.\n- 실패하면 에러 메시지를 보고 원인을 분류해줘.\n- 필요하면 1시간 간격으로 재시도하는 자동화 스크립트도 만들어줘.\n- 성공하면 디스코드 웹훅이나 텔레그램으로 알림 받는 구조도 제안해줘.\n\n내가 원하는 최종 결과:\n\nOracle Cloud Always Free\nVM.Standard.A1.Flex\n4 OCPU / 24GB RAM 가능하면 최대치\n안 되면 2 OCPU / 12GB RAM이라도 먼저 생성\nUbuntu ARM\nRUNNING 상태\nSSH 접속 가능\n과금 위험 없음"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "04. 확인"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서버가 만들어진 뒤에는 기본 상태부터 확인했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "uname -a\nfree -h\nnproc\ndf -h"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 OCI 콘솔에서도 다시 확인했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "상태: RUNNING\nShape: VM.Standard.A1.Flex\nOCPU: 4\nMemory: 24GB\nRegion: ap-chuncheon-1"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Always Free 대상인지도 다시 봤다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "05. HERMES 에이전트"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번에 자동 재시도 흐름을 만들면서, 이런 작업은 HERMES 에이전트가 에 넣어두면 잘 맞겠다는 생각이 들었다(헤르메스 에이전트 하려고 서버 얻는 시도인데 헤르메스를 사용해서 알람을 받았네요)."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사람이 직접 콘솔을 계속 확인하는 대신, 에이전트가 일정 시간마다 OCI CLI로 상태를 확인하고 생성 시도를 반복하는 식이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "성공하거나 상태가 바뀌면 디스코드로 알림을 받게 하면 더 편하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대략 이런 흐름이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HERMES 에이전트 실행\n-> OCI CLI로 A1 Flex 생성 시도\n-> 실패하면 에러 메시지 확인\n-> Out of host capacity면 대기\n-> 일정 시간 뒤 재시도\n-> 성공하면 Discord 알림"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "오라클 무료 서버처럼 \"언제 될지 모르는 작업\"은 사람이 직접 붙잡고 있기보다 에이전트가 계속 확인하게 하는 쪽이 훨씬 낫다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "06. 최종 결과"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번에 만든 서버는 아래 구성이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Oracle Cloud Always Free\nVM.Standard.A1.Flex\n4 OCPU / 24GB RAM\nUbuntu 22.04 ARM\nRegion: ap-chuncheon-1\nState: RUNNING"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "무료 한도 안에서 만들었고, 콘솔에서도 Always Free 대상인지 다시 확인했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "07. 3줄 정리"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "무료로 4 OCPU / 24GB RAM ARM 서버를 쓸 수 있다는 건 개인용으로 꽤 큰 장점이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "코덱스한테 자동화로 시키니까 3일만에 얻을 수 있었다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "헤르메스 에이전트 서버로 사용해야겠다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "참고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://www.threads.com/@leehaksu/post/DYTcqcVmu7W?hl=ko",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.threads.com/@leehaksu/post/DYTcqcVmu7W?hl=ko"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/105",
+    "originalId": "105",
+    "publishedAt": "2026-06-02T20:48:38+09:00",
+    "updatedAt": "2026-06-05T19:04:39+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

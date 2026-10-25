@@ -1,0 +1,293 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "2428e173-82f3-5750-b0dc-bce31b510603",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-06문제",
+  "slug": "tistory-39",
+  "description": "1. 문제 정보문제 번호 : old -06문제 점수 : 10점2. 문제 분석문제를 클릭하면 위 사진과 같은 화면이 뜨게 된다. view-sourece를 눌러보면 소스 코드가 나오는데 아래와 같이 val_id와 val_pw로 설정하고 이걸 쿠키로 작성한다. 특수문자는 숫자로 치환되는 코드도 있다. $val_id=\"guest\"; $val_pw=\"123qwe\"; for($i=0;$i\"); 문제에서 base64로 20번 디코드한 값이 id는 admin, pw는 nimda일 경우 해결되므로 admin과 nimda를 20번 인코딩해주면 된다.for($i=0;$iview-source\");echo(\"ID : $decode_idPW : $decode_pw\");if($decode_id==\"admin\" && $decod..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-20",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-20T17:21:45+09:00",
+  "updatedAt": "2026-01-20T17:21:56+09:00",
+  "sourceDigest": "5a44c70e6c865e30ee343ca92ad040ebb04c4196a9de455318d9d64e76475265",
+  "assets": [
+    {
+      "id": "32903e6b-6541-5c84-a5fb-ad6967e49acf",
+      "name": "tistory-39-32903e6b-6541-5c84-a5fb-ad6967e49acf.png",
+      "type": "image/png",
+      "path": "/assets/uploads/2428e173-82f3-5750-b0dc-bce31b510603/32903e6b-6541-5c84-a5fb-ad6967e49acf.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "56a08828-8775-57c8-935d-e73c757edaa3",
+      "name": "tistory-39-56a08828-8775-57c8-935d-e73c757edaa3.png",
+      "type": "image/png",
+      "path": "/assets/uploads/2428e173-82f3-5750-b0dc-bce31b510603/56a08828-8775-57c8-935d-e73c757edaa3.png",
+      "sha": "fabc8cf1f46d82994dfaec53e9ba17d1588b0e1a"
+    },
+    {
+      "id": "3d5e7479-babd-5146-ac54-6af8097b3d9d",
+      "name": "tistory-39-3d5e7479-babd-5146-ac54-6af8097b3d9d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/2428e173-82f3-5750-b0dc-bce31b510603/3d5e7479-babd-5146-ac54-6af8097b3d9d.png",
+      "sha": "29ce925fee9bec5d75eff24637cfcea7c18890fc"
+    },
+    {
+      "id": "27e661fb-ebad-521f-b4b6-b6011d0ca6a4",
+      "name": "tistory-39-27e661fb-ebad-521f-b4b6-b6011d0ca6a4.png",
+      "type": "image/png",
+      "path": "/assets/uploads/2428e173-82f3-5750-b0dc-bce31b510603/27e661fb-ebad-521f-b4b6-b6011d0ca6a4.png",
+      "sha": "37c1b601784927b89a14cfb3233d91cbe42516ae"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "32903e6b-6541-5c84-a5fb-ad6967e49acf",
+          "src": "/assets/uploads/2428e173-82f3-5750-b0dc-bce31b510603/32903e6b-6541-5c84-a5fb-ad6967e49acf.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -06"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 10점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "56a08828-8775-57c8-935d-e73c757edaa3",
+          "src": "/assets/uploads/2428e173-82f3-5750-b0dc-bce31b510603/56a08828-8775-57c8-935d-e73c757edaa3.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제를 클릭하면 위 사진과 같은 화면이 뜨게 된다. view-sourece를 눌러보면 소스 코드가 나오는데 아래와 같이 val_id와 val_pw로 설정하고 이걸 쿠키로 작성한다. 특수문자는 숫자로 치환되는 코드도 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " $val_id=\"guest\";\n  $val_pw=\"123qwe\";\n  for($i=0;$i<20;$i++){\n    $val_id=base64_encode($val_id);\n    $val_pw=base64_encode($val_pw);\n    \n    '''\n    숫자 치환\n    '''\n    \n Setcookie(\"user\",$val_id,time()+86400,\"/challenge/web-06/\");\n  Setcookie(\"password\",$val_pw,time()+86400,\"/challenge/web-06/\");\n  echo(\"<meta http-equiv=refresh content=0>\");"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제에서 base64로 20번 디코드한 값이 id는 admin, pw는 nimda일 경우 해결되므로 admin과 nimda를 20번 인코딩해주면 된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "for($i=0;$i<20;$i++){\n  $decode_id=base64_decode($decode_id);\n  $decode_pw=base64_decode($decode_pw);\n}\n\necho(\"<hr><a href=./?view_source=1 style=color:yellow;>view-source</a><br><br>\");\necho(\"ID : $decode_id<br>PW : $decode_pw<hr>\");\n\nif($decode_id==\"admin\" && $decode_pw==\"nimda\"){\n  solve(6);\n}"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파이썬 코드로 nimda와 admin각각 base64 20번한 값을 계산하고 burf suite로 쿠키값을 넣어주면 문제가 풀린다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "3d5e7479-babd-5146-ac54-6af8097b3d9d",
+          "src": "/assets/uploads/2428e173-82f3-5750-b0dc-bce31b510603/3d5e7479-babd-5146-ac54-6af8097b3d9d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "27e661fb-ebad-521f-b4b6-b6011d0ca6a4",
+          "src": "/assets/uploads/2428e173-82f3-5750-b0dc-bce31b510603/27e661fb-ebad-521f-b4b6-b6011d0ca6a4.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "서버는 쿠키 값을 특수문자→숫자 치환 후 Base64 20번 디코딩하여 admin/nimda인지 검증한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이를 역이용해 admin/nimda를 Base64 20번 인코딩 하고 숫자→특수문자 치환 하는 파이썬 스크립트를 짰다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "생성된 값을 Burp Suite를 통해 쿠키에 주입하여 해결했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/39",
+    "originalId": "39",
+    "publishedAt": "2026-01-20T17:21:45+09:00",
+    "updatedAt": "2026-01-20T17:21:56+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

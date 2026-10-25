@@ -1,0 +1,1621 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "04c53a28-d0a9-5cc5-b8bd-8708849a84c9",
+  "kind": "posts",
+  "title": "[Project] Recon제작(PI Reversing Harness)-2",
+  "slug": "tistory-151",
+  "description": "이전 글에서는 Pi, Python Harness, Docker Worker를 연결해 Recon Workflow를 만든 과정을 정리했다.Recon은 인터넷 대상과 대회 내부망 대상을 구분하고, 허용 범위를 코드에서 검사하며, 도구의 원본 결과와 정규화한 결과를 run 단위로 저장하도록 설계했다.구조를 완성했을 때는 다음 과정이 자동화됐다는 점에 집중했다.대상 입력↓서비스 확인↓웹 서비스 탐색↓URL과 소스 분석↓디렉터리·파라미터 탐색↓Attack Surface와 Findings Queue 생성이후 실제 대회에서 Competition 모드를 사용했다.도구들은 실행됐고 결과 파일도 생성됐다. progress.md, report.md, attack-surface.json, findings.json도 남았다.하지..",
+  "category": "",
+  "date": "2026-08-30",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-08-30T15:51:49+09:00",
+  "updatedAt": "2026-08-30T15:51:49+09:00",
+  "sourceDigest": "25ca9a668dea74921381ee9aba5dc4577a44925502b0254fc7d0536e14f938d1",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이전 글에서는 Pi, Python Harness, Docker Worker를 연결해 Recon Workflow를 만든 과정을 정리했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Recon은 인터넷 대상과 대회 내부망 대상을 구분하고, 허용 범위를 코드에서 검사하며, 도구의 원본 결과와 정규화한 결과를 run 단위로 저장하도록 설계했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "구조를 완성했을 때는 다음 과정이 자동화됐다는 점에 집중했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "대상 입력\n↓\n서비스 확인\n↓\n웹 서비스 탐색\n↓\nURL과 소스 분석\n↓\n디렉터리·파라미터 탐색\n↓\nAttack Surface와 Findings Queue 생성"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이후 실제 대회에서 Competition 모드를 사용했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "도구들은 실행됐고 결과 파일도 생성됐다. progress.md, report.md, attack-surface.json, findings.json도 남았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 대회 중 결과를 사용해보니 중요한 문제가 보였다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Recon은 많은 데이터를 수집했지만, 다음에 무엇을 확인해야 하는지는 제대로 알려주지 못했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번 글에서는 구현을 추가하기 전에 실제 사용 결과를 기준으로 기존 설계를 평가한다. 대회 대상에 관한 정보는 공개하지 않고 결과의 형태와 설계 문제만 정리한다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 대회에서 Recon에 기대했던 것"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대회에서는 제한된 시간 안에 여러 웹 서비스를 확인해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Recon에서 기대한 결과는 단순한 URL 목록이 아니었다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "어떤 웹 서비스가 열려 있는가\n↓\n어떤 기술과 기능이 보이는가\n↓\n인증, 관리, 파일 처리, API 같은 표면이 있는가\n↓\n어떤 endpoint를 먼저 검증해야 하는가\n↓\n다음에 어떤 행동을 해야 하는가"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 하나의 웹 서비스가 발견됐다면 다음과 같은 결과를 기대했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "대상: 10.10.10.10:8443\n상태: HTTP 200\n기술: Java\n기능: 로그인\n발견 경로: /login, /logout\n입력값: username, password\n다음 확인: vhost, 인증 흐름, 세션 처리"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "핵심은 많은 데이터를 보여주는 것이 아니라, 대회 참가자가 다음 행동을 빠르게 결정할 수 있게 하는 것이었다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 실제로 생성된 결과"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "한 웹 대상을 대상으로 Recon을 실행한 결과는 다음과 같았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "항목수량"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "수집 URL"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "328"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "소스 주석"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "7,710"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "소스 endpoint"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "4,912"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "소스 asset"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "4,765"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "검증 후보"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "228"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "report.md 크기"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "약 977KB"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "처음에는 많은 정보를 찾은 것처럼 보였다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 내용을 확인해보니 동일한 공통 JavaScript 파일과 페이지 템플릿이 반복해서 기록된 경우가 많았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 여러 페이지에서 공통으로 사용하는 JavaScript 파일이 각 페이지의 출처와 함께 별도 endpoint로 저장됐다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "/page-a → /js/common.js\n/page-b → /js/common.js\n/page-c → /js/common.js\n..."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "출처는 달랐지만 실제로 확인할 대상은 같은 파일이었다. 일부 공통 JavaScript 파일은 약 300번씩 반복됐다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "URL도 비슷한 문제가 있었다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "/view?seq=100\n/view?seq=101\n/view?seq=102"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "세 URL은 서로 다른 값이지만 기능 관점에서는 다음과 같은 하나의 route로 볼 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "GET /view?seq={value}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기존 Recon은 URL 문자열을 중심으로 결과를 합쳤다. 이 때문에 같은 기능의 여러 데이터 인스턴스가 각각 새로운 공격 표면처럼 기록됐다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "결과적으로 328개의 URL이 수천 개의 endpoint와 수백 개의 검증 후보로 확장됐다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 데이터를 통합하는 것과 이해하는 것은 달랐다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기존 설계에서는 여러 도구의 출력을 attack-surface.json 하나로 합쳤다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HTTPX\n+\nKatana\n+\nSource Analysis\n+\nGobuster\n+\nParameth\n↓\nattack-surface.json"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "형식이 다른 결과를 하나의 구조로 정리한 것은 의미가 있었다. 다음 Agent가 각 도구의 원본 형식을 다시 해석하지 않아도 됐다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 실제 사용에서는 또 다른 문제가 생겼다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터를 한 파일에 넣는다고 해서 중요한 정보가 자동으로 드러나지는 않았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공통 JavaScript, 정적 asset, 중복 URL, 동일한 form이 모두 합쳐지면서 중요한 endpoint가 많은 일반 항목 사이에 묻혔다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터 통합\n≠\n공격 표면 이해"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "필요했던 것은 결과를 한곳에 모으는 작업뿐만 아니라 다음 기준으로 결과를 압축하는 과정이었다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "동일 route인가\n정적 asset인가\n공통 레이아웃에서 반복된 form인가\n실제 입력값이 있는가\n상태를 변경하는 요청인가\n인증이나 권한과 관련된 기능인가"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기존 Recon에는 수집 결과를 기능 단위로 정규화하는 단계가 부족했다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. Findings Queue가 또 다른 로그가 됐다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "findings.json은 자동으로 확정한 취약점 목록이 아니라 수동 검증이 필요한 후보 Queue로 설계했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "입력값, 상태 변경 method, sink token 등이 있는 endpoint를 후보로 등록했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제는 후보가 228개까지 증가했다는 점이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "후보 1\n후보 2\n후보 3\n...\n후보 228"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모든 후보가 unverified 상태로 생성됐지만, 대회 중 228개를 순서대로 확인하는 것은 불가능했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Queue는 처리할 수 있는 크기와 순서가 있어야 한다. 확인할 수 없는 수의 후보를 저장하면 Queue도 결국 또 다른 로그가 된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "confidence 점수도 충분하지 않았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "점수는 다음과 같은 근거를 반영했다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Source에서 발견됐는가"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "HTTP method가 있는가"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "입력 파라미터가 있는가"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "상태 변경 요청인가"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "sink token이 있는가"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 공통 로그인 form이 여러 페이지에서 반복되면 같은 입력값과 method가 계속 발견됐다. 구조적으로 반복된 결과가 높은 점수를 가진 후보를 대량으로 만들 수 있었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "점수 계산 전에 endpoint를 기능 단위로 합치는 과정이 먼저 필요했다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. 고정된 Workflow가 대회 상황에 적응하지 못했다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기존 Competition Workflow는 네 단계로 고정했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "collect\n↓\nprobe\n↓\ncrawl\n↓\ndiscovery"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실행 상태를 저장하고 실패한 단계만 다시 실행하기에는 편리한 구조였다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 대회 웹 환경은 항상 같은 순서로 처리되지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실제 실행에서는 IP 주소로 HTTPS 서비스에 접근했을 때 인증서의 대상 이름이 일치하지 않았다. HTTPX는 웹 서비스를 확인했지만 Gobuster는 TLS 인증서 검증 오류로 실패했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HTTPX: 웹 서비스 확인 성공\nGobuster: TLS 인증서 오류로 실패"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 경우 Recon이 해야 할 일은 단순히 실패를 기록하는 것으로 끝나지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "인증서 이름 확인\n↓\nSNI 또는 vhost 후보 확인\n↓\n필요하면 TLS 검증 없이 허용된 대상 재확인\n↓\n확인된 origin으로 탐색 재개"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 기존 Workflow에는 이런 분기가 없었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Parameth에서도 결과 파싱 문제가 확인됐다. 실제 파라미터를 찾지 못했지만 도구 배너에 포함된 parameters라는 단어를 결과 한 건으로 계산했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "실제 발견: 0\nHarness 기록: 1"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "도구의 종료 코드와 출력 줄 수만으로는 Recon의 성공 여부를 판단할 수 없었다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6. 실행 상태와 Recon 성공 상태를 구분하지 못했다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기존 Harness는 각 단계와 도구의 실행 상태를 저장했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "pending\nrunning\ncompleted\ncompleted_with_errors\nfailed"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 구조는 중단된 run을 다시 실행하고 실패 위치를 찾는 데 도움이 됐다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 일부 도구가 실패한 run이 최종적으로 ready 상태로 표시되는 경우가 있었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "시스템 관점에서는 다음 작업을 받을 준비가 됐다는 의미일 수 있다. 사용자 관점에서는 Recon이 정상적으로 끝났다는 의미로 오해할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다음 세 상태는 서로 구분할 필요가 있었다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "명령 실행에 성공했는가\n유효한 데이터를 얻었는가\n사용자가 판단할 결과를 만들었는가"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "프로세스가 종료 코드 0을 반환한 것과 Recon이 유용한 결과를 만든 것은 같은 의미가 아니다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "7. 그래도 유지할 부분"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실전에서 쓸모가 부족했다고 해서 기존 구조 전체가 잘못된 것은 아니었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다음 요소는 계속 유지할 가치가 있었다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "ScopePolicy"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대회에서 허용한 IP와 포트 밖으로 자동 확장하지 않는 정책은 필요하다. 발견한 링크나 리다이렉트를 새로운 권한으로 해석하지 않는 원칙도 유지해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "원본과 정규화 결과 분리"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "raw/\nparsed/"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파서가 잘못된 결과를 만들었을 때 원본 출력으로 돌아가 확인할 수 있었다. Parameth의 잘못된 결과도 원본 로그가 있었기 때문에 확인할 수 있었다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Evidence와 provenance"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "endpoint가 어디에서 발견됐는지 기록하는 구조는 필요하다. 다만 같은 결과를 출처별로 복제하는 대신 하나의 endpoint에 여러 출처를 연결해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Nuclei 분리"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Nuclei를 기본 Workflow에서 제외한 결정은 유지할 수 있다. 대회 대상과 상황을 확인한 뒤 필요한 경우에만 실행하는 편이 적절했다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Run 상태 저장"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "중단된 작업을 다시 시작하고 실패한 도구를 확인하기 위한 상태 저장도 필요하다. 다만 상태의 의미를 더 명확하게 정의해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "8. 기존 설계에서 잘못 잡은 기준"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기존 Recon은 다음 수치를 성과처럼 사용했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "발견한 호스트 수\n활성 URL 수\n수집 URL 수\n소스 endpoint 수\nFindings 후보 수"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 수치들은 도구가 얼마나 많은 데이터를 만들었는지는 보여준다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 대회 중 Recon의 가치를 직접 보여주지는 못한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대회용 웹 Recon에서는 다음 기준이 더 중요하다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "첫 번째 유효한 웹 서비스를 찾는 데 걸린 시간\n첫 번째 검증 가능한 endpoint를 찾는 데 걸린 시간\n중복을 제거한 기능 수\n사용자가 실제로 확인할 후보 수\n실패 원인과 다음 행동이 표시됐는가"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기존 설계의 가장 큰 문제는 Recon의 성공 조건을 정의하지 않은 것이었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "도구가 모두 실행되고 보고서가 생성되면 완료된 것으로 처리했지만, 그 보고서가 대회 중 사용할 수 있는지는 측정하지 않았다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "9. 다음 Recon의 성공 조건"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번 피드백 단계에서는 구현 방법보다 성공 조건을 먼저 정한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "새로운 대회용 웹 Recon은 최소한 다음 조건을 만족해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "실행 초기에 활성 웹 서비스와 기술 정보를 보여준다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "IP, 잘못된 TLS 인증서, vhost와 SNI 상황을 기본적으로 고려한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "쿼리 값만 다른 동일 route를 하나로 묶는다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "공통 JavaScript와 정적 asset을 검증 후보에서 제외한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "같은 form과 endpoint는 하나로 합치고 여러 출처를 evidence로 연결한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "자동 생성하는 우선 검토 후보의 수를 제한한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "각 후보에 선정 이유와 다음 행동을 표시한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "도구 실행 성공과 유효 데이터 생성 성공을 구분한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "일부 도구의 실패를 최종 상태에서 숨기지 않는다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "전체 결과를 읽지 않아도 상위 후보부터 바로 확인할 수 있어야 한다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "목표는 더 많은 결과를 만드는 것이 아니다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "많은 데이터\n↓\n작은 공격 표면\n↓\n검증 가능한 후보\n↓\n다음 행동"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 흐름을 만드는 것이 목표다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "10. 마무리"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "처음 Recon을 만들 때는 도구 실행, 스코프 검증, 상태 저장, 결과 통합에 집중했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 구조는 여러 명령을 반복 가능하게 실행하는 Harness로서는 동작했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 실제 대회에서 필요한 것은 실행 자동화만이 아니었다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "무엇을 찾았는가\n보다\n그래서 무엇을 확인해야 하는가"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 질문에 답할 수 있어야 했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기존 Recon은 데이터를 수집하고 보존하는 데는 성공했지만, 제한된 시간 안에 사용자의 판단을 돕는 데는 실패했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다음 구현에서는 새로운 도구부터 추가하지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "먼저 사람이 대회 중 소비할 수 있는 결과의 형태를 정의하고, 중복 제거와 기능 단위 정규화, 우선순위와 다음 행동을 중심으로 Workflow를 다시 구성할 예정이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "3편에서는 이번 피드백을 바탕으로 대회용 웹 Recon을 다시 설계하고 구현한 과정을 정리한다."
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/151",
+    "originalId": "151",
+    "publishedAt": "2026-08-30T15:51:49+09:00",
+    "updatedAt": "2026-08-30T15:51:49+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

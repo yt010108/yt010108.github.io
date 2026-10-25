@@ -1,0 +1,477 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "d53f5782-f31c-5bae-b3e1-cfbcc111b93f",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-61 문제",
+  "slug": "tistory-72",
+  "description": "1. 문제 정보문제 번호 : old -61문제 점수 : 20점 2. 문제 분석문제에 들어가면 view-source만 나온다 소스코드를 확인해보자소스코드눈 PHP로 되어 있으며 id값을 파라미터로 받아서 addslash와 preg_match로 필터링하고 있다. 또한 최대 id값은 15개이다.\"; echo \"view-source\"; $_GET['id'] = addslashes($_GET['id']); if(preg_match(\"/\\(|\\)|select|from|,|by|\\./i\",$_GET['id'])) exit(\"Access Denied\"); if(strlen($_GET['id'])>15) exit(\"Access Denied\"); $result = mysqli_fetch_array(mysqli_..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-02-02",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-02-02T01:58:32+09:00",
+  "updatedAt": "2026-02-02T01:58:32+09:00",
+  "sourceDigest": "a52d5ef137154f48bca1481dfce2329f362eb893b9922a3960c752c80e918307",
+  "assets": [
+    {
+      "id": "96f0571a-1d2c-5d9e-8d06-eb307ce37eae",
+      "name": "tistory-72-96f0571a-1d2c-5d9e-8d06-eb307ce37eae.png",
+      "type": "image/png",
+      "path": "/assets/uploads/d53f5782-f31c-5bae-b3e1-cfbcc111b93f/96f0571a-1d2c-5d9e-8d06-eb307ce37eae.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "eed41c05-ddb6-5a34-8e7d-95eaa0e19886",
+      "name": "tistory-72-eed41c05-ddb6-5a34-8e7d-95eaa0e19886.png",
+      "type": "image/png",
+      "path": "/assets/uploads/d53f5782-f31c-5bae-b3e1-cfbcc111b93f/eed41c05-ddb6-5a34-8e7d-95eaa0e19886.png",
+      "sha": "1f971b8c0119d1c4cf9d67d985d3c8f8b5b6ec38"
+    },
+    {
+      "id": "4bdc9cb0-6a4d-5d45-b8f2-bff90dfc1306",
+      "name": "tistory-72-4bdc9cb0-6a4d-5d45-b8f2-bff90dfc1306.png",
+      "type": "image/png",
+      "path": "/assets/uploads/d53f5782-f31c-5bae-b3e1-cfbcc111b93f/4bdc9cb0-6a4d-5d45-b8f2-bff90dfc1306.png",
+      "sha": "7067ce265bb2a83862bbcacdd5a3d6b0c3d886c3"
+    },
+    {
+      "id": "bb0ab229-fbc1-5bb8-9c45-a8a329447acc",
+      "name": "tistory-72-bb0ab229-fbc1-5bb8-9c45-a8a329447acc.png",
+      "type": "image/png",
+      "path": "/assets/uploads/d53f5782-f31c-5bae-b3e1-cfbcc111b93f/bb0ab229-fbc1-5bb8-9c45-a8a329447acc.png",
+      "sha": "549fb0573c761673fd4d0bc77d3f4c6e4977a9ad"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "96f0571a-1d2c-5d9e-8d06-eb307ce37eae",
+          "src": "/assets/uploads/d53f5782-f31c-5bae-b3e1-cfbcc111b93f/96f0571a-1d2c-5d9e-8d06-eb307ce37eae.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -61"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 20점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제에 들어가면 view-source만 나온다 소스코드를 확인해보자"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "eed41c05-ddb6-5a34-8e7d-95eaa0e19886",
+          "src": "/assets/uploads/d53f5782-f31c-5bae-b3e1-cfbcc111b93f/eed41c05-ddb6-5a34-8e7d-95eaa0e19886.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "소스코드눈 PHP로 되어 있으며 id값을 파라미터로 받아서 addslash와 preg_match로 필터링하고 있다. 또한 최대 id값은 15개이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n  include \"../../config.php\";\n  if($_GET['view_source']) view_source();\n  $db = dbconnect();\n  if(!$_GET['id']) $_GET['id']=\"guest\";\n  echo \"<html><head><title>Challenge 61</title></head><body>\";\n  echo \"<a href=./?view_source=1>view-source</a><hr>\";\n  $_GET['id'] = addslashes($_GET['id']);\n  if(preg_match(\"/\\(|\\)|select|from|,|by|\\./i\",$_GET['id'])) exit(\"Access Denied\");\n  if(strlen($_GET['id'])>15) exit(\"Access Denied\");\n  $result = mysqli_fetch_array(mysqli_query($db,\"select {$_GET['id']} from chall61 order by id desc limit 1\"));\n  echo \"<b>{$result['id']}</b><br>\";\n  if($result['id'] == \"admin\") solve(61);\n  echo \"</body></html>\";\n?>"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " $result = mysqli_fetch_array(mysqli_query($db,\"select {$_GET['id']} from chall61 order by id desc limit 1\"));"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "select절에 GET['id']값이 들어가 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "*을 입력해서 어떤 값이 우선적으로 출력되는 지 확인해보자"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "4bdc9cb0-6a4d-5d45-b8f2-bff90dfc1306",
+          "src": "/assets/uploads/d53f5782-f31c-5bae-b3e1-cfbcc111b93f/4bdc9cb0-6a4d-5d45-b8f2-bff90dfc1306.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "test값이 나오고 desc limt 1 때문에 값이 1개와 그리고 id테이블을 조회했을 때 거의 test값이 나오게 된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "select문에 들어갈 수 있는 것들을 정리하면 아래와 같다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "컬럼명 및 와일드카드"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "별칭(Alias)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "상수 및 리터럴(숫자, 문자열, 16진수)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "연산식 (산술 연산, 비트 연산)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "함수 및 시스템 변수 데이터를 변환하거나 DBMS의 정보"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "조건문 (CASE 구문) 프로그래밍 언어의 if-else와 유사한 로직(CASE WHEN id = 1 THEN 'admin' ELSE 'guest' END)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "서브쿼리 (Subquery) SELECT (SELECT pw FROM admin) FROM board 처럼 다른 테이블의 데이터를 가져올 때 사용. (단, 괄호가 필요하므로 괄호 필터링 시 사용 불가)"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "여기에서 서브쿼리를 사용하면 필터링에 걸리고 조건문은 사용하면 너무 길다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 리터럴과 별칭을 사용해서 우회해보자."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "별칭은 AS 구문으로 주로 쓰이지만 %20즉 스페이스 바로도 생략 가능하다. 그리고 '와\"는 addslash로 필터링 되므로 16진수로"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "0x61646D696E%20id을 하면 id admin으로 값이 나와 성공한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "bb0ab229-fbc1-5bb8-9c45-a8a329447acc",
+          "src": "/assets/uploads/d53f5782-f31c-5bae-b3e1-cfbcc111b93f/bb0ab229-fbc1-5bb8-9c45-a8a329447acc.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이 문제는 사용자 입력값이 SELECT 절의 컬럼 위치에 검증 없이 들어가는 취약점을 이용하여 쿼리 구조를 조작하는 문제이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "addslashes와 preg_match로 따옴표와 괄호가 차단된 상황에서, 문자열 'admin'을 16진수 리터럴로 변환하고 AS 키워드를 공백으로 대체하여 필터링을 우회했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "최종적으로 15글자 길이 제한 내에서 결과값의 별칭을 id로 지정함으로써, 반환되는 데이터를 admin으로 조작하여 인증 로직을 통과했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/72",
+    "originalId": "72",
+    "publishedAt": "2026-02-02T01:58:32+09:00",
+    "updatedAt": "2026-02-02T01:58:32+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

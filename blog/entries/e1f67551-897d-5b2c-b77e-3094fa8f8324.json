@@ -1,0 +1,1096 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "e1f67551-897d-5b2c-b77e-3094fa8f8324",
+  "kind": "posts",
+  "title": "[DVWA] SQL Injection",
+  "slug": "tistory-16",
+  "description": "1. SQL InjectionSQL Injection 취약점은 웹 애플리케이션이 사용자로부터 입력받은 값을 이용해 데이터베이스 쿼리문을 작성할 때,입력값에 대한 검증이 미흡하여 발생하는 보안 취약점이다. DVWA에서 SQL Injection을 알아보자 2. 문제 DVWA 웹 사이트에서 유저 아이디를 입력하면 이름을 출력하는 기능을 구현해 뒀다.아이디를 입력하면 해당하는 유저의 이름이 출력된다. low level 코드low level에 구현된 소스코드는 아래와 같으며 get요청이 들어오면 id 값을 query변수에 넣고 데이터 베이스에 쿼리문으로 작성한다. ' . ((is_object($GLOBALS[\"___mysqli_ston\"])) ? mysqli_error($GLOBALS[\"___mysqli_sto..",
+  "category": "Wargame / DVWA",
+  "date": "2025-12-28",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2025-12-28T19:44:46+09:00",
+  "updatedAt": "2026-01-20T13:25:15+09:00",
+  "sourceDigest": "d3dafab6b64b5ec9ed163cecfefd213eb6dfe11825fbb514b04dddb8157af9e5",
+  "assets": [
+    {
+      "id": "08679cab-e20a-5a86-b45b-a821f811d7e6",
+      "name": "tistory-16-08679cab-e20a-5a86-b45b-a821f811d7e6.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/08679cab-e20a-5a86-b45b-a821f811d7e6.png",
+      "sha": "a9f04382883eb644f3a5b4b4baf0e7f9efa0f51a"
+    },
+    {
+      "id": "e6078976-9ebd-5daf-b731-a23af19d770c",
+      "name": "tistory-16-e6078976-9ebd-5daf-b731-a23af19d770c.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/e6078976-9ebd-5daf-b731-a23af19d770c.png",
+      "sha": "00f5a0eca2a2b72bb0b6e0065d8fc7b137fe2c7d"
+    },
+    {
+      "id": "b767a3b5-8ee7-534f-8245-d33f6ab76b6f",
+      "name": "tistory-16-b767a3b5-8ee7-534f-8245-d33f6ab76b6f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/b767a3b5-8ee7-534f-8245-d33f6ab76b6f.png",
+      "sha": "ff56ec33c8b61a9a36b6c8fe34122197e90fd034"
+    },
+    {
+      "id": "70967d61-cb69-59ca-9ea7-8c58fc430d78",
+      "name": "tistory-16-70967d61-cb69-59ca-9ea7-8c58fc430d78.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/70967d61-cb69-59ca-9ea7-8c58fc430d78.png",
+      "sha": "aedac0b351f55e7dca07b6f429b9a6ece8842209"
+    },
+    {
+      "id": "dcce94d1-d6bb-5ecf-b068-d413753976d1",
+      "name": "tistory-16-dcce94d1-d6bb-5ecf-b068-d413753976d1.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/dcce94d1-d6bb-5ecf-b068-d413753976d1.png",
+      "sha": "fec7e6e9a2c0126752076db6c8d70d79a1c12bab"
+    },
+    {
+      "id": "d4eb9eca-6912-5d61-a321-bb5791420388",
+      "name": "tistory-16-d4eb9eca-6912-5d61-a321-bb5791420388.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/d4eb9eca-6912-5d61-a321-bb5791420388.png",
+      "sha": "26dea0ea163a4ec45236a373764a3aab9fea229c"
+    },
+    {
+      "id": "4f33e030-22a8-5a75-b602-f76a3b54a50e",
+      "name": "tistory-16-4f33e030-22a8-5a75-b602-f76a3b54a50e.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/4f33e030-22a8-5a75-b602-f76a3b54a50e.png",
+      "sha": "eb90a11eca6ca354dcf76b17d4c67e5d9e7332ed"
+    },
+    {
+      "id": "7db2a123-5b85-5759-8b87-20890425a6dd",
+      "name": "tistory-16-7db2a123-5b85-5759-8b87-20890425a6dd.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/7db2a123-5b85-5759-8b87-20890425a6dd.png",
+      "sha": "088187cd4bef005c56d6fad39f949043509446c8"
+    },
+    {
+      "id": "f179b8f3-36be-59bd-a1dc-72fed6268d5c",
+      "name": "tistory-16-f179b8f3-36be-59bd-a1dc-72fed6268d5c.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/f179b8f3-36be-59bd-a1dc-72fed6268d5c.png",
+      "sha": "7cbf686efd7180059c33a0d0fe59f51b729b64bb"
+    },
+    {
+      "id": "ec278e7b-65fc-587d-949c-742fe6e0a8cc",
+      "name": "tistory-16-ec278e7b-65fc-587d-949c-742fe6e0a8cc.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/ec278e7b-65fc-587d-949c-742fe6e0a8cc.png",
+      "sha": "e82dece93faf19d6ce40ab33536f66893df19b3c"
+    },
+    {
+      "id": "343c4f1b-026c-5890-954c-68a1ebd6d6bb",
+      "name": "tistory-16-343c4f1b-026c-5890-954c-68a1ebd6d6bb.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/343c4f1b-026c-5890-954c-68a1ebd6d6bb.png",
+      "sha": "e3b3243a4a4071600a1f6840f32dc14aad76c6b1"
+    },
+    {
+      "id": "04ad05d8-8fb8-5ae1-a8aa-f0f8367480e5",
+      "name": "tistory-16-04ad05d8-8fb8-5ae1-a8aa-f0f8367480e5.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/04ad05d8-8fb8-5ae1-a8aa-f0f8367480e5.png",
+      "sha": "c9a2cd4f4018684b7849f0eacf86181fe58d0f26"
+    },
+    {
+      "id": "4546d3f4-f31c-5383-addf-c95d1dd45fb7",
+      "name": "tistory-16-4546d3f4-f31c-5383-addf-c95d1dd45fb7.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/4546d3f4-f31c-5383-addf-c95d1dd45fb7.png",
+      "sha": "b282a57e9c032585979e3e9a76e66e9d1513404b"
+    },
+    {
+      "id": "1de7e574-1103-550f-9325-8fa4448e1b69",
+      "name": "tistory-16-1de7e574-1103-550f-9325-8fa4448e1b69.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/1de7e574-1103-550f-9325-8fa4448e1b69.png",
+      "sha": "e6d21774ee10740bfafee8b75b68b54afb844216"
+    },
+    {
+      "id": "c9910dc9-1dca-523d-aaa5-6934d0f21833",
+      "name": "tistory-16-c9910dc9-1dca-523d-aaa5-6934d0f21833.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/c9910dc9-1dca-523d-aaa5-6934d0f21833.png",
+      "sha": "4d924cecca1500e9a982b47bac0930f3f233d008"
+    },
+    {
+      "id": "b7c19fd5-334e-57f8-a225-ad76b7539fd1",
+      "name": "tistory-16-b7c19fd5-334e-57f8-a225-ad76b7539fd1.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/b7c19fd5-334e-57f8-a225-ad76b7539fd1.png",
+      "sha": "542946668234eb2445fb77ee6603d97465f9b636"
+    },
+    {
+      "id": "acc2bf28-a942-594c-ad53-fbcf28c44f10",
+      "name": "tistory-16-acc2bf28-a942-594c-ad53-fbcf28c44f10.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/acc2bf28-a942-594c-ad53-fbcf28c44f10.png",
+      "sha": "eb8dfa6743fa2e100b5bd93ccbac0583d8931b3c"
+    },
+    {
+      "id": "c43a0ccc-b196-5c50-a080-0dd2e1c88494",
+      "name": "tistory-16-c43a0ccc-b196-5c50-a080-0dd2e1c88494.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/c43a0ccc-b196-5c50-a080-0dd2e1c88494.png",
+      "sha": "1dece6c0a8e117117a68600666cb3c1c56739ece"
+    },
+    {
+      "id": "c6a3f366-c5c9-5b89-900d-c469c61d6816",
+      "name": "tistory-16-c6a3f366-c5c9-5b89-900d-c469c61d6816.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/c6a3f366-c5c9-5b89-900d-c469c61d6816.png",
+      "sha": "6a2b3d9e5b3cc994f0efade7959e749fabccd92e"
+    },
+    {
+      "id": "bce872fd-9325-507f-8707-ea802cddc24a",
+      "name": "tistory-16-bce872fd-9325-507f-8707-ea802cddc24a.png",
+      "type": "image/png",
+      "path": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/bce872fd-9325-507f-8707-ea802cddc24a.png",
+      "sha": "839dc8d5ae8fca0398ecd2b6bff7951b89d6f010"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "08679cab-e20a-5a86-b45b-a821f811d7e6",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/08679cab-e20a-5a86-b45b-a821f811d7e6.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. SQL Injection"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL Injection 취약점은 웹 애플리케이션이 사용자로부터 입력받은 값을 이용해 데이터베이스 쿼리문을 작성할 때,"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "입력값에 대한 검증이 미흡하여 발생하는 보안 취약점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DVWA에서 SQL Injection을 알아보자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "e6078976-9ebd-5daf-b731-a23af19d770c",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/e6078976-9ebd-5daf-b731-a23af19d770c.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DVWA 웹 사이트에서 유저 아이디를 입력하면 이름을 출력하는 기능을 구현해 뒀다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아이디를 입력하면 해당하는 유저의 이름이 출력된다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "b767a3b5-8ee7-534f-8245-d33f6ab76b6f",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/b767a3b5-8ee7-534f-8245-d33f6ab76b6f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " low level 코드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "low level에 구현된 소스코드는 아래와 같으며 get요청이 들어오면 id 값을 query변수에 넣고 데이터 베이스에 쿼리문으로 작성한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\nif( isset( $_REQUEST[ 'Submit' ] ) ) {\n    // Get input\n    $id = $_REQUEST[ 'id' ];\n\n    // Check database\n    $query  = \"SELECT first_name, last_name FROM users WHERE user_id = '$id';\";\n    $result = mysqli_query($GLOBALS[\"___mysqli_ston\"],  $query ) or die( '<pre>' . ((is_object($GLOBALS[\"___mysqli_ston\"])) ? mysqli_error($GLOBALS[\"___mysqli_ston\"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)) . '</pre>' );\n\n    // Get results\n    while( $row = mysqli_fetch_assoc( $result ) ) {\n        // Get values\n        $first = $row[\"first_name\"];\n        $last  = $row[\"last_name\"];\n\n        // Feedback for end user\n        echo \"<pre>ID: {$id}<br />First name: {$first}<br />Surname: {$last}</pre>\";\n    }\n\n    ((is_null($___mysqli_res = mysqli_close($GLOBALS[\"___mysqli_ston\"]))) ? false : $___mysqli_res);\n}\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "low level에서는 사용자가 요청한 id 값을 검증하지 않고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "query문에 작성해 쿼리문을 요청하므로 'or'1'='1을 요청하면 쿼리문을 항상 참으로 만들 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "70967d61-cb69-59ca-9ea7-8c58fc430d78",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/70967d61-cb69-59ca-9ea7-8c58fc430d78.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " medium level 코드"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "dcce94d1-d6bb-5ecf-b068-d413753976d1",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/dcce94d1-d6bb-5ecf-b068-d413753976d1.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "medium level 은 콤보박스가 생겨서 id값을 원하는 대로 입력하지 못한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "burf suite로 request를 보면 id 값을 조작할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "d4eb9eca-6912-5d61-a321-bb5791420388",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/d4eb9eca-6912-5d61-a321-bb5791420388.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "id 값을 'or'1'='1로 요청하면 안 된다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "4f33e030-22a8-5a75-b602-f76a3b54a50e",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/4f33e030-22a8-5a75-b602-f76a3b54a50e.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "7db2a123-5b85-5759-8b87-20890425a6dd",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/7db2a123-5b85-5759-8b87-20890425a6dd.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "안된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\nif( isset( $_POST[ 'Submit' ] ) ) {\n    // Get input\n    $id = $_POST[ 'id' ];\n    $id = ((isset($GLOBALS[\"___mysqli_ston\"]) && is_object($GLOBALS[\"___mysqli_ston\"])) ? mysqli_real_escape_string($GLOBALS[\"___mysqli_ston\"],  $id ) : ((trigger_error(\"[MySQLConverterToo] Fix the mysql_escape_string() call! This code does not work.\", E_USER_ERROR)) ? \"\" : \"\"));\n\n    // Check database\n    $query  = \"SELECT first_name, last_name FROM users WHERE user_id = $id;\";\n    $result = mysqli_query($GLOBALS[\"___mysqli_ston\"],  $query ) or die( '<pre>' . ((is_object($GLOBALS[\"___mysqli_ston\"])) ? mysqli_error($GLOBALS[\"___mysqli_ston\"]) : (($___mysqli_res = mysqli_connect_error()) ? $___mysqli_res : false)) . '</pre>' );\n\n    // Get results\n    while( $row = mysqli_fetch_assoc( $result ) ) {\n        // Display values\n        $first = $row[\"first_name\"];\n        $last  = $row[\"last_name\"];\n\n        // Feedback for end user\n        echo \"<pre>ID: {$id}<br />First name: {$first}<br />Surname: {$last}</pre>\";\n    }\n\n    //mysql_close();\n}\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "코드를 보니 mysql_real_escape_string함수를 통해 '과 ''를 /', /'' 로 변환한다. 하지만 low와 달리 '가 입력값에 없어 1 or 1=1로 변경하면 mysql_real_escape_string에 걸리지 않고 통과한다. 왜냐하면 따옴표가 없기 때문이다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "f179b8f3-36be-59bd-a1dc-72fed6268d5c",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/f179b8f3-36be-59bd-a1dc-72fed6268d5c.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "High level 코드"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "ec278e7b-65fc-587d-949c-742fe6e0a8cc",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/ec278e7b-65fc-587d-949c-742fe6e0a8cc.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "high level 문제"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "343c4f1b-026c-5890-954c-68a1ebd6d6bb",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/343c4f1b-026c-5890-954c-68a1ebd6d6bb.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "clik하고 나온 창"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "High level 코드는 id값을 query에 넣어서 limit1을 통해 하나의 아이디를 받아온다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\nif( isset( $_SESSION [ 'id' ] ) ) {\n    // Get input\n    $id = $_SESSION[ 'id' ];\n\n    // Check database\n    $query  = \"SELECT first_name, last_name FROM users WHERE user_id = '$id' LIMIT 1;\";\n    $result = mysqli_query($GLOBALS[\"___mysqli_ston\"],  $query ) or die( '<pre>Something went wrong.</pre>' );\n\n    // Get results\n    while( $row = mysqli_fetch_assoc( $result ) ) {\n        // Get values\n        $first = $row[\"first_name\"];\n        $last  = $row[\"last_name\"];\n\n        // Feedback for end user\n        echo \"<pre>ID: {$id}<br />First name: {$first}<br />Surname: {$last}</pre>\";\n    }\n\n    ((is_null($___mysqli_res = mysqli_close($GLOBALS[\"___mysqli_ston\"]))) ? false : $___mysqli_res);\n}\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "04ad05d8-8fb8-5ae1-a8aa-f0f8367480e5",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/04ad05d8-8fb8-5ae1-a8aa-f0f8367480e5.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "query에 limit 1;을 지우기 위해서 #을 통해 ' LIMIT 1;을 주석처리 해 여러 값을 불러온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "4546d3f4-f31c-5383-addf-c95d1dd45fb7",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/4546d3f4-f31c-5383-addf-c95d1dd45fb7.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Impossible level 코드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Impossible level 코드는 SQL Injection이 불가능하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "impossible level 코드는 PDO 기술 중 Prepared Statement 방식을 사용하여 데이터베이스를 조회하는 가장 안전한 형태의 코드이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 쿼리 틀 준비",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "$data = $db->prepare( 'SELECT ... WHERE user_id = (:id) LIMIT 1;' );\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 데이터 바인딩 (Bind)",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "$data->bindParam( ':id', $id, PDO::PARAM_INT );\n"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "bindParam: 비워뒀던 :id 자리에 실제 변수 $id를 연결한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "PDO::PARAM_INT : 들어오는 $id 값을 무조건 정수로 취급하겠다고 명시힌다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "만약 해커가 $id에 ' OR 1=1 같은 문자열을 넣더라도, 이 설정 때문에 실행 가능한 명령어가 아닌 단순한 숫자나 잘못된 입력값으로 인식한다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\nif( isset( $_GET[ 'Submit' ] ) ) {\n    // Check Anti-CSRF token\n    checkToken( $_REQUEST[ 'user_token' ], $_SESSION[ 'session_token' ], 'index.php' );\n\n    // Get input\n    $id = $_GET[ 'id' ];\n\n    // Was a number entered?\n    if(is_numeric( $id )) {\n        // Check the database\n        $data = $db->prepare( 'SELECT first_name, last_name FROM users WHERE user_id = (:id) LIMIT 1;' );\n        $data->bindParam( ':id', $id, PDO::PARAM_INT );\n        $data->execute();\n        $row = $data->fetch();\n\n        // Make sure only 1 result is returned\n        if( $data->rowCount() == 1 ) {\n            // Get values\n            $first = $row[ 'first_name' ];\n            $last  = $row[ 'last_name' ];\n\n            // Feedback for end user\n            echo \"<pre>ID: {$id}<br />First name: {$first}<br />Surname: {$last}</pre>\";\n        }\n    }\n}\n\n// Generate Anti-CSRF token\ngenerateSessionToken();\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 정보 찾기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "지금까지 ' or 1=1 #을 통해서 데이터베이스에 SQL Injection 취약점이 존재하는 것을 보았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그러면 이제 정보를 탈취해 보자."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터베이스에서 union을 사용해 select를 두 개의 결과를 합칠 수 있다. union은 칼럼의 개수가 같아야 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "칼럼의 개수를 알기 위해 order by 숫자#를 사용하면 현재 쿼리를 진행하는 테이블의 칼럼 수를 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래처럼 숫자에서 에러가 나면 그전 숫자가 칼럼의 개수이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "현재 컬럼의 개수는 2이다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "1de7e574-1103-550f-9325-8fa4448e1b69",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/1de7e574-1103-550f-9325-8fa4448e1b69.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "c9910dc9-1dca-523d-aaa5-6934d0f21833",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/c9910dc9-1dca-523d-aaa5-6934d0f21833.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "컬럼의 개수가 2니까 union을 하고 칼럼수를 맞춰주면 select문을 작성할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터베이스는 메타 정보를 저장하는 메타 데이터를 가지고 있다. 이것을 저장한 곳은 information_schema.schemata 테이블이다. 이걸 바탕으로 쿼리문을 짜보면 데이터베이스를 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "' union select schema_name, 1 from information_schema.schemata#"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "b7c19fd5-334e-57f8-a225-ad76b7539fd1",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/b7c19fd5-334e-57f8-a225-ad76b7539fd1.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "dvwa 데이터베이스가 존재한다는 것을 알 수 있다. 이걸 바탕으로 table의 이름을 조회해 보는 쿼리는 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "guestbook과 user 테이블이 존재하는 것을 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "' union select table_name, 1 from information_schema.tables where table_schema = 'dvwa'#"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "acc2bf28-a942-594c-ad53-fbcf28c44f10",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/acc2bf28-a942-594c-ad53-fbcf28c44f10.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "user table에 칼럼명들을 찾아보면"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "' union select column_name, 1 from information_schema.columns where table_name = 'users'#"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "c43a0ccc-b196-5c50-a080-0dd2e1c88494",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/c43a0ccc-b196-5c50-a080-0dd2e1c88494.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "userid, first_name, last_name, user, password, avatar, last_login, failded_login 칼럼이 존재하는 것을 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "user과 password를 같이 출력하는 union select구문은 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "bash"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "' union select user, password from users#"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "c6a3f366-c5c9-5b89-900d-c469c61d6816",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/c6a3f366-c5c9-5b89-900d-c469c61d6816.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "password값이 해싱된 것을 알 수 있고 이걸 찾기 위해 "
+          },
+          {
+            "type": "text",
+            "text": "https://hashes.com/en/decrypt/hash",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://hashes.com/en/decrypt/hash"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "사이트에서 복호화해보면"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "admin의 비밀번호가 password인 것을 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "bce872fd-9325-507f-8707-ea802cddc24a",
+          "src": "/assets/uploads/e1f67551-897d-5b2c-b77e-3094fa8f8324/bce872fd-9325-507f-8707-ea802cddc24a.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "사용자 입력값을 검증 없이 데이터베이스에 쿼리 하면 SQL Injection 취약점이 발생한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "union 및 order by를 사용해 현재 테이블보다 더 많은 데이터를 얻을 수 있다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "' or 1=1 #"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/16",
+    "originalId": "16",
+    "publishedAt": "2025-12-28T19:44:46+09:00",
+    "updatedAt": "2026-01-20T13:25:15+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

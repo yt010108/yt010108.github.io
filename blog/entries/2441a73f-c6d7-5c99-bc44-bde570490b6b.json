@@ -1,0 +1,279 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "2441a73f-c6d7-5c99-bc44-bde570490b6b",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-31 문제",
+  "slug": "tistory-53",
+  "description": "1. 문제 정보문제 번호 : old -31문제 점수 : 15점2. 문제 분석문제에 들어가면 아래 코드가 뜬다 php로 랜덤으로 10000과 10100사이에 포트를 fsokopen으로 server파라미터로 들어온 주소로 소켓을 연다.$port = rand(10000,10100);$socket = fsockopen($_GET['server'],$port,$errno,$errstr,3) or die(\"error : {$errstr}\");Warning: fsockopen(): unable to connect to 211.107.176.16:10055 (Connection timed out) in /var/www/html/challenge/web-16/index.php on line 23error : Connec..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-23",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-23T23:53:12+09:00",
+  "updatedAt": "2026-01-24T00:37:14+09:00",
+  "sourceDigest": "0aa7cad3415bb0fcc29ddc43063a95c0318087bd8c4c8aa0570b40f634ea7188",
+  "assets": [
+    {
+      "id": "2058cccb-3531-5637-bfbe-decc630593ef",
+      "name": "tistory-53-2058cccb-3531-5637-bfbe-decc630593ef.png",
+      "type": "image/png",
+      "path": "/assets/uploads/2441a73f-c6d7-5c99-bc44-bde570490b6b/2058cccb-3531-5637-bfbe-decc630593ef.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "6575bc28-c38b-58c7-a1c4-ad88e46f8b6b",
+      "name": "tistory-53-6575bc28-c38b-58c7-a1c4-ad88e46f8b6b.png",
+      "type": "image/png",
+      "path": "/assets/uploads/2441a73f-c6d7-5c99-bc44-bde570490b6b/6575bc28-c38b-58c7-a1c4-ad88e46f8b6b.png",
+      "sha": "8e79dca7d298b953325a9b90e149e9ed111dfc54"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "2058cccb-3531-5637-bfbe-decc630593ef",
+          "src": "/assets/uploads/2441a73f-c6d7-5c99-bc44-bde570490b6b/2058cccb-3531-5637-bfbe-decc630593ef.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -31"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 15점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제에 들어가면 아래 코드가 뜬다 php로 랜덤으로 10000과 10100사이에 포트를 fsokopen으로 server파라미터로 들어온 주소로 소켓을 연다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "$port = rand(10000,10100);\n$socket = fsockopen($_GET['server'],$port,$errno,$errstr,3) or die(\"error : {$errstr}\");\n\nWarning: fsockopen(): unable to connect to 211.107.176.16:10055 (Connection timed out) in /var/www/html/challenge/web-16/index.php on line 23\nerror : Connection timed out"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[원본에서 불러올 수 없는 이미지]"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "포트를 열어서 연결해보자"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "소켓을 열고 웹사이트를 리로딩하면 flag가 나온다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import socket\nimport select\n\nsockets = []\nstart_port = 10000\nend_port = 10100\n\nprint(f\"[*] {start_port} ~ {end_port} 포트 전체 리스닝 시작...\")\n\n# 1. 포트 101개 열기\nfor port in range(start_port, end_port + 1):\n    try:\n        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n        s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n        s.bind(('0.0.0.0', port))\n        s.listen(1)\n        sockets.append(s)\n    except Exception as e:\n        pass # 에러 무시\n\nprint(\"[*] 준비 완료. 웹페이지를 새로고침 하세요!\")\n\n# 2. 접속 대기\nreadable, _, _ = select.select(sockets, [], [])\nready_socket = readable[0]\nclient_conn, client_addr = ready_socket.accept()\n\nprint(f\"\\n[!] 연결 성공! (포트: {ready_socket.getsockname()[1]})\")\n\n# -----------------------------------------------------\n# [추가된 부분] 데이터를 받아서 확인해보기\n# -----------------------------------------------------\ntry:\n    # 1024바이트만큼 데이터를 기다려봄 (타임아웃 설정 가능)\n    client_conn.settimeout(2) \n    data = client_conn.recv(1024)\n    \n    if data:\n        print(f\"[+] 받은 데이터: {data.decode('utf-8', errors='ignore')}\")\n    else:\n        print(\"[-] 연결은 됐지만, 서버가 보낸 데이터는 없습니다.\")\n        \nexcept socket.timeout:\n    print(\"[-] 데이터 수신 대기 시간 초과 (서버가 아무 말도 안 함)\")\n\n# 3. 정리\nclient_conn.close()\nfor s in sockets:\n    s.close()"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "6575bc28-c38b-58c7-a1c4-ad88e46f8b6b",
+          "src": "/assets/uploads/2441a73f-c6d7-5c99-bc44-bde570490b6b/6575bc28-c38b-58c7-a1c4-ad88e46f8b6b.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "서버가 지정된 범위(10000~10100) 내의 랜덤 포트로 접속을 시도하므로, 내 PC에서 해당 범위의 포트를 모두 열어 대기했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "파이썬의 socket과 select 모듈을 이용해 리스닝상태로 만들어 서버의 연결 요청을 수락한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "연결이 되면 FLAG가 온다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/53",
+    "originalId": "53",
+    "publishedAt": "2026-01-23T23:53:12+09:00",
+    "updatedAt": "2026-01-24T00:37:14+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

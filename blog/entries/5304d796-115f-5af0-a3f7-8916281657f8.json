@@ -1,0 +1,1906 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "5304d796-115f-5af0-a3f7-8916281657f8",
+  "kind": "posts",
+  "title": "[SK Rookies] Git과 GitHub 기초 정리",
+  "slug": "tistory-111",
+  "description": "Git은 파일을 단순히 백업하는 도구가 아니다. 작업 중인 코드의 변경 이력을 남기고, 필요한 시점으로 돌아가며, 여러 사람이 같은 프로젝트를 함께 다룰 수 있게 해 주는 버전 관리 도구다.이번 강의에서는 Git의 기본 개념부터 로컬 저장소에서 작업한 내용을 GitHub에 올리는 방법, 브랜치와 충돌 해결, Pull Request까지 한 흐름으로 다뤘다. 처음에는 명령어가 많아 보이지만, 파일이 이동하는 순서만 이해하면 훨씬 수월해진다.Git과 GitHub는 무엇이 다를까Git은 내 PC에서 파일의 변경 이력을 관리하는 분산 버전 관리 시스템이다. 인터넷 연결이 없어도 커밋과 기록 확인 같은 작업을 할 수 있다.GitHub는 Git 저장소를 온라인에 올려 두고 다른 사람과 공유·협업할 수 있게 하는 서비..",
+  "category": "SK Rookies / 수업 정리",
+  "date": "2026-07-21",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-07-21T13:15:15+09:00",
+  "updatedAt": "2026-08-12T10:01:29+09:00",
+  "sourceDigest": "899cccca477e28992feb7abb615af8aea16351029c8b3e7a26182ece294aa6a3",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[원본에서 불러올 수 없는 이미지]"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Git은 파일을 단순히 백업하는 도구가 아니다. 작업 중인 코드의 변경 이력을 남기고, 필요한 시점으로 돌아가며, 여러 사람이 같은 프로젝트를 함께 다룰 수 있게 해 주는 버전 관리 도구다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번 강의에서는 Git의 기본 개념부터 로컬 저장소에서 작업한 내용을 GitHub에 올리는 방법, 브랜치와 충돌 해결, Pull Request까지 한 흐름으로 다뤘다. 처음에는 명령어가 많아 보이지만, 파일이 이동하는 순서만 이해하면 훨씬 수월해진다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Git과 GitHub는 무엇이 다를까"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Git은 내 PC에서 파일의 변경 이력을 관리하는 분산 버전 관리 시스템이다. 인터넷 연결이 없어도 커밋과 기록 확인 같은 작업을 할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "GitHub는 Git 저장소를 온라인에 올려 두고 다른 사람과 공유·협업할 수 있게 하는 서비스다. Git이 변경 이력을 기록하는 도구라면, GitHub는 그 기록을 함께 관리하는 원격 공간이라고 보면 된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "시작 전 설정"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "강의에서는 Git과 VS Code를 설치하고 GitHub 계정을 만든 뒤, Git에 작성자 정보를 등록했다. 커밋에는 작성자 이름과 이메일이 남기 때문에 처음 한 번 설정해 두는 편이 좋다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "git config --global user.name \"이름\"\ngit config --global user.email \"이메일 주소\"\ngit config --global --list"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "--global",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 옵션을 사용하면 이후 생성하는 로컬 저장소에 같은 설정이 적용된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "로컬 저장소 만들기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "새 프로젝트 폴더를 만들고 Git으로 관리하려면 해당 폴더에서 "
+          },
+          {
+            "type": "text",
+            "text": "git init",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "을 실행한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "mkdir my_story\ncd my_story\ngit init"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "명령을 실행하면 폴더 안에 "
+          },
+          {
+            "type": "text",
+            "text": ".git",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 디렉터리가 생성된다. 이 폴더에는 커밋 이력, 브랜치 정보 등 Git이 관리하는 데이터가 들어간다. 이후 파일을 만들어도 바로 기록되지는 않는다. Git은 변경 내용을 단계별로 확인하고 저장한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Git의 핵심 흐름: 작업 공간에서 커밋까지"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Git의 기본 구조는 아래 네 공간으로 나눠 볼 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "구분"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "역할"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "주로 사용하는 명령어"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "작업 디렉터리"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "실제 파일을 수정하는 공간"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "git status",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "text": ", "
+                      },
+                      {
+                        "type": "text",
+                        "text": "git diff",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Staging Area"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "다음 커밋에 포함할 변경을 고르는 공간"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "git add",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "로컬 저장소"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "내 PC에 커밋 이력을 저장하는 공간"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "git commit",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "text": ", "
+                      },
+                      {
+                        "type": "text",
+                        "text": "git log",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원격 저장소"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GitHub처럼 온라인에 공유하는 저장소"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "git push",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "text": ", "
+                      },
+                      {
+                        "type": "text",
+                        "text": "git pull",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가장 자주 쓰게 될 흐름은 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "git status\ngit add .\ngit commit -m \"변경 내용\"\ngit log --oneline"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "git status",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 현재 어떤 파일이 수정됐는지, 어떤 파일이 스테이징됐는지 보여 준다. 작업을 시작하거나 커밋하기 전에는 우선 "
+          },
+          {
+            "type": "text",
+            "text": "git status",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "를 확인하는 습관을 들이는 것이 좋다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "git add",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 변경한 파일을 다음 커밋 후보에 넣는 명령이다. "
+          },
+          {
+            "type": "text",
+            "text": "git add 파일명",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "으로 특정 파일만 선택할 수 있고, "
+          },
+          {
+            "type": "text",
+            "text": "git add .",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "으로 현재 폴더의 변경을 한 번에 추가할 수도 있다. 다만 "
+          },
+          {
+            "type": "text",
+            "text": "git add .",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "을 사용하기 전에는 민감한 정보나 불필요한 파일이 포함되지 않았는지 확인해야 한다. "
+          },
+          {
+            "type": "text",
+            "text": ".env",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", 로그 파일, 빌드 결과물처럼 저장소에 올리지 않을 대상은 "
+          },
+          {
+            "type": "text",
+            "text": ".gitignore",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "에 등록한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "git commit -m \"메시지\"",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 스테이징된 변경을 하나의 기록으로 남긴다. 커밋 메시지는 나중에 이력을 봤을 때 무엇을 바꿨는지 알 수 있도록 구체적으로 작성하는 편이 좋다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "변경 내용을 확인하고 되돌리기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Git은 실수했을 때도 현재 상태와 이전 기록을 비교하면서 작업할 수 있다는 점이 강점이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "git diff\ngit restore --staged 파일명\ngit reset --soft 커밋ID\ngit reset --mixed 커밋ID\ngit reset --hard 커밋ID"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "git diff",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 아직 스테이징하지 않은 변경 내용을 보여 준다. 스테이징한 파일을 다시 작업 공간으로 되돌리고 싶다면 "
+          },
+          {
+            "type": "text",
+            "text": "git restore --staged 파일명",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "을 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "git reset",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "은 커밋 시점을 옮길 때 사용한다. "
+          },
+          {
+            "type": "text",
+            "text": "--soft",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 커밋만 되돌리고 스테이징 상태는 유지한다. "
+          },
+          {
+            "type": "text",
+            "text": "--mixed",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 스테이징도 해제하지만 파일 수정 내용은 남긴다. "
+          },
+          {
+            "type": "text",
+            "text": "--hard",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 작업 디렉터리까지 지정한 커밋 상태로 되돌리므로, 저장하지 않은 수정 내용이 사라질 수 있다. 실행 전에는 반드시 영향을 확인해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이미 Git이 추적 중인 파일을 수정한 경우에는 아래처럼 add와 commit을 한 번에 처리할 수도 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "git commit -am \"수정 내용\""
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다만 새로 만든 파일은 이 명령에 포함되지 않는다. 새 파일은 먼저 "
+          },
+          {
+            "type": "text",
+            "text": "git add",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "를 해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "GitHub 원격 저장소 연결하기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "로컬에서 만든 프로젝트를 GitHub에 올리려면 먼저 GitHub에서 저장소를 만들고, 내 프로젝트에 원격 주소를 연결한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "git remote add origin https://github.com/사용자이름/저장소이름.git\ngit remote -v\ngit push -u origin main"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "origin",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "은 원격 저장소에 붙이는 기본 별칭이다. "
+          },
+          {
+            "type": "text",
+            "text": "git remote -v",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "로 연결된 주소를 확인할 수 있다. 처음 "
+          },
+          {
+            "type": "text",
+            "text": "push",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "할 때 "
+          },
+          {
+            "type": "text",
+            "text": "-u origin main",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "을 사용하면 이후에는 "
+          },
+          {
+            "type": "text",
+            "text": "git push",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "만 입력해도 같은 원격 브랜치로 올릴 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "반대로 GitHub에 있는 프로젝트를 내 PC로 내려받을 때는 "
+          },
+          {
+            "type": "text",
+            "text": "git clone",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "을 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "git clone https://github.com/사용자이름/저장소이름.git"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "협업 중 다른 사람이 올린 변경을 받아올 때는 "
+          },
+          {
+            "type": "text",
+            "text": "git pull",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "을 사용한다. 로컬 작업을 원격 저장소에 올리는 명령은 "
+          },
+          {
+            "type": "text",
+            "text": "git push",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "git pull\ngit push"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "브랜치로 작업을 나누는 이유"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "브랜치는 하나의 프로젝트 안에서 작업 흐름을 나누는 기능이다. 안정적으로 관리할 코드는 "
+          },
+          {
+            "type": "text",
+            "text": "main",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "에 두고, 개발 내용을 모으는 "
+          },
+          {
+            "type": "text",
+            "text": "develop",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", 특정 기능을 만드는 "
+          },
+          {
+            "type": "text",
+            "text": "feature",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 브랜치에서 작업하는 방식을 많이 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "git switch -c dev\ngit switch main\ngit branch -l\ngit merge dev"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "git switch -c dev",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 "
+          },
+          {
+            "type": "text",
+            "text": "dev",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 브랜치를 새로 만들고 바로 이동한다. 기능 개발이 끝난 뒤에는 기준 브랜치로 이동해 "
+          },
+          {
+            "type": "text",
+            "text": "git merge 브랜치명",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "으로 변경을 합친다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "브랜치를 사용하면 로그인 기능을 수정하는 동안 다른 사람은 화면이나 데이터 처리 기능을 별도로 작업할 수 있다. 완성되지 않은 코드를 "
+          },
+          {
+            "type": "text",
+            "text": "main",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "에 바로 반영하지 않아도 된다는 점도 장점이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "충돌(conflict)이 발생했을 때"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "같은 파일의 같은 부분을 서로 다르게 수정한 뒤 병합하면 Git이 어느 내용을 선택해야 할지 판단하지 못한다. 이때 충돌이 발생한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "충돌 난 파일에는 아래와 같은 표시가 남는다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<<<<<<< HEAD\n현재 브랜치의 내용\n=======\n병합하려는 브랜치의 내용\n>>>>>>> dev"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "표시를 기준으로 최종적으로 남길 내용을 직접 정리하고, 충돌 표시는 모두 제거한다. 그다음 수정한 파일을 다시 "
+          },
+          {
+            "type": "text",
+            "text": "git add",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "하고 커밋하면 충돌 해결이 끝난다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "git add .\ngit commit -m \"충돌 해결\"\ngit push"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Pull Request로 검토 후 병합하기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "협업에서는 기능 브랜치의 코드를 바로 "
+          },
+          {
+            "type": "text",
+            "text": "main",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "에 합치기보다 Pull Request(PR)를 만들어 검토하는 흐름을 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "기능 브랜치에서 작업하고 커밋한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "원격 저장소에 브랜치를 push한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "GitHub에서 Pull Request를 만들어 병합 대상 브랜치를 지정한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "코드 리뷰와 확인을 마친 뒤 병합한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "다른 브랜치에서도 최신 변경을 pull로 받아온다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PR은 단순히 병합을 요청하는 기능이 아니다. 변경 이유와 범위를 남기고, 다른 사람이 코드를 검토할 수 있게 하는 협업 기록이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Markdown도 함께 익혀 두기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "GitHub의 README, 이슈, Pull Request 설명은 Markdown으로 작성하는 경우가 많다. 제목, 목록, 코드 블록처럼 자주 쓰는 형식만 알아도 프로젝트 소개와 작업 내용을 훨씬 읽기 좋게 만들 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "# 프로젝트 제목\n\n## 주요 기능\n\n- 로그인\n- 회원가입\n\n`git status`"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "기억해 둘 명령어"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "목적"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "명령어"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "현재 상태 확인"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "git status",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "변경 내용 확인"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "git diff",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "스테이징"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "git add 파일명",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "text": " / "
+                      },
+                      {
+                        "type": "text",
+                        "text": "git add .",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "커밋"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "git commit -m \"메시지\"",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "이력 확인"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "git log --oneline",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원격 저장소에 올리기"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "git push",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원격 변경 받아오기"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "git pull",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "저장소 복제"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "git clone 저장소주소",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "브랜치 생성 및 이동"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "git switch -c 브랜치명",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "브랜치 병합"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "git merge 브랜치명",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Git을 사용할 때 가장 중요한 것은 명령어를 외우는 것보다 변경의 흐름을 이해하는 일이다. 파일을 수정하고, 필요한 변경만 골라 스테이징한 뒤, 의미 있는 단위로 커밋하고, 협업이 필요할 때 원격 저장소와 브랜치를 활용한다. 이 순서를 익혀 두면 이후 프로젝트나 실습에서도 Git을 훨씬 자연스럽게 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "카테고리: SK 쉴더스 / Git"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "태그: Git, GitHub, 버전관리, CLI, 브랜치, Pull Request, Markdown, SK쉴더스"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/111",
+    "originalId": "111",
+    "publishedAt": "2026-07-21T13:15:15+09:00",
+    "updatedAt": "2026-08-12T10:01:29+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

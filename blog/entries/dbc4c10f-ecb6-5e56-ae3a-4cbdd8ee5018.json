@@ -1,0 +1,950 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "dbc4c10f-ecb6-5e56-ae3a-4cbdd8ee5018",
+  "kind": "posts",
+  "title": "정보처리기사 취득 후기",
+  "slug": "tistory-6",
+  "description": "안녕하세요정보처리기사 시험 후기 및 취득 후기입니다. 정보처리기사는 IT관련 일을 지원할 때 거의 필수이기도 하고학교 공부 복습 겸 자격증을 응시했습니다. 제 베이스는 학교 수업으로 소프트웨어공학론, 데이터베이스, 운영체제등필수 수업을 들었고 보안 관련 공부도 하고 있습니다.시험 개요 및 일정① 시 행 처 : 한국산업인력공단 ② 관련학과 : 모든 학과 응시가능 ③ 시험과목- 필기 1. 소프트웨어설계 2. 소프트웨어개발 3. 데이터베이스구축 4. 프로그래밍언어활용 5. 정보시스템구축관리- 실기 : 정보처리 실무 ④ 검정방법- 필기 : 객관식 4지 택일형, 과목당 20문항(과목당 30분)- 실기 : 필답형(2시간 30분) ⑤ 합격기준- 필기 : 100점을 만점으로 하여 과목당 40점 이상, 전 과목 ..",
+  "category": "Certificate",
+  "date": "2025-12-15",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2025-12-15T12:26:17+09:00",
+  "updatedAt": "2026-08-07T18:48:38+09:00",
+  "sourceDigest": "35a3bc1f77e16b0000b6cb0b62dcea942e797b88c497914139265fdf20fb0edb",
+  "assets": [
+    {
+      "id": "8651a393-c8d8-5073-ac98-a2eda69683b9",
+      "name": "tistory-6-8651a393-c8d8-5073-ac98-a2eda69683b9.jpg",
+      "type": "image/jpeg",
+      "path": "/assets/uploads/dbc4c10f-ecb6-5e56-ae3a-4cbdd8ee5018/8651a393-c8d8-5073-ac98-a2eda69683b9.jpg",
+      "sha": "f5bc9b25c6e18dc5cb7c6671e625a19eba42462c"
+    },
+    {
+      "id": "d8636b50-8bff-50a6-8657-5709e4dc97a7",
+      "name": "tistory-6-d8636b50-8bff-50a6-8657-5709e4dc97a7.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dbc4c10f-ecb6-5e56-ae3a-4cbdd8ee5018/d8636b50-8bff-50a6-8657-5709e4dc97a7.png",
+      "sha": "24ce55587977f7431e4b77888cff0634941d19eb"
+    },
+    {
+      "id": "583fdd1f-f72c-5ea2-9f69-3cf3df0feff7",
+      "name": "tistory-6-583fdd1f-f72c-5ea2-9f69-3cf3df0feff7.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dbc4c10f-ecb6-5e56-ae3a-4cbdd8ee5018/583fdd1f-f72c-5ea2-9f69-3cf3df0feff7.png",
+      "sha": "6a79e2d8408e83490d9f4e8931222555f770e6f5"
+    },
+    {
+      "id": "01379784-05f4-59a0-b2a4-5faa315c0024",
+      "name": "tistory-6-01379784-05f4-59a0-b2a4-5faa315c0024.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dbc4c10f-ecb6-5e56-ae3a-4cbdd8ee5018/01379784-05f4-59a0-b2a4-5faa315c0024.png",
+      "sha": "a79646f166570bad3eeca78020b64e67b0c2cc53"
+    },
+    {
+      "id": "4966141a-0640-5f03-8157-3e849dfc3e08",
+      "name": "tistory-6-4966141a-0640-5f03-8157-3e849dfc3e08.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dbc4c10f-ecb6-5e56-ae3a-4cbdd8ee5018/4966141a-0640-5f03-8157-3e849dfc3e08.png",
+      "sha": "750d0f0d55dc020553e457d54ebb0389aab86923"
+    },
+    {
+      "id": "529e2465-59db-58ba-972c-36c4dd3164cd",
+      "name": "tistory-6-529e2465-59db-58ba-972c-36c4dd3164cd.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dbc4c10f-ecb6-5e56-ae3a-4cbdd8ee5018/529e2465-59db-58ba-972c-36c4dd3164cd.png",
+      "sha": "db645de33ca51944ce48f55d4d9dc1ec62464ed5"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "안녕하세요"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "정보처리기사 시험 후기 및 취득 후기입니다."
+          },
+          {
+            "type": "hardBreak"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "8651a393-c8d8-5073-ac98-a2eda69683b9",
+          "src": "/assets/uploads/dbc4c10f-ecb6-5e56-ae3a-4cbdd8ee5018/8651a393-c8d8-5073-ac98-a2eda69683b9.jpg",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "정보처리기사는 IT관련 일을 지원할 때 거의 필수이기도 하고"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "학교 공부 복습 겸 자격증을 응시했습니다. "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " 제 베이스는 학교 수업으로 소프트웨어공학론, 데이터베이스, 운영체제등"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "필수 수업을 들었고 보안 관련 공부도 하고 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "시험 개요 및 일정"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "① 시 행 처 : 한국산업인력공단"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "② 관련학과 : 모든 학과 응시가능 "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "③ 시험과목"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 필기 1. 소프트웨어설계 2. 소프트웨어개발 3. 데이터베이스구축 4. 프로그래밍언어활용 5. 정보시스템구축관리"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 실기 : 정보처리 실무"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "④ 검정방법"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 필기 : 객관식 4지 택일형, 과목당 20문항(과목당 30분)"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 실기 : 필답형(2시간 30분)"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "⑤ 합격기준"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 필기 : 100점을 만점으로 하여 과목당 40점 이상, 전 과목 평균 60점 이상."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 실기 : 100점을 만점으로 하여 60점 이상."
+          },
+          {
+            "type": "hardBreak"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "합격 기준은 60점으로 필기는 CBT형식, 실기는 필기시험으로 진행됩니다."
+          },
+          {
+            "type": "hardBreak"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "d8636b50-8bff-50a6-8657-5709e4dc97a7",
+          "src": "/assets/uploads/dbc4c10f-ecb6-5e56-ae3a-4cbdd8ee5018/d8636b50-8bff-50a6-8657-5709e4dc97a7.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "응시료는 필기 19400원, 실기 22600으로 치킨 한 마리 가격이지만"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "1년에 3회밖에 없어서 잘 준비해야 합니다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "아래는 2026년 정보처리기사 일정으로 2~5월, 5~8월, 8~11월 정도로 보통 시험이 잡힙니다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "583fdd1f-f72c-5ea2-9f69-3cf3df0feff7",
+          "src": "/assets/uploads/dbc4c10f-ecb6-5e56-ae3a-4cbdd8ee5018/583fdd1f-f72c-5ea2-9f69-3cf3df0feff7.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "더 자세한 내용과 응시는 홈페이지에서 확인 가능합니다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "http://www.q-net.or.kr",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "http://www.q-net.or.kr"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "166cfd81-9ad2-5ac5-9110-59c0a5208a97",
+          "href": "http://www.q-net.or.kr",
+          "title": "Q-Net 자격의 모든 것",
+          "description": "",
+          "image": "",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " "
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "시험 준비"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "필기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정보처리기사 필기 준비기간은 10일로 잡았고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "앞에 3일은 개념을 봤고 나머지는 cbt 문제를 풀었습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "정보처리기사 필기시험 준비하는 자료는"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "시나공에서 정보처리기사 핵심 요약집 참고했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "핵심 요약집을 외우기보다는 이런 것들이 있었고 학교 수업을 복기하면서 여러 번 봤습니다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "01379784-05f4-59a0-b2a4-5faa315c0024",
+          "src": "/assets/uploads/dbc4c10f-ecb6-5e56-ae3a-4cbdd8ee5018/01379784-05f4-59a0-b2a4-5faa315c0024.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://www.sinagong.co.kr/pds/001001001/books",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.sinagong.co.kr/pds/001001001/books"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "9e741e7b-f88d-5f76-97ec-67835eff98da",
+          "href": "https://www.sinagong.co.kr",
+          "title": "시나공",
+          "description": "컴활, 정보처리, 워드프로세서 등 IT 자격증 전문. 해설 포함 CBT, 최신 기출 자료 무료, 실기 채점 프로그램 제공",
+          "image": "https://yt010108.github.io/assets/imported/tistory/38a4d8c8fda54e42c561f481de5f213b154da2901e35abd49e9f230cfa2babe1.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정보처리기사 필기시험은 cbt 시험이기 때문에"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래 CBT사이트에서 문제를 풀었고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "60점 이상이 합격이라 예상 문제에서 70점 ~80점을 목표로 풀었습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://www.comcbt.com/",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.comcbt.com/"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "c355b26f-b2ce-5fb6-974a-664016d40287",
+          "href": "https://www.comcbt.com",
+          "title": "최강 자격증 기출문제 전자문제집 CBT",
+          "description": "전자문제집,CBT,자격증,기출문제,해설,워드,워드프로세서,컴활,컴퓨터,활용능력,1급,2급,기사,산업기사,기능사,기능장,정보,전기,산업,안전,PC,네트워크,건축,건설,토목,가스,금속,미용,위험물,자",
+          "image": "https://yt010108.github.io/assets/imported/tistory/3c79095749c4aa276fb497aa539ade96d1b51dbfe7541bb8b5f688d008744e91.gif",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "필기시험을 늦게 잡으면 해당 회차 필기 복원 문제를"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "인터넷에서 찾을 수 있는데 복원 문제와 비슷한 문제들이 많이 나와 보고 시험 치는 걸 추천합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "실기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실기는 준비기간은 2주로 했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "주로 코드 +sql이 10~12문제 나오고 개념이 나머지라 코드 문제를 주로 푸려고 했습니다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "저는 쿠팡에서 아래 책을 26100원 주고 구매해서 봤습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제 위주로 풀고 싶더라고요"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "4966141a-0640-5f03-8157-3e849dfc3e08",
+          "src": "/assets/uploads/dbc4c10f-ecb6-5e56-ae3a-4cbdd8ee5018/4966141a-0640-5f03-8157-3e849dfc3e08.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "구성은 예상문제 400개 기출문제 200개입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "한 필기시험에 20문제이므로 30개 정도 풀었네요"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대부분이 단답형이 많고 하루에 100개씩도 풀만하더라고요"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예상문제는 답이랑 같이 나와 있는데 그냥 이렇구나 하면서 개념을 알아갔습니다. "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " 제가 3회 차 시험을 봐서 1,2회 차 최신 기출은 없어서 따로 인터넷에서 찾아서 풀었습니다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "시험당일"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "입실 시간:",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 오전 9시까지."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "시험 시작:",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 오전 9시 30분부터"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "시험보다 30분 전에 가서 책 보면서 뇌를 깨웠습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "시험은 거의 단답형이며 난이도는 어려운 코드 문제가 많이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "나오진 않아서 쉽게 느껴졌고 20분 정도 걸렸습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "검토랑 해서 40분 정도 걸렸습니다. 1시간 15분 경과 후부터 퇴실가능해서 그냥 기다리고 있었습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "시험 끝나고 가답안 찾으려고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "디시인사이드에 정보처리기사 갤러리에서 답안 올라오는 거 보고 채점했습니다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "시험 결과 및 후기"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "시험 후기 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "생각보다 실수가 많았다. 너무 쉽게 푼 문제들이 함정이 숨어 있거나"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "확실하게 알지 못하면 틀리는 문제들이 많았습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공부할 때 빠르게 보단 정확하고 확실하게 푸는 연습을 더 해야겠다고 생각했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아무튼 합격했습니다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "529e2465-59db-58ba-972c-36c4dd3164cd",
+          "src": "/assets/uploads/dbc4c10f-ecb6-5e56-ae3a-4cbdd8ee5018/529e2465-59db-58ba-972c-36c4dd3164cd.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "hardBreak"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 필기는 CBT여서 양치기로 시나공 + 양치기"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "2. 실기는 책으로 공부"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "3. 난이도는 평이했으나, 대충 공부하면 실수하기 쉬운 시험이었습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "시험 보시는 분들 모두 파이팅 하십시오"
+          },
+          {
+            "type": "hardBreak"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "hardBreak"
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/6",
+    "originalId": "6",
+    "publishedAt": "2025-12-15T12:26:17+09:00",
+    "updatedAt": "2026-08-07T18:48:38+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

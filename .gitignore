@@ -8,3 +8,4 @@ _site/
 /admin/assets/
 /assets/posts.js
 /published.js
+/published.json

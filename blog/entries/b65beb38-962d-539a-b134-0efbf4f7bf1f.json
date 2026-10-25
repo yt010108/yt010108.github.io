@@ -1,0 +1,665 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "b65beb38-962d-539a-b134-0efbf4f7bf1f",
+  "kind": "posts",
+  "title": "Hermes Agent-Dashboard로 Skills, Cron, MCP 최적화하기",
+  "slug": "tistory-108",
+  "description": "0. 개요Hermes Agent를 처음 쓸 때는 CLI와 config.yaml만으로도 충분하다. 설정을 바꾸고, API 키를 넣고, 필요한 명령어를 실행하면 된다. 또한 AI한테 원하는 설정을 말하면 알아서 설정해주기 때문에 충분했었다. 하지만 Hermes를 사용하다보면 skills가 많아서 비활성화해야하는 경우도 있고 모델 설정이나 Cron, 플러그인, 플러그인, mcp, 채널 등 이런 설정들을 관리하기에는 무리가 있다. 하지만 여러 관리 도구가 있지만 dashboard가 괜찮은 거 같아서 소개한다. 1. 환경 설정내 환경은 ssh를 사용해서 클라우드에 연결해 hermes desktop이 사용이 불가능하다. 따라서 선택지가 web을 통한 dashboard를 선택했다. 환경 설정은 간단하다. hermes..",
+  "category": "AI / hermes",
+  "date": "2026-06-06",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-06-06T18:12:39+09:00",
+  "updatedAt": "2026-06-06T18:28:18+09:00",
+  "sourceDigest": "62cbee9a957a4528a785104b4d51d9a9aa4746d956f48778470bad1187c0bafe",
+  "assets": [
+    {
+      "id": "61b252be-195a-5673-864e-c886e73cf80d",
+      "name": "tistory-108-61b252be-195a-5673-864e-c886e73cf80d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b65beb38-962d-539a-b134-0efbf4f7bf1f/61b252be-195a-5673-864e-c886e73cf80d.png",
+      "sha": "0519e58c06f4fc0a079fab531aecbd9fd100d6f2"
+    },
+    {
+      "id": "2cd494ef-01ad-5e87-a5ee-03fcf3549ced",
+      "name": "tistory-108-2cd494ef-01ad-5e87-a5ee-03fcf3549ced.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b65beb38-962d-539a-b134-0efbf4f7bf1f/2cd494ef-01ad-5e87-a5ee-03fcf3549ced.png",
+      "sha": "f3b01fe9a804e8046264c3cc58650cef771ca3a6"
+    },
+    {
+      "id": "53618774-57b9-5453-850a-02e7d89e2324",
+      "name": "tistory-108-53618774-57b9-5453-850a-02e7d89e2324.png",
+      "type": "image/png",
+      "path": "/assets/uploads/b65beb38-962d-539a-b134-0efbf4f7bf1f/53618774-57b9-5453-850a-02e7d89e2324.png",
+      "sha": "82557879ae48b13b0ce1b13d30d55cd4cf434e55"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "61b252be-195a-5673-864e-c886e73cf80d",
+          "src": "/assets/uploads/b65beb38-962d-539a-b134-0efbf4f7bf1f/61b252be-195a-5673-864e-c886e73cf80d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "0. 개요"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Hermes Agent를 처음 쓸 때는 CLI와 config.yaml만으로도 충분하다. 설정을 바꾸고, API 키를 넣고, 필요한 명령어를 실행하면 된다. 또한 AI한테 원하는 설정을 말하면 알아서 설정해주기 때문에 충분했었다. 하지만 Hermes를 사용하다보면 skills가 많아서 비활성화해야하는 경우도 있고 모델 설정이나 Cron, 플러그인, 플러그인, mcp, 채널 등 이런 설정들을 관리하기에는 무리가 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 여러 관리 도구가 있지만 dashboard가 괜찮은 거 같아서 소개한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 환경 설정"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "내 환경은 ssh를 사용해서 클라우드에 연결해 hermes desktop이 사용이 불가능하다. 따라서 선택지가 web을 통한 dashboard를 선택했다. 환경 설정은 간단하다. hermes가 설치후 아래 명령어를 실행하면 된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "hermes dashboard"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "환경 설정이 끝나고 http://127.0.0.1:9119가 나오면 해당 페이지로 들어가면 헤르메스 web-ui를 볼 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "2cd494ef-01ad-5e87-a5ee-03fcf3549ced",
+          "src": "/assets/uploads/b65beb38-962d-539a-b134-0efbf4f7bf1f/2cd494ef-01ad-5e87-a5ee-03fcf3549ced.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다만 클라우드 서버에서 실행한 경우, 이 주소는 서버 내부의 localhost를 의미한다. 내 컴퓨터 브라우저에서 바로 접속하려면 SSH 터널을 열어줘야 한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "ssh -N -L 9919:127.0.0.1:9119 <id>@<ip>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "옵션기본값설명"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "--port"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "9119"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "웹 서버 포트"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "--host"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "127.0.0.1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "바인드 주소"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "--no-open"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "없음"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "브라우저 자동 실행 건너뛰기"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "--insecure"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "off"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "인증 우회. 원격 연결 시 위험"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Dashboard는 API 키와 설정 파일을 다룰 수 있기 때문에 외부에 그대로 노출하면 위험하다. 가능하면 --host 0.0.0.0으로 열기보다 SSH 터널을 사용하는 편이 안전하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 최적화 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Hermes Dashboard를 켰다고 해서 모든 기능을 다 활성화해 둘 필요는 없다. 오히려 처음 세팅할 때는 Skills, Cron Jobs, MCP Servers, 플러그인같은 기능을 정리해 두는 편이 좋다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이유는 단순하다. 안 쓰는 기능이 많을수록 에이전트가 판단해야 할 선택지도 많아진다. 즉 토큰도 더 많이 쓴다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2.1 Skills 정리하기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Skills는 Hermes가 특정 작업을 더 잘 수행하도록 도와주는 기능이다. 하지만 모든 Skill이 항상 필요한 것은 아니다. 사용하지 않는 Skill이 많으면 목록이 길어지고, 어떤 기능이 실제로 필요한지 파악하기 어려워진다. 자주 쓰는 작업과 관련 없는 Skill은 비활성화하자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "53618774-57b9-5453-850a-02e7d89e2324",
+          "src": "/assets/uploads/b65beb38-962d-539a-b134-0efbf4f7bf1f/53618774-57b9-5453-850a-02e7d89e2324.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "songwriting-and-ai-music, email. gaming등 유용하지만 사용하지 않는 기능들을 비활성화하자"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2.2 Cron Jobs 정리하기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Cron Jobs는 정해진 시간에 작업을 자동 실행할 수 있는 기능이다. 자동화에는 유용하지만, 쓰지 않는 작업이 남아 있으면 오히려 문제가 될 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예전에 테스트로 만든 작업이 계속 실행되거나, 더 이상 필요 없는 알림이 반복되거나, 불필요한 API 호출이 발생할 수 있다. 특히 외부 API를 사용하는 작업이라면 비용이나 rate limit에도 영향을 줄 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2.3 MCP Servers 정리하기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "MCP 서버는 Hermes가 외부 도구나 리소스와 연결될 수 있게 해주는 확장 지점이다. 하지만 연결된 MCP 서버가 많을수록 관리해야 할 권한과 연결 상태도 늘어난다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사용하지 않는 MCP 서버가 계속 등록되어 있으면, 어떤 서버가 어떤 기능을 제공하는지 헷갈릴 수 있다. 또한 외부 리소스 접근 권한이 남아 있는 상태가 될 수 있으므로 보안상으로도 깔끔하지 않다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실제로 쓰는 MCP 서버만 남기고, 테스트용 서버나 더 이상 쓰지 않는 서버는 제거하는 편이 좋다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 정리"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Hermes Dashboard 최적화의 핵심은 “많이 켜두는 것”이 아니라 “필요한 것만 남기는 것”이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사용하지 않는 Skills, Cron Jobs, MCP Servers, 플러그인, Webhooks를 정리하면 Dashboard가 훨씬 단순해지고, 설정 실수도 줄어든다. 또한 불필요한 API 호출, 비용 발생, 권한 노출 가능성을 줄일 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "처음에는 기본 기능만 켜두고, 실제로 필요한 작업이 생길 때 하나씩 추가하는 방식이 가장 관리하기 쉽다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "안 쓰는 Skills, Cron Jobs, MCP Servers는 비활성화하거나 정리해두는 것이 좋다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "필요한 기능만 남기면 관리가 쉬워지고, 불필요한 토큰 사용과 API 호출도 줄일 수 있다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "CLI로만 관리하다가 Dashboard를 써보니 설정을 한눈에 보기 편했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/108",
+    "originalId": "108",
+    "publishedAt": "2026-06-06T18:12:39+09:00",
+    "updatedAt": "2026-06-06T18:28:18+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

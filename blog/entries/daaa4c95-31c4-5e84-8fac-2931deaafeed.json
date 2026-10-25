@@ -1,0 +1,2039 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "daaa4c95-31c4-5e84-8fac-2931deaafeed",
+  "kind": "posts",
+  "title": "[WebGoat] (A1) Broken Access Control",
+  "slug": "tistory-28",
+  "description": "Broken Access Control이란? Broken Access Control(취약한 접근 제어)는 2021년 OWASP Top 10에서 1위(A01:2021)로 선정된 가장 중대하고 흔한 웹 애플리케이션 보안 취약점이다.이 취약점은 인증된 사용자가 수행할 수 있는 작업에 대한 제한이 부족할 때 발생한다. 즉, 사용자가 자신의 권한 범위를 벗어나서 다른 사용자의 계정에 접근하거나 관리자 페이지에 접속하는 등 의도하지 않은 행동을 할 수 있는 상태를 의미한다. Hijack a session개념사용자 지정 세션 ID를 개발하는 애플리케이션 개발자들은 보안에 필요한 복잡성과 무작위성을 고려하지 않는 경우가 많습니다. 사용자별 세션 ID가 복잡하고 무작위적이지 않으면 해당 애플리케이션은 세션 기반 무차별..",
+  "category": "Wargame / WebGoat",
+  "date": "2026-01-19",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-19T19:30:01+09:00",
+  "updatedAt": "2026-01-20T14:05:42+09:00",
+  "sourceDigest": "77d42c5bc2ae99b41517438444b07d2a9f826bfb77f178ca2c8e10ce5f8b54f9",
+  "assets": [
+    {
+      "id": "d1b6df9e-cbfe-506d-860b-27ce279f678f",
+      "name": "tistory-28-d1b6df9e-cbfe-506d-860b-27ce279f678f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/d1b6df9e-cbfe-506d-860b-27ce279f678f.png",
+      "sha": "ac97b0e691257672450f413e52ca649d130fc7ce"
+    },
+    {
+      "id": "131f2540-b27a-5365-a1b9-969bf9a036b7",
+      "name": "tistory-28-131f2540-b27a-5365-a1b9-969bf9a036b7.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/131f2540-b27a-5365-a1b9-969bf9a036b7.png",
+      "sha": "1bac79ef7b0335a08e2cedb09aeda2718c59d083"
+    },
+    {
+      "id": "34f22f7b-f348-5726-8b62-f3e344e3e106",
+      "name": "tistory-28-34f22f7b-f348-5726-8b62-f3e344e3e106.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/34f22f7b-f348-5726-8b62-f3e344e3e106.png",
+      "sha": "7f9e58015d32a88fdfc5de115be28dcbbcfb6ade"
+    },
+    {
+      "id": "dc8403d6-2b5c-5f0b-a2c9-c5b689f57efa",
+      "name": "tistory-28-dc8403d6-2b5c-5f0b-a2c9-c5b689f57efa.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/dc8403d6-2b5c-5f0b-a2c9-c5b689f57efa.png",
+      "sha": "1c120348f008d2af8e2b539c0e4afe629f27010e"
+    },
+    {
+      "id": "eeb46127-f6f7-5109-bb55-5c941227f822",
+      "name": "tistory-28-eeb46127-f6f7-5109-bb55-5c941227f822.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/eeb46127-f6f7-5109-bb55-5c941227f822.png",
+      "sha": "78285dd701792d8e902c111cd7815cce07310329"
+    },
+    {
+      "id": "1c127f7c-2eab-5b0b-81b6-0d103afbda1b",
+      "name": "tistory-28-1c127f7c-2eab-5b0b-81b6-0d103afbda1b.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/1c127f7c-2eab-5b0b-81b6-0d103afbda1b.png",
+      "sha": "46d75a2b364f4874b005f4ca37f0a7e3c36a23b0"
+    },
+    {
+      "id": "36d34559-c3df-5ad7-be84-6288c97c6203",
+      "name": "tistory-28-36d34559-c3df-5ad7-be84-6288c97c6203.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/36d34559-c3df-5ad7-be84-6288c97c6203.png",
+      "sha": "e9601a93f921c42309a92bb3f20a53b5ca1b0d0b"
+    },
+    {
+      "id": "88f28502-d1e3-5ec3-986f-ce356b91fa93",
+      "name": "tistory-28-88f28502-d1e3-5ec3-986f-ce356b91fa93.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/88f28502-d1e3-5ec3-986f-ce356b91fa93.png",
+      "sha": "7128635a1057eb544fbff1378014004c8e25a80c"
+    },
+    {
+      "id": "7c0a045a-0310-588f-b379-47d677d3856c",
+      "name": "tistory-28-7c0a045a-0310-588f-b379-47d677d3856c.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/7c0a045a-0310-588f-b379-47d677d3856c.png",
+      "sha": "11f2c22d3ff34beed5be37fcbbb6dbf431ff62ec"
+    },
+    {
+      "id": "7a307f4f-3da9-53bd-ae1b-b91bf7f2b2ad",
+      "name": "tistory-28-7a307f4f-3da9-53bd-ae1b-b91bf7f2b2ad.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/7a307f4f-3da9-53bd-ae1b-b91bf7f2b2ad.png",
+      "sha": "aa03f22a134d7d377f6ecedf1af7ceb8690b83a2"
+    },
+    {
+      "id": "159b531a-ab3a-5c91-af97-3eb6c69bd225",
+      "name": "tistory-28-159b531a-ab3a-5c91-af97-3eb6c69bd225.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/159b531a-ab3a-5c91-af97-3eb6c69bd225.png",
+      "sha": "e8f7ace3b457150d49c857af01255b112f04b300"
+    },
+    {
+      "id": "8b9425c9-3d00-5b66-a012-c1b968403314",
+      "name": "tistory-28-8b9425c9-3d00-5b66-a012-c1b968403314.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/8b9425c9-3d00-5b66-a012-c1b968403314.png",
+      "sha": "a7bfd08f746c3b3b344fc3a825ff6e27ca9cc82c"
+    },
+    {
+      "id": "d32507ff-1c2a-53cd-8b81-55a437e92aad",
+      "name": "tistory-28-d32507ff-1c2a-53cd-8b81-55a437e92aad.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/d32507ff-1c2a-53cd-8b81-55a437e92aad.png",
+      "sha": "4ccc4ab47375abc5a0b8b31e6347fa60eacefbfe"
+    },
+    {
+      "id": "ca9cc819-6770-5add-a5dc-885d1477d244",
+      "name": "tistory-28-ca9cc819-6770-5add-a5dc-885d1477d244.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/ca9cc819-6770-5add-a5dc-885d1477d244.png",
+      "sha": "81597104528a23b9620b8d978720e1ecb09cca6b"
+    },
+    {
+      "id": "249e3c25-d141-53c2-87da-85ce10201d7a",
+      "name": "tistory-28-249e3c25-d141-53c2-87da-85ce10201d7a.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/249e3c25-d141-53c2-87da-85ce10201d7a.png",
+      "sha": "5c2c541f3d0747c9bef467051d5cc9e41deaae98"
+    },
+    {
+      "id": "5e01dd75-e25c-5aaf-85de-3547711c25ef",
+      "name": "tistory-28-5e01dd75-e25c-5aaf-85de-3547711c25ef.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/5e01dd75-e25c-5aaf-85de-3547711c25ef.png",
+      "sha": "28d4895a14ea9d9b42bcf1f145ccebd9774cb671"
+    },
+    {
+      "id": "3dbdcbdb-cc19-57f2-8856-b8d2e6c5d3eb",
+      "name": "tistory-28-3dbdcbdb-cc19-57f2-8856-b8d2e6c5d3eb.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/3dbdcbdb-cc19-57f2-8856-b8d2e6c5d3eb.png",
+      "sha": "373a286745acf967f6b568e29d03a8e09ff9918c"
+    },
+    {
+      "id": "1e6b70ed-6b34-52ad-a7be-7c19e207f150",
+      "name": "tistory-28-1e6b70ed-6b34-52ad-a7be-7c19e207f150.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/1e6b70ed-6b34-52ad-a7be-7c19e207f150.png",
+      "sha": "62fbec83402b5f751301cc344ce3832ccefe62fb"
+    },
+    {
+      "id": "7de5dd1c-22b4-53c2-a43c-18c3e9892f21",
+      "name": "tistory-28-7de5dd1c-22b4-53c2-a43c-18c3e9892f21.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/7de5dd1c-22b4-53c2-a43c-18c3e9892f21.png",
+      "sha": "104a43935d35192ae39911b8d3bf885c68457ae9"
+    },
+    {
+      "id": "fe086de8-ae83-5afc-b4cc-e5eeb557c1c1",
+      "name": "tistory-28-fe086de8-ae83-5afc-b4cc-e5eeb557c1c1.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/fe086de8-ae83-5afc-b4cc-e5eeb557c1c1.png",
+      "sha": "4f42863dee765de628c42031847e2f510216731f"
+    },
+    {
+      "id": "006a30ee-4aaf-5917-a8ee-3cd1d5004321",
+      "name": "tistory-28-006a30ee-4aaf-5917-a8ee-3cd1d5004321.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/006a30ee-4aaf-5917-a8ee-3cd1d5004321.png",
+      "sha": "90a5030937b7717679fff421726ede0a9e962411"
+    },
+    {
+      "id": "4c9d8de4-9158-5543-a29b-779532ecbaef",
+      "name": "tistory-28-4c9d8de4-9158-5543-a29b-779532ecbaef.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/4c9d8de4-9158-5543-a29b-779532ecbaef.png",
+      "sha": "e1a6fa9f6b240364ebbca2dfddcdcc37eb74a0ba"
+    },
+    {
+      "id": "a7c81848-1961-5449-ba30-9843107ac076",
+      "name": "tistory-28-a7c81848-1961-5449-ba30-9843107ac076.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/a7c81848-1961-5449-ba30-9843107ac076.png",
+      "sha": "a59c4195e2d760ab42388246bd4c128967bb3a80"
+    },
+    {
+      "id": "5349536e-c1c4-5529-9c38-3990dd412a98",
+      "name": "tistory-28-5349536e-c1c4-5529-9c38-3990dd412a98.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/5349536e-c1c4-5529-9c38-3990dd412a98.png",
+      "sha": "0ae000cdc6423b4914292893822e9405b1773174"
+    },
+    {
+      "id": "d021f992-deb6-5f0b-9bb1-c06067511814",
+      "name": "tistory-28-d021f992-deb6-5f0b-9bb1-c06067511814.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/d021f992-deb6-5f0b-9bb1-c06067511814.png",
+      "sha": "55883ff1e93bb634a8abd205062f22fae4902c8d"
+    },
+    {
+      "id": "65af179f-72eb-572b-8989-0a3c6de9c0e1",
+      "name": "tistory-28-65af179f-72eb-572b-8989-0a3c6de9c0e1.png",
+      "type": "image/png",
+      "path": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/65af179f-72eb-572b-8989-0a3c6de9c0e1.png",
+      "sha": "5f4665b40f427c582984198d49b7941aa9f6be5f"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "d1b6df9e-cbfe-506d-860b-27ce279f678f",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/d1b6df9e-cbfe-506d-860b-27ce279f678f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Broken Access Control이란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Broken Access Control(취약한 접근 제어)는 2021년 "
+          },
+          {
+            "type": "text",
+            "text": "OWASP Top 10",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "에서 1위(A01:2021)로 선정된 가장 중대하고 흔한 웹 애플리케이션 보안 취약점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 취약점은 인증된 사용자가 수행할 수 있는 작업에 대한 제한이 부족할 때 발생한다. 즉, 사용자가 자신의 권한 범위를 벗어나서 다른 사용자의 계정에 접근하거나 관리자 페이지에 접속하는 등 의도하지 않은 행동을 할 수 있는 상태를 의미한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Hijack a session"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "개념"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사용자 지정 세션 ID를 개발하는 애플리케이션 개발자들은 보안에 필요한 복잡성과 무작위성을 고려하지 않는 경우가 많습니다. 사용자별 세션 ID가 복잡하고 무작위적이지 않으면 해당 애플리케이션은 세션 기반 무차별 대입 공격에 매우 취약해집니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "목표"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다른 사람이 보유한 인증된 세션에 접근합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2번 문제 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "hijack_cookie 값을 예측해서 다른 유저로 접속하는 문제이다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "131f2540-b27a-5365-a1b9-969bf9a036b7",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/131f2540-b27a-5365-a1b9-969bf9a036b7.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "요청을 burp suite 프록시에서 잡아보면 아래처럼 생겼다"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "34f22f7b-f348-5726-8b62-f3e344e3e106",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/34f22f7b-f348-5726-8b62-f3e344e3e106.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "응답으로 쿠키 값이 설정되서 오며 한번 설정하면 다음 요청 부터는 쿠키값을 포함해서 보낸다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "dc8403d6-2b5c-5f0b-a2c9-c5b689f57efa",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/dc8403d6-2b5c-5f0b-a2c9-c5b689f57efa.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "eeb46127-f6f7-5109-bb55-5c941227f822",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/eeb46127-f6f7-5109-bb55-5c941227f822.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "쿠키값을 생성하는 규칙을 파악하기 위해 버프 스위트로 cookie값을 제거하고 여러번 요청해 생성해보자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "hijack_cookie=6451994964537414608-1768811480493;"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "hijack_cookie=6451994964537414609-1768811493045;"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "hijack_cookie=6451994964537414610-1768811500327;"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "hijack_cookie=6451994964537414611-1768811508334;"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "hijack_cookie=6451994964537414613-1768811517146;"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "{Sequential_ID}-${Timestamp}이런 느낌으로 알 수있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "쿠키 -앞쪽인 6451994964537414612가 뛰어넘은 걸 볼 수 있고 이건 다른 사용자가 쿠키를 생성한 것으로 볼 수 있다. 또한 -뒤는 계속 올라가고 있으므로 176881508334와 1768811517146사이에 값인 것을 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "burp suite에서 intruder로 6451994964537414612-와 176881508334와 1768811517146사이를 전부 요청해보면 성공하는 값을 찾을 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "근데 너무 차이가 크므로 다시 똑같이 해서"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "6451994964537417958-1768813652451 ~ 1768813653243사이로 요청하면"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정답 발견 쿠키: 6451994964537417958-1768813652451"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서버 응답: Congratulations. You have successfully completed the assignment.을 확인할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "burp는 너무 느려서 python으로 request요청을 보내 확인했다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "1c127f7c-2eab-5b0b-81b6-0d103afbda1b",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/1c127f7c-2eab-5b0b-81b6-0d103afbda1b.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Insecure Direct Object Reference(IDOR)"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "직접 객체 참조"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "직접 객체 참조는 애플리케이션이 클라이언트가 제공한 입력을 사용하여 데이터 및 객체에 접근하는 경우를 말합니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "예시"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "GET 메서드를 사용한 직접 객체 참조의 예는 다음과 같습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://some.company.tld/dor?id=12345",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://some.company.tld/dor?id=12345"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://some.company.tld/images?img=12345",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://some.company.tld/images?img=12345"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://some.company.tld/dor/12345",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://some.company.tld/dor/12345"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "기타 방법"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "POST, PUT, DELETE 또는 기타 메서드도 잠재적으로 취약하며, 주로 메서드와 잠재적인 페이로드에서만 차이가 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "불안정한"
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "직접 객체 참조"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이러한 참조는 제대로 처리되지 않아 권한 우회가 허용되거나 사용자가 수행하거나 접근할 수 없는 작업을 수행하거나 데이터에 접근하는 데 사용될 수 있는 개인 데이터가 노출될 경우 안전하지 않은 것으로 간주됩니다. 예를 들어 사용자가 프로필을 보려고 할 때 URL이 다음과 같다고 가정해 보겠습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://some.company.tld/app/user/23398",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://some.company.tld/app/user/23398"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "...그리고 거기서 프로필을 볼 수 있습니다. 만약 다음 주소로 이동하면 어떻게 될까요?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://some.company.tld/app/user/23399",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://some.company.tld/app/user/23399"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "…또는 끝에 다른 번호를 사용하세요. 번호(사용자 ID)를 조작하여 다른 사용자의 프로필을 볼 수 있다면 해당 객체 참조는 안전하지 않습니다. 물론 이는 데이터를 조회하는 GET 메서드뿐만 아니라 데이터를 조작하는 메서드까지 포함하여 검사하거나 확장할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "더 좋은 읽을거리"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실습을 시작하기 전에, 불안정한 직접 목적어 참조에 대한 좋은 자료를 소개합니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "https://www.owasp.org/index.php/Testing_for_Insecure_Direct_Object_References_(OTG-AUTHZ-004)",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://www.owasp.org/index.php/Testing_for_Insecure_Direct_Object_References_(OTG-AUTHZ-004)"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "https://www.owasp.org/index.php/Top_10-2017_A5-Broken_Access_Control",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://www.owasp.org/index.php/Top_10-2017_A5-Broken_Access_Control"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://cheatsheetseries.owasp.org/cheatsheets/Insecure_Direct_Object_Reference_Prevention_Cheat_Sheet.html"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "https://www.owasp.org/index.php/Top_10_2013-A4-Insecure_Direct_Object_References",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://www.owasp.org/index.php/Top_10_2013-A4-Insecure_Direct_Object_References"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "http://cwe.mitre.org/data/definitions/639.html",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "http://cwe.mitre.org/data/definitions/639.html"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2번 문제"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "(tom, cat)을 입력하면 진행된다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "36d34559-c3df-5ad7-be84-6288c97c6203",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/36d34559-c3df-5ad7-be84-6288c97c6203.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "3번 문제 화면/페이지에 나타나지 않는 데이터를 찾아라"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "88f28502-d1e3-5ec3-986f-ce356b91fa93",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/88f28502-d1e3-5ec3-986f-ce356b91fa93.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "view profile을 누르고 응답을 보면 userid, role이 있어서 제출하면 된다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "7c0a045a-0310-588f-b379-47d677d3856c",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/7c0a045a-0310-588f-b379-47d677d3856c.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4번 문제"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "객체를 직접 참조하여 자신의 프로필을 명시적으로 볼 수 있는 적절한 패턴을 예측해라"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "7a307f4f-3da9-53bd-ae1b-b91bf7f2b2ad",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/7a307f4f-3da9-53bd-ae1b-b91bf7f2b2ad.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "WebGoat/IDOR/profile/2342384로 자신의 프로필을 볼 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "5번 문제 다른 계정의 프로필을 보거나 수정하는 문제이다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "159b531a-ab3a-5c91-af97-3eb6c69bd225",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/159b531a-ab3a-5c91-af97-3eb6c69bd225.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "burp로 id부분을 바꿔가며 입력한 결과 2342388에서 다른 사람의 정보를 확인할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "8b9425c9-3d00-5b66-a012-c1b968403314",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/8b9425c9-3d00-5b66-a012-c1b968403314.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "수정하기 위한 메서드로는 주로 PUT을 사용한다. 3번 문제에서 json형식을 입력해"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "(Buffalo Bill’s)의 권한을 낮추고 red로 color를 바꿔야한다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "d32507ff-1c2a-53cd-8b81-55a437e92aad",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/d32507ff-1c2a-53cd-8b81-55a437e92aad.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "ca9cc819-6770-5add-a5dc-885d1477d244",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/ca9cc819-6770-5add-a5dc-885d1477d244.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이렇게 요청을 보내면 수정된다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "249e3c25-d141-53c2-87da-85ce10201d7a",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/249e3c25-d141-53c2-87da-85ce10201d7a.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "안전한 객체 참조"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "결과를 염두에 두고 시작하세요"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "접근 제어에 대한 문서화된 지침이 있습니까? 없다면 어떻게 이를 시행할 수 있습니까? 접근 제어는 애플리케이션을 이끄는 비즈니스 로직 및/또는 개인정보 보호법 및 기타 법률에 따라 정의됩니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "수평 및 수직 접근 제어"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "흔히 접근 제어를 '역할'(사용자, 고급 사용자, 관리자 등)이라는 개념으로 생각합니다. 하지만 이전 연습에서 살펴본 것처럼, 동일한 '역할'을 가진 사용자라도 서로의 데이터에 접근할 수 있습니다. 이것이 바로 수평적 접근 제어입니다. 따라서 두 가지 모두 시행되어야 합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "표 1. 접근 제어 매트릭스 예시엔드포인트방법설명역할, 접근 규칙참고 사항 및 주의 사항"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "/profile"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GET"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "view user profile"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Logged in User, can only view their own role"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Admin roles must use diff Url to view others' profiles (see below)"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "/profile/{id}"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GET"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "view user profile of a given user"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Logged in User can view their own profile by {id}, admins can also view"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "n/a"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "/profile/{id}"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "PUT"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "edit user profile. profile object submitted from client with request"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Logged in User can edit their own profile by {id}, admins can also edit."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {},
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Admin edit must be logged"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "감사 접근 권한"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "위 예시에서처럼 접근 제어 규칙에는 어떤 접근 활동을 기록할지 명시하는 조항이 포함되어야 합니다. 예를 들어, 최고 관리자나 슈퍼유저가 다른 사용자의 프로필을 편집할 수 있다면, 이는 기록되어야 할 사항입니다. 그 외에도 접근 제어 메커니즘 위반 또는 위반 시도 등이 기록되어야 합니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "간접 참조 사용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "많은 애플리케이션에서 사용되지는 않지만, 간접",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 참조를 사용할 수 있습니다 . 이 경우 서버에서 해싱, 인코딩 또는 기타 함수를 통해 참조를 처리하여 클라이언트가 보는 ID가 서버에서 처리하는 실제 참조와 다르게 만들 수 있습니다. 이렇게 하면 효율성이 다소 떨어지지만(보안을 위한 일반적인 절충안) 여전히 추측, 무차별 대입 공격 또는 리버스 엔지니어링의 대상이 될 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 접근 방식은 유일한 보호 수단이 되어서는 안 됩니다. 추가적인 보호 계층으로 사용할 수 있습니다. 서버는 클라이언트(간접) 참조를 서버(직접) 참조로 매핑하는 로직을 구현해야 합니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "접근 제어 및 API"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "API 또는 RESTful 엔드포인트는 종종 모호성, 고정된 '키', 또는 사용자의 접근 제어 능력 부족에 의존합니다. 디지털 서명된 JSON Web Token( "
+          },
+          {
+            "type": "text",
+            "text": "https://jwt.io",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://jwt.io"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " )과 같은 방식은 클레임과 디지털/암호 서명을 결합하여 사용자를 검증하는 API 인증 및 접근 제어에 좋은 대안입니다. Secure Token Binding과 같은 새로운 표준은 요청 헤더에 웹 서비스에 대한 '암호화 상태'를 제공하는 것을 목표로 합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "(https://tools.ietf.org/html/draft-ietf-tokbind-protocol-10 )",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://tools.ietf.org/html/draft-ietf-tokbind-protocol-10"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://tools.ietf.org/html/draft-ietf-tokbind-negotiation-05",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://tools.ietf.org/html/draft-ietf-tokbind-negotiation-05"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://tools.ietf.org/html/draft-ietf-tokbind-https-06",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://tools.ietf.org/html/draft-ietf-tokbind-https-06"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Missing Function Level Access Control"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "기능 수준 접근 제어 누락"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "출력 인코딩을 통한 XSS 공격 방지와 같은 접근 제어는 유지 관리가 까다로울 수 있습니다. 애플리케이션 전체, 즉 모든 메서드/함수에서 접근 제어가 적절하게 적용되도록 해야 합니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "IDOR과 누락된 기능 수준 접근 제어의 차이점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사실 많은 사람들(이 강의의 저자를 포함하여)은 기능 수준 접근 제어와 IDOR을 '접근 제어'라는 개념으로 묶어서 생각합니다. 하지만 OWASP Top 10과 이 강의에서는 두 개념을 구분하고자 합니다. 일반적으로 IDOR은 '수평적' 또는 '횡적' 접근 제어 문제이며, 기능 수준 접근 제어가 누락되면 '기능이 노출'된다는 점이 가장 중요한 차이점입니다. 이 강의에서는 IDOR을 통해 기능이 노출될 수 있는 경우(적어도 동일한 역할의 다른 사용자에게는)를 보여주지만, 기능이 노출될 수 있는 다른 방식들도 살펴보겠습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2번 문제"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "5e01dd75-e25c-5aaf-85de-3547711c25ef",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/5e01dd75-e25c-5aaf-85de-3547711c25ef.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "숨겨진 버튼을 찾아야한다. 소스보기에서 navbar에 숨어진 메뉴에서 hidden-menu-item class를 제거하고 보면 users와 config가 나타나게 된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "3dbdcbdb-cc19-57f2-8856-b8d2e6c5d3eb",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/3dbdcbdb-cc19-57f2-8856-b8d2e6c5d3eb.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "1e6b70ed-6b34-52ad-a7be-7c19e207f150",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/1e6b70ed-6b34-52ad-a7be-7c19e207f150.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "7de5dd1c-22b4-53c2-a43c-18c3e9892f21",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/7de5dd1c-22b4-53c2-a43c-18c3e9892f21.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3번 문제 "
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "fe086de8-ae83-5afc-b4cc-e5eeb557c1c1",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/fe086de8-ae83-5afc-b4cc-e5eeb557c1c1.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "2번에서 users를 누르는데 오류가 나서 Content-Type: application/json;를 추가하면 응답이 온다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "006a30ee-4aaf-5917-a8ee-3cd1d5004321",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/006a30ee-4aaf-5917-a8ee-3cd1d5004321.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4번 문제"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개발자가 고쳤다고 한다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "4c9d8de4-9158-5543-a29b-779532ecbaef",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/4c9d8de4-9158-5543-a29b-779532ecbaef.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "a7c81848-1961-5449-ba30-9843107ac076",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/a7c81848-1961-5449-ba30-9843107ac076.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "post요청으로 현재 아이디에 관리자 권한을 준후에 요청하면 성공한다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "5349536e-c1c4-5529-9c38-3990dd412a98",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/5349536e-c1c4-5529-9c38-3990dd412a98.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Spoofing an Authentication Cookie"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "개념"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "인증 쿠키는 인증이 필요한 서비스에 사용됩니다. 사용자가 개인 사용자 이름과 비밀번호로 로그인하면 서버는 제공된 자격 증명을 확인합니다. 자격 증명이 유효하면 세션을 생성합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일반적으로 각 세션에는 사용자의 세션을 식별하는 고유 ID가 할당됩니다. 서버가 사용자에게 응답을 보낼 때, 쿠키 이름과 값을 포함한 \"Set-Cookie\" 헤더를 함께 전송합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "인증 쿠키는 일반적으로 클라이언트 측과 서버 측 모두에 저장됩니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "한편으로, 쿠키를 클라이언트 측에 저장하면 특정 취약점을 악용한 공격이나 중간자 공격 또는 XSS 공격을 통해 쿠키가 탈취될 수 있습니다. 다른 한편으로, 쿠키 생성에 사용된 알고리즘을 알게 되면 쿠키 값을 추측할 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "많은 애플리케이션은 올바른 인증 쿠키가 제공되면 사용자를 자동으로 로그인시킵니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "목표"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사용자는 쿠키 생성 알고리즘을 추측하여 다른 사용자로 로그인하는 방식으로 인증 메커니즘을 우회할 수 없어야 합니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "이론적 해석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "인증 시스템의 보안을 위해서는 쿠키 생성 알고리즘이 안전하고 쉽게 추측할 수 없도록 유지하는 것이 매우 중요합니다. 공격자가 알고리즘을 예측하거나 알아낼 수 있다면, 여러 사용자에 대해 유효한 인증 쿠키를 생성하여 인증 메커니즘을 우회하고 다른 사용자를 사칭할 수 있기 때문입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이러한 위험을 완화하기 위해서는 인증 쿠키 생성에 강력하고 암호학적으로 안전한 알고리즘을 사용하는 것이 필수적입니다. 이러한 알고리즘은 생성된 쿠키의 고유성과 예측 불가능성을 보장하기 위해 강력한 무작위화 및 해싱 기법을 사용해야 합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "또한 세션 만료 및 인증 쿠키의 정기적인 교체와 같은 조치를 시행하면 보안을 더욱 강화할 수 있습니다. 쿠키 값을 자주 변경하고 세션 시간 제한을 적용함으로써 공격자가 잠재적인 취약점을 악용할 수 있는 기회를 크게 줄일 수 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "전반적으로, 인증 쿠키 생성 알고리즘의 기밀성과 무결성을 보호하는 것은 무단 접근을 방지하고 인증 메커니즘의 무결성을 유지하는 데 매우 중요합니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2번 문제"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "d021f992-deb6-5f0b-9bb1-c06067511814",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/d021f992-deb6-5f0b-9bb1-c06067511814.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사용자 webgoat의 쿠키 세부 정보:"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "spoof_auth=NzQ2NjQ0NzU2Mjc1NjY2NDZmNzg3NDYxNmY2NzYyNjU3Nw=="
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "==를 보면 base64로 인코딩된 것을 확인할 수 있다. 디코딩 해보면 74664475627566646f7874616f67626577인 것을 확인할 수 있고 이걸 다시 hex로 보면 tfDubufdoxtaogbew인 것을 알 수있다. taogbew이 webgoat반대로 쓴걸로 보아 moT로 Tom으로 바꿔서 다시 인코딩 해보면 74664475627566646f786d6f54이걸 base64인코딩 해보면 NzQ2NjQ0NzU2Mjc1NjY2NDZmNzg2ZDZmNTQ=로 바꿀 수 있다. 이걸 패킷을 잡아서 바꿔주면 성공한다"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "65af179f-72eb-572b-8989-0a3c6de9c0e1",
+          "src": "/assets/uploads/daaa4c95-31c4-5e84-8fac-2931deaafeed/65af179f-72eb-572b-8989-0a3c6de9c0e1.png",
+          "alt": "",
+          "title": null
+        }
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/28",
+    "originalId": "28",
+    "publishedAt": "2026-01-19T19:30:01+09:00",
+    "updatedAt": "2026-01-20T14:05:42+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

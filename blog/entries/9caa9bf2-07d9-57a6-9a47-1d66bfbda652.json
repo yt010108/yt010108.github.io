@@ -1,0 +1,1881 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "9caa9bf2-07d9-57a6-9a47-1d66bfbda652",
+  "kind": "posts",
+  "title": "[SK Rookies] 딥러닝 기초와 Hugging Face",
+  "slug": "tistory-136",
+  "description": "오늘 배운 내용8월 6일에는 딥러닝의 기본 구조와 학습 원리를 공부한 뒤 Hugging Face Hub와 Transformers 라이브러리를 이용해 사전학습 모델을 찾아보고 사용하는 방법을 익혔다. 딥러닝 파트에서는 인공신경망의 입력층·은닉층·출력층, 가중치와 편향, 활성화 함수, 손실 함수, 역전파, 학습 과정과 프레임워크를 다뤘고, 실습에서는 이진 분류와 다중 분류, MNIST 예제를 살펴봤다. 이어서 Hugging Face에서는 Models, Datasets, Spaces, Tasks, Model Card, Transformers와 Diffusers, Pipeline 사용법을 정리했다.딥러닝 Deep Learning딥러닝은 인공신경망(Artificial Neural Network)을 기반으로 한 머..",
+  "category": "SK Rookies / 수업 정리",
+  "date": "2026-08-12",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-08-12T10:03:56+09:00",
+  "updatedAt": "2026-08-12T10:04:08+09:00",
+  "sourceDigest": "3098afbcf9ba158df39e2205fe82f1bc84e38fa2e59b5640a05158b7d466ca26",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[원본에서 불러올 수 없는 이미지]"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "오늘 배운 내용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "8월 6일에는 딥러닝의 기본 구조와 학습 원리를 공부한 뒤 Hugging Face Hub와 Transformers 라이브러리를 이용해 사전학습 모델을 찾아보고 사용하는 방법을 익혔다. 딥러닝 파트에서는 인공신경망의 입력층·은닉층·출력층, 가중치와 편향, 활성화 함수, 손실 함수, 역전파, 학습 과정과 프레임워크를 다뤘고, 실습에서는 이진 분류와 다중 분류, MNIST 예제를 살펴봤다. 이어서 Hugging Face에서는 Models, Datasets, Spaces, Tasks, Model Card, Transformers와 Diffusers, Pipeline 사용법을 정리했다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "딥러닝 Deep Learning"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "딥러닝은 인공신경망(Artificial Neural Network)을 기반으로 한 머신러닝의 하위 분야다. 여러 층의 신경망을 통과하면서 입력 데이터에서 점점 더 복잡하고 추상적인 특징을 학습한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이미지 데이터를 예로 들면 앞쪽 층은 선이나 경계 같은 단순한 특징을 찾고, 중간 층은 모양이나 부분 구조를 학습하며, 뒤쪽 층은 얼굴이나 사물처럼 더 복잡한 패턴을 표현할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서 제시한 대표 활용 분야는 컴퓨터 비전, 자연어 처리, 음성 처리 등이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "머신러닝과 딥러닝의 차이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "머신러닝과 딥러닝 모두 데이터에서 규칙을 학습하지만 특징을 다루는 방식에서 차이가 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "전통적인 머신러닝은 분석가가 필요한 피처를 직접 설계하거나 전처리하는 비중이 크다. 반면 딥러닝은 신경망의 여러 층이 원본 데이터에서 필요한 특징 표현을 스스로 학습하는 비중이 크다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "딥러닝은 이미지, 텍스트, 음성 같은 비정형 데이터 처리에 강하지만 일반적으로 더 많은 데이터와 계산 자원을 필요로 한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "인공신경망의 기본 구조"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "인공신경망은 여러 뉴런을 층으로 연결한 구조다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "입력층 Input Layer"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모델에 데이터가 들어오는 층이다. 입력 피처의 개수와 데이터 형태에 맞춰 구성된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "은닉층 Hidden Layer"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "입력 데이터를 여러 단계의 계산으로 변환하며 특징을 학습하는 층이다. 딥러닝은 은닉층이 여러 개 쌓인 깊은 신경망을 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "출력층 Output Layer"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제의 종류에 따라 최종 예측값을 만든다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "회귀: 숫자 값 출력"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이진 분류: 두 클래스 중 하나에 대한 확률"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "다중 분류: 여러 클래스 각각의 확률"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "뉴런의 계산"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하나의 뉴런은 입력값에 가중치(weight)를 곱하고 편향(bias)을 더한 뒤 활성화 함수를 적용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개념적으로는 다음 흐름으로 볼 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "입력 × 가중치 → 합산 + 편향 → 활성화 함수 → 출력"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가중치는 입력 특성이 결과에 얼마나 영향을 주는지를 나타내고, 편향은 결정 기준을 이동시키는 역할을 한다. 학습 과정에서는 손실을 줄이는 방향으로 가중치와 편향이 조정된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "활성화 함수 Activation Function"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "활성화 함수는 뉴런의 선형 계산 결과에 비선형성을 추가한다. 활성화 함수가 없으면 여러 층을 쌓아도 전체가 단순한 선형 변환으로 표현될 수 있어 복잡한 패턴을 학습하기 어렵다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Sigmoid"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "출력을 0과 1 사이로 변환한다. 이진 분류의 출력층에서 확률 형태를 만들 때 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "ReLU"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "입력이 0보다 작으면 0, 0보다 크면 입력값을 그대로 출력한다. 계산이 단순하고 깊은 신경망의 은닉층에서 널리 사용되는 활성화 함수로 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Tanh"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "출력을 -1과 1 사이로 변환한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Softmax"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "여러 클래스의 값을 확률 분포 형태로 바꾼다. 다중 분류 출력층에서 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "손실 함수 Loss Function"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "손실 함수는 모델의 예측값과 실제 정답이 얼마나 다른지를 숫자로 계산한다. 학습의 목적은 이 손실값을 줄이는 것이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제 유형에 따라 손실 함수가 달라진다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "회귀"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "평균제곱오차(MSE)처럼 실제값과 예측값의 차이를 수치로 계산하는 손실 함수를 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "이진 분류"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Binary Cross Entropy와 같은 손실 함수를 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "다중 분류"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Categorical Cross Entropy 또는 라벨 표현 방식에 따라 Sparse Categorical Cross Entropy를 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "역전파 Backpropagation"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "역전파는 출력에서 계산된 손실을 이용해 각 가중치가 손실에 얼마나 영향을 주었는지를 뒤쪽 층부터 계산하는 과정이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "전체 흐름은 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "입력 데이터를 신경망에 전달한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "순전파를 통해 예측값을 만든다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "손실 함수를 이용해 실제값과 예측값의 차이를 계산한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "역전파로 각 가중치에 대한 기울기를 계산한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "옵티마이저가 기울기를 이용해 가중치를 수정한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이 과정을 반복한다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "옵티마이저와 학습률"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "옵티마이저는 계산된 기울기를 이용해 가중치를 어떤 방식으로 업데이트할지 결정한다. 자료에서는 신경망 학습 과정에서 gradient descent 계열과 Adam 같은 옵티마이저를 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "학습률(Learning Rate)은 한 번의 업데이트에서 가중치를 얼마나 크게 움직일지 결정한다. 너무 크면 최적값을 지나치거나 학습이 불안정할 수 있고, 너무 작으면 학습이 매우 느려질 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Epoch와 Batch"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Epoch"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "전체 학습 데이터를 한 번 모두 사용한 것을 1 epoch라고 한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Batch"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "전체 데이터를 한 번에 처리하지 않고 여러 묶음으로 나눠 학습할 때 각 묶음을 batch라고 한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Batch Size"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "한 번의 가중치 업데이트에 사용하는 샘플 수다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "학습 로그에서는 epoch, batch 진행 상황, loss, accuracy, validation loss, validation accuracy 등을 확인하며 학습 상태를 판단한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "딥러닝 프레임워크"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서는 딥러닝 모델을 구현하고 학습하기 위한 프레임워크를 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "TensorFlow"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Keras"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "PyTorch"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Keras는 층을 순서대로 구성하고 compile(), fit(), evaluate(), predict() 같은 메서드를 이용해 모델 학습과 평가 과정을 비교적 간단하게 구성할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "간단한 신경망 구성"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "from tensorflow.keras.models import Sequential\nfrom tensorflow.keras.layers import Dense\n\nmodel = Sequential([\n    Dense(32, activation=\"relu\", input_shape=(10,)),\n    Dense(16, activation=\"relu\"),\n    Dense(1, activation=\"sigmoid\")\n])\n\nmodel.compile(\n    optimizer=\"adam\",\n    loss=\"binary_crossentropy\",\n    metrics=[\"accuracy\"]\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Dense 층은 각 뉴런이 이전 층의 모든 출력과 연결되는 완전연결층이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "이진 분류"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이진 분류는 두 클래스 중 하나를 예측하는 문제다. 출력층에 뉴런 하나와 Sigmoid를 사용해 특정 클래스일 확률을 출력하는 구조를 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "model = Sequential([\n    Dense(64, activation=\"relu\", input_shape=(X_train.shape[1],)),\n    Dense(32, activation=\"relu\"),\n    Dense(1, activation=\"sigmoid\")\n])\n\nmodel.compile(\n    optimizer=\"adam\",\n    loss=\"binary_crossentropy\",\n    metrics=[\"accuracy\"]\n)\n\nhistory = model.fit(\n    X_train,\n    y_train,\n    epochs=10,\n    batch_size=32,\n    validation_split=0.2\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "다중 분류"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다중 분류는 세 개 이상의 클래스 중 하나를 예측한다. 출력층의 뉴런 수를 클래스 수와 맞추고 Softmax를 사용해 클래스별 확률을 출력할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "model = Sequential([\n    Dense(128, activation=\"relu\", input_shape=(784,)),\n    Dense(64, activation=\"relu\"),\n    Dense(10, activation=\"softmax\")\n])\n\nmodel.compile(\n    optimizer=\"adam\",\n    loss=\"sparse_categorical_crossentropy\",\n    metrics=[\"accuracy\"]\n)\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "MNIST 실습 흐름"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서는 손글씨 숫자 이미지 데이터인 MNIST를 이용해 전체 딥러닝 프로세스를 확인한다."
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "학습/평가 데이터 로드"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "입력 이미지 정규화"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "모델 구조 정의"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "손실 함수와 옵티마이저 설정"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "fit()으로 모델 학습"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "검증 데이터로 학습 상태 확인"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "evaluate()로 최종 성능 평가"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "predict()로 새로운 데이터 예측"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "from tensorflow.keras.datasets import mnist\n\n(x_train, y_train), (x_test, y_test) = mnist.load_data()\n\nx_train = x_train.reshape(-1, 784).astype(\"float32\") / 255.0\nx_test = x_test.reshape(-1, 784).astype(\"float32\") / 255.0\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "입력값을 일정 범위로 정규화하면 신경망 학습을 안정적으로 진행하는 데 도움이 된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "과적합 확인"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "학습 정확도는 계속 올라가지만 검증 성능이 나빠지면 학습 데이터에 지나치게 맞춰진 과적합을 의심할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "학습 로그에서는 training loss와 validation loss의 흐름을 함께 확인한다. 검증 손실이 다시 커지는 시점은 학습을 중단하거나 정규화 기법을 검토할 신호가 될 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Hugging Face Hub"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "같은 날 두 번째 자료에서는 Hugging Face를 이용해 사전학습 모델과 데이터셋을 찾고 사용하는 방법을 다뤘다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Hugging Face Hub의 핵심 구성은 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Models: 사전학습 또는 파인튜닝된 모델 저장소"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Datasets: 학습과 평가에 사용할 데이터셋 저장소"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Spaces: Gradio, Streamlit 등을 이용해 모델 데모와 앱을 공유하는 공간"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Tasks: 목표 작업을 기준으로 모델, 데이터셋, 데모를 탐색할 수 있는 페이지"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Docs: 라이브러리와 Hub 사용법을 설명하는 공식 문서"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Task에서 시작하기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모델 이름을 먼저 정하기보다 해결하려는 문제를 기준으로 Task를 선택하는 방법을 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예시:"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Text Classification"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Question Answering"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Image Classification"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Text-to-Image"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Task 페이지에서는 해당 작업에 자주 사용되는 모델, 데이터셋, Spaces 예시를 함께 확인할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "모델 검색과 필터"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Models 페이지에서는 pipeline_tag 같은 태스크 필터를 이용해 원하는 작업의 모델을 좁힐 수 있다. 라이브러리, 다운로드 수, 트렌드 등 조건을 함께 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모델을 선택할 때 단순히 인기 순위만 보지 않고 Model Card를 확인하는 과정이 중요하다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Model Card 확인"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Model Card에는 모델을 실제로 사용하기 전에 확인해야 할 정보가 정리되어 있다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "모델의 목적"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "학습 데이터"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "사용 방법"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "제한사항"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "라이선스"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "윤리적 고려사항"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모델이 특정 언어나 도메인에 맞게 학습되었는지, 어떤 용도로 사용하면 안 되는지 확인한 뒤 선택해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Transformers와 Diffusers"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서는 태스크에 따라 주로 사용하는 라이브러리를 구분한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Transformers"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "텍스트 분류, 질의응답, 요약, 임베딩, 일부 이미지 분류 등 다양한 사전학습 모델을 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Diffusers"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Stable Diffusion 계열처럼 텍스트에서 이미지를 생성하는 diffusion 모델을 사용하는 데 활용한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Transformers 설치"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "pip install transformers torch\npip install accelerate\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서는 CPU 환경에서도 사용할 수 있지만 딥러닝 프레임워크가 필요하며, 학습 도구를 안정적으로 사용할 때 accelerate가 도움이 된다고 설명한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Pipeline"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "pipeline()은 사전학습 모델을 가장 간단하게 사용해볼 수 있는 추론 API다. 적절한 tokenizer와 model을 불러오고 전처리, 추론, 후처리를 하나의 흐름으로 처리한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "from transformers import pipeline\n\nclf = pipeline(\"sentiment-analysis\")\nresult = clf(\"I love this movie!\")\nprint(result)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Pipeline의 장점은 짧은 코드로 모델 결과를 빠르게 확인할 수 있다는 것이다. 반대로 학습, 배치 처리, 특별한 전처리처럼 세밀한 제어가 필요하면 Trainer나 직접 모델 코드를 사용하는 방식이 더 적합하다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Hub에서 코드로 모델 검색"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "huggingface_hub 라이브러리를 이용하면 웹 UI뿐 아니라 Python 코드에서도 모델 목록을 검색할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 방식은 특정 태스크, 라이선스, 언어 등의 조건으로 후보 모델을 정리하거나 팀 프로젝트에서 모델 선정 기준표를 만들 때 활용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Hugging Face 사용 흐름"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "해결하려는 Task를 정의한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Tasks 또는 Models에서 후보를 찾는다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Model Card에서 목적, 데이터, 라이선스, 제한을 확인한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Pipeline으로 우선 추론을 실행해본다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "필요하면 Trainer 또는 직접 코드를 이용해 파인튜닝으로 확장한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "결과를 Spaces 같은 환경에서 데모로 구성할 수 있다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "복습하면서 확인할 점"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "딥러닝은 여러 층의 신경망을 통해 계층적으로 특징을 학습한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "손실 함수는 예측 오차를 계산하고 역전파는 그 손실을 줄이는 방향의 기울기를 계산한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "활성화 함수는 신경망에 비선형성을 추가한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이진 분류와 다중 분류는 출력층과 손실 함수 구성이 다르다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "학습 로그에서는 training과 validation 지표를 함께 봐야 한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Hugging Face는 모델뿐 아니라 데이터셋, 데모, 태스크와 문서를 함께 제공한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "사전학습 모델을 사용할 때는 Model Card를 먼저 확인한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Pipeline은 사전학습 모델을 빠르게 추론해보는 가장 간단한 방법이다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/136",
+    "originalId": "136",
+    "publishedAt": "2026-08-12T10:03:56+09:00",
+    "updatedAt": "2026-08-12T10:04:08+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

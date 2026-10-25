@@ -1,0 +1,448 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "5a7317c1-8006-53b6-a697-cae7c86817fe",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-4 문제",
+  "slug": "tistory-75",
+  "description": "1. 문제 정보문제 번호 : old -4문제 점수 : 30점 2. 문제 분석문제를 보면dd156f7cf80164fd8afbc11c95d0e33e237d0275 가 있고 password를 제출하는 칸이 보인다. 코드를 확인해보자. Password[view-source] 가장 중요한 부분은 천만~1억 사이의 숫자에 salt_for_you 더 한값을 session값에 저장하고 sha1을 으로 500번 더한 값을 $hash로 나타낸다. 그 값이 처음 문제에 나온 값이다.dd156f7cf80164fd8afbc11c95d0e33e237d0275 게다가 한번 잘못 요청하면 값이 바뀐다. 3. 풀이이 문제는 90000000번 동안 루프를 돌아 맞는 값을 찾을 수 도 있지만 메모리가 너무 많이 든다.따라서 100000..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-02-02",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-02-02T15:10:56+09:00",
+  "updatedAt": "2026-02-02T21:05:36+09:00",
+  "sourceDigest": "42148422f80b946602782fbbd7d4e1aee7705d8470d955d6f43dd9c95ffeb9b8",
+  "assets": [
+    {
+      "id": "1d1c18bd-1774-5984-8cb2-d5bb4d4d18a8",
+      "name": "tistory-75-1d1c18bd-1774-5984-8cb2-d5bb4d4d18a8.png",
+      "type": "image/png",
+      "path": "/assets/uploads/5a7317c1-8006-53b6-a697-cae7c86817fe/1d1c18bd-1774-5984-8cb2-d5bb4d4d18a8.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "3b8d40d7-8e41-5f95-aec6-048de3685b74",
+      "name": "tistory-75-3b8d40d7-8e41-5f95-aec6-048de3685b74.png",
+      "type": "image/png",
+      "path": "/assets/uploads/5a7317c1-8006-53b6-a697-cae7c86817fe/3b8d40d7-8e41-5f95-aec6-048de3685b74.png",
+      "sha": "c24d412581b4d36a0482d12c53de02e4f3e0464f"
+    },
+    {
+      "id": "91db8d5a-8213-534a-9fda-32259a384142",
+      "name": "tistory-75-91db8d5a-8213-534a-9fda-32259a384142.png",
+      "type": "image/png",
+      "path": "/assets/uploads/5a7317c1-8006-53b6-a697-cae7c86817fe/91db8d5a-8213-534a-9fda-32259a384142.png",
+      "sha": "d57058b93d08efa1f41d353a8088a4020a6851cd"
+    },
+    {
+      "id": "ff9992f4-6637-5770-940c-a4843450a4d2",
+      "name": "tistory-75-ff9992f4-6637-5770-940c-a4843450a4d2.png",
+      "type": "image/png",
+      "path": "/assets/uploads/5a7317c1-8006-53b6-a697-cae7c86817fe/ff9992f4-6637-5770-940c-a4843450a4d2.png",
+      "sha": "0a0668d1364a8a68cccb3fca9e11d8867a0adf19"
+    },
+    {
+      "id": "7fe1a96c-e021-5c0b-8fc1-275c4c8598fa",
+      "name": "tistory-75-7fe1a96c-e021-5c0b-8fc1-275c4c8598fa.png",
+      "type": "image/png",
+      "path": "/assets/uploads/5a7317c1-8006-53b6-a697-cae7c86817fe/7fe1a96c-e021-5c0b-8fc1-275c4c8598fa.png",
+      "sha": "9f4a2f8bbfd07b5bf07defb2d307abca769d2d97"
+    },
+    {
+      "id": "bf68147f-cf79-5342-bb69-5b8ca089a009",
+      "name": "tistory-75-bf68147f-cf79-5342-bb69-5b8ca089a009.png",
+      "type": "image/png",
+      "path": "/assets/uploads/5a7317c1-8006-53b6-a697-cae7c86817fe/bf68147f-cf79-5342-bb69-5b8ca089a009.png",
+      "sha": "812275c1c2370ef67fc6270d728b802741df5bc3"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "1d1c18bd-1774-5984-8cb2-d5bb4d4d18a8",
+          "src": "/assets/uploads/5a7317c1-8006-53b6-a697-cae7c86817fe/1d1c18bd-1774-5984-8cb2-d5bb4d4d18a8.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -4"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 30점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "3b8d40d7-8e41-5f95-aec6-048de3685b74",
+          "src": "/assets/uploads/5a7317c1-8006-53b6-a697-cae7c86817fe/3b8d40d7-8e41-5f95-aec6-048de3685b74.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제를 보면dd156f7cf80164fd8afbc11c95d0e33e237d0275"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가 있고 password를 제출하는 칸이 보인다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "코드를 확인해보자."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n  include \"../../config.php\";\n  if($_GET['view-source'] == 1) view_source();\n?><html>\n<head>\n<title>Challenge 4</title>\n<style type=\"text/css\">\nbody { background:black; color:white; font-size:9pt; }\ntable { color:white; font-size:10pt; }\n</style>\n</head>\n<body><br><br>\n<center>\n<?php\n  sleep(1); // anti brute force\n  if((isset($_SESSION['chall4'])) && ($_POST['key'] == $_SESSION['chall4'])) solve(4);\n  $hash = rand(10000000,99999999).\"salt_for_you\";\n  $_SESSION['chall4'] = $hash;\n  for($i=0;$i<500;$i++) $hash = sha1($hash);\n?><br>\n<form method=post>\n<table border=0 align=center cellpadding=10>\n<tr><td colspan=3 style=background:silver;color:green;><b><?=$hash?></b></td></tr>\n<tr align=center><td>Password</td><td><input name=key type=text size=30></td><td><input type=submit></td></tr>\n</table>\n</form>\n<a href=?view-source=1>[view-source]</a>\n</center>\n</body>\n</html>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가장 중요한 부분은 천만~1억 사이의 숫자에 salt_for_you 더 한값을 session값에 저장하고 sha1을 으로 500번 더한 값을 $hash로 나타낸다. 그 값이 처음 문제에 나온 값이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "dd156f7cf80164fd8afbc11c95d0e33e237d0275"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "게다가 한번 잘못 요청하면 값이 바뀐다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "91db8d5a-8213-534a-9fda-32259a384142",
+          "src": "/assets/uploads/5a7317c1-8006-53b6-a697-cae7c86817fe/91db8d5a-8213-534a-9fda-32259a384142.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 문제는 90000000번 동안 루프를 돌아 맞는 값을 찾을 수 도 있지만 메모리가 너무 많이 든다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 10000000개의 테이블을 만들고 시행 횟수를 늘려서 찾는 방법을 사용했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 단일 cpu로 하면 오래 걸리기 때문에 멀티 cpu를 사용했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "코드로 짜보면 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import hashlib\nimport multiprocessing\nimport requests\nimport re\nimport sys\nimport time\nimport os\n\n# ==========================================\n# 1. Configuration\n# ==========================================\nURL = \"https://webhacking.kr/challenge/web-04/\"\nTABLE_FILE = \"rainbow_table.txt\" # File name to save/load\n\n# [IMPORTANT] Update PHPSESSID\nCOOKIES = {\n    \"PHPSESSID\": \"\" \n}\n\nHEADERS = {\n    \"User-Agent\": \",\n    \"Content-Type\": \"\"\n}\n\n# Range settings\nSTART_NUM = 10000000\nTOTAL_COUNT = 10000000 \n\n# ==========================================\n# 2. Worker Function\n# ==========================================\ndef generate_rainbow_table(r_start, r_end):\n    local_table = {}\n    for number in range(r_start, r_end):\n        data = str(number) + \"salt_for_you\"\n        temp_hash = data\n        for _ in range(500):\n            temp_hash = hashlib.sha1(temp_hash.encode()).hexdigest()\n        local_table[temp_hash] = number\n    return local_table\n\n# ==========================================\n# 3. Main Logic\n# ==========================================\nif __name__ == '__main__':\n    multiprocessing.freeze_support()\n    rainbow_table = {}\n\n    # [Step 1] Check if table file exists\n    if os.path.exists(TABLE_FILE):\n        print(f\"[-] '{TABLE_FILE}' found. Loading data from file...\")\n        start_time = time.time()\n        \n        # Load from file\n        try:\n            with open(TABLE_FILE, \"r\") as f:\n                for line in f:\n                    # Format: hash,number\n                    parts = line.strip().split(\",\")\n                    if len(parts) == 2:\n                        rainbow_table[parts[0]] = parts[1]\n            \n            end_time = time.time()\n            print(f\"[+] Load complete! (Total {len(rainbow_table)} entries)\")\n            print(f\"[-] Loading time: {end_time - start_time:.2f} seconds\")\n            \n        except Exception as e:\n            print(f\"[!] Error loading file: {e}\")\n            sys.exit()\n\n    else:\n        # [Step 2] If file doesn't exist, generate it\n        print(f\"[-] '{TABLE_FILE}' not found.\")\n        print(\"[-] Starting Rainbow Table generation using all CPU cores...\")\n        \n        cpu_count = multiprocessing.cpu_count()\n        print(f\"[-] Available CPU cores: {cpu_count}\")\n\n        chunk_size = TOTAL_COUNT // cpu_count\n        ranges = []\n        for i in range(cpu_count):\n            s = START_NUM + (i * chunk_size)\n            e = s + chunk_size\n            if i == cpu_count - 1:\n                e = START_NUM + TOTAL_COUNT\n            ranges.append((s, e))\n\n        start_time = time.time()\n        with multiprocessing.Pool(processes=cpu_count) as pool:\n            results = pool.starmap(generate_rainbow_table, ranges)\n        \n        print(\"[-] Merging data in memory...\")\n        for partial_table in results:\n            rainbow_table.update(partial_table)\n\n        # Save to file\n        print(f\"[-] Saving data to '{TABLE_FILE}' for future use...\")\n        with open(TABLE_FILE, \"w\") as f:\n            for h, n in rainbow_table.items():\n                f.write(f\"{h},{n}\\n\")\n        \n        end_time = time.time()\n        print(f\"[+] Generation & Save complete! (Total {len(rainbow_table)} entries)\")\n        print(f\"[-] Time elapsed: {end_time - start_time:.2f} seconds\")\n\n\n    # [Step 3] Attack Loop\n    print(\"---------------------------------------------------\")\n    print(\"[-] Starting server attack... (Press Ctrl+C to stop)\")\n\n    attempt = 0\n    with requests.Session() as session:\n        while True:\n            attempt += 1\n            try:\n                response = session.post(URL, headers=HEADERS, cookies=COOKIES, data={'key': ''})\n                match = re.search(r\"<b>([a-f0-9]{40})</b>\", response.text)\n                \n                if match:\n                    server_hash = match.group(1)\n                    sys.stdout.write(f\"\\r[*] Attempt {attempt} | Received Hash: {server_hash[:10]}...\")\n                    sys.stdout.flush()\n\n                    if server_hash in rainbow_table:\n                        answer = rainbow_table[server_hash]\n                        print(f\"\\n\\n[★] HIT! Found answer in table: {answer}\")\n                        \n                        print(\"[-] Submitting answer...\")\n                        payload = {'key': answer}\n                        final_res = session.post(URL, headers=HEADERS, cookies=COOKIES, data=payload)\n                        \n                        if \"pwned\" in final_res.text or \"alert\" in final_res.text or \"solve\" in final_res.text:\n                            print(\"\\n[SUCCESS] Challenge Solved!\")\n                            print(\"▼▼▼ Server Response ▼▼▼\")\n                            print(final_res.text[:500])\n                        else:\n                            print(\"\\n[?] Answer submitted but success message not confirmed.\")\n                            print(\"Please check the website manually.\")\n                        \n                        break\n                    \n                else:\n                    print(\"\\n[!] Hash not found. Check PHPSESSID.\")\n                    break\n\n            except requests.exceptions.RequestException as e:\n                print(f\"\\n[!] Connection Error: {e}\")\n                time.sleep(1)\n            except KeyboardInterrupt:\n                print(\"\\n[!] Stopped by user.\")\n                break"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "테이블을 만든 로그약 10분 걸렸다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "ff9992f4-6637-5770-940c-a4843450a4d2",
+          "src": "/assets/uploads/5a7317c1-8006-53b6-a697-cae7c86817fe/ff9992f4-6637-5770-940c-a4843450a4d2.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 시도를 해보면"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "7fe1a96c-e021-5c0b-8fc1-275c4c8598fa",
+          "src": "/assets/uploads/5a7317c1-8006-53b6-a697-cae7c86817fe/7fe1a96c-e021-5c0b-8fc1-275c4c8598fa.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "bf68147f-cf79-5342-bb69-5b8ca089a009",
+          "src": "/assets/uploads/5a7317c1-8006-53b6-a697-cae7c86817fe/bf68147f-cf79-5342-bb69-5b8ca089a009.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "약 10%정도 확률로 맞출 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "1000만에서 9999만 사이의 랜덤 숫자와 솔트를 조합해 SHA1으로 500번 해시한 값을 역추적해야 하며 매 요청마다 값이 변하는 문제다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "전체 9천만 개의 데이터를 모두 계산하는 비효율을 줄이기 위해 멀티프로세싱을 활용하여 약 1천만 개의 레인보우 테이블을 생성하고 파일로 저장했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "생성된 테이블 내의 해시값이 서버에서 출제될 때까지 반복 요청하는 확률적 공격을 수행하여 약 10퍼센트의 확률로 정답을 찾아 해결했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/75",
+    "originalId": "75",
+    "publishedAt": "2026-02-02T15:10:56+09:00",
+    "updatedAt": "2026-02-02T21:05:36+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

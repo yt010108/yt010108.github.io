@@ -1,0 +1,387 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "7a43d469-1c8d-5bb2-a19e-b7ab0381d9b8",
+  "kind": "posts",
+  "title": "[Ghidra] 리버스 엔지니어링 기드라 실전 가이드 스터디 - chapter 5(level1)",
+  "slug": "tistory-48",
+  "description": "1. CrackMe란?리버스 엔지니어링을 배우기 위해 만들어진 연습용 프로그램으로 프로그램을 리버스 엔지니어링해서 비밀번호를 밝혀 풀어낸다.5장에서는 멀웨어에서 자주 사용되는 인코딩 방법을 다루는 4문제를 푼다. 2. level1 crackme(xor)level 1 크랙미 디스어셈블 결과undefined8 main(void){ char *pcVar1; size_t sVar2; undefined8 uVar3; long in_FS_OFFSET; int local_6c; int local_68 [12]; byte local_38 [40]; long local_10; local_10 = *(long *)(in_FS_OFFSET + 0x28); local_68[0] = 0x29; local..",
+  "category": "Security / Reversing",
+  "date": "2026-01-22",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-22T20:38:16+09:00",
+  "updatedAt": "2026-01-22T20:42:25+09:00",
+  "sourceDigest": "9f9acdc8faef99e25d2b9686c70d875d49ec0b8e45fc93696fff72d3d5b07608",
+  "assets": [
+    {
+      "id": "aa0716c2-5684-5c99-9b0d-cc38b231b52f",
+      "name": "tistory-48-aa0716c2-5684-5c99-9b0d-cc38b231b52f.jpg",
+      "type": "image/jpeg",
+      "path": "/assets/uploads/7a43d469-1c8d-5bb2-a19e-b7ab0381d9b8/aa0716c2-5684-5c99-9b0d-cc38b231b52f.jpg",
+      "sha": "81eecea152274b4d569428cef432689bb7b027c0"
+    },
+    {
+      "id": "cbe18be6-87f8-51bb-833d-8036ad5258a5",
+      "name": "tistory-48-cbe18be6-87f8-51bb-833d-8036ad5258a5.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7a43d469-1c8d-5bb2-a19e-b7ab0381d9b8/cbe18be6-87f8-51bb-833d-8036ad5258a5.png",
+      "sha": "ef00247219a5d7a91ea13e25a9ef4c91bcf87b40"
+    },
+    {
+      "id": "e4d6e589-70c6-5778-bbde-869d14f0e57c",
+      "name": "tistory-48-e4d6e589-70c6-5778-bbde-869d14f0e57c.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7a43d469-1c8d-5bb2-a19e-b7ab0381d9b8/e4d6e589-70c6-5778-bbde-869d14f0e57c.png",
+      "sha": "df5803c6d4db49429d08ed54ba13bdf5ae552254"
+    },
+    {
+      "id": "09687671-2d62-5e61-a6bc-1ed771637bc7",
+      "name": "tistory-48-09687671-2d62-5e61-a6bc-1ed771637bc7.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7a43d469-1c8d-5bb2-a19e-b7ab0381d9b8/09687671-2d62-5e61-a6bc-1ed771637bc7.png",
+      "sha": "17eaa934491e52b3c0ffefddeda8999b8e6238be"
+    },
+    {
+      "id": "6bb1060b-4a43-5fb7-866f-b4a3fe42ab06",
+      "name": "tistory-48-6bb1060b-4a43-5fb7-866f-b4a3fe42ab06.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7a43d469-1c8d-5bb2-a19e-b7ab0381d9b8/6bb1060b-4a43-5fb7-866f-b4a3fe42ab06.png",
+      "sha": "10c318e55fcd4014bd33ae18c42c51955d46bbc1"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "aa0716c2-5684-5c99-9b0d-cc38b231b52f",
+          "src": "/assets/uploads/7a43d469-1c8d-5bb2-a19e-b7ab0381d9b8/aa0716c2-5684-5c99-9b0d-cc38b231b52f.jpg",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. CrackMe란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "리버스 엔지니어링을 배우기 위해 만들어진 연습용 프로그램으로 프로그램을 리버스 엔지니어링해서 비밀번호를 밝혀 풀어낸다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "5장에서는 멀웨어에서 자주 사용되는 인코딩 방법을 다루는 4문제를 푼다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. level1 crackme(xor)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "level 1 크랙미 디스어셈블 결과"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "undefined8 main(void)\n\n{\n  char *pcVar1;\n  size_t sVar2;\n  undefined8 uVar3;\n  long in_FS_OFFSET;\n  int local_6c;\n  int local_68 [12];\n  byte local_38 [40];\n  long local_10;\n  \n  local_10 = *(long *)(in_FS_OFFSET + 0x28);\n  local_68[0] = 0x29;\n  local_68[1] = 0x4b;\n  local_68[2] = 0x17;\n  local_68[3] = 10;\n  local_68[4] = 0x4b;\n  local_68[5] = 0x49;\n  local_68[6] = 0x25;\n  local_68[7] = 2;\n  local_68[8] = 0x4a;\n  local_68[9] = 8;\n  printf(\"Enter password: \");\n  pcVar1 = fgets((char *)local_38,0x20,stdin);\n  if ((pcVar1 == (char *)0x0) || (sVar2 = strlen((char *)local_38), sVar2 != 0xb)) {\nLAB_001008b1:\n    puts(\"Wrong...\");\n    uVar3 = 1;\n  }\n  else {\n    for (local_6c = 0; local_6c < 10; local_6c = local_6c + 1) {\n      if ((int)(char)(local_38[local_6c] ^ 0x7a) != local_68[local_6c]) goto LAB_001008b1;\n    }\n    puts(\"Correct!!\");\n    uVar3 = 0;\n  }\n  if (local_10 == *(long *)(in_FS_OFFSET + 0x28)) {\n    return uVar3;\n  }\n                    /* WARNING: Subroutine does not return */\n  __stack_chk_fail();\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "디스어셈블 결과코드는 loacl_38 배열의 원소들을 0x7a값과 xor해서 local_68 배열의 값과 비교한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "XOR 연산은 A ^ B = C일 때, C ^ B = A가 되는 대칭적인 성질이 있어, 암호화된 값에 키값을 다시 XOR 하면 원래 값을 복구할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "local_68을 xor 0x7a와 xor한 값을 찾으면 local_38에 들어갈 값을 찾을 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. PyGhidra를 사용한 풀이"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "cbe18be6-87f8-51bb-833d-8036ad5258a5",
+          "src": "/assets/uploads/7a43d469-1c8d-5bb2-a19e-b7ab0381d9b8/cbe18be6-87f8-51bb-833d-8036ad5258a5.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "toAddr은 주소 객체를 얻고 getInstructionAt은 지정한 주소의 명령 객체를 얻는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "메인 함수 내에서 배열(local_68)에 값을 넣기 시작하는 어셈블리 코드의 시작 주소가 0x1007e1이므로 addr을 얻어온다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "inst.getDefaultOperandRepresentation(1)를 통해 오퍼랜드를 얻을 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "e4d6e589-70c6-5778-bbde-869d14f0e57c",
+          "src": "/assets/uploads/7a43d469-1c8d-5bb2-a19e-b7ab0381d9b8/e4d6e589-70c6-5778-bbde-869d14f0e57c.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "getNext()메소드를 사용하면 다음 주소로 스택에 쌓여있는 값을 읽는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "inst.getNext().getDefaultOperandRepresentation(1)처럼 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파이썬 스크립트로 아래와 같이 짜면"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "addr = toAddr(0x1007e1)\nenc =[]\ninst = getInstructionAt(addr)\nfor _ in range(0, 10):\n    e = inst.getDefaultOperandRepresentation(1)\n    enc.append(int(e,16))\n    inst = inst.getNext()\n\n\nprint(''.join([chr(e^0x7a) for e in enc]))"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "09687671-2d62-5e61-a6bc-1ed771637bc7",
+          "src": "/assets/uploads/7a43d469-1c8d-5bb2-a19e-b7ab0381d9b8/09687671-2d62-5e61-a6bc-1ed771637bc7.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "S1mp13_x0r 가 나오고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "cyberChef에서 검증하면 S1mp13_x0r이 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "6bb1060b-4a43-5fb7-866f-b4a3fe42ab06",
+          "src": "/assets/uploads/7a43d469-1c8d-5bb2-a19e-b7ab0381d9b8/6bb1060b-4a43-5fb7-866f-b4a3fe42ab06.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "CrackMe Level 1은 사용자 입력값을 0x7a와 XOR 연산하여 하드코딩된 배열과 비교하는 로직임을 확인했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "PyGhidra 스크립트를 작성해 0x1007e1 주소의 배열 값을 추출하고, XOR 역연산을 통해 비밀번호를 복구했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "복호화 결과 플래그는 S1mp13_x0r이며, CyberChef를 통해 해당 값이 정확함을 검증했다"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/48",
+    "originalId": "48",
+    "publishedAt": "2026-01-22T20:38:16+09:00",
+    "updatedAt": "2026-01-22T20:42:25+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

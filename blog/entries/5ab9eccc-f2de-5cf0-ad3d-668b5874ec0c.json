@@ -1,0 +1,948 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "5ab9eccc-f2de-5cf0-ad3d-668b5874ec0c",
+  "kind": "posts",
+  "title": "[SK Rookies]기초통계와 데이터 탐색",
+  "slug": "tistory-131",
+  "description": "오늘 배운 내용7월 29일에는 데이터의 특징을 수치로 요약하고 관계를 파악하기 위한 기초 통계를 공부했다. 중심 경향, 데이터의 퍼짐 정도, 분포의 모양을 이해한 뒤 Python과 pandas를 이용해 통계량을 계산하고, Matplotlib과 Seaborn으로 데이터를 시각화하며 탐색적 데이터 분석(EDA)을 수행했다. 후반에는 상관계수와 상관행렬, 단순 회귀를 통해 변수 간 관계를 해석했다.기초 통계 Statistics통계는 데이터의 특징을 수치로 요약하고 데이터 안의 패턴과 관계를 이해하기 위한 기초 도구다. 자료에서는 기술 통계(Descriptive Statistics)를 중심으로 대표값, 산포도, 분포, 상관관계 등을 다룬다.중심 경향성데이터를 대표하는 중심값을 찾는 방법이다.평균(Mean): 모..",
+  "category": "Study / T34M Rookies",
+  "date": "2026-08-07",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-08-07T18:56:56+09:00",
+  "updatedAt": "2026-08-12T09:57:36+09:00",
+  "sourceDigest": "b2a70a41d64d16ba46a1bd5e2fe316995309eaf5ad981298f6cf9ee44eab5397",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[원본에서 불러올 수 없는 이미지]"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "오늘 배운 내용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "7월 29일에는 데이터의 특징을 수치로 요약하고 관계를 파악하기 위한 기초 통계를 공부했다. 중심 경향, 데이터의 퍼짐 정도, 분포의 모양을 이해한 뒤 Python과 pandas를 이용해 통계량을 계산하고, Matplotlib과 Seaborn으로 데이터를 시각화하며 탐색적 데이터 분석(EDA)을 수행했다. 후반에는 상관계수와 상관행렬, 단순 회귀를 통해 변수 간 관계를 해석했다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "기초 통계 Statistics"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "통계는 데이터의 특징을 수치로 요약하고 데이터 안의 패턴과 관계를 이해하기 위한 기초 도구다. 자료에서는 기술 통계(Descriptive Statistics)를 중심으로 대표값, 산포도, 분포, 상관관계 등을 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "중심 경향성"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터를 대표하는 중심값을 찾는 방법이다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "평균(Mean): 모든 관측값의 합을 개수로 나눈 값이다. 모든 데이터를 반영하지만 극단값의 영향을 크게 받는다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "중앙값(Median): 데이터를 크기순으로 정렬했을 때 가운데 위치한 값이다. 이상치의 영향이 적어 치우친 분포에서 유용하다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "최빈값(Mode): 가장 자주 나타나는 값이다. 범주형 데이터나 빈도가 중요한 경우에 유용하다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "평균은 데이터가 비교적 균일할 때 대표값으로 좋고, 이상치가 포함되어 있거나 분포가 비대칭이면 중앙값이 더 적합할 수 있다. 최빈값은 가장 흔한 범주나 값을 알고 싶을 때 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import pandas as pd\n\nscores = pd.Series([80, 85, 90, 70, 75])\n\nprint(\"평균:\", scores.mean())\nprint(\"중앙값:\", scores.median())\nprint(\"최빈값:\", scores.mode().tolist())\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터 분산성"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "중심값만으로는 데이터가 얼마나 넓게 퍼져 있는지 알 수 없다. 분산성 지표는 값들이 중심에서 얼마나 흩어져 있는지 설명한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "분산 Variance"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "각 데이터 값에서 평균을 뺀 편차를 제곱한 뒤 평균한 값이다. 분산이 클수록 데이터가 평균에서 멀리 퍼져 있다는 뜻이다. 단위가 원래 단위의 제곱이기 때문에 직접 해석하기 어려울 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "표준편차 Standard Deviation"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "분산의 제곱근이다. 원래 데이터와 같은 단위를 사용하므로 분산보다 해석하기 쉽다. 표준편차가 작으면 데이터가 평균 근처에 모여 있고, 크면 넓게 퍼져 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "사분위수와 IQR"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터를 정렬한 뒤 네 구간으로 나눈다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Q1: 하위 25% 경계"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Q2: 하위 50% 경계이며 중앙값"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Q3: 하위 75% 경계"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "IQR: Q3 - Q1, 중간 50% 데이터가 차지하는 범위"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "print(\"분산:\", scores.var())\nprint(\"표준편차:\", scores.std())\nprint(\"Q1:\", scores.quantile(0.25))\nprint(\"Q2:\", scores.quantile(0.50))\nprint(\"Q3:\", scores.quantile(0.75))\nprint(\"IQR:\", scores.quantile(0.75) - scores.quantile(0.25))\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터 분포"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "분포는 값들이 어떤 형태로 퍼져 있는지를 보여준다. 자료에서는 정규분포, 왜도, 첨도를 중심으로 분포의 모양을 해석한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "정규분포"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "평균을 중심으로 좌우가 대칭인 종 모양 분포다. 평균, 중앙값, 최빈값이 비슷한 위치에 나타나는 것이 대표적인 특징이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "왜도 Skewness"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "분포의 비대칭 정도를 나타낸다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "왜도 > 0: 오른쪽 꼬리가 길게 늘어난 양의 왜도"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "왜도 < 0: 왼쪽 꼬리가 길게 늘어난 음의 왜도"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "왜도 = 0: 좌우가 대칭적인 형태"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료의 예시처럼 일부 매우 비싼 주택이 포함되면 주택 가격 분포가 오른쪽으로 길어질 수 있고, 일부 매우 낮은 시험 점수가 포함되면 반대로 왼쪽 꼬리가 길어질 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "첨도 Kurtosis"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "분포가 얼마나 뾰족하거나 평평한지를 설명하는 지표다. 분포의 꼬리와 극단값 특성을 파악할 때 함께 확인한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "print(\"왜도:\", scores.skew())\nprint(\"첨도:\", scores.kurt())\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Matplotlib과 Seaborn을 활용한 시각화"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "통계량은 숫자로 데이터 특성을 요약하지만, 그래프를 함께 보면 분포와 이상치를 더 직관적으로 확인할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서는 히스토그램, 박스플롯, 산점도와 같은 그래프를 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import matplotlib.pyplot as plt\nimport seaborn as sns\n\nsns.histplot(scores, kde=True)\nplt.show()\n\nsns.boxplot(x=scores)\nplt.show()\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "히스토그램은 값이 어느 구간에 많이 몰려 있는지 확인할 수 있고, 박스플롯은 중앙값과 사분위수, 이상치를 빠르게 확인하는 데 유용하다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "탐색적 데이터 분석 EDA"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "EDA(Exploratory Data Analysis)는 모델링 전에 데이터 구조와 품질, 분포, 변수 간 관계를 탐색하는 과정이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "주요 흐름은 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터 크기와 컬럼 구조 확인"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "자료형과 기본 통계량 확인"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "결측값과 이상치 확인"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "변수별 분포 시각화"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "그룹별 집계와 비교"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "변수 간 관계 확인"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "print(df.shape)\nprint(df.info())\nprint(df.describe())\nprint(df.isnull().sum())\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그룹별 평균이나 합계를 계산하면 범주별 차이를 쉽게 비교할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "summary = df.groupby(\"category\")[\"sales\"].agg([\"count\", \"mean\", \"sum\"])\nprint(summary)\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "상관계수와 상관행렬"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "상관계수는 두 변수 사이 선형 관계의 방향과 강도를 -1에서 1 사이의 값으로 나타낸다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "1에 가까움: 강한 양의 상관관계"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "-1에 가까움: 강한 음의 상관관계"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "0에 가까움: 선형 관계가 약함"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "corr = df.corr(numeric_only=True)\nprint(corr)\n\nsns.heatmap(corr, annot=True)\nplt.show()\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "상관행렬을 히트맵으로 표현하면 여러 변수 사이 관계를 한 번에 비교할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "상관관계와 인과관계"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서 강조하는 점은 상관관계가 있다고 해서 한 변수가 다른 변수의 원인이라는 뜻은 아니라는 것이다. 예를 들어 아이스크림 판매량과 에어컨 판매량이 함께 증가하더라도 두 변수 사이 직접적인 원인 관계라기보다 여름철 기온이라는 제3의 요인이 함께 영향을 줄 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 상관계수는 관계를 탐색하는 출발점으로 사용하고, 인과관계라고 단정해서는 안 된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "단순 회귀 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "단순 회귀는 하나의 독립변수 X와 하나의 종속변수 y 사이 관계를 직선 형태로 설명하는 방법이다. 자료에서는 산점도를 통해 변수 관계를 확인하고, 직선을 이용해 변화 경향을 설명하는 흐름을 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "from sklearn.linear_model import LinearRegression\n\nX = df[[\"study_hours\"]]\ny = df[\"score\"]\n\nmodel = LinearRegression()\nmodel.fit(X, y)\n\nprint(\"기울기:\", model.coef_[0])\nprint(\"절편:\", model.intercept_)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기울기는 입력 변수가 한 단위 변할 때 예측값이 어느 방향으로 얼마나 변하는지를 보여준다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "복습하면서 확인할 점"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "평균은 이상치에 민감하고 중앙값은 이상치에 비교적 강하다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "분산과 표준편차는 데이터의 퍼짐 정도를 나타낸다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "사분위수와 IQR은 데이터 분포와 이상치를 확인할 때 유용하다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "왜도는 분포의 비대칭성, 첨도는 분포의 뾰족함과 꼬리 특성을 설명한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "EDA는 모델링 전에 데이터 구조와 문제를 발견하는 과정이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "상관관계는 인과관계를 의미하지 않는다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/131",
+    "originalId": "131",
+    "publishedAt": "2026-08-07T18:56:56+09:00",
+    "updatedAt": "2026-08-12T09:57:36+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

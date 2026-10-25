@@ -1,0 +1,359 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "c86afba7-1c52-58ea-aa3f-5fda12a37499",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-38문제",
+  "slug": "tistory-51",
+  "description": "1. 문제 정보문제 번호 : old -38문제 점수 : 10점2. 문제 분석38번 문제에 들어가면 로그 인젝션 문제인 것을 알 수 있다. login버튼이 있으므로 일단 admin을 입력했다. 어드민이 아니라고 나온다. 코드를 보기위해 소스 보기를 해봤다.admin page -->주석으로 admin.php가 있다는 것을 알 수 있었다.admin page에 가보니 이때까지 시도한 admin 빼고 로그가 찍혀 있었다.로그를 admin으로 바꾸면 될 거 같다. 3. 풀이log에서 ip주소 : 이름이 나오므로 다음 줄까지 입력해서 ip주소에 admin을 맞춰서 입력해보자.입력하고 admin.php로 들어가보면 풀린다. 아래 어드민은 안나오나보다.4. 요약log 시스템이 취약하면 %0d: Carriage Retur..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-23",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-23T03:38:28+09:00",
+  "updatedAt": "2026-01-23T03:38:40+09:00",
+  "sourceDigest": "9cffc2a4398eea624aa5ef2abb84b8efc19cfa84d3ad65a4179c2f9b1a005a13",
+  "assets": [
+    {
+      "id": "c87b5dd0-206d-59af-afef-879d82236fc8",
+      "name": "tistory-51-c87b5dd0-206d-59af-afef-879d82236fc8.png",
+      "type": "image/png",
+      "path": "/assets/uploads/c86afba7-1c52-58ea-aa3f-5fda12a37499/c87b5dd0-206d-59af-afef-879d82236fc8.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "7b354e5b-2473-5a54-9a96-a165e35d0f07",
+      "name": "tistory-51-7b354e5b-2473-5a54-9a96-a165e35d0f07.png",
+      "type": "image/png",
+      "path": "/assets/uploads/c86afba7-1c52-58ea-aa3f-5fda12a37499/7b354e5b-2473-5a54-9a96-a165e35d0f07.png",
+      "sha": "22e72e3432ac09b32cb94ee43e87a9bbb94770de"
+    },
+    {
+      "id": "71a79cc9-e279-505e-b09a-5b2bcf824110",
+      "name": "tistory-51-71a79cc9-e279-505e-b09a-5b2bcf824110.png",
+      "type": "image/png",
+      "path": "/assets/uploads/c86afba7-1c52-58ea-aa3f-5fda12a37499/71a79cc9-e279-505e-b09a-5b2bcf824110.png",
+      "sha": "2041cbf4a99682e148a39aaa8a4e6d1944310d75"
+    },
+    {
+      "id": "060d7afe-1182-5984-a50e-2a2c6a1ac263",
+      "name": "tistory-51-060d7afe-1182-5984-a50e-2a2c6a1ac263.png",
+      "type": "image/png",
+      "path": "/assets/uploads/c86afba7-1c52-58ea-aa3f-5fda12a37499/060d7afe-1182-5984-a50e-2a2c6a1ac263.png",
+      "sha": "fc71f66ef6c2b6a42d75ea39a1f50bb506b7ea8f"
+    },
+    {
+      "id": "07cdb1a6-9540-5e63-a61b-c55e4a870fff",
+      "name": "tistory-51-07cdb1a6-9540-5e63-a61b-c55e4a870fff.png",
+      "type": "image/png",
+      "path": "/assets/uploads/c86afba7-1c52-58ea-aa3f-5fda12a37499/07cdb1a6-9540-5e63-a61b-c55e4a870fff.png",
+      "sha": "b86955d266e912ed11c800b2df015551031f9f31"
+    },
+    {
+      "id": "ec45e205-47e2-5da4-a1c4-86abaaba2bb4",
+      "name": "tistory-51-ec45e205-47e2-5da4-a1c4-86abaaba2bb4.png",
+      "type": "image/png",
+      "path": "/assets/uploads/c86afba7-1c52-58ea-aa3f-5fda12a37499/ec45e205-47e2-5da4-a1c4-86abaaba2bb4.png",
+      "sha": "092f36faeabf79e81dec3e77eebc8a1022df919b"
+    },
+    {
+      "id": "681a2297-a24d-5901-9109-050c207bad1d",
+      "name": "tistory-51-681a2297-a24d-5901-9109-050c207bad1d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/c86afba7-1c52-58ea-aa3f-5fda12a37499/681a2297-a24d-5901-9109-050c207bad1d.png",
+      "sha": "af1b00aa2725bec6cc61d768444fd2f92b50f332"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "c87b5dd0-206d-59af-afef-879d82236fc8",
+          "src": "/assets/uploads/c86afba7-1c52-58ea-aa3f-5fda12a37499/c87b5dd0-206d-59af-afef-879d82236fc8.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -38"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 10점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "7b354e5b-2473-5a54-9a96-a165e35d0f07",
+          "src": "/assets/uploads/c86afba7-1c52-58ea-aa3f-5fda12a37499/7b354e5b-2473-5a54-9a96-a165e35d0f07.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "38번 문제에 들어가면 로그 인젝션 문제인 것을 알 수 있다. login버튼이 있으므로 일단 admin을 입력했다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "71a79cc9-e279-505e-b09a-5b2bcf824110",
+          "src": "/assets/uploads/c86afba7-1c52-58ea-aa3f-5fda12a37499/71a79cc9-e279-505e-b09a-5b2bcf824110.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "어드민이 아니라고 나온다. 코드를 보기위해 소스 보기를 해봤다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "<!-- <a href=admin.php>admin page</a> -->주석으로 admin.php가 있다는 것을 알 수 있었다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "060d7afe-1182-5984-a50e-2a2c6a1ac263",
+          "src": "/assets/uploads/c86afba7-1c52-58ea-aa3f-5fda12a37499/060d7afe-1182-5984-a50e-2a2c6a1ac263.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "admin page에 가보니 이때까지 시도한 admin 빼고 로그가 찍혀 있었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "로그를 admin으로 바꾸면 될 거 같다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "log에서 ip주소 : 이름이 나오므로 다음 줄까지 입력해서 ip주소에 admin을 맞춰서 입력해보자."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "07cdb1a6-9540-5e63-a61b-c55e4a870fff",
+          "src": "/assets/uploads/c86afba7-1c52-58ea-aa3f-5fda12a37499/07cdb1a6-9540-5e63-a61b-c55e4a870fff.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "입력하고 admin.php로 들어가보면 풀린다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "ec45e205-47e2-5da4-a1c4-86abaaba2bb4",
+          "src": "/assets/uploads/c86afba7-1c52-58ea-aa3f-5fda12a37499/ec45e205-47e2-5da4-a1c4-86abaaba2bb4.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "681a2297-a24d-5901-9109-050c207bad1d",
+          "src": "/assets/uploads/c86afba7-1c52-58ea-aa3f-5fda12a37499/681a2297-a24d-5901-9109-050c207bad1d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래 어드민은 안나오나보다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "log 시스템이 취약하면 %0d: Carriage Return (\\r), %0a: Line Feed (\\n)을 통해 로그를 속일 수 있다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "HTML 주석에서 숨겨진 admin.php 페이지를 발견하고, 해당 페이지의 로그가 IP:ID 형식으로 기록됨을 파악했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "로그 파일에 새로운 라인을 강제로 생성하고 IP:admin이라는 가짜 로그를 삽입하여 관리자 권한으로 인증에 성공했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/51",
+    "originalId": "51",
+    "publishedAt": "2026-01-23T03:38:28+09:00",
+    "updatedAt": "2026-01-23T03:38:40+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

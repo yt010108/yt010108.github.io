@@ -3,9 +3,9 @@
 
   const data = window.BLOG_DATA;
   const originalPosts = { posts: [...data.posts], notes: [...data.notes] };
-  const bundleURL = new URL("published.js", document.currentScript?.src || location.href);
+  const bundleURL = new URL("published.json", document.currentScript?.src || location.href);
   let contentRevision = new URL(document.currentScript?.src || location.href).searchParams.get("v") || "";
-  let contentCheck = "checking", refreshTask;
+  let contentCheck = "checking", refreshTask, hasPublishedContent = false;
   function applyPublished() {
     for (const kind of ["posts", "notes"]) {
       const published = (window.BLOG_PUBLISHED || []).filter(item => item.kind === kind);
@@ -39,7 +39,7 @@
   }
 
   function postRow(item, kind = "post") {
-    return `<article class="post-row"><time class="post-date" datetime="${esc(item.date)}">${date(item.date)}</time><div><h3><a href="${localPath(kind, item.id)}">${esc(item.title)}</a></h3><p>${esc(item.description)}</p><div class="row-meta"><span>${item.tags.map(tag => esc(tagName(tag))).join(" / ")}</span><span>${esc(item.readTime)} min</span>${sample(item)}</div></div><a class="row-arrow" href="${localPath(kind, item.id)}" aria-label="${esc(item.title)} 읽기">${arrow}</a></article>`;
+    return `<article class="post-row"><time class="post-date" datetime="${esc(item.date)}">${date(item.date)}</time><div><h3><a href="${localPath(kind, item.id)}">${esc(item.title)}</a></h3><p>${esc(item.description)}</p><div class="row-meta"><span>${[item.category, ...item.tags.map(tagName)].filter(Boolean).map(esc).join(" / ")}</span><span>${esc(item.readTime)} min</span>${sample(item)}</div></div><a class="row-arrow" href="${localPath(kind, item.id)}" aria-label="${esc(item.title)} 읽기">${arrow}</a></article>`;
   }
 
   function projectVisual(project, detail = false) {
@@ -64,16 +64,33 @@
     return `<header class="page-head"><p class="eyebrow">${esc(eyebrow)}</p><h1>${esc(title)}</h1><p class="page-intro">${esc(intro)}</p></header>`;
   }
 
-  function archive(kind, selectedTag = "all") {
+  function archivePath(kind, tag = "all", category = "") {
+    const params = new URLSearchParams();
+    if (tag !== "all") params.set("tag", tag);
+    if (category) params.set("category", category);
+    return `#/${kind}${params.size ? "?" + params : ""}`;
+  }
+
+  function archive(kind, selectedTag = "all", selectedCategory = "") {
     const isNotes = kind === "note";
     const items = isNotes ? data.notes : data.posts;
-    const tags = [...new Set(items.flatMap(item => item.tags))];
-    const filtered = selectedTag === "all" ? items : items.filter(item => item.tags.includes(selectedTag));
+    const route = isNotes ? "notes" : "posts";
+    const matchesCategory = (item, category) => !category || (category === "@uncategorized" ? !item.category : item.category === category || item.category?.startsWith(category + " / "));
+    const categories = [...new Set(items.flatMap(item => {
+      const parts = (item.category || "").split(" / ");
+      return parts.map((_, index) => parts.slice(0, index + 1).join(" / ")).filter(Boolean);
+    }))].sort((a, b) => a.localeCompare(b, "ko"));
+    if (selectedCategory && selectedCategory !== "@uncategorized" && !categories.includes(selectedCategory)) selectedCategory = "";
+    const categoryItems = items.filter(item => matchesCategory(item, selectedCategory));
+    const tags = [...new Set(categoryItems.flatMap(item => item.tags))];
+    const filtered = selectedTag === "all" ? categoryItems : categoryItems.filter(item => item.tags.includes(selectedTag));
     const filters = ["all", ...tags].map(tag => {
-      const count = tag === "all" ? items.length : items.filter(item => item.tags.includes(tag)).length;
-      return `<button class="filter-button" type="button" data-filter-tag="${esc(tag)}" data-filter-kind="${isNotes ? "notes" : "posts"}" aria-pressed="${tag === selectedTag}">${esc(tag === "all" ? "All" : tagName(tag))}<span>${count}</span></button>`;
+      const count = tag === "all" ? categoryItems.length : categoryItems.filter(item => item.tags.includes(tag)).length;
+      return `<button class="filter-button" type="button" data-filter-tag="${esc(tag)}" data-filter-kind="${route}" aria-pressed="${tag === selectedTag}">${esc(tag === "all" ? "All" : tagName(tag))}<span>${count}</span></button>`;
     }).join("");
-    return `<div class="container">${pageHead(isNotes ? "SMALL OBSERVATIONS" : "WRITING & RESEARCH", isNotes ? "Notes." : "Posts.", isNotes ? "아직 긴 글이 되지 않은 생각들. 짧은 실험, 자주 쓰는 명령, 다음에 다시 꺼내볼 메모를 남깁니다." : "궁금했던 것을 따라가며 남긴 기록입니다. 분석 과정과 배운 점, 그 사이의 작은 발견들을 정리합니다.")}${items.some(item => item.sample) ? '<p class="archive-notice"><span class="sample-label">예시</span> 표시는 콘텐츠를 채우기 전의 구성 예시입니다.</p>' : ""}<div class="filter-bar"><div class="filter-buttons" aria-label="주제 필터">${filters}</div><button class="archive-search" type="button" data-search-open>Search ↗</button></div><div class="archive-list">${filtered.length ? filtered.map(item => postRow(item, kind)).join("") : '<div class="empty-state"><p>이 주제의 기록이 아직 없습니다.</p><button type="button" data-filter-tag="all" data-filter-kind="' + (isNotes ? "notes" : "posts") + '">전체 기록 보기</button></div>'}</div></div>`;
+    const categoryOptions = [["", "전체 카테고리", items.length], ...categories.map(category => [category, category, items.filter(item => matchesCategory(item, category)).length]), ...(items.some(item => !item.category) ? [["@uncategorized", "미분류", items.filter(item => !item.category).length]] : [])];
+    const categoryControl = categories.length ? `<label class="archive-category"><span>카테고리</span><select data-filter-category data-filter-kind="${route}" aria-label="카테고리 선택">${categoryOptions.map(([value, label, count]) => `<option value="${esc(value)}" ${value === selectedCategory ? "selected" : ""}>${esc(label)} (${count})</option>`).join("")}</select></label>` : "";
+    return `<div class="container">${pageHead(isNotes ? "SMALL OBSERVATIONS" : "WRITING & RESEARCH", isNotes ? "Notes." : "Posts.", isNotes ? "아직 긴 글이 되지 않은 생각들. 짧은 실험, 자주 쓰는 명령, 다음에 다시 꺼내볼 메모를 남깁니다." : "궁금했던 것을 따라가며 남긴 기록입니다. 분석 과정과 배운 점, 그 사이의 작은 발견들을 정리합니다.")}${items.some(item => item.sample) ? '<p class="archive-notice"><span class="sample-label">예시</span> 표시는 콘텐츠를 채우기 전의 구성 예시입니다.</p>' : ""}<div class="filter-bar"><div class="filter-buttons" aria-label="주제 필터">${filters}</div><div class="archive-tools">${categoryControl}<button class="archive-search" type="button" data-search-open>Search ↗</button></div></div><div class="archive-list">${filtered.length ? filtered.map(item => postRow(item, kind)).join("") : '<div class="empty-state"><p>이 조건에 맞는 기록이 아직 없습니다.</p><a class="text-link" href="#/' + route + '">전체 기록 보기</a></div>'}</div></div>`;
   }
 
   function projects() {
@@ -128,21 +145,17 @@
     return `<div class="container page-bottom" data-publication-status role="status">${pageHead(checking ? "CHECKING PUBLICATION" : failed ? "CONNECTION UNAVAILABLE" : "404 / NOT FOUND", checking ? "글을 확인하고 있어요." : failed ? "최신 글을 확인하지 못했어요." : "A missing page.", checking ? "최신 글 목록을 불러오고 있습니다." : failed ? "연결을 확인한 뒤 다시 시도해 주세요." : "이 주소에 해당하는 기록을 찾지 못했습니다. 방금 발행한 글이라면 잠시 후 다시 확인해 주세요.")}<div class="hero-actions">${checking ? "" : '<button class="archive-search" type="button" data-refresh-posts>다시 확인 ↻</button>'}<a class="primary-link" href="#/${kind === "post" ? "posts" : "notes"}">글 목록으로 <span class="arrow" aria-hidden="true">→</span></a></div></div>`;
   }
 
-  function loadPublishedBundle(revision) {
-    return new Promise((resolve, reject) => {
-      const script = document.createElement("script"), url = new URL(bundleURL);
-      url.searchParams.set("v", revision || String(Date.now()));
-      url.searchParams.set("refresh", String(Date.now()));
-      const finish = error => {
-        clearTimeout(timer); script.remove();
-        if (error) reject(error); else resolve();
-      };
-      const timer = setTimeout(() => finish(new Error("Content request timed out")), 8000);
-      script.src = url.href; script.async = true;
-      script.onload = () => finish();
-      script.onerror = () => finish(new Error("Content request failed"));
-      document.head.append(script);
-    });
+  async function loadPublishedBundle(revision) {
+    const url = new URL(bundleURL);
+    url.searchParams.set("v", revision || String(Date.now()));
+    url.searchParams.set("refresh", String(Date.now()));
+    const response = await fetch(url, { cache: "no-store", signal: AbortSignal.timeout(15000) });
+    if (!response.ok) throw new Error("Content request failed");
+    const value = await response.json();
+    if (value.format !== "yt010108-public-content" || value.version !== 1 || !Array.isArray(value.posts) || !Array.isArray(value.managedKinds)) throw new Error("Invalid content data");
+    window.BLOG_PUBLISHED = value.posts;
+    window.BLOG_MANAGED_KINDS = value.managedKinds;
+    hasPublishedContent = true;
   }
 
   function refreshPublished() {
@@ -150,6 +163,7 @@
     refreshTask = (async () => {
       const previous = JSON.stringify([window.BLOG_PUBLISHED, window.BLOG_MANAGED_KINDS]);
       let changed = false;
+      const firstLoad = !hasPublishedContent;
       try {
         let revision = "";
         try {
@@ -161,7 +175,7 @@
             if (/^[a-f0-9]{40}$/.test(marker.commit)) revision = marker.commit;
           }
         } catch { /* A fresh bundle can still be available when its marker cannot be read. */ }
-        if (!revision || revision !== contentRevision) {
+        if (!hasPublishedContent || !revision || revision !== contentRevision) {
           await loadPublishedBundle(revision);
           changed = previous !== JSON.stringify([window.BLOG_PUBLISHED, window.BLOG_MANAGED_KINDS]);
           applyPublished(); contentRevision = revision;
@@ -170,7 +184,7 @@
       } catch { contentCheck = "error"; }
       finally {
         refreshTask = null;
-        if (changed || main.querySelector("[data-publication-status]")) render(false);
+        if (changed || main.querySelector("[data-publication-status]")) render(firstLoad);
         if (dialog.open) updateSearch();
       }
     })();
@@ -196,7 +210,7 @@
     let nav = kind || "home";
     if (!kind) html = home();
     else if (kind === "posts" || kind === "notes") {
-      html = archive(kind === "posts" ? "post" : "note", params.get("tag") || "all");
+      html = archive(kind === "posts" ? "post" : "note", params.get("tag") || "all", params.get("category") || "");
       title = kind === "posts" ? "Posts" : "Notes";
     } else if (kind === "projects") { html = projects(); title = "Projects"; }
     else if (kind === "about") { html = about(); title = "About"; }
@@ -211,6 +225,10 @@
       title = project ? project.name : "Not found";
       nav = "projects";
     } else { html = notFound(); title = "Not found"; }
+    if (!hasPublishedContent && (!kind || ["posts", "notes", "post", "note"].includes(kind))) {
+      html = missingPost(kind === "note" || kind === "notes" ? "note" : "post");
+      title = contentCheck === "error" ? "연결 확인" : "글 확인 중";
+    }
     main.innerHTML = html;
     document.title = `${title} — ${data.profile.name}`;
     document.querySelectorAll("[data-nav]").forEach(link => {
@@ -289,11 +307,18 @@
       if (scrollLink.classList.contains("skip-link")) main.focus({ preventScroll: true });
     }
     const filter = target.closest("[data-filter-tag]");
-    if (filter) location.hash = `#/${filter.dataset.filterKind}${filter.dataset.filterTag === "all" ? "" : `?tag=${encodeURIComponent(filter.dataset.filterTag)}`}`;
+    if (filter) location.hash = archivePath(filter.dataset.filterKind, filter.dataset.filterTag, new URLSearchParams(location.hash.split("?")[1]).get("category") || "");
     const copyButton = target.closest(".copy-code");
     if (copyButton) copyCode(copyButton);
     if (target.closest(".search-result")) dialog.close();
     if (!target.closest(".header-inner")) closeMenu();
+  });
+
+  document.addEventListener("change", event => {
+    if (event.target instanceof HTMLSelectElement && event.target.matches("[data-filter-category]")) {
+      const tag = new URLSearchParams(location.hash.split("?")[1]).get("tag") || "all";
+      location.hash = archivePath(event.target.dataset.filterKind, tag, event.target.value);
+    }
   });
 
   menuButton.addEventListener("click", () => {

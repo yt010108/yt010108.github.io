@@ -1,0 +1,1047 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "416b7d45-ead2-50e7-b761-a885952e8429",
+  "kind": "posts",
+  "title": "[SK Rookies] 머신러닝 비지도학습",
+  "slug": "tistory-120",
+  "description": "오늘 배운 내용8월 4일에는 정답 레이블이 없는 데이터에서 숨겨진 구조와 패턴을 찾는 비지도학습을 공부했다. 핵심 내용은 군집화, K-Means, 클러스터 품질 평가, 차원 축소와 PCA, 이상치 탐지였다.비지도학습은 목표 변수인 정답 레이블 y 없이 특성 데이터 X의 분포, 군집 상태, 상관관계를 분석한다. 지도학습이 입력과 정답 사이의 관계를 학습해 새 데이터의 정답을 예측하는 데 초점을 둔다면, 비지도학습은 입력 데이터 자체의 구조나 그룹을 탐색하는 데 초점을 둔다.비지도학습의 활용군집화(Clustering): 비슷한 특성을 가진 데이터를 그룹으로 묶는다. 고객 세분화, 문서 주제별 분류 등에 활용한다.차원 축소(Dimensionality Reduction): 데이터를 더 간결한 형태로 바꾸어 시각..",
+  "category": "SK Rookies / 수업 정리",
+  "date": "2026-08-04",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-08-04T09:12:30+09:00",
+  "updatedAt": "2026-08-12T10:02:11+09:00",
+  "sourceDigest": "c44fd337b98d949716a100adac2776b1898be247e01ac9ee9a4fa12a086c1175",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[원본에서 불러올 수 없는 이미지]"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "오늘 배운 내용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "8월 4일에는 정답 레이블이 없는 데이터에서 숨겨진 구조와 패턴을 찾는 비지도학습을 공부했다. 핵심 내용은 군집화, K-Means, 클러스터 품질 평가, 차원 축소와 PCA, 이상치 탐지였다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "비지도학습은 목표 변수인 정답 레이블 y 없이 특성 데이터 X의 분포, 군집 상태, 상관관계를 분석한다. 지도학습이 입력과 정답 사이의 관계를 학습해 새 데이터의 정답을 예측하는 데 초점을 둔다면, 비지도학습은 입력 데이터 자체의 구조나 그룹을 탐색하는 데 초점을 둔다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "비지도학습의 활용"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "군집화(Clustering): 비슷한 특성을 가진 데이터를 그룹으로 묶는다. 고객 세분화, 문서 주제별 분류 등에 활용한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "차원 축소(Dimensionality Reduction): 데이터를 더 간결한 형태로 바꾸어 시각화, 노이즈 제거, 데이터 압축 등에 사용한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이상치 탐지(Anomaly Detection): 정상 패턴에서 벗어난 데이터를 찾는다. 신용카드 사기 탐지나 기계 고장 예측 등에 활용한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "추천 시스템(Recommendation System): 비슷한 관심사나 행동 패턴을 기반으로 영화나 상품을 추천한다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서 비지도학습의 주요 기법으로 군집화에는 K-Means, Hierarchical Clustering, DBSCAN이, 차원 축소에는 PCA, t-SNE, UMAP이, 이상치 탐지에는 Isolation Forest, LOF, Autoencoder가 소개되었다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "군집화 Clustering"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "군집화는 유사한 특성을 가진 데이터 포인트를 하나의 그룹으로 묶는 방법이다. 각 그룹을 클러스터(Cluster)라고 한다. 사전에 정답 클래스를 붙이지 않고 데이터 포인트 사이의 유사성을 기준으로 그룹을 형성한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "군집화의 목적은 데이터 구조를 파악하고 숨겨진 패턴을 발견하는 것이다. 자료에서는 데이터 포인트 사이의 유사성을 측정할 때 유클리드 거리 같은 거리 계산을 사용할 수 있다고 설명한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "활용 예시는 고객 세분화, 이미지 세그멘테이션, 문서 분류 및 정보 검색, 이상치 탐지, 추천 시스템 등이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "K-Means 알고리즘"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "K-Means는 데이터를 사용자가 미리 정한 K개의 클러스터로 나누는 대표적인 거리 기반 군집화 알고리즘이다. 각 클러스터는 하나의 중심점인 centroid를 가진다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "동작 원리"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "초기 클러스터 중심 설정"
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "사용자가 클러스터 개수 K를 정한다."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "초기 중심은 무작위로 정하거나 데이터를 기반으로 선택한다."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터 포인트 할당"
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "각 데이터 포인트를 가장 가까운 중심에 할당한다."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "일반적으로 유클리드 거리를 사용한다."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "클러스터 중심 재계산"
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "각 클러스터에 속한 데이터 포인트의 평균 위치를 새로운 중심으로 정한다."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "반복"
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "데이터 할당과 중심 재계산을 반복한다."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "중심이 더 이상 변하지 않거나 최대 반복 횟수에 도달하면 종료한다."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "K-Means를 실제로 적용할 때는 데이터 준비와 정규화, K 값 선택, 알고리즘 실행, 결과 평가 및 시각화 순으로 진행한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import matplotlib.pyplot as plt\nfrom sklearn.cluster import KMeans\nfrom sklearn.datasets import make_blobs\n\nX, y = make_blobs(\n    n_samples=300,\n    centers=3,\n    cluster_std=1.0,\n    random_state=42\n)\n\nkmeans = KMeans(n_clusters=3, random_state=42)\ncluster_labels = kmeans.fit_predict(X)\n\nplt.scatter(X[:, 0], X[:, 1], c=cluster_labels, cmap=\"viridis\", s=30)\nplt.scatter(\n    kmeans.cluster_centers_[:, 0],\n    kmeans.cluster_centers_[:, 1],\n    s=200,\n    c=\"red\",\n    marker=\"X\",\n    label=\"Centroids\"\n)\nplt.legend()\nplt.show()\n\nprint(\"Cluster Centers:\\n\", kmeans.cluster_centers_)\nprint(\"Inertia (WCSS):\", kmeans.inertia_)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "fit_predict()는 데이터를 학습한 뒤 각 데이터 포인트가 속한 클러스터 레이블을 반환한다. cluster_centers_에서는 중심 좌표를 확인하고, inertia_에서는 군집 내 거리 제곱합을 확인할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "적절한 K 값 선택: Elbow Method"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "K-Means는 클러스터 개수 K를 사전에 정해야 한다. 여러 K 값에 대해 K-Means를 실행한 뒤 WCSS(Within-Cluster Sum of Squares), 즉 Inertia를 계산한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Inertia는 각 데이터 포인트와 해당 클러스터 중심 사이 거리의 제곱을 모두 합한 값이다. K가 커질수록 Inertia는 계속 감소하지만, 어느 시점부터 감소 폭이 크게 줄어든다. 그래프가 팔꿈치처럼 꺾이는 지점을 적절한 K로 선택한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "wcss = []\nK_range = range(1, 10)\n\nfor k in K_range:\n    model = KMeans(n_clusters=k, random_state=42)\n    model.fit(X)\n    wcss.append(model.inertia_)\n\nplt.plot(K_range, wcss, marker=\"o\")\nplt.xlabel(\"Number of Clusters (K)\")\nplt.ylabel(\"WCSS\")\nplt.show()\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "클러스터링 결과 해석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "클러스터링 결과는 먼저 시각적으로 살펴본다. 자료에서는 Matplotlib 산점도, Seaborn pair plot, PCA를 통한 2차원 축소 등을 예로 든다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "클러스터 중심점은 해당 클러스터의 데이터를 대표하는 점이다. 고객 세분화라면 각 클러스터의 평균 구매 금액이나 구매 빈도처럼 주요 특성의 평균과 분포를 비교하여 그룹의 의미를 해석할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "좋은 클러스터는 같은 클러스터 안의 데이터가 서로 가깝게 모여 있고, 서로 다른 클러스터끼리는 충분히 떨어져 있어야 한다. 즉 응집도와 분리도를 함께 확인해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "실루엣 점수 Silhouette Score"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실루엣 점수는 클러스터의 응집도와 분리도를 함께 평가하는 지표다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "a(i): 같은 클러스터 안의 다른 포인트와의 평균 거리. 응집도를 나타낸다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "b(i): 가장 가까운 다른 클러스터의 포인트들과의 평균 거리. 분리도를 나타낸다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "s(i)의 범위는 -1에서 1이다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "값이 1에 가까우면 자신의 클러스터에 잘 속해 있고 다른 클러스터와 명확히 분리된 상태다. 0에 가까우면 경계에 가깝고, 음수이면 잘못된 클러스터에 속했을 가능성이 높다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "from sklearn.metrics import silhouette_score, silhouette_samples\n\nsilhouette_avg = silhouette_score(X, cluster_labels)\nsilhouette_values = silhouette_samples(X, cluster_labels)\n\nprint(\"Overall Silhouette Score:\", silhouette_avg)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "여러 K 값에 대해 실루엣 점수를 계산하고 가장 높은 값을 갖는 K를 선택할 수도 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "차원 축소 Dimensionality Reduction"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "피처 수가 많아지는 고차원 데이터에서는 데이터가 희소해지고, 유사성을 찾기 어려워지며, 계산량과 메모리 사용량이 늘어날 수 있다. 피처가 지나치게 많으면 과적합 가능성도 커질 수 있다. 이를 차원의 저주(Curse of Dimensionality)와 연결해 설명한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "차원 축소는 중요한 정보는 유지하면서 피처 수를 줄이는 과정이다. 이를 통해 2차원 또는 3차원 시각화, 노이즈 감소, 계산량 감소, 학습 및 예측 효율 향상을 기대할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "PCA 주성분 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PCA(Principal Component Analysis)는 고차원 데이터를 저차원으로 줄이면서 중요한 정보를 최대한 보존하는 차원 축소 기법이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PCA는 데이터의 분산을 가장 잘 설명하는 새로운 축인 주성분(Principal Components)을 만든다. 첫 번째 주성분 PC1은 데이터의 분산이 가장 큰 방향이고, 두 번째 주성분 PC2는 첫 번째 주성분과 직교하면서 두 번째로 큰 분산을 설명한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "PCA 적용 단계"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "데이터 정규화"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "공분산 행렬 계산"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "고유값과 고유벡터 계산"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "중요한 주성분 선택"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "선택한 주성분 축으로 원본 데이터를 투영"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "from sklearn.datasets import load_iris\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.decomposition import PCA\n\niris = load_iris()\nX = iris.data\n\nscaler = StandardScaler()\nX_scaled = scaler.fit_transform(X)\n\npca = PCA(n_components=2)\nX_pca = pca.fit_transform(X_scaled)\n\nprint(pca.explained_variance_ratio_)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "explained_variance_ratio_는 선택한 각 주성분이 전체 데이터 분산을 얼마나 설명하는지 보여준다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "이상치 탐지 Outlier Detection"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이상치 탐지는 일반적인 데이터 패턴에서 크게 벗어난 관측값을 찾는 과정이다. 자료에서는 데이터 품질 개선, 금융 사기 탐지, 장비 이상 감지, 네트워크 보안 같은 응용을 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Isolation Forest"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Isolation Forest는 데이터를 무작위로 반복 분할하면서 이상치가 얼마나 빨리 다른 데이터에서 분리되는지를 이용한다. 이상치는 일반 데이터보다 적은 분할 단계에서 쉽게 고립되는 경향이 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "주요 흐름은 무작위 특징과 분할값 선택 → 여러 isolation tree 구성 → 각 데이터 포인트의 평균 분리 깊이 계산 → 이상치 점수 산출이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "DBSCAN을 이용한 이상치 탐지"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DBSCAN은 밀도 기반 클러스터링 알고리즘이다. 밀도가 충분히 높은 영역은 클러스터로 만들고, 어느 클러스터에도 포함되지 않는 포인트를 Noise로 처리한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "주요 개념은 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "eps: 같은 클러스터로 볼 최대 거리 범위"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "MinPts 또는 min_samples: 클러스터를 만들기 위한 최소 데이터 수"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Core Point: 반경 안에 충분한 데이터가 있는 점"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Border Point: Core Point 주변에 있지만 자체적으로 밀도 조건을 만족하지 못하는 점"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Noise: Core Point나 Border Point에 포함되지 않는 점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DBSCAN은 클러스터 개수를 미리 정할 필요가 없고 비정형적인 모양의 군집도 찾을 수 있지만, eps와 MinPts 선택에 민감하며 고차원에서는 효율이 떨어질 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "복습하면서 확인할 점"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "지도학습과 비지도학습의 가장 큰 차이는 정답 레이블의 유무다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "K-Means는 K를 미리 정하고 중심점과 데이터 할당을 반복해 수렴한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Elbow Method는 Inertia 감소 폭을, Silhouette Score는 응집도와 분리도를 본다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "PCA는 분산이 큰 방향을 주성분으로 선택해 저차원으로 투영한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이상치 탐지에서는 Isolation Forest와 DBSCAN의 접근 방식이 서로 다르다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료 출처: 8.4 ai_basic_5_머신러닝_기초__비지도학습.pdf"
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/120",
+    "originalId": "120",
+    "publishedAt": "2026-08-04T09:12:30+09:00",
+    "updatedAt": "2026-08-12T10:02:11+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

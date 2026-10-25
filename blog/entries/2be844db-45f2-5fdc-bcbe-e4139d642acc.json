@@ -1,0 +1,409 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "2be844db-45f2-5fdc-bcbe-e4139d642acc",
+  "kind": "posts",
+  "title": "[SK Rookies] Python 기초 3",
+  "slug": "tistory-114",
+  "description": "오늘 배운 내용7월 24일 Python Basic 3 자료에서는 객체지향 프로그래밍의 출발점인 클래스부터 모듈과 표준 라이브러리, NumPy, Pandas까지 다뤘다. 앞서 배운 문법을 바탕으로 코드를 구조화하고 실제 데이터를 처리하는 내용이었다.클래스와 객체클래스는 데이터와 그 데이터를 다루는 메서드를 하나로 묶은 설계다. 클래스로 만든 실제 값은 객체 또는 인스턴스라고 부른다. 생성자 __init__()은 객체가 만들어질 때 한 번 실행되며, 인스턴스가 가져야 할 초기값을 정한다.class FourCal: def __init__(self, first: float, second: float): self.first = first self.second = second d..",
+  "category": "SK Rookies / 수업 정리",
+  "date": "2026-07-28",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-07-28T13:56:20+09:00",
+  "updatedAt": "2026-08-12T10:01:29+09:00",
+  "sourceDigest": "a8960b1dfc51061701d8994a9374097392c63baadc4992d7a0299a49df4ca169",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[원본에서 불러올 수 없는 이미지]"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "오늘 배운 내용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "7월 24일 Python Basic 3 자료에서는 객체지향 프로그래밍의 출발점인 클래스부터 모듈과 표준 라이브러리, NumPy, Pandas까지 다뤘다. 앞서 배운 문법을 바탕으로 코드를 구조화하고 실제 데이터를 처리하는 내용이었다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "클래스와 객체"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "클래스는 데이터와 그 데이터를 다루는 메서드를 하나로 묶은 설계다. 클래스로 만든 실제 값은 객체 또는 인스턴스라고 부른다. 생성자 __init__()은 객체가 만들어질 때 한 번 실행되며, 인스턴스가 가져야 할 초기값을 정한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "class FourCal:\n    def __init__(self, first: float, second: float):\n        self.first = first\n        self.second = second\n\n    def add(self) -> float:\n        return self.first + self.second\n\n    def sub(self) -> float:\n        return self.first - self.second\n\n    def mul(self) -> float:\n        return self.first * self.second\n\n    def div(self) -> float:\n        return self.first / self.second\n\ncalculator = FourCal(10, 2)\nprint(calculator.add())\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "self는 메서드를 호출한 인스턴스 자신을 가리킨다. self.first처럼 저장한 값은 각 인스턴스에 속하므로 서로 다른 객체가 독립된 상태를 유지한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "상속과 메서드 오버라이딩"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "상속은 기존 클래스의 기능을 물려받아 새 클래스를 만드는 방법이다. 공통 기능은 재사용하고, 필요한 기능만 추가하거나 바꿀 수 있다. 부모 클래스의 메서드와 같은 이름으로 새 메서드를 정의하는 것을 오버라이딩이라고 한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "class MoreFourCal(FourCal):\n    def power(self) -> float:\n        return self.first ** self.second\n\n    def div(self) -> float:\n        if self.second == 0:\n            raise ZeroDivisionError(\"두 번째 값은 0이 될 수 없습니다.\")\n        return self.first / self.second\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "나눗셈에서 0을 임의의 결과로 돌려주면 오류를 놓칠 수 있다. 호출한 쪽에서 상황을 구분할 수 있도록 예외를 발생시키거나, 요구사항에 맞는 별도 규칙을 명시하는 편이 낫다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "__str__(), __repr__(), __len__(), __eq__()처럼 앞뒤에 밑줄 두 개가 붙은 메서드는 특정 연산이나 내장 함수가 실행될 때 호출된다. 필요한 동작이 분명할 때만 구현해야 객체의 의미가 흐려지지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "모듈과 패키지"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모듈은 파이썬 코드를 담은 .py 파일이고, 패키지는 관련 모듈을 묶은 디렉터리 구조다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import datetime\nimport random\n\nfrom my_package import calculator\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모듈 안의 테스트 코드가 import할 때마다 실행되지 않게 하려면 다음 조건을 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "def main() -> None:\n    print(\"이 파일을 직접 실행했습니다.\")\n\nif __name__ == \"__main__\":\n    main()\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파일을 직접 실행하면 __name__은 \"__main__\"이 된다. 다른 파일에서 import하면 모듈 이름이 들어간다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "자주 쓰는 표준 라이브러리"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "datetime은 날짜와 시간을 다루고, time은 현재 시각이나 실행 지연 같은 기능을 제공한다. random은 난수와 임의 추출, os는 현재 작업 디렉터리와 환경 변수, 파일 시스템 작업에 쓰인다. json은 JSON 파일과 파이썬 객체 사이를 변환한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import json\n\nstudent = {\"name\": \"홍길동\", \"score\": 90}\n\nwith open(\"student.json\", \"w\", encoding=\"utf-8\") as file:\n    json.dump(student, file, ensure_ascii=False, indent=2)\n\nwith open(\"student.json\", \"r\", encoding=\"utf-8\") as file:\n    loaded = json.load(file)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ensure_ascii=False를 지정하면 한글이 \\uXXXX 형태로 바뀌지 않아 파일을 직접 읽기 편하다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "NumPy"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "NumPy는 수치 계산에 특화된 라이브러리다. 핵심 자료형인 ndarray는 같은 종류의 값을 효율적으로 저장하고, 반복문 없이 배열 전체에 연산을 적용한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import numpy as np\n\narray = np.array([[1, 2, 3], [4, 5, 6]])\n\nprint(array.shape)  # (2, 3)\nprint(array.ndim)   # 2\nprint(array.size)   # 6\nprint(array[:, 1:]) # 모든 행의 1번 열 이후\nprint(array * 10)   # 모든 요소에 곱하기\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "reshape()는 요소 수를 유지하면서 배열의 모양을 바꾸고, flatten()은 다차원 배열을 1차원으로 만든다. 조건식을 인덱스로 사용하면 원하는 값만 골라낼 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "values = np.array([1, 2, 3, 4, 5, 6])\nmatrix = values.reshape(3, 2)\nfiltered = values[values < 4]\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "머신러닝에서 입력 데이터는 보통 샘플과 특성으로 이루어진 행렬로 표현한다. NumPy의 벡터화 연산, 행렬 곱, 난수 생성은 데이터 전처리와 모델 계산의 기초가 된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Pandas"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Pandas는 표 형태의 데이터를 분석하고 조작하는 라이브러리다. Series는 1차원, DataFrame은 행과 열을 가진 2차원 데이터 구조다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import pandas as pd\n\ndata = {\n    \"name\": [\"cool\", \"hot\", \"king\"],\n    \"age\": [20, 30, 25],\n    \"score\": [90, 70, 60],\n}\n\nframe = pd.DataFrame(data)\nresult = frame[[\"name\", \"score\"]].copy()\nresult[\"passed\"] = result[\"score\"] >= 70\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "head(), tail(), info(), describe()로 데이터의 모양과 자료형, 기초 통계를 확인한다. 열은 frame[\"score\"], 행과 열을 함께 고를 때는 loc를 쓴다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "결측값은 isnull()로 확인하고, 상황에 따라 fillna()로 채우거나 dropna()로 제거한다. 무조건 0으로 채우기보다 값이 비어 있는 이유와 해당 열의 의미를 먼저 살펴야 한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "result.loc[1, \"score\"] = None\nprint(result.isnull())\n\nresult[\"score\"] = result[\"score\"].fillna(result[\"score\"].mean())\nresult.to_csv(\"output.csv\", index=False, encoding=\"utf-8-sig\")\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "복습하면서 확인할 점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "클래스는 관련 데이터와 동작을 함께 묶을 필요가 있을 때 사용한다. 상속은 단순히 코드를 줄이려는 목적보다 두 클래스 사이에 분명한 관계가 있을 때 적합하다. NumPy는 배열 계산, Pandas는 표 데이터 정리에 강하다. 분석을 시작하기 전에는 shape, 자료형, 결측값을 먼저 확인하는 습관이 중요하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/114",
+    "originalId": "114",
+    "publishedAt": "2026-07-28T13:56:20+09:00",
+    "updatedAt": "2026-08-12T10:01:29+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

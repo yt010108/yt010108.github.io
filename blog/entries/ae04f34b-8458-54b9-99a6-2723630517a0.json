@@ -1,0 +1,1184 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "ae04f34b-8458-54b9-99a6-2723630517a0",
+  "kind": "posts",
+  "title": "[Ghidra] 리버스 엔지니어링 기드라 실전 가이드 스터디 - chapter 5(level4-GO바이너리)",
+  "slug": "tistory-55",
+  "description": "0. GoGo는 빠르고 병렬 프로세싱을 구현하기 쉬우며 크로스 컴파일링이 가능해 어플리케이션 개발에 인기 있는 언어디다.Zebrocy, WellMess, Mirai의 C2서버는 Go로 구현되었으며 최근 멀웨어는 Go로 쓰인 경우도 있어 알아둬야한다. 1. level4 crackme(Go)level 4 크랙미는 go 언어로 구현된 바이너리를 분석해야한다. file 명령어에서 Go Build ID를 보아 이 파일이 go 언어로 쓰인 것을 알 수 있다. 파일을 실행하면 Access code를 입력하고 코드가 다르면 Bad Code가 나온다.2. Go 바이너리 배경지식 C/C++로 컴파일하면 엔트리 포인트가 Winmain이나 main이지만 Go는 _rt0_amd64_linux나 _rt0_386_window처럼..",
+  "category": "Security / Reversing",
+  "date": "2026-01-24",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-24T17:13:51+09:00",
+  "updatedAt": "2026-01-26T13:19:44+09:00",
+  "sourceDigest": "a4e0709c5bf3c6af3dfbf7573fcd8ad19172454cf3adf555ea8ef2dc0e5bee46",
+  "assets": [
+    {
+      "id": "fb6ce7c7-a030-57e8-997e-8f774ee23c8f",
+      "name": "tistory-55-fb6ce7c7-a030-57e8-997e-8f774ee23c8f.jpg",
+      "type": "image/jpeg",
+      "path": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/fb6ce7c7-a030-57e8-997e-8f774ee23c8f.jpg",
+      "sha": "81eecea152274b4d569428cef432689bb7b027c0"
+    },
+    {
+      "id": "dfd09094-9671-5c77-b07f-c3a104a3fdc1",
+      "name": "tistory-55-dfd09094-9671-5c77-b07f-c3a104a3fdc1.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/dfd09094-9671-5c77-b07f-c3a104a3fdc1.png",
+      "sha": "09bbcf9ee3caf9556d5d0e01faf24f18acbcfe75"
+    },
+    {
+      "id": "62581227-5714-5ff3-91b1-502e9b42f4fc",
+      "name": "tistory-55-62581227-5714-5ff3-91b1-502e9b42f4fc.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/62581227-5714-5ff3-91b1-502e9b42f4fc.png",
+      "sha": "7ce681bbc10b9a53153aa7fbacf5b4d3a7753754"
+    },
+    {
+      "id": "4bc2872b-5607-5443-8454-c0f68eff9bcf",
+      "name": "tistory-55-4bc2872b-5607-5443-8454-c0f68eff9bcf.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/4bc2872b-5607-5443-8454-c0f68eff9bcf.png",
+      "sha": "4f5e95cc37bb25c051cdd694f5d6305c99cfee2f"
+    },
+    {
+      "id": "c79a6ecd-1893-5fe1-b01d-ee30386f3ef2",
+      "name": "tistory-55-c79a6ecd-1893-5fe1-b01d-ee30386f3ef2.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/c79a6ecd-1893-5fe1-b01d-ee30386f3ef2.png",
+      "sha": "79cce38493ea11dcdbc10e68e03dcc03f93b3a0f"
+    },
+    {
+      "id": "0d10dec3-f1ba-557a-aa14-06d29abd90bb",
+      "name": "tistory-55-0d10dec3-f1ba-557a-aa14-06d29abd90bb.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/0d10dec3-f1ba-557a-aa14-06d29abd90bb.png",
+      "sha": "2b47570c557903a5d7842caefa40482d32bf9714"
+    },
+    {
+      "id": "fc0ba8fd-c11c-55dc-a1f6-7ae3bc5f3ae8",
+      "name": "tistory-55-fc0ba8fd-c11c-55dc-a1f6-7ae3bc5f3ae8.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/fc0ba8fd-c11c-55dc-a1f6-7ae3bc5f3ae8.png",
+      "sha": "0173ecd78d5d1a3d4eaea749b329367517f9b0dd"
+    },
+    {
+      "id": "7e41ea30-37d7-5e3d-a433-ddf426d70b8e",
+      "name": "tistory-55-7e41ea30-37d7-5e3d-a433-ddf426d70b8e.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/7e41ea30-37d7-5e3d-a433-ddf426d70b8e.png",
+      "sha": "c21dda50d52004f1849e7b08bee7a48ce69ba0ca"
+    },
+    {
+      "id": "5edb714e-b146-5c9b-8c5b-404a3d51e68c",
+      "name": "tistory-55-5edb714e-b146-5c9b-8c5b-404a3d51e68c.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/5edb714e-b146-5c9b-8c5b-404a3d51e68c.png",
+      "sha": "0058be4c33aa2fa6493b0017940055a66e742fa1"
+    },
+    {
+      "id": "948d5e9b-5095-5e75-abc6-5a7bf4199280",
+      "name": "tistory-55-948d5e9b-5095-5e75-abc6-5a7bf4199280.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/948d5e9b-5095-5e75-abc6-5a7bf4199280.png",
+      "sha": "0c4bb958f1dd9b5401160726a23ad095b855852b"
+    },
+    {
+      "id": "862c9ef5-c40f-5640-832b-65687e3f20a8",
+      "name": "tistory-55-862c9ef5-c40f-5640-832b-65687e3f20a8.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/862c9ef5-c40f-5640-832b-65687e3f20a8.png",
+      "sha": "0c320ea93e099ed2372aa7de766f26f81a5b1e68"
+    },
+    {
+      "id": "7b191439-1a8a-5041-b256-ddd8353329d9",
+      "name": "tistory-55-7b191439-1a8a-5041-b256-ddd8353329d9.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/7b191439-1a8a-5041-b256-ddd8353329d9.png",
+      "sha": "206d7536e5bb6d0664338dd95e0cd2c10e776cfc"
+    },
+    {
+      "id": "970ca12d-b37e-589c-bf04-03ac34d6c99f",
+      "name": "tistory-55-970ca12d-b37e-589c-bf04-03ac34d6c99f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/970ca12d-b37e-589c-bf04-03ac34d6c99f.png",
+      "sha": "726d37d11f4bc2104ee1d08279971f537c8d865a"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "fb6ce7c7-a030-57e8-997e-8f774ee23c8f",
+          "src": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/fb6ce7c7-a030-57e8-997e-8f774ee23c8f.jpg",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "0. Go"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Go는 빠르고 병렬 프로세싱을 구현하기 쉬우며 크로스 컴파일링이 가능해 어플리케이션 개발에 인기 있는 언어디다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Zebrocy, WellMess, Mirai의 C2서버는 Go로 구현되었으며 최근 멀웨어는 Go로 쓰인 경우도 있어 알아둬야한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. level4 crackme(Go)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "level 4 크랙미는 go 언어로 구현된 바이너리를 분석해야한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "file 명령어에서 Go Build ID를 보아 이 파일이 go 언어로 쓰인 것을 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "dfd09094-9671-5c77-b07f-c3a104a3fdc1",
+          "src": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/dfd09094-9671-5c77-b07f-c3a104a3fdc1.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파일을 실행하면 Access code를 입력하고 코드가 다르면 Bad Code가 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "62581227-5714-5ff3-91b1-502e9b42f4fc",
+          "src": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/62581227-5714-5ff3-91b1-502e9b42f4fc.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. Go 바이너리 배경지식 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "C/C++로 컴파일하면 엔트리 포인트가 Winmain이나 main이지만 Go는 _rt0_amd64_linux나 _rt0_386_window처럼 rt0_아키텍처이름_os이름 형식으로 엔트리 포인트이름이 된다.main함수는 main.main함수에 구현된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Go는 함수의 인수와 반환값을 스택을 통해서만 전달하는 독특한 방식을 사용했다. 하지만 Go 1.17 버전부터는 성능 최적화를 위해 레지스터 기반(Register-based ABI) 호출 규약을 도입하여, 현재는 레지스터를 우선 사용하고 부족할 경우 스택을 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Go 바이너리는 내부 함수가 매우 많고 용량이 큰 편이다. 이는 실행에 필요한Go 런타임(Garbage Collector, 스케줄러 등)이 바이너리에 정적으로 모두 포함된다. 파이썬이 실행을 위해 별도의 인터프리터(python.dll 등)를 필요로 하는 것과 달리, Go는 실행 환경 자체를 기계어로 컴파일하여 내장하므로 별도의 의존성 없이 단독 실행이 가능하며 최적화되어 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "또한 Go 바이너리는 리플렉션과 패닉 시 스택 추적을 위해 .gopclntab 섹션에 심벌 정보를 저장한다. 리버스 엔지니어링 시 이 섹션을 분석하면 함수 이름과 소스 코드 라인 정보 등을 높은 수준으로 복구할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "리플렉션: 실행 중에 데이터의 타입과 구조를 파악해야 하므로, 타입 이름과 구조 정보가 바이너리에 저장된다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "패닉: 프로그램이 비정상 종료될 때 정확한 에러 위치(파일, 라인, 함수명)를 알려줘야 하므로, 소스 코드 위치 정보(.gopclntab)가 바이너리에 저장된다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 심벌 복원 및 호출 규약 맞추기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래는 level4 go 언어로 작성된 코드의 디컴파일 결과이다. go는 앞에서 심벌 정보를 저장한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "심볼 정보를 사용해 디컴파일된 함수 이름을 매핑해보자."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "더보기",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/#/post/ae04f34b-8458-54b9-99a6-2723630517a0"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "puStack_18 = &stack0x00000008; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " DAT_00575228 = auStack_30; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " DAT_00575220 = auStack_ffc8; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " piVar1 = (int *)cpuid_basic_info(0); "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " iVar3 = piVar1[2]; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " iVar4 = piVar1[3]; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " if (*piVar1 != 0) { "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " if (((piVar1[1] == 0x756e6547) && (iVar3 == 0x49656e69)) && (iVar4 == 0x6c65746e)) { "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " DAT_0059e14c = 1; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " DAT_0059e150 = 1; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " puVar2 = (undefined4 *)cpuid_Version_info(1); "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " _DAT_0059e1a0 = *puVar2; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " iVar3 = puVar2[2]; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " iVar4 = puVar2[3]; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " DAT_00575230 = DAT_00575220; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " DAT_00575238 = DAT_00575220; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " uStack_20 = unaff_retaddr; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " if (DAT_005746c8 == (code *)0x0) { "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ppuStack_38 = (undefined **)0x4598e0; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " FUN_0045dc00(&DAT_00575808,*piVar1,iVar3,iVar4); "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " *(undefined8 *)(in_FS_OFFSET + -8) = 0x123; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " if (DAT_00575808 != 0x123) { "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ppuStack_38 = (undefined **)0x459901; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " FUN_0045b310(); "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ppuStack_38 = (undefined **)0x4598ba; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " DAT_00575228 = auStack_30; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " (*DAT_005746c8)(&DAT_00575220,&LAB_0045b300,0,0); "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " DAT_00575230 = DAT_00575220 + 0x380; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " DAT_00575238 = DAT_00575230; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " *(undefined1 ***)(in_FS_OFFSET + -8) = &DAT_00575220; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " DAT_00575780 = &DAT_00575220; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " DAT_00575250 = &DAT_00575780; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ppuStack_38 = (undefined **)0x459925; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " FUN_0043e8f0(); "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " auStack_30[0] = uStack_20; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " puStack_28 = puStack_18; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ppuStack_38 = (undefined **)0x45993b; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " FUN_0043e390(); "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ppuStack_38 = (undefined **)0x459940; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " FUN_0042bfb0(); "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ppuStack_38 = (undefined **)0x459945; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " FUN_00432320(); "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ppuStack_38 = &PTR_LAB_004e4b80; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " uStack_40 = 0; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " uStack_48 = 0x459954; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " FUN_00439010(); "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ppuStack_38 = (undefined **)0x45995b; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " FUN_00433a70(); "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ppuStack_38 = (undefined **)0x459960; "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " FUN_0045b310(); "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " return;"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "심볼 정보를 매핑하기 위해서 기드라 스크립트를 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래 깃허브에서 renamer를 다운받아서 실행하면"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://github.com/ghidraninja/ghidra_scripts/blob/master/golang_renamer.py",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/ghidraninja/ghidra_scripts/blob/master/golang_renamer.py"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "4f8fda14-c51c-5206-9979-f7fe418c48cf",
+          "href": "https://github.com/ghidraninja/ghidra_scripts/blob/master/golang_renamer.py",
+          "title": "ghidra_scripts/golang_renamer.py at master · ghidraninja/ghidra_scripts",
+          "description": "Scripts for the Ghidra software reverse engineering suite. - ghidraninja/ghidra_scripts",
+          "image": "https://yt010108.github.io/assets/imported/tistory/242804a54142f46ebe53818d753da8a8e82a1bf1490c14217a940ab588c7e735.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "함수가 매핑된다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "4bc2872b-5607-5443-8454-c0f68eff9bcf",
+          "src": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/4bc2872b-5607-5443-8454-c0f68eff9bcf.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "c79a6ecd-1893-5fe1-b01d-ee30386f3ef2",
+          "src": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/c79a6ecd-1893-5fe1-b01d-ee30386f3ef2.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "심벌 테이블에 매핑된 모습이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "main.main 소스코드는 아래와 같다, go옛날 버전에서 컴파일된 버전은 스택을 통해서만 할당되는데 기드라에서는 잘 파악하지 못해 기드라 플러그인을 사용해야한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "void main_main_49A040(void)\n\n{\n\n  \n  while (local_f8 <= *(undefined1 **)(*(long *)(in_FS_OFFSET + -8) + 0x10)) {\n    runtime_morestack_noctxt_459BB0();\n  }\n  local_a8 = &DAT_004a9080;\n  ppuStack_a0 = &PTR_DAT_004e4fc0;\n  fmt_Fprint_490AA0();\n  FUN_0045c51a(0,&local_88);\n  local_80 = FUN_0045c51a(&local_88);\n  local_88 = &PTR_DAT_004e6840;\n  local_78 = &PTR_bufio_ScanLines_46C040_004d18c0;\n  local_70 = 0x10000;\n  bufio__ptr_Scanner_Scan_46B670();\n  runtime_slicebytetostring_447810();\n  local_d0 = 1;\n  math_rand__ptr_Rand_Seed_498F70();\n  math_rand__ptr_Rand_Intn_499360();\n  strconv_FormatInt_470810();\n  runtime_stringtoslicebyte_4479B0();\n  crypto_sha256_Sum256_483D60();\n  local_f0 = local_58;\n  uStack_e8 = 1;\n  local_98 = 0;\n  uStack_90 = 0;\n  runtime_convT2Enoptr_409280();\n  uStack_90 = local_58;\n  fmt_Sprintf_4909B0();\n  if (lStack_148 == local_150) {\n    runtime_memequal_4020E0();\n    local_b8 = &DAT_004a9080;\n    ppuStack_b0 = &PTR_DAT_004e4fd0;\n    fmt_Fprintln_490BA0();\n  }\n  else {\n    local_c8 = &DAT_004a9080;\n    ppuStack_c0 = &PTR_DAT_004e4fe0;\n    fmt_Fprintln_490BA0();\n  }\n  return;\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기드라 플러그인은 "
+          },
+          {
+            "type": "text",
+            "text": "https://github.com/mooncat-greenpy/Ghidra_GolangAnalyzerExtension",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/mooncat-greenpy/Ghidra_GolangAnalyzerExtension"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "dc21f4f6-d9a9-584c-be16-2055ab04f687",
+          "href": "https://github.com/mooncat-greenpy/Ghidra_GolangAnalyzerExtension",
+          "title": "GitHub - mooncat-greenpy/Ghidra_GolangAnalyzerExtension: Analyze Golang with Ghidra",
+          "description": "Analyze Golang with Ghidra. Contribute to mooncat-greenpy/Ghidra_GolangAnalyzerExtension development by creating an account on GitHub.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/fd227f02a891915aa0b644c52e8d2a502e9625db5f2dc2bf6dcf439dc60d5120.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "플러그인을 다운받아 실행하면 함수에 인자가 잘 인식되는 것을 볼 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "                    /* /home/kotake/code/book_crackme/level4.go:12 */\n  while (local_f8 <= *(undefined1 **)(*(int *)(in_FS_OFFSET + -8) + 0x10)) {\n                    /* /home/kotake/code/book_crackme/level4.go:12 */\n    runtime_morestack_noctxt_459BB0();\n  }\n                    /* /home/kotake/code/book_crackme/level4.go:13 */\n  local_a8 = &datatype.String.string;\n  ppuStack_a0 = &goss_Access_code:__4e4fc0;\n                    /* /usr/lib/go-1.14/src/fmt/print.go:242 */\n  uVar9 = 1;\n  uVar6 = DAT_00574718;\n  fmt_Fprint_490AA0(&PTR_datatype.Interface.io.Writer_004e6860,DAT_00574718,&local_a8,1,1,\n                    in_stack_fffffffffffffeb0,in_stack_fffffffffffffeb8,in_stack_fffffffffffffec0);\n                    /* /home/kotake/code/book_crackme/level4.go:14 */\n                    /* /usr/lib/go-1.14/src/bufio/scan.go:87 */\n  uVar2 = 0;\n  uVar3 = 0;\n  uVar4 = 0;\n  uVar5 = 0;\n  runtime.duffzero_0x0_0x80_FUN_0045c51a((undefined1 *)&local_88,(uint16)ZEXT816(0));\n  auVar1._4_4_ = uVar3;\n  auVar1._0_4_ = uVar2;\n  auVar1._8_4_ = uVar4;\n  auVar1._12_4_ = uVar5;\n  runtime.duffzero_0x0_0x80_FUN_0045c51a((undefined1 *)&local_88,(uint16)auVar1);\n  local_88.r.tab = (runtime._type *)&PTR_datatype.Interface.io.Reader_004e6840;\n  local_88.split = &PTR_bufio_ScanLines_46C040_004d18c0;\n  local_88.maxTokenSize = 0x10000;\n                    /* /home/kotake/code/book_crackme/level4.go:15 */\n  bufio__ptr_Scanner_Scan_46B670(&local_88,uVar6);\n                    /* /home/kotake/code/book_crackme/level4.go:16 */\n                    /* /usr/lib/go-1.14/src/bufio/scan.go:112 */\n  runtime_slicebytetostring_447810\n            (local_110,local_88.token.__values,local_88.token.__count,local_88.token.__capacity,\n             uVar9,in_stack_fffffffffffffeb0);\n  iVar7 = in_stack_fffffffffffffeb0;\n  local_d0 = uVar9;\n                    /* /home/kotake/code/book_crackme/level4.go:17 */\n                    /* /usr/lib/go-1.14/src/bufio/scan.go:112 */\n                    /* /usr/lib/go-1.14/src/math/rand/rand.go:303 */\n  math_rand__ptr_Rand_Seed_498F70(DAT_00574700,0x2e0ce0);\n                    /* /usr/lib/go-1.14/src/math/rand/rand.go:337 */\n  math_rand__ptr_Rand_Intn_499360(DAT_00574700,0xe05def0d10,local_88.token.__count);\n                    /* /usr/lib/go-1.14/src/strconv/itoa.go:35 */\n  strconv_FormatInt_470810\n            (local_88.token.__count,10,local_88.token.__count,local_88.token.__capacity);\n                    /* /home/kotake/code/book_crackme/level4.go:18 */\n  runtime_stringtoslicebyte_4479B0\n            (local_130,local_88.token.__count,local_88.token.__capacity,local_88.token.__capacity,\n             uVar9,iVar7);\n  iVar10 = iVar7;\n  crypto_sha256_Sum256_483D60\n            (local_88.token.__capacity,uVar9,iVar7,local_88.token.__capacity,uVar9,iVar7,\n             in_stack_fffffffffffffeb8);\n                    /* /home/kotake/code/book_crackme/level4.go:19 */\n  local_98 = 0;\n  uStack_90 = 0;\n  uStack_e8 = uVar9;\n  runtime_convT2Enoptr_409280(&datatype.Array.[32]uint8,local_f0,iVar7,local_88.token.__capacity);\n  cVar8 = '\\x01';\n  fmt_Sprintf_4909B0(\"%x\",2,&local_98,1,1,iVar10,in_stack_fffffffffffffeb8);\n                    /* /home/kotake/code/book_crackme/level4.go:20 */\n                    /* /home/kotake/code/book_crackme/level4.go:20 */\n  if ((in_stack_fffffffffffffeb8 == in_stack_fffffffffffffeb0) &&\n     (runtime_memequal_4020E0(iVar10,local_d0,in_stack_fffffffffffffeb8,cVar8), cVar8 != '\\0')) {\n                    /* /home/kotake/code/book_crackme/level4.go:21 */\n    local_b8 = &datatype.String.string;\n    ppuStack_b0 = &goss_Good_Job!!!_4e4fd0;\n                    /* /usr/lib/go-1.14/src/fmt/print.go:274 */\n    fmt_Fprintln_490BA0(&PTR_datatype.Interface.io.Writer_004e6860,DAT_00574718,&local_b8,1,1,iVar10\n                        ,in_stack_fffffffffffffeb8,in_stack_fffffffffffffec0);\n    return;\n                    /* /home/kotake/code/book_crackme/level4.go:21 */\n  }\n                    /* /home/kotake/code/book_crackme/level4.go:23 */\n  local_c8 = &datatype.String.string;\n  ppuStack_c0 = &goss_Bad_Code..._4e4fe0;\n                    /* /usr/lib/go-1.14/src/fmt/print.go:274 */\n  fmt_Fprintln_490BA0(&PTR_datatype.Interface.io.Writer_004e6860,DAT_00574718,&local_c8,1,1,iVar10,\n                      in_stack_fffffffffffffeb8,in_stack_fffffffffffffec0);\n  return;\n}"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "go 함수 프롤로그"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 코드는 Go 언어의 가장 큰 특징 중 하나인 동적 스택 확장(Stack Growth/Stack Splitting)이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "현재 스택 포인터(SP, 여기서는 local_f8로 표현)가 한계선보다 작은지 검사해 작으면 runtime_morestack_noctxt함수를 실행한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "0d10dec3-f1ba-557a-aa14-06d29abd90bb",
+          "src": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/0d10dec3-f1ba-557a-aa14-06d29abd90bb.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "fmt_Fprint(): Access Code를 출력한다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "fc0ba8fd-c11c-55dc-a1f6-7ae3bc5f3ae8",
+          "src": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/fc0ba8fd-c11c-55dc-a1f6-7ae3bc5f3ae8.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Scanner_Scan(): 입력 받는다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "7e41ea30-37d7-5e3d-a433-ddf426d70b8e",
+          "src": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/7e41ea30-37d7-5e3d-a433-ddf426d70b8e.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "시드 생성(시드 값이 0x2e0ce0 = 3017952 로 고정 되어 있고 0~963666283808 사이의 값을 뽑는다.)"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "5edb714e-b146-5c9b-8c5b-404a3d51e68c",
+          "src": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/5edb714e-b146-5c9b-8c5b-404a3d51e68c.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "sha256생성 후 포멧팅(시드로 생성한 랜덤값을 넣는다.)"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "948d5e9b-5095-5e75-abc6-5a7bf4199280",
+          "src": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/948d5e9b-5095-5e75-abc6-5a7bf4199280.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "if문 비교 후 출력"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "862c9ef5-c40f-5640-832b-65687e3f20a8",
+          "src": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/862c9ef5-c40f-5640-832b-65687e3f20a8.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5.Go Playground"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "구현하기 위해 go playground에서 시드값과 랜덤값 사이를 넣고 sha로 계산하면 값이 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "7b191439-1a8a-5041-b256-ddd8353329d9",
+          "src": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/7b191439-1a8a-5041-b256-ddd8353329d9.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "level4에 sha값을 넣으면 성공한다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "970ca12d-b37e-589c-bf04-03ac34d6c99f",
+          "src": "/assets/uploads/ae04f34b-8458-54b9-99a6-2723630517a0/970ca12d-b37e-589c-bf04-03ac34d6c99f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Go 바이너리는 런타임이 내장되어 있고 호출 규약이 독특하므로, Ghidra 스크립트와 플러그인을 활용해 심벌을 복원하고 인자 정보를 정리했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "해당 CrackMe의 핵심 로직은 고정된 시드값(0x2e0ce0)**을 사용해 난수를 생성하고, 이를 SHA256으로 해싱하여 사용자 입력과 비교하는 것이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "시드값이 고정되어 있어 생성되는 난수도 항상 같으므로, Go 코드로 동일한 로직을 구현해 해시값을 미리 계산하면 통과할 수 있다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/55",
+    "originalId": "55",
+    "publishedAt": "2026-01-24T17:13:51+09:00",
+    "updatedAt": "2026-01-26T13:19:44+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

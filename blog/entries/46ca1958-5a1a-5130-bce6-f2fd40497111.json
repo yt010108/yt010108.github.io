@@ -1,0 +1,752 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "46ca1958-5a1a-5130-bce6-f2fd40497111",
+  "kind": "posts",
+  "title": "[SK Rookies] Python 기초 2",
+  "slug": "tistory-113",
+  "description": "오늘 배운 내용7월 23일과 24일에는 프로그램의 흐름을 제어하는 방법을 배웠다. 조건문과 반복문으로 실행 순서를 바꾸고, 함수를 만들어 코드를 재사용했다. 사용자 입력, 파일 입출력, 예외 처리까지 이어지면서 짧은 코드 조각이 하나의 프로그램으로 연결되기 시작했다.조건에 따라 실행하기if는 조건이 참일 때 들여쓴 코드를 실행한다. 조건이 여러 개라면 elif, 어느 조건에도 맞지 않을 때는 else를 쓴다.number = 0if number > 0: print(\"양수\")elif number 파이썬은 들여쓰기로 코드 블록을 구분한다. 같은 블록은 같은 깊이로 맞춰야 한다. 간단한 두 갈래 조건은 조건 표현식으로 줄일 수 있다.score = 90result = \"PASS\" if score >= 70 ..",
+  "category": "SK Rookies / 수업 정리",
+  "date": "2026-07-28",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-07-28T13:56:02+09:00",
+  "updatedAt": "2026-08-12T10:01:29+09:00",
+  "sourceDigest": "c49151fe6fecdfd135eb9d7b294d9540f8c7228ae1bfe78d51d391c9046e4bae",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[원본에서 불러올 수 없는 이미지]"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "오늘 배운 내용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "7월 23일과 24일에는 프로그램의 흐름을 제어하는 방법을 배웠다. 조건문과 반복문으로 실행 순서를 바꾸고, 함수를 만들어 코드를 재사용했다. 사용자 입력, 파일 입출력, 예외 처리까지 이어지면서 짧은 코드 조각이 하나의 프로그램으로 연결되기 시작했다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "조건에 따라 실행하기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "if",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 조건이 참일 때 들여쓴 코드를 실행한다. 조건이 여러 개라면 "
+          },
+          {
+            "type": "text",
+            "text": "elif",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", 어느 조건에도 맞지 않을 때는 "
+          },
+          {
+            "type": "text",
+            "text": "else",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "를 쓴다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "number = 0\n\nif number > 0:\n    print(\"양수\")\nelif number < 0:\n    print(\"음수\")\nelse:\n    print(\"0\")"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파이썬은 들여쓰기로 코드 블록을 구분한다. 같은 블록은 같은 깊이로 맞춰야 한다. 간단한 두 갈래 조건은 조건 표현식으로 줄일 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "score = 90\nresult = \"PASS\" if score >= 70 else \"FAIL\""
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "리스트가 비어 있는지 확인할 때는 "
+          },
+          {
+            "type": "text",
+            "text": "if items:",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "처럼 자료형의 참·거짓 평가를 활용한다. 조건이 복잡해질수록 한 줄로 줄이기보다 이름을 붙인 변수로 나누는 편이 읽기 쉽다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Python 3.10 이상에서는 "
+          },
+          {
+            "type": "text",
+            "text": "match-case",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "로 데이터의 구조를 비교한다. 단순 값뿐 아니라 리스트의 모양과 내부 값까지 함께 검사한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "def handle_command(command: str) -> None:\n    match command.split():\n        case [\"quit\"]:\n            print(\"프로그램을 종료합니다.\")\n        case [\"load\", filename]:\n            print(f\"파일 불러오기: {filename}\")\n        case [\"move\", (\"left\" | \"right\") as direction, steps] if steps.isdigit():\n            print(f\"{direction} 방향으로 {steps}칸 이동\")\n        case _:\n            print(\"알 수 없는 명령입니다.\")"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "반복문"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "while",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "은 조건이 참인 동안 같은 작업을 반복한다. 반복 조건을 바꾸는 코드가 빠지면 무한 루프가 생길 수 있으므로 초기값, 조건식, 증감식을 함께 확인해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "count = 1\nwhile count <= 5:\n    print(count)\n    count += 1"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "for",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 리스트, 튜플, 문자열 같은 순회 가능한 객체의 요소를 하나씩 처리한다. 연속된 정수가 필요하면 "
+          },
+          {
+            "type": "text",
+            "text": "range()",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "를 함께 쓴다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "for dan in range(2, 10):\n    for number in range(1, 10):\n        print(f\"{dan} x {number} = {dan * number}\")"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "continue",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 이번 반복의 남은 코드를 건너뛰고 다음 반복으로 이동한다. "
+          },
+          {
+            "type": "text",
+            "text": "break",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 반복문 자체를 끝낸다. 무한 루프를 쓸 때는 "
+          },
+          {
+            "type": "text",
+            "text": "break",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "가 실행되는 조건을 분명하게 두어야 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "리스트 컴프리헨션은 반복과 조건을 한 줄에 표현한다. 짧고 단순한 변환에는 편하지만, 조건이 여러 개라면 일반 반복문이 더 읽기 쉽다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "numbers = [1, 2, 3, 4]\ntripled_odds = [number * 3 for number in numbers if number % 2 == 1]\nprint(tripled_odds)  # [3, 9]"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "함수"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "함수는 입력을 받아 작업한 뒤 결과를 돌려주는 코드 묶음이다. 함수를 정의할 때 쓰는 이름은 매개변수이고, 함수를 호출하면서 전달하는 실제 값은 인수다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "def add(number1: int, number2: int) -> int:\n    return number1 + number2\n\nresult = add(10, 20)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "return",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "을 만나면 함수 실행이 끝난다. 여러 값을 쉼표로 반환하면 실제로는 튜플 하나가 반환되며, 언패킹으로 나눠 받을 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "def calculate(number1: int, number2: int) -> tuple[int, int]:\n    return number1 + number2, number1 * number2\n\nadded, multiplied = calculate(10, 20)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기본값이 있는 매개변수는 기본값이 없는 매개변수 뒤에 둔다. "
+          },
+          {
+            "type": "text",
+            "text": "*args",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 여러 위치 인수를 튜플로 받는다. "
+          },
+          {
+            "type": "text",
+            "text": "*",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 뒤에 선언한 매개변수는 이름을 붙여 전달해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "def process(*numbers: int, mode: str = \"add\") -> int:\n    if mode == \"add\":\n        return sum(numbers)\n    raise ValueError(\"지원하지 않는 연산입니다.\")\n\nprint(process(1, 2, 3, mode=\"add\"))"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "lambda",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 한 줄짜리 짧은 함수를 만들 때 쓴다. "
+          },
+          {
+            "type": "text",
+            "text": "filter()",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "에는 참·거짓을 반환하는 함수를, "
+          },
+          {
+            "type": "text",
+            "text": "map()",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "에는 각 요소를 새 값으로 바꾸는 함수를 전달한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "values = [3, 10, -8, 0, 7]\npositives = list(filter(lambda value: value > 0, values))\ntripled = list(map(lambda value: value * 3, positives))"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "입력과 파일"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "input()",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "의 반환값은 언제나 문자열이다. 숫자 계산이 필요하면 "
+          },
+          {
+            "type": "text",
+            "text": "int()",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "나 "
+          },
+          {
+            "type": "text",
+            "text": "float()",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "로 변환해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파일은 "
+          },
+          {
+            "type": "text",
+            "text": "open()",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "으로 열 수 있지만, "
+          },
+          {
+            "type": "text",
+            "text": "with",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 문을 사용하면 작업이 끝날 때 자동으로 닫힌다. 읽기 모드는 "
+          },
+          {
+            "type": "text",
+            "text": "r",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", 새로 쓰기는 "
+          },
+          {
+            "type": "text",
+            "text": "w",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", 이어 쓰기는 "
+          },
+          {
+            "type": "text",
+            "text": "a",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "다. "
+          },
+          {
+            "type": "text",
+            "text": "w",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 기존 내용을 덮어쓰므로 주의한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "with open(\"new_text.txt\", \"w\", encoding=\"utf-8\") as file:\n    file.write(\"첫 번째 줄\\n\")\n\nwith open(\"new_text.txt\", \"r\", encoding=\"utf-8\") as file:\n    for line in file:\n        print(line, end=\"\")"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "예외 처리"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예외 처리는 오류를 숨기는 문법이 아니다. 발생 가능한 오류를 예상하고 프로그램이 어떻게 대응할지 정하는 장치다. 가능한 한 구체적인 예외부터 처리하고, 이유 없이 모든 예외를 한꺼번에 잡지 않는 편이 좋다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "try:\n    value = int(input(\"나눌 수를 입력하세요: \"))\n    print(10 / value)\nexcept ValueError:\n    print(\"정수를 입력해야 합니다.\")\nexcept ZeroDivisionError:\n    print(\"0으로 나눌 수 없습니다.\")\nfinally:\n    print(\"계산을 마쳤습니다.\")"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "finally",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 예외 발생 여부와 관계없이 실행된다. 파일이나 네트워크 연결처럼 반드시 정리해야 하는 자원이 있을 때 유용하다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "복습하면서 확인할 점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "조건문은 조건의 순서가 결과를 바꿀 수 있다. 반복문은 종료 조건을 먼저 확인해야 한다. 함수는 하나의 역할만 맡도록 작게 나누고, 파일을 열 때는 인코딩과 모드를 명시한다. 예외 처리에서는 실제로 예상하는 예외의 이름을 적는 습관이 중요하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/113",
+    "originalId": "113",
+    "publishedAt": "2026-07-28T13:56:02+09:00",
+    "updatedAt": "2026-08-12T10:01:29+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

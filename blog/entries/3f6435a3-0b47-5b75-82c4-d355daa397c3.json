@@ -1,0 +1,509 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "3f6435a3-0b47-5b75-82c4-d355daa397c3",
+  "kind": "posts",
+  "title": "[DVWA] File inclusion",
+  "slug": "tistory-15",
+  "description": "1. File inclusionFile Inclusion 취약점은 웹 애플리케이션이 사용자로부터 입력받은 값을 이용해 파일을 동적으로 읽어오거나 실행할 때, 입력값에 대한 검증이 미흡하여 발생하는 보안 취약점이다. DVWA에서 File Inclusion을 알아보자2. 문제 DVWA 웹 사이트에서 서버에 있는 파일을 보여주는 기능을 구현해 뒀다.파일을 눌러보면 파일에 해당되는 내용이 보인다. .파일을 요청하는 주소에 page = file2.php처럼 get 요청에 값을 받아서 서버에 요청한다. low level 코드low level에 구현된 소스코드는 아래와 같으며 get요청이 들어오면 page에 해당하는 값을 file 변수에 넣고 파일 값을 넣는다. low level에서는 사용자가 작성한 page 값을..",
+  "category": "Wargame / DVWA",
+  "date": "2025-12-19",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2025-12-19T23:04:25+09:00",
+  "updatedAt": "2026-01-20T13:24:42+09:00",
+  "sourceDigest": "c4d1096943d244b79af943274411f16f120fe4d3eb0c72c403c6fb9e97a04bd2",
+  "assets": [
+    {
+      "id": "2e3038ec-63a6-5c36-a4ab-00f9401030ab",
+      "name": "tistory-15-2e3038ec-63a6-5c36-a4ab-00f9401030ab.png",
+      "type": "image/png",
+      "path": "/assets/uploads/3f6435a3-0b47-5b75-82c4-d355daa397c3/2e3038ec-63a6-5c36-a4ab-00f9401030ab.png",
+      "sha": "a9f04382883eb644f3a5b4b4baf0e7f9efa0f51a"
+    },
+    {
+      "id": "d6845929-d5b9-5000-94ee-660b99926f3d",
+      "name": "tistory-15-d6845929-d5b9-5000-94ee-660b99926f3d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/3f6435a3-0b47-5b75-82c4-d355daa397c3/d6845929-d5b9-5000-94ee-660b99926f3d.png",
+      "sha": "54134380ae80badadbefb959f77ceaf33901fb5c"
+    },
+    {
+      "id": "258f028b-fea8-5afe-a95a-b6a00c0105ff",
+      "name": "tistory-15-258f028b-fea8-5afe-a95a-b6a00c0105ff.png",
+      "type": "image/png",
+      "path": "/assets/uploads/3f6435a3-0b47-5b75-82c4-d355daa397c3/258f028b-fea8-5afe-a95a-b6a00c0105ff.png",
+      "sha": "240060c1eb460564fe3bbc6e0c0c23f511cbfdf4"
+    },
+    {
+      "id": "c8445d1a-6eb2-5c44-bd70-7a4289a243b4",
+      "name": "tistory-15-c8445d1a-6eb2-5c44-bd70-7a4289a243b4.png",
+      "type": "image/png",
+      "path": "/assets/uploads/3f6435a3-0b47-5b75-82c4-d355daa397c3/c8445d1a-6eb2-5c44-bd70-7a4289a243b4.png",
+      "sha": "7e4458083b4d70c0cfdeb34d528e598506c2a1dd"
+    },
+    {
+      "id": "cc41a650-923f-59d6-9511-301c78be2305",
+      "name": "tistory-15-cc41a650-923f-59d6-9511-301c78be2305.png",
+      "type": "image/png",
+      "path": "/assets/uploads/3f6435a3-0b47-5b75-82c4-d355daa397c3/cc41a650-923f-59d6-9511-301c78be2305.png",
+      "sha": "ac8f488267d6813c6de8c581326ca0fe3fcda35d"
+    },
+    {
+      "id": "1b81914c-70a5-5c3b-9680-18225e137fd0",
+      "name": "tistory-15-1b81914c-70a5-5c3b-9680-18225e137fd0.png",
+      "type": "image/png",
+      "path": "/assets/uploads/3f6435a3-0b47-5b75-82c4-d355daa397c3/1b81914c-70a5-5c3b-9680-18225e137fd0.png",
+      "sha": "0d28dba22d975efb736ea4205da16c0df261d7b3"
+    },
+    {
+      "id": "415c0095-7a34-5789-8962-9b4c70844e9f",
+      "name": "tistory-15-415c0095-7a34-5789-8962-9b4c70844e9f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/3f6435a3-0b47-5b75-82c4-d355daa397c3/415c0095-7a34-5789-8962-9b4c70844e9f.png",
+      "sha": "3d1e3b61ff31adb2df6257baeed1039d4d6887e5"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "2e3038ec-63a6-5c36-a4ab-00f9401030ab",
+          "src": "/assets/uploads/3f6435a3-0b47-5b75-82c4-d355daa397c3/2e3038ec-63a6-5c36-a4ab-00f9401030ab.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. File inclusion"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "File Inclusion 취약점은 웹 애플리케이션이 사용자로부터 입력받은 값을 이용해 파일을 동적으로 읽어오거나 실행할 때, 입력값에 대한 검증이 미흡하여 발생하는 보안 취약점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DVWA에서 File Inclusion을 알아보자"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "d6845929-d5b9-5000-94ee-660b99926f3d",
+          "src": "/assets/uploads/3f6435a3-0b47-5b75-82c4-d355daa397c3/d6845929-d5b9-5000-94ee-660b99926f3d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DVWA 웹 사이트에서 서버에 있는 파일을 보여주는 기능을 구현해 뒀다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파일을 눌러보면 파일에 해당되는 내용이 보인다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "258f028b-fea8-5afe-a95a-b6a00c0105ff",
+          "src": "/assets/uploads/3f6435a3-0b47-5b75-82c4-d355daa397c3/258f028b-fea8-5afe-a95a-b6a00c0105ff.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "c8445d1a-6eb2-5c44-bd70-7a4289a243b4",
+          "src": "/assets/uploads/3f6435a3-0b47-5b75-82c4-d355daa397c3/c8445d1a-6eb2-5c44-bd70-7a4289a243b4.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파일을 요청하는 주소에 page = file2.php처럼 get 요청에 값을 받아서 서버에 요청한다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " low level 코드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "low level에 구현된 소스코드는 아래와 같으며 get요청이 들어오면 page에 해당하는 값을 file 변수에 넣고 파일 값을 넣는다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\n// The page we wish to display\n$file = $_GET[ 'page' ];\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "low level에서는 사용자가 작성한 page 값을 검증하지 않으므로 page에 원하는 위치의 파일을 입력해 가져올 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 etc/passwd파일을 page=../../../../../etc/passwd로 경로를 수정해 파일을 가져올 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "cc41a650-923f-59d6-9511-301c78be2305",
+          "src": "/assets/uploads/3f6435a3-0b47-5b75-82c4-d355daa397c3/cc41a650-923f-59d6-9511-301c78be2305.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " medium level 코드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "medium level 코드는 black list를 사용해서 http://, https://, ../, ..\\를 검증한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\n// The page we wish to display\n$file = $_GET[ 'page' ];\n\n// Input validation\n$file = str_replace( array( \"http://\", \"https://\" ), \"\", $file );\n$file = str_replace( array( \"../\", \"..\\\"\" ), \"\", $file );\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "코드를 ../를 ....//로 바꾸면 replace를 통해 ....//가 ../이 되므로 ../../../../../etc/passwd를 ....//....//....//....//....//etc/passwd로 바꾸면 medium level도 LFI가 가능하다"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "1b81914c-70a5-5c3b-9680-18225e137fd0",
+          "src": "/assets/uploads/3f6435a3-0b47-5b75-82c4-d355daa397c3/1b81914c-70a5-5c3b-9680-18225e137fd0.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "High level 코드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "High level 코드는 fnmatch 를 사용해서 파일을 검증하고 있다. fnmatch는 파일의 이름이 file로 시작하는 지 검사하고 include.php가 아니여야한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\n// The page we wish to display\n$file = $_GET[ 'page' ];\n\n// Input validation\nif( !fnmatch( \"file*\", $file ) && $file != \"include.php\" ) {\n    // This isn't the page we want!\n    echo \"ERROR: File not found!\";\n    exit;\n}\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "file로 시작하면서 LFI를 성공할 수 있는 방법으로는 file://etc/passwd이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "file:// 은 컴퓨터 내부의 로컬 파일 시스템에 저장된 파일에 접근하기 위해 사용하는 프로토콜로 이걸 사용해 fnmatch를 통과할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "415c0095-7a34-5789-8962-9b4c70844e9f",
+          "src": "/assets/uploads/3f6435a3-0b47-5b75-82c4-d355daa397c3/415c0095-7a34-5789-8962-9b4c70844e9f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Impossible level 코드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Impossible level 코드는 사용자 입력을 업로드된 파일에 있는 지 하나하나 찾아서 검증한다. 그래서 file.1,file2, file3, include.php가 아닌 경우에는 모두 검증되므로 LFI가 실패된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\n// The page we wish to display\n$file = $_GET[ 'page' ];\n\n// Only allow include.php or file{1..3}.php\nif( $file != \"include.php\" && $file != \"file1.php\" && $file != \"file2.php\" && $file != \"file3.php\" ) {\n    // This isn't the page we want!\n    echo \"ERROR: File not found!\";\n    exit;\n}\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "사용자 입력값을 검증 없이 요청에 전달하면 LFI 취약점이 발생한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "블랙리스트 방식(특정 문자 차단)은 중첩 사용이나 프로토콜(file://) 변경 등으로 우회되기 쉽다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "../../../../../../"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/15",
+    "originalId": "15",
+    "publishedAt": "2025-12-19T23:04:25+09:00",
+    "updatedAt": "2026-01-20T13:24:42+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

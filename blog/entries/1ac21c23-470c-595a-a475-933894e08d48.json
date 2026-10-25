@@ -1,0 +1,933 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "1ac21c23-470c-595a-a475-933894e08d48",
+  "kind": "posts",
+  "title": "[SK Rookies] Python 기초 1",
+  "slug": "tistory-112",
+  "description": "오늘 배운 내용7월 21일과 22일에는 파이썬이 데이터를 다루는 기본 방식을 익혔다. 변수와 자료형에서 시작해 문자열, 리스트, 튜플, 딕셔너리, 집합까지 차례로 살펴봤다. 문법을 외우기보다 어떤 상황에서 어떤 자료형을 고를지 구분하는 데 초점을 맞췄다.변수는 객체를 가리키는 이름이다파이썬에서 변수는 값을 담는 상자라기보다 객체를 가리키는 이름에 가깝다. 같은 객체를 여러 변수가 가리킬 수도 있고, 하나의 변수가 나중에 전혀 다른 자료형의 객체를 가리킬 수도 있다.num = 100same_num = numprint(id(num) == id(same_num)) # Truesame_num = \"one hundred\"print(type(same_num)) # id()는 객체의 식별값을, t..",
+  "category": "SK Rookies / 수업 정리",
+  "date": "2026-07-28",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-07-28T13:55:18+09:00",
+  "updatedAt": "2026-08-12T10:01:29+09:00",
+  "sourceDigest": "9a5c40fc3ae45e76d98303c6723aa69392a1967ca69e2f17716ab85c5778252e",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[원본에서 불러올 수 없는 이미지]"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "오늘 배운 내용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "7월 21일과 22일에는 파이썬이 데이터를 다루는 기본 방식을 익혔다. 변수와 자료형에서 시작해 문자열, 리스트, 튜플, 딕셔너리, 집합까지 차례로 살펴봤다. 문법을 외우기보다 어떤 상황에서 어떤 자료형을 고를지 구분하는 데 초점을 맞췄다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "변수는 객체를 가리키는 이름이다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파이썬에서 변수는 값을 담는 상자라기보다 객체를 가리키는 이름에 가깝다. 같은 객체를 여러 변수가 가리킬 수도 있고, 하나의 변수가 나중에 전혀 다른 자료형의 객체를 가리킬 수도 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "num = 100\nsame_num = num\n\nprint(id(num) == id(same_num))  # True\n\nsame_num = \"one hundred\"\nprint(type(same_num))           # <class 'str'>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "id()",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 객체의 식별값을, "
+          },
+          {
+            "type": "text",
+            "text": "type()",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "은 객체의 자료형을 확인할 때 쓴다. 파이썬은 변수의 자료형을 미리 고정하지 않지만, 연산할 때는 자료형을 맞춰야 한다. 문자열과 정수를 바로 더할 수 없는 이유도 여기에 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "기본 자료형"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "수업에서 다룬 기본 자료형은 숫자형, 문자열, 불 자료형이다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "int",
+                    "marks": [
+                      {
+                        "type": "code"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ": 정수"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "float",
+                    "marks": [
+                      {
+                        "type": "code"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ": 실수"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "str",
+                    "marks": [
+                      {
+                        "type": "code"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ": 문자열"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "bool",
+                    "marks": [
+                      {
+                        "type": "code"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ": "
+                  },
+                  {
+                    "type": "text",
+                    "text": "True",
+                    "marks": [
+                      {
+                        "type": "code"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " 또는 "
+                  },
+                  {
+                    "type": "text",
+                    "text": "False",
+                    "marks": [
+                      {
+                        "type": "code"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문자열은 순서가 있는 시퀀스 자료형이다. 인덱스는 0부터 시작하며, 음수 인덱스를 쓰면 뒤에서부터 접근한다. 슬라이싱의 끝 인덱스는 결과에 포함되지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "text = \"hello~ python!!\"\n\nprint(text[0])      # h\nprint(text[-1])     # !\nprint(text[:5])     # hello\nprint(text[7:])     # python!!"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문자열을 조합할 때는 f-string이 읽기 편하다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "name = \"손흥민\"\nage = 20\nprint(f\"안녕하세요. 저는 {name}이고, 나이는 {age}살입니다.\")"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "빈 문자열, 숫자 0, 빈 리스트, "
+          },
+          {
+            "type": "text",
+            "text": "None",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "은 조건식에서 거짓으로 평가된다. 반대로 내용이 있는 문자열이나 리스트는 참으로 평가된다. 이 성질을 이용하면 "
+          },
+          {
+            "type": "text",
+            "text": "len(items) > 0",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 대신 "
+          },
+          {
+            "type": "text",
+            "text": "if items:",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "처럼 간단히 쓸 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "연산자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "산술 연산자는 "
+          },
+          {
+            "type": "text",
+            "text": "+",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", "
+          },
+          {
+            "type": "text",
+            "text": "-",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", "
+          },
+          {
+            "type": "text",
+            "text": "*",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", "
+          },
+          {
+            "type": "text",
+            "text": "/",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", "
+          },
+          {
+            "type": "text",
+            "text": "%",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", "
+          },
+          {
+            "type": "text",
+            "text": "**",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", "
+          },
+          {
+            "type": "text",
+            "text": "//",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "을 사용한다. "
+          },
+          {
+            "type": "text",
+            "text": "/",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 나눗셈 결과를 실수로 반환하고, "
+          },
+          {
+            "type": "text",
+            "text": "//",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 몫, "
+          },
+          {
+            "type": "text",
+            "text": "%",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 나머지를 구한다. "
+          },
+          {
+            "type": "text",
+            "text": "**",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 거듭제곱 연산자다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "x = 10\ny = 3\n\nprint(x / y)   # 3.333...\nprint(x // y)  # 3\nprint(x % y)   # 1\nprint(x ** y)  # 1000"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "+=",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", "
+          },
+          {
+            "type": "text",
+            "text": "-=",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", "
+          },
+          {
+            "type": "text",
+            "text": "*=",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 같은 복합 대입 연산자는 기존 값을 계산한 뒤 다시 변수에 할당한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "여러 값을 다루는 자료형"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "리스트는 순서가 있고 값을 바꿀 수 있다. 데이터를 추가할 때는 "
+          },
+          {
+            "type": "text",
+            "text": "append()",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "와 "
+          },
+          {
+            "type": "text",
+            "text": "insert()",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", 삭제할 때는 "
+          },
+          {
+            "type": "text",
+            "text": "remove()",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "와 "
+          },
+          {
+            "type": "text",
+            "text": "pop()",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "을 주로 쓴다. "
+          },
+          {
+            "type": "text",
+            "text": "sort()",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "와 "
+          },
+          {
+            "type": "text",
+            "text": "reverse()",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 원본 리스트를 직접 바꾼다는 점도 기억해 둘 만하다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "scores = [80, 50, 100]\nscores.append(70)\nscores[1] = 60\nscores.sort()\n\nprint(scores)  # [60, 70, 80, 100]"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "튜플은 리스트처럼 순서가 있지만 요소를 바꿀 수 없다. 값이 하나인 튜플은 "
+          },
+          {
+            "type": "text",
+            "text": "(1,)",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "처럼 쉼표를 붙여야 한다. 다만 튜플 안에 리스트가 들어 있다면 그 리스트의 내용은 바뀔 수 있다. 튜플이 보호하는 것은 튜플이 직접 참조하는 요소의 교체다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "딕셔너리는 "
+          },
+          {
+            "type": "text",
+            "text": "키: 값",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 구조로 데이터를 저장한다. 키로 바로 값을 찾을 수 있어 학생 정보처럼 이름이 붙은 데이터를 표현하기 좋다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "student = {\n    \"sno\": 1111,\n    \"name\": \"king\",\n    \"major\": \"computer\",\n    \"grade\": 4,\n}\n\nprint(student[\"name\"])\nprint(student.get(\"email\", \"등록된 이메일 없음\"))"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "존재하지 않는 키를 대괄호로 조회하면 "
+          },
+          {
+            "type": "text",
+            "text": "KeyError",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "가 발생한다. 값이 없을 때 기본값을 쓰고 싶다면 "
+          },
+          {
+            "type": "text",
+            "text": "get()",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "이 안전하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "집합은 중복을 허용하지 않고 순서를 보장하지 않는다. 중복 제거와 교집합, 합집합, 차집합을 구할 때 편하다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "a = {1, 2, 3, 4, 5, 6}\nb = {4, 5, 6, 7, 8, 9}\n\nprint(a & b)  # 교집합: {4, 5, 6}\nprint(a | b)  # 합집합\nprint(a - b)  # 차집합: {1, 2, 3}"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "자료형을 고르는 기준"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "순서가 있고 값을 자주 바꾼다면 리스트, 순서는 필요하지만 값이 바뀌면 안 된다면 튜플이 알맞다. 이름이 있는 속성으로 데이터를 찾을 때는 딕셔너리, 중복 제거와 집합 연산이 목적이라면 집합을 고르면 된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "타입 힌트"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "타입 힌트는 변수나 함수가 어떤 자료형을 기대하는지 코드에 표시한다. 실행 중 자료형을 강제로 제한하지는 않지만, 편집기와 타입 검사기가 오류 가능성을 미리 알려준다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "age: int = 20\nscores: dict[str, int] = {\"math\": 90}\n\ndef average(values: list[int]) -> float:\n    return sum(values) / len(values)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "list[int]",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": ", "
+          },
+          {
+            "type": "text",
+            "text": "dict[str, int]",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "는 Python 3.9 이상에서 쓸 수 있고, "
+          },
+          {
+            "type": "text",
+            "text": "int | str",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 형태의 유니온 표기는 Python 3.10 이상에서 지원한다. "
+          },
+          {
+            "type": "text",
+            "text": "type Matrix[T] = ...",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 같은 새 문법은 Python 3.12 이상이 필요하므로 실행 환경의 버전을 확인해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "복습하면서 확인할 점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문자열과 리스트의 인덱스는 0부터 시작한다. 슬라이싱은 끝 인덱스를 포함하지 않는다. 리스트는 바꿀 수 있지만 튜플은 직접 바꿀 수 없다. 딕셔너리는 키가 중복되면 마지막 값이 남고, 집합은 값의 중복을 제거한다. 이 네 가지 차이를 코드로 직접 확인하면 이후 조건문과 반복문을 배울 때 훨씬 수월하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/112",
+    "originalId": "112",
+    "publishedAt": "2026-07-28T13:55:18+09:00",
+    "updatedAt": "2026-08-12T10:01:29+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

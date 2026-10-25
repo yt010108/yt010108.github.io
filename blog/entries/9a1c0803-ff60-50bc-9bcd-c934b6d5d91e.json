@@ -1,0 +1,1193 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "9a1c0803-ff60-50bc-9bcd-c934b6d5d91e",
+  "kind": "posts",
+  "title": "AI Skills",
+  "slug": "tistory-129",
+  "description": "1. Skill이란?Skill은 범용 AI에 특정 작업환경에 필요한 프롬프트와 리소스를 제공해, 상황에 맞는 전문화된 AI와 워크플로우를 사용할 수 있게 하는 기술이다. 또한 패키징하여 모듈 형식으로 배포할 수 있다는 점도 중요한 특징이다.Claude에서 정의Agent Skills는 Claude의 기능을 확장하는 모듈식 기능이다.각 Skill은 관련 상황에서 자동으로 사용하는 지침, 메타데이터, 선택적 리소스를 패키징한다.프롬프트와 달리 필요할 때 로드되는 파일시스템 기반 리소스로 사용된다.Codex에서 정의Codex에 새로운 역량과 전문성을 부여한다.작업별 기능을 안정적으로 따를 수 있도록 지침, 리소스, 선택적 스크립트를 포함한다.개방형 에이전트 스킬 표준을 기반으로 구축된다. 2. Skill 동향..",
+  "category": "AI",
+  "date": "2026-08-07",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-08-07T14:16:44+09:00",
+  "updatedAt": "2026-09-16T11:01:41+09:00",
+  "sourceDigest": "2c5d844b224307780fbfd64a6f872c8c846291d920d5ebfe3909521f521b2582",
+  "assets": [
+    {
+      "id": "5bb4814f-e944-554b-919d-3a7245ecd739",
+      "name": "tistory-129-5bb4814f-e944-554b-919d-3a7245ecd739.png",
+      "type": "image/png",
+      "path": "/assets/uploads/9a1c0803-ff60-50bc-9bcd-c934b6d5d91e/5bb4814f-e944-554b-919d-3a7245ecd739.png",
+      "sha": "f822d211c100f5c134dee92073768351a9f6b70b"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. Skill이란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Skill은 범용 AI에 특정 작업환경에 필요한 프롬프트와 리소스를 제공해, 상황에 맞는 전문화된 AI와 워크플로우를 사용할 수 있게 하는 기술이다. 또한 패키징하여 모듈 형식으로 배포할 수 있다는 점도 중요한 특징이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Claude에서 정의"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Agent Skills는 Claude의 기능을 확장하는 모듈식 기능이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "각 Skill은 관련 상황에서 자동으로 사용하는 지침, 메타데이터, 선택적 리소스를 패키징한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "프롬프트와 달리 필요할 때 로드되는 파일시스템 기반 리소스로 사용된다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Codex에서 정의"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Codex에 새로운 역량과 전문성을 부여한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "작업별 기능을 안정적으로 따를 수 있도록 지침, 리소스, 선택적 스크립트를 포함한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "개방형 에이전트 스킬 표준을 기반으로 구축된다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. Skill 동향"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "5bb4814f-e944-554b-919d-3a7245ecd739",
+          "src": "/assets/uploads/9a1c0803-ff60-50bc-9bcd-c934b6d5d91e/5bb4814f-e944-554b-919d-3a7245ecd739.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "skills.sh"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "오픈 디렉터리와 마켓"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "깃허브로 주로 공유되지만 최근에는 AI 에이전트용 Skill을 공유하고 설치할 수 있는 공개 디렉터리와 마켓 형태의 서비스가 등장하고 있다. 대표적인 사례가 "
+          },
+          {
+            "type": "text",
+            "text": "skills.sh",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://skills.sh/"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "이다. 이 사이트는 재사용 가능한 작업 지식과 워크플로우를 Skill 형태로 제공하며, 다양한 Skill을 탐색하고 설치할 수 있는 플랫폼 역할을 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "참고할만한 Skill"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Awesome Claude Skills: 다양한 작업 유형을 지원하는 종합형 Skill 모음"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "UI UX Pro Max: UI/UX 설계와 디자인 시스템 구성을 지원하는 Skill"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Superpowers: 에이전트의 작업 범위를 제어하고 실행 안정성을 높이는 Skill"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Everything Claude Code: 여러 보조 에이전트와 개발 워크플로우를 묶은 통합형 Skill 세트"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Humanizer: AI가 생성한 문장을 자연스럽게 다듬는 Skill"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "andrej-karpathy-skills",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://github.com/forrestchang/andrej-karpathy-skills"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ": LLM 코딩 약점 해결"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "agent-skills",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://github.com/addyosmani/agent-skills"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ": 코딩 워크플로우 적용"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "pm-skills",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://github.com/phuryn/pm-skills"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ": 프로덕트 매니저 작업 지원"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 내가 사용하는 Skill"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "ctf-skills"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://github.com/ljagiello/ctf-skills",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/ljagiello/ctf-skills"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "64b37674-9acd-55f8-b633-69115fb14cb8",
+          "href": "https://github.com/ljagiello/ctf-skills",
+          "title": "GitHub - ljagiello/ctf-skills: Agent skills for solving CTF challenges - web exploitation, binary pwn, crypto, reverse engineeri",
+          "description": "Agent skills for solving CTF challenges - web exploitation, binary pwn, crypto, reverse engineering, forensics, OSINT, and more - ljagiello/ctf-skills",
+          "image": "https://yt010108.github.io/assets/imported/tistory/d56d45fe896684cd08fe81ec538053ceb2e20d36f3fb84fb5d40fb78f41b5a24.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "내가 자주 사용하는 Skill은 "
+          },
+          {
+            "type": "text",
+            "text": "ctf-skills",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/ljagiello/ctf-skills"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "이다. 이 Skill은 CTF 보안 문제 풀이에 특화되어 있으며, web, pwn, rev, misc, ai, crypto 등 카테고리별 접근 방법과 예시 페이로드를 제공한다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "특징은 상위 workflow Skill이 문제를 분류하고 카테고리 Skill로 라우팅한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "카테고리 Skill은 필요한 세부 자료를 불러오는 구조다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "im-not-ai"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://github.com/epoko77-ai/im-not-ai",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/epoko77-ai/im-not-ai"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "0f3813af-d6d6-517a-9488-a5076607a386",
+          "href": "https://github.com/epoko77-ai/im-not-ai",
+          "title": "GitHub - epoko77-ai/im-not-ai: AI가 쓴 글이 아닌 것처럼 윤문해주는 스킬",
+          "description": "AI가 쓴 글이 아닌 것처럼 윤문해주는 스킬. Contribute to epoko77-ai/im-not-ai development by creating an account on GitHub.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/f631e303fc6e7722e8ba197b8ca99d686bd4e30c30648cc501d101526ec35414.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다음으로 자주 사용하는 im-not-ai 스킬로 한국어 특화 humanizer로 ai가 쓴 글의 번역투나 ai스러운 말투를 바꿔준다. Humanize KR — 한글 AI 티 제거기이다. 아래 예시처럼 한국어 문체를 바꿔준다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "\"AI 기술을 "
+                  },
+                  {
+                    "type": "text",
+                    "text": "통해",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " 효율을 높"
+                  },
+                  {
+                    "type": "text",
+                    "text": "일 수 있다",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": "\" → \"AI로 효율을 높인다\""
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "\"이에 "
+                  },
+                  {
+                    "type": "text",
+                    "text": "있어서",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " 중요한 "
+                  },
+                  {
+                    "type": "text",
+                    "text": "점은",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": "\" → \"여기서 중요한 건\""
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "\"~"
+                  },
+                  {
+                    "type": "text",
+                    "text": "에 의해",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " 생성된\" → \"~가 만든\""
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "\""
+                  },
+                  {
+                    "type": "text",
+                    "text": "결론적으로",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ", 이는 "
+                  },
+                  {
+                    "type": "text",
+                    "text": "시사하는 바가 크다",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": "\" → (삭제)"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "라이트업을 작성하거나 보고서를 작성할 때 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "ponitail"
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "225c021d-6d5c-5c24-a203-589d8d67f648",
+          "href": "https://yt010108.github.io/#/post/18b062b9-98c0-5e62-ade0-e9169cfa4d86",
+          "title": "[Skills]  Ponytail",
+          "description": "AI 코딩 에이전트를 사용하다 보면 간단한 기능 하나를 요청했는데 예상보다 훨씬 큰 코드가 만들어지는 경우가 있습니다.날짜 입력창 하나면 충분한데 외부 라이브러리를 설치하고, 별도의 컴",
+          "image": "https://yt010108.github.io/assets/imported/tistory/5e9f1dad16da5d90b28ea889e4c35e82b7203e670ced9d69c3c0304176d10d4a.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "AI 코딩 에이전트를 사용하다 보면 간단한 기능 하나를 요청했는데 예상보다 훨씬 큰 코드가 만들어지는 경우가 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "날짜 입력창 하나면 충분한데 외부 라이브러리를 설치하고, 별도의 컴포넌트를 만들고, CSS 파일까지 추가하는 식이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이런 과도한 구현을 줄이기 위해 만들어진 프로젝트가 Ponytail입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. Skills 구조"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "#기본 구조\nskill-name/\n├── SKILL.md (required)\n│   ├── YAML frontmatter metadata (required)\n│   │   ├── name: (required)\n│   │   └── description: (required)\n│   └── Markdown instructions (required)\n├── agents/ (recommended)\n│   └── openai.yaml - UI metadata for skill lists and chips\n└── Bundled Resources (optional)\n    ├── scripts/          - Executable code (Python/Bash/etc.)\n    ├── references/       - Documentation intended to be loaded into context as needed\n    └── assets/           - Files used in output (templates, icons, fonts, etc.)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Skill은 보통 SKILL.md를 중심으로 동작하며, 필요하면 UI 메타데이터와 reference 문서를 함께 둔다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "SKILL.md"
+                  },
+                  {
+                    "type": "hardBreak"
+                  },
+                  {
+                    "type": "text",
+                    "text": "스킬의 핵심 문서로, 어떤 상황에서 이 스킬을 써야 하는지와 작업 절차를 정의한다. 특히 name, description 같은 frontmatter는 스킬의 정체성과 호출 조건을 명확하게 설명해야 한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "agents/openai.yaml"
+                  },
+                  {
+                    "type": "hardBreak"
+                  },
+                  {
+                    "type": "text",
+                    "text": "UI에서 보이는 이름, 짧은 설명, 기본 프롬프트를 담는 메타데이터 파일이다. 필수는 아니지만, 스킬을 목록에서 식별하고 적절히 호출하는 데 도움이 된다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "references/"
+                  },
+                  {
+                    "type": "hardBreak"
+                  },
+                  {
+                    "type": "text",
+                    "text": "긴 가이드, 체크리스트, 세부 테스트 기준을 분리해 두는 공간이다. SKILL.md가 모든 내용을 한 번에 담기보다 필요한 reference만 선택적으로 읽게 하는 구조가 컨텍스트 효율 면에서 유리하다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "scripts/, assets/"
+                  },
+                  {
+                    "type": "hardBreak"
+                  },
+                  {
+                    "type": "text",
+                    "text": "반복 작업 자동화나 템플릿 산출물에 쓰는 선택 구조다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. Skills 사용방법"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Skills는 크게 AI가 대화의 컨텍스트를 보고 자동으로 사용하는 방식과, 사용자가 직접 특정 Skill을 호출하는 방식으로 사용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "AI가 컨텍스트를 보고 자동으로 사용"
+                  },
+                  {
+                    "type": "hardBreak"
+                  },
+                  {
+                    "type": "text",
+                    "text": "사용자가 별도로 Skill 이름을 지정하지 않아도, AI가 현재 요청의 내용과 목적을 판단해 적절한 Skill을 선택할 수 있다. 예를 들어 CTF 문제 파일이나 문제 설명을 전달하면 AI가 이를 보안 문제로 판단하고 ctf-skills의 workflow를 적용하는 식이다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "사용자가 직접 Skill 호출"
+                  },
+                  {
+                    "type": "hardBreak"
+                  },
+                  {
+                    "type": "text",
+                    "text": "특정 Skill을 확실하게 사용하고 싶다면 프롬프트에서 $를 통해 직접 지정할 수도 있다. 예를 들어 ctf-skills를 사용해서 이 문제를 풀어줘, im-not-ai를 사용해서 이 문장을 자연스럽게 수정해줘와 같이 요청하는 방식이다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6. 자신만의 Skill이 필요한 이유"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Skill의 주요 이점은 도메인별 작업에 맞는 기능을 조정하고 반복 가능한 워크플로우를 구축할 수 있다는 점이다. 모의해킹 도메인을 생각했을 때에는 전문화된 지식을 바탕으로 접근하는 것이 유리해 보인다. 하지만 새로운 클로드 모델인 Mythos가 전문가 수준의 CTF를 무려 73%의 성공률로 풀었고, 기존에 OpenBSD에 새로운 취약점을 찾는 것을 볼 때 이미 Skill이 필요 없을 정도로 모델 성능이 충분한 상태일 수도 있다. 게다가 모델은 시간이 지날수록 더욱 똑똑해진다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 내가 생각하는 Skill을 사용해야하는 이유는 사람 때문이다. AI가 발전하면서 AI를 통해 많은 일들이 가능해 졌고 더 많아질 것이다. 그래서 모의해킹이나 취약점 분석같은 일들도 가능해질 것이다. 하지만 LLM은 강력하지만 어디까지나 도구이며, 사람이 어떤 프롬프트를 작성하고 어떤 입력, 워크플로우, 컨텍스트를 제공하느냐에 따라 결과는 크게 달라진다. 같은 모델을 사용하더라도 누구는 좋은 결과를 얻고, 누구는 그렇지 못할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이런 점에서 Skill은 단순히 지식이나 도메인 정보를 추가하는 수단이 아니다. 오히려 사람이 어떤 방식으로 문제를 바라보고, 어떤 절차로 접근하며, 무엇을 중요하게 판단할지를 모델에 구조화해 전달하는 수단에 가깝다고 생각한다. 또한 자신만의 Skill을 업데이트하면서 피드백 과정을 거쳐 더 좋은 결과물로 이어질 수 있다고 생각해 자신만의 Skill을 구축해 발전해 나가야한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "7. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "skills는 작업환경에 필요한 프롬프트와 리소스를 제공하는 것으로 im-not-ai 이 스킬 꼭 써보세요 좋아여"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "자신만의 skills를 사용해서 skill을 개선해나가는 워크플로우를 구축해보자"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "하지만 skills가 커지면 컨텍스트에 비용과 효율이 낮아질 수도 있다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다음글"
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "37f35cc2-8d08-59f9-8535-fc304ba65dc4",
+          "href": "https://yt010108.github.io/#/post/55e2f42c-075c-524a-acaa-d4c3c35bee02",
+          "title": "모의해킹을 위한 에이전트 SKILLS 구축-1",
+          "description": "OWASP WSTG 기반으로 웹 침투테스트용 pentest-helper Skill을 설계한 과정을 정리한 글이다. AI Skills1. Skill이란?Skill은 범용 AI에 특정 작업환경에 필요한 프롬프트와 리소스를 제공해, 상황에 맞는 전문",
+          "image": "https://yt010108.github.io/assets/imported/tistory/6a774dfc08ec7b7919ab1057f0310b47bf8d23b7729cb08a20d1da6e9303307e.jpg",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/129",
+    "originalId": "129",
+    "publishedAt": "2026-08-07T14:16:44+09:00",
+    "updatedAt": "2026-09-16T11:01:41+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

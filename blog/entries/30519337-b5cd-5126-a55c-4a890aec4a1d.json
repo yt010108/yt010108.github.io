@@ -1,0 +1,418 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "30519337-b5cd-5126-a55c-4a890aec4a1d",
+  "kind": "posts",
+  "title": "[Ghidra] 리버스 엔지니어링 기드라 실전 가이드 스터디 - chapter 5(level2)",
+  "slug": "tistory-49",
+  "description": "1. level2 crackme(base64)level 2 크랙미 디스어셈블 결과이다. param_2를 입력받아 encode_custom_base64로 인코딩 후에 4PpnRoanRomTze4SKPo+Zwd3IejS와 비교한다.값이 같으면 correct가 나온다.undefined8 main(int param_1,undefined8 *param_2){ int iVar1; undefined8 uVar2; char *__s1; size_t __n; if (param_1 == 2) { __s1 = (char *)encode_custom_base64(param_2[1]); __n = strlen(\"4PpnRoanRomTze4SKPo+Zwd3IejS\"); iVar1 = strncmp(_..",
+  "category": "Security / Reversing",
+  "date": "2026-01-22",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-22T20:46:23+09:00",
+  "updatedAt": "2026-01-24T03:00:06+09:00",
+  "sourceDigest": "266bbb99d54cd57729b984d1a0e7d9ae20115fae444b9c44b790ae681defe4b4",
+  "assets": [
+    {
+      "id": "9d57f2b3-a56b-5f06-8cba-7c6caab36d86",
+      "name": "tistory-49-9d57f2b3-a56b-5f06-8cba-7c6caab36d86.jpg",
+      "type": "image/jpeg",
+      "path": "/assets/uploads/30519337-b5cd-5126-a55c-4a890aec4a1d/9d57f2b3-a56b-5f06-8cba-7c6caab36d86.jpg",
+      "sha": "81eecea152274b4d569428cef432689bb7b027c0"
+    },
+    {
+      "id": "4d13672c-2a56-560d-b1aa-5ac0b2c7813f",
+      "name": "tistory-49-4d13672c-2a56-560d-b1aa-5ac0b2c7813f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/30519337-b5cd-5126-a55c-4a890aec4a1d/4d13672c-2a56-560d-b1aa-5ac0b2c7813f.png",
+      "sha": "5821672ac529124b9445227599710232992d632c"
+    },
+    {
+      "id": "6b5d3978-a5f7-571b-89f8-b2cb145184fc",
+      "name": "tistory-49-6b5d3978-a5f7-571b-89f8-b2cb145184fc.png",
+      "type": "image/png",
+      "path": "/assets/uploads/30519337-b5cd-5126-a55c-4a890aec4a1d/6b5d3978-a5f7-571b-89f8-b2cb145184fc.png",
+      "sha": "4d61d312dfea196773df2fcf027d4385f94d1621"
+    },
+    {
+      "id": "03b14268-7675-5e38-aa38-585cb22733e3",
+      "name": "tistory-49-03b14268-7675-5e38-aa38-585cb22733e3.png",
+      "type": "image/png",
+      "path": "/assets/uploads/30519337-b5cd-5126-a55c-4a890aec4a1d/03b14268-7675-5e38-aa38-585cb22733e3.png",
+      "sha": "ba9335ac02fdebcf0d1957fd2589f57d1252208d"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "9d57f2b3-a56b-5f06-8cba-7c6caab36d86",
+          "src": "/assets/uploads/30519337-b5cd-5126-a55c-4a890aec4a1d/9d57f2b3-a56b-5f06-8cba-7c6caab36d86.jpg",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. level2 crackme(base64)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "level 2 크랙미 디스어셈블 결과이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "param_2를 입력받아 encode_custom_base64로 인코딩 후에 4PpnRoanRomTze4SKPo+Zwd3IejS와 비교한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "값이 같으면 correct가 나온다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "undefined8 main(int param_1,undefined8 *param_2)\n\n{\n  int iVar1;\n  undefined8 uVar2;\n  char *__s1;\n  size_t __n;\n  \n  if (param_1 == 2) {\n    __s1 = (char *)encode_custom_base64(param_2[1]);\n    __n = strlen(\"4PpnRoanRomTze4SKPo+Zwd3IejS\");\n    iVar1 = strncmp(__s1,\"4PpnRoanRomTze4SKPo+Zwd3IejS\",__n);\n    if (iVar1 == 0) {\n      puts(\"Correct!!\");\n      uVar2 = 0;\n    }\n    else {\n      puts(\"Wrong...\");\n      uVar2 = 1;\n    }\n  }\n  else {\n    printf(\"%s flag_string_is_here\\n\",*param_2);\n    uVar2 = 0xffffffff;\n  }\n  return uVar2;\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. Base64 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Base64란?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Base64는 8비트 이진 데이터를 공통 ASCII 문자로 변환하는 인코딩 방식이다. 원리는 8비트 버퍼 3개(24비트)를 모아 6비트씩 4개로 나누어 표현하는 것이다. 이때 3바이트 단위로 떨어지지 않아 남는 공간은 등호(=)를 사용해 패딩한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "주된 사용 목적은 시스템 간 데이터 전송 시 깨짐을 방지하는 안전성 확보에 있지만 3바이트를 4바이트로 변환하므로 크기가 약 33% 증가한다는 단점이 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "표준 규격에서는 +와 /를 사용하지만, URL 등 특수문자 처리가 까다로운 환경에서는 이를 -와 _로 대체하거나 패딩(=)을 생략하는 변형 방식을 사용하기도 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "4d13672c-2a56-560d-b1aa-5ac0b2c7813f",
+          "src": "/assets/uploads/30519337-b5cd-5126-a55c-4a890aec4a1d/4d13672c-2a56-560d-b1aa-5ac0b2c7813f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "E1L을 RTFM으로 인코딩(https://namu.wiki/w/BASE64)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. encode_custom_base64 분석"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "void * encode_custom_base64(char *input_str)\n\n{\n  lVar6 = *(long *)(in_FS_OFFSET + 0x28);\n  i = 0;\n  //할당할 힙 메모리 계산 인코딩하면 33%증가한 것까지 \n  sVar9 = strlen(input_str);\n  iVar7 = (int)((sVar9 * 8 + 5) / 6);\n  iVar8 = iVar7 + 3;\n  if (iVar8 < 0) {\n    iVar8 = iVar7 + 6;\n  }\n  base64_len = (iVar8 >> 2) * 4;\n  //힙 할당\n  __s = malloc((long)(base64_len + 1));\n  memset(__s,0,(long)(base64_len + 1));\n  \n  while (0 < base64_len) {\n    if (base64_len < 3) {//base 64 패딩 ==\n      if (base64_len == 2) { //== 2 개 \n        bVar1 = input_str[i * 3];\n        bVar2 = input_str[(long)(i * 3) + 1];\n        bVar3 = input_str[(long)(i * 3) + 1];\n        *(char *)((long)(i << 2) + (long)__s) =\n             \"b9V12dPGtk7BKZUD/NJeX4vxjIcERzH+pQgT5iwYAlMyCWOFfnr3Soq06L8hamsu\"\n             [(int)(char)((byte)input_str[i * 3] >> 2)];\n        *(char *)((long)(i << 2) + 1 + (long)__s) =\n             \"b9V12dPGtk7BKZUD/NJeX4vxjIcERzH+pQgT5iwYAlMyCWOFfnr3Soq06L8hamsu\"\n             [(int)(char)(bVar2 >> 4 | (bVar1 & 3) << 4)];\n        *(char *)((long)(i << 2) + 2 + (long)__s) =\n             \"b9V12dPGtk7BKZUD/NJeX4vxjIcERzH+pQgT5iwYAlMyCWOFfnr3Soq06L8hamsu\"\n             [(int)(char)((bVar3 & 0xf) << 2)];\n        *(undefined1 *)((long)__s + (long)(i << 2) + 3) = 0x3d;\n        base64_len = 0;\n      }\n      else {//=1개 \n        bVar1 = input_str[i * 3];\n        *(char *)((long)(i << 2) + (long)__s) =\n             \"b9V12dPGtk7BKZUD/NJeX4vxjIcERzH+pQgT5iwYAlMyCWOFfnr3Soq06L8hamsu\"\n             [(int)(char)((byte)input_str[i * 3] >> 2)];\n        *(char *)((long)(i << 2) + 1 + (long)__s) =\n             \"b9V12dPGtk7BKZUD/NJeX4vxjIcERzH+pQgT5iwYAlMyCWOFfnr3Soq06L8hamsu\"\n             [(int)(char)((bVar1 & 3) << 4)];\n        *(undefined1 *)((long)__s + (long)(i << 2) + 2) = 0x3d;\n        *(undefined1 *)((long)__s + (long)(i << 2) + 3) = 0x3d;\n        base64_len = base64_len + -1;\n      }\n    }\n    else {\n      bVar1 = input_str[i * 3];\n      bVar2 = input_str[(long)(i * 3) + 1];\n      bVar3 = input_str[(long)(i * 3) + 1];\n      bVar4 = input_str[(long)(i * 3) + 2];\n      bVar5 = input_str[(long)(i * 3) + 2];\n      *(char *)((long)(i << 2) + (long)__s) =\n           \"b9V12dPGtk7BKZUD/NJeX4vxjIcERzH+pQgT5iwYAlMyCWOFfnr3Soq06L8hamsu\"\n           [(int)(char)((byte)input_str[i * 3] >> 2)];\n      *(char *)((long)(i << 2) + 1 + (long)__s) =\n           \"b9V12dPGtk7BKZUD/NJeX4vxjIcERzH+pQgT5iwYAlMyCWOFfnr3Soq06L8hamsu\"\n           [(int)(char)(bVar2 >> 4 | (bVar1 & 3) << 4)];\n      *(char *)((long)(i << 2) + 2 + (long)__s) =\n           \"b9V12dPGtk7BKZUD/NJeX4vxjIcERzH+pQgT5iwYAlMyCWOFfnr3Soq06L8hamsu\"\n           [(int)(char)(bVar4 >> 6 | (bVar3 & 0xf) << 2)];\n      *(char *)((long)(i << 2) + 3 + (long)__s) =\n           \"b9V12dPGtk7BKZUD/NJeX4vxjIcERzH+pQgT5iwYAlMyCWOFfnr3Soq06L8hamsu\"\n           [(int)(char)(bVar5 & 0x3f)];\n      base64_len = base64_len + -3;\n    }\n    i = i + 1;\n  }\n  if (lVar6 != *(long *)(in_FS_OFFSET + 0x28)) {\n                    /* WARNING: Subroutine does not return */\n    __stack_chk_fail();\n  }\n  return __s;\n}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "함수는 입력된 문자열(input_str)의 길이를 기반으로 인코딩 후의 길이를 계산하고, 힙(Heap) 메모리를 할당한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "가장 중요한 특징은 표준 Base64 테이블(A-Z...)이 아닌, 커스텀 테이블을 사용한다는 점이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "\"b9V12dPGtk7BKZUD/NJeX4vxjIcERzH+pQgT5iwYAlMyCWOFfnr3Soq06L8hamsu\""
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. PyGhidra를 사용한 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파이썬 스크립트로 아래와 같이 짜면"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "# -*- coding: utf-8 -*-\n#@author\n#@category _NEW_\n#@keybinding\n#@menupath\n#@toolbar\n#@runtime PyGhidra\n\n\n#TODO Add User Code Here\nimport string\nimport base64\n\n#기존 base64테이블\ndefault_base64_table=\"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"\n\n#커스텀 테이블에서 base64로 변경 후 디코드 \ndef custom_base64_decode(s, custom_table):\n    s = s.translate(str.maketrans(custom_table, default_base64_table))\n    return base64.b64decode(s)\n    \n#custom_table 가져오기\nbase64_custom_table_addr = toAddr(0x100e00) \nbase64_custom_table_array = getBytes(base64_custom_table_addr, 64)\nb64_table = ''.join([chr(b) for b in base64_custom_table_array])\n\n#비교할 문자열 \nenc = \"4PpnRoanRomTze4SKPo+Zwd3IejS\"\n\ncode = custom_base64_decode(enc, b64_table)\n\nprint(''.join([chr(b) for b in code]))"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기드라 스크립트로 돌리면 아래 문자열이 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "6b5d3978-a5f7-571b-89f8-b2cb145184fc",
+          "src": "/assets/uploads/30519337-b5cd-5126-a55c-4a890aec4a1d/6b5d3978-a5f7-571b-89f8-b2cb145184fc.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CyberChef로 교차 검증해보면 Th1s_1s_cu5t0m_6ase64가 나와 맞는 걸 볼 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "03b14268-7675-5e38-aa38-585cb22733e3",
+          "src": "/assets/uploads/30519337-b5cd-5126-a55c-4a890aec4a1d/03b14268-7675-5e38-aa38-585cb22733e3.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이 문제는 입력값을 커스텀 Base64로 인코딩하여 특정 문자열과 비교하는 로직을 가진다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "분석 결과, 표준 테이블이 아닌 하드코딩된 b9V1... 형태의 커스텀 테이블을 사용하는 것이 식별되었다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "기드라 스크립트를 사용해 문제를 풀었다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/49",
+    "originalId": "49",
+    "publishedAt": "2026-01-22T20:46:23+09:00",
+    "updatedAt": "2026-01-24T03:00:06+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

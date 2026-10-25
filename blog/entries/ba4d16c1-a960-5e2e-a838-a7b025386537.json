@@ -1,0 +1,4246 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "ba4d16c1-a960-5e2e-a838-a7b025386537",
+  "kind": "posts",
+  "title": "[Project] Recon제작(PI Reversing Harness)-1",
+  "slug": "tistory-149",
+  "description": "버그 바운티나 모의해킹을 진행하면 가장 먼저 하는 작업 중 하나가 Recon이다.서브도메인을 찾고, 살아 있는 웹 서비스를 확인하고, URL과 파라미터를 수집한다. 필요하면 디렉터리 탐색과 템플릿 스캔도 진행한다. 버그바운티나 모의해킹시에 Reecon과정을 AI 하네스를 통해서 자동화하면 좋을 거 같아서 하네스를 제작했다. 처음에는 Subfinder, HTTPX, Katana 같은 도구를 직접 실행하고 결과를 파일로 저장했다. 도구 하나를 사용하는 일은 어렵지 않았다. 문제는 도구가 늘어나면서 생겼다.Subfinder 결과를 HTTPX에 넘기고, HTTPX가 확인한 URL을 Katana에 전달한 뒤, 다시 Gobuster와 Parameth의 입력을 골라야 했다. 도구마다 출력 형식이 달라서 다음 단계에서..",
+  "category": "Project",
+  "date": "2026-08-28",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-08-28T16:18:36+09:00",
+  "updatedAt": "2026-08-28T16:46:42+09:00",
+  "sourceDigest": "62191e1d9939551aae5781299facc76dcefe656da7b05dc5e25b04c62595985e",
+  "assets": [
+    {
+      "id": "7080ffd4-f12e-535d-98f8-50ef3c269270",
+      "name": "tistory-149-7080ffd4-f12e-535d-98f8-50ef3c269270.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ba4d16c1-a960-5e2e-a838-a7b025386537/7080ffd4-f12e-535d-98f8-50ef3c269270.png",
+      "sha": "1de1e25882d0f08e07dcc4955c984ae82425bbaa"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "7080ffd4-f12e-535d-98f8-50ef3c269270",
+          "src": "/assets/uploads/ba4d16c1-a960-5e2e-a838-a7b025386537/7080ffd4-f12e-535d-98f8-50ef3c269270.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "버그 바운티나 모의해킹을 진행하면 가장 먼저 하는 작업 중 하나가 Recon이다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "서브도메인을 찾고, 살아 있는 웹 서비스를 확인하고, URL과 파라미터를 수집한다. 필요하면 디렉터리 탐색과 템플릿 스캔도 진행한다. 버그바운티나 모의해킹시에 Reecon과정을 AI 하네스를 통해서 자동화하면 좋을 거 같아서 하네스를 제작했다. "
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "처음에는 Subfinder, HTTPX, Katana 같은 도구를 직접 실행하고 결과를 파일로 저장했다. 도구 하나를 사용하는 일은 어렵지 않았다. 문제는 도구가 늘어나면서 생겼다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Subfinder 결과를 HTTPX에 넘기고, HTTPX가 확인한 URL을 Katana에 전달한 뒤, 다시 Gobuster와 Parameth의 입력을 골라야 했다. 도구마다 출력 형식이 달라서 다음 단계에서 쓸 수 있도록 정리하는 코드도 필요했다. 이전 실행에서 무엇이 성공했고 어디서 실패했는지 확인하려면 로그를 다시 찾아야 했다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "AI Agent를 사용하면 이 과정을 어느 정도 자동화할 수 있다. Agent에게 도구 사용법을 알려주고 “이 도메인을 리콘해 줘”라고 요청하면 필요한 명령을 조합한다. 하지만 리콘은 명령을 많이 실행하는 것만으로 끝나지 않는다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "허용한 범위를 벗어나지 않아야 하고, 발견한 링크나 리다이렉트 때문에 스코프가 저절로 넓어져서는 안 된다. 자동화 도구가 찾은 입력 지점이나 Nuclei 결과도 실제 취약점으로 바로 확정하면 안 된다. 다음 Agent가 이어서 분석할 수 있도록 결과의 출처와 실행 상태도 남겨야 한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "그래서 Pi를 기반으로 Recon Harness를 만들었다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "GitHub: ["
+          },
+          {
+            "type": "text",
+            "text": "https://github.com/yt010108/Recon](https://github.com/yt010108/Recon)",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/yt010108/Recon](https://github.com/yt010108/Recon)"
+                }
+              }
+            ]
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Recon의 목표는 리콘 도구를 한 이미지에 많이 설치하는 데 있지 않다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "내가 원한 리콘 작업 환경의 조건은 다음과 같다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- Pi가 사용자 입력을 받아 전체 리콘 흐름을 관리한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 인터넷 대상과 대회 내부망 대상을 다른 정책으로 처리한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 허용 도메인 또는 IPv4/CIDR과 포트 범위를 코드에서 강제한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 실제 도구는 명령마다 새 Docker 컨테이너에서 실행한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 도구의 원본 출력과 정규화한 결과를 같은 run에 저장한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 다음 Agent가 읽을 수 있는 attack surface를 만든다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 자동으로 찾은 후보는 취약점이 아니라 수동 검증 대상으로 남긴다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- Nuclei는 기본 Workflow에서 제외하고 필요할 때만 실행한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "이번 글에서는 Recon을 만들게 된 이유와 Pi, Python Harness, Docker Worker가 어떻게 연결되는지 정리한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "---"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "## 1. 왜 단순한 Recon 스크립트가 아니라 Harness인가"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "처음에는 여러 리콘 명령을 순서대로 실행하는 Shell Script만 있어도 충분하다고 생각했다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Subfinder"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "HTTPX"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Katana"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Gobuster / Parameth"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "정해진 도구를 순서대로 실행하는 것만 보면 이 방식이 가장 단순하다. 하지만 실제 작업에서는 각 단계가 항상 성공하지 않는다. HTTPX 결과가 비어 있을 수도 있고, Katana가 일부 대상에서 실패할 수도 있다. 중간에 실행을 멈췄다가 다시 시작해야 하는 경우도 있다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "단순 Script는 명령의 순서는 잘 표현하지만 현재 상태를 관리하기 어렵다. 어느 도구가 끝났는지, 어떤 입력을 사용했는지, 결과 파일이 어디에 있는지, 실패한 도구만 다시 실행해도 되는지 별도 코드가 필요하다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Agent에 Skill만 제공하는 방법도 생각했다. Skill에 “Subfinder를 실행한 다음 HTTPX를 실행하라”고 적으면 Agent가 흐름을 이해할 수 있다. 하지만 Skill은 Agent에게 작업 방법을 알려주는 가이드에 가깝다. 실제 스코프를 검증하거나 단계 상태를 원자적으로 저장하는 실행 계층은 아니다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Recon은 네트워크 요청을 보내기 때문에 Agent의 판단에만 스코프를 맡기고 싶지 않았다. 프롬프트에 “허용 범위를 벗어나지 마라”고 적는 것과 코드가 요청 직전에 대상 IP와 포트를 검사하는 것은 다르다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "그래서 Recon의 범위를 Harness로 잡았다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "여기서 Harness는 다음 요소를 하나의 실행 흐름으로 묶는 구조를 뜻한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Pi Prompt / Skill"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "+"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Pi Extension"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "+"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Python CLI와 Scope Policy"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "+"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Docker Worker"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "+"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Run 상태와 결과 저장"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "+"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Attack Surface와 Findings Queue"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Pi는 사용자의 의도를 해석하고, Python Harness는 실행 가능한 범위와 상태를 관리한다. Docker Worker는 실제 리콘 명령을 실행한다. 결과는 사람이 읽는 보고서와 후속 Agent가 읽는 JSON으로 나눈다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "---"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "## 2. 왜 Pi를 선택했는가"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Recon에서 바꾸고 싶었던 것은 리콘 모델보다 실행 흐름이었다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Codex나 Claude Code는 파일 작업, 명령 실행, 브라우저 사용 등 범용 코딩에 필요한 기능을 이미 갖춘 큰 Harness다. 일반적인 개발 작업에는 편하지만 Recon에서 필요한 Workflow를 직접 설계하려면 기존 동작과 프로젝트 정책이 섞일 수 있다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Recon에서 필요한 흐름은 비교적 명확했다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "허용 범위 입력"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Run 생성"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Collect"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Probe"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Crawl"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Discovery"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Report / Attack Surface"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "여기에 인터넷 도메인과 내부 IPv4 대회 환경을 나누고, Nuclei는 별도 실행으로 빼고, 각 결과를 다음 단계 입력으로 연결하고 싶었다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "[Pi]("
+          },
+          {
+            "type": "text",
+            "text": "https://pi.dev/)는",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://pi.dev/)는"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " minimal agent harness를 지향한다. 기본 기능을 작게 유지하고 프로젝트에 필요한 도구는 Extension으로 등록할 수 있다. Recon에서는 `.pi/extensions/recon.ts`가 Pi와 Python CLI 사이를 연결한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Pi에 등록한 주요 도구는 다음과 같다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "| Pi Tool | 역할 |"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "|---|---|"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "| `recon_create` | 네트워크 요청 없이 Internet run 생성 |"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "| `recon_competition_create` | 네트워크 요청 없이 Competition run 생성 |"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "| `recon_start` | Internet 전체 리콘 실행 |"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "| `recon_competition_start` | Competition 전체 리콘 실행 |"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "| `recon_run` | 기존 run에서 단계 또는 도구 하나 실행 |"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "| `recon_report` | 저장된 결과로 보고서 다시 생성 |"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "| `recon_status` | 기존 run 상태 확인 |"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Pi에서 `/recon`을 실행하면 허용 도메인 하나를 입력받아 `recon_start`를 호출한다. `/recon-competition`은 허용된 IPv4 주소나 CIDR과 선택적인 포트 목록을 받아 `recon_competition_start`를 호출한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "결국 Pi를 선택한 이유는 단순히 가볍기 때문만은 아니다. 리콘에 필요한 입력 방식과 도구 호출, 결과 요약을 작은 Extension 안에서 직접 구성할 수 있었기 때문이다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "---"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "## 3. Recon의 전체 구조"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "현재 Recon의 전체 구조를 펼치면 아래와 같다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "사용자"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Parent Pi"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "/recon 또는 /recon-competition"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": ".pi/extensions/recon.ts"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Python recon-harness CLI"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "ScopePolicy / HarnessRunner / RunStore"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "명령별 Docker Worker"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "raw 결과와 parsed 결과 저장"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "report.md"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ├── parsed/attack-surface.json"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " └── parsed/findings.json"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Pi는 어떤 모드와 도구를 실행할지 결정한다. Python Harness는 해당 실행이 허용된 스코프 안에 있는지 확인하고 run의 진행 상태를 저장한다. 리콘 바이너리는 Docker Worker에서 실행한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "이 구조에서 분리하려 한 것은 세 가지다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Agent의 판단"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "실행 정책과 상태"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "실제 네트워크 도구"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Agent가 자연어를 해석한다고 해서 직접 모든 Docker 명령을 조합하지 않는다. 중간의 Python Harness가 고정된 도구와 인자, 스코프를 관리한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "---"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "## 4. Internet 모드와 Competition 모드"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Recon은 `internet`과 `competition` 두 모드를 지원한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "처음에는 도메인 기반 버그 바운티 리콘만 생각했다. 하지만 보안 대회나 내부망 실습에서는 인터넷 OSINT보다 주어진 IPv4/CIDR 안에서 웹 서비스를 찾는 과정이 먼저 필요했다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "두 환경은 시작점이 다르다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "### Internet 모드"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Internet 모드는 하나의 허용 도메인을 기준으로 한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "example.com"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "서브도메인과 과거 URL 수집"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "살아 있는 웹 서비스 확인"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "크롤링과 소스 분석"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "디렉터리와 파라미터 탐색"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "### Competition 모드"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Competition 모드는 대회에서 명시적으로 허용한 IPv4 주소 또는 CIDR과 포트를 기준으로 한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "10.10.10.0/24 + 허용 포트"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Nmap으로 열린 서비스 확인"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "HTTPX로 웹 서비스 확인"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "확인된 origin만 크롤링"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "디렉터리와 파라미터 탐색"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Competition 모드에서는 Subfinder, Assetfinder, Amass, Waybackurls를 실행하지 않는다. 내부 대회망에서 인터넷 OSINT를 수행할 이유가 없고, 입력한 주소 범위 밖으로 대상을 넓히면 안 되기 때문이다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "두 모드를 나눴지만 이후 결과 형식은 최대한 같게 유지했다. 어느 모드로 시작하더라도 마지막에는 `report.md`, `attack-surface.json`, `findings.json`을 만든다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "---"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "## 5. 네 단계로 고정한 Workflow"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "두 모드 모두 전체 실행을 네 단계로 나눴다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "collect"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "probe"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "crawl"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "discovery"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Internet 모드에서 사용하는 도구는 다음과 같다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "| 단계 | 도구 |"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "|---|---|"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "| `collect` | Dorkgen, Subfinder, Assetfinder, Amass passive, Waybackurls |"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "| `probe` | HTTPX, `robots.txt` |"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "| `crawl` | Katana, HTML/CSS/JS 주석·endpoint·manifest·sourcemap 분석 |"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "| `discovery` | Gobuster dir, Parameth |"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Competition 모드는 collect 단계만 다르다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "| 단계 | 도구 |"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "|---|---|"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "| `collect` | Nmap TCP connect와 light service/version detection |"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "| `probe` | HTTPX, `robots.txt` |"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "| `crawl` | Katana, HTML/CSS/JS 주석·endpoint·manifest·sourcemap 분석 |"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "| `discovery` | 각 활성 웹 origin의 Gobuster dir, Parameth |"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "단계를 고정한 이유는 결과를 이어 쓰기 위해서다. collect가 대상을 모으면 probe가 실제 웹 서비스를 확인한다. crawl은 확인된 URL을 기준으로 동작하고 discovery는 앞에서 찾은 origin과 endpoint를 입력으로 사용한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "전체 실행만 가능한 것은 아니다. 기존 run에서 단계 하나 또는 도구 하나만 실행할 수도 있다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```powershell"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "recon-harness stage --run RUN_ID crawl"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "recon-harness tool --run RUN_ID httpx"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "recon-harness tool --run RUN_ID parameth"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "완료한 단계는 전체 Workflow를 다시 실행해도 건너뛴다. 실패한 단계는 기존 감사 기록을 남긴 상태로 다시 시도한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "---"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "## 6. ScopePolicy로 허용 범위를 강제한다"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Recon에서 가장 중요하게 본 부분은 스코프다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Internet 모드에서는 허용한 루트 도메인과 그 서브도메인만 처리한다. Competition 모드에서는 입력한 IPv4/CIDR과 포트만 처리한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Competition scope는 한 run에서 최대 4096개 IPv4 주소로 제한했다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```python"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "MAX_COMPETITION_ADDRESSES = 4096"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "너무 큰 CIDR을 실수로 넣어 대규모 스캔이 시작되는 일을 막기 위한 제한이다. 현재 Competition 모드는 IPv4만 지원한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "포트도 입력값을 그대로 사용한다. 별도 포트를 주지 않았을 때만 하네스에 정의된 공통 웹 포트를 사용한다. Nmap이 다른 포트를 발견하거나 페이지에서 새로운 주소를 찾았다고 해도 허용 범위가 늘어나지 않는다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "URL 검사는 도구를 시작할 때 한 번만 하지 않는다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "대상 입력"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "ScopePolicy 검증"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "도구 실행 대상 생성"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "HTTP 요청 직전 다시 검증"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "허용하는 scheme은 `http`와 `https`뿐이다. URL 안에 사용자 이름이나 비밀번호가 들어 있는 형태도 거부한다. Competition 모드에서는 최종 hostname이 허용 IPv4 범위 안에 있는지, effective port가 허용 목록에 있는지 다시 확인한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Katana도 HTTPX가 실제 웹으로 확인한 origin만 scope regex에 넣는다. 발견한 링크, 리다이렉트, 대상 페이지의 콘텐츠는 정보로 저장하지만 새로운 권한으로 취급하지 않는다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "---"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "## 7. 명령마다 새 Docker Worker를 실행한다"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "실제 리콘 바이너리는 `DockerBackend`가 실행한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "하나의 장시간 실행 컨테이너에 들어가서 모든 명령을 수행하는 방식이 아니라 도구 명령마다 새로운 컨테이너를 만든다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Subfinder 명령"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "새 Docker 컨테이너"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "결과 저장 후 --rm"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "HTTPX 명령"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "또 다른 Docker 컨테이너"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "결과 저장 후 --rm"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "실제 실행 형태는 `docker run --rm`이며 각 명령에는 시간 제한이 붙는다. Docker 내부의 `timeout`이 먼저 프로세스를 종료하고, 호스트 측 timeout까지 넘어가면 해당 컨테이너 이름만 골라 정리한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "호스트의 run 디렉터리 전체를 Worker에 넘기지도 않는다. 도구가 읽어야 하는 파일만 `.worker-inputs`에 복사하고 이 디렉터리만 컨테이너에 마운트한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Docker 이미지 이름, 네트워크 이름, run ID, 환경 변수 이름, 컨테이너 안의 입력 경로도 정규식과 경로 검사 후 사용한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "기본 Worker 이미지에는 다음 도구가 들어 있다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- Subfinder"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- Assetfinder"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- Amass"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- Waybackurls"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- HTTPX"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- Nmap"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- Katana"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- Gobuster"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- Parameth"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- Chromium"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "도구를 로컬에 하나씩 설치하지 않아도 되고 같은 이미지로 다시 실행할 수 있다. 도구별 결과는 컨테이너가 사라진 뒤에도 run 폴더에 남는다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "---"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "## 8. Competition 모드의 서비스 Inventory"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Competition 모드의 collect 단계에서는 `network_discovery`가 Nmap을 실행한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Nmap은 TCP connect scan과 `-sV --version-light`를 사용한다. 허용된 포트에서 열린 서비스를 찾고 다음 정보를 기록한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- host와 port"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- protocol"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- service name"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- product와 version"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- extra info"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- CPE"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- Nmap detection method와 confidence"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "결과는 먼저 `network-services.json`에 저장한다. 같은 내용으로 `service-inventory.json`도 만들고 이후 HTTPX 결과를 이 Inventory에 합친다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Nmap 결과"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ├── SSH 22"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ├── HTTP 80"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " └── Unknown 8080"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "HTTPX 확인"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "service-inventory.json 보강"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "HTTPX가 웹으로 확인한 서비스에는 다음 정보가 추가된다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- web server"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- title"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- HTTP status"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- detected technologies"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- web URL"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "비웹 서비스도 Inventory에서 지우지 않는다. Recon의 후속 단계는 웹 서비스 중심이지만 대회 환경에서는 같은 호스트의 비웹 서비스 정보도 다음 분석에 필요할 수 있기 때문이다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "---"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "## 9. URL 수집에서 소스 분석까지"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "HTTPX가 활성 웹 서비스를 확인하면 Katana가 같은 origin 안에서 URL을 수집한다. 하지만 크롤러 결과만으로는 JavaScript 안에 들어 있는 요청이나 form 입력을 충분히 확인하기 어렵다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "그래서 `source_comments` 단계에서 HTML, CSS, JavaScript, JSON, manifest, sourcemap을 별도로 분석한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "현재 수집하는 항목은 다음과 같다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- HTML 주석"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- JavaScript와 CSS 주석"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- HTML form action과 method"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- form field"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 정적으로 확인 가능한 `fetch`와 Axios 요청"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- query parameter와 body parameter"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- content type"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- manifest route와 asset"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- sourcemap의 source와 `sourcesContent`"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 발견한 소스 URL과 line, context"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "예를 들어 JavaScript에서 정적으로 해석 가능한 API 호출을 찾으면 endpoint만 저장하지 않는다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```json"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "{"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " \"source\": \"http://10.10.10.10/app.js\","
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " \"endpoint\": \"http://10.10.10.10/api/login\","
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " \"method\": \"POST\","
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " \"body_parameters\": [\"username\", \"password\"],"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " \"line\": 42,"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " \"context\": \"fetch(...)\""
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "}"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "실제 형식은 발견 종류에 따라 달라지지만 중요한 점은 endpoint와 발견 위치를 함께 남기는 것이다. 나중에 보고서에서 후보 URL만 보는 것이 아니라 어디에서 이 요청을 찾았는지 다시 확인할 수 있다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "처음 받은 HTML이나 JavaScript에서 추가 asset을 찾으면 같은 스코프인지 검사한 뒤 한 번 더 가져온다. sourcemap에 `sourcesContent`가 포함돼 있으면 그 안에서도 endpoint를 찾는다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "분석 결과는 다음 파일로 나뉜다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "parsed/source-comments.json"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "parsed/source-endpoints.json"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "parsed/source-assets.json"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "---"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "## 10. Discovery 대상도 무작정 늘리지 않는다"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Gobuster와 Parameth는 요청 수가 늘어나기 쉬운 도구다. 활성 웹 서비스가 많거나 Katana URL이 많이 쌓이면 모든 조합에 도구를 실행하는 것은 비효율적이다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Competition 모드의 Gobuster는 HTTPX가 확인한 각 origin을 대상으로 실행한다. 결과는 단순 문자열이 아니라 URL, status, size, evidence 위치를 가진 JSON으로 정리한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Parameth는 origin만 검사하지 않는다. 우선순위를 다음처럼 정했다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "소스에서 직접 찾은 endpoint"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Katana가 찾은 URL"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "활성 web origin"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "정적 파일로 보이는 URL은 제외하고 한 run에서 최대 60개 endpoint만 Parameth 대상으로 사용한다. Parameth가 찾은 파라미터 이름은 `parameth.json`에 저장한 뒤 attack surface의 query parameter에 합친다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "이 제한은 탐색을 적게 하기 위한 것이 아니라 근거가 있는 endpoint부터 조사하려는 선택이다. source code에서 직접 찾은 API와 크롤러가 수집한 URL을 같은 우선순위로 처리하지 않는다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "---"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "## 11. Nuclei를 기본 Workflow에서 제외한 이유"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Nuclei는 Recon 전체 실행에 포함하지 않았다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "collect → probe → crawl → discovery"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Nuclei: 사용자 요청이 있을 때 별도 실행"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Nuclei는 많은 템플릿을 빠르게 실행할 수 있지만 대상과 템플릿에 따라 요청량이 커질 수 있다. 결과도 자동으로 취약점 확정값으로 사용하기보다 다시 확인해야 한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "그래서 Nuclei는 별도 Docker 이미지로 분리했다. 현재 저장소에서는 Nuclei `v3.11.1`, 공식 템플릿 `v10.4.7`과 템플릿 commit을 고정한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "사용자가 실행을 요청하면 기존 run에 결과를 추가한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```powershell"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "recon-harness tool --run RUN_ID nuclei"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "결과는 같은 `report.md`와 `parsed/attack-surface.json`에 합쳐지지만 전체 리콘을 시작했다는 이유만으로 자동 실행되지는 않는다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "---"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "## 12. run별 작업 공간과 progress.md"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "리콘을 시작하면 `runs/<RUN_ID>/` 아래에 작업 공간을 만든다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "runs/<RUN_ID>/"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "├── scope.toml"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "├── progress.md"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "├── report.md"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "├── raw/"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "├── parsed/"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "│ ├── attack-surface.json"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "│ └── findings.json"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "└── screenshots/"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "각 파일과 폴더의 역할은 다음과 같다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- `scope.toml`: 이 run에서 허용한 대상과 포트"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- `progress.md`: 전체 상태와 단계별 실행 결과"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- `raw/`: 각 도구의 원본 stdout, stderr, XML, JSONL"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- `parsed/`: 다음 단계와 Agent가 사용하기 쉽게 정규화한 결과"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- `report.md`: 사람이 읽는 최종 요약"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- `screenshots/`: 이후 화면 증거를 저장할 위치"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "`progress.md`는 사람이 읽는 Markdown이면서 내부에는 JSON 상태를 HTML 주석으로 함께 저장한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "<!-- recon-state"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "{...현재 run 상태...}"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "-->"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "# Recon progress"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "| Stage | Status | Tools |"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "별도 데이터베이스 없이 이 파일 하나로 run을 다시 열고 다음 단계를 판단할 수 있게 했다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "상태와 JSON 결과를 쓸 때는 임시 파일을 만든 뒤 `os.replace`로 교체한다. 실행이 중간에 끊겨도 `progress.md`나 parsed JSON이 절반만 기록된 상태로 남는 일을 줄이기 위해서다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "---"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "## 13. attack-surface.json을 만드는 과정"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "도구 원본 결과를 저장하는 것만으로는 다음 Agent가 사용하기 어렵다. HTTPX, Katana, source analysis, Parameth, Nuclei의 출력 형식이 모두 다르기 때문이다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Recon은 이 결과를 `parsed/attack-surface.json` 하나로 합친다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Network Services"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "+"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "HTTPX Web Services"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "+"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Katana URL"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "+"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Source Endpoint"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "+"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Parameth Parameter"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "+"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Nuclei Candidate"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "attack-surface.json"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "endpoint별로 정리하는 주요 정보는 다음과 같다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- URL"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- HTTP method"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- query parameter"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- body parameter"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- form field"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- content type"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- role hint"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- sink hint"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 발견 evidence와 source provenance"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- confidence와 confidence reason"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- validation status"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "role과 sink 분류에서는 부분 문자열만 단순 비교하지 않는다. 경로와 파라미터를 토큰으로 나눈 뒤 정확히 비교한다. 예를 들어 `id`는 `userId`의 camel-case 토큰과는 일치하지만 `/valid` 안의 문자열은 입력 지점으로 잘못 분류하지 않는다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "confidence는 취약점일 확률이 아니다. 조사 우선순위를 정하기 위한 근거 점수다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "기본 scoped endpoint에서 시작해 다음 근거가 있으면 점수를 더한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- discovery evidence가 있는가"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- source provenance가 있는가"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- HTTP method를 확인했는가"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- POST, PUT, PATCH, DELETE처럼 상태를 바꾸는 method인가"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 이름이 있는 입력값이 있는가"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- sink token이 있는가"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "최대값은 0.95로 제한한다. 자동 수집만으로 1.0, 즉 확정 상태를 만들지 않으려는 의미다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "---"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "## 14. findings.json은 취약점 목록이 아니다"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "`parsed/findings.json`은 자동으로 확정한 취약점 목록이 아니다. 수동 검증이 필요한 후보 Queue다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "다음 조건 중 하나에 해당하는 endpoint를 Queue에 넣는다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- query, body, form 입력이 있다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- POST, PUT, PATCH, DELETE method를 사용한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- sink hint가 있다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "각 후보에는 URL을 기준으로 만든 안정적인 `finding_id`가 붙는다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "최초 상태는 항상 `unverified`다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "unverified"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "testing"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ├── confirmed"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " └── false_positive"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "사람이나 후속 Agent가 검증하면서 상태와 notes, request artifact, response artifact를 추가할 수 있다. 보고서를 다시 생성해도 기존 `finding_id`가 같으면 사용자가 기록한 상태와 메모를 보존한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "이 구조를 넣은 이유는 자동화 결과와 취약점 판단을 분리하기 위해서다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Katana가 `/admin`을 찾았거나 Parameth가 `redirect` 파라미터를 찾았다는 사실만으로 취약점은 아니다. 실제 요청과 응답, 인증 조건, 영향도를 확인해야 한다. Recon은 그 검증을 시작할 위치와 근거를 정리한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "---"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "## 15. 설치와 실행"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "먼저 저장소를 내려받고 Docker Worker 이미지를 빌드한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```powershell"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "git clone "
+          },
+          {
+            "type": "text",
+            "text": "https://github.com/yt010108/Recon.git",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/yt010108/Recon.git"
+                }
+              }
+            ]
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "cd Recon"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "docker compose -f .\\docker\\compose.yaml build"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "pi"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Pi에서 인터넷 도메인을 대상으로 실행하려면 `/recon`을 사용한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "/recon example.com"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Competition 모드는 대회에서 허용한 IPv4/CIDR과 포트만 입력한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "/recon-competition 10.10.10.0/24 --ports 80,443,8080,8443"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Python CLI를 직접 사용할 수도 있다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```powershell"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "# Internet 전체 실행"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "recon-harness start example.com"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "# Competition 전체 실행"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "recon-harness competition-start 10.10.10.0/24 --ports 80,443,8080"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "# 네트워크 요청 없이 run만 생성"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "recon-harness competition-create 10.10.10.0/24 --ports 80,443,8080"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "# 기존 run에서 개별 단계나 도구 실행"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "recon-harness stage --run RUN_ID crawl"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "recon-harness tool --run RUN_ID nuclei"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "# 저장된 결과로 보고서 다시 생성"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "recon-harness report --run RUN_ID"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "실행 전에는 반드시 대상 소유자나 대회 운영자가 허용한 범위를 확인해야 한다. 발견 결과에 다른 IP, 도메인, 포트가 포함돼 있어도 새로운 허가로 해석하면 안 된다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "---"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "## 16. 현재 전체 Workflow"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "지금까지 설명한 요소를 하나로 연결하면 아래와 같다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "사용자가 허용 범위 입력"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Pi가 실행 모드 선택"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Python Harness가 scope.toml과 run 생성"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "collect에서 대상 또는 서비스 수집"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "probe에서 활성 웹 서비스 확인"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "crawl에서 URL과 소스 endpoint 수집"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "discovery에서 디렉터리와 파라미터 탐색"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "원본 결과를 raw/에 저장"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "정규화 결과를 parsed/에 저장"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "report.md와 attack-surface.json 생성"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": " ↓"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "findings.json 후보를 수동 검증"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "현재 Recon을 구성하는 핵심 요소는 다음 다섯 가지다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```text"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Pi Orchestration"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "+"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Scope Policy"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "+"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Docker Worker"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "+"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Run State"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "+"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Attack Surface / Findings Queue"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "```"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "---"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "## 17. 만들고 나서 보인 한계"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Recon은 현재 리콘 결과를 모으고 정리하는 Harness다. 자동으로 공격을 수행하거나 취약점을 확정하는 Agent는 아니다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "스코프는 Python 코드에서 검사하지만 Pi의 `bash`, Docker 직접 실행, 개별 리콘 바이너리 사용 자체를 차단하지는 않는다. 공식 Pi Tool과 CLI 흐름을 사용할 때 정책과 기록이 적용된다. 완전히 제한된 실행 환경이 필요하다면 Pi가 사용할 수 있는 도구와 권한을 바깥에서 더 제한해야 한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Competition 모드는 현재 IPv4만 지원한다. IPv6 대상이나 hostname 기반 내부망 스코프는 별도 정책이 필요하다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "source analysis도 정적 해석이 가능한 form, fetch, Axios 요청을 중심으로 한다. 런타임에서 조합되는 URL, 난독화된 JavaScript, 브라우저 상태에 따라 달라지는 API 호출까지 모두 복원하지는 못한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "confidence 역시 휴리스틱 우선순위다. source provenance와 입력값, 상태 변경 method가 있으면 검토 가치가 높다고 판단하지만 실제 취약성과 직접 연결되는 점수는 아니다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "현재 구조에는 리콘 결과를 받은 후속 Agent가 `findings.json`을 하나씩 검증하고, 요청·응답 artifact와 영향도를 기록하는 전체 검증 루프까지는 들어 있지 않다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "다음 단계에서는 이 부분을 확장하려 한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- attack surface를 읽는 후속 검증 Agent"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- `testing` 상태에서 실행한 요청과 응답 자동 기록"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 동일 endpoint 중복 검증 방지"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 인증 전후의 attack surface 비교"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 수동 검증 결과를 다음 리콘 우선순위에 반영하는 feedback loop"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "- 웹 화면에서 run 상태와 findings를 확인하는 Dashboard"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Recon을 만들면서 느낀 점은 리콘 자동화의 핵심이 도구를 많이 실행하는 데 있지 않다는 것이다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "어떤 범위에서 실행했는지, 어떤 도구가 어떤 결과를 만들었는지, 발견한 후보의 근거가 어디에 있는지, 사람이 무엇을 다시 확인해야 하는지를 남기는 편이 더 중요했다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Pi는 리콘 흐름의 시작점을 단순하게 만들고, Python Harness는 스코프와 상태를 관리한다. Docker Worker는 실제 도구를 명령별로 실행하고, 마지막 결과는 사람과 Agent가 다시 읽을 수 있는 형태로 정리한다."
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "Recon은 이 과정을 반복 가능하게 만들기 위한 Pi 기반 웹 리콘 Harness다."
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/149",
+    "originalId": "149",
+    "publishedAt": "2026-08-28T16:18:36+09:00",
+    "updatedAt": "2026-08-28T16:46:42+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

@@ -1,0 +1,324 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "313b467d-098d-5c05-92f1-762cbfb83c24",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-1문제",
+  "slug": "tistory-65",
+  "description": "1. 문제 정보문제 번호 : old -1문제 점수 : 20점2. 문제 분석문제에 들어가면 level : 1이 있고 소스보기가 있다.. 소스는 아래와 같다.\"); }?>---------------------=4) $_COOKIE['user_lv']=1; if($_COOKIE['user_lv']>3) solve(1); echo \"level : {$_COOKIE['user_lv']}\";?>view-source cookie에 user_lv를 저장해서 level이 숫자인지, 4보다 크거나 같은지 3보다 큰지 검사하는 로직이다. 3. 풀이 개발자 도구에서 cookie값을 3.5로 설정하고 새로고침하면 풀린다.4. 요약 user_lv 쿠키 값이 4 이상이면 1로 초기화되고 3보다 크면 문제가 해결되는 서버 측 ..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-27",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-27T15:14:40+09:00",
+  "updatedAt": "2026-01-27T15:14:40+09:00",
+  "sourceDigest": "dcfdfd6ee08bcd392e09a406ef54dbd4a78302d6c660817030373ecc2b024ede",
+  "assets": [
+    {
+      "id": "6b9c984e-fa6f-57f2-bf05-272994eb345e",
+      "name": "tistory-65-6b9c984e-fa6f-57f2-bf05-272994eb345e.png",
+      "type": "image/png",
+      "path": "/assets/uploads/313b467d-098d-5c05-92f1-762cbfb83c24/6b9c984e-fa6f-57f2-bf05-272994eb345e.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "77392fc2-4af2-5915-ae31-98363241a3ef",
+      "name": "tistory-65-77392fc2-4af2-5915-ae31-98363241a3ef.png",
+      "type": "image/png",
+      "path": "/assets/uploads/313b467d-098d-5c05-92f1-762cbfb83c24/77392fc2-4af2-5915-ae31-98363241a3ef.png",
+      "sha": "c5e8ca020456cdb7af0b135479a0de49fce1d76a"
+    },
+    {
+      "id": "e9537a20-174c-523c-98d2-7720545dc70f",
+      "name": "tistory-65-e9537a20-174c-523c-98d2-7720545dc70f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/313b467d-098d-5c05-92f1-762cbfb83c24/e9537a20-174c-523c-98d2-7720545dc70f.png",
+      "sha": "5072cf503d37dcdedfa0b3c26c1c5f87ac667d80"
+    },
+    {
+      "id": "dee2915a-a59a-587a-8769-62cc64b4a4ad",
+      "name": "tistory-65-dee2915a-a59a-587a-8769-62cc64b4a4ad.png",
+      "type": "image/png",
+      "path": "/assets/uploads/313b467d-098d-5c05-92f1-762cbfb83c24/dee2915a-a59a-587a-8769-62cc64b4a4ad.png",
+      "sha": "0e5e5a16538004292335e9c5f902a44d7c87eda1"
+    },
+    {
+      "id": "5398f0dc-1343-51b9-9dc2-575088fc47aa",
+      "name": "tistory-65-5398f0dc-1343-51b9-9dc2-575088fc47aa.png",
+      "type": "image/png",
+      "path": "/assets/uploads/313b467d-098d-5c05-92f1-762cbfb83c24/5398f0dc-1343-51b9-9dc2-575088fc47aa.png",
+      "sha": "61192dc07404b4b77093cc0429edbe4d018f251c"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "6b9c984e-fa6f-57f2-bf05-272994eb345e",
+          "src": "/assets/uploads/313b467d-098d-5c05-92f1-762cbfb83c24/6b9c984e-fa6f-57f2-bf05-272994eb345e.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 20점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제에 들어가면 level : 1이 있고 소스보기가 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "77392fc2-4af2-5915-ae31-98363241a3ef",
+          "src": "/assets/uploads/313b467d-098d-5c05-92f1-762cbfb83c24/77392fc2-4af2-5915-ae31-98363241a3ef.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "소스는 아래와 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n  include \"../../config.php\";\n  if($_GET['view-source'] == 1){ view_source(); }\n  if(!$_COOKIE['user_lv']){\n    SetCookie(\"user_lv\",\"1\",time()+86400*30,\"/challenge/web-01/\");\n    echo(\"<meta http-equiv=refresh content=0>\");\n  }\n?>\n<html>\n<head>\n<title>Challenge 1</title>\n</head>\n<body bgcolor=black>\n<center>\n<br><br><br><br><br>\n<font color=white>\n---------------------<br>\n<?php\n  if(!is_numeric($_COOKIE['user_lv'])) $_COOKIE['user_lv']=1;\n  if($_COOKIE['user_lv']>=4) $_COOKIE['user_lv']=1;\n  if($_COOKIE['user_lv']>3) solve(1);\n  echo \"<br>level : {$_COOKIE['user_lv']}\";\n?>\n<br>\n<a href=./?view-source=1>view-source</a>\n</body>\n</html>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "cookie에 user_lv를 저장해서 level이 숫자인지, 4보다 크거나 같은지 3보다 큰지 검사하는 로직이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개발자 도구에서 cookie값을 3.5로 설정하고 새로고침하면 풀린다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "e9537a20-174c-523c-98d2-7720545dc70f",
+          "src": "/assets/uploads/313b467d-098d-5c05-92f1-762cbfb83c24/e9537a20-174c-523c-98d2-7720545dc70f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "dee2915a-a59a-587a-8769-62cc64b4a4ad",
+          "src": "/assets/uploads/313b467d-098d-5c05-92f1-762cbfb83c24/dee2915a-a59a-587a-8769-62cc64b4a4ad.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "5398f0dc-1343-51b9-9dc2-575088fc47aa",
+          "src": "/assets/uploads/313b467d-098d-5c05-92f1-762cbfb83c24/5398f0dc-1343-51b9-9dc2-575088fc47aa.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "user_lv 쿠키 값이 4 이상이면 1로 초기화되고 3보다 크면 문제가 해결되는 서버 측 로직을 분석했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "3보다 크면서 4보다 작은 정수는 존재하지 않으므로 필터링을 우회하기 위해 실수 값을 사용해야 함을 파악했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "개발자 도구를 이용해 쿠키 값을 3과 4 사이의 값인 3.5로 변조하여 조건을 만족시키고 문제를 해결했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/65",
+    "originalId": "65",
+    "publishedAt": "2026-01-27T15:14:40+09:00",
+    "updatedAt": "2026-01-27T15:14:40+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

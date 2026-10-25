@@ -1,0 +1,364 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "1c4aad1c-f844-5de1-81d4-149e5ac5eae8",
+  "kind": "posts",
+  "title": "[SK Rookies] Python 정규식",
+  "slug": "tistory-115",
+  "description": "오늘 배운 내용7월 27일에는 정규 표현식으로 문자열에서 원하는 패턴을 찾고, 추출하고, 바꾸는 방법을 배웠다. 전화번호나 이메일처럼 형태가 정해진 문자열을 처리할 때 특히 유용하다. 파이썬에서는 표준 라이브러리의 re 모듈을 사용한다.정규 표현식이 필요한 이유문자열 메서드만으로도 단순한 단어를 찾을 수 있지만, 숫자 개수나 반복 횟수처럼 규칙 자체를 표현하기는 어렵다. 정규 표현식은 여러 문자열이 공유하는 형태를 하나의 패턴으로 적는다.예를 들어 전화번호가 지역번호 2~3자리-중간 번호 3~4자리-마지막 번호 4자리라면 다음처럼 표현한다.import retext = \"개인 연락처는 010-1234-5678이고, 사무실은 02-987-6543입니다.\"phone_pattern = r\"\\d{2,3}-\\d{3..",
+  "category": "SK Rookies / 수업 정리",
+  "date": "2026-07-28",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-07-28T13:56:34+09:00",
+  "updatedAt": "2026-08-12T10:01:29+09:00",
+  "sourceDigest": "004a19a43677e5cb17481272ccb3d6284f2de7e46e688fe1a8f81cde7f1e15ce",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[원본에서 불러올 수 없는 이미지]"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "오늘 배운 내용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "7월 27일에는 정규 표현식으로 문자열에서 원하는 패턴을 찾고, 추출하고, 바꾸는 방법을 배웠다. 전화번호나 이메일처럼 형태가 정해진 문자열을 처리할 때 특히 유용하다. 파이썬에서는 표준 라이브러리의 re 모듈을 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "정규 표현식이 필요한 이유"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문자열 메서드만으로도 단순한 단어를 찾을 수 있지만, 숫자 개수나 반복 횟수처럼 규칙 자체를 표현하기는 어렵다. 정규 표현식은 여러 문자열이 공유하는 형태를 하나의 패턴으로 적는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 전화번호가 지역번호 2~3자리-중간 번호 3~4자리-마지막 번호 4자리라면 다음처럼 표현한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import re\n\ntext = \"개인 연락처는 010-1234-5678이고, 사무실은 02-987-6543입니다.\"\nphone_pattern = r\"\\d{2,3}-\\d{3,4}-\\d{4}\"\n\nphone_numbers = re.findall(phone_pattern, text)\nprint(phone_numbers)\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "패턴 앞의 r은 raw string을 뜻한다. 백슬래시를 파이썬 문자열의 이스케이프 문자로 먼저 해석하지 않으므로 정규식을 읽기 편하고 실수도 줄어든다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "자주 쓰는 함수"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "re.match()는 문자열 시작 부분이 패턴과 일치하는지 확인한다. re.search()는 문자열 전체에서 첫 번째 일치 항목을 찾고, re.findall()은 모든 일치 문자열을 리스트로 반환한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "re.sub()는 일치한 부분을 다른 문자열로 바꾸고, re.split()은 패턴을 기준으로 문자열을 나눈다. 같은 패턴을 여러 번 쓴다면 re.compile()로 미리 만들어 둘 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "import re\n\npattern = re.compile(r\"\\d+\")\n\nprint(pattern.search(\"abc123\").group())          # 123\nprint(pattern.findall(\"abc123 def456\"))          # ['123', '456']\nprint(pattern.sub(\"#\", \"상품 3개, 가격 12000원\")) # 상품 #개, 가격 #원\nprint(pattern.split(\"A12B345C\"))                 # ['A', 'B', 'C']\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "검색 결과가 없으면 search()와 match()는 None을 반환한다. 바로 .group()을 호출하기 전에 결과가 있는지 확인해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "result = re.search(r\"\\d+\", \"숫자가 없습니다\")\nif result:\n    print(result.group())\nelse:\n    print(\"일치하는 값이 없습니다.\")\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "기본 메타문자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": ".은 줄바꿈을 제외한 임의의 문자 한 개와 일치한다. \\d는 숫자, \\w는 영문자·숫자·밑줄, \\s는 공백 문자와 일치한다. 반대 의미는 대문자로 적어 \\D, \\W, \\S처럼 쓴다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "^는 문자열이나 줄의 시작, $는 끝을 나타낸다. +는 바로 앞 패턴이 1번 이상, *는 0번 이상, ?는 0번 또는 1번 반복될 때 쓴다. {3}은 정확히 3번, {2,4}는 2번 이상 4번 이하 반복을 뜻한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대괄호는 문자 집합을 만든다. [0-9]는 숫자 한 자리, [a-zA-Z]는 영문자 한 자리, [가-힣]은 완성형 한글 한 글자와 일치한다. 대괄호 안의 ^는 제외를 뜻하므로 [^0-9]는 숫자가 아닌 문자 한 개를 찾는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "괄호는 패턴을 묶고 캡처 그룹을 만든다. |는 여러 패턴 중 하나를 뜻한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "color_pattern = re.compile(r\"(red|green|blue)\")\nprint(color_pattern.findall(\"red and blue\"))  # ['red', 'blue']\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "이메일과 전화번호 찾기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "수업의 이메일 예제는 기본 구조를 이해하기에 알맞다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "email_pattern = r\"[\\w.+-]+@[\\w-]+(?:\\.[\\w-]+)+\"\ntext = \"문의: hello@example.com\"\n\nmatch = re.search(email_pattern, text)\nif match:\n    print(match.group())\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 패턴은 일반적인 형태를 찾는 실습용이다. 실제 이메일 표준의 모든 경우를 정규식 하나로 완벽하게 검증하기는 어렵다. 회원 가입처럼 중요한 검증에서는 정규식 검사와 인증 메일 확인을 함께 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문자열 전체가 패턴과 일치해야 한다면 re.fullmatch()가 명확하다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "phone_pattern = re.compile(r\"\\d{2,3}-\\d{3,4}-\\d{4}\")\n\nuser_input = \"010-1234-5678\"\nif phone_pattern.fullmatch(user_input):\n    print(\"전화번호 형식이 맞습니다.\")\nelse:\n    print(\"전화번호 형식을 확인해 주세요.\")\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "플래그"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "re.IGNORECASE 또는 re.I는 영문 대소문자를 구분하지 않는다. re.MULTILINE 또는 re.M은 ^와 $가 각 줄의 시작과 끝에도 적용되게 한다. re.DOTALL 또는 re.S는 .이 줄바꿈 문자까지 포함하게 한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "text = \"abc\\nDEF\"\nmatch = re.search(r\"^def\", text, re.IGNORECASE | re.MULTILINE)\nprint(match.group())  # DEF\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "정규식을 작성하는 순서"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "처음부터 긴 패턴을 한 번에 만들면 어디서 틀렸는지 찾기 어렵다. 먼저 실제 입력 예시와 실패해야 할 예시를 모은다. 패턴을 작은 부분으로 나눠 확인한 뒤 반복 횟수와 시작·끝 조건을 붙인다. 마지막에는 정상값, 경계값, 잘못된 값을 함께 테스트한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정규식은 짧다고 항상 읽기 좋은 것은 아니다. 여러 곳에서 다시 쓴다면 패턴에 이름을 붙이고, 무엇을 찾는지 주석이나 테스트로 남겨야 나중에 고치기 수월하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/115",
+    "originalId": "115",
+    "publishedAt": "2026-07-28T13:56:34+09:00",
+    "updatedAt": "2026-08-12T10:01:29+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

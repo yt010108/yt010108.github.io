@@ -1,0 +1,467 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "ca509c4e-b654-5f3a-a59a-6585afecd5f4",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-3 문제",
+  "slug": "tistory-78",
+  "description": "1. 문제 정보문제 번호 : old -3문제 점수 : 30점2. 문제 분석문제에 들어가면 nonogram이 나오고 nonogram을 처음 풀어봐서 위키 피디아를 참고해 룰을 보았다.https://ko.wikipedia.org/wiki/%EB%85%B8%EB%85%B8%EA%B7%B8%EB%9E%A8#:~:text=%EB%85%B8%EB%85%B8%EA%B7%B8%EB%9E%A8(%EC%98%81%EC%96%B4%3A%20Nonogram%20%2C,%EB%84%A4%EB%AA%A8%EB%84%A4%EB%AA%A8%20%EB%A1%9C%EC%A7%81%EC%9D%B4%EB%9D%BC%EA%B3%A0%20%EB%B6%88%EB%A6%B0%EB%8B%A4. 노노그램을 풀면 아래 그림처럼 나온다.클리어하면 l..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-02-05",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-02-05T16:51:27+09:00",
+  "updatedAt": "2026-02-05T20:41:04+09:00",
+  "sourceDigest": "86eb0d33b3263bab0fdde0685a9c3b1a1a668cec3402e4ae88953277e8f029fe",
+  "assets": [
+    {
+      "id": "80a37cdb-9fe9-546c-87cb-c84a1486bb2d",
+      "name": "tistory-78-80a37cdb-9fe9-546c-87cb-c84a1486bb2d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ca509c4e-b654-5f3a-a59a-6585afecd5f4/80a37cdb-9fe9-546c-87cb-c84a1486bb2d.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "92c912af-af66-54c1-984d-e35204a3c35d",
+      "name": "tistory-78-92c912af-af66-54c1-984d-e35204a3c35d.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ca509c4e-b654-5f3a-a59a-6585afecd5f4/92c912af-af66-54c1-984d-e35204a3c35d.png",
+      "sha": "3136625f6707aca40471929eeee5acb7cfe28eca"
+    },
+    {
+      "id": "360d0d53-a496-59e3-a890-63c69ac61c7c",
+      "name": "tistory-78-360d0d53-a496-59e3-a890-63c69ac61c7c.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ca509c4e-b654-5f3a-a59a-6585afecd5f4/360d0d53-a496-59e3-a890-63c69ac61c7c.png",
+      "sha": "e3d4ae10dbcd72af98bc5518bf46f6184b2dd8f0"
+    },
+    {
+      "id": "ee64efd7-3f61-57c4-a00e-f9ff7d5c5555",
+      "name": "tistory-78-ee64efd7-3f61-57c4-a00e-f9ff7d5c5555.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ca509c4e-b654-5f3a-a59a-6585afecd5f4/ee64efd7-3f61-57c4-a00e-f9ff7d5c5555.png",
+      "sha": "76e0fc88d2710771063aaa48133fc865732c1394"
+    },
+    {
+      "id": "fd7dcff2-1326-55e7-ab30-feabc7fd7af5",
+      "name": "tistory-78-fd7dcff2-1326-55e7-ab30-feabc7fd7af5.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ca509c4e-b654-5f3a-a59a-6585afecd5f4/fd7dcff2-1326-55e7-ab30-feabc7fd7af5.png",
+      "sha": "fab3505b6d5b17e6a38d435904395e34991227e4"
+    },
+    {
+      "id": "d3e26f35-a988-5527-bb4a-04a56dcda9e1",
+      "name": "tistory-78-d3e26f35-a988-5527-bb4a-04a56dcda9e1.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ca509c4e-b654-5f3a-a59a-6585afecd5f4/d3e26f35-a988-5527-bb4a-04a56dcda9e1.png",
+      "sha": "60e0456d13398bec20a8e21736f9cca316f374e9"
+    },
+    {
+      "id": "91384600-700c-57d8-8483-99a98a338a69",
+      "name": "tistory-78-91384600-700c-57d8-8483-99a98a338a69.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ca509c4e-b654-5f3a-a59a-6585afecd5f4/91384600-700c-57d8-8483-99a98a338a69.png",
+      "sha": "b46409b056b4a4c675e7f5880c87d15a0fa0e691"
+    },
+    {
+      "id": "e733b6e8-695b-5b04-adfa-dd0c736053ac",
+      "name": "tistory-78-e733b6e8-695b-5b04-adfa-dd0c736053ac.png",
+      "type": "image/png",
+      "path": "/assets/uploads/ca509c4e-b654-5f3a-a59a-6585afecd5f4/e733b6e8-695b-5b04-adfa-dd0c736053ac.png",
+      "sha": "cfe9f57d46bb173395d7bb01e51bf22c5fde5e1f"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "80a37cdb-9fe9-546c-87cb-c84a1486bb2d",
+          "src": "/assets/uploads/ca509c4e-b654-5f3a-a59a-6585afecd5f4/80a37cdb-9fe9-546c-87cb-c84a1486bb2d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -3"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 30점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제에 들어가면 nonogram이 나오고 nonogram을 처음 풀어봐서 위키 피디아를 참고해 룰을 보았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://ko.wikipedia.org/wiki/%EB%85%B8%EB%85%B8%EA%B7%B8%EB%9E%A8#:~:text=%EB%85%B8%EB%85%B8%EA%B7%B8%EB%9E%A8(%EC%98%81%EC%96%B4%3A%20Nonogram%20%2C,%EB%84%A4%EB%AA%A8%EB%84%A4%EB%AA%A8%20%EB%A1%9C%EC%A7%81%EC%9D%B4%EB%9D%BC%EA%B3%A0%20%EB%B6%88%EB%A6%B0%EB%8B%A4.",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://ko.wikipedia.org/wiki/%EB%85%B8%EB%85%B8%EA%B7%B8%EB%9E%A8#:~:text=%EB%85%B8%EB%85%B8%EA%B7%B8%EB%9E%A8(%EC%98%81%EC%96%B4%3A%20Nonogram%20%2C,%EB%84%A4%EB%AA%A8%EB%84%A4%EB%AA%A8%20%EB%A1%9C%EC%A7%81%EC%9D%B4%EB%9D%BC%EA%B3%A0%20%EB%B6%88%EB%A6%B0%EB%8B%A4."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "92c912af-af66-54c1-984d-e35204a3c35d",
+          "src": "/assets/uploads/ca509c4e-b654-5f3a-a59a-6585afecd5f4/92c912af-af66-54c1-984d-e35204a3c35d.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "노노그램을 풀면 아래 그림처럼 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "360d0d53-a496-59e3-a890-63c69ac61c7c",
+          "src": "/assets/uploads/ca509c4e-b654-5f3a-a59a-6585afecd5f4/360d0d53-a496-59e3-a890-63c69ac61c7c.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "클리어하면 log에 name을 입력하는 창이 나온다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "ee64efd7-3f61-57c4-a00e-f9ff7d5c5555",
+          "src": "/assets/uploads/ca509c4e-b654-5f3a-a59a-6585afecd5f4/ee64efd7-3f61-57c4-a00e-f9ff7d5c5555.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "fd7dcff2-1326-55e7-ab30-feabc7fd7af5",
+          "src": "/assets/uploads/ca509c4e-b654-5f3a-a59a-6585afecd5f4/fd7dcff2-1326-55e7-ab30-feabc7fd7af5.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 로그 창이 나온다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "처음 소스 코드를 보면"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "처음 nonogram을 풀 때 클릭을 하면 kk_num 값이 1로 바뀌고 검정으로 바뀐다 그리고 마지막에 solved버튼을 누르면 eval과 함께 문제가 get요청을 보낸다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<script>\nfunction go(){\n  var answer=\"\";\n  for(i=1;i<=25;i++) { answer=answer+eval(\"kk._\"+i+\".value\"); }\n  kk._answer.value=answer;\n  kk.submit();\n}\n</script>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "eval 함수는 인자로 전달된 문자열을 실제 코드로 해석하여 실행한다. 이 함수는 외부에서 조작된 입력값이 제대로 검증되지 않은 채 전달될 경우 시스템 전체를 제어할 수 있는 심각한 보안 취약점이다. 이를 흔히 코드 주입(Code Injection) 취약점이기 때문에 먼저 눈여겨보았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 eval에 사용자가 제공한 값을 넣는 것이 아니라 eval로 값을 불러오므로 이 문제의 취약점이 아니었다. 만약 공격자가 HTML 요소의 이름(name 속성)을 임의로 조작할 수 있는 환경이라면 eval을 통한 공격이 가능하다, 하지만 이 문제의 경우 클라이언트 측 스크립트 내부에서 루프를 돌며 값을 취합하는 구조이므로 직접적인 코드 주입이 어렵다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "360d0d53-a496-59e3-a890-63c69ac61c7c",
+          "src": "/assets/uploads/ca509c4e-b654-5f3a-a59a-6585afecd5f4/360d0d53-a496-59e3-a890-63c69ac61c7c.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 다음으로 시도해 본 것은 xss로 로그에 찍힌 곳에 stored xss가 가능할 것 같았다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "d3e26f35-a988-5527-bb4a-04a56dcda9e1",
+          "src": "/assets/uploads/ca509c4e-b654-5f3a-a59a-6585afecd5f4/d3e26f35-a988-5527-bb4a-04a56dcda9e1.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "python"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<input type=\"hidden\" name=\"answer\" value=\"1010100000011100101011111\">"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그래서 name과 value에 각각 <script>alert('1')</script>을 입력해 보았다. 하지만 answer에 입력했을 때 쿼리 에러가 떴다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이건 데이터베이스에서 에러이므로 answer에 'or 1=1 -- 을 넣어서 sqli를 해보니 문제가 풀렸다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "91384600-700c-57d8-8483-99a98a338a69",
+          "src": "/assets/uploads/ca509c4e-b654-5f3a-a59a-6585afecd5f4/91384600-700c-57d8-8483-99a98a338a69.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "e733b6e8-695b-5b04-adfa-dd0c736053ac",
+          "src": "/assets/uploads/ca509c4e-b654-5f3a-a59a-6585afecd5f4/e733b6e8-695b-5b04-adfa-dd0c736053ac.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "웹 페이지의 노노그램 퍼즐을 해결하면 사용자의 이름과 퍼즐의 정답(answer) 값이 서버로 전송되어 데이터베이스에 기록된다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "정답 전송 과정에서 스크립트 삽입을 시도했으나 데이터베이스 쿼리 에러가 발생했으며, 이는 입력값이 SQL 구문에 직접 영향을 미치고 있음을 의미한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "answer 파라미터에 참(True)을 유도하는 SQL 구문을 삽입하여 인증 및 검증 로직을 우회하는 SQL Injection 공격으로 문제를 해결했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/78",
+    "originalId": "78",
+    "publishedAt": "2026-02-05T16:51:27+09:00",
+    "updatedAt": "2026-02-05T20:41:04+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

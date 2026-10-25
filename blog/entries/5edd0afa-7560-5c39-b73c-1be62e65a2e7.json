@@ -1,0 +1,1407 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "5edd0afa-7560-5c39-b73c-1be62e65a2e7",
+  "kind": "posts",
+  "title": "[SK Rookies] 딥러닝 대표 모델과 확장 모델",
+  "slug": "tistory-135",
+  "description": "오늘 배운 내용8월 5일에는 딥러닝의 대표 모델이 어떤 데이터 구조에 맞게 설계되었는지와 기본 모델의 한계를 해결하기 위해 어떤 확장 구조가 등장했는지를 공부했다. 이미지에서는 CNN과 ResNet, Inception, EfficientNet, U-Net, 객체 탐지 모델을 살펴보고, 순서 데이터에서는 RNN, LSTM/GRU, Seq2Seq, Attention, Transformer를 비교했다. 후반에는 데이터 유형과 규모에 따른 모델 선택 관점, 전이학습과 파인튜닝, 보안 로그에 적용할 수 있는 Character-level 1D-CNN을 다뤘다.딥러닝 모델을 보는 관점딥러닝 모델은 입력을 여러 층의 계산을 거쳐 출력으로 변환하는 큰 계산 그래프로 볼 수 있다. 학습은 정답과 예측의 차이를 줄이도록 가..",
+  "category": "SK Rookies / 수업 정리",
+  "date": "2026-08-12",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-08-12T10:03:35+09:00",
+  "updatedAt": "2026-08-19T00:24:22+09:00",
+  "sourceDigest": "199a5197f6be1a581dae9fbb80b4cccbe2d2abbe7dbd5b464f29d0e7ec54765c",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[원본에서 불러올 수 없는 이미지]"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "오늘 배운 내용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "8월 5일에는 딥러닝의 대표 모델이 어떤 데이터 구조에 맞게 설계되었는지와 기본 모델의 한계를 해결하기 위해 어떤 확장 구조가 등장했는지를 공부했다. 이미지에서는 CNN과 ResNet, Inception, EfficientNet, U-Net, 객체 탐지 모델을 살펴보고, 순서 데이터에서는 RNN, LSTM/GRU, Seq2Seq, Attention, Transformer를 비교했다. 후반에는 데이터 유형과 규모에 따른 모델 선택 관점, 전이학습과 파인튜닝, 보안 로그에 적용할 수 있는 Character-level 1D-CNN을 다뤘다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "딥러닝 모델을 보는 관점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "딥러닝 모델은 입력을 여러 층의 계산을 거쳐 출력으로 변환하는 큰 계산 그래프로 볼 수 있다. 학습은 정답과 예측의 차이를 줄이도록 가중치를 자동으로 조정하는 과정이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모델 아키텍처를 볼 때 핵심은 어떤 데이터의 어떤 패턴을 잘 잡도록 설계되었는지 이해하는 것이다. 이미지, 텍스트, 시계열처럼 데이터 구조가 달라지면 적합한 모델 구조도 달라진다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "CNN Convolutional Neural Network"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CNN은 이미지처럼 공간적인 패턴이 중요한 데이터에 적합하다. 이미지에서는 가까운 픽셀끼리 연관성이 높고, 같은 모양이 위치가 바뀌어도 비슷한 의미를 갖는 지역성과 위치 변화 특성이 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "CNN 구조의 핵심"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Convolution: 작은 필터를 이동시키며 edge, texture 같은 특징을 추출한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Pooling / Stride: 공간 크기를 줄여 계산량을 줄이고 중요한 정보를 요약한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Feature Map: 특정 패턴이 어느 위치에 나타나는지를 채널별 특징으로 표현한다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기본 CNN은 이미지 분류, 객체 탐지, 세그멘테이션과 같은 공간 패턴 문제에 강하지만 긴 순서 데이터나 멀리 떨어진 관계를 직접 다루는 데는 한계가 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "ResNet"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "네트워크를 무조건 깊게 쌓으면 기울기 소실이나 학습 불안정으로 인해 오히려 학습이 어려워질 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ResNet은 Residual Connection을 사용해 층을 통과한 결과에 입력을 더해 다음 층으로 전달한다. 자료에서는 이를 입력이라는 기본값을 보존한 상태에서 필요한 변화만 학습하는 구조로 설명한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 구조 덕분에 더 깊은 네트워크를 안정적으로 학습할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Inception과 EfficientNet"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CNN을 크게 만들면 표현력은 좋아질 수 있지만 계산량, 메모리 사용량, 학습과 추론 비용이 증가한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Inception"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "한 층에서 서로 다른 크기의 필터를 동시에 사용하여 다양한 크기의 패턴을 한 번에 추출하는 아이디어를 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "EfficientNet"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모델의 깊이, 너비, 입력 해상도를 균형 있게 확장하여 계산 효율과 성능을 함께 고려하는 계열로 소개된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "특정 과제용 CNN 확장"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "U-Net"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이미지의 각 픽셀을 분류하는 세그멘테이션 문제에 사용하는 구조다. 단순히 이미지 전체의 클래스만 예측하는 것이 아니라 영역과 경계를 픽셀 단위로 찾는다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "객체 탐지 모델"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "객체 탐지는 이미지 안에서 무엇이 있는지뿐 아니라 어디에 있는지도 찾아야 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "출력에는 일반적으로 다음 정보가 포함된다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Bounding Box: 객체 위치 좌표"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Class: 객체 종류"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Confidence: 예측 신뢰도"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서는 YOLO, SSD, Faster R-CNN 계열을 소개한다. YOLO와 SSD는 빠른 탐지 계열, Faster R-CNN은 정밀한 탐지 계열의 예로 다뤄진다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "RNN Recurrent Neural Network"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "텍스트, 음성, 센서 데이터처럼 순서가 중요한 데이터에서는 앞의 정보가 뒤의 의미에 영향을 준다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "RNN은 이전 시점의 hidden state를 다음 시점으로 전달하여 이전 정보를 기억하는 형태로 순서 데이터를 처리한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "하지만 기본 RNN에는 다음 한계가 있다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "긴 시퀀스에서 초반 정보를 유지하기 어려움"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "기울기 소실 또는 폭주로 학습이 불안정할 수 있음"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "순차 계산 구조라 병렬화가 어렵고 느릴 수 있음"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 문제를 개선하기 위해 LSTM, GRU, Attention, Transformer 같은 구조가 등장한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "LSTM과 GRU"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "LSTM과 GRU는 기억할 정보와 버릴 정보를 게이트 구조로 제어하여 기본 RNN의 장기 의존성 문제를 개선한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "LSTM"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Cell State와 여러 게이트를 이용해 중요한 정보를 오래 유지하고 필요 없는 정보를 제거한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "GRU"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "LSTM과 비슷한 목적을 가지지만 구조를 단순화한 게이트 구조를 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "둘 다 긴 시퀀스를 처리할 때 기본 RNN보다 안정적으로 정보를 전달하기 위한 확장 구조다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Seq2Seq"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Seq2Seq는 입력도 시퀀스이고 출력도 시퀀스인 문제를 처리하는 기본 구조다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대표 예시는 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "번역"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문장 요약"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "초기 챗봇"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일반적으로 Encoder가 입력 시퀀스를 읽어 의미를 표현하고 Decoder가 그 정보를 이용해 출력 시퀀스를 생성한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기본 Seq2Seq는 긴 입력을 하나의 요약 벡터에 모두 담아야 할 때 정보 손실이 생길 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Attention"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Attention은 출력을 생성할 때 입력 전체를 다시 참고하고, 현재 출력과 관련된 입력 부분에 더 큰 가중치를 주는 방식이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "즉 긴 입력을 하나의 벡터에만 압축하지 않고 필요할 때 원문의 중요한 위치를 직접 참조한다. 이 아이디어는 긴 문맥의 정보를 전달하는 문제를 크게 완화했다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Transformer"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Transformer는 Attention을 중심으로 시퀀스를 처리하는 구조다. RNN처럼 한 시점씩 순차적으로만 계산하지 않고 여러 위치를 병렬적으로 처리하면서 토큰 사이 관계를 학습한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서 강조한 장점은 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "병렬 학습이 쉬워 계산 효율을 높일 수 있음"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "긴 거리의 관계를 Attention으로 직접 연결할 수 있음"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "NLP뿐 아니라 이미지와 멀티모달 영역으로 확장 가능"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "활용 분야로 번역, 요약, 챗봇, 문서 분석, ViT 기반 이미지 처리, 텍스트·이미지·음성을 함께 사용하는 멀티모달 모델 등이 소개된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터 유형별 모델 선택 관점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서는 데이터 특성에 따라 대표 모델을 다음처럼 연결한다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이미지 분류: ResNet, EfficientNet 계열"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이미지 세그멘테이션: U-Net 계열"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "객체 탐지: YOLO, Faster R-CNN 계열"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "텍스트, 번역, 요약: Transformer"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "시계열 예측: LSTM/GRU, Transformer, TCN"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "그래프 데이터: GNN"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모델 이름보다 먼저 데이터 형태와 해결하려는 문제를 판단하는 것이 중요하다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "머신러닝과 딥러닝을 데이터 분석 관점에서 보기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "전통적인 머신러닝은 정형 데이터에서 분석가가 도메인 지식을 활용해 피처를 설계하는 비중이 크다. 결측치, 이상치, 범주형 변환, 파생변수 같은 피처 엔지니어링이 결과에 큰 영향을 준다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "딥러닝은 이미지, 텍스트, 음성 같은 비정형 데이터에서 신경망이 특징 표현을 직접 학습하는 비중이 크다. 대신 더 많은 데이터와 계산 자원이 필요할 수 있고, 내부 계산이 복잡해 설명 가능성이 낮아질 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "전이학습과 파인튜닝"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "처음부터 대규모 모델을 학습하는 대신 이미 큰 데이터로 학습된 모델을 가져와 새로운 문제에 활용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "전이학습 Transfer Learning"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사전학습된 모델에서 얻은 표현을 새로운 데이터에 재사용한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "파인튜닝 Fine-tuning"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사전학습된 모델의 일부 또는 전체 가중치를 새로운 데이터에 맞게 추가 학습한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료에서는 데이터가 적을수록 처음부터 깊은 모델을 학습하기보다 사전학습 모델을 활용하는 방향을 강조한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "데이터 규모와 클래스 분포"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "딥러닝을 적용할 때 전체 데이터 개수만 보는 것은 충분하지 않다. 클래스별 샘플 수, 텍스트 길이, 클래스 불균형을 함께 확인해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "예를 들어 전체 데이터가 많아도 클래스가 매우 많아 각 클래스당 데이터가 적으면 안정적인 학습이 어렵다. 따라서 모델 선택 전에 데이터의 실제 분포를 먼저 확인해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Character-level 1D-CNN"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "자료 후반에서는 보안 로그와 같은 특수 텍스트 데이터를 예로 들어 Character-level 1D-CNN을 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일반 NLP가 단어 단위로 문장을 나누는 경우가 많다면 Character-level 모델은 문자를 단위로 입력을 구성한다. 웹 공격 페이로드처럼 특수기호, 오타, 난독화가 많은 문자열에서는 단어 기준 토큰화보다 문자 패턴이 유용할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "보안 로그 적용 예"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "WAF 요청 페이로드에서 정상 요청과 SQL Injection, XSS 같은 공격 패턴을 분류하는 문제를 생각할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "동작 과정"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문자 벡터화"
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "문자 사전을 기준으로 각 문자를 숫자 벡터로 변환한다."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "1D Convolution"
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "문자열의 가로 방향을 필터가 이동하면서 짧은 문자 조합 패턴을 찾는다."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Max Pooling"
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "여러 위치에서 계산된 특징 중 강한 패턴을 대표값으로 남긴다."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "분류층"
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "추출된 특징으로 정상/공격 또는 공격 유형을 분류한다."
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "장점"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "대소문자 변경, 일부 공백 삽입, 오타와 같은 변형에 비교적 강하게 패턴을 찾을 수 있음"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "1D Convolution은 시퀀스를 병렬적으로 계산할 수 있어 순차형 RNN 계열보다 빠르게 처리할 수 있음"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "보안 문자열의 특수문자 조합을 직접 학습할 수 있음"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "복습하면서 확인할 점"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "CNN은 공간 패턴, RNN 계열은 순서와 기억을 중심으로 설계되었다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ResNet은 Residual Connection으로 깊은 모델의 학습을 개선한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "LSTM/GRU는 게이트를 이용해 장기 의존 문제를 완화한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Attention은 필요한 입력 위치를 직접 참조한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Transformer는 Attention 중심 구조와 병렬 처리로 현대 시퀀스 모델의 핵심 구조가 되었다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "모델은 이름보다 데이터 구조와 문제 유형을 기준으로 선택한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Character-level 1D-CNN은 보안 로그처럼 문자 패턴과 난독화가 중요한 텍스트에 활용할 수 있다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/135",
+    "originalId": "135",
+    "publishedAt": "2026-08-12T10:03:35+09:00",
+    "updatedAt": "2026-08-19T00:24:22+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

@@ -1,0 +1,422 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "5ba4ffcb-5892-5095-a7c2-2ffc70d6f264",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-7문제",
+  "slug": "tistory-77",
+  "description": "1. 문제 정보문제 번호 : old -7문제 점수 : 30점2. 문제 분석문제에 들어가면 admin page라고 나오고 아무것도 없다. auth를 누르면 access_denied가 뜬다. 소스코드를 확인해보자val을 받아서 정규식과 매치한 다음에 rand값에 맞춰 query를 가져온 다음 data [0] 값이 2이면 문제가 풀린다. \"); }echo(\"Admin page\");if(preg_match(\"/2|-|\\+|from|_|=|\\\\s|\\*|\\//i\",$go)) exit(\"Access Denied!\");$db = dbconnect();$rand=rand(1,5);if($rand==1){ $result=mysqli_query($db,\"select lv from chall7 where lv=($go)..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-02-03",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-02-03T17:38:32+09:00",
+  "updatedAt": "2026-02-03T17:38:32+09:00",
+  "sourceDigest": "c94cd6d250cd9cf97a0a22ab2271b6776fcc0431807a0bf7d20cefd6f8cad673",
+  "assets": [
+    {
+      "id": "3a15407e-1eda-5aab-ad95-0999091792f2",
+      "name": "tistory-77-3a15407e-1eda-5aab-ad95-0999091792f2.png",
+      "type": "image/png",
+      "path": "/assets/uploads/5ba4ffcb-5892-5095-a7c2-2ffc70d6f264/3a15407e-1eda-5aab-ad95-0999091792f2.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "378dc4ae-308b-5e57-92cf-429110b55f37",
+      "name": "tistory-77-378dc4ae-308b-5e57-92cf-429110b55f37.png",
+      "type": "image/png",
+      "path": "/assets/uploads/5ba4ffcb-5892-5095-a7c2-2ffc70d6f264/378dc4ae-308b-5e57-92cf-429110b55f37.png",
+      "sha": "28a48abcf7e1971e5804359e14bb4a7ac1789344"
+    },
+    {
+      "id": "22fb0ff6-10f0-5766-a29e-6e80e8095999",
+      "name": "tistory-77-22fb0ff6-10f0-5766-a29e-6e80e8095999.png",
+      "type": "image/png",
+      "path": "/assets/uploads/5ba4ffcb-5892-5095-a7c2-2ffc70d6f264/22fb0ff6-10f0-5766-a29e-6e80e8095999.png",
+      "sha": "f54ef19b34789b02b71752b14b33c9bb98f55ce1"
+    },
+    {
+      "id": "1c1ea747-41d2-506a-8aa0-722679030d1e",
+      "name": "tistory-77-1c1ea747-41d2-506a-8aa0-722679030d1e.png",
+      "type": "image/png",
+      "path": "/assets/uploads/5ba4ffcb-5892-5095-a7c2-2ffc70d6f264/1c1ea747-41d2-506a-8aa0-722679030d1e.png",
+      "sha": "4cd819db819b0baf145ddac23fe4eff632c88987"
+    },
+    {
+      "id": "cbd591d2-d8f4-5873-8053-2d4ffebd2ee6",
+      "name": "tistory-77-cbd591d2-d8f4-5873-8053-2d4ffebd2ee6.png",
+      "type": "image/png",
+      "path": "/assets/uploads/5ba4ffcb-5892-5095-a7c2-2ffc70d6f264/cbd591d2-d8f4-5873-8053-2d4ffebd2ee6.png",
+      "sha": "09b6c4d03abe5921b7fec857696a4e8012853ae7"
+    },
+    {
+      "id": "df0e72cd-6d3c-50ec-9f78-d69a05c658b9",
+      "name": "tistory-77-df0e72cd-6d3c-50ec-9f78-d69a05c658b9.png",
+      "type": "image/png",
+      "path": "/assets/uploads/5ba4ffcb-5892-5095-a7c2-2ffc70d6f264/df0e72cd-6d3c-50ec-9f78-d69a05c658b9.png",
+      "sha": "a421ade849e5d1bcd059ee8404542a251233b48b"
+    },
+    {
+      "id": "adb2d57c-3225-58ea-a990-ae5487bb4890",
+      "name": "tistory-77-adb2d57c-3225-58ea-a990-ae5487bb4890.png",
+      "type": "image/png",
+      "path": "/assets/uploads/5ba4ffcb-5892-5095-a7c2-2ffc70d6f264/adb2d57c-3225-58ea-a990-ae5487bb4890.png",
+      "sha": "9db7dd4545d5a4783efbe52dd1f371592b6b742c"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "3a15407e-1eda-5aab-ad95-0999091792f2",
+          "src": "/assets/uploads/5ba4ffcb-5892-5095-a7c2-2ffc70d6f264/3a15407e-1eda-5aab-ad95-0999091792f2.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -7"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 30점"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제에 들어가면 admin page라고 나오고 아무것도 없다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "378dc4ae-308b-5e57-92cf-429110b55f37",
+          "src": "/assets/uploads/5ba4ffcb-5892-5095-a7c2-2ffc70d6f264/378dc4ae-308b-5e57-92cf-429110b55f37.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "auth를 누르면 access_denied가 뜬다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "22fb0ff6-10f0-5766-a29e-6e80e8095999",
+          "src": "/assets/uploads/5ba4ffcb-5892-5095-a7c2-2ffc70d6f264/22fb0ff6-10f0-5766-a29e-6e80e8095999.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "소스코드를 확인해보자"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "val을 받아서 정규식과 매치한 다음에 rand값에 맞춰 query를 가져온 다음 data [0] 값이 2이면 문제가 풀린다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n  include \"../../config.php\";\n  if($_GET['view_source']) view_source();\n?><html>\n<head>\n<title>Challenge 7</title>\n</head>\n<body>\n<?php\n$go=$_GET['val'];\nif(!$go) { echo(\"<meta http-equiv=refresh content=0;url=index.php?val=1>\"); }\necho(\"<html><head><title>admin page</title></head><body bgcolor='black'><font size=2 color=gray><b><h3>Admin page</h3></b><p>\");\nif(preg_match(\"/2|-|\\+|from|_|=|\\\\s|\\*|\\//i\",$go)) exit(\"Access Denied!\");\n$db = dbconnect();\n$rand=rand(1,5);\nif($rand==1){\n  $result=mysqli_query($db,\"select lv from chall7 where lv=($go)\") or die(\"nice try!\");\n}\nif($rand==2){\n  $result=mysqli_query($db,\"select lv from chall7 where lv=(($go))\") or die(\"nice try!\");\n}\nif($rand==3){\n  $result=mysqli_query($db,\"select lv from chall7 where lv=((($go)))\") or die(\"nice try!\");\n}\nif($rand==4){\n  $result=mysqli_query($db,\"select lv from chall7 where lv=(((($go))))\") or die(\"nice try!\");\n}\nif($rand==5){\n  $result=mysqli_query($db,\"select lv from chall7 where lv=((((($go)))))\") or die(\"nice try!\");\n}\n$data=mysqli_fetch_array($result);\nif(!$data[0]) { echo(\"query error\"); exit(); }\nif($data[0]==1){\n  echo(\"<input type=button style=border:0;bgcolor='gray' value='auth' onclick=\\\"alert('Access_Denied!')\\\"><p>\");\n}\nelseif($data[0]==2){\n  echo(\"<input type=button style=border:0;bgcolor='gray' value='auth' onclick=\\\"alert('Hello admin')\\\"><p>\");\n  solve(7);\n}\n?>\n<a href=./?view_source=1>view-source</a>\n</body>\n</html>"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제에서 go값은 쿼리문에 들어가니까 query문에 2를 넣으면 lv값을 결국 가져오므로 2를 넣으면 될 것 같다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그냥 숫자형으로 들어가므로 함수가 실행되므로 MOD(5,3)를 넣어 2를 만들었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "1c1ea747-41d2-506a-8aa0-722679030d1e",
+          "src": "/assets/uploads/5ba4ffcb-5892-5095-a7c2-2ffc70d6f264/1c1ea747-41d2-506a-8aa0-722679030d1e.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "에러가 나온다. MOD(5,4)를 넣어서 1을 넣으면 잘 작동하는 걸 보아 lv값에 2가 없다는 것을 알 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "cbd591d2-d8f4-5873-8053-2d4ffebd2ee6",
+          "src": "/assets/uploads/5ba4ffcb-5892-5095-a7c2-2ffc70d6f264/cbd591d2-d8f4-5873-8053-2d4ffebd2ee6.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다시 쿼리문을 살펴보자"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "cpp"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "\"select lv from chall7 where lv=($go)\""
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이러면 lv에 없는 값을 추가해야하는데 union을 통해서 추가 가능하다. 하지만 \\s로 공백은 못쓰므로 괄호를 이용해서 공백을 대체했다. val=3)union(select(5%3)이렇게 입력하고 보니"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "df0e72cd-6d3c-50ec-9f78-d69a05c658b9",
+          "src": "/assets/uploads/5ba4ffcb-5892-5095-a7c2-2ffc70d6f264/df0e72cd-6d3c-50ec-9f78-d69a05c658b9.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "rand때문에 괄호가 하나 있을 때까지 해야한다. 계속 새로 고침해보면 성공한다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "adb2d57c-3225-58ea-a990-ae5487bb4890",
+          "src": "/assets/uploads/5ba4ffcb-5892-5095-a7c2-2ffc70d6f264/adb2d57c-3225-58ea-a990-ae5487bb4890.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "정규표현식으로 숫자 2와 공백 등이 차단되고 DB에 목표 데이터가 없으므로 UNION SELECT를 사용해 가상의 결과값을 만들어야 한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "공백은 괄호로, 숫자 2는 MOD 연산(5%3 등)으로 우회하여 )union(select(mod(5,3)) 형태의 페이로드를 구성한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "서버가 쿼리의 괄호 개수를 무작위로 지정하므로 주입한 괄호와 서버의 괄호 짝이 맞아 떨어질 때까지 새로고침을 반복해야 한다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/77",
+    "originalId": "77",
+    "publishedAt": "2026-02-03T17:38:32+09:00",
+    "updatedAt": "2026-02-03T17:38:32+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

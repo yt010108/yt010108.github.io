@@ -1,0 +1,456 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "1dd0c2c2-1791-5f46-a216-6ef272b0d318",
+  "kind": "posts",
+  "title": "[webhacking.kr]  old-25 문제",
+  "slug": "tistory-57",
+  "description": "1. 문제 정보문제 번호 : old -25문제 점수 : 15점문제 유형 : PHP wrapper 2. 문제 분석25번 문제에 들어오면 아래 사진 처럼 나온다. url을 보니 http://webhacking.kr:10001/?file=hello 이다.아래 hello word는 입력하면 아무것도 안나온다. 페이지 소스 보기를 해보자 뭐 아무것도 없다.total 20drwxr-xr-x 2 root root 4096 Dec 28 01:09 .drwxr-xr-x 1 root root 4096 Dec 28 00:50 ..-rw-r--r-- 1 root root 82 Aug 24 2019 flag.php-rw-r--r-- 1 root root 31 Aug 24 2019 hello.php-rw-r--r..",
+  "category": "Wargame / webhacking.kr",
+  "date": "2026-01-26",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-01-26T16:22:38+09:00",
+  "updatedAt": "2026-01-26T16:22:38+09:00",
+  "sourceDigest": "0fefdcfdc0805da4fcca5673632f5210495c95821f54e3b3a9add40bd34e3d5e",
+  "assets": [
+    {
+      "id": "e34f88e9-8ff8-54f1-82d1-32c1eb79f03b",
+      "name": "tistory-57-e34f88e9-8ff8-54f1-82d1-32c1eb79f03b.png",
+      "type": "image/png",
+      "path": "/assets/uploads/1dd0c2c2-1791-5f46-a216-6ef272b0d318/e34f88e9-8ff8-54f1-82d1-32c1eb79f03b.png",
+      "sha": "a4231453d3cd44beea999c92bade2a6091ee7cb5"
+    },
+    {
+      "id": "84d0d769-f5f6-5ba8-a7e1-a0d26d713af4",
+      "name": "tistory-57-84d0d769-f5f6-5ba8-a7e1-a0d26d713af4.png",
+      "type": "image/png",
+      "path": "/assets/uploads/1dd0c2c2-1791-5f46-a216-6ef272b0d318/84d0d769-f5f6-5ba8-a7e1-a0d26d713af4.png",
+      "sha": "b8f5faee23d2898bd37c47ab1530031dd72bd4e3"
+    },
+    {
+      "id": "51573061-eca1-546e-94ec-9be47c4f3f3b",
+      "name": "tistory-57-51573061-eca1-546e-94ec-9be47c4f3f3b.png",
+      "type": "image/png",
+      "path": "/assets/uploads/1dd0c2c2-1791-5f46-a216-6ef272b0d318/51573061-eca1-546e-94ec-9be47c4f3f3b.png",
+      "sha": "03a29254f138386bf9dd125984b7b0c7a0790fae"
+    },
+    {
+      "id": "f2d61b5d-c417-554c-83dd-3d7c565bedc9",
+      "name": "tistory-57-f2d61b5d-c417-554c-83dd-3d7c565bedc9.png",
+      "type": "image/png",
+      "path": "/assets/uploads/1dd0c2c2-1791-5f46-a216-6ef272b0d318/f2d61b5d-c417-554c-83dd-3d7c565bedc9.png",
+      "sha": "3b46a968dc331f3c3d0d393a24b8691004648841"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "e34f88e9-8ff8-54f1-82d1-32c1eb79f03b",
+          "src": "/assets/uploads/1dd0c2c2-1791-5f46-a216-6ef272b0d318/e34f88e9-8ff8-54f1-82d1-32c1eb79f03b.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 문제 정보"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 번호 : old -25"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 점수 : 15점"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문제 유형 : PHP wrapper"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 문제 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "25번 문제에 들어오면 아래 사진 처럼 나온다. url을 보니 "
+          },
+          {
+            "type": "text",
+            "text": "http://webhacking.kr:10001/?file=hello",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "http://webhacking.kr:10001/?file=hello"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " 이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래 hello word는 입력하면 아무것도 안나온다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "84d0d769-f5f6-5ba8-a7e1-a0d26d713af4",
+          "src": "/assets/uploads/1dd0c2c2-1791-5f46-a216-6ef272b0d318/84d0d769-f5f6-5ba8-a7e1-a0d26d713af4.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "페이지 소스 보기를 해보자 뭐 아무것도 없다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<html>\n<head>\n<meta http-equiv=Content-Type content=\"text/html; charset=euc-kr\">\n<title>Challenge 25</title>\n<style type=\"text/css\">\nbody { background:black; color:white; font-size:10pt; }\ntextarea { background:silver; color:black; fnot-size:9pt; }\n</style>\n</head>\n<body>\n<pre>total 20\ndrwxr-xr-x 2 root root 4096 Dec 28 01:09 .\ndrwxr-xr-x 1 root root 4096 Dec 28 00:50 ..\n-rw-r--r-- 1 root root   82 Aug 24  2019 flag.php\n-rw-r--r-- 1 root root   31 Aug 24  2019 hello.php\n-rw-r--r-- 1 root root  605 Aug 24  2019 index.php\n</pre><hr><textarea rows=10 cols=100>hello world</textarea></body>\n</html>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 풀이"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "url로 flag.php를 요청하려면 그냥 ?file=flag형식으로 요청하면 된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "51573061-eca1-546e-94ec-9be47c4f3f3b",
+          "src": "/assets/uploads/1dd0c2c2-1791-5f46-a216-6ef272b0d318/51573061-eca1-546e-94ec-9be47c4f3f3b.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "url에서 hello를 입력 받아서 hello.php를 요청하는 것 같다. 그러면 Flag is in the code가 나오는데 이건 Flag.php를 그대로가 아닌 실행해서 보여주기 때문이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "php://를 wrapper라고 하는데 이걸 사용하면 내용을 인코딩 할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "php://filter/convert.base64-encode/resource=flag"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이걸 그대로 요청하면 base64로 인코딩된 파일이 나타난다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "assetId": "f2d61b5d-c417-554c-83dd-3d7c565bedc9",
+          "src": "/assets/uploads/1dd0c2c2-1791-5f46-a216-6ef272b0d318/f2d61b5d-c417-554c-83dd-3d7c565bedc9.png",
+          "alt": "",
+          "title": null
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 값을 base64 디코더를 사용해서 디코딩하면 아래 값이 나온다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "php"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<?php\n  echo \"FLAG is in the code\";\n  $flag = \"FLAG{this_is_your_first_flag}\";\n?>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일반적인 include 함수는 파일을 가져와서 PHP 코드로 해석하여 실행한다. 서버 코드에는 iclude(file.php)이런 식으로 되어 있어"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "?file=flag를 했을 때 플래그가 보이지 않는다. 그냥 변수로 들어가 있기 때문이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "php://filter 스트림은 데이터가 include 함수로 넘겨지기 "
+          },
+          {
+            "type": "text",
+            "text": "전",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "에 데이터를 가공합니다. 여기서 Base64 인코딩을 거치면, PHP 태그(<?php ... ?>)가 깨져서 문자로 인식되므로 서버는 이를 실행하지 않고 단순 문자열로 출력하게 된다"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 요약"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "file 파라미터가 사용자 입력을 받아 파일을 호출할 때, flag를 입력하면 flag.php가 서버 측에서 실행되어 소스 코드를 볼 수 없는 문제이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이를 우회하기 위해 PHP Wrapper인 php://filter/convert.base64-encode/resource=flag를 사용하여 소스 코드를 실행하지 않고 Base64로 인코딩하여 출력했다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "출력된 Base64 문자열을 디코딩하여 flag.php의 원본 소스 코드를 확인하고 그 안에 숨겨진 플래그를 획득했다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/57",
+    "originalId": "57",
+    "publishedAt": "2026-01-26T16:22:38+09:00",
+    "updatedAt": "2026-01-26T16:22:38+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

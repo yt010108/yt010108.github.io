@@ -1,0 +1,736 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "1ca9c0f1-4852-52b4-9223-6c417e3de287",
+  "kind": "posts",
+  "title": "[SK Rookies]  레거시 네트워크 | 네트워크·스위칭·TCP/IP·라우팅",
+  "slug": "tistory-152",
+  "description": "오늘 배운 내용이 자료는 네트워크 기본부터 스위칭, TCP/IP, 라우팅, Cisco IOS 운용까지 한 번에 다룬다. 전체 흐름은 \"데이터가 계층별로 어떻게 전달되는가 → LAN에서 스위치가 어떻게 전달하는가 → IP 기반 통신과 주소를 어떻게 다루는가 → 서로 다른 네트워크 사이에서 라우터가 어떻게 경로를 선택하는가\"로 이어진다.네트워크 기본네트워크는 통신 매체를 통해 연결된 노드들의 집합이다. 자료에서는 범위에 따라 LAN과 WAN으로 나누고, LAN 기술로 Ethernet, TokenRing, FDDI, ATM을 소개한다. 데이터 전송 방식은 Unicast, Broadcast, Multicast로 구분한다.NIC는 전기 신호와 데이터 사이의 변환, MAC Address를 이용한 수신 여부 판별, ..",
+  "category": "SK Rookies / 수업 정리",
+  "date": "2026-09-05",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-09-05T23:47:23+09:00",
+  "updatedAt": "2026-09-05T23:51:01+09:00",
+  "sourceDigest": "61cdafe6996af22d7d7a525dfe6897605dfc253a7539b1f0b8eef5cf02206da3",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[원본에서 불러올 수 없는 이미지]"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "오늘 배운 내용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 자료는 네트워크 기본부터 스위칭, TCP/IP, 라우팅, Cisco IOS 운용까지 한 번에 다룬다. 전체 흐름은 \"데이터가 계층별로 어떻게 전달되는가 → LAN에서 스위치가 어떻게 전달하는가 → IP 기반 통신과 주소를 어떻게 다루는가 → 서로 다른 네트워크 사이에서 라우터가 어떻게 경로를 선택하는가\"로 이어진다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "네트워크 기본"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "네트워크는 통신 매체를 통해 연결된 노드들의 집합이다. 자료에서는 범위에 따라 LAN과 WAN으로 나누고, LAN 기술로 Ethernet, TokenRing, FDDI, ATM을 소개한다. 데이터 전송 방식은 Unicast, Broadcast, Multicast로 구분한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "NIC는 전기 신호와 데이터 사이의 변환, MAC Address를 이용한 수신 여부 판별, 케이블 흐름 제어를 담당한다. 네트워크 토폴로지는 BUS, Star, Ring, Tiered Star, Full Mesh 형태를 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "OSI 7 Layer와 데이터 전송"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "OSI 모델은 서로 다른 시스템 간 개방 통신을 위한 7계층 모델이다. 계층화의 이유로 복잡함 감소, 인터페이스 표준화, 상호 호환성 확보, 기술 개발 가속화, 설명과 학습의 단순화를 제시한다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "7 Application: 응용 프로그램을 위한 네트워크 서비스 제공"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "6 Presentation: 데이터 형식 결정, 코드 변환, 압축, 암호화 등"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "5 Session: 응용 프로그램 사이의 세션 확립, 관리, 해제"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "4 Transport: End-to-End 연결과 전송 제어, 신뢰성 제공"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "3 Network: 논리 주소 기반 라우팅과 최적 경로 선택"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "2 Data Link: 프레임 형식과 MAC 기반 매체 접근 제어"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "1 Physical: 물리 연결의 전기적·기계적 특징 정의"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "송신 측은 Encapsulation을 통해 계층별 헤더를 붙이고, 수신 측은 De-Encapsulation으로 이를 제거한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "계층별 장비"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Ethernet LAN은 매체를 공유하며 Broadcast System으로 동작한다. Collision Domain과 Broadcast Domain을 구분하는 것이 중요하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Data Link 계층의 스위치는 프레임을 다루며 Flooding, Learning, Filtering/Blocking, Forwarding을 수행한다. Network 계층의 라우터는 서로 다른 네트워크 사이의 연결, Broadcast 제어, 경로 선택을 담당한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Layer 2 스위치 기본 기능"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "스위치는 수신 프레임의 Source MAC Address를 학습해 MAC address table을 만들고, 목적지 MAC을 기준으로 Forward 또는 Filter한다. 목적지를 모르면 Flooding한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "sw_2950#show mac-address-table\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Port Security는 스위치 포트에서 허용할 MAC 주소를 제한하는 방식으로 소개된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "STP"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "물리적인 이중 경로는 SPOF를 줄이지만 L2 Looping과 Broadcast Storming을 만들 수 있다. STP(Spanning Tree Protocol)는 스위치 간 BPDU를 교환하여 루프가 없는 논리 경로를 구성한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "VLAN"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "VLAN은 자료에서 Broadcast Domain = Logical Network (Subnet)으로 정리된다. 목적은 Segmentation, Flexibility, Security다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "sw_2960#configure terminal\nsw_2960(config)#vlan 2\nsw_2960(config-vlan)#name sales\nsw_2960(config)#interface fastethernet 0/2\nsw_2960(config-if)#switchport access vlan 2\nsw_2960#show vlan\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "VLAN 범위는 0과 4095가 예약, 1이 Cisco default, 2–1001이 Ethernet용, 1002–1005가 FDDI/Token Ring용 Cisco default, 1006–4094가 Ethernet VLAN용으로 설명된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Trunk와 802.1Q"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Trunk는 여러 스위치에 존재하는 같은 VLAN 사이의 통신을 지원하고 각 프레임을 구분하기 위한 ID를 사용한다. 자료에서는 802.1Q trunk 설정을 다음과 같이 제시한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Switch(config)#interface fastethernet 0/3\nSwitch(config-if)#shutdown\nSwitch(config-if)#switchport mode trunk\nSwitch(config-if)#no shutdown\nSwitch#show interfaces trunk\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "EtherChannel"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "EtherChannel은 최대 8개의 물리 Link를 하나의 논리 Ethernet Link로 묶는 방식이다. Load Balancing과 Redundancy를 제공한다. 동적 프로토콜로 Cisco proprietary인 PAgP와 IEEE 802.3ad 표준인 LACP를 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Switch#config terminal\nSwitch(config)#interface range fastethernet 0/1 – 2\nSwitch(config-if-range)#channel-group 1 mode desirable\nSwitch#sh etherchannel summ\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "TCP/IP"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "TCP/IP 모델은 OSI 모델과 비교해 Application, Transport, Internet, Network Access 계층 흐름으로 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "TCP는 연결 지향, 에러 검출, 신뢰성 있는 전송을 중심으로 설명한다. UDP는 최소 서비스와 비신뢰성 특성을 가진다. Internet 계층에서는 IP, ICMP, ARP가 핵심이다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "IP: 데이터그램 전달과 논리 주소 처리"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ICMP: 네트워크 제어 메시지"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ARP: IP 주소에 대응하는 MAC Address 확인"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "IPv4 Addressing과 Subnetting"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "IPv4 주소는 32bit이며 4개의 octet으로 표현한다. 첫 번째 octet을 기준으로 Class를 구분하고, 기본 Network/Broadcast 주소와 Private Address Range를 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서브넷 마스크에서는 비트 값과 mask를 연결해 이해하고, B class와 C class subnetting, FLSM 주소 배치 예제를 통해 네트워크 수와 호스트 수를 계산한다. Host-to-Host 확인 도구로 ping과 각종 host table을 소개한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Routing"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "라우터는 Broadcast Domain의 크기를 줄이고 서로 다른 Network 또는 VLAN 사이에 Packet을 전달한다. Routing Table에는 Directly Connected 경로, Static 경로, Dynamic Routing Protocol로 학습한 경로 등이 들어간다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "RouterX#show ip route\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Static Route와 Default Route는 관리자가 직접 경로를 지정한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "ip route 0.0.0.0 0.0.0.0 172.16.2.2\nip route 172.16.1.0 255.255.255.0 172.16.2.1\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Dynamic Routing Protocol은 IGP/EGP, Distance-Vector/Link-State 관점으로 분류한다. 서로 다른 Routing Protocol에서 같은 네트워크를 학습하면 Administrative Distance를 비교하고, 동일 프로토콜 내부에서는 Metric을 이용해 Best Path를 선택하는 흐름으로 설명한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Inter-VLAN Routing"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서로 다른 VLAN 사이 통신에는 라우팅이 필요하다. 자료에서는 외장형 라우터의 subinterface와 802.1Q trunk를 이용하는 방식, 그리고 L3 Switch의 SVI를 이용하는 방식을 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Switch(config)#ip routing\nSwitch(config)#interface vlan vlan-id\nSwitch(config-if)#ip address ip-address mask\nSwitch(config)#router ip_routing_protocol <options>\n"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Cisco IOS 기본 운용"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Cisco IOS에서는 User EXEC, Privileged EXEC, Global Configuration, Interface, Line, Router 모드 등의 CLI 계층을 구분한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Router>enable\nRouter#configure terminal\nRouter(config)#hostname router_1\nRouter(config)#interface serial 0/0\nRouter(config-if)#ip address 10.1.1.x 255.255.255.0\nRouter(config-if)#no shutdown\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Console, VTY, enable password/secret 설정도 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Router(config)#line console 0\nRouter(config-line)#login\nRouter(config-line)#password cisco\nRouter(config)#line vty 0 4\nRouter(config-line)#login\nRouter(config-line)#password sanjose\nRouter(config)#enable secret sanfran\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "설정 확인과 저장은 다음 명령이 핵심이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": ""
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "router_1#show running-config\nrouter_1#show startup-config\nrouter_1#copy running-config startup-config\n"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "편의를 위한 exec-timeout 0 0, logging synchronous, no ip domain-lookup과 IOS 도움말, ping, traceroute도 함께 다룬다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "복습하면서 확인할 점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "OSI 계층별 역할과 장비를 연결해서 기억한다. 스위치의 Learning/Flooding/Forwarding/Filtering 흐름, STP의 루프 방지 목적, VLAN과 Trunk의 관계를 구분한다. TCP와 UDP의 성격, IP·ICMP·ARP 역할, IPv4 서브넷팅 계산을 직접 해본다. Routing Table에서 경로 출처와 Best Path 선택 기준을 확인하고, 마지막으로 Cisco IOS의 모드 전환·인터페이스 설정·저장 명령을 반복해서 익힌다."
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/152",
+    "originalId": "152",
+    "publishedAt": "2026-09-05T23:47:23+09:00",
+    "updatedAt": "2026-09-05T23:51:01+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}

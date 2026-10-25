@@ -1,0 +1,759 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "9fafbeed-b8ff-57b2-9960-6f8d77173c93",
+  "kind": "posts",
+  "title": "About me",
+  "slug": "tistory-126",
+  "description": "안녕하세요 AI와 보안에 호기심 많은 취준생 블로그입니다.최근에는 AI 에이전트와 자동화 기술을 공부하며 모의해킹과 보안 직무에 어떻게 적용할 수 있을지 고민하고 연구중입니다. 관심 분야다음 분야를 중심으로 학습과 프로젝트를 진행하고 있습니다.웹 보안AI·LLM 보안과 레드티밍AI Agent·MCP 기반 보안 자동화취약점 분석과 탐지 규칙 개발보안 정책 및 공공기관 정보보안 github yt010108 - Overviewyt010108 has 9 repositories available. Follow their code on GitHub.github.com 대표 프로젝트현재까지 웹 보안, AI·LLM 보안, 보안 자동화와 안전한 AI 서비스 개발을 중심으로 프로젝트를 진행했습니다. PI기반 하네스 제..",
+  "category": "",
+  "date": "2026-08-06",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-08-06T09:26:11+09:00",
+  "updatedAt": "2026-10-22T17:49:20+09:00",
+  "sourceDigest": "05c4203ccb5b10f314925afe5a8843ea425ecb946fa153241383b08d471a55b6",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "안녕하세요 AI와 보안에 호기심 많은 취준생 블로그입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "최근에는 AI 에이전트와 자동화 기술을 공부하며 모의해킹과 보안 직무에 어떻게 적용할 수 있을지 고민하고 연구중입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "관심 분야"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다음 분야를 중심으로 학습과 프로젝트를 진행하고 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "웹 보안"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "AI·LLM 보안과 레드티밍"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "AI Agent·MCP 기반 보안 자동화"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "취약점 분석과 탐지 규칙 개발"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "보안 정책 및 공공기관 정보보안"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "github"
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "60c3ac9f-0c6d-5b80-9fbf-5b53b2fb24de",
+          "href": "https://github.com/yt010108",
+          "title": "yt010108 - Overview",
+          "description": "yt010108 has 9 repositories available. Follow their code on GitHub.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/e900def664fdb698b28d4f9677b66137c5e0b91a08f2279fc91c0b4ae01e7c06.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "대표 프로젝트"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "현재까지 웹 보안, AI·LLM 보안, 보안 자동화와 안전한 AI 서비스 개발을 중심으로 프로젝트를 진행했습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PI기반 하네스 제작"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Reverser(AI 리버싱 하네스 프로젝트)"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "6575ad68-0707-5718-b58b-936ddf71fb71",
+          "href": "https://github.com/yt010108/Reverser",
+          "title": "GitHub - yt010108/Reverser: Reversing agent herness",
+          "description": "Reversing agent herness . Contribute to yt010108/Reverser development by creating an account on GitHub.",
+          "image": "",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Recon(AI 버그바운티, 웹 리콘용 하네스 프로젝트)"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "79e38959-e675-581d-80bd-3ecc9aacbcba",
+          "href": "https://github.com/yt010108/Recon",
+          "title": "GitHub - yt010108/Recon: PI Recon harness",
+          "description": "PI Recon harness. Contribute to yt010108/Recon development by creating an account on GitHub.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/0cf3452319ab8190c1fe38b2bde8520885b47aace9a1d3abda36ea43e01d8ee8.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "AI를 사용한 도구 제작"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "kr-gob-job-mcp(공공기관 취업 정보 mcp 프로젝트)"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "8bfb0ba9-c828-5943-9960-d8df6aacb400",
+          "href": "https://github.com/yt010108/kr-gov-job-mcp",
+          "title": "GitHub - yt010108/kr-gov-job-mcp: 한국 공공기관 NCS 취업 정보 분석 MCP. 채용공고, 기관 분석, NCS 역량을 ",
+          "description": "한국 공공기관 NCS 취업 정보 분석 MCP. 채용공고, 기관 분석, NCS 역량을 근거 기반으로 연결합니다. - yt010108/kr-gov-job-mcp",
+          "image": "",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Pentest-helper(모의해킹용 agent skill)"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "b173bbef-18d9-5aeb-81a2-01f5399e75a4",
+          "href": "https://github.com/yt010108/pentest-helper",
+          "title": "GitHub - yt010108/pentest-helper: 침투테스트를 진행하도록 설계한 Codex Skill",
+          "description": "침투테스트를 진행하도록 설계한 Codex Skill. Contribute to yt010108/pentest-helper development by creating an account on GitHub.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/abf711f34e78862be93b96a61db68ad28b89f737cf0ce33950c360b31befa911.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "WEB 과 AI 프로젝트"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Automatic-scanner-tool 및 취약한 SSLC 사이트 개발 (SK Rookies 팀 프로젝트)"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "41756771-8f39-51f7-b6fc-2279a9ea26e3",
+          "href": "https://github.com/Rookies-34-3/sslc-lab",
+          "title": "GitHub - Rookies-34-3/sslc-lab: 취약한 SSLC 미러 사이트 개발",
+          "description": "취약한 SSLC 미러 사이트 개발 . Contribute to Rookies-34-3/sslc-lab development by creating an account on GitHub.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/913ea4dd64221ed46d0676b62921ae935da1fd885a279214a0923e1b322e323c.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "local-lens(사용자 자연어 기반 여행지 추천 시스템)"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "https://github.com/yt010108/locallens",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/yt010108/locallens"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "zza-ni(수면 시간, 질 예측모델을 활용한 수면 관리 웹)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "https://github.com/Rookies-34-7/Rookies-Module-project",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://github.com/Rookies-34-7/Rookies-Module-project"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "a1c7ccd8-4738-54b1-8305-7debfb3a8fad",
+          "href": "https://github.com/Rookies-34-7/Rookies-Module-project",
+          "title": "GitHub - Rookies-34-7/Rookies-Module-project: sk_shieldus_34",
+          "description": "sk_shieldus_34. Contribute to Rookies-34-7/Rookies-Module-project development by creating an account on GitHub.",
+          "image": "https://yt010108.github.io/assets/imported/tistory/b317fbed292eb61fde32d21d74ed607ffabccec3e8552f766db312d17ad70716.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "자격증"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "정보보안기사"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "정보처리기사"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "네트워크관리사 2급"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "리눅스 마스터 2급"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "수상기록"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "2026년 AI 원클릭 해킹대회(한국인터넷진흥원)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "2026년 AI 프라이버시 챌린지(한국방송통신전파진흥원 "
+                  },
+                  {
+                    "type": "text",
+                    "text": "https://www.kisa.or.kr/402/form?postSeq=2630&page=1",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://www.kisa.or.kr/402/form?postSeq=2630&page=1"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ")"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "광주광역시교육청 누리집 보안 취약점 식별 유공("
+                  },
+                  {
+                    "type": "text",
+                    "text": "https://www.mdtimes.kr/1160017",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://www.mdtimes.kr/1160017"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": ")"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "교육사항"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "Cisco virtual internship"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "KISA 아카데미 버그헌팅실습훈련(초급, 중급)"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "SK Shieldus Rookies"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "현재까지의 경험에 머무르지 않고, 공격 시나리오 설계부터 취약점 검증, 보안 대책 수립과 AI 기반 자동화까지 연결할 수 있는 보안 엔지니어로 성장하는 과정을 꾸준히 기록하겠습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "감사합니다."
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "platform": "tistory",
+    "url": "https://yt5246.tistory.com/126",
+    "originalId": "126",
+    "publishedAt": "2026-08-06T09:26:11+09:00",
+    "updatedAt": "2026-10-22T17:49:20+09:00",
+    "importedAt": "2026-10-25T14:17:38+09:00"
+  }
+}
