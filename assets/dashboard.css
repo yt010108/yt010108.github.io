@@ -16,6 +16,7 @@
 .dashboard-search-box { display: flex; align-items: center; gap: 12px; padding: 6px 15px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; }
 .dashboard-search-box svg { width: 18px; height: 18px; color: var(--quiet); }
 .dashboard-search-box input { width: 100%; min-width: 0; height: 42px; padding: 6px 0; border: 0; background: transparent; color: var(--text); font-size: 14px; }
+.dashboard-search-box input::placeholder { color: var(--quiet); opacity: 1; }
 .dashboard-search-results { position: absolute; top: calc(100% + 8px); left: 0; right: 0; z-index: 5; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 10px; box-shadow: 0 6px 20px var(--note-shadow); }
 .dashboard-search-count { padding: 4px 8px 9px; color: var(--quiet); font-size: 11px; }
 .dashboard-search-results a { display: flex; gap: 10px; align-items: center; padding: 10px 9px; border-radius: 5px; font-size: 12px; }
@@ -116,7 +117,6 @@
 .dashboard-entry h3 { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; }
 .dashboard-entry p { color: var(--quiet); font-size: 11px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
 .dashboard-entry time { color: var(--quiet); font: 11px/1.5 var(--mono); margin-top: auto; }
-.dashboard-page .header-actions .search-trigger { display: none; }
 @media (max-width: 900px) { .dashboard-grid { gap: 14px; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); } .dashboard-panel { padding: 16px; } .dashboard-shortcuts { gap: 12px; } }
 @media (max-width: 640px) { .dashboard-grid { grid-template-columns: minmax(0, 1fr); gap: 17px; } .dashboard-github { min-height: 0; } .dashboard-github [data-github-calendar] { padding: 10px 0; } .dashboard-recent-grid { grid-template-columns: 1fr; } .dashboard-entry { min-height: 130px; } .dashboard-shortcuts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 17px; } .dashboard-shortcut { width: 100%; } .dashboard-memo { min-height: 180px; } .dashboard-search-box input { font-size: 16px; } }
 @media (pointer: coarse) { .dashboard-filters button, .dashboard-text-link, .dashboard-button, .dashboard-task-delete, .dashboard-task-form button { min-height: 44px; } .dashboard-memo, .dashboard-task-form input, .dashboard-auth-dialog input[type="password"] { font-size: 16px; } .dashboard-task label { min-height: 44px; align-items: center; } .dashboard-task input { width: 20px; height: 20px; margin-top: 0; } }

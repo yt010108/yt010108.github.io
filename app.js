@@ -356,7 +356,7 @@
   });
   searchInput.addEventListener("input", updateSearch);
   document.addEventListener("keydown", event => {
-    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") { event.preventDefault(); if (dialog.open) dialog.close(); else if (!window.BlogDashboard.focusSearch()) openSearch(); }
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") { event.preventDefault(); if (dialog.open) dialog.close(); else openSearch(); }
     if (event.key === "Escape") {
       if (dialog.open) { event.preventDefault(); dialog.close(); }
       closeMenu();
