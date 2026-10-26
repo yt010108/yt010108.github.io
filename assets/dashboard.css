@@ -22,7 +22,7 @@
 .dashboard-search-results a:hover { background: var(--surface); }
 .dashboard-search-results a > span { color: var(--quiet); font-size: 11px; white-space: nowrap; }
 .dashboard-search-results strong { font-weight: 400; flex: 1; overflow-wrap: anywhere; }
-.dashboard-grid { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); align-items: start; gap: 20px; }
+.dashboard-grid { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); align-items: stretch; gap: 20px; }
 .dashboard-panel { min-width: 0; border: 1px solid var(--line); border-radius: 12px; padding: 19px 20px; background: var(--bg); }
 .dashboard-panel-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 16px; }
 .dashboard-panel-head h2 { display: flex; gap: 8px; align-items: center; }
@@ -60,6 +60,7 @@
 .dashboard-project-label strong { font-size: 13px; font-weight: 400; line-height: 1.4; overflow-wrap: anywhere; }
 .dashboard-project-label > span { color: var(--quiet); font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
 .dashboard-right { display: flex; flex-direction: column; gap: 17px; min-width: 0; }
+.dashboard-right > .dashboard-panel:last-child { flex: 1; }
 .dashboard-workspace-fields { border: 0; padding: 0; margin: 0; }
 .dashboard-memo { display: block; width: 100%; min-height: 170px; padding: 15px; border-radius: 8px; background: var(--note-paper); color: var(--text); font-size: 13px; line-height: 1.9; white-space: pre-wrap; overflow-wrap: anywhere; }
 .dashboard-memo { border: 1px solid transparent; resize: none; overflow: hidden; }
