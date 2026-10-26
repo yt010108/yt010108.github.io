@@ -2092,6 +2092,23 @@
       "trashedAt": null,
       "path": "blog/entries/c1c86403-e56f-4a4b-b736-8ba1d20f0d49.json",
       "sha": "192838620f2b91011a491cf8672d36f69f26149c"
+    },
+    {
+      "id": "6a1f9768-fdba-4032-abbd-1d337a5e419e",
+      "kind": "notes",
+      "slug": "gitblog로-옮긴-이유",
+      "title": "gitblog로 옮긴 이유",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-10-26",
+      "updatedAt": "2026-10-26T07:53:32.221Z",
+      "publishedAt": "2026-10-26T07:53:32.221Z",
+      "status": "published",
+      "sourceDigest": "ffa708ad23e5e290435c91e7ef06295d683791754fad65991987d3c384f7a617",
+      "trashedAt": null,
+      "path": "blog/entries/6a1f9768-fdba-4032-abbd-1d337a5e419e.json",
+      "sha": "6a70cff1e04b1b9a8b04172ae2e2967ceea6e949"
     }
   ],
   "taxonomy": {

@@ -1,0 +1,26 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "6a1f9768-fdba-4032-abbd-1d337a5e419e",
+  "title": "gitblog로 옮긴 이유",
+  "kind": "notes",
+  "slug": "gitblog로-옮긴-이유",
+  "description": "",
+  "category": "",
+  "date": "2026-10-26",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-10-26T07:53:32.221Z",
+  "updatedAt": "2026-10-26T07:53:32.221Z",
+  "sourceDigest": "ffa708ad23e5e290435c91e7ef06295d683791754fad65991987d3c384f7a617",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph"
+      }
+    ]
+  }
+}
