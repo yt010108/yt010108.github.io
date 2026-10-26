@@ -6,6 +6,8 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: '15 0 * * *'
 
 permissions:
   contents: read
@@ -38,6 +40,7 @@ jobs:
           node --check admin/assets/editor.js
           node --check assets/posts.js
           node --check assets/notes-board.js
+          node --check assets/dashboard.js
           node --check published.js
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'

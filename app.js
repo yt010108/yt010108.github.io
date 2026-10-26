@@ -202,6 +202,7 @@
         refreshTask = null;
         if (changed || main.querySelector("[data-publication-status]")) render(firstLoad);
         if (dialog.open) updateSearch();
+        window.BlogDashboard.refresh();
       }
     })();
     return refreshTask;
@@ -225,6 +226,7 @@
     let title = "Security research, notes & projects";
     let nav = kind || "home";
     if (!kind) html = home();
+    else if (kind === "dashboard") { html = window.BlogDashboard.html(); title = "Dashboard"; }
     else if (kind === "posts" || kind === "notes") {
       html = archive(kind === "posts" ? "post" : "note", params.get("tag") || "all", params.get("category") || "");
       title = kind === "posts" ? "Posts" : "Notes";
@@ -247,6 +249,8 @@
     }
     main.innerHTML = html;
     window.NotesBoard.mount(main.querySelector("[data-notes-board]"), data.notes);
+    window.BlogDashboard.mount(main.querySelector("[data-dashboard]"), data, contentRevision);
+    document.body.classList.toggle("dashboard-page", kind === "dashboard");
     document.title = `${title} — ${data.profile.name}`;
     document.querySelectorAll("[data-nav]").forEach(link => {
       if (link.dataset.nav === nav) link.setAttribute("aria-current", "page");
@@ -352,7 +356,7 @@
   });
   searchInput.addEventListener("input", updateSearch);
   document.addEventListener("keydown", event => {
-    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") { event.preventDefault(); if (dialog.open) dialog.close(); else openSearch(); }
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") { event.preventDefault(); if (dialog.open) dialog.close(); else if (!window.BlogDashboard.focusSearch()) openSearch(); }
     if (event.key === "Escape") {
       if (dialog.open) { event.preventDefault(); dialog.close(); }
       closeMenu();

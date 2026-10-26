@@ -7,7 +7,8 @@
   "scripts": {
     "build:editor": "node scripts/build-editor.mjs",
     "build:content": "node scripts/build-content.mjs",
-    "build": "npm run build:editor && npm run build:content && node scripts/prepare-site.mjs",
+    "build:dashboard": "node scripts/build-dashboard.mjs",
+    "build": "npm run build:editor && npm run build:dashboard && npm run build:content && node scripts/prepare-site.mjs",
     "test": "node --test tests/*.test.mjs"
   },
   "dependencies": {

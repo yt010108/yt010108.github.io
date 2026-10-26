@@ -8,5 +8,8 @@ _site/
 /admin/assets/
 /assets/posts.js
 /assets/notes-board.js
+/assets/dashboard.js
+/assets/github-activity.json
+/dashboard.json
 /published.js
 /published.json
