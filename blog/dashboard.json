@@ -1,8 +1,14 @@
 {
   "format": "yt010108-dashboard",
   "version": 1,
-  "memo": "자세 바르게 하기\n키보드 살살 치기",
-  "tasks": [],
+  "memo": "자세 바르게 하기\n키보드 살살 치기\n",
+  "tasks": [
+    {
+      "id": "51483210-5a7d-47af-8f28-b3de7182d851",
+      "text": "php2shell 공부하기",
+      "done": false
+    }
+  ],
   "shortcuts": [
     {
       "id": "10000000-0000-4000-8000-000000000001",
@@ -40,5 +46,5 @@
       "url": "https://github.com/T34M-Rookie/T34M-ROOKIE-Study-Archive"
     }
   ],
-  "updatedAt": "2026-10-26T08:03:02.622Z"
+  "updatedAt": "2026-10-26T08:05:04.727Z"
 }
