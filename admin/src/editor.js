@@ -11,9 +11,11 @@ import { readDraft, listDrafts, writeDraft, hasUnpublishedChanges, DraftConflict
 import { IMAGE_TYPES, MAX_IMAGE_SIZE, newEntry, safeSlug, safeImageData, createAsset, imageBySource, transformImages, usedAssets, validateBackup, markdownDocument, assetBytes } from "./document.js";
 import { createLinkPreviews, webURL } from "./link-preview.js";
 import { renderDocument, UUID } from "../../shared/posts.js";
-import { GitHubRepository, REMEMBER_KEY } from "./github.js";
+import { REMEMBER_KEY } from "./github.js";
+import { DashboardRepository } from "../../src/dashboard-repository.js";
 import { createManager } from "./manager.js";
 import { createTaxonomyManager } from "./taxonomy.js";
+import { createDashboardManager } from "./dashboard.js";
 
 const $ = id => document.getElementById(id);
 const ACTIVE_KEY = "yt010108-writing-active";
@@ -23,9 +25,9 @@ let entry = newEntry(), mode = "rich", ready = false, silent = false, composing 
 let changes = 0, savedChanges = 0, exportedChanges = -1;
 let saveTimer, messageTimer, savePromise, editor, lastSelection, imagePosition;
 let imageJobs = Promise.resolve(), pendingImages = 0;
-let cmsBusy = false, managing = false, taxonomyOpen = false, navigationBusy = false;
+let cmsBusy = false, managing = false, taxonomyOpen = false, dashboardOpen = false, navigationBusy = false;
 let authorized = false, authBusy = false, unlockTask, managerStatus = "all";
-const repository = new GitHubRepository();
+const repository = new DashboardRepository();
 const linkPreviews = createLinkPreviews({ getEditor: () => editor, getEntryId: () => entry.id });
 
 createIcons({ icons: { SquarePen, Files, Bold, Italic, Strikethrough, Code, List, ListOrdered, Quote, Link, ImagePlus, Table2, SquareCode, Minus, Eye, Undo2, Redo2, FolderOpen, Download, Archive, ArrowLeft, Hash, Menu, FileClock, FolderTree, Images, PanelsTopLeft, Trash2, LogOut }, attrs: { "stroke-width": 1.5 } });
@@ -51,6 +53,7 @@ function setBusy(value) {
   $("writer-fields").disabled = value || !enabled;
   $("taxonomy-fields").disabled = value || !enabled;
   $("taxonomy-refresh").disabled = value || !enabled;
+  dashboardManager?.setBusy(value || !enabled);
   editor?.setEditable(enabled && !value, false);
   ["new-draft", "open-drafts", "manage-button", "manager-new", "manager-refresh", "github-connect", "sidebar-logout", "github-disconnect", "finish-button", "save-button", "preview-button", "publish-button"].forEach(id => { $(id).disabled = value || !enabled; });
 }
@@ -58,18 +61,20 @@ function setBusy(value) {
 function setView(managerView) {
   if (!authorized || !repository.connected) return;
   taxonomyOpen = managerView === "taxonomy";
+  dashboardOpen = managerView === "dashboard";
   managing = Boolean(managerView);
   document.body.classList.toggle("is-managing", managing);
   $("taxonomy-view").hidden = !taxonomyOpen;
-  $("manager-view").hidden = !managing || taxonomyOpen;
+  $("dashboard-view").hidden = !dashboardOpen;
+  $("manager-view").hidden = !managing || taxonomyOpen || dashboardOpen;
   $("writer-view").hidden = managing;
   document.querySelector(".writer-heading").textContent = managerView ? "관리" : "글쓰기";
   $("manage-button").setAttribute("aria-current", managerView ? "page" : "false");
   const skip = document.querySelector(".skip-link");
-  skip.href = taxonomyOpen ? "#taxonomy-title" : managing ? "#manager-title" : "#post-title";
-  skip.textContent = taxonomyOpen ? "분류 관리로 이동" : managing ? "글 관리로 이동" : "글 제목으로 이동";
-  document.title = taxonomyOpen ? "카테고리·태그 — yt010108" : managing ? "글 관리 — yt010108" : (title.value.trim() || "글쓰기") + " — yt010108";
-  history.replaceState(null, "", taxonomyOpen ? "#taxonomy" : managing ? managerStatus === "draft" ? "#drafts" : managerStatus === "trash" ? "#trash" : "#manage" : "#write");
+  skip.href = dashboardOpen ? "#dashboard-admin-title" : taxonomyOpen ? "#taxonomy-title" : managing ? "#manager-title" : "#post-title";
+  skip.textContent = dashboardOpen ? "대시보드 관리로 이동" : taxonomyOpen ? "분류 관리로 이동" : managing ? "글 관리로 이동" : "글 제목으로 이동";
+  document.title = dashboardOpen ? "대시보드 관리 — yt010108" : taxonomyOpen ? "카테고리·태그 — yt010108" : managing ? "글 관리 — yt010108" : (title.value.trim() || "글쓰기") + " — yt010108";
+  history.replaceState(null, "", dashboardOpen ? "#dashboard" : taxonomyOpen ? "#taxonomy" : managing ? managerStatus === "draft" ? "#drafts" : managerStatus === "trash" ? "#trash" : "#manage" : "#write");
   syncSidebar(); setSidebarOpen(false);
   if (!managerView) resizeTitle();
 }
@@ -114,6 +119,15 @@ async function openTaxonomy() {
   try {
     if (!await keepBeforeSwitch()) return;
     setView("taxonomy"); await taxonomy.refresh();
+  } finally { navigationBusy = false; setBusy(false); }
+}
+
+async function openDashboard() {
+  if (cmsBusy || navigationBusy || !ready || !authorized || !repository.connected) return;
+  navigationBusy = true; setBusy(true);
+  try {
+    if (!await keepBeforeSwitch()) return;
+    setView("dashboard"); await dashboardManager.refresh();
   } finally { navigationBusy = false; setBusy(false); }
 }
 
@@ -288,6 +302,7 @@ const taxonomy = createTaxonomyManager({
     if (published) manager.watchDeployment(result.commit, published);
   }
 });
+const dashboardManager = createDashboardManager({ repository, onBusy: setBusy });
 
 function syncMarkdown() {
   if (mode !== "markdown") return;
@@ -621,12 +636,12 @@ function openGitHub() {
 }
 
 function syncSidebar() {
-  const current = taxonomyOpen ? "taxonomy" : managing ? managerStatus === "draft" ? "draft" : managerStatus === "trash" ? "trash" : "all" : "write";
+  const current = dashboardOpen ? "dashboard" : taxonomyOpen ? "taxonomy" : managing ? managerStatus === "draft" ? "draft" : managerStatus === "trash" ? "trash" : "all" : "write";
   document.querySelectorAll("[data-admin-view]").forEach(button => {
     if (button.dataset.adminView === current) button.setAttribute("aria-current", "page");
     else button.removeAttribute("aria-current");
   });
-  if (authorized && managing) history.replaceState(null, "", current === "taxonomy" ? "#taxonomy" : current === "draft" ? "#drafts" : current === "trash" ? "#trash" : "#manage");
+  if (authorized && managing) history.replaceState(null, "", current === "dashboard" ? "#dashboard" : current === "taxonomy" ? "#taxonomy" : current === "draft" ? "#drafts" : current === "trash" ? "#trash" : "#manage");
 }
 
 function setSidebarOpen(open) {
@@ -654,7 +669,7 @@ function lockAdmin() {
   $("github-submit").textContent = authBusy ? "확인 중…" : "관리자 열기";
   $("auth-retry").hidden = !repository.hasSavedConnection;
   if (!authBusy) $("auth-status").textContent = "관리자에 로그인해 주세요.";
-  manager.clear(); taxonomy.clear(); setSidebarOpen(false); setBusy(false);
+  manager.clear(); taxonomy.clear(); dashboardManager.clear(); setSidebarOpen(false); setBusy(false);
   if (wasAuthorized && ready && changes !== savedChanges) persist().catch(() => {});
 }
 
@@ -670,9 +685,10 @@ async function unlockAdmin() {
     const route = location.hash;
     const noteId = route.startsWith("#edit-note/") ? route.slice(11) : "";
     manager.setStatus(route === "#drafts" ? "draft" : route === "#trash" ? "trash" : "all");
-    setView(route === "#taxonomy" ? "taxonomy" : !["#write", "#new-note"].includes(route) && !UUID.test(noteId));
+    setView(route === "#dashboard" ? "dashboard" : route === "#taxonomy" ? "taxonomy" : !["#write", "#new-note"].includes(route) && !UUID.test(noteId));
     await manager.refresh();
     if (route === "#taxonomy") await taxonomy.refresh();
+    if (route === "#dashboard") await dashboardManager.refresh();
     if (route === "#new-note") await beginNew("notes");
     else if (UUID.test(noteId)) await openLinkedNote(noteId, false);
     if (!repository.connected || repository.generation !== generation) return;
@@ -712,6 +728,10 @@ async function restoreAuth() {
 
 async function logout() {
   if (cmsBusy || authBusy) return;
+  if (dashboardManager.isDirty()) {
+    if (!confirm("저장하지 않은 대시보드 입력을 버리고 로그아웃할까요?")) return;
+    dashboardManager.discard();
+  }
   setBusy(true);
   try { await persist(); } catch {}
   repository.disconnect();
@@ -922,6 +942,7 @@ repository.addEventListener("change", () => {
 document.querySelectorAll("[data-admin-view]").forEach(button => button.addEventListener("click", () => {
   if (button.dataset.adminView === "write") beginNew();
   else if (button.dataset.adminView === "taxonomy") openTaxonomy();
+  else if (button.dataset.adminView === "dashboard") openDashboard();
   else openManager(button.dataset.adminView);
 }));
 $("sidebar-toggle").addEventListener("click", () => setSidebarOpen(!document.body.classList.contains("is-sidebar-open")));
@@ -950,7 +971,8 @@ document.addEventListener("keydown", event => {
   if (!authorized) return;
   if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "s") {
     event.preventDefault();
-    if (!managing) { commitTags(); persist(true).catch(() => {}); }
+    if (dashboardOpen) dashboardManager.save();
+    else if (!managing) { commitTags(); persist(true).catch(() => {}); }
   }
   if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k" && mode === "rich" && editor.isFocused && !document.querySelector("dialog[open]")) {
     event.preventDefault(); openLink();
@@ -961,6 +983,7 @@ window.addEventListener("hashchange", () => {
   if (location.hash === "#write") {
     if (!cmsBusy) setView(false);
   } else if (location.hash === "#taxonomy") openTaxonomy();
+  else if (location.hash === "#dashboard") openDashboard();
   else if (location.hash === "#new-note") beginNew("notes");
   else if (location.hash.startsWith("#edit-note/")) openLinkedNote(location.hash.slice(11));
   else if (["#manage", "#drafts", "#trash"].includes(location.hash)) openManager(location.hash === "#drafts" ? "draft" : location.hash === "#trash" ? "trash" : "all");
@@ -975,7 +998,7 @@ document.addEventListener("click", async event => {
 });
 document.addEventListener("visibilitychange", () => { if (document.hidden) persist().catch(() => {}); });
 window.addEventListener("beforeunload", event => {
-  if (pendingImages || (ready && meaningful() && changes !== savedChanges && changes !== exportedChanges)) { event.preventDefault(); event.returnValue = ""; }
+  if (dashboardManager.isDirty() || dashboardManager.isBusy() || pendingImages || (ready && meaningful() && changes !== savedChanges && changes !== exportedChanges)) { event.preventDefault(); event.returnValue = ""; }
 });
 new ResizeObserver(entries => {
   document.body.style.setProperty("--writer-header-height", entries[0].target.getBoundingClientRect().height + "px");
