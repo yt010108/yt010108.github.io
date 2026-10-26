@@ -679,6 +679,9 @@ async function unlockAdmin() {
   if (unlockTask?.generation === generation) return unlockTask.promise;
   const promise = (async () => {
     authorized = true;
+    if (new URLSearchParams(location.search).get("from") === "dashboard") {
+      location.replace(new URL("../#/dashboard", location.href)); return;
+    }
     if (savePromise) { try { await savePromise; } catch {} }
     if (!ready) await start();
     if (!repository.connected || repository.generation !== generation) return;

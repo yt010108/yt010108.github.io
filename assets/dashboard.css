@@ -53,7 +53,7 @@
 .dashboard-projects-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
 .dashboard-projects-head h3 { font-size: 12px; font-weight: 500; line-height: 1.6; }
 .dashboard-projects ul { list-style: none; margin: 0; padding: 0; }
-.dashboard-project-link { display: flex; align-items: center; gap: 11px; margin-inline: -8px; padding: 6px 8px; border-radius: 6px; }
+.dashboard-project-link { min-height: 44px; display: flex; align-items: center; gap: 11px; margin-inline: -8px; padding: 6px 8px; border-radius: 6px; }
 .dashboard-project-link:hover { background: var(--surface); }
 .dashboard-project-link > svg { color: var(--quiet); }
 .dashboard-project-link > svg:last-child { width: 14px; height: 14px; margin-left: auto; }
@@ -70,7 +70,7 @@
 .dashboard-task-count { color: var(--quiet); font: 11px/1.5 var(--mono); }
 .dashboard-task { display: flex; align-items: center; gap: 6px; margin-bottom: 12px; font-size: 12px; }
 .dashboard-task label { display: flex; align-items: flex-start; gap: 9px; flex: 1; min-width: 0; }
-.dashboard-task input { width: 16px; height: 16px; flex-shrink: 0; margin: 3px 0 0; accent-color: var(--focus); }
+.dashboard-task input { appearance: auto; width: 16px; height: 16px; flex-shrink: 0; margin: 3px 0 0; accent-color: var(--focus); }
 .dashboard-task label > span { min-width: 0; overflow-wrap: anywhere; }
 .dashboard-task label:has(:checked) > span { color: var(--quiet); text-decoration: line-through; }
 .dashboard-task input:disabled { opacity: .8; }
@@ -81,26 +81,11 @@
 .dashboard-task-form input::placeholder { color: var(--quiet); }
 .dashboard-task-form button { display: grid; place-items: center; width: 30px; height: 34px; border: 0; border-radius: 5px; color: var(--quiet); background: transparent; }
 .dashboard-task-form button:hover { background: var(--surface); color: var(--text); }
-.dashboard-savebar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 16px; }
-.dashboard-savebar > p { flex: 1 1 270px; color: var(--quiet); font-size: 11px; overflow-wrap: anywhere; }
-.dashboard-savebar > p[data-error="true"] { color: var(--text); }
-.dashboard-save-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px; }
-.dashboard-button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 36px; padding: 8px 11px; border: 1px solid var(--line); border-radius: 6px; color: var(--text); background: var(--bg); font-size: 11px; line-height: 1.5; }
-.dashboard-button:hover { background: var(--surface); }
-.dashboard-button.dashboard-save { background: var(--text); color: var(--bg); border-color: var(--text); }
-.dashboard-auth-dialog { width: min(460px, calc(100% - 32px)); max-height: calc(100dvh - 32px); padding: 24px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); color: var(--text); overflow: auto; }
-.dashboard-auth-dialog::backdrop { background: #0007; }
-.dashboard-auth-dialog form { display: flex; flex-direction: column; gap: 16px; }
-.dashboard-auth-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.dashboard-auth-heading h2 { font-size: 18px; }
-.dashboard-auth-heading button { border: 0; color: var(--quiet); background: transparent; font-size: 26px; line-height: 1; padding: 0 4px; }
-.dashboard-auth-dialog p, .dashboard-auth-dialog label { font-size: 12px; line-height: 1.8; }
-.dashboard-auth-dialog label:not(.dashboard-auth-remember) { display: flex; flex-direction: column; gap: 6px; }
-.dashboard-auth-dialog input[type="password"] { min-width: 0; width: 100%; border: 1px solid var(--line); border-radius: 6px; padding: 10px; color: var(--text); background: var(--bg); font-size: 14px; }
-.dashboard-auth-remember { display: flex; align-items: center; gap: 8px; }
-.dashboard-auth-remember input { width: 16px; height: 16px; accent-color: var(--focus); }
-.dashboard-auth-hint { color: var(--quiet); }
-.dashboard-auth-dialog [data-workspace-auth-error]:empty { display: none; }
+.dashboard-memo-save { display: grid; place-items: center; width: 30px; height: 28px; padding: 0; border: 1px solid var(--line); border-radius: 6px; color: var(--text); background: var(--bg); }
+.dashboard-memo-save:hover { background: var(--surface); }
+.dashboard-component-status { margin-top: 8px; font-size: 11px; line-height: 1.7; color: var(--quiet); overflow-wrap: anywhere; }
+.dashboard-component-status[data-error="true"] { color: var(--text); }
+.dashboard-component-status a { text-decoration: underline; }
 .dashboard-empty { color: var(--quiet); font-size: 12px; padding: 10px 0; }
 .dashboard-recent { margin-top: 28px; }
 .dashboard-recent-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
@@ -119,4 +104,4 @@
 .dashboard-entry time { color: var(--quiet); font: 11px/1.5 var(--mono); margin-top: auto; }
 @media (max-width: 900px) { .dashboard-grid { gap: 14px; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); } .dashboard-panel { padding: 16px; } .dashboard-shortcuts { gap: 12px; } }
 @media (max-width: 640px) { .dashboard-grid { grid-template-columns: minmax(0, 1fr); gap: 17px; } .dashboard-github { min-height: 0; } .dashboard-github [data-github-calendar] { padding: 10px 0; } .dashboard-recent-grid { grid-template-columns: 1fr; } .dashboard-entry { min-height: 130px; } .dashboard-shortcuts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 17px; } .dashboard-shortcut { width: 100%; } .dashboard-memo { min-height: 180px; } .dashboard-search-box input { font-size: 16px; } }
-@media (pointer: coarse) { .dashboard-filters button, .dashboard-text-link, .dashboard-button, .dashboard-task-delete, .dashboard-task-form button { min-height: 44px; } .dashboard-memo, .dashboard-task-form input, .dashboard-auth-dialog input[type="password"] { font-size: 16px; } .dashboard-task label { min-height: 44px; align-items: center; } .dashboard-task input { width: 20px; height: 20px; margin-top: 0; } }
+@media (pointer: coarse) { .dashboard-filters button, .dashboard-text-link, .dashboard-memo-save, .dashboard-task-delete, .dashboard-task-form button { min-height: 44px; } .dashboard-memo, .dashboard-task-form input { font-size: 16px; } .dashboard-task label { min-height: 44px; align-items: center; } .dashboard-task input { width: 20px; height: 20px; margin-top: 0; } }

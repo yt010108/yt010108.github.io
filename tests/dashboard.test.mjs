@@ -5,6 +5,7 @@ import { readFile } from "node:fs/promises";
 import { DashboardRepository, DashboardConflict } from "../src/dashboard-repository.js";
 import { validateDashboard, dashboardText, faviconURL } from "../shared/dashboard.js";
 import { parseContributionCalendar, recentContributions, contributionsForWidth } from "../shared/github-activity.js";
+import { applyTaskOperation } from "../shared/dashboard-draft.js";
 
 const initial = JSON.parse(await readFile(new URL("../blog/dashboard.json", import.meta.url), "utf8"));
 const token = "github_pat_" + "testonly".repeat(5);
@@ -63,6 +64,14 @@ test("A race during the dashboard write is handled as a conflict without a force
   await assert.rejects(() => client.saveDashboard({ ...old.config, memo: "내 수정" }, old.sha), DashboardConflict);
   assert.equal(JSON.parse(s.state.text).memo, "다른 기기에서 변경");
   assert.equal(s.state.calls.filter(call => call.method === "PUT").length, 1);
+});
+
+test("An individual To-do save safely retries a file race without replacing another field", async () => {
+  const s = server(), client = s.client(); await client.connect(token); s.state.race = true;
+  const operation = { id: crypto.randomUUID(), kind: "add", task: { id: crypto.randomUUID(), text: "개별 저장", done: false } }; let attempt = 0;
+  const result = await client.mutateDashboard(latest => { if (++attempt === 2) s.state.race = false; return applyTaskOperation(latest, operation); });
+  assert.equal(attempt, 2); assert.equal(result.config.memo, "다른 기기에서 변경"); assert.equal(result.config.tasks.filter(task => task.id === operation.task.id).length, 1);
+  assert.equal(s.state.calls.filter(call => call.method === "PUT").length, 2);
 });
 test("A lost successful dashboard response is reconciled against the exact Git blob", async () => {
   const s = server(), client = s.client(); await client.connect(token); const old = await client.readDashboard(); s.state.lost = true;

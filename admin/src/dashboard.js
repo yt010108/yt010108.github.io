@@ -1,12 +1,12 @@
 import { esc } from "../../shared/posts.js";
-import { validateDashboard, shortcutURL, faviconURL as siteFaviconURL, dashboardText } from "../../shared/dashboard.js";
+import { validateDashboard, shortcutURL, faviconURL as siteFaviconURL, dashboardText, mergeDashboardSettings } from "../../shared/dashboard.js";
 
 export function createDashboardManager({ repository, onBusy }) {
   const $ = id => document.getElementById(id);
   const faviconURL = url => { try { return siteFaviconURL(url); } catch { return new URL("../assets/favicon.svg", location.href).href; } };
   let value = null, saved = null, sha = null, busy = false, externalBusy = true, deploymentTimer;
   const clone = data => structuredClone(data);
-  const fields = data => data ? JSON.stringify([data.memo, data.tasks, data.shortcuts]) : "";
+  const fields = data => data ? JSON.stringify([data.memo, data.tasks, data.shortcuts, data.workingOn]) : "";
   const dirty = () => fields(value) !== fields(saved);
   const allowed = () => repository.connected && value && !busy && !externalBusy;
   function status(text, error = false) { $("dashboard-admin-status").textContent = text; $("dashboard-admin-status").dataset.error = String(error); $("dashboard-admin-status").setAttribute("role", error ? "alert" : "status"); }
@@ -18,6 +18,7 @@ export function createDashboardManager({ repository, onBusy }) {
   }
   function changed() { status(dirty() ? "저장하지 않은 변경이 있어요." : "저장된 내용과 같아요."); setBusy(externalBusy); }
   function renderRows() {
+    $("dashboard-admin-working").innerHTML = (value?.workingOn || []).map((item, index, all) => '<li class="dashboard-admin-shortcut"><span class="dashboard-admin-favicon" data-dashboard-icon-fallback="' + esc(item.title.slice(0, 1)) + '"><img src="' + esc(faviconURL(item.url)) + '" width="25" height="25" alt="" referrerpolicy="no-referrer"></span><div class="dashboard-admin-shortcut-inputs dashboard-admin-working-inputs"><label>이름<input type="text" data-dashboard-working-title="' + item.id + '" aria-label="Working on ' + (index + 1) + ' 이름" maxlength="60" value="' + esc(item.title) + '"></label><label>설명<input type="text" data-dashboard-working-description="' + item.id + '" aria-label="Working on ' + (index + 1) + ' 설명" maxlength="160" value="' + esc(item.description) + '"></label><label>주소<input type="url" data-dashboard-working-url="' + item.id + '" aria-label="Working on ' + (index + 1) + ' 주소" maxlength="1500" value="' + esc(item.url) + '"></label></div><div class="dashboard-admin-row-actions"><button type="button" class="writer-text-button" data-dashboard-working-up="' + item.id + '" aria-label="Working on ' + (index + 1) + ' 위로" ' + (index === 0 ? "disabled" : "") + '>위로</button><button type="button" class="writer-text-button" data-dashboard-working-down="' + item.id + '" aria-label="Working on ' + (index + 1) + ' 아래로" ' + (index === all.length - 1 ? "disabled" : "") + '>아래로</button><button type="button" class="writer-text-button" data-dashboard-working-delete="' + item.id + '" aria-label="Working on ' + (index + 1) + ' 삭제">삭제</button></div></li>').join("") || '<li class="dashboard-admin-empty">표시할 항목이 없어요.</li>';
     $("dashboard-admin-tasks").innerHTML = (value?.tasks || []).map((item, index) => '<li class="dashboard-admin-task"><input type="checkbox" data-dashboard-task-done="' + item.id + '" aria-label="할 일 ' + (index + 1) + ' 완료" ' + (item.done ? "checked" : "") + '><input type="text" data-dashboard-task-text="' + item.id + '" aria-label="할 일 ' + (index + 1) + ' 내용" maxlength="200" value="' + esc(item.text) + '"><button type="button" class="writer-text-button" data-dashboard-task-delete="' + item.id + '" aria-label="할 일 ' + (index + 1) + ' 삭제">삭제</button></li>').join("") || '<li class="dashboard-admin-empty">등록한 할 일이 없어요.</li>';
     $("dashboard-admin-shortcuts").innerHTML = (value?.shortcuts || []).map((item, index, all) => '<li class="dashboard-admin-shortcut"><span class="dashboard-admin-favicon" data-dashboard-icon-fallback="' + esc(item.title.slice(0, 1)) + '"><img src="' + esc(faviconURL(item.url)) + '" width="25" height="25" alt="" referrerpolicy="no-referrer"></span><div class="dashboard-admin-shortcut-inputs"><label>이름<input type="text" data-dashboard-shortcut-title="' + item.id + '" aria-label="바로가기 ' + (index + 1) + ' 이름" maxlength="40" value="' + esc(item.title) + '"></label><label>주소<input type="url" data-dashboard-shortcut-url="' + item.id + '" aria-label="바로가기 ' + (index + 1) + ' 주소" maxlength="1500" value="' + esc(item.url) + '"></label></div><div class="dashboard-admin-row-actions"><button type="button" class="writer-text-button" data-dashboard-shortcut-up="' + item.id + '" aria-label="바로가기 ' + (index + 1) + ' 위로" ' + (index === 0 ? "disabled" : "") + '>위로</button><button type="button" class="writer-text-button" data-dashboard-shortcut-down="' + item.id + '" aria-label="바로가기 ' + (index + 1) + ' 아래로" ' + (index === all.length - 1 ? "disabled" : "") + '>아래로</button><button type="button" class="writer-text-button" data-dashboard-shortcut-delete="' + item.id + '" aria-label="바로가기 ' + (index + 1) + ' 삭제">삭제</button></div></li>').join("") || '<li class="dashboard-admin-empty">등록한 바로가기가 없어요.</li>';
     setBusy(externalBusy);
@@ -52,7 +53,7 @@ export function createDashboardManager({ repository, onBusy }) {
     const generation = repository.generation;
     busy = true; onBusy(true); status("GitHub에 저장하는 중…");
     try {
-      const result = await repository.saveDashboard(value, sha);
+      const result = await repository.mutateDashboard(latest => mergeDashboardSettings(saved, value, latest));
       if (!repository.connected || generation !== repository.generation) return;
       value = result.config; saved = clone(result.config); sha = result.sha; render();
       status("GitHub에 저장했어요. 배포가 끝나면 공개 Dashboard에 반영돼요."); watchDeployment();
@@ -64,6 +65,9 @@ export function createDashboardManager({ repository, onBusy }) {
     if (!allowed()) return;
     const data = event.target.dataset;
     if (data.dashboardTaskText) value.tasks.find(item => item.id === data.dashboardTaskText).text = event.target.value;
+    else if (data.dashboardWorkingTitle) value.workingOn.find(item => item.id === data.dashboardWorkingTitle).title = event.target.value;
+    else if (data.dashboardWorkingDescription) value.workingOn.find(item => item.id === data.dashboardWorkingDescription).description = event.target.value;
+    else if (data.dashboardWorkingUrl) value.workingOn.find(item => item.id === data.dashboardWorkingUrl).url = event.target.value;
     else if (data.dashboardShortcutTitle) value.shortcuts.find(item => item.id === data.dashboardShortcutTitle).title = event.target.value;
     else if (data.dashboardShortcutUrl) value.shortcuts.find(item => item.id === data.dashboardShortcutUrl).url = event.target.value;
     else return;
@@ -78,6 +82,12 @@ export function createDashboardManager({ repository, onBusy }) {
     const button = event.target.closest("button"); if (!button) return;
     const data = button.dataset;
     if (data.dashboardTaskDelete) value.tasks = value.tasks.filter(item => item.id !== data.dashboardTaskDelete);
+    else if (data.dashboardWorkingDelete) value.workingOn = value.workingOn.filter(item => item.id !== data.dashboardWorkingDelete);
+    else if (data.dashboardWorkingUp || data.dashboardWorkingDown) {
+      const index = value.workingOn.findIndex(item => item.id === (data.dashboardWorkingUp || data.dashboardWorkingDown)), next = index + (data.dashboardWorkingUp ? -1 : 1);
+      if (index < 0 || next < 0 || next >= value.workingOn.length) return;
+      [value.workingOn[index], value.workingOn[next]] = [value.workingOn[next], value.workingOn[index]];
+    }
     else if (data.dashboardShortcutDelete) value.shortcuts = value.shortcuts.filter(item => item.id !== data.dashboardShortcutDelete);
     else if (data.dashboardShortcutUp || data.dashboardShortcutDown) {
       const index = value.shortcuts.findIndex(item => item.id === (data.dashboardShortcutUp || data.dashboardShortcutDown)), next = index + (data.dashboardShortcutUp ? -1 : 1);
@@ -98,6 +108,15 @@ export function createDashboardManager({ repository, onBusy }) {
     try {
       const title = $("dashboard-admin-shortcut-new-title").value.trim(), url = shortcutURL($("dashboard-admin-shortcut-new-url").value);
       value = validateDashboard({ ...value, shortcuts: [...value.shortcuts, { id: crypto.randomUUID(), title, url }] });
+      event.target.reset(); changed(); renderRows();
+    } catch (error) { status(error.message, true); }
+  });
+  $("dashboard-admin-working-add").addEventListener("submit", event => {
+    event.preventDefault(); if (!allowed()) return;
+    if (value.workingOn.length >= 8) { status("Working on은 8개까지 저장할 수 있어요.", true); return; }
+    try {
+      const title = $("dashboard-admin-working-new-title").value.trim(), description = $("dashboard-admin-working-new-description").value.trim(), url = shortcutURL($("dashboard-admin-working-new-url").value);
+      value = validateDashboard({ ...value, workingOn: [...value.workingOn, { id: crypto.randomUUID(), title, description, url }] });
       event.target.reset(); changed(); renderRows();
     } catch (error) { status(error.message, true); }
   });

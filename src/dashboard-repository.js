@@ -14,6 +14,14 @@ async function blobSHA(value) {
   return Array.from(new Uint8Array(await crypto.subtle.digest("SHA-1", body)), byte => byte.toString(16).padStart(2, "0")).join("");
 }
 export class DashboardRepository extends GitHubRepository {
+  async mutateDashboard(transform) {
+    for (let attempt = 0; attempt < 3; attempt++) {
+      const latest = await this.readDashboard(), next = validateDashboard(transform(latest.config));
+      if (dashboardText(next) === dashboardText(latest.config)) return { ...latest, commit: null };
+      try { return await this.saveDashboard(next, latest.sha); }
+      catch (error) { if (!(error instanceof DashboardConflict) || attempt === 2) throw error; }
+    }
+  }
   async readDashboard() {
     const generation = this.generation;
     const file = await this.request(endpoint + "?ref=" + BRANCH);

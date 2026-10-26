@@ -173,6 +173,7 @@
 .dashboard-admin-favicon img { object-fit: contain; }
 .dashboard-admin-shortcut-inputs { display: grid; grid-template-columns: minmax(100px, 1fr) minmax(140px, 2fr); gap: 12px; flex: 1; min-width: 0; }
 .dashboard-admin-shortcut-inputs label { font-size: 11px; color: var(--muted); min-width: 0; }
+.dashboard-admin-working-inputs { grid-template-columns: minmax(100px, 1fr) minmax(100px, 1.2fr) minmax(140px, 1.8fr); }
 .dashboard-admin-shortcut-inputs input { display: block; width: 100%; margin-top: 4px; }
 .dashboard-admin-row-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
 .dashboard-admin-savebar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; padding: 0 0 15px; }
