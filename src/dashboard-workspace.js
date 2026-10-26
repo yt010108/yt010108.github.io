@@ -47,7 +47,11 @@ export function createDashboardWorkspace({ root, signal, readPublic, onSaved }) 
     $("[data-dashboard-tasks]").innerHTML = tasks.length ? tasks.map((task, index) => '<div class="dashboard-task"><label><input type="checkbox" data-workspace-task-done="' + task.id + '" ' + (task.done ? "checked" : "") + '><span>' + esc(task.text) + '</span></label><button class="dashboard-task-delete" type="button" data-workspace-task-delete="' + task.id + '" aria-label="할 일 ' + (index + 1) + ' 삭제"><i data-lucide="x" aria-hidden="true"></i></button></div>').join("") : '<p class="dashboard-empty">등록한 할 일이 없어요.</p>';
     $("[data-dashboard-task-count]").textContent = tasks.filter(task => task.done).length + "/" + tasks.length; icons(); controls();
   }
-  function render() { if (destroyed) return; $("[data-dashboard-memo]").value = draft?.value.memo || ""; renderTasks(); }
+  function resizeMemo() {
+    if (destroyed || !root.isConnected) return;
+    const node = $("[data-dashboard-memo]"); node.style.height = "auto"; node.style.height = node.scrollHeight + 2 + "px";
+  }
+  function render() { if (destroyed) return; $("[data-dashboard-memo]").value = draft?.value.memo || ""; resizeMemo(); renderTasks(); }
   function openConnection(saving = false) {
     saveAfterConnect = saving;
     $("[data-workspace-auth-error]").textContent = "";
@@ -87,7 +91,8 @@ export function createDashboardWorkspace({ root, signal, readPublic, onSaved }) 
     const input = $("[data-workspace-task-new]"), text = input.value.trim(); if (!text) return;
     draft.value.tasks.push({ id: crypto.randomUUID(), text, done: false }); input.value = ""; changed(); renderTasks(); input.focus();
   }, { signal });
-  $("[data-dashboard-memo]").addEventListener("input", event => { if (draft && !busy) { draft.value.memo = event.target.value; changed(); } }, { signal });
+  $("[data-dashboard-memo]").addEventListener("input", event => { if (draft && !busy) { draft.value.memo = event.target.value; resizeMemo(); changed(); } }, { signal });
+  window.addEventListener("resize", resizeMemo, { signal });
   root.addEventListener("change", event => {
     const id = event.target.dataset?.workspaceTaskDone; if (!id || !draft || busy) return;
     const task = draft.value.tasks.find(item => item.id === id); if (task) { task.done = event.target.checked; changed(); $("[data-dashboard-task-count]").textContent = draft.value.tasks.filter(task => task.done).length + "/" + draft.value.tasks.length; }
