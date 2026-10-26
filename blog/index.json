@@ -2058,6 +2058,23 @@
       "trashedAt": null,
       "path": "blog/entries/56d420ff-d06b-4ff6-84ed-447ef0725125.json",
       "sha": "180cd26ca61bba0cdeb8c8fd553d5f2dc452ffb0"
+    },
+    {
+      "id": "36bd994f-a09f-41b5-9de4-40a767f5c472",
+      "kind": "notes",
+      "slug": "책-관련",
+      "title": "책 관련",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-10-26",
+      "updatedAt": "2026-10-26T01:31:30.616Z",
+      "publishedAt": "2026-10-26T01:31:30.616Z",
+      "status": "published",
+      "sourceDigest": "09990f830467d4d354d1a12af1689b2c3d82b385e40225572c0e6335474febd1",
+      "trashedAt": null,
+      "path": "blog/entries/36bd994f-a09f-41b5-9de4-40a767f5c472.json",
+      "sha": "f3682204f57a347cdcea3ae254325058955f1115"
     }
   ],
   "taxonomy": {

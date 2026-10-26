@@ -1,0 +1,44 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "36bd994f-a09f-41b5-9de4-40a767f5c472",
+  "title": "책 관련",
+  "kind": "notes",
+  "slug": "책-관련",
+  "description": "",
+  "category": "",
+  "date": "2026-10-26",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-10-26T01:31:30.616Z",
+  "updatedAt": "2026-10-26T01:31:30.616Z",
+  "sourceDigest": "09990f830467d4d354d1a12af1689b2c3d82b385e40225572c0e6335474febd1",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.youtube.com/watch?v=pdh4lkZKT6A",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "https://www.youtube.com/watch?v=pdh4lkZKT6A"
+          }
+        ]
+      }
+    ]
+  }
+}
