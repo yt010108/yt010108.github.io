@@ -1,16 +1,44 @@
 {
   "format": "yt010108-dashboard",
   "version": 1,
-  "memo": "",
+  "memo": "자세 바르게 하기\n키보드 살살 치기",
   "tasks": [],
   "shortcuts": [
-    { "id": "10000000-0000-4000-8000-000000000001", "title": "GitHub", "url": "https://github.com/yt010108" },
-    { "id": "10000000-0000-4000-8000-000000000002", "title": "Dreamhack", "url": "https://dreamhack.io/" },
-    { "id": "10000000-0000-4000-8000-000000000003", "title": "Notion", "url": "https://www.notion.so/" },
-    { "id": "10000000-0000-4000-8000-000000000004", "title": "ChatGPT", "url": "https://chatgpt.com/" },
-    { "id": "10000000-0000-4000-8000-000000000005", "title": "YouTube", "url": "https://www.youtube.com/" },
-    { "id": "10000000-0000-4000-8000-000000000006", "title": "티스토리", "url": "https://yt5246.tistory.com/" },
-    { "id": "10000000-0000-4000-8000-000000000007", "title": "Rookie", "url": "https://github.com/T34M-Rookie/T34M-ROOKIE-Study-Archive" }
+    {
+      "id": "10000000-0000-4000-8000-000000000001",
+      "title": "GitHub",
+      "url": "https://github.com/yt010108"
+    },
+    {
+      "id": "10000000-0000-4000-8000-000000000002",
+      "title": "Dreamhack",
+      "url": "https://dreamhack.io/"
+    },
+    {
+      "id": "10000000-0000-4000-8000-000000000003",
+      "title": "Notion",
+      "url": "https://www.notion.so/"
+    },
+    {
+      "id": "10000000-0000-4000-8000-000000000004",
+      "title": "ChatGPT",
+      "url": "https://chatgpt.com/"
+    },
+    {
+      "id": "10000000-0000-4000-8000-000000000005",
+      "title": "YouTube",
+      "url": "https://www.youtube.com/"
+    },
+    {
+      "id": "10000000-0000-4000-8000-000000000006",
+      "title": "티스토리",
+      "url": "https://yt5246.tistory.com/"
+    },
+    {
+      "id": "10000000-0000-4000-8000-000000000007",
+      "title": "Rookie",
+      "url": "https://github.com/T34M-Rookie/T34M-ROOKIE-Study-Archive"
+    }
   ],
-  "updatedAt": null
+  "updatedAt": "2026-10-26T08:03:02.622Z"
 }
