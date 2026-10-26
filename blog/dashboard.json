@@ -54,7 +54,7 @@
   "workingOn": [
     {
       "id": "4da7442f-950b-4ea9-bcc8-360b36ff3b12",
-      "title": "블로그 개선",
+      "title": "Blog",
       "description": "글쓰기 · 대시보드 정리",
       "url": "https://github.com/yt010108/yt010108.github.io"
     },
@@ -71,5 +71,5 @@
       "url": "https://github.com/yt010108/Recon"
     }
   ],
-  "updatedAt": "2026-10-26T09:39:40.435Z"
+  "updatedAt": "2026-10-26T09:40:16.447Z"
 }
