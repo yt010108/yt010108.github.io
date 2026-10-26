@@ -1,9 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { DASHBOARD_FORMAT } from "../shared/dashboard.js";
 import { newDashboardDraft, validateDashboardDraft, draftIsDirty, reconcileDashboardDraft, mergeDashboardDraft, WorkspaceConflict } from "../shared/dashboard-draft.js";
 
-const initial = JSON.parse(await readFile(new URL("../blog/dashboard.json", import.meta.url), "utf8"));
+const initial = {
+  format: DASHBOARD_FORMAT, version: 1, memo: "", tasks: [], updatedAt: null,
+  shortcuts: [{ id: "00000000-0000-4000-8000-000000000001", title: "GitHub", url: "https://github.com/yt010108/" }]
+};
 const task = text => ({ id: crypto.randomUUID(), text, done: false });
 
 test("Browser draft serialization keeps memo and tasks without credentials or shortcut edits", () => {
