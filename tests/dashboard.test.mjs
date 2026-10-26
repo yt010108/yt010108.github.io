@@ -4,7 +4,7 @@ import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { DashboardRepository, DashboardConflict } from "../src/dashboard-repository.js";
 import { validateDashboard, dashboardText, faviconURL } from "../shared/dashboard.js";
-import { parseContributionCalendar } from "../shared/github-activity.js";
+import { parseContributionCalendar, contributionPeriod } from "../shared/github-activity.js";
 
 const initial = JSON.parse(await readFile(new URL("../blog/dashboard.json", import.meta.url), "utf8"));
 const token = "github_pat_" + "testonly".repeat(5);
@@ -98,4 +98,29 @@ test("GitHub calendar parsing preserves real dates, levels and tooltip counts wi
   assert.equal(result.days.length, 365); assert.equal(result.days[0].date, "2025-10-26"); assert.equal(result.days[0].count, 0); assert.equal(result.days.at(-1).count, 364);
   assert.throws(() => parseContributionCalendar("<script>fake()</script>"), /모두/);
   assert.throws(() => parseContributionCalendar(days.join("\n") + days[0]), /날짜/);
+});
+test("Half-year views show six calendar months and preserve unknown dates instead of fabricating activity", () => {
+  const days = Array.from({ length: 366 }, (_, index) => ({ date: new Date(Date.UTC(2025, 9, 26 + index)).toISOString().slice(0, 10), level: index % 5, count: index }));
+  const period = contributionPeriod(days);
+  assert.equal(period.label, "2026년 7–12월"); assert.equal(period.start, "2026-07-01"); assert.equal(period.end, "2026-12-31");
+  assert.equal(period.weeks, 27); assert.deepEqual(period.labels.map(label => label.month), [7, 8, 9, 10, 11, 12]);
+  assert.equal(period.cells.find(day => day.date === "2026-07-01").state, "recorded");
+  assert.equal(period.cells.find(day => day.date === "2026-10-27").state, "pending");
+  assert.equal(period.cells.find(day => day.date === "2026-10-27").level, undefined);
+  assert.equal(period.previous, "2026-01-01"); assert.equal(period.next, null);
+  const oldest = contributionPeriod(days, 6, "2025-07-01");
+  assert.equal(oldest.previous, null); assert.equal(oldest.cells.find(day => day.date === "2025-07-01").state, "unavailable");
+  assert.equal(contributionPeriod(days, 6, "2020-01-01").start, oldest.start);
+});
+test("Quarter views align weekdays across leap years and clamp forward navigation to the latest data", () => {
+  const days = [{ date: "2023-12-31", level: 0, count: 0 }, { date: "2024-02-29", level: 3, count: 7 }];
+  const period = contributionPeriod(days, 3);
+  assert.equal(period.start, "2024-01-01"); assert.equal(period.end, "2024-03-31");
+  assert.equal(period.cells.filter(day => day.state !== "padding").length, 91);
+  assert.equal(period.cells.findIndex(day => day.date === "2024-01-01") % 7, 1);
+  assert.equal(period.cells.findIndex(day => day.date === "2024-02-29") % 7, 4);
+  assert.equal(period.cells.find(day => day.date === "2024-02-29").count, 7);
+  assert.equal(period.previous, "2023-10-01"); assert.equal(period.next, null);
+  assert.equal(contributionPeriod(days, 3, "2030-01-01").start, period.start);
+  assert.throws(() => contributionPeriod(days, 12), /기간/);
 });

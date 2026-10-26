@@ -1,12 +1,13 @@
-import { createIcons, Search, NotebookPen, GitBranch, ListTodo, ArrowUpRight } from "lucide";
+import { createIcons, Search, NotebookPen, GitBranch, ListTodo, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide";
 import { esc } from "../shared/posts.js";
 import { validateDashboard, faviconURL } from "../shared/dashboard.js";
-import { validateActivity } from "../shared/github-activity.js";
+import { validateActivity, contributionPeriod } from "../shared/github-activity.js";
 
 const base = new URL("../", document.currentScript?.src || new URL("assets/dashboard.js", location.href));
 let active, config, activity, query = "", activityChecked = 0;
+let calendarMonths = 6, calendarAnchor = null;
 const icon = name => '<i data-lucide="' + name + '" aria-hidden="true"></i>';
-const icons = () => createIcons({ icons: { Search, NotebookPen, GitBranch, ListTodo, ArrowUpRight }, attrs: { width: 16, height: 16, "stroke-width": 1.5 } });
+const icons = () => createIcons({ icons: { Search, NotebookPen, GitBranch, ListTodo, ArrowUpRight, ChevronLeft, ChevronRight }, attrs: { width: 16, height: 16, "stroke-width": 1.5 } });
 async function publicJSON(path, revision) {
   const url = new URL(path, base); url.searchParams.set("v", revision || "current");
   const response = await fetch(url, { cache: "no-store", credentials: "omit", signal: AbortSignal.timeout(12000) });
@@ -28,15 +29,19 @@ function paintRecent(filter = "all") {
   active.root.querySelector("[data-dashboard-recent]").innerHTML = entries.length ? entries.map(item => '<a class="dashboard-entry" href="#/' + (item.kind === "notes" ? "note" : "post") + '/' + encodeURIComponent(item.id) + '"><div class="dashboard-entry-meta"><span>' + (item.kind === "notes" ? "NOTE" : "POST") + (item.category ? " / " + esc(item.category) : "") + '</span>' + icon("arrow-up-right") + '</div><h3>' + esc(item.title) + '</h3><p>' + esc(item.description || "") + '</p><time datetime="' + esc(item.date) + '">' + esc(item.date.replaceAll("-", ".")) + '</time></a>').join("") : '<p class="dashboard-empty">아직 표시할 기록이 없어요.</p>';
   active.root.querySelectorAll("[data-dashboard-filter]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.dashboardFilter === filter))); icons();
 }
-function calendar(days, caption, className) {
-  const prefix = new Date(days[0].date + "T00:00:00Z").getUTCDay();
-  const cells = Array.from({ length: prefix }, () => '<span class="dashboard-day dashboard-day-blank"></span>').join("") + days.map(day => '<span class="dashboard-day" data-level="' + day.level + '" title="' + day.date + " · " + (day.count === null ? ["활동 없음", "기여 적음", "기여 보통", "기여 많음", "기여 매우 많음"][day.level] : day.count + " contributions") + '"></span>').join("");
-  const month = day => Number(day.date.slice(5, 7)) + "월";
-  return '<div class="' + className + '"><div class="dashboard-calendar-caption"><span>' + caption + '</span><span>' + esc(days[0].date.replaceAll("-", ".")) + " — " + esc(days.at(-1).date.replaceAll("-", ".")) + '</span></div><div class="dashboard-months" aria-hidden="true"><span>' + month(days[0]) + '</span><span>' + month(days[Math.floor(days.length / 2)]) + '</span><span>' + month(days.at(-1)) + '</span></div><div class="dashboard-calendar-grid" role="img" aria-label="' + esc(caption + " GitHub 기여도, " + days[0].date + "부터 " + days.at(-1).date + "까지") + '" style="--calendar-weeks:' + Math.ceil((prefix + days.length) / 7) + '">' + cells + '</div></div>';
+function calendar() {
+  const period = contributionPeriod(activity.days, calendarMonths, calendarAnchor || activity.days.at(-1).date);
+  const cells = period.cells.map(day => {
+    if (day.state === "padding") return '<span class="dashboard-day dashboard-day-blank"></span>';
+    const recorded = day.state === "recorded", label = recorded ? day.count === null ? ["활동 없음", "기여 적음", "기여 보통", "기여 많음", "기여 매우 많음"][day.level] : day.count + " contributions" : day.state === "pending" ? "아직 집계되지 않은 날짜" : "수집된 활동 데이터가 없는 날짜";
+    return '<span class="dashboard-day' + (recorded ? "" : " dashboard-day-unavailable") + '" data-calendar-date="' + day.date + '"' + (recorded ? ' data-level="' + day.level + '"' : '') + ' title="' + esc(day.date + " · " + label) + '"></span>';
+  }).join("");
+  return '<div class="dashboard-calendar-toolbar"><div class="dashboard-calendar-modes" role="group" aria-label="GitHub 활동 표시 단위"><button type="button" data-calendar-months="6" aria-pressed="' + (calendarMonths === 6) + '">반년</button><button type="button" data-calendar-months="3" aria-pressed="' + (calendarMonths === 3) + '">분기</button></div><div class="dashboard-calendar-navigation"><button type="button" data-calendar-period="previous" aria-label="이전 기간" ' + (!period.previous ? "disabled" : "") + '>' + icon("chevron-left") + '</button><span class="dashboard-calendar-period" aria-live="polite">' + esc(period.label) + '</span><button type="button" data-calendar-period="next" aria-label="다음 기간" ' + (!period.next ? "disabled" : "") + '>' + icon("chevron-right") + '</button></div></div><div class="dashboard-calendar-chart" style="--calendar-weeks:' + period.weeks + '"><div class="dashboard-months" aria-hidden="true">' + period.labels.map(label => '<span style="grid-column:' + label.column + '">' + label.month + '월</span>').join("") + '</div><div class="dashboard-weekdays" aria-hidden="true"><span style="grid-row:2">월</span><span style="grid-row:4">수</span><span style="grid-row:6">금</span></div><div class="dashboard-calendar-grid" role="img" aria-label="' + esc(period.label + " GitHub 기여도. 옅은 칸은 아직 집계되지 않았거나 활동 데이터가 없는 날짜입니다.") + '">' + cells + '</div></div>';
 }
 function paintCalendar() {
   const node = active?.root.querySelector("[data-github-calendar]"); if (!node || !activity) return;
-  node.innerHTML = activity.available ? calendar(activity.days, "최근 1년", "dashboard-calendar-year") + calendar(activity.days.slice(-182), "최근 6개월", "dashboard-calendar-half") + '<div class="dashboard-calendar-foot"><span>GitHub 공개 활동</span><span class="dashboard-calendar-legend">적음 ' + [0, 1, 2, 3, 4].map(level => '<span class="dashboard-day" data-level="' + level + '"></span>').join("") + ' 많음</span></div><p class="dashboard-calendar-updated">' + esc(activity.fetchedAt.slice(0, 10).replaceAll("-", ".")) + ' 업데이트</p>' : '<p class="dashboard-empty">GitHub 활동을 불러오지 못했어요.<br><a href="https://github.com/yt010108" target="_blank" rel="noopener noreferrer">GitHub에서 확인 ↗</a></p>';
+  node.innerHTML = activity.available ? calendar() + '<div class="dashboard-calendar-foot"><span>GitHub 공개 활동</span><span class="dashboard-calendar-legend">적음 ' + [0, 1, 2, 3, 4].map(level => '<span class="dashboard-day" data-level="' + level + '"></span>').join("") + ' 많음</span></div><p class="dashboard-calendar-updated">' + esc(activity.fetchedAt.slice(0, 10).replaceAll("-", ".")) + ' 업데이트</p>' : '<p class="dashboard-empty">GitHub 활동을 불러오지 못했어요.<br><a href="https://github.com/yt010108" target="_blank" rel="noopener noreferrer">GitHub에서 확인 ↗</a></p>';
+  icons();
 }
 function refresh(force = false) {
   if (!active?.root.isConnected || (!force && Date.now() - activityChecked < 300000)) return;
@@ -59,7 +64,19 @@ function mount(root, data, revision) {
   paintConfig(); paintCalendar(); paintRecent();
   root.addEventListener("input", event => { if (event.target.matches("[data-dashboard-search]")) querySearch(event.target); }, { signal });
   root.addEventListener("submit", event => { event.preventDefault(); querySearch(root.querySelector("[data-dashboard-search]")); }, { signal });
-  root.addEventListener("click", event => { const target = event.target instanceof Element ? event.target : null; if (!target) return; const filter = target.closest("[data-dashboard-filter]"); if (filter) paintRecent(filter.dataset.dashboardFilter); if (!target.closest(".dashboard-search-form")) root.querySelector("[data-dashboard-results]").hidden = true; }, { signal });
+  root.addEventListener("click", event => {
+    const target = event.target instanceof Element ? event.target : null; if (!target) return;
+    const filter = target.closest("[data-dashboard-filter]"); if (filter) paintRecent(filter.dataset.dashboardFilter);
+    const mode = target.closest("[data-calendar-months]"), direction = target.closest("[data-calendar-period]");
+    if (activity?.available && (mode || direction)) {
+      const period = contributionPeriod(activity.days, calendarMonths, calendarAnchor || activity.days.at(-1).date);
+      if (mode) { calendarAnchor = period.end < activity.days.at(-1).date ? period.end : activity.days.at(-1).date; calendarMonths = Number(mode.dataset.calendarMonths); }
+      else calendarAnchor = direction.dataset.calendarPeriod === "previous" ? period.previous : period.next;
+      paintCalendar();
+      root.querySelector(mode ? '[data-calendar-months="' + calendarMonths + '"]' : '[data-calendar-period="' + direction.dataset.calendarPeriod + '"]')?.focus({ preventScroll: true });
+    }
+    if (!target.closest(".dashboard-search-form")) root.querySelector("[data-dashboard-results]").hidden = true;
+  }, { signal });
   root.addEventListener("keydown", event => { if (event.key === "Escape") root.querySelector("[data-dashboard-results]").hidden = true; }, { signal });
   root.addEventListener("error", event => { if (event.target instanceof HTMLImageElement && event.target.parentElement?.hasAttribute("data-favicon-fallback")) event.target.parentElement.textContent = event.target.parentElement.dataset.faviconFallback; }, { signal, capture: true });
   publicJSON("dashboard.json", revision).then(value => { if (active !== context) return; config = validateDashboard(value); paintConfig(); }).catch(error => { if (active !== context) return; const status = root.querySelector("[data-dashboard-error]"); status.textContent = error.message; status.hidden = false; });
