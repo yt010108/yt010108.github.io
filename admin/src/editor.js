@@ -10,7 +10,7 @@ import { createIcons, SquarePen, Files, Bold, Italic, Strikethrough, Code, List,
 import { readDraft, listDrafts, writeDraft, hasUnpublishedChanges, DraftConflict } from "./draft-store.js";
 import { IMAGE_TYPES, MAX_IMAGE_SIZE, newEntry, safeSlug, safeImageData, createAsset, imageBySource, transformImages, usedAssets, validateBackup, markdownDocument, assetBytes } from "./document.js";
 import { createLinkPreviews, webURL } from "./link-preview.js";
-import { renderDocument } from "../../shared/posts.js";
+import { renderDocument, UUID } from "../../shared/posts.js";
 import { GitHubRepository, REMEMBER_KEY } from "./github.js";
 import { createManager } from "./manager.js";
 import { createTaxonomyManager } from "./taxonomy.js";
@@ -86,14 +86,26 @@ async function openManager(next = "all") {
   } finally { navigationBusy = false; setBusy(false); }
 }
 
-async function beginNew() {
+async function beginNew(kind = "posts") {
   if (cmsBusy || navigationBusy || !ready || !authorized || !repository.connected) return;
   navigationBusy = true; setBusy(true);
   try {
     if (!await keepBeforeSwitch()) return;
-    applyEntry(newEntry()); setView(false);
+    const next = newEntry();
+    if (kind === "notes") next.kind = "notes";
+    applyEntry(next); setView(false);
   } finally { navigationBusy = false; setBusy(false); }
   title.focus();
+}
+
+async function openLinkedNote(id, refresh = true) {
+  if (!UUID.test(id) || cmsBusy || navigationBusy || !ready || !authorized || !repository.connected) return;
+  navigationBusy = true; setBusy(true);
+  try {
+    if (!await keepBeforeSwitch()) return;
+    if (refresh) await manager.refresh();
+    await manager.openNote(id);
+  } finally { navigationBusy = false; setBusy(false); }
 }
 
 async function openTaxonomy() {
@@ -656,10 +668,13 @@ async function unlockAdmin() {
     if (!ready) await start();
     if (!repository.connected || repository.generation !== generation) return;
     const route = location.hash;
+    const noteId = route.startsWith("#edit-note/") ? route.slice(11) : "";
     manager.setStatus(route === "#drafts" ? "draft" : route === "#trash" ? "trash" : "all");
-    setView(route === "#taxonomy" ? "taxonomy" : route !== "#write");
+    setView(route === "#taxonomy" ? "taxonomy" : !["#write", "#new-note"].includes(route) && !UUID.test(noteId));
     await manager.refresh();
     if (route === "#taxonomy") await taxonomy.refresh();
+    if (route === "#new-note") await beginNew("notes");
+    else if (UUID.test(noteId)) await openLinkedNote(noteId, false);
     if (!repository.connected || repository.generation !== generation) return;
     $("github-dialog").append($("github-form"));
     document.body.classList.remove("is-locked");
@@ -946,6 +961,8 @@ window.addEventListener("hashchange", () => {
   if (location.hash === "#write") {
     if (!cmsBusy) setView(false);
   } else if (location.hash === "#taxonomy") openTaxonomy();
+  else if (location.hash === "#new-note") beginNew("notes");
+  else if (location.hash.startsWith("#edit-note/")) openLinkedNote(location.hash.slice(11));
   else if (["#manage", "#drafts", "#trash"].includes(location.hash)) openManager(location.hash === "#drafts" ? "draft" : location.hash === "#trash" ? "trash" : "all");
 });
 document.addEventListener("click", async event => {

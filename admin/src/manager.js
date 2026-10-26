@@ -247,6 +247,11 @@ export function createManager({ repository, edit, newDraft, report, onBusy = () 
   } catch {}
   return {
     refresh, render, clear, watchDeployment,
+    openNote: withBusy(async id => {
+      const row = combined().find(row => row.id === id && row.item.kind === "notes" && row.state !== "trash");
+      if (!row) throw new Error("이 메모를 찾을 수 없어요. 글 관리에서 공개 상태를 확인해 주세요.");
+      await edit(await editable(row), false);
+    }),
     resume() { if (lastDeployment && repository.connected) { polls = 0; checkDeployment(); } },
     setStatus(next) { if (!["all", "draft", "published", "trash"].includes(next)) return; status = next; page = 1; selected.clear(); render(); },
     setRemote(index) { remote = index.entries; onIndexChange(index, local); render(); }
