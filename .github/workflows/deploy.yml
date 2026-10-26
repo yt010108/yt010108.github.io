@@ -41,6 +41,7 @@ jobs:
           node --check assets/posts.js
           node --check assets/notes-board.js
           node --check assets/dashboard.js
+          node --check assets/site-data.js
           node --check published.js
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'

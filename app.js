@@ -2,6 +2,10 @@
   "use strict";
 
   const data = window.BLOG_DATA;
+  if (window.BLOG_SITE_DATA) {
+    data.profile = window.BLOG_SITE_DATA.profile;
+    data.projects = window.BLOG_SITE_DATA.projects;
+  }
   const originalPosts = { posts: [...data.posts], notes: [...data.notes] };
   const bundleURL = new URL("published.json", document.currentScript?.src || location.href);
   let contentRevision = new URL(document.currentScript?.src || location.href).searchParams.get("v") || "";

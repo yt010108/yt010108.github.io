@@ -11,5 +11,6 @@ _site/
 /assets/dashboard.js
 /assets/github-activity.json
 /dashboard.json
+/assets/site-data.js
 /published.js
 /published.json
