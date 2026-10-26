@@ -11,6 +11,16 @@
   ],
   "shortcuts": [
     {
+      "id": "733fe28e-8b62-4e9f-b366-90b325839a5e",
+      "title": "Google",
+      "url": "https://www.google.com/"
+    },
+    {
+      "id": "0f8f8238-2f11-40ac-8f80-4d656d6a2883",
+      "title": "Naver",
+      "url": "https://www.naver.com/"
+    },
+    {
       "id": "10000000-0000-4000-8000-000000000001",
       "title": "GitHub",
       "url": "https://github.com/yt010108"
@@ -39,12 +49,7 @@
       "id": "10000000-0000-4000-8000-000000000006",
       "title": "티스토리",
       "url": "https://yt5246.tistory.com/"
-    },
-    {
-      "id": "0f8f8238-2f11-40ac-8f80-4d656d6a2883",
-      "title": "naver",
-      "url": "https://www.naver.com/"
     }
   ],
-  "updatedAt": "2026-10-26T08:20:41.098Z"
+  "updatedAt": "2026-10-26T08:22:55.718Z"
 }
