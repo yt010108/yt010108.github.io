@@ -26,24 +26,23 @@ export function parseContributionCalendar(html, fetchedAt = new Date().toISOStri
 
 const dayMillis = 86400000;
 const isoDate = date => date.toISOString().slice(0, 10);
-export function contributionPeriod(days, months = 6, anchor = days.at(-1)?.date) {
-  if (![3, 6].includes(months) || !days.length || !datePattern.test(anchor) || !Number.isFinite(Date.parse(anchor))) throw new Error("기여도 표시 기간이 올바르지 않아요.");
-  const startOf = value => { const date = new Date(value + "T00:00:00Z"); return isoDate(new Date(Date.UTC(date.getUTCFullYear(), Math.floor(date.getUTCMonth() / months) * months, 1))); };
-  const earliest = startOf(days[0].date), latest = startOf(days.at(-1).date);
-  const start = [earliest, startOf(anchor), latest].sort()[1];
-  const date = new Date(start + "T00:00:00Z"), year = date.getUTCFullYear(), firstMonth = date.getUTCMonth();
-  const end = isoDate(new Date(Date.UTC(year, firstMonth + months, 0))), prefix = date.getUTCDay();
+export function recentContributions(days, months = 4) {
+  if (!Array.isArray(days) || !days.length || !Number.isInteger(months) || months < 1 || months > 12) throw new Error("기여도 표시 기간이 올바르지 않아요.");
+  const end = days.at(-1).date, latest = new Date(end + "T00:00:00Z");
+  if (!datePattern.test(end) || !Number.isFinite(latest.getTime())) throw new Error("기여도 날짜가 올바르지 않아요.");
+  const date = new Date(Date.UTC(latest.getUTCFullYear(), latest.getUTCMonth() - months + 1, 1));
+  const start = isoDate(date), year = date.getUTCFullYear(), firstMonth = date.getUTCMonth(), prefix = date.getUTCDay();
   const length = Math.round((Date.parse(end) - Date.parse(start)) / dayMillis) + 1, weeks = Math.ceil((prefix + length) / 7);
   const byDate = new Map(days.map(day => [day.date, day]));
   const cells = Array.from({ length: weeks * 7 }, (_, index) => {
     const value = isoDate(new Date(Date.parse(start) + (index - prefix) * dayMillis));
     if (value < start || value > end) return { date: value, state: "padding" };
     const day = byDate.get(value);
-    return day ? { ...day, state: "recorded" } : { date: value, state: value > days.at(-1).date ? "pending" : "unavailable" };
+    return day ? { ...day, state: "recorded" } : { date: value, state: "unavailable" };
   });
   const labels = Array.from({ length: months }, (_, index) => {
     const monthStart = Date.UTC(year, firstMonth + index, 1);
-    return { month: firstMonth + index + 1, column: Math.floor((prefix + Math.round((monthStart - Date.parse(start)) / dayMillis)) / 7) + 1 };
+    return { month: new Date(monthStart).getUTCMonth() + 1, column: Math.floor((prefix + Math.round((monthStart - Date.parse(start)) / dayMillis)) / 7) + 1 };
   });
-  return { start, end, weeks, months, labels, cells, label: year + "년 " + (firstMonth + 1) + "–" + (firstMonth + months) + "월", previous: start > earliest ? isoDate(new Date(Date.UTC(year, firstMonth - months, 1))) : null, next: start < latest ? isoDate(new Date(Date.UTC(year, firstMonth + months, 1))) : null };
+  return { start, end, weeks, months, labels, cells };
 }
