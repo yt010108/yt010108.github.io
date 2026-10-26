@@ -6,7 +6,7 @@
     {
       "id": "51483210-5a7d-47af-8f28-b3de7182d851",
       "text": "php2shell 공부하기",
-      "done": true
+      "done": false
     }
   ],
   "shortcuts": [
@@ -71,5 +71,5 @@
       "url": "https://github.com/yt010108/Recon"
     }
   ],
-  "updatedAt": "2026-10-26T09:39:35.960Z"
+  "updatedAt": "2026-10-26T09:39:40.435Z"
 }
