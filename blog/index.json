@@ -2075,6 +2075,23 @@
       "trashedAt": null,
       "path": "blog/entries/36bd994f-a09f-41b5-9de4-40a767f5c472.json",
       "sha": "f3682204f57a347cdcea3ae254325058955f1115"
+    },
+    {
+      "id": "c1c86403-e56f-4a4b-b736-8ba1d20f0d49",
+      "kind": "notes",
+      "slug": "쉴더스-정리",
+      "title": "쉴더스 정리",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-10-26",
+      "updatedAt": "2026-10-26T07:05:58.280Z",
+      "publishedAt": "2026-10-26T07:05:58.280Z",
+      "status": "published",
+      "sourceDigest": "bb755aca0bb20b7e2994f3b3a25f72072a9b2fc4c5a6f1be413664e1164eff1b",
+      "trashedAt": null,
+      "path": "blog/entries/c1c86403-e56f-4a4b-b736-8ba1d20f0d49.json",
+      "sha": "192838620f2b91011a491cf8672d36f69f26149c"
     }
   ],
   "taxonomy": {

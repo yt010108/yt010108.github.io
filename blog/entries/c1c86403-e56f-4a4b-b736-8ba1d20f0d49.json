@@ -1,0 +1,26 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "c1c86403-e56f-4a4b-b736-8ba1d20f0d49",
+  "title": "쉴더스 정리",
+  "kind": "notes",
+  "slug": "쉴더스-정리",
+  "description": "",
+  "category": "",
+  "date": "2026-10-26",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-10-26T07:05:58.280Z",
+  "updatedAt": "2026-10-26T07:05:58.280Z",
+  "sourceDigest": "bb755aca0bb20b7e2994f3b3a25f72072a9b2fc4c5a6f1be413664e1164eff1b",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph"
+      }
+    ]
+  }
+}
