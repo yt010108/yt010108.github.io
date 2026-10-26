@@ -4,7 +4,7 @@ import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { DashboardRepository, DashboardConflict } from "../src/dashboard-repository.js";
 import { validateDashboard, dashboardText, faviconURL } from "../shared/dashboard.js";
-import { parseContributionCalendar, recentContributions } from "../shared/github-activity.js";
+import { parseContributionCalendar, recentContributions, contributionsForWidth } from "../shared/github-activity.js";
 
 const initial = JSON.parse(await readFile(new URL("../blog/dashboard.json", import.meta.url), "utf8"));
 const token = "github_pat_" + "testonly".repeat(5);
@@ -120,4 +120,29 @@ test("Recent four-month windows preserve weekday alignment across a year boundar
   assert.equal(period.cells.findIndex(day => day.date === "2023-12-01") % 7, 5);
   assert.equal(period.cells.findIndex(day => day.date === "2024-02-29") % 7, 4);
   assert.equal(period.cells.find(day => day.date === "2024-02-29").count, days.find(day => day.date === "2024-02-29").count);
+});
+
+test("Contribution periods fill the available width without enlarging the original cells", () => {
+  const days = Array.from({ length: 366 }, (_, index) => ({ date: new Date(Date.UTC(2025, 9, 26 + index)).toISOString().slice(0, 10), level: index % 5, count: index }));
+  let previous = 0;
+  for (const width of [242, 320, 578, 618, 900]) {
+    const period = contributionsForWidth(days, width), used = 32 + period.weeks * 12 + (period.weeks - 1) * 3;
+    assert.ok(used <= width); assert.ok(period.months >= previous); previous = period.months;
+    if (period.weeks < recentContributions(days, 12).weeks) assert.ok(used + 15 > width);
+    if (period.start > recentContributions(days, 12).start) assert.equal(new Date(period.start).getUTCDay(), 0);
+    assert.equal(period.end, days.at(-1).date);
+    assert.ok(period.cells.filter(day => day.state !== "padding").every(day => day.date <= period.end && day.level === days.find(source => source.date === day.date).level));
+  }
+  assert.ok(contributionsForWidth(days, 578).months > 4);
+  assert.equal(contributionsForWidth(days, 900).months, 12);
+  assert.throws(() => contributionsForWidth(days, NaN), /너비/);
+});
+
+test("Responsive contribution periods stay aligned when crossing a year boundary", () => {
+  const days = Array.from({ length: 366 }, (_, index) => ({ date: new Date(Date.UTC(2023, 3, 1 + index)).toISOString().slice(0, 10), level: 2, count: index }));
+  const period = contributionsForWidth(days, 618);
+  assert.ok(period.start < "2024-01-01");
+  assert.equal(period.cells.findIndex(day => day.date === "2024-02-29") % 7, 4);
+  assert.equal(period.cells.find(day => day.date === "2024-02-29").state, "recorded");
+  assert.deepEqual(period.labels.map(label => label.month), Array.from({ length: period.months }, (_, index) => (new Date(period.start).getUTCMonth() + index) % 12 + 1));
 });

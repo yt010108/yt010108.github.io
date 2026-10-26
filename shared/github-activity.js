@@ -46,3 +46,15 @@ export function recentContributions(days, months = 4) {
   });
   return { start, end, weeks, months, labels, cells };
 }
+
+export function contributionsForWidth(days, width) {
+  if (!Number.isFinite(width) || width <= 0) throw new Error("기여도 표시 너비가 올바르지 않아요.");
+  // Keep the original 12px cells, 3px gaps, and 32px weekday gutter.
+  const availableWeeks = Math.max(1, Math.floor((width - 32 + 3) / 15));
+  const period = recentContributions(days, 12), weeks = Math.min(availableWeeks, period.weeks), offset = period.weeks - weeks;
+  const cells = period.cells.slice(offset * 7), visible = cells.filter(day => day.state !== "padding"), start = visible[0].date;
+  const labels = period.labels.filter(label => label.column > offset).map(label => ({ ...label, column: label.column - offset }));
+  const firstMonth = new Date(start).getUTCMonth() + 1;
+  if (!labels.length || labels[0].month !== firstMonth && labels[0].column > 1) labels.unshift({ month: firstMonth, column: 1 });
+  return { ...period, start, weeks, cells, labels, months: new Set(visible.map(day => day.date.slice(0, 7))).size };
+}

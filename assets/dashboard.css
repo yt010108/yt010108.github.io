@@ -31,7 +31,7 @@
 .dashboard-text-link svg { width: 13px; height: 13px; }
 .dashboard-github { display: flex; flex-direction: column; min-height: 320px; }
 .dashboard-github [data-github-calendar] { margin: auto 0; padding: 25px 0; }
-.dashboard-calendar-chart, .dashboard-calendar-foot { width: 100%; margin-inline: auto; }
+.dashboard-calendar-chart, .dashboard-calendar-foot { width: min(100%, calc(32px + var(--calendar-weeks) * 12px + (var(--calendar-weeks) - 1) * 3px)); margin-inline: auto; }
 .dashboard-calendar-chart { position: relative; display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 7px 8px; }
 .dashboard-months { display: grid; grid-template-columns: repeat(var(--calendar-weeks), minmax(0, 1fr)); grid-column: 2; gap: 3px; font: 11px/1.5 var(--mono); color: var(--quiet); }
 .dashboard-months span { white-space: nowrap; }
