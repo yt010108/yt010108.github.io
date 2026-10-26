@@ -78,6 +78,7 @@ export function createDashboardWorkspace({ root, signal, siteBase, onSaved }) {
         processingMemo = field === "memo"; controls(); status(field, "저장 중…");
         const snapshot = validateDashboardDraft(draft), operation = field === "tasks" ? snapshot.pendingTasks[0] : null;
         const result = await repository.mutateDashboard(latest => operation ? applyTaskOperation(latest, operation) : mergeDashboardMemo(snapshot, latest));
+        if (destroyed) return;
         draft = acknowledgeDashboardSave(draft, result.config, operation?.id || null);
         persist(); render(); onSaved(result.config);
         if (storageConflict) break;
@@ -137,7 +138,7 @@ export function createDashboardWorkspace({ root, signal, siteBase, onSaved }) {
     }
   }, { signal });
   window.addEventListener("beforeunload", event => { if (!redirecting && draft && draftIsDirty(draft) && (storageWarning || storageConflict)) { event.preventDefault(); event.returnValue = ""; } }, { signal });
-  signal.addEventListener("abort", () => { destroyed = true; }, { once: true });
+  signal.addEventListener("abort", () => { destroyed = true; repository.disconnect({ forget: false }); }, { once: true });
   controls();
   return {
     load(config) {
