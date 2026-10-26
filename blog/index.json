@@ -2109,6 +2109,23 @@
       "trashedAt": null,
       "path": "blog/entries/6a1f9768-fdba-4032-abbd-1d337a5e419e.json",
       "sha": "6a70cff1e04b1b9a8b04172ae2e2967ceea6e949"
+    },
+    {
+      "id": "8291992b-4916-4885-946f-28fe0fa2c5d3",
+      "kind": "notes",
+      "slug": "t34m-rookie-스터디-블로그-작성",
+      "title": "T34M Rookie 스터디 블로그 작성",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-10-26",
+      "updatedAt": "2026-10-26T09:41:01.961Z",
+      "publishedAt": "2026-10-26T09:41:01.961Z",
+      "status": "published",
+      "sourceDigest": "133673da541ad032b6cc3e144f207eb3de5f16d8a5144658f9221502bc8dbd39",
+      "trashedAt": null,
+      "path": "blog/entries/8291992b-4916-4885-946f-28fe0fa2c5d3.json",
+      "sha": "764253728e2c9a43ab67570da3b9e63b1a6a86b7"
     }
   ],
   "taxonomy": {
