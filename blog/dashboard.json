@@ -1,12 +1,12 @@
 {
   "format": "yt010108-dashboard",
-  "version": 1,
+  "version": 2,
   "memo": "자세 바르게 하기\n키보드 살살 치기\n",
   "tasks": [
     {
       "id": "51483210-5a7d-47af-8f28-b3de7182d851",
       "text": "php2shell 공부하기",
-      "done": false
+      "done": true
     }
   ],
   "shortcuts": [
@@ -51,5 +51,25 @@
       "url": "https://yt5246.tistory.com/"
     }
   ],
-  "updatedAt": "2026-10-26T08:22:55.718Z"
+  "workingOn": [
+    {
+      "id": "4da7442f-950b-4ea9-bcc8-360b36ff3b12",
+      "title": "블로그 개선",
+      "description": "글쓰기 · 대시보드 정리",
+      "url": "https://github.com/yt010108/yt010108.github.io"
+    },
+    {
+      "id": "b34b3a16-7147-41d8-9ec9-415dd7733471",
+      "title": "Reverser",
+      "description": "리버싱 CTF 하네스",
+      "url": "https://github.com/yt010108/Reverser"
+    },
+    {
+      "id": "7c05631b-4649-47cb-afcb-f8386326525d",
+      "title": "Recon",
+      "description": "웹 리콘 하네스",
+      "url": "https://github.com/yt010108/Recon"
+    }
+  ],
+  "updatedAt": "2026-10-26T09:39:35.960Z"
 }
