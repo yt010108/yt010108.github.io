@@ -2126,6 +2126,23 @@
       "trashedAt": null,
       "path": "blog/entries/8291992b-4916-4885-946f-28fe0fa2c5d3.json",
       "sha": "764253728e2c9a43ab67570da3b9e63b1a6a86b7"
+    },
+    {
+      "id": "727df6be-e89c-48db-aef9-f518208a94bc",
+      "kind": "notes",
+      "slug": "artex-리뷰-쓰기",
+      "title": "artex 리뷰 쓰기",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-10-27",
+      "updatedAt": "2026-10-27T04:30:24.652Z",
+      "publishedAt": "2026-10-27T04:30:24.652Z",
+      "status": "published",
+      "sourceDigest": "915ac877610a74c5b4dcfdeed8a012b3131912c7c1438451bbeec233e8dc559e",
+      "trashedAt": null,
+      "path": "blog/entries/727df6be-e89c-48db-aef9-f518208a94bc.json",
+      "sha": "bfd92dbc1d9fbb0506be4179101d49832308e137"
     }
   ],
   "taxonomy": {
