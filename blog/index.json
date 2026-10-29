@@ -2160,6 +2160,23 @@
       "trashedAt": null,
       "path": "blog/entries/765e3d63-c51c-4e68-b978-89238eabac09.json",
       "sha": "697db515abfea1f22ec52675d74b7ce290c9cf66"
+    },
+    {
+      "id": "6a4e795e-fdeb-4bdc-8ebf-56e46d381a21",
+      "kind": "notes",
+      "slug": "ai로-문제-해결한-경험",
+      "title": "ai로 문제 해결한 경험",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-10-29",
+      "updatedAt": "2026-10-29T08:09:56.829Z",
+      "publishedAt": "2026-10-29T08:09:56.829Z",
+      "status": "published",
+      "sourceDigest": "8936b20185f08078a96201443a80e30f68e272a7470a151605a1fc40375ac97a",
+      "trashedAt": null,
+      "path": "blog/entries/6a4e795e-fdeb-4bdc-8ebf-56e46d381a21.json",
+      "sha": "0bb5271521f15c0b04ba1e7d8bbcaf2fd68093c4"
     }
   ],
   "taxonomy": {

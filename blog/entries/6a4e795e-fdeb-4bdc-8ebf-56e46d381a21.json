@@ -1,0 +1,26 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "6a4e795e-fdeb-4bdc-8ebf-56e46d381a21",
+  "title": "ai로 문제 해결한 경험",
+  "kind": "notes",
+  "slug": "ai로-문제-해결한-경험",
+  "description": "",
+  "category": "",
+  "date": "2026-10-29",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-10-29T08:09:56.829Z",
+  "updatedAt": "2026-10-29T08:09:56.829Z",
+  "sourceDigest": "8936b20185f08078a96201443a80e30f68e272a7470a151605a1fc40375ac97a",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph"
+      }
+    ]
+  }
+}
