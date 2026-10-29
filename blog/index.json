@@ -2143,6 +2143,23 @@
       "trashedAt": null,
       "path": "blog/entries/727df6be-e89c-48db-aef9-f518208a94bc.json",
       "sha": "bfd92dbc1d9fbb0506be4179101d49832308e137"
+    },
+    {
+      "id": "765e3d63-c51c-4e68-b978-89238eabac09",
+      "kind": "notes",
+      "slug": "kisa-인적성-해야함",
+      "title": "kisa 인적성 해야함",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-10-29",
+      "updatedAt": "2026-10-29T04:09:18.553Z",
+      "publishedAt": "2026-10-29T04:09:18.553Z",
+      "status": "published",
+      "sourceDigest": "90905117f943185ad3154786cd190d11e4be06eb538f58cc679e57b81e57c1ce",
+      "trashedAt": null,
+      "path": "blog/entries/765e3d63-c51c-4e68-b978-89238eabac09.json",
+      "sha": "697db515abfea1f22ec52675d74b7ce290c9cf66"
     }
   ],
   "taxonomy": {
