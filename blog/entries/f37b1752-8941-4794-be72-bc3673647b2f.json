@@ -1,0 +1,26 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "f37b1752-8941-4794-be72-bc3673647b2f",
+  "title": "hycli",
+  "kind": "notes",
+  "slug": "hycli",
+  "description": "",
+  "category": "",
+  "date": "2026-10-30",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-10-30T05:13:16.901Z",
+  "updatedAt": "2026-10-30T05:13:16.901Z",
+  "sourceDigest": "897b25805e2ebcae688bf701589412392c74b4effade128cd0a29ef54b46ea2c",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph"
+      }
+    ]
+  }
+}

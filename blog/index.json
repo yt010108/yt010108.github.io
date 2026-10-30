@@ -2177,6 +2177,23 @@
       "trashedAt": null,
       "path": "blog/entries/6a4e795e-fdeb-4bdc-8ebf-56e46d381a21.json",
       "sha": "0bb5271521f15c0b04ba1e7d8bbcaf2fd68093c4"
+    },
+    {
+      "id": "f37b1752-8941-4794-be72-bc3673647b2f",
+      "kind": "notes",
+      "slug": "hycli",
+      "title": "hycli",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-10-30",
+      "updatedAt": "2026-10-30T05:13:16.901Z",
+      "publishedAt": "2026-10-30T05:13:16.901Z",
+      "status": "published",
+      "sourceDigest": "897b25805e2ebcae688bf701589412392c74b4effade128cd0a29ef54b46ea2c",
+      "trashedAt": null,
+      "path": "blog/entries/f37b1752-8941-4794-be72-bc3673647b2f.json",
+      "sha": "eebb90cecc8df1eb5546e53922af2f8f86500e60"
     }
   ],
   "taxonomy": {
