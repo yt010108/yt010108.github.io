@@ -2194,6 +2194,23 @@
       "trashedAt": null,
       "path": "blog/entries/f37b1752-8941-4794-be72-bc3673647b2f.json",
       "sha": "eebb90cecc8df1eb5546e53922af2f8f86500e60"
+    },
+    {
+      "id": "09f61d72-7409-4568-b6e0-a846051fa3c1",
+      "kind": "notes",
+      "slug": "키사-및-농수산-필기",
+      "title": "키사 및 농수산 필기",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-11-01",
+      "updatedAt": "2026-11-01T14:19:29.875Z",
+      "publishedAt": "2026-11-01T14:19:29.875Z",
+      "status": "published",
+      "sourceDigest": "e63faeb52375d788584be2d13fe7e6b19847504bbe4dac3728bb3deeeed89d12",
+      "trashedAt": null,
+      "path": "blog/entries/09f61d72-7409-4568-b6e0-a846051fa3c1.json",
+      "sha": "e2a8ef34003dff29072867b9f36ff4f03dd0460c"
     }
   ],
   "taxonomy": {

@@ -1,0 +1,32 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "09f61d72-7409-4568-b6e0-a846051fa3c1",
+  "title": "키사 및 농수산 필기",
+  "kind": "notes",
+  "slug": "키사-및-농수산-필기",
+  "description": "",
+  "category": "",
+  "date": "2026-11-01",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-01T14:19:29.875Z",
+  "updatedAt": "2026-11-01T14:19:29.875Z",
+  "sourceDigest": "e63faeb52375d788584be2d13fe7e6b19847504bbe4dac3728bb3deeeed89d12",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "암호학 좀 나왔음, 트리, 정렬, 악성코드, 할로잉, dll인젝션, 루트킷, ctr 블록 암호화, 동형 암호, 보안 모델(벨라파둘라, 비바, )<- 생각보다 자세하게 나옴, b tree, 파이썬 람다, 개보법, "
+          }
+        ]
+      }
+    ]
+  }
+}
