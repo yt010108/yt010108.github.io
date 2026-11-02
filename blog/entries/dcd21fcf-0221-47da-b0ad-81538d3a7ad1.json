@@ -12,8 +12,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-02T07:14:08.726Z",
-  "updatedAt": "2026-11-02T07:14:08.726Z",
-  "sourceDigest": "049fa8c29362f173f29739d3fdc1934b1eac76fc3bc96e518577a4b0dcdaf7b5",
+  "updatedAt": "2026-11-02T08:25:07.173Z",
+  "sourceDigest": "938a98954a9ca080219f9ca7df2b8752759b49cd7b933e653d2fbeabb050b654",
   "assets": [
     {
       "id": "ab62e6ff-839b-4d70-b470-cebcbc04e60f",
@@ -182,6 +182,34 @@
       "type": "image/png",
       "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/2e57f9f7-94f9-4d76-a07a-200c3a9f22e3.png",
       "sha": "7579322ee716dae9acd142d424084b1cbdad7033"
+    },
+    {
+      "id": "eb7bcc0a-cfa4-4b4f-bbb5-5dd6e17c2d9b",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/eb7bcc0a-cfa4-4b4f-bbb5-5dd6e17c2d9b.png",
+      "sha": "36a2f0ed4e490083025578273f1001f62aec1380"
+    },
+    {
+      "id": "00401137-9270-4a43-b33d-b4a779b766b6",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/00401137-9270-4a43-b33d-b4a779b766b6.png",
+      "sha": "728c32f22c884da62907df048650826983a620a4"
+    },
+    {
+      "id": "0bf43655-1ba7-42d9-bb39-091bba344b84",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/0bf43655-1ba7-42d9-bb39-091bba344b84.png",
+      "sha": "bab9de5a7fbe3cb1969ae525b30904df826a1e70"
+    },
+    {
+      "id": "8c4cb01f-165b-43b4-a90d-69a46b83f8b7",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/8c4cb01f-165b-43b4-a90d-69a46b83f8b7.png",
+      "sha": "3f1fd652e12560bc7a9fccc30f309536dacae214"
     }
   ],
   "doc": {
@@ -7551,6 +7579,102 @@
           "width": null,
           "height": null,
           "assetId": "2e57f9f7-94f9-4d76-a07a-200c3a9f22e3"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Oracle이 "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "PUBLIC SYNONYM"
+          },
+          {
+            "type": "text",
+            "text": "이라는 공용 별칭을 제공하기 때문에 ALL_TAB_COLUMNS 접근 가능하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/eb7bcc0a-cfa4-4b4f-bbb5-5dd6e17c2d9b.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "eb7bcc0a-cfa4-4b4f-bbb5-5dd6e17c2d9b"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": " "
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/00401137-9270-4a43-b33d-b4a779b766b6.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "00401137-9270-4a43-b33d-b4a779b766b6"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/0bf43655-1ba7-42d9-bb39-091bba344b84.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "0bf43655-1ba7-42d9-bb39-091bba344b84"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "og"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "22글자짜리 데이터 보고서에 적을 때에는?"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/8c4cb01f-165b-43b4-a90d-69a46b83f8b7.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "8c4cb01f-165b-43b4-a90d-69a46b83f8b7"
         }
       },
       {
