@@ -1,7 +1,7 @@
 {
   "format": "yt010108-dashboard",
   "version": 2,
-  "memo": "자세 바르게 하기\n키보드 살살 치기\n한숨쉬지말기\n",
+  "memo": "자세 바르게 하기\n키보드 살살 치기\n한숨 쉬지말기\n",
   "tasks": [
     {
       "id": "51483210-5a7d-47af-8f28-b3de7182d851",
@@ -71,5 +71,5 @@
       "url": "https://github.com/yt010108/Recon"
     }
   ],
-  "updatedAt": "2026-11-01T14:30:33.247Z"
+  "updatedAt": "2026-11-02T23:59:52.115Z"
 }
