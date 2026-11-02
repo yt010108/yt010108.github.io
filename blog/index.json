@@ -2211,6 +2211,23 @@
       "trashedAt": null,
       "path": "blog/entries/09f61d72-7409-4568-b6e0-a846051fa3c1.json",
       "sha": "e2a8ef34003dff29072867b9f36ff4f03dd0460c"
+    },
+    {
+      "id": "dcd21fcf-0221-47da-b0ad-81538d3a7ad1",
+      "kind": "posts",
+      "slug": "sql-injection",
+      "title": "SQL Injection",
+      "description": "",
+      "category": "SK Rookies / 수업 정리",
+      "tags": [],
+      "date": "2026-11-02",
+      "updatedAt": "2026-11-02T07:14:08.726Z",
+      "publishedAt": "2026-11-02T07:14:08.726Z",
+      "status": "published",
+      "sourceDigest": "049fa8c29362f173f29739d3fdc1934b1eac76fc3bc96e518577a4b0dcdaf7b5",
+      "trashedAt": null,
+      "path": "blog/entries/dcd21fcf-0221-47da-b0ad-81538d3a7ad1.json",
+      "sha": "64680f0a250605a78eb9778e9e6742776fc1242d"
     }
   ],
   "taxonomy": {
