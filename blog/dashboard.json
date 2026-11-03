@@ -74,7 +74,13 @@
       "title": "Recon",
       "description": "웹 리콘 하네스",
       "url": "https://github.com/yt010108/Recon"
+    },
+    {
+      "id": "f93355f0-814a-4687-a3cf-861b1f2a3162",
+      "title": "artex_for_ctf",
+      "description": "artex를 ctf용으로 변경",
+      "url": "https://github.com/yt010108/artex-ko"
     }
   ],
-  "updatedAt": "2026-11-03T00:00:08.896Z"
+  "updatedAt": "2026-11-03T00:01:47.049Z"
 }
