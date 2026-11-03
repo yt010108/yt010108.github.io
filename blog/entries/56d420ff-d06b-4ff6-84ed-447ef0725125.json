@@ -12,8 +12,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-10-25T14:37:21.420Z",
-  "updatedAt": "2026-10-25T14:37:21.420Z",
-  "sourceDigest": "b136d0b7635adf15f2b5139ccc306169a403527fa502b66697f2a6781618dae4",
+  "updatedAt": "2026-11-03T00:02:29.963Z",
+  "sourceDigest": "c1ab31781798af1bd260b4aee44875118f55295639cfff54dca9f13c13f419c1",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -28,7 +28,13 @@
         ]
       },
       {
-        "type": "paragraph"
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "+아카이브 "
+          }
+        ]
       }
     ]
   }
