@@ -17,6 +17,11 @@
       "id": "08a29313-d73d-4272-bbc7-5e8660628ce1",
       "text": "node2shell 공부하기",
       "done": false
+    },
+    {
+      "id": "d5148955-0aa0-497e-96d1-b5b15371d4c5",
+      "text": "EQST LMS 수가하기",
+      "done": false
     }
   ],
   "shortcuts": [
@@ -92,5 +97,5 @@
       "url": "https://github.com/yt010108/artex-ko"
     }
   ],
-  "updatedAt": "2026-11-03T00:08:30.548Z"
+  "updatedAt": "2026-11-03T00:14:49.937Z"
 }
