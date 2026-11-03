@@ -12,8 +12,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-02T07:14:08.726Z",
-  "updatedAt": "2026-11-03T07:21:38.323Z",
-  "sourceDigest": "59446e6220653469741f41e4bcc831818badc3574bdec13e05a815703bf54502",
+  "updatedAt": "2026-11-03T08:43:18.700Z",
+  "sourceDigest": "0fe06884746fd9045ffa6c6a249cb80cf63fdc455b34ff990479f53f2dd98915",
   "assets": [
     {
       "id": "ab62e6ff-839b-4d70-b470-cebcbc04e60f",
@@ -343,6 +343,13 @@
       "type": "image/png",
       "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/4fccc2b0-4248-41bc-9538-ff093f84f0e0.png",
       "sha": "092ddb25f508348bf868b946b7af9b43483a00bb"
+    },
+    {
+      "id": "4b643c03-5aa5-4d5a-bb0b-8eb669c42e3a",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/4b643c03-5aa5-4d5a-bb0b-8eb669c42e3a.png",
+      "sha": "67696d7c71f9251c6684c5095b06b4816163e43b"
     }
   ],
   "doc": {
@@ -8620,7 +8627,24 @@
         ]
       },
       {
-        "type": "paragraph"
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/4b643c03-5aa5-4d5a-bb0b-8eb669c42e3a.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "4b643c03-5aa5-4d5a-bb0b-8eb669c42e3a"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "웹 방화벽을 직접 설치해서 하는게 제일 좋음 castle <- 소프트웨어 구현 웹 방화벽kisa 구현  "
+          }
+        ]
       }
     ]
   }
