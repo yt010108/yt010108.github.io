@@ -12,8 +12,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-02T07:14:08.726Z",
-  "updatedAt": "2026-11-03T08:43:18.700Z",
-  "sourceDigest": "0fe06884746fd9045ffa6c6a249cb80cf63fdc455b34ff990479f53f2dd98915",
+  "updatedAt": "2026-11-03T11:38:58.841Z",
+  "sourceDigest": "58819217853939e2b36991cf96c93eb9caa1980ae547f1fa65beffa2e2c56e90",
   "assets": [
     {
       "id": "ab62e6ff-839b-4d70-b470-cebcbc04e60f",
@@ -350,6 +350,34 @@
       "type": "image/png",
       "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/4b643c03-5aa5-4d5a-bb0b-8eb669c42e3a.png",
       "sha": "67696d7c71f9251c6684c5095b06b4816163e43b"
+    },
+    {
+      "id": "acc70e9f-219c-4e61-b4e4-bec2af1812ec",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/acc70e9f-219c-4e61-b4e4-bec2af1812ec.png",
+      "sha": "ae9468212d1030fc5e1074107b2f8522967c52c8"
+    },
+    {
+      "id": "93ca88db-0e23-4128-84f6-4b35f0df9d8f",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/93ca88db-0e23-4128-84f6-4b35f0df9d8f.png",
+      "sha": "be73b0ef8d5ffdb5329f267dd51d0a5ac3494dab"
+    },
+    {
+      "id": "67b12537-ccf5-4abc-bfb3-71272368a6dc",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/67b12537-ccf5-4abc-bfb3-71272368a6dc.png",
+      "sha": "5ad13e96f3b6a20a59548ddeb7097a31f9b233ee"
+    },
+    {
+      "id": "eb1643e1-6b3d-488c-af28-9e8b95de3e99",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/eb1643e1-6b3d-488c-af28-9e8b95de3e99.png",
+      "sha": "ba0d02a1960a2eab46e091da6fc105e3017b7aeb"
     }
   ],
   "doc": {
@@ -8584,6 +8612,15 @@
         ]
       },
       {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "20261231', 'YYYY-MM-DD') AND SYS.DATABASE_NAME=ORCL -- "
+          }
+        ]
+      },
+      {
         "type": "image",
         "attrs": {
           "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/ac1b2ceb-c2db-4fb3-abd6-376264b9bc97.png",
@@ -8645,6 +8682,65 @@
             "text": "웹 방화벽을 직접 설치해서 하는게 제일 좋음 castle <- 소프트웨어 구현 웹 방화벽kisa 구현  "
           }
         ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "exploit db 웹 방화벽 "
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/acc70e9f-219c-4e61-b4e4-bec2af1812ec.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "acc70e9f-219c-4e61-b4e4-bec2af1812ec"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/93ca88db-0e23-4128-84f6-4b35f0df9d8f.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "93ca88db-0e23-4128-84f6-4b35f0df9d8f"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/67b12537-ccf5-4abc-bfb3-71272368a6dc.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "67b12537-ccf5-4abc-bfb3-71272368a6dc"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/eb1643e1-6b3d-488c-af28-9e8b95de3e99.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "eb1643e1-6b3d-488c-af28-9e8b95de3e99"
+        }
+      },
+      {
+        "type": "paragraph"
       }
     ]
   }
