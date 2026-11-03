@@ -12,8 +12,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-02T07:14:08.726Z",
-  "updatedAt": "2026-11-02T08:25:07.173Z",
-  "sourceDigest": "938a98954a9ca080219f9ca7df2b8752759b49cd7b933e653d2fbeabb050b654",
+  "updatedAt": "2026-11-03T00:06:14.921Z",
+  "sourceDigest": "0a29d28f4ae449ea87eb4cc35f6f58b56239e5d29582a713aaa81ebf5c9e74d7",
   "assets": [
     {
       "id": "ab62e6ff-839b-4d70-b470-cebcbc04e60f",
@@ -7676,6 +7676,24 @@
           "height": null,
           "assetId": "8c4cb01f-165b-43b4-a90d-69a46b83f8b7"
         }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "2일차 "
+          }
+        ]
       },
       {
         "type": "paragraph"
