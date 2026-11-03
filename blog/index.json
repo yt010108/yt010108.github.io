@@ -2216,18 +2216,18 @@
       "id": "dcd21fcf-0221-47da-b0ad-81538d3a7ad1",
       "kind": "posts",
       "slug": "sql-injection",
-      "title": "SQL Injection",
+      "title": "SQL Injection(ORACLE DB)",
       "description": "",
       "category": "SK Rookies / 수업 정리",
       "tags": [],
       "date": "2026-11-02",
-      "updatedAt": "2026-11-03T11:38:58.841Z",
+      "updatedAt": "2026-11-03T12:06:09.975Z",
       "publishedAt": "2026-11-02T07:14:08.726Z",
       "status": "published",
-      "sourceDigest": "58819217853939e2b36991cf96c93eb9caa1980ae547f1fa65beffa2e2c56e90",
+      "sourceDigest": "0c1d869508b467ac63f7ec03fa15a6ff29cbb7961d2a3d8035bc8e12ba6dba0b",
       "trashedAt": null,
       "path": "blog/entries/dcd21fcf-0221-47da-b0ad-81538d3a7ad1.json",
-      "sha": "b024e8509356272b25c4c726e09d317bb91ed193"
+      "sha": "61f0bd5edcf5e0148e1b2c4104ab03fa452b7161"
     }
   ],
   "taxonomy": {
