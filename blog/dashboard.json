@@ -54,6 +54,11 @@
       "id": "10000000-0000-4000-8000-000000000006",
       "title": "티스토리",
       "url": "https://yt5246.tistory.com/"
+    },
+    {
+      "id": "6e719f5d-0095-4e22-945f-fddc5652a21c",
+      "title": "crackstation",
+      "url": "https://crackstation.net/"
     }
   ],
   "workingOn": [
@@ -82,5 +87,5 @@
       "url": "https://github.com/yt010108/artex-ko"
     }
   ],
-  "updatedAt": "2026-11-03T00:01:47.049Z"
+  "updatedAt": "2026-11-03T00:07:52.954Z"
 }
