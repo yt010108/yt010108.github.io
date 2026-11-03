@@ -12,8 +12,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-02T07:14:08.726Z",
-  "updatedAt": "2026-11-03T01:25:34.831Z",
-  "sourceDigest": "3d09131691785f31925ae702b02a713769dee8ee11439f54d326f822e39249a3",
+  "updatedAt": "2026-11-03T07:21:38.323Z",
+  "sourceDigest": "59446e6220653469741f41e4bcc831818badc3574bdec13e05a815703bf54502",
   "assets": [
     {
       "id": "ab62e6ff-839b-4d70-b470-cebcbc04e60f",
@@ -287,6 +287,62 @@
       "type": "image/png",
       "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/908ee142-8a14-4670-8f00-d6573ad8be35.png",
       "sha": "4e6ab4116a1dc07f6cd7be5128998d7dfdec7a3e"
+    },
+    {
+      "id": "198fd66c-23e7-4040-92de-13ee58e7d00f",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/198fd66c-23e7-4040-92de-13ee58e7d00f.png",
+      "sha": "d47318abcd8c0a8ce9f8e100847ed6ad116986eb"
+    },
+    {
+      "id": "099752a7-b4c9-406b-8402-63f37628455c",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/099752a7-b4c9-406b-8402-63f37628455c.png",
+      "sha": "846d9a5edd2bd2dae0701fa65c6172739363f80c"
+    },
+    {
+      "id": "07edfb3e-946d-44c3-8735-8fa4f591c09b",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/07edfb3e-946d-44c3-8735-8fa4f591c09b.png",
+      "sha": "0dd73c175f9e3814434112cc95fdecc84f1089ae"
+    },
+    {
+      "id": "9de662aa-d832-4990-9018-e78481b0bf2a",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/9de662aa-d832-4990-9018-e78481b0bf2a.png",
+      "sha": "623b24787d660beda98147f59db74fd2491c8496"
+    },
+    {
+      "id": "14a567d5-a05d-4cf1-9054-0ee97db7d97a",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/14a567d5-a05d-4cf1-9054-0ee97db7d97a.png",
+      "sha": "64ec0ff252368be9c09c31d1c59d0d70196785fd"
+    },
+    {
+      "id": "e7d6115d-07eb-4055-8475-e4fc101ed9dd",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/e7d6115d-07eb-4055-8475-e4fc101ed9dd.png",
+      "sha": "b5803a10fbf9c40a57512fd9ccd6436a469a4b17"
+    },
+    {
+      "id": "ac1b2ceb-c2db-4fb3-abd6-376264b9bc97",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/ac1b2ceb-c2db-4fb3-abd6-376264b9bc97.png",
+      "sha": "cce2787c6a7b5553bd0cceefefdfd9542162663d"
+    },
+    {
+      "id": "4fccc2b0-4248-41bc-9538-ff093f84f0e0",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/4fccc2b0-4248-41bc-9538-ff093f84f0e0.png",
+      "sha": "092ddb25f508348bf868b946b7af9b43483a00bb"
     }
   ],
   "doc": {
@@ -501,15 +557,6 @@
           "height": null,
           "assetId": "ab62e6ff-839b-4d70-b470-cebcbc04e60f"
         }
-      },
-      {
-        "type": "paragraph"
-      },
-      {
-        "type": "paragraph"
-      },
-      {
-        "type": "paragraph"
       },
       {
         "type": "paragraph"
@@ -8264,6 +8311,313 @@
           "height": null,
           "assetId": "908ee142-8a14-4670-8f00-d6573ad8be35"
         }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "or 절과 --는 사용을 좀 자제해라 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "prepared statement 할 때 order by나 컬럼명을 받을 떄 안되게 됨 왜냐하면 순서가 달라짐"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "따라서 정렬기능이 있으면 orderby관련이 있을 경우에 sql injection 관련 취약점이 터질 가능성이 높아진다. "
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/198fd66c-23e7-4040-92de-13ee58e7d00f.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "198fd66c-23e7-4040-92de-13ee58e7d00f"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "join에 관한 내용 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일단 똑같이 쿼리를 예측해야하는 건 맞음 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일단 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "select id, salary from HR where salary > 입력값1 and salary< 입력값2"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "select id, salary from HR where between 입력값1 and 입력값2 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "select id, salary from HR where between /*and*/"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/099752a7-b4c9-406b-8402-63f37628455c.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "099752a7-b4c9-406b-8402-63f37628455c"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "join "
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/07edfb3e-946d-44c3-8735-8fa4f591c09b.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "07edfb3e-946d-44c3-8735-8fa4f591c09b"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/9de662aa-d832-4990-9018-e78481b0bf2a.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "9de662aa-d832-4990-9018-e78481b0bf2a"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "10000.0이나 9999+1로 하면 숫자형인지 아니면 문자형인지 판별 가능 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/14a567d5-a05d-4cf1-9054-0ee97db7d97a.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "14a567d5-a05d-4cf1-9054-0ee97db7d97a"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SELECT NUM, CAT, SUB, FILE, WRITER, TIME, VIEW "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "FROM A.POST. B.~"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "WHERE SEARCHTEXT LIKE '%입력값%' AND (BETWEEN TO_DATE(SDATE) AND TO_DATE(EDATE)) AND "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "http://A.ID",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "A.ID"
+          },
+          {
+            "type": "text",
+            "text": " == "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "http://B.ID",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "B.ID"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "20261231', 'YYYY-MM-DD') and LENGTH(SYS.DATABASE_NAME)>77 -- "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "20261231', 'YYYY-MM-DD') and ASCII(SUBSTR(SYS.DATABASE_NAME,1,1))>77 -- "
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/e7d6115d-07eb-4055-8475-e4fc101ed9dd.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "e7d6115d-07eb-4055-8475-e4fc101ed9dd"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "20261231', 'YYYY-MM-DD') AND LENGTH(SYS.DATABASE_NAME)=4 -- "
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/ac1b2ceb-c2db-4fb3-abd6-376264b9bc97.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "ac1b2ceb-c2db-4fb3-abd6-376264b9bc97"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dcd21fcf-0221-47da-b0ad-81538d3a7ad1/4fccc2b0-4248-41bc-9538-ff093f84f0e0.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "4fccc2b0-4248-41bc-9538-ff093f84f0e0"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "79 orcl"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4번 문제"
+          }
+        ]
       },
       {
         "type": "paragraph"
