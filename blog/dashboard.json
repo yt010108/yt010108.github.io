@@ -12,6 +12,11 @@
       "id": "0e88d090-9e31-457a-ad95-2b2a010dc807",
       "text": "blog 변경하기",
       "done": false
+    },
+    {
+      "id": "08a29313-d73d-4272-bbc7-5e8660628ce1",
+      "text": "node2shell 공부하기",
+      "done": false
     }
   ],
   "shortcuts": [
@@ -87,5 +92,5 @@
       "url": "https://github.com/yt010108/artex-ko"
     }
   ],
-  "updatedAt": "2026-11-03T00:07:52.954Z"
+  "updatedAt": "2026-11-03T00:08:30.548Z"
 }
