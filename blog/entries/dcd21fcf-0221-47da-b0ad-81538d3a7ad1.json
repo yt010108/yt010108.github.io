@@ -12,8 +12,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-02T07:14:08.726Z",
-  "updatedAt": "2026-11-03T23:56:35.579Z",
-  "sourceDigest": "584d534f75590382435588c1efa2087db9cf664ceb1d5d82a6bcfed7166b5f64",
+  "updatedAt": "2026-11-04T00:00:17.325Z",
+  "sourceDigest": "d16ebe33fb4a7fe581bcdfaa2cfebd80505193f349618cf88ef3c31851e4983d",
   "assets": [
     {
       "id": "ab62e6ff-839b-4d70-b470-cebcbc04e60f",
@@ -1367,127 +1367,125 @@
         "content": [
           {
             "type": "text",
-            "text": "Oracle은 테이블과 컬럼 정보를 데이터 딕셔너리 뷰로 제공한다."
+            "text": "Oracle은 테이블, 컬럼, 사용자 등의 정보를 데이터 딕셔너리 뷰로 제공한다. 이 뷰를 조회하면 실제 데이터에 접근하기 전에 어떤 테이블과 컬럼이 있는지 확인할 수 있다."
           }
         ]
       },
       {
-        "type": "bulletList",
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
         "content": [
           {
-            "type": "listItem",
-            "content": [
+            "type": "text",
+            "text": "3.4.1 테이블명과 컬럼명 찾기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
               {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "marks": [
-                      {
-                        "type": "code"
-                      }
-                    ],
-                    "text": "ALL_TABLES"
-                  },
-                  {
-                    "type": "text",
-                    "text": ": 현재 사용자에게 접근 권한이 있는 테이블 정보"
-                  }
-                ]
+                "type": "code"
               }
-            ]
+            ],
+            "text": "ALL_TABLES"
           },
           {
-            "type": "listItem",
-            "content": [
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "marks": [
-                      {
-                        "type": "code"
-                      }
-                    ],
-                    "text": "USER_TABLES"
-                  },
-                  {
-                    "type": "text",
-                    "text": ": 현재 사용자가 소유한 테이블 정보"
-                  }
-                ]
-              }
-            ]
+            "type": "text",
+            "text": "는 현재 사용자가 접근할 수 있는 테이블의 정보를, "
           },
           {
-            "type": "listItem",
-            "content": [
+            "type": "text",
+            "marks": [
               {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "marks": [
-                      {
-                        "type": "code"
-                      }
-                    ],
-                    "text": "ALL_TAB_COLUMNS"
-                  },
-                  {
-                    "type": "text",
-                    "text": ": 접근 가능한 테이블의 컬럼 정보"
-                  }
-                ]
+                "type": "code"
               }
-            ]
+            ],
+            "text": "USER_TABLES"
           },
           {
-            "type": "listItem",
-            "content": [
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "marks": [
-                      {
-                        "type": "code"
-                      }
-                    ],
-                    "text": "TABLE_NAME"
-                  },
-                  {
-                    "type": "text",
-                    "text": ": 테이블 이름이 담긴 컬럼"
-                  }
-                ]
-              }
-            ]
+            "type": "text",
+            "text": "는 현재 사용자가 소유한 테이블의 정보를 보여준다. 두 뷰의 "
           },
           {
-            "type": "listItem",
-            "content": [
+            "type": "text",
+            "marks": [
               {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "marks": [
-                      {
-                        "type": "code"
-                      }
-                    ],
-                    "text": "COLUMN_NAME"
-                  },
-                  {
-                    "type": "text",
-                    "text": ": 컬럼 이름이 담긴 컬럼"
-                  }
-                ]
+                "type": "code"
               }
-            ]
+            ],
+            "text": "TABLE_NAME"
+          },
+          {
+            "type": "text",
+            "text": "에는 테이블 이름이 들어 있다. "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "ALL_TAB_COLUMNS"
+          },
+          {
+            "type": "text",
+            "text": "는 접근 가능한 테이블의 컬럼 정보를 보여주며, "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "COLUMN_NAME"
+          },
+          {
+            "type": "text",
+            "text": "에 컬럼 이름이 들어 있다. "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/ALL_TABLES.html",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "Oracle ALL_TABLES"
+          },
+          {
+            "type": "text",
+            "text": ", "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/ALL_TAB_COLUMNS.html",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "ALL_TAB_COLUMNS"
           }
         ]
       },
@@ -1499,7 +1497,152 @@
         "content": [
           {
             "type": "text",
-            "text": "-- 내가 소유한 테이블명\nSELECT TABLE_NAME FROM USER_TABLES;\n\n-- 접근 가능한 테이블명\nSELECT TABLE_NAME FROM ALL_TABLES;\n\n-- LHSMEMBER3의 컬럼명\nSELECT COLUMN_NAME\nFROM ALL_TAB_COLUMNS\nWHERE TABLE_NAME = 'LHSMEMBER3';"
+            "text": "SELECT TABLE_NAME FROM USER_TABLES;\n\nSELECT COLUMN_NAME\nFROM ALL_TAB_COLUMNS\nWHERE TABLE_NAME = 'LHSMEMBER3';"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3.4.2 USER_USERS 조회 실습"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "USER_USERS"
+          },
+          {
+            "type": "text",
+            "text": "는 현재 접속한 사용자 계정의 정보를 보여준다. SQL Fiddle에서 "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "SELECT * FROM USER_USERS"
+          },
+          {
+            "type": "text",
+            "text": "를 실행해 "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "USERNAME"
+          },
+          {
+            "type": "text",
+            "text": ", "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "USER_ID"
+          },
+          {
+            "type": "text",
+            "text": ", "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "ACCOUNT_STATUS"
+          },
+          {
+            "type": "text",
+            "text": " 등을 확인했다. 기존 SQL Fiddle 링크와 전체 조회 결과표는 이 문단 아래에 그대로 둔다. "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/USER_USERS.html",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "Oracle USER_USERS"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 4
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3.4.3 그 밖의 USER_ 뷰"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기존에 정리한 "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "USER_OBJECTS"
+          },
+          {
+            "type": "text",
+            "text": "부터 "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "USER_TRIGGERS"
+          },
+          {
+            "type": "text",
+            "text": "까지의 표를 이곳에 그대로 배치한다. 이들은 테이블 데이터 자체보다 현재 사용자와 관련된 객체, 권한, 제약조건, 인덱스 등의 정보를 살펴볼 때 쓰는 뷰다. 기존 출처 링크도 표 아래에 유지한다."
           }
         ]
       },
