@@ -2170,13 +2170,13 @@
       "category": "",
       "tags": [],
       "date": "2026-10-29",
-      "updatedAt": "2026-10-29T04:09:18.553Z",
+      "updatedAt": "2026-11-04T23:56:16.942Z",
       "publishedAt": "2026-10-29T04:09:18.553Z",
-      "status": "published",
+      "status": "trash",
       "sourceDigest": "90905117f943185ad3154786cd190d11e4be06eb538f58cc679e57b81e57c1ce",
-      "trashedAt": null,
+      "trashedAt": "2026-11-04T23:56:16.942Z",
       "path": "blog/entries/765e3d63-c51c-4e68-b978-89238eabac09.json",
-      "sha": "697db515abfea1f22ec52675d74b7ce290c9cf66"
+      "sha": "0f8e1d6f2a70002057a74521f5f461d70e002bb2"
     },
     {
       "id": "6a4e795e-fdeb-4bdc-8ebf-56e46d381a21",
