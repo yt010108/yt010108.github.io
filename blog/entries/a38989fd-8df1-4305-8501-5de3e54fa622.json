@@ -1,0 +1,685 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "a38989fd-8df1-4305-8501-5de3e54fa622",
+  "kind": "posts",
+  "title": "Node2Shell - CVE-2026-111497과 Brotli 디코더의 메모리 손상",
+  "slug": "node2shell-cve-2026-111497-brotli",
+  "description": "Node2Shell(CVE-2026-111497)의 원리를 정리한다. Brotli 스트리밍 디코더가 잘못된 압축 데이터를 처리하는 과정, 실제 노출 조건, 수정된 Node.js 버전을 살펴본다.",
+  "category": "Security / Research",
+  "date": "2026-11-04",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-04T12:40:06.851Z",
+  "updatedAt": "2026-11-04T12:40:06.851Z",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이번 글에서는 Node2Shell이라는 이름으로 알려진 CVE-2026-111497을 정리한다. Node.js가 사용하는 Brotli 압축 해제 코드에서 발생한 메모리 손상 문제다. 압축 형식부터 오류가 생기는 지점까지 순서대로 살펴보려고 한다."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "[출처]",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://nodejs.org/en/blog/vulnerability/october-2026-security-releases"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. CVE-2026-111497 - Node2Shell"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Node2Shell은 잘못 만들어진 Brotli 압축 데이터를 해제할 때 디코더의 버퍼 밖으로 데이터를 쓸 수 있는 취약점이다. Node.js의 node:zlib을 통해 공격자가 제어하는 Brotli 데이터를 압축 해제하는 애플리케이션에서는 프로세스 메모리가 손상될 수 있다. 결과는 프로세스 충돌, 메모리 정보 노출, 원격 코드 실행으로 이어질 수 있다."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "[출처]",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://nodejs.org/en/blog/vulnerability/october-2026-security-releases"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이름에는 Node가 들어가지만 취약한 코드는 Google Brotli의 C 디코더에 있다. 같은 디코더를 포함한 다른 제품도 별도로 영향을 검토해야 한다. 따라서 사용 언어의 이름보다 실제로 어떤 압축 해제 코드가 실행되는지가 중요하다."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "[출처]",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/google/brotli/releases/tag/v1.2.1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. Brotli와 압축 해제"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Brotli는 원본 데이터를 손실 없이 더 작은 형태로 표현하는 압축 형식이다. HTTP에서는 br이라는 이름으로 사용한다. 예를 들어 클라이언트의 Accept-Encoding은 받을 수 있는 압축 형식을 알리고, Content-Encoding은 실제 메시지에 적용한 형식을 알려준다. Node.js의 node:zlib은 br 데이터의 압축과 해제를 지원한다."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "[출처]",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://nodejs.org/api/zlib.html"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "text"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "외부에서 전달된 Brotli 데이터\n  ↓\nnode:zlib의 Brotli 압축 해제\n  ↓\n애플리케이션이 사용하는 원본 데이터"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "압축 해제기는 외부에서 받은 바이트를 읽고 내부 버퍼와 상태를 계속 갱신한다. 특히 데이터가 여러 조각으로 들어오면 현재까지 해석한 상태를 기억해 다음 조각을 이어서 처리한다. 이 상태를 다루는 과정에서 잘못된 입력을 정확히 오류로 판정해야 한다."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "[출처]",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/google/brotli/commit/0ed4268a"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 스트리밍 디코더의 세 가지 결과"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "디코더가 한 조각을 읽을 때는 정상 처리, 다음 입력 대기, 잘못된 형식이라는 결과를 구분해야 한다. 아직 데이터가 부족한 경우에는 다음 조각을 기다릴 수 있지만, 형식상 불가능한 상태라면 즉시 중단해야 한다. 두 결과를 혼동하면 오류가 난 상태로 처리를 이어가게 된다."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "[출처]",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/google/brotli/commit/0ed4268a"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "text"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "정상 입력 → 계속 해석\n입력이 부족함 → 다음 조각을 기다림\n형식이 잘못됨 → 오류로 중단"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 취약점이 발생하는 과정"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문제의 한 지점은 Brotli의 블록 종류 전환 처리다. 디코더가 유효하지 않은 블록 전환을 만났을 때 기존 코드는 이를 확실한 형식 오류로 전달하지 못했다. 그 결과 스트리밍 디코더가 '입력이 더 필요하다'는 상태처럼 계속 진행하면서 내부의 작은 버퍼 경계를 넘어서 쓸 수 있었다."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "[출처]",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://nodejs.org/en/blog/vulnerability/october-2026-security-releases"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "text"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "잘못된 Brotli 블록 전환\n  ↓\n형식 오류를 입력 부족 상태와 구분하지 못함\n  ↓\n디코더가 상태를 유지한 채 입력을 계속 처리\n  ↓\n내부 버퍼 범위 밖에 쓰기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "수정된 코드는 잘못된 블록 전환에 전용 오류를 반환하고, 호출한 쪽이 그 결과를 상위 단계까지 전달해 압축 해제를 중단한다. 핵심은 잘못된 압축 스트림을 더 기다릴 입력으로 취급하지 않는 것이다."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "[출처]",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/google/brotli/commit/0ed4268a"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. 어떤 경우에 영향을 받나?"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "애플리케이션이 공격자가 제어할 수 있는 Brotli 데이터를 실제로 압축 해제하는 경로가 있어야 한다. 예를 들어 압축된 요청 본문을 받아 처리하거나, 외부 서버에서 받은 br 응답을 해제하거나, 외부에서 받은 압축 파일을 읽는 기능이 해당할 수 있다. 이 예시는 입력 경로를 이해하기 위한 것이며 각 서비스의 실제 사용 방식을 확인해야 한다."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "[출처]",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://nodejs.org/api/zlib.html"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Node.js 프로젝트의 공지는 node:zlib으로 악성 Brotli 데이터를 압축 해제할 수 있는 경우를 영향 조건으로 적는다. 서버가 정상 콘텐츠를 Brotli로 압축해서 내보내는 기능만으로 곧바로 이 입력 조건이 성립하는 것은 아니다. 무엇을 압축하느냐와 무엇을 해제하느냐를 구분해서 봐야 한다."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "[출처]",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://nodejs.org/en/blog/vulnerability/october-2026-security-releases"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "버퍼 밖 쓰기는 디코더가 실행 중인 프로세스의 메모리를 손상시킨다. 그래서 단순한 압축 실패로 끝나지 않고 충돌이나 정보 노출, 조건에 따라 코드 실행까지 이어질 수 있다. 코드가 실행된다면 해당 프로세스의 권한을 가지며, 이것이 곧 서버 전체의 관리자 권한을 뜻하지는 않는다."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "[출처]",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://nodejs.org/en/blog/vulnerability/october-2026-security-releases"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6. 수정된 버전과 대응"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Node.js 프로젝트가 2026년 10월 보안 릴리스로 발표한 수정 버전은 22.23.4, 24.22.1, 26.12.1이다. 해당 제품군은 그 버전 이상으로 업데이트하고, 실제 실행 중인 Node.js 프로세스를 교체해야 한다."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "[출처]",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://nodejs.org/en/blog/vulnerability/october-2026-security-releases"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "text"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Node.js 22.x → 22.23.4 이상\nNode.js 24.x → 24.22.1 이상\nNode.js 26.x → 26.12.1 이상"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Brotli를 별도로 포함한 제품은 그 제품의 보안 수정도 확인해야 한다. Google Brotli는 1.2.1을 발표했고, 1.1.1과 1.0.10에도 수정 사항을 반영했다. Node.js처럼 포함된 디코더에 수정을 적용한 제품에서는 라이브러리의 버전 문자열 하나만으로 패치 여부를 단정하기 어렵다."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "[출처]",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/google/brotli/releases/tag/v1.2.1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "7. PHP2Shell과 함께 기억할 점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PHP2Shell은 PHP가 요청 사이에 남긴 메모리 상태를 잘못 다루는 문제다. Node2Shell은 Brotli 디코더가 잘못된 압축 입력을 해석하면서 버퍼 경계를 넘는 문제다. 둘 다 웹 서비스의 낮은 수준 구성 요소에서 시작하므로, 애플리케이션 코드만 살펴보면 핵심 경로를 놓칠 수 있다."
+          },
+          {
+            "type": "text",
+            "text": " "
+          },
+          {
+            "type": "text",
+            "text": "[출처]",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://nodejs.org/en/blog/vulnerability/october-2026-security-releases"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "8. 3줄 요약"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CVE-2026-111497은 Brotli 디코더가 잘못된 블록 전환을 오류로 중단하지 못해 버퍼 밖 쓰기로 이어질 수 있는 취약점이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "영향을 받으려면 취약한 디코더가 공격자가 제어하는 Brotli 데이터를 실제로 압축 해제해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Node.js 22·24·26의 수정 릴리스 또는 제품에 포함된 Brotli 디코더의 보안 수정을 적용해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "9. 참고 자료"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Node.js: 2026년 10월 보안 릴리스",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://nodejs.org/en/blog/vulnerability/october-2026-security-releases"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Node.js: node:zlib 문서",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://nodejs.org/api/zlib.html"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Google Brotli: 디코더 수정 커밋",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/google/brotli/commit/0ed4268a"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Google Brotli: v1.2.1 릴리스",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/google/brotli/releases/tag/v1.2.1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Google Brotli: v1.1.1 릴리스",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/google/brotli/releases/tag/v1.1.1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Google Brotli: v1.0.10 릴리스",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/google/brotli/releases/tag/v1.0.10"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "sourceDigest": "21e0f60b0d789994f966f55d377e94792739f99679b2e8b5c5010287aa93a79f"
+}
