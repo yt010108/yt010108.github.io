@@ -6,7 +6,7 @@
     {
       "id": "51483210-5a7d-47af-8f28-b3de7182d851",
       "text": "php2shell 공부하기",
-      "done": true
+      "done": false
     },
     {
       "id": "0e88d090-9e31-457a-ad95-2b2a010dc807",
@@ -97,5 +97,5 @@
       "url": "https://github.com/yt010108/artex-ko"
     }
   ],
-  "updatedAt": "2026-11-04T12:29:41.223Z"
+  "updatedAt": "2026-11-04T12:29:43.726Z"
 }
