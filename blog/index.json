@@ -2228,6 +2228,23 @@
       "trashedAt": null,
       "path": "blog/entries/dcd21fcf-0221-47da-b0ad-81538d3a7ad1.json",
       "sha": "100e1e18b0b71b81dc7fb6dda92e51ef28e74afe"
+    },
+    {
+      "id": "7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29",
+      "kind": "posts",
+      "slug": "웹-취약점-점검",
+      "title": "웹 취약점 점검",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-11-04",
+      "updatedAt": "2026-11-04T12:16:16.109Z",
+      "publishedAt": "2026-11-04T12:16:16.109Z",
+      "status": "published",
+      "sourceDigest": "aec44c3b20720cb62434f755358335ae5251c93ce4ce2ecb69b213b85a2cc8da",
+      "trashedAt": null,
+      "path": "blog/entries/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29.json",
+      "sha": "aa0599a2806642f0cd4eaa44561b43236bd18b6c"
     }
   ],
   "taxonomy": {

