@@ -221,6 +221,10 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
 .article-header { padding: 62px 0 44px; max-width: 830px; }
 .container.post-detail { max-width: 840px; }
 .post-detail > .article-header { max-width: none; }
+.article-meta-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 24px; }
+.article-actions { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 6px 14px; margin-left: auto; color: var(--muted); font-size: 12px; }
+.article-actions a { padding-block: 5px; }
+.article-actions a:hover { color: var(--text); text-decoration: underline; text-underline-offset: 4px; }
 .breadcrumb { display: inline-flex; align-items: center; gap: 10px; color: var(--quiet); font: 10px/1.6 var(--mono); margin-bottom: 35px; }
 .breadcrumb:hover { color: var(--text); }
 .article-header h1 { margin: 18px 0 20px; font-size: clamp(30px, 3.9vw, 49px); font-weight: 400; line-height: 1.5; letter-spacing: -.055em; word-break: keep-all; }

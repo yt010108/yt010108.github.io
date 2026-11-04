@@ -113,14 +113,20 @@ async function beginNew(kind = "posts") {
   title.focus();
 }
 
-async function openLinkedNote(id, refresh = true) {
+async function openLinkedEntry(id, action = "edit", refresh = true, kind = "") {
   if (!UUID.test(id) || cmsBusy || navigationBusy || !ready || !authorized || !repository.connected) return;
   navigationBusy = true; setBusy(true);
   try {
     if (!await keepBeforeSwitch()) return;
+    manager.setStatus("all"); setView(true);
     if (refresh) await manager.refresh();
-    await manager.openNote(id);
+    await manager.openEntry(id, action, kind);
   } finally { navigationBusy = false; setBusy(false); }
+}
+
+function linkedEntryRoute(hash) {
+  const match = /^#(edit|delete|edit-note)\/(.+)$/.exec(hash);
+  return match && UUID.test(match[2]) ? { id: match[2], action: match[1] === "delete" ? "delete" : "edit", kind: match[1] === "edit-note" ? "notes" : "" } : null;
 }
 
 async function openTaxonomy() {
@@ -719,16 +725,15 @@ async function unlockAdmin() {
     if (!ready) await start();
     if (!repository.connected || repository.generation !== generation) return;
     const route = location.hash;
-    const noteId = route.startsWith("#edit-note/") ? route.slice(11) : "";
+    const linkedEntry = linkedEntryRoute(route);
     manager.setStatus(route === "#drafts" ? "draft" : route === "#trash" ? "trash" : "all");
-    setView(route === "#media" ? "media" : route === "#site" ? "site" : route === "#dashboard" ? "dashboard" : route === "#taxonomy" ? "taxonomy" : !["#write", "#new-note"].includes(route) && !UUID.test(noteId));
+    setView(route === "#media" ? "media" : route === "#site" ? "site" : route === "#dashboard" ? "dashboard" : route === "#taxonomy" ? "taxonomy" : !["#write", "#new-note"].includes(route));
     await manager.refresh();
     if (route === "#taxonomy") await taxonomy.refresh();
     if (route === "#dashboard") await dashboardManager.refresh();
     if (route === "#media") await mediaManager.refresh();
     if (route === "#site") await siteManager.refresh();
     if (route === "#new-note") await beginNew("notes");
-    else if (UUID.test(noteId)) await openLinkedNote(noteId, false);
     if (!repository.connected || repository.generation !== generation) return;
     $("github-dialog").append($("github-form"));
     document.body.classList.remove("is-locked");
@@ -737,6 +742,7 @@ async function unlockAdmin() {
     $("auth-status").textContent = "";
     $("auth-retry").hidden = true;
     setBusy(false); setSidebarOpen(false); manager.resume(); resizeTitle();
+    if (linkedEntry) await openLinkedEntry(linkedEntry.id, linkedEntry.action, false, linkedEntry.kind);
   })();
   unlockTask = { generation, promise };
   return promise;
@@ -1020,6 +1026,7 @@ document.addEventListener("keydown", event => {
 });
 window.addEventListener("hashchange", () => {
   if (!authorized) return;
+  const linkedEntry = linkedEntryRoute(location.hash);
   if (location.hash === "#write") {
     if (!cmsBusy) setView(false);
   } else if (location.hash === "#taxonomy") openTaxonomy();
@@ -1027,7 +1034,7 @@ window.addEventListener("hashchange", () => {
   else if (location.hash === "#media") openSiteSection("media");
   else if (location.hash === "#site") openSiteSection("site");
   else if (location.hash === "#new-note") beginNew("notes");
-  else if (location.hash.startsWith("#edit-note/")) openLinkedNote(location.hash.slice(11));
+  else if (linkedEntry) openLinkedEntry(linkedEntry.id, linkedEntry.action, true, linkedEntry.kind);
   else if (["#manage", "#drafts", "#trash"].includes(location.hash)) openManager(location.hash === "#drafts" ? "draft" : location.hash === "#trash" ? "trash" : "all");
 });
 document.addEventListener("click", async event => {
