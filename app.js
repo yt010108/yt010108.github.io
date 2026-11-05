@@ -58,14 +58,14 @@
 
   function home() {
     const featured = data.posts.some(post => post.featured) ? data.posts.filter(post => post.featured).slice(0, 2) : data.posts.slice(0, 2);
-    return `<div class="container"><section class="hero" aria-labelledby="home-title"><p class="eyebrow">${esc(data.profile.role)}</p><h1 id="home-title">${data.profile.headline.map(line => `<span>${esc(line)}</span>`).join("")}</h1><p class="hero-intro">${esc(data.profile.intro)}</p><div class="hero-actions"><a class="primary-link" href="#/posts">Explore posts <span class="arrow" aria-hidden="true">→</span></a><a class="text-link" href="#/about">About me ${arrow}</a></div><span class="hero-index" aria-hidden="true">PERSONAL SITE / 2026</span><a class="hero-scroll" href="#selected" data-scroll="selected">SCROLL TO EXPLORE <span class="arrow" aria-hidden="true">↓</span></a></section>
+    return `<div class="container"><section class="hero" aria-labelledby="home-title"><p class="eyebrow">${esc(data.profile.role)}</p><h1 id="home-title">${data.profile.headline.map(line => `<span>${esc(line)}</span>`).join("")}</h1><div class="hero-actions"><a class="primary-link" href="#/posts">Explore posts <span class="arrow" aria-hidden="true">→</span></a><a class="text-link" href="#/about">About me ${arrow}</a></div><span class="hero-index" aria-hidden="true">PERSONAL SITE / 2026</span><a class="hero-scroll" href="#selected" data-scroll="selected">SCROLL TO EXPLORE <span class="arrow" aria-hidden="true">↓</span></a></section>
       <section class="home-section" id="selected">${sectionHeading("SELECTED WRITING", "먼저 읽어볼 글", "#/posts", "All posts")}<div class="featured-grid">${featured.map(post => `<article class="featured-item"><p class="eyebrow">${post.tags.map(tag => esc(tagName(tag))).join(" / ")}</p><h3 class="featured-title"><a href="${localPath("post", post.id)}">${esc(post.title)}</a></h3><p>${esc(post.description)}</p>${meta(post)}</article>`).join("")}</div></section>
       <section class="home-section">${sectionHeading("SELECTED PROJECTS", "작게 만들고, 깊게 이해하기", "#/projects", "All projects")}<div class="project-grid">${data.projects.slice(0, 2).map(project => projectCard(project)).join("")}</div></section>
       <section class="home-section">${sectionHeading("LATEST POSTS", "최근에 남긴 기록", "#/posts", "View archive")}<div class="post-list">${data.posts.slice(0, 5).map(post => postRow(post)).join("")}</div>${[...data.posts, ...data.projects].some(item => item.sample) ? '<p class="home-bottom-note">‘예시’로 표시한 글과 프로젝트는 화면 구성을 확인하기 위한 샘플입니다.</p>' : ""}</section></div>`;
   }
 
   function pageHead(eyebrow, title, intro) {
-    return `<header class="page-head"><p class="eyebrow">${esc(eyebrow)}</p><h1>${esc(title)}</h1><p class="page-intro">${esc(intro)}</p></header>`;
+    return `<header class="page-head${intro ? "" : " page-head--compact"}"><p class="eyebrow">${esc(eyebrow)}</p><h1>${esc(title)}</h1>${intro ? `<p class="page-intro">${esc(intro)}</p>` : ""}</header>`;
   }
 
   function archivePath(kind, tag = "all", category = "") {
@@ -94,13 +94,13 @@
     }).join("");
     const categoryOptions = [["", "전체 카테고리", items.length], ...categories.map(category => [category, category, items.filter(item => matchesCategory(item, category)).length]), ...(items.some(item => !item.category) ? [["@uncategorized", "미분류", items.filter(item => !item.category).length]] : [])];
     const categoryControl = categories.length ? `<label class="archive-category"><span>카테고리</span><select data-filter-category data-filter-kind="${route}" aria-label="카테고리 선택">${categoryOptions.map(([value, label, count]) => `<option value="${esc(value)}" ${value === selectedCategory ? "selected" : ""}>${esc(label)} (${count})</option>`).join("")}</select></label>` : "";
-    const heading = pageHead(isNotes ? "A LITTLE SPACE TO THINK" : "WRITING & RESEARCH", isNotes ? "Notes." : "Posts.", isNotes ? "생각, 자료, 작은 할 일을 한 자리에 남깁니다." : "궁금했던 것을 따라가며 남긴 기록입니다. 분석 과정과 배운 점, 그 사이의 작은 발견들을 정리합니다.");
+    const heading = pageHead(isNotes ? "A LITTLE SPACE TO THINK" : "WRITING & RESEARCH", isNotes ? "Notes." : "Posts.");
     const listing = isNotes ? window.NotesBoard.html(filtered) : `<div class="archive-list">${filtered.length ? filtered.map(item => postRow(item, kind)).join("") : '<div class="empty-state"><p>이 조건에 맞는 기록이 아직 없습니다.</p><a class="text-link" href="#/' + route + '">전체 기록 보기</a></div>'}</div>`;
     return `<div class="container${isNotes ? " notes-page" : ""}">${isNotes ? '<div class="notes-page-heading">' + heading + window.NotesBoard.newLink + '</div>' : heading}${items.some(item => item.sample) ? '<p class="archive-notice"><span class="sample-label">예시</span> 표시는 콘텐츠를 채우기 전의 구성 예시입니다.</p>' : ""}<div class="filter-bar"><div class="filter-buttons" aria-label="주제 필터">${isNotes && !tags.length && selectedTag === "all" ? "" : filters}</div><div class="archive-tools">${categoryControl}<button class="archive-search" type="button" data-search-open>Search ↗</button></div></div>${listing}</div>`;
   }
 
   function projects() {
-    return `<div class="container">${pageHead("TOOLS & EXPERIMENTS", "Projects.", "보안 분석과 반복 작업의 자동화, AI를 활용한 서비스와 평가 실험을 만듭니다. 프로젝트의 배경과 구현 방식, 개발 과정에서 확인한 결과와 한계를 정리했습니다.")}<div class="project-grid projects-page-grid">${data.projects.map(project => projectCard(project)).join("")}</div></div>`;
+    return `<div class="container">${pageHead("TOOLS & EXPERIMENTS", "Projects.")}<div class="project-grid projects-page-grid">${data.projects.map(project => projectCard(project)).join("")}</div></div>`;
   }
 
   function renderBlock(block) {
