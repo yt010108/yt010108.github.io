@@ -2272,13 +2272,13 @@
       "category": "",
       "tags": [],
       "date": "2026-10-25",
-      "updatedAt": "2026-11-05T00:00:04.160Z",
+      "updatedAt": "2026-11-05T00:00:15.992Z",
       "publishedAt": "2026-10-25T07:22:32.546Z",
-      "status": "published",
+      "status": "trash",
       "sourceDigest": "7c73673f3cb63ba8bc251927c52d544c18f91cfb51d1e87cd9552e873b63eb6b",
-      "trashedAt": null,
+      "trashedAt": "2026-11-05T00:00:15.992Z",
       "path": "blog/entries/c596987e-393f-4ff1-9acc-92f9b0bc3b6e.json",
-      "sha": "2866f6eca807ab0fd29b72ca3dda989f11737463"
+      "sha": "53783fd9d69b3198c2d214a4937b9c902e595eb8"
     }
   ],
   "taxonomy": {
