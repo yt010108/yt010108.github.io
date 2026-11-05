@@ -12,8 +12,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-05T02:58:58.504Z",
-  "updatedAt": "2026-11-05T02:58:58.504Z",
-  "sourceDigest": "4dc2956a95d49e111cd7c5bd6579166bd98553441ef31340523e7f93899f20d3",
+  "updatedAt": "2026-11-05T04:30:49.215Z",
+  "sourceDigest": "2ff07f9ef41511463f7f26a8cf1bc3ffebf4969a3601f66811f0c335ea8357f1",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -56,7 +56,25 @@
         ]
       },
       {
-        "type": "paragraph"
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.hahwul.com/blog/2024/hidden-xss-no-user-interaction/",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "https://www.hahwul.com/blog/2024/hidden-xss-no-user-interaction/"
+          }
+        ]
       }
     ]
   }
