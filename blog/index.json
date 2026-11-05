@@ -2313,6 +2313,23 @@
       "trashedAt": null,
       "path": "blog/entries/60d1837c-a3da-4979-b889-e5141557182a.json",
       "sha": "58e812b9f43a74cfd76e1886ed1ce67511994634"
+    },
+    {
+      "id": "f75d5431-4f04-491d-be86-2d4d114243a6",
+      "kind": "posts",
+      "slug": "xss",
+      "title": "xss",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-11-05",
+      "updatedAt": "2026-11-05T02:58:58.504Z",
+      "publishedAt": "2026-11-05T02:58:58.504Z",
+      "status": "published",
+      "sourceDigest": "4dc2956a95d49e111cd7c5bd6579166bd98553441ef31340523e7f93899f20d3",
+      "trashedAt": null,
+      "path": "blog/entries/f75d5431-4f04-491d-be86-2d4d114243a6.json",
+      "sha": "e2fd0c77958be999e2883415f8b042fb31a3db3a"
     }
   ],
   "taxonomy": {

@@ -1,0 +1,63 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "f75d5431-4f04-491d-be86-2d4d114243a6",
+  "title": "xss",
+  "kind": "posts",
+  "slug": "xss",
+  "description": "",
+  "category": "",
+  "date": "2026-11-05",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-05T02:58:58.504Z",
+  "updatedAt": "2026-11-05T02:58:58.504Z",
+  "sourceDigest": "4dc2956a95d49e111cd7c5bd6579166bd98553441ef31340523e7f93899f20d3",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "hidden xss 현재는 지금 아래 링크처럼은 안나오고 "
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.hahwul.com/blog/2016/web-hacking-hiddenxss-xss-in-hidden/",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "https://www.hahwul.com/blog/2016/web-hacking-hiddenxss-xss-in-hidden/"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "인풋타입의 위치를 체크해야한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  }
+}
