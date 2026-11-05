@@ -127,7 +127,7 @@
     const others = (isNotes ? data.notes : data.posts).filter(post => post.id !== item.id).slice(0, 2);
     const rendered = item.doc ? window.BlogPosts.renderDocument(item.doc, { assets: item.assets }) : null;
     const headings = rendered?.headings || item.body.filter(block => block.type === "heading");
-    const actions = `<div class="article-actions" role="group" aria-label="글 분류와 관리"><a href="${esc(archivePath(archiveRoute, "all", item.category || "@uncategorized"))}">${esc(item.category || "카테고리 없음")}</a>${item.doc && !item.sample ? `<a href="admin/#edit/${encodeURIComponent(item.id)}">수정</a><a href="admin/#delete/${encodeURIComponent(item.id)}">삭제</a>` : ""}</div>`;
+    const actions = `<div class="article-actions" role="group" aria-label="글 분류와 관리"><a href="${esc(archivePath(archiveRoute, "all", item.category || "@uncategorized"))}">${esc(item.category || "카테고리 없음")}</a>${item.doc && !item.sample ? `<a href="admin/#edit/${encodeURIComponent(item.id)}">수정</a><button type="button" data-delete-post="${esc(item.id)}" data-delete-kind="${esc(item.kind)}">삭제</button>` : ""}</div>`;
     return `<article class="container post-detail"><header class="article-header"><a class="breadcrumb" href="#/${archiveRoute}">← BACK TO ${archiveRoute.toUpperCase()}</a><p class="eyebrow">${[item.category, ...item.tags.map(tagName)].filter(Boolean).map(esc).join(" / ")}</p><h1>${esc(item.title)}</h1><p>${esc(item.description)}</p><div class="article-meta-row">${meta(item)}${actions}</div></header><div class="article-layout article-layout--post">${toc(headings, kind, item.id, section, true)}<div class="article-content post-body">${rendered?.html ?? item.body.map(block => renderBlock(block)).join("")}</div></div><div class="article-end"><div class="article-tags">${item.tags.map(tag => `<a href="#/${archiveRoute}?tag=${encodeURIComponent(tag)}"># ${esc(tagName(tag))}</a>`).join("")}</div><a class="text-link" href="#/${archiveRoute}">전체 ${isNotes ? "노트" : "글"} 보기 <span class="arrow" aria-hidden="true">→</span></a></div><section class="related-section"><p class="eyebrow">MORE TO EXPLORE</p>${others.map(post => postRow(post, kind)).join("")}</section></article>`;
   }
 
@@ -336,6 +336,11 @@
     if (filter) location.hash = archivePath(filter.dataset.filterKind, filter.dataset.filterTag, new URLSearchParams(location.hash.split("?")[1]).get("category") || "");
     const copyButton = target.closest(".copy-code");
     if (copyButton) copyCode(copyButton);
+    const deleteButton = target.closest("[data-delete-post]");
+    if (deleteButton) {
+      const item = data[deleteButton.dataset.deleteKind]?.find(post => post.id === deleteButton.dataset.deletePost);
+      if (item) window.BlogPostDelete.open(item);
+    }
     if (target.closest(".search-result")) dialog.close();
     if (!target.closest(".header-inner")) closeMenu();
   });

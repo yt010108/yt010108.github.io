@@ -21,6 +21,10 @@ await build({
   entryPoints: ["src/dashboard.js"], outfile: "assets/dashboard.js",
   bundle: true, minify: true, format: "iife", target: "es2022", logLevel: "info"
 });
+await build({
+  entryPoints: ["src/public-delete.js"], outfile: "assets/public-delete.js",
+  bundle: true, minify: true, format: "iife", target: "es2022", logLevel: "info"
+});
 for (const input of Object.keys(result.metafile.inputs).filter(path => path.includes("node_modules"))) {
   let dir = dirname(resolve(input));
   while (relative(process.cwd(), dir).includes("node_modules")) {

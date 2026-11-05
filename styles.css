@@ -223,8 +223,9 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
 .post-detail > .article-header { max-width: none; }
 .article-meta-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 24px; }
 .article-actions { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 6px 14px; margin-left: auto; color: var(--muted); font-size: 12px; }
-.article-actions a { padding-block: 5px; }
-.article-actions a:hover { color: var(--text); text-decoration: underline; text-underline-offset: 4px; }
+.article-actions a, .article-actions button { padding-block: 5px; }
+.article-actions button { border: 0; background: none; color: inherit; font: inherit; }
+.article-actions a:hover, .article-actions button:hover { color: var(--text); text-decoration: underline; text-underline-offset: 4px; }
 .breadcrumb { display: inline-flex; align-items: center; gap: 10px; color: var(--quiet); font: 10px/1.6 var(--mono); margin-bottom: 35px; }
 .breadcrumb:hover { color: var(--text); }
 .article-header h1 { margin: 18px 0 20px; font-size: clamp(30px, 3.9vw, 49px); font-weight: 400; line-height: 1.5; letter-spacing: -.055em; word-break: keep-all; }
@@ -335,6 +336,24 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
 .copyright { color: var(--quiet); font: 9px/1.7 var(--mono); }
 
 .search-dialog { width: min(620px, calc(100% - 32px)); padding: 0; border: 1px solid #454e47; background: #101411; color: var(--text); border-radius: 5px; box-shadow: 0 30px 100px #0008; max-height: calc(100dvh - 64px); }
+.post-delete-dialog { width: min(480px, calc(100% - 32px)); padding: 26px; border: 1px solid var(--line); border-radius: 5px; background: var(--bg); color: var(--text); box-shadow: 0 30px 100px #0008; }
+.post-delete-dialog::backdrop { background: #000b; backdrop-filter: blur(6px); }
+.post-delete-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.post-delete-top button { border: 0; background: none; color: var(--quiet); font-size: 24px; line-height: 1; }
+.post-delete-dialog h2 { font-size: 22px; font-weight: 400; line-height: 1.4; }
+.post-delete-name { margin-top: 12px; font-size: 14px; overflow-wrap: anywhere; }
+.post-delete-note, .post-delete-status, #post-delete-token-form p { margin-top: 14px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.post-delete-status[data-error="true"] { color: #d77878; }
+#post-delete-token-form { margin-top: 20px; }
+#post-delete-token-form label { display: block; margin-bottom: 7px; font-size: 12px; }
+#post-delete-token-form input { width: 100%; padding: 10px 12px; border: 1px solid var(--line); background: var(--surface); color: var(--text); border-radius: 3px; }
+.post-delete-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 22px; }
+#post-delete-token-form button, .post-delete-actions button { padding: 8px 14px; border: 1px solid var(--line); background: none; font-size: 12px; }
+#post-delete-token-form button { margin-top: 14px; }
+#post-delete-token-form button:hover, .post-delete-actions button:hover { background: var(--surface); }
+#post-delete-submit { border-color: var(--text); background: var(--text); color: var(--bg); }
+#post-delete-submit:hover { background: var(--muted); }
+#post-delete-token-form button:disabled, .post-delete-actions button:disabled { opacity: .5; }
 .search-dialog::backdrop { background: #000b; backdrop-filter: blur(6px); }
 .search-heading { display: flex; justify-content: space-between; align-items: center; padding: 17px 21px 12px; }
 .search-heading h2 { font: 11px/1.7 var(--mono); letter-spacing: .06em; }
