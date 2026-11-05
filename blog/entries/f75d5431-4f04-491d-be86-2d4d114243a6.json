@@ -12,8 +12,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-05T02:58:58.504Z",
-  "updatedAt": "2026-11-05T04:30:49.215Z",
-  "sourceDigest": "2ff07f9ef41511463f7f26a8cf1bc3ffebf4969a3601f66811f0c335ea8357f1",
+  "updatedAt": "2026-11-05T11:05:33.895Z",
+  "sourceDigest": "1836f85b0d4d9a55eb3c17e2e4c345328aa38ea4bd999c135330f36512285a79",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -75,6 +75,63 @@
             "text": "https://www.hahwul.com/blog/2024/hidden-xss-no-user-interaction/"
           }
         ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "b35cef48-67ae-437c-9a7a-1ef5ebe0c501",
+          "href": "https://www.hahwul.com/blog/2024/hidden-xss-no-user-interaction/",
+          "title": "Hidden XSS? No User Interaction!",
+          "description": "input-hidden + oncontentvisibilityautostatechange = XSS",
+          "image": "https://www.hahwul.com/og-images/blog-2024-hidden-xss-no-user-interaction.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Shazzer"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Gareth Heyes가 만든라는 웹 기반의 Fuzzer는 XSS 등 여러가지 웹 기반의 벡터를 여러 브라우저에 대해 테스트할 수 있는 도구입니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://shazzer.co.uk/",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "https://shazzer.co.uk/"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
       }
     ]
   }
