@@ -73,6 +73,7 @@ a:hover > .arrow { transform: translateX(3px); }
 .header-brand { display: flex; align-items: center; gap: 12px; margin-right: auto; }
 .header-brand .brand { margin-right: 0; }
 .brand-logo { display: block; width: 34px; height: 34px; flex: 0 0 34px; color: var(--text); }
+.brand-name { color: var(--text); font: 500 14px/1.2 var(--mono); letter-spacing: -.04em; white-space: nowrap; }
 .main-nav { display: flex; align-items: center; gap: 30px; }
 .main-nav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); font-size: 11px; letter-spacing: .12em; position: relative; }
 .main-nav a:hover, .main-nav a[aria-current="page"] { color: var(--text); }
