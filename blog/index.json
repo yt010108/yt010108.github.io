@@ -2296,6 +2296,23 @@
       "trashedAt": null,
       "path": "blog/entries/2644b012-a3f2-4f7c-9fd8-e66e496d3a6d.json",
       "sha": "efc9357f32de030a82e5081754dfdac77b7ae937"
+    },
+    {
+      "id": "60d1837c-a3da-4979-b889-e5141557182a",
+      "kind": "posts",
+      "slug": "hycli-web-automation-review",
+      "title": "Hycli는 웹 자동화를 만드는 수고를 줄여 줄까?",
+      "description": "웹사이트를 CLI·MCP 도구로 만드는 Hycli의 작동 원리와 유사 프로젝트와의 차이를 살펴본다. 반복 작업에서 생기는 효용과 자동 생성·검증·유지보수의 한계를 문서와 코드 기준으로 따져본다.",
+      "category": "AI",
+      "tags": [],
+      "date": "2026-11-05",
+      "updatedAt": "2026-11-05T00:16:00.897Z",
+      "publishedAt": "2026-11-05T00:11:46.573Z",
+      "status": "published",
+      "sourceDigest": "d65aa59fb5671d32299cf039fcacf860f158f0962fe5827f06f9e94ad494b799",
+      "trashedAt": null,
+      "path": "blog/entries/60d1837c-a3da-4979-b889-e5141557182a.json",
+      "sha": "58e812b9f43a74cfd76e1886ed1ce67511994634"
     }
   ],
   "taxonomy": {

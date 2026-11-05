@@ -1,0 +1,1192 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "60d1837c-a3da-4979-b889-e5141557182a",
+  "kind": "posts",
+  "title": "Hycli는 웹 자동화를 만드는 수고를 줄여 줄까?",
+  "slug": "hycli-web-automation-review",
+  "description": "웹사이트를 CLI·MCP 도구로 만드는 Hycli의 작동 원리와 유사 프로젝트와의 차이를 살펴본다. 반복 작업에서 생기는 효용과 자동 생성·검증·유지보수의 한계를 문서와 코드 기준으로 따져본다.",
+  "category": "AI",
+  "date": "2026-11-05",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-05T00:11:46.573Z",
+  "updatedAt": "2026-11-05T00:16:00.897Z",
+  "sourceDigest": "d65aa59fb5671d32299cf039fcacf860f158f0962fe5827f06f9e94ad494b799",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "웹사이트 주소를 주면 AI가 사용할 수 있는 CLI와 MCP 도구를 만들어 준다. "
+          },
+          {
+            "type": "text",
+            "text": "Hycli",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/Hybirdss/Hycli"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "의 설명을 처음 보면 꽤 편리해 보인다. 로그인한 사이트의 정보를 가져오거나 반복 작업을 명령 하나로 실행할 수 있다면, 서비스마다 자동화 코드를 작성하는 수고를 줄일 수 있기 때문이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그런데 기능 소개를 읽고 나면 다른 질문이 남는다. 이게 실제로 얼마나 쓸모가 있을까? 기존 API나 브라우저 자동화 도구가 있는데, 웹사이트마다 CLI를 만드는 과정이 추가로 필요한 이유는 무엇일까? 이 글에서는 Hycli가 무엇을 만들고 어떻게 실행하는지 살펴본 뒤, 실용성이 생기는 조건을 따져본다."
+          }
+        ]
+      },
+      {
+        "type": "blockquote",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "검토 기준은 2026년 11월 5일이다. Hycli의 문서와 main 커밋 "
+              },
+              {
+                "type": "text",
+                "text": "4426b00",
+                "marks": [
+                  {
+                    "type": "code"
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "을 검토했으며, 최신 공개 릴리즈는 v0.1.1이다. 실제 서비스 계정으로 설치·실행하거나 성공률과 성능을 측정한 사용기는 아니다."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 웹사이트의 기능을 재사용 가능한 명령으로 만든다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Hycli는 웹사이트의 기능을 분석해 터미널 명령과 AI 도구로 제공하는 로컬 애플리케이션이다. 사용자가 사이트 주소와 원하는 작업을 전달하면, API 문서·프런트엔드 JavaScript·HTML·관찰된 브라우저 요청 등에서 근거를 수집해 조회·검색·생성·수정 같은 작업을 정의한다. 프로젝트는 Apache-2.0 라이선스로 공개되어 있다. "
+          },
+          {
+            "type": "text",
+            "text": "프로젝트 소개",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/README.md"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " · "
+          },
+          {
+            "type": "text",
+            "text": "라이선스",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/LICENSE"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "CLI는 사람이 터미널에서 쓰는 인터페이스다. MCP(Model Context Protocol)는 AI 애플리케이션이 외부 도구를 호출하는 연결 규격이다. Hycli에서는 같은 웹사이트 기능을 CLI와 MCP로 제공하고, 로컬 대시보드에서 연결된 계정과 작업 결과를 확인할 수 있다. 세 인터페이스가 공통 실행 엔진을 사용한다는 점이 중요하다. "
+          },
+          {
+            "type": "text",
+            "text": "아키텍처 문서",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/docs/ARCHITECTURE.md"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "구현은 Rust 중심이고 대시보드는 React와 TypeScript로 작성되어 있다. 릴리즈 실행 파일에는 대시보드 자산을 포함하며 Windows·macOS·Linux용 패키지를 제공한다. 다만 렌더링된 페이지를 읽는 등 일부 기능에는 사용할 수 있는 로컬 Chromium 환경이 필요하다. "
+          },
+          {
+            "type": "text",
+            "text": "Rust 구성",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/Cargo.toml"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " · "
+          },
+          {
+            "type": "text",
+            "text": "대시보드 구성",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/dashboard/package.json"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " · "
+          },
+          {
+            "type": "text",
+            "text": "브라우저 기반 조회",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/docs/SITESPEC.md#html-results"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 사이트를 분석하는 과정과 작업을 실행하는 과정을 나눈다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Hycli의 핵심은 사이트를 이해하고 작업 정의를 준비하는 단계, 그리고 준비한 정의에 따라 실제 요청을 실행하는 단계를 나눈 구조다. 전체 흐름은 다음과 같다."
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "attrs": {
+          "start": 1
+        },
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "URL과 목적을 받는다. “이 사이트에서 글을 검색하고 초안을 작성하고 싶다”처럼 사용자가 원하는 결과를 전달한다. 초기 이해 단계는 필요한 기능과 선행 단계를 정리한다. "
+                  },
+                  {
+                    "type": "text",
+                    "text": "준비 흐름",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/src/preparation/orchestrator.rs"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "관찰할 수 있는 근거를 모은다. OpenAPI·GraphQL 문서, JavaScript 번들의 경로, HTML 폼, HTML에 포함된 JSON 등에서 사용할 인터페이스를 찾는다. 제안된 서버 주소와 요청 경로를 수집한 근거와 대조해 거르는 코드도 있다. "
+                  },
+                  {
+                    "type": "text",
+                    "text": "근거 대조 코드",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/src/preparation/grounding.rs#L442"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "역할을 나눈 AI 작업자가 분석한다. 코드에서는 explore가 조회·검색, organize가 생성·수정·삭제, check가 로그인과 연결 검증을 맡는다. 초기 이해와 전체 작업 검토 단계도 별도로 존재한다. "
+                  },
+                  {
+                    "type": "text",
+                    "text": "작업자 정의",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/src/preparation/prompts.rs#L13"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "SiteSpec을 만든다. HTTP 메서드와 경로, 입력값의 타입, 인증 방법, 예상 응답 구조, 읽기·쓰기 분류 등을 선언형 정의로 저장한다. 동적 토큰이 필요하면 사전 조회 단계도 표현할 수 있다. "
+                  },
+                  {
+                    "type": "text",
+                    "text": "SiteSpec 문서",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/docs/SITESPEC.md"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "읽기를 검증하고 도구로 제공한다. 실제 읽기 응답이 기대한 구조와 맞는지 검사하고, 설치된 정의를 CLI 명령과 타입 정보를 가진 MCP 도구로 노출한다. 쓰기 작업은 준비 과정에서 실제 실행해 검증하지 않는다. "
+                  },
+                  {
+                    "type": "text",
+                    "text": "검증 실행",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/src/runtime/execution.rs#L251"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "text": " · "
+                  },
+                  {
+                    "type": "text",
+                    "text": "MCP 도구 생성",
+                    "marks": [
+                      {
+                        "type": "link",
+                        "attrs": {
+                          "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/src/guarded_mcp.rs#L32"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래는 사용 흐름을 보여 주는 예시다. 주소와 SITE·ACTION은 설명용이며, 실제 사이트 이름·작업 이름·입력값은 분석 결과를 확인해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "sh"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "hycli prepare https://my-blog.example --intent \"글 검색과 초안 작성\"\nhycli describe SITE\nhycli SITE ACTION --help\nhycli check SITE"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 구조가 잘 작동한다면 준비된 작업은 매번 브라우저의 화면을 해석하지 않고 정의에 따라 실행할 수 있다. 반복 실행의 비용을 줄일 수 있다는 것이 설계상 기대되는 이점이다. 어느 정도 빠르거나 토큰을 절약하는지는 이번 검토로 확인하지 않았다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. Playwright MCP·browser-use·OpenCLI와 무엇이 다른가"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "비교할 때는 각 도구가 무엇을 중심으로 자동화를 표현하는지 보는 편이 좋다. 아래는 각 프로젝트의 현재 문서에 기반한 비교이며, 성능이나 성공률의 순위를 매긴 표는 아니다."
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "프로젝트와 기본 접근"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Hycli와 비교할 지점"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Playwright MCP",
+                        "marks": [
+                          {
+                            "type": "link",
+                            "attrs": {
+                              "href": "https://github.com/microsoft/playwright-mcp"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "text": " — "
+                      },
+                      {
+                        "type": "text",
+                        "text": "접근성 스냅샷을 읽고 탐색·클릭·입력 등 브라우저 조작을 도구로 제공한다."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Hycli는 발견한 기능을 입력·인증·응답 규칙이 있는 사이트별 작업 정의로 남기는 데 초점이 있다."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "browser-use",
+                        "marks": [
+                          {
+                            "type": "link",
+                            "attrs": {
+                              "href": "https://github.com/browser-use/browser-use"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "text": " — "
+                      },
+                      {
+                        "type": "text",
+                        "text": "자연어 목표를 받은 에이전트가 브라우저를 조작하며 작업을 수행한다."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Hycli는 기능을 분석해 준비하는 과정과 준비된 기능을 실행하는 과정이 뚜렷하게 나뉜다."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "OpenCLI",
+                        "marks": [
+                          {
+                            "type": "link",
+                            "attrs": {
+                              "href": "https://github.com/jackwener/opencli"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "text": " — "
+                      },
+                      {
+                        "type": "text",
+                        "text": "브라우저 확장과 로컬 데몬을 연결하고 사이트별 어댑터 명령과 범용 브라우저 조작을 제공한다."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "가장 가까운 비교 대상이다. Hycli는 내장 준비 과정에서 선언형 SiteSpec을 생성하고 공통 실행 정책으로 관리한다."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기존 로그인 재사용과 사이트별 CLI는 Hycli만 제공하는 기능이 아니다. OpenCLI도 AI를 활용한 어댑터 작성 흐름을 제공하고, Playwright MCP도 확장을 통해 기존 브라우저 세션에 연결할 수 있다. 따라서 “웹사이트를 CLI로 만든다”는 설명만으로 독자적인 차별점을 주장하기는 어렵다. "
+          },
+          {
+            "type": "text",
+            "text": "OpenCLI 문서",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/jackwener/opencli#readme"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " · "
+          },
+          {
+            "type": "text",
+            "text": "Playwright MCP의 브라우저 연결",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/microsoft/playwright-mcp#browser-configuration"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "내가 보는 Hycli의 특징은 작업 정의 생성, 실행 검증, 계정 관리, CLI·MCP·대시보드를 하나의 흐름으로 묶었다는 점이다. 생성한 정의를 공통 런타임이 해석하므로, 입력 검증과 인증 범위·작업 분류를 같은 경로에서 다루기 좋다. 이런 구성이 실제 연동 비용을 얼마나 줄이는지가 평가의 핵심이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 쓸모가 생기는 조건은 생각보다 좁다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가장 가능성 있는 사용처는 기존 연동이 없는 로그인 사이트에서 같은 작업을 반복하는 경우다. 예를 들어 매주 같은 조건으로 자료를 검색하고 제목·날짜·링크를 정리해야 한다고 가정해 보자. Hycli가 인증과 요청 구조를 알아내고 재사용 가능한 명령까지 제대로 만들어 준다면, 이후 실행을 다른 스크립트나 AI 작업에 연결할 수 있다. 이 예시는 사용 상황을 설명하기 위한 가정이며 특정 서비스의 지원을 확인한 사례는 아니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다만 두 가지 어려움이 있다. 공식 API와 SDK가 잘 갖춰진 사이트라면 기존 연동을 쓰는 편이 더 간단할 수 있다. 반대로 API가 불명확하고 화면 조작이 복잡한 사이트는 Hycli도 분석하기 어렵다. 기존 연동은 부족하지만 재현 가능한 요청과 충분한 관찰 근거는 있는 영역에서 효용이 생긴다고 본다."
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "상황"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "실용성에 대한 판단"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "공식 API·SDK·MCP 연동이 필요한 기능을 이미 제공한다."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "추가 도구를 도입할 이점이 작을 수 있다."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "한 번 자료를 가져오면 끝나는 작업이다."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "준비 과정이 절약하는 시간보다 클 수 있다."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "기존 연동이 없는 로그인 사이트에서 같은 조회를 반복한다."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "연결과 명령 생성이 안정적으로 작동한다면 유용할 가능성이 높다."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "여러 사람이 같은 사이트 기능을 공통 명령으로 사용한다."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "작업 정의를 재사용할 수 있다면 준비 비용을 나누기 좋다."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "복잡한 편집기와 임의의 화면 조작이 작업의 핵심이다."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "현재 Hycli의 지원 범위와 맞지 않을 수 있다."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "위 평가는 구조에서 도출한 판단이다. Hycli는 HTTP 요청, 구조화된 데이터, HTML 추출과 렌더링된 페이지 조회 등을 지원하지만, 임의의 클릭·입력 순서를 이어 붙이는 브라우저 조작 흐름은 구현하지 않는다. 따라서 주소만 주면 모든 웹 작업이 자동으로 도구가 된다고 해석하면 지원 범위를 넘어선다. "
+          },
+          {
+            "type": "text",
+            "text": "지원 범위와 제한",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/docs/SITESPEC.md#verification-and-limits"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "가치를 판단하는 기준은 단순하다. 준비와 수리에 들어간 시간, AI 사용량, 반복 실행 중 개입하는 비용을 합쳐도 직접 작업하거나 기존 도구를 사용하는 것보다 이득이어야 한다. 한 번 실행하는 일보다 주간·일간 반복 작업에서 이 조건을 만족할 가능성이 높다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. 생성·검증·권한을 구분해서 봐야 한다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "작업 정의가 생성되었다는 사실과 실제 실행이 검증되었다는 사실은 다르다. Hycli는 검증된 읽기 수와 미완성 기능을 따로 기록하고 전체 흐름이 완성되지 않으면 needs_review 상태를 반환한다. 특히 쓰기는 준비 과정에서 실행하지 않으므로, 게시나 수정 작업의 정의가 생겼다는 것만으로 실서비스 성공까지 확인한 것은 아니다. "
+          },
+          {
+            "type": "text",
+            "text": "준비 결과와 검증 상태",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/src/preparation/jobs.rs#L615"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실행 정책은 모델의 선언을 그대로 받아들이지 않는다. 모델이 읽기라고 표시해도 런타임이 메서드·경로·GraphQL 문서·실제 요청 내용을 다시 검사한다. 사이트의 쓰기는 기본적으로 꺼져 있고, 사이트 CLI 단위로 허용한다. 한 번 허용하면 이후 쓰기 작업을 직접 실행할 수 있으므로, 작업마다 항상 별도 승인을 받는 구조로 이해해서는 안 된다. "
+          },
+          {
+            "type": "text",
+            "text": "작업 분류 정책",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/src/policy.rs#L115"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " · "
+          },
+          {
+            "type": "text",
+            "text": "쓰기 설정과 실행",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/src/runtime/execution.rs#L104"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "로컬 실행도 완전한 오프라인 처리를 뜻하지 않는다. 준비 과정에서는 수집한 자료를 프롬프트에 넣어 연결된 AI 제공자에게 전달한다. 자격증명 값을 모델에 전달하지 않도록 하는 설계와, 사이트에서 얻은 모든 데이터가 컴퓨터 밖으로 나가지 않는다는 주장은 구분해야 한다. 로컬 자격증명 저장소도 OS 키링을 사용할 때는 암호화하지만, 사용할 수 없는 경우 파일 권한에 의존하는 모드가 존재한다. "
+          },
+          {
+            "type": "text",
+            "text": "프롬프트 구성",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/src/preparation/prompts.rs#L55"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " · "
+          },
+          {
+            "type": "text",
+            "text": "AI 요청",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/src/ai/mod.rs#L107"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " · "
+          },
+          {
+            "type": "text",
+            "text": "저장소 보호 방식",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/src/store.rs#L396"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "유지보수도 남는다. 사이트가 요청 형식이나 인증을 바꾸면 정의를 수정해야 한다. hycli check는 기록된 읽기 검사를 AI 호출 없이 다시 실행하고 로그인 만료·사이트 변경·차단·연결 실패 등을 구분한다. 진단 기능은 유용하지만, 고장을 찾아내는 능력과 자동으로 안정적으로 복구하는 능력은 따로 검증해야 한다. "
+          },
+          {
+            "type": "text",
+            "text": "상태 점검 구현",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/Hybirdss/Hycli/blob/4426b0038d59a31fbfefbdc23e79af61de7b9c2b/src/smoke.rs"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "현재 릴리즈의 검증 범위에도 선이 있다. v0.1.1 릴리즈 노트는 여러 플랫폼의 CLI·MCP·설치 검사 통과를 보고하면서도, 네이티브 브라우저 연동의 일부 종단 간 수용 검사는 실행하지 않았다고 명시한다. 문서와 데모만으로 특정 실서비스의 호환성과 장시간 안정성까지 확인했다고 평가하기는 어렵다. "
+          },
+          {
+            "type": "text",
+            "text": "v0.1.1 릴리즈와 검증 범위",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://github.com/Hybirdss/Hycli/releases/tag/v0.1.1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6. 실제로 확인하고 싶은 것은 생성 이후의 비용이다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 프로젝트를 더 평가한다면, 기존 연동이 없는 사이트 하나를 골라 같은 작업을 반복해 보고 싶다. 첫 실행이 되는지에 더해 다음 세 가지를 확인해야 한다."
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "첫 연결 비용: 로그인·권한·요청 분석 과정에서 사용자가 얼마나 개입하는가. 준비 시간과 AI 사용량은 어느 정도인가."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "반복 실행 품질: 다른 검색어와 입력값, 다음 날의 실행에서도 유효한 결과를 반환하는가. 요청 성공과 실제로 쓸 수 있는 결과를 구분하는가."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "복구 비용: 로그인 만료나 사이트 변경이 생겼을 때 원인을 정확히 설명하고, 직접 만든 스크립트보다 적은 노력으로 복구할 수 있는가."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 항목들이 확인되면 Hycli는 반복 작업을 도구로 만드는 실용적인 선택지가 될 수 있다. 반대로 명령은 그럴듯하게 생성되지만 실행할 때마다 사람이 고쳐야 한다면, 자동화 설정의 복잡성을 다른 곳으로 옮기는 데 그칠 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "현재 평가는 가능성이 있는 초기 프로젝트다. 사이트별 기능을 선언형 도구로 만들고 공통 정책으로 실행하는 구성은 흥미롭다. 다만 대부분 사람에게 곧바로 필요한 도구인지, 기존 방식보다 경제적인지는 생성 품질과 유지보수 비용을 직접 측정한 뒤 판단하고 싶다."
+          }
+        ]
+      },
+      {
+        "type": "blockquote",
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Hycli를 평가할 질문은 “웹사이트를 CLI로 만들 수 있는가?”에서 한 단계 더 나아가야 한다. “그 CLI를 만들고 계속 사용하는 데 드는 수고를 실제로 줄여 주는가?”가 실용성을 가르는 기준이다."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
