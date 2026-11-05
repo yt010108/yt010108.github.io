@@ -57,6 +57,11 @@ window.BlogPostDelete = {
     current = { id: item.id, kind: item.kind, sha: item.sha };
     latest = null;
     const sequence = ++request;
+    const isNote = item.kind === "notes";
+    $("post-delete-type").textContent = isNote ? "NOTE / DELETE" : "POST / DELETE";
+    $("post-delete-heading").textContent = isNote ? "메모를 휴지통으로 옮길까요?" : "글을 휴지통으로 옮길까요?";
+    $("post-delete-note").textContent = `휴지통으로 옮긴 ${isNote ? "메모" : "글"}은 배포 후 공개 목록에서 내려가요. GitHub 기록은 남고 나중에 복원할 수 있어요.`;
+    $("post-delete-list").textContent = isNote ? "메모 목록으로" : "글 목록으로";
     $("post-delete-name").textContent = item.title || "제목 없는 글";
     $("post-delete-token").value = "";
     stage("checking");

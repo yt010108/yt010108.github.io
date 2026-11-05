@@ -7,6 +7,7 @@ const icons = {
   pin: '<path d="m16 3 5 5-4 1-3 5v3l-2 2-7-7 2-2h3l5-3zM2 22l5-5"/>',
   move: '<circle cx="9" cy="5" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="19" r="1"/>',
   edit: '<path d="m16 3 5 5M4 20l4-1L21 6a2.1 2.1 0 0 0-3-3L5 16l-1 4z"/>',
+  delete: '<path d="M3 6h18M8 6V4h8v2M5 6l1 15h12l1-15M10 10v7M14 10v7"/>',
   plus: '<path d="M12 5v14M5 12h14"/>'
 };
 const icon = name => '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + icons[name] + '</svg>';
@@ -32,7 +33,7 @@ function cards(notes, state) {
     const tone = (Number.parseInt(note.id.slice(0, 8), 16) || 0) % 3;
     const url = "#/note/" + encodeURIComponent(note.id);
     const label = note.category || note.tags?.[0] || "메모";
-    return `<article class="note-card note-tone-${tone}" data-note-id="${esc(note.id)}"><div class="note-card-tools"><button type="button" class="note-icon note-move" data-note-action="move" aria-label="${esc(note.title)} 다음 위치로 이동" title="끌어서 이동 · 클릭하면 다음 위치">${icon("move")}</button><span class="note-kind">${esc(label)}</span><a class="note-icon" href="admin/#edit-note/${encodeURIComponent(note.id)}" aria-label="${esc(note.title)} 관리자에서 수정" title="관리자에서 수정">${icon("edit")}</a><button type="button" class="note-icon note-pin" data-note-action="pin" aria-pressed="${pinned}" aria-label="${esc(note.title)} ${pinned ? "고정 해제" : "고정"}" title="${pinned ? "고정 해제" : "앞쪽에 고정"}">${icon("pin")}</button></div><a class="note-content-link" href="${url}"><h2>${esc(note.title)}</h2><p class="note-excerpt${text ? "" : " note-excerpt--empty"}">${esc(text || "아직 본문이 없는 메모예요.")}</p></a><footer class="note-card-footer"><time datetime="${esc(note.date)}">${esc(note.date.replaceAll("-", "."))}</time><a href="${url}" aria-label="${esc(note.title)} 읽기">↗</a></footer></article>`;
+    return `<article class="note-card note-tone-${tone}" data-note-id="${esc(note.id)}"><div class="note-card-tools"><button type="button" class="note-icon note-move" data-note-action="move" aria-label="${esc(note.title)} 다음 위치로 이동" title="끌어서 이동 · 클릭하면 다음 위치">${icon("move")}</button><span class="note-kind">${esc(label)}</span><a class="note-icon" href="admin/#edit-note/${encodeURIComponent(note.id)}" aria-label="${esc(note.title)} 관리자에서 수정" title="관리자에서 수정">${icon("edit")}</a>${note.doc && note.sha && !note.sample ? `<button type="button" class="note-icon note-delete" data-note-action="delete" aria-label="${esc(note.title)} 삭제" title="휴지통으로 이동">${icon("delete")}</button>` : ""}<button type="button" class="note-icon note-pin" data-note-action="pin" aria-pressed="${pinned}" aria-label="${esc(note.title)} ${pinned ? "고정 해제" : "고정"}" title="${pinned ? "고정 해제" : "앞쪽에 고정"}">${icon("pin")}</button></div><a class="note-content-link" href="${url}"><h2>${esc(note.title)}</h2><p class="note-excerpt${text ? "" : " note-excerpt--empty"}">${esc(text || "아직 본문이 없는 메모예요.")}</p></a><footer class="note-card-footer"><time datetime="${esc(note.date)}">${esc(note.date.replaceAll("-", "."))}</time><a href="${url}" aria-label="${esc(note.title)} 읽기">↗</a></footer></article>`;
   }).join("");
 }
 
@@ -69,6 +70,7 @@ function mount(root, allNotes) {
     if (!button) return;
     const id = button.closest("[data-note-id]").dataset.noteId, action = button.dataset.noteAction;
     if (action === "move" && suppressClick) { suppressClick = false; event.preventDefault(); return; }
+    if (action === "delete") { const note = notes.find(note => note.id === id); if (note) window.BlogPostDelete.open(note); return; }
     if (action === "pin") commit(toggleNotePin(state, id), "메모 고정을 변경했어요.", { id, action });
     if (action === "move") {
       const group = arrangeNotes(notes, state).filter(note => state.pinned.includes(note.id) === state.pinned.includes(id));

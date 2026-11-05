@@ -67,10 +67,10 @@
     <div class="search-footer"><span>Posts · Notes · Projects</span><span><kbd>Tab</kbd> 이동 <kbd>Enter</kbd> 열기</span></div>
   </dialog>
   <dialog class="post-delete-dialog" id="post-delete-dialog" aria-labelledby="post-delete-heading">
-    <div class="post-delete-top"><span class="eyebrow">POST / DELETE</span><button type="button" id="post-delete-close" aria-label="삭제 확인 닫기">×</button></div>
+    <div class="post-delete-top"><span class="eyebrow" id="post-delete-type">POST / DELETE</span><button type="button" id="post-delete-close" aria-label="삭제 확인 닫기">×</button></div>
     <h2 id="post-delete-heading">글을 휴지통으로 옮길까요?</h2>
     <p id="post-delete-name" class="post-delete-name"></p>
-    <p class="post-delete-note">휴지통으로 옮긴 글은 배포 후 공개 목록에서 내려가요. GitHub 기록은 남고 나중에 복원할 수 있어요.</p>
+    <p class="post-delete-note" id="post-delete-note">휴지통으로 옮긴 글은 배포 후 공개 목록에서 내려가요. GitHub 기록은 남고 나중에 복원할 수 있어요.</p>
     <form id="post-delete-token-form" hidden><label for="post-delete-token">GitHub 개인 액세스 토큰</label><input id="post-delete-token" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…" required><p>yt010108 계정의 토큰을 확인해요. 입력한 토큰은 현재 탭에서만 유지돼요.</p><button type="submit">토큰 확인</button></form>
     <p id="post-delete-status" class="post-delete-status" role="status" aria-live="polite"></p>
     <div id="post-delete-confirm-actions" class="post-delete-actions" hidden><button type="button" data-delete-cancel>취소</button><button type="button" id="post-delete-submit">휴지통으로 이동</button></div>
