@@ -99,6 +99,7 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
 .hero h1 span { display: block; }
 .hero h1 span:last-child { color: #b9bfba; }
 .hero-actions { display: flex; justify-content: center; align-items: center; gap: 34px; margin-top: 29px; }
+.hero > .hero-actions { margin-top: 56px; }
 .primary-link { display: inline-flex; align-items: center; gap: 28px; border-bottom: 1px solid #6a736c; padding: 9px 0; font: 10px/1.5 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
 .primary-link:hover { border-color: var(--text); }
 .hero-index, .hero-scroll { position: absolute; bottom: 32px; color: var(--quiet); font: 9px/1.5 var(--mono); letter-spacing: .13em; }
@@ -432,6 +433,7 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
   .hero::after, .hero-index { display: none; }
   .hero h1 { font-size: clamp(41px, 7.8vw, 56px); }
   .hero-actions { gap: 27px; }
+  .hero > .hero-actions { margin-top: 42px; }
   .hero-scroll { right: 0; bottom: 24px; }
   .home-section { padding: 36px 0 42px; }
   .section-heading { margin-bottom: 25px; gap: 13px; }
