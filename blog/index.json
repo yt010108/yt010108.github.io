@@ -2043,23 +2043,6 @@
       "sha": "45e9318923568fc6e3c9e076bf4c60f427af30a9"
     },
     {
-      "id": "c596987e-393f-4ff1-9acc-92f9b0bc3b6e",
-      "kind": "notes",
-      "slug": "acdc-준비용",
-      "title": "ACDC 준비용",
-      "description": "",
-      "category": "",
-      "tags": [],
-      "date": "2026-10-25",
-      "updatedAt": "2026-10-25T07:22:32.546Z",
-      "publishedAt": "2026-10-25T07:22:32.546Z",
-      "status": "published",
-      "sourceDigest": "3b3d7ffb5df980e4b3298fffb0e698d3a772f6f5dda97b084e795f7d262e903a",
-      "trashedAt": null,
-      "path": "blog/entries/c596987e-393f-4ff1-9acc-92f9b0bc3b6e.json",
-      "sha": "c8b5df1e72e3ee4c411ca88147580930947b66f8"
-    },
-    {
       "id": "e5307a85-7c76-43cf-9be4-135423b1dd6e",
       "kind": "notes",
       "slug": "깃허브-모음",
@@ -2279,6 +2262,23 @@
       "trashedAt": null,
       "path": "blog/entries/7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29.json",
       "sha": "aa0599a2806642f0cd4eaa44561b43236bd18b6c"
+    },
+    {
+      "id": "c596987e-393f-4ff1-9acc-92f9b0bc3b6e",
+      "kind": "notes",
+      "slug": "acdc-준비용",
+      "title": "ACDC 준비용",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-10-25",
+      "updatedAt": "2026-11-05T00:00:04.160Z",
+      "publishedAt": "2026-10-25T07:22:32.546Z",
+      "status": "published",
+      "sourceDigest": "7c73673f3cb63ba8bc251927c52d544c18f91cfb51d1e87cd9552e873b63eb6b",
+      "trashedAt": null,
+      "path": "blog/entries/c596987e-393f-4ff1-9acc-92f9b0bc3b6e.json",
+      "sha": "2866f6eca807ab0fd29b72ca3dda989f11737463"
     }
   ],
   "taxonomy": {

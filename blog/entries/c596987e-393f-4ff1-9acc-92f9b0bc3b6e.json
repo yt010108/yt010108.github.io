@@ -12,8 +12,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-10-25T07:22:32.546Z",
-  "updatedAt": "2026-10-25T07:22:32.546Z",
-  "sourceDigest": "3b3d7ffb5df980e4b3298fffb0e698d3a772f6f5dda97b084e795f7d262e903a",
+  "updatedAt": "2026-11-05T00:00:04.160Z",
+  "sourceDigest": "7c73673f3cb63ba8bc251927c52d544c18f91cfb51d1e87cd9552e873b63eb6b",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -36,6 +36,30 @@
               }
             ],
             "text": "https://blog.realsung.kr/2025/12/04/2025-ACDC-Final/#1-%EB%8C%80%ED%9A%8C-%EC%86%8C%EA%B0%9C"
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "b269e36f-d705-4427-a6fb-34eca609d183",
+          "href": "https://blog.realsung.kr/2025/12/04/2025-ACDC-Final/#1-%EB%8C%80%ED%9A%8C-%EC%86%8C%EA%B0%9C",
+          "title": "ACDC 2025 AI 해킹방어대회 Attack&Defense 후기 | Hexo",
+          "description": "2025년 12월 1일, 예선을 걸쳐 올라온 20팀이 코엑스 그랜드볼룸에서 13시부터 21시까지 총 8시간 동안 ACDC AI Cyber Defense Contest가 진행되었습니다.",
+          "image": "https://blog.realsung.kr/images/liquid.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "acdc 리뷰?"
           }
         ]
       }
