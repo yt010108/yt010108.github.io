@@ -2279,6 +2279,23 @@
       "trashedAt": "2026-11-05T00:00:15.992Z",
       "path": "blog/entries/c596987e-393f-4ff1-9acc-92f9b0bc3b6e.json",
       "sha": "53783fd9d69b3198c2d214a4937b9c902e595eb8"
+    },
+    {
+      "id": "2644b012-a3f2-4f7c-9fd8-e66e496d3a6d",
+      "kind": "notes",
+      "slug": "sqli-query-찾기",
+      "title": "sqli query 찾기",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-11-05",
+      "updatedAt": "2026-11-05T00:11:01.810Z",
+      "publishedAt": "2026-11-05T00:11:01.810Z",
+      "status": "published",
+      "sourceDigest": "518cafe800c75355a7caec8c84fd576289ccc4bcbb8cdd083cf79522502f3a1e",
+      "trashedAt": null,
+      "path": "blog/entries/2644b012-a3f2-4f7c-9fd8-e66e496d3a6d.json",
+      "sha": "efc9357f32de030a82e5081754dfdac77b7ae937"
     }
   ],
   "taxonomy": {
