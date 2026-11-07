@@ -6,14 +6,14 @@
   "title": "[SK Rookies]  레거시 네트워크 | 네트워크·스위칭·TCP/IP·라우팅",
   "slug": "tistory-152",
   "description": "OSI 계층과 스위치 동작에서 시작해 VLAN·Trunk·STP, TCP/IP와 IPv4 서브넷팅을 복습한다. 라우팅 테이블과 경로 선택, Inter-VLAN Routing과 Cisco IOS 기본 설정을 통신 흐름에 따라 정리한다.",
-  "category": "SK Rookies / 수업 정리",
+  "category": "Network",
   "date": "2026-09-05",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-09-05T23:47:23+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "d2dc559069e1a84761d5897f059a423d443408839cb0dbd74ebe6c867f30932b",
+  "updatedAt": "2026-11-07T06:10:47.700Z",
+  "sourceDigest": "cc37c2a2131cddf8eea8b632d9d83386326f575cc205e1751976d5bdbfca84d6",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -732,5 +732,6 @@
     "publishedAt": "2026-09-05T23:47:23+09:00",
     "updatedAt": "2026-09-05T23:51:01+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "SK Rookies"
 }

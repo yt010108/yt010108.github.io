@@ -6,14 +6,14 @@
   "title": "[SK Rookies] FHRP | HSRP 기반 게이트웨이 이중화",
   "slug": "tistory-158",
   "description": "FHRP의 게이트웨이 이중화 목적과 HSRP의 Active·Standby 동작을 살펴본다. 가상 IP, 우선순위와 Preempt 설정의 관계를 Cisco IOS 예제와 상태 확인 명령으로 정리한다.",
-  "category": "SK Rookies / 수업 정리",
+  "category": "Network",
   "date": "2026-09-05",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-09-05T23:50:22+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "359cf5a4b887497c0baf6e054b84666f347835ec09bd8ae5d07b8e82d6509141",
+  "updatedAt": "2026-11-07T06:10:47.744Z",
+  "sourceDigest": "3b9c7eb3b351bad71ded69802163191ce8677e6381b4f765caa250b048d0aa46",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -305,5 +305,6 @@
     "publishedAt": "2026-09-05T23:50:22+09:00",
     "updatedAt": "2026-09-05T23:51:01+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "SK Rookies"
 }

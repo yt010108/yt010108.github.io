@@ -6,14 +6,14 @@
   "title": "[DVWA] XXS",
   "slug": "tistory-18",
   "description": "DVWA의 이름 출력 기능에서 발생하는 Reflected XSS를 난이도별 코드로 분석한다. 특정 태그와 문자열을 제거하는 필터의 한계를 확인하고 HTML 특수문자를 인코딩해 텍스트로 출력하는 처리와 비교한다.",
-  "category": "Wargame / DVWA",
+  "category": "Security / Web Security",
   "date": "2025-12-31",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2025-12-31T17:14:28+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "92d0c607fa19e51f47aad089dbf80603a14c0caf623c094c9c500a85231221dd",
+  "updatedAt": "2026-11-07T06:10:47.763Z",
+  "sourceDigest": "53e2e7812373f5d205a9ec9d58a7098133f7594665b0c63d977bb42581c57e09",
   "assets": [
     {
       "id": "da8123e4-891a-5ede-b7a4-0033df3bfa9b",
@@ -656,5 +656,6 @@
     "publishedAt": "2025-12-31T17:14:28+09:00",
     "updatedAt": "2026-01-20T13:27:11+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "DVWA"
 }

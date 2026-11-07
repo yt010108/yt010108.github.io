@@ -6,14 +6,14 @@
   "title": "[DVWA] Blind SQL Injection",
   "slug": "tistory-17",
   "description": "DVWA의 아이디 존재 여부 응답으로 참·거짓 기반 Blind SQL Injection을 실습한다. 문자열 길이와 문자 비교, 범위 탐색으로 정보를 추론하는 원리를 살펴보고 sqlmap의 자동화 결과와 비교한다.",
-  "category": "Wargame / DVWA",
+  "category": "Security / Web Security",
   "date": "2025-12-31",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2025-12-31T03:01:25+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "49413613e440fe372f0e4591b550531b57adaf7f8408ef4166692f88dd93454e",
+  "updatedAt": "2026-11-07T06:10:47.746Z",
+  "sourceDigest": "ff68a37c0fe401652b561f6509c7e7eb17618bfe67e5cb99cd82d981429b2cd1",
   "assets": [
     {
       "id": "911b192f-058c-5c01-8c6c-0060b0ce1ae5",
@@ -1064,5 +1064,6 @@
     "publishedAt": "2025-12-31T03:01:25+09:00",
     "updatedAt": "2026-01-20T13:26:40+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "DVWA"
 }

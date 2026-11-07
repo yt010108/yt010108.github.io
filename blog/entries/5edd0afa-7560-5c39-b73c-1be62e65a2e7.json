@@ -6,14 +6,14 @@
   "title": "[SK Rookies] 딥러닝 대표 모델과 확장 모델",
   "slug": "tistory-135",
   "description": "CNN·ResNet부터 RNN·LSTM·Attention·Transformer까지 데이터 유형에 따른 딥러닝 구조를 비교한다. 전이학습과 모델 선택 기준을 살펴보고 보안 문자열 분류에 활용하는 문자 단위 1D-CNN을 소개한다.",
-  "category": "SK Rookies / 수업 정리",
+  "category": "AI",
   "date": "2026-08-12",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-08-12T10:03:35+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "89b86ad7112ffdb75fb76919ae8c44e926baa06014506d2063ffa52ff7ab76db",
+  "updatedAt": "2026-11-07T06:10:47.731Z",
+  "sourceDigest": "da93463f8d4f8e65c86182f4a319f5f7aeba905c9454eb80b9e41b22115af3df",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -1403,5 +1403,6 @@
     "publishedAt": "2026-08-12T10:03:35+09:00",
     "updatedAt": "2026-08-19T00:24:22+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "SK Rookies"
 }

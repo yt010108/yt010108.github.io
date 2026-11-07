@@ -83,7 +83,7 @@ function setView(managerView) {
   const skip = document.querySelector(".skip-link");
   skip.href = mediaOpen ? "#media-title" : siteOpen ? "#site-title" : dashboardOpen ? "#dashboard-admin-title" : taxonomyOpen ? "#taxonomy-title" : managing ? "#manager-title" : "#post-title";
   skip.textContent = mediaOpen ? "미디어 관리로 이동" : siteOpen ? "페이지·프로젝트 관리로 이동" : dashboardOpen ? "대시보드 관리로 이동" : taxonomyOpen ? "분류 관리로 이동" : managing ? "글 관리로 이동" : "글 제목으로 이동";
-  document.title = mediaOpen ? "미디어 — yt010108" : siteOpen ? "페이지·프로젝트 — yt010108" : dashboardOpen ? "대시보드 관리 — yt010108" : taxonomyOpen ? "카테고리·태그 — yt010108" : managing ? "글 관리 — yt010108" : (title.value.trim() || "글쓰기") + " — yt010108";
+  document.title = mediaOpen ? "미디어 — yt010108" : siteOpen ? "페이지·프로젝트 — yt010108" : dashboardOpen ? "대시보드 관리 — yt010108" : taxonomyOpen ? "분류 관리 — yt010108" : managing ? "글 관리 — yt010108" : (title.value.trim() || "글쓰기") + " — yt010108";
   history.replaceState(null, "", mediaOpen ? "#media" : siteOpen ? "#site" : dashboardOpen ? "#dashboard" : taxonomyOpen ? "#taxonomy" : managing ? managerStatus === "draft" ? "#drafts" : managerStatus === "trash" ? "#trash" : "#manage" : "#write");
   syncSidebar(); setSidebarOpen(false);
   if (!managerView) resizeTitle();
@@ -158,7 +158,7 @@ async function openSiteSection(section) {
 
 function updatePublishReview() {
   const name = title.value.trim() || "제목 없는 글";
-  $("publish-review").textContent = name + " · " + ($("entry-kind").value === "notes" ? "Notes" : "Posts") + " · " + ($("post-category").value.trim() || "미분류") + " · 공개";
+  $("publish-review").textContent = [name, $("entry-kind").value === "notes" ? "Notes" : "Posts", $("post-category").value.trim() || "미분류", $("post-series").value.trim(), "공개"].filter(Boolean).join(" · ");
   $("publish-button").textContent = repository.connected ? entry.publication ? "수정 발행" : "발행하기" : "GitHub 연결 후 발행";
 }
 
@@ -173,7 +173,7 @@ function refreshCount() {
 }
 
 function meaningful() {
-  return Boolean(title.value.trim() || !editor.isEmpty || source.value.trim() || entry.tags.length || $("post-category").value.trim());
+  return Boolean(title.value.trim() || !editor.isEmpty || source.value.trim() || entry.tags.length || $("post-category").value.trim() || $("post-series").value.trim());
 }
 
 function scheduleSave() {
@@ -356,6 +356,7 @@ function snapshot() {
   const doc = transformImages(linkPreviews.enrich(editor.getJSON()), assets, false);
   return {
     ...entry, title: title.value.trim(), kind: $("entry-kind").value, category: $("post-category").value.trim(),
+    series: $("post-series").value.trim(),
     slug: $("post-slug").value.trim(), description: $("post-description").value.trim(),
     date: $("post-date").value || entry.date, tags: [...entry.tags],
     doc, mode, markdown: mode === "markdown" ? linkPreviews.rewriteMarkdown(source.value) : null,
@@ -473,6 +474,7 @@ function applyEntry(next) {
   title.value = entry.title;
   $("entry-kind").value = entry.kind;
   $("post-category").value = entry.category;
+  $("post-series").value = entry.series || "";
   $("post-slug").value = entry.slug;
   $("post-description").value = entry.description;
   $("post-date").value = entry.date;
@@ -594,7 +596,7 @@ async function preview() {
     $("preview-title").textContent = data.title || "제목 없는 글";
     $("preview-description").textContent = data.description;
     $("preview-description").hidden = !data.description;
-    $("preview-category").textContent = data.category || (data.kind === "notes" ? "NOTES" : "POSTS");
+    $("preview-category").textContent = [data.category || (data.kind === "notes" ? "NOTES" : "POSTS"), data.series].filter(Boolean).join(" · ");
     $("preview-meta").textContent = data.date + " · yt010108";
     $("preview-body").innerHTML = renderDocument(data.doc, { assets: data.assets, preview: true }).html;
     const toc = $("preview-toc");
@@ -885,7 +887,7 @@ document.querySelectorAll(".writer-toolbar button, .writer-context-tools button"
     }
   });
 });
-["entry-kind", "post-category", "post-title", "post-slug", "post-description", "post-date"].forEach(id => {
+["entry-kind", "post-category", "post-series", "post-title", "post-slug", "post-description", "post-date"].forEach(id => {
   $(id).addEventListener("input", () => { changed(); updatePublishReview(); });
 });
 title.addEventListener("input", resizeTitle);

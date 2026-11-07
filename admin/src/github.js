@@ -176,7 +176,7 @@ export class GitHubRepository extends EventTarget {
       if (!safeImageData(data)) throw new Error("이미지를 불러올 수 없어요. 파일 크기를 확인해 주세요.");
       assets.push({ id: asset.id, name: asset.name, type: asset.type, path: "images/" + asset.path.split("/").at(-1), data });
     }
-    const entry = { ...newEntry(), ...Object.fromEntries(["id", "title", "kind", "slug", "description", "category", "date", "tags"].map(key => [key, record[key]])), assets };
+    const entry = { ...newEntry(), ...Object.fromEntries(["id", "title", "kind", "slug", "description", "category", "date", "tags"].map(key => [key, record[key]])), series: record.series || "", assets };
     entry.doc = mapImages(record.doc, new Map(assets.map(asset => [asset.id, asset])));
     entry.publication = { id: record.id, sha: item.sha, sourceDigest: await draftDigest(entry), publishedAt: record.publishedAt };
     return entry;
@@ -221,6 +221,7 @@ export class GitHubRepository extends EventTarget {
     const record = {
       format: POST_FORMAT, version: 1,
       ...Object.fromEntries(["id", "title", "kind", "slug", "description", "category", "date", "tags"].map(key => [key, draft[key]])),
+      series: draft.series || "",
       status: "published", trashedAt: null, publishedAt: previous?.publishedAt || now, updatedAt: now,
       sourceDigest: await draftDigest(draft), assets, doc: mapImages(draft.doc, new Map(assets.map(asset => [asset.id, asset])))
     };
@@ -256,8 +257,8 @@ export class GitHubRepository extends EventTarget {
   }
   async changeTaxonomy({ type, action, name, replacement = "", expectedIndex }) {
     if (!this.connected) throw new Error("먼저 GitHub에 연결해 주세요.");
-    if (!["categories", "tags"].includes(type) || !["add", "rename", "delete"].includes(action)) throw new Error("분류 변경 정보를 확인해 주세요.");
-    const limit = type === "categories" ? 100 : 80;
+    if (!["categories", "series", "tags"].includes(type) || !["add", "rename", "delete"].includes(action)) throw new Error("분류 변경 정보를 확인해 주세요.");
+    const limit = type === "tags" ? 80 : 100;
     if (typeof name !== "string" || !name.trim() || name !== name.trim() || name.length > limit || typeof replacement !== "string" || (action === "rename" && (!replacement.trim() || replacement !== replacement.trim() || replacement.length > limit))) throw new Error("분류 이름을 확인해 주세요.");
     const snapshot = await this.snapshot();
     if (!expectedIndex || JSON.stringify(snapshot.index) !== JSON.stringify(expectedIndex)) throw new RepositoryConflict();

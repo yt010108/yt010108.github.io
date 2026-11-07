@@ -6,7 +6,7 @@
   "kind": "posts",
   "slug": "pentest-lab-2026-xss",
   "description": "3~4일차 XSS 실습 7개를 반사형 3개와 저장형 4개로 묶었다. JavaScript 문자열, hidden input, 에디터의 인코딩과 문자열 삭제 필터를 비교한다.",
-  "category": "SK Rookies / 수업 정리",
+  "category": "Security / Web Security",
   "date": "2026-11-07",
   "tags": [
     "XSS",
@@ -17,8 +17,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-07T06:11:23.541Z",
-  "updatedAt": "2026-11-07T06:11:23.541Z",
-  "sourceDigest": "4cb743c04c9d3ff9a86f5e530fe2df6fa17966d449e85e494c6f746775cec2f2",
+  "updatedAt": "2026-11-07T06:19:36.280Z",
+  "sourceDigest": "58924f4dcd1237967f587d4b2c0a193f3098777901378aaa301fa9813d3ab63d",
   "assets": [
     {
       "id": "76c80ec2-a4f0-55de-9cfd-76839ee89bc2",
@@ -3657,5 +3657,6 @@
         ]
       }
     ]
-  }
+  },
+  "series": "SK Rookies"
 }

@@ -6,14 +6,14 @@
   "title": "[SK Rookies] Python 정규식",
   "slug": "tistory-115",
   "description": "파이썬 re 모듈로 문자열을 검색·추출·치환하는 방법을 정리한다. 메타문자와 캡처 그룹·플래그를 전화번호·이메일 예제에 적용하고 검색 결과 확인과 경계값 테스트를 복습한다.",
-  "category": "SK Rookies / 수업 정리",
+  "category": "Development",
   "date": "2026-07-28",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-07-28T13:56:34+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "d71b646740908628f3f8345dfc765907cafd392ed697995d71b81611cb9d3bc5",
+  "updatedAt": "2026-11-07T06:10:47.697Z",
+  "sourceDigest": "c00d6237887e5a8b983053282491f243eaea650dc48592d236fc076f0f073487",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -360,5 +360,6 @@
     "publishedAt": "2026-07-28T13:56:34+09:00",
     "updatedAt": "2026-08-12T10:01:29+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "SK Rookies"
 }

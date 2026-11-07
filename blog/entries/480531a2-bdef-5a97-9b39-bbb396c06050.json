@@ -6,14 +6,14 @@
   "title": "[DVWA] File Upload",
   "slug": "tistory-14",
   "description": "DVWA의 파일 업로드 기능에서 난이도별 검증 방식이 어떻게 달라지는지 분석한다. Content-Type·확장자·이미지 검사와 파일 실행의 관계를 확인하고 파일명 변경과 이미지 재생성 등 방어 처리를 비교한다.",
-  "category": "Wargame / DVWA",
+  "category": "Security / Web Security",
   "date": "2025-12-19",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2025-12-19T20:17:10+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "2fea519a729efd1d59ead76c633eef45fe984eaea8b9a4c918d96c15c19b958d",
+  "updatedAt": "2026-11-07T06:10:47.721Z",
+  "sourceDigest": "e302b5cd248563fe3f753a1e26f2c18fe1af8aa690bc338ab33835fe73af0870",
   "assets": [
     {
       "id": "b7a52f08-3822-5911-b5ef-e4e7e249e815",
@@ -764,5 +764,6 @@
     "publishedAt": "2025-12-19T20:17:10+09:00",
     "updatedAt": "2026-01-20T13:24:15+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "DVWA"
 }

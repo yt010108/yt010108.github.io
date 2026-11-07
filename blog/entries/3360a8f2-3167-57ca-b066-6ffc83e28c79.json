@@ -6,14 +6,14 @@
   "title": "[SK Rookies] 데이터 전처리",
   "slug": "tistory-116",
   "description": "데이터 수집·정제·변환·통합의 흐름을 보안 로그와 pandas 예제로 복습한다. 결측치·이상치·중복 처리, 스케일링과 범주형 인코딩, 날짜·교차 변수 등을 만드는 피처 엔지니어링을 정리한다.",
-  "category": "SK Rookies / 수업 정리",
+  "category": "AI",
   "date": "2026-07-31",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-07-31T14:39:59+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "8d0e814f3055d6e3bcc84f7014b1caaa2aaed5f2ee8db2a1a0a402b1c12cfc91",
+  "updatedAt": "2026-11-07T06:10:47.707Z",
+  "sourceDigest": "8b2d4c939085fff09b4490dd6c6fad3b46f2d095b2052e87ff6f75607f5767fa",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -1143,5 +1143,6 @@
     "publishedAt": "2026-07-31T14:39:59+09:00",
     "updatedAt": "2026-08-12T10:01:06+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "SK Rookies"
 }

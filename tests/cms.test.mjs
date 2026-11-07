@@ -6,7 +6,7 @@ import { tmpdir } from "node:os";
 import { resolve, dirname, basename } from "node:path";
 import { spawnSync } from "node:child_process";
 import { GitHubRepository, REPOSITORY, RepositoryConflict } from "../admin/src/github.js";
-import { newEntry } from "../admin/src/document.js";
+import { newEntry, validateBackup, markdownDocument } from "../admin/src/document.js";
 import { hasUnpublishedChanges } from "../admin/src/draft-store.js";
 import { INDEX_FORMAT, validateRecord, validateIndex, renderDocument, draftDigest } from "../shared/posts.js";
 
@@ -257,6 +257,7 @@ test("Invalid metadata and traversal paths are rejected before writing", async (
 test("The production content build includes published entries and excludes trash", async () => {
   const s = server(); await s.client.connect(TOKEN);
   const entry = draft(), imageId = crypto.randomUUID();
+  entry.series = "DVWA";
   entry.assets = [{ id: imageId, path: "images/" + imageId + ".png", name: "image.png", type: "image/png", data: "data:image/png;base64,aW1hZ2U=" }];
   entry.doc.content.push({ type: "image", attrs: { assetId: imageId, src: entry.assets[0].path, alt: "이미지" } });
   const first = await s.client.publish(entry), second = await s.client.publish({ ...draft(), kind: "notes", title: "비공개 목록 테스트" });
@@ -276,6 +277,7 @@ test("The production content build includes published entries and excludes trash
     assert.equal(feed.format, "yt010108-public-content");
     assert.equal(feed.version, 1);
     assert.equal(feed.posts.length, 1);
+    assert.equal(feed.posts[0].series, "DVWA");
     assert.ok(feed.posts.every(post => !Object.hasOwn(post, "readTime")), "Public content must not contain an estimated reading time");
     assert.deepEqual(feed.managedKinds.sort(), ["notes", "posts"]);
     assert.doesNotMatch(await readFile(resolve(temp, "published.js"), "utf8"), /보안 연구 기록/);
@@ -350,4 +352,52 @@ test("Invalid registry data and empty classification names are rejected before w
   assert.equal(s.requests.filter(request => request.method !== "GET").length, 0);
   assert.throws(() => validateIndex({ format: INDEX_FORMAT, version: 1, entries: [], taxonomy: { categories: ["same", "same"], tags: [] } }));
   assert.throws(() => validateIndex({ format: INDEX_FORMAT, version: 1, entries: [], taxonomy: { categories: [], tags: [null] } }));
+  assert.throws(() => validateIndex({ format: INDEX_FORMAT, version: 1, entries: [], taxonomy: { categories: [], tags: [], series: ["DVWA", "DVWA"] } }));
+});
+
+test("Series survives publication, loading, backups and later edits independently of category", async () => {
+  const s = server(); await s.client.connect(TOKEN);
+  const entry = { ...draft(), series: "SK Rookies" };
+  assert.equal(validateBackup(entry).series, entry.series);
+  assert.match(markdownDocument(entry, "본문"), /series: "SK Rookies"/);
+  const published = await s.client.publish(entry);
+  assert.equal(published.item.series, entry.series);
+  const loaded = await s.client.loadDraft(published.item);
+  assert.equal(loaded.series, entry.series);
+  assert.equal(loaded.category, entry.category);
+  loaded.series = "DVWA"; loaded.sourceDigest = await draftDigest(loaded);
+  assert.equal(hasUnpublishedChanges(loaded), true);
+  const edited = await s.client.publish(loaded);
+  assert.equal((await s.client.record(edited.item)).series, "DVWA");
+  assert.equal(edited.item.category, entry.category);
+});
+
+test("Series rename and removal preserve categories, tags and article contents", async () => {
+  const s = server(); await s.client.connect(TOKEN);
+  const entry = { ...draft(), series: "SK Rookies" };
+  await s.client.publish(entry);
+  const renamed = await s.client.changeTaxonomy({ type: "series", action: "rename", name: "SK Rookies", replacement: "Rookies", expectedIndex: await s.client.readIndex() });
+  let record = await s.client.record(renamed.items[0]);
+  assert.equal(record.series, "Rookies");
+  assert.equal(record.sourceDigest, await draftDigest(await s.client.loadDraft(renamed.items[0])));
+  const removed = await s.client.changeTaxonomy({ type: "series", action: "delete", name: "Rookies", expectedIndex: await s.client.readIndex() });
+  record = await s.client.record(removed.items[0]);
+  assert.equal(record.series, "");
+  assert.equal(record.category, entry.category);
+  assert.deepEqual(record.tags, entry.tags);
+  assert.deepEqual(record.doc, entry.doc);
+  assert.deepEqual(removed.index.taxonomy.series, []);
+});
+
+test("Absent series remains compatible with old draft digests and invalid series is rejected", async () => {
+  const entry = draft(), legacy = { ...entry }; delete legacy.series;
+  assert.equal(await draftDigest(entry), await draftDigest(legacy));
+  assert.equal(validateBackup(legacy).series, "");
+  const s = server(); await s.client.connect(TOKEN);
+  const published = await s.client.publish(legacy);
+  const record = await s.client.record(published.item); delete record.series;
+  assert.doesNotThrow(() => validateRecord(record));
+  for (const series of [[], 10, " DVWA", "a".repeat(101)]) {
+    assert.throws(() => validateRecord({ ...record, series }));
+  }
 });

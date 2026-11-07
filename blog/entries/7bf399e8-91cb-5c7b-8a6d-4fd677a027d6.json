@@ -6,14 +6,14 @@
   "title": "[SK Rookies]  네트워크 보안 | 보안 기본 개념",
   "slug": "tistory-153",
   "description": "네트워크 보안의 목적을 기밀성·무결성·가용성 관점에서 정리한다. 스푸핑·스니핑·중간자 공격·서비스 거부 등의 위협을 방화벽·IDS/IPS·NAC·VLAN·VPN 같은 방어 기술과 연결해 살펴본다.",
-  "category": "SK Rookies / 수업 정리",
+  "category": "Network",
   "date": "2026-09-05",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-09-05T23:47:52+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "d0aced8b8f2f3bdf87254175917fe5135c305a4089ef04b3307c1c14579277a9",
+  "updatedAt": "2026-11-07T06:10:47.740Z",
+  "sourceDigest": "9f8c785cc66ab4eb05d297fdc3baeeab98f7a46cf0143fef36753392495d4577",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -517,5 +517,6 @@
     "publishedAt": "2026-09-05T23:47:52+09:00",
     "updatedAt": "2026-09-05T23:51:01+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "SK Rookies"
 }

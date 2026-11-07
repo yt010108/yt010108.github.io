@@ -6,7 +6,7 @@
   "kind": "posts",
   "slug": "pentest-lab-2026-csrf",
   "description": "5일차 권한 변경 실습 3개를 정리했다. 이미지 GET 요청, 저장형 XSS의 POST 요청, 정상 CSRF 토큰을 읽는 흐름을 구분하고 각 결과의 의미와 방어 방법을 설명한다.",
-  "category": "SK Rookies / 수업 정리",
+  "category": "Security / Web Security",
   "date": "2026-11-07",
   "tags": [
     "CSRF",
@@ -17,8 +17,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-07T06:11:23.541Z",
-  "updatedAt": "2026-11-07T06:11:23.541Z",
-  "sourceDigest": "33ea4cb89f11da64370f8e42089f340fc9d135c1e83e2e1814c25e7b42d126c1",
+  "updatedAt": "2026-11-07T06:19:36.292Z",
+  "sourceDigest": "727b58b1fce1fe9d0058195608ae26b4a5f3b350500c80f02364f28edb54bd1d",
   "assets": [
     {
       "id": "9464636a-99cf-54bd-aebe-ecbdd138340e",
@@ -1898,5 +1898,6 @@
         ]
       }
     ]
-  }
+  },
+  "series": "SK Rookies"
 }

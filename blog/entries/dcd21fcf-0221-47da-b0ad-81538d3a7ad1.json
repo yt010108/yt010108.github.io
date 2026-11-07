@@ -6,14 +6,14 @@
   "kind": "posts",
   "slug": "sql-injection",
   "description": "",
-  "category": "SK Rookies / 수업 정리",
+  "category": "Security / Web Security",
   "date": "2026-11-02",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-02T07:14:08.726Z",
-  "updatedAt": "2026-11-04T00:00:17.325Z",
-  "sourceDigest": "d16ebe33fb4a7fe581bcdfaa2cfebd80505193f349618cf88ef3c31851e4983d",
+  "updatedAt": "2026-11-07T06:10:47.772Z",
+  "sourceDigest": "2739a8d7d97926fe9eba0461268f8727766e8ce8872e0422c6af4aa951102e29",
   "assets": [
     {
       "id": "ab62e6ff-839b-4d70-b470-cebcbc04e60f",
@@ -8489,5 +8489,6 @@
         "type": "paragraph"
       }
     ]
-  }
+  },
+  "series": "SK Rookies"
 }

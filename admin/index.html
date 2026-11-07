@@ -39,7 +39,7 @@
       <p class="cms-side-label">콘텐츠</p>
       <button type="button" class="cms-side-link" data-admin-view="all"><i data-lucide="files" aria-hidden="true"></i><span>글 관리</span></button>
       <button type="button" class="cms-side-link" data-admin-view="draft"><i data-lucide="file-clock" aria-hidden="true"></i><span>임시저장</span></button>
-      <button type="button" class="cms-side-link" data-admin-view="taxonomy"><i data-lucide="folder-tree" aria-hidden="true"></i><span>카테고리·태그</span></button>
+      <button type="button" class="cms-side-link" data-admin-view="taxonomy"><i data-lucide="folder-tree" aria-hidden="true"></i><span>분류 관리</span></button>
       <button type="button" class="cms-side-link" data-admin-view="media"><i data-lucide="images" aria-hidden="true"></i><span>미디어</span></button>
       <p class="cms-side-label">사이트</p>
       <button type="button" class="cms-side-link" data-admin-view="dashboard"><i data-lucide="panels-top-left" aria-hidden="true"></i><span>대시보드 관리</span></button>
@@ -53,22 +53,22 @@
       <div class="cms-title-row"><div><p class="cms-eyebrow">CONTENT</p><h1 id="manager-title" tabindex="-1">글 관리</h1><p id="manager-connection">이 브라우저의 임시글과 GitHub에 발행한 글을 관리해요.</p></div><button type="button" class="writer-button writer-primary" id="manager-new">새 글 쓰기</button></div>
       <div id="deployment-panel" class="cms-deployment" role="status" aria-live="polite" hidden><span id="deployment-status"></span><div><a id="deployment-actions" target="_blank" rel="noopener noreferrer" hidden>Actions에서 보기 ↗</a><a id="deployment-view" target="_blank" rel="noopener noreferrer" hidden>블로그에서 보기 ↗</a><button type="button" id="deployment-refresh" class="writer-text-button">다시 확인</button></div></div>
       <div class="cms-tabs" role="group" aria-label="글 상태"><button type="button" data-status="all" aria-pressed="true">전체 <span>0</span></button><button type="button" data-status="draft" aria-pressed="false">임시글 <span>0</span></button><button type="button" data-status="published" aria-pressed="false">발행된 글 <span>0</span></button><button type="button" data-status="trash" aria-pressed="false">휴지통 <span>0</span></button></div>
-      <div class="cms-filter-row"><label><span class="writer-sr-only">글 종류 필터</span><select id="manager-kind"><option value="">모든 종류</option><option value="posts">Posts</option><option value="notes">Notes</option></select></label><label><span class="writer-sr-only">카테고리 필터</span><select id="manager-category"><option value="">모든 카테고리</option></select></label><label class="cms-search"><span class="writer-sr-only">글 검색</span><input id="manager-search" type="search" placeholder="제목·카테고리·태그 검색" autocomplete="off"></label><button type="button" class="writer-button" id="manager-refresh">새로고침</button></div>
+      <div class="cms-filter-row"><label><span class="writer-sr-only">글 종류 필터</span><select id="manager-kind"><option value="">모든 종류</option><option value="posts">Posts</option><option value="notes">Notes</option></select></label><label><span class="writer-sr-only">카테고리 필터</span><select id="manager-category"><option value="">모든 카테고리</option></select></label><label><span class="writer-sr-only">시리즈 필터</span><select id="manager-series"><option value="">모든 시리즈</option></select></label><label class="cms-search"><span class="writer-sr-only">글 검색</span><input id="manager-search" type="search" placeholder="제목·카테고리·시리즈·태그 검색" autocomplete="off"></label><button type="button" class="writer-button" id="manager-refresh">새로고침</button></div>
       <div class="cms-selection-row"><label><input type="checkbox" id="manager-select-all" aria-label="현재 목록 전체 선택"><span id="manager-selection-count">0개 선택</span></label><div><button type="button" class="writer-text-button" id="manager-bulk-trash" disabled>휴지통으로 이동</button><button type="button" class="writer-text-button" id="manager-bulk-restore" disabled hidden>복원</button><button type="button" class="writer-text-button" id="manager-import">백업 불러오기</button></div></div>
       <p id="manager-loading" class="cms-list-note" role="status" hidden>글 목록을 불러오는 중…</p>
       <p id="manager-remote-error" class="cms-list-note" role="alert" hidden></p>
-      <table class="cms-post-table"><caption class="writer-sr-only">관리할 글 목록</caption><thead><tr><th scope="col"><span class="writer-sr-only">선택</span></th><th scope="col">제목</th><th scope="col">상태</th><th scope="col">카테고리</th><th scope="col">수정일</th><th scope="col">관리</th></tr></thead><tbody id="manager-list"></tbody></table>
+      <table class="cms-post-table"><caption class="writer-sr-only">관리할 글 목록</caption><thead><tr><th scope="col"><span class="writer-sr-only">선택</span></th><th scope="col">제목</th><th scope="col">상태</th><th scope="col">카테고리 / 시리즈</th><th scope="col">수정일</th><th scope="col">관리</th><th scope="col">피드백</th></tr></thead><tbody id="manager-list"></tbody></table>
       <p id="manager-empty" class="cms-empty" hidden>아직 작성한 글이 없어요. 새 글을 작성해 보세요.</p>
       <div class="cms-bottom-row"><span id="manager-result-count"></span><div><button type="button" class="writer-button" id="manager-prev">이전</button><span id="manager-page">1 / 1</span><button type="button" class="writer-button" id="manager-next">다음</button></div></div>
       <p class="writer-small-note">임시글은 이 브라우저에 저장돼요. 발행된 글을 휴지통으로 옮기면 공개 목록에서 내려가며, GitHub의 이전 기록에는 남아요.</p>
     </section>
     <section id="taxonomy-view" class="cms-manager" aria-labelledby="taxonomy-title" hidden>
-      <div class="cms-title-row"><div><p class="cms-eyebrow">ORGANIZE</p><h1 id="taxonomy-title" tabindex="-1">카테고리·태그</h1><p>글을 분류할 항목을 관리해요. 변경 사항은 GitHub에 저장돼요.</p></div><button type="button" class="writer-button" id="taxonomy-refresh">새로고침</button></div>
-      <fieldset id="taxonomy-fields"><legend class="writer-sr-only">카테고리·태그 관리</legend>
-        <div class="cms-tabs" role="group" aria-label="분류 종류"><button type="button" data-taxonomy-type="categories" aria-pressed="true">카테고리</button><button type="button" data-taxonomy-type="tags" aria-pressed="false">태그</button></div>
+      <div class="cms-title-row"><div><p class="cms-eyebrow">ORGANIZE</p><h1 id="taxonomy-title" tabindex="-1">분류 관리</h1><p>글을 분류할 항목을 관리해요. 변경 사항은 GitHub에 저장돼요.</p></div><button type="button" class="writer-button" id="taxonomy-refresh">새로고침</button></div>
+      <fieldset id="taxonomy-fields"><legend class="writer-sr-only">분류 관리</legend>
+        <div class="cms-tabs" role="group" aria-label="분류 종류"><button type="button" data-taxonomy-type="categories" aria-pressed="true">카테고리</button><button type="button" data-taxonomy-type="series" aria-pressed="false">시리즈</button><button type="button" data-taxonomy-type="tags" aria-pressed="false">태그</button></div>
         <form id="taxonomy-add-form" class="taxonomy-add"><label for="taxonomy-name" id="taxonomy-name-label">새 카테고리</label><input id="taxonomy-name" maxlength="100" placeholder="예: Security / Web" required autocomplete="off"><button type="submit" class="writer-button writer-primary">추가</button></form>
         <p id="taxonomy-loading" class="cms-list-note" role="status" hidden>분류를 불러오는 중…</p><p id="taxonomy-empty" class="cms-empty" hidden>등록된 항목이 없어요. 첫 항목을 추가해 보세요.</p><ul id="taxonomy-list" class="taxonomy-list"></ul>
-      </fieldset><p class="writer-small-note">이름 변경은 해당 글의 분류에도 적용돼요. 카테고리를 삭제하면 해당 글은 미분류로, 태그를 삭제하면 해당 태그만 제거돼요. 글 본문과 이미지는 유지돼요.</p>
+      </fieldset><p class="writer-small-note">이름 변경은 해당 글의 분류에도 적용돼요. 카테고리를 삭제하면 해당 글은 미분류로, 시리즈·태그를 삭제하면 해당 항목만 제거돼요. 글 본문과 이미지는 유지돼요.</p>
     </section>
     <section id="dashboard-view" class="cms-manager" aria-labelledby="dashboard-admin-title" hidden>
       <div class="cms-title-row"><div><p class="cms-eyebrow">DASHBOARD</p><h1 id="dashboard-admin-title" tabindex="-1">대시보드 관리</h1><p>Working on·메모·할 일·바로가기를 관리해요. 저장한 내용은 공개 Dashboard에 표시돼요.</p></div><a class="writer-button" href="../#/dashboard" target="_blank" rel="noopener noreferrer">Dashboard 보기 ↗</a></div>
@@ -89,6 +89,8 @@
           <label><span class="writer-sr-only">글 종류</span><select id="entry-kind"><option value="posts">Posts</option><option value="notes">Notes</option></select></label>
           <label class="writer-category"><span class="writer-sr-only">카테고리</span><input id="post-category" list="category-suggestions" placeholder="카테고리 선택 또는 입력" maxlength="100" autocomplete="off"></label>
           <datalist id="category-suggestions"></datalist>
+          <label class="writer-category"><span class="writer-sr-only">시리즈</span><input id="post-series" list="series-suggestions" placeholder="시리즈 선택 또는 입력 (선택)" maxlength="100" autocomplete="off"></label>
+          <datalist id="series-suggestions"></datalist>
         </div>
         <label for="post-title" class="writer-sr-only">글 제목</label>
         <textarea id="post-title" class="writer-title" rows="1" placeholder="제목을 입력하세요" maxlength="200" spellcheck="false"></textarea>
@@ -168,6 +170,12 @@
   </dialog>
   <dialog id="github-dialog" class="writer-dialog" aria-labelledby="github-title"><form id="github-form"><div class="writer-dialog-heading"><h2 id="github-title">GitHub 연결</h2><button type="button" data-close aria-label="GitHub 연결 창 닫기">×</button></div><p class="writer-dialog-note">yt010108/yt010108.github.io에 글과 이미지를 발행할 권한을 연결해요.</p><ol class="cms-auth-steps"><li><a href="https://github.com/settings/personal-access-tokens/new?name=Blog+CMS&amp;target_name=yt010108&amp;expires_in=30&amp;contents=write&amp;actions=read" target="_blank" rel="noopener noreferrer">GitHub에서 토큰 만들기 ↗</a></li><li>Repository access에서 Only select repositories → yt010108.github.io 선택</li><li>Contents는 Read and write, Actions는 Read-only로 설정</li></ol><label>개인 액세스 토큰<input id="github-token" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…" required></label><label class="cms-remember"><input id="github-remember" type="checkbox" checked><span>이 브라우저에서 연결 유지</span></label><p id="github-storage-note" class="writer-dialog-note">선택하면 토큰을 이 브라우저에 저장해 다음 방문에도 연결해요. 공용 PC에서는 선택을 해제해 주세요.</p><p id="github-error" class="writer-dialog-note" role="alert" hidden></p><div class="writer-dialog-actions"><button type="button" class="writer-button" id="github-disconnect" hidden>로그아웃</button><button type="submit" class="writer-button writer-primary" id="github-submit">연결</button></div></form></dialog>
   <dialog id="manager-confirm" class="writer-dialog" aria-labelledby="manager-confirm-title"><div class="writer-dialog-heading"><h2 id="manager-confirm-title"></h2><button type="button" data-close aria-label="확인 창 닫기">×</button></div><p id="manager-confirm-description" class="writer-dialog-note"></p><ul id="manager-confirm-items"></ul><div class="writer-dialog-actions"><button type="button" class="writer-button" data-close>취소</button><button type="button" class="writer-button writer-primary" id="manager-confirm-submit">계속</button></div></dialog>
+  <dialog id="feedback-dialog" class="writer-dialog cms-feedback-dialog" aria-labelledby="feedback-heading">
+    <div class="writer-dialog-heading"><h2 id="feedback-heading">글 피드백</h2><button type="button" data-close aria-label="피드백 닫기">×</button></div>
+    <h3 id="feedback-post-title"></h3><p class="writer-dialog-note">2026. 11. 07. 공개본 검토 · 글 구성·분류·검색 기준의 제안이에요. 이후 수정한 내용은 반영되지 않아요.</p>
+    <div id="feedback-content"></div>
+    <div class="writer-dialog-actions"><button type="button" class="writer-button" data-close>닫기</button></div>
+  </dialog>
   <noscript><p class="writer-loading">글쓰기를 사용하려면 브라우저에서 JavaScript를 켜 주세요.</p></noscript>
 </body>
 </html>

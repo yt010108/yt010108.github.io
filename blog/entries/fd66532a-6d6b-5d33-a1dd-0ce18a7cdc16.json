@@ -6,7 +6,7 @@
   "kind": "posts",
   "slug": "pentest-lab-2026-session",
   "description": "5일차 sessionID 쿠키 변경 실습을 정리했다. 힌트로 주어진 식별자 변경의 결과, 세션 탈취와의 차이, 서버에서 확인해야 할 사용자·권한 연결을 살펴본다.",
-  "category": "SK Rookies / 수업 정리",
+  "category": "Security / Web Security",
   "date": "2026-11-07",
   "tags": [
     "Session",
@@ -17,8 +17,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-07T06:11:23.541Z",
-  "updatedAt": "2026-11-07T06:11:23.541Z",
-  "sourceDigest": "e4d3b63fe722044e8185bda9d8a2b4095de9775cae3968eccbd5d36d36d82c30",
+  "updatedAt": "2026-11-07T06:19:36.297Z",
+  "sourceDigest": "b98afab6cfeb1cbd4809d47f8a18c8ddd987120d2ef8ce32f145181c92d9be30",
   "assets": [
     {
       "id": "e94a1a96-bde1-5ebd-9035-90bdb8b67bba",
@@ -1054,5 +1054,6 @@
         ]
       }
     ]
-  }
+  },
+  "series": "SK Rookies"
 }

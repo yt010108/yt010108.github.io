@@ -6,14 +6,14 @@
   "title": "[SK Rookies]기초통계와 데이터 탐색",
   "slug": "tistory-131",
   "description": "대표값·산포도·분포와 상관관계의 기초를 pandas와 시각화 예제로 정리한다. 탐색적 데이터 분석과 단순 회귀를 살펴보고 상관관계를 인과관계로 단정하지 않도록 해석 기준을 복습한다.",
-  "category": "Study / T34M Rookies",
+  "category": "AI",
   "date": "2026-08-07",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-08-07T18:56:56+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "04a4dfc115e6799705eaecb1b22bdfc604c2221bc8f682a10adea585a6883ff9",
+  "updatedAt": "2026-11-07T06:10:47.729Z",
+  "sourceDigest": "0b4564c1fcd814c521f6d4821b5e83e8aa92b74888835648e7a8d21f54c57d16",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -944,5 +944,6 @@
     "publishedAt": "2026-08-07T18:56:56+09:00",
     "updatedAt": "2026-08-12T09:57:36+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "SK Rookies"
 }

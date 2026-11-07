@@ -6,14 +6,14 @@
   "title": "[DVWA] File inclusion",
   "slug": "tistory-15",
   "description": "DVWA의 page 파라미터가 파일 포함 경로로 사용되는 흐름을 분석한다. 경로 문자열 치환과 파일명 패턴 검사의 한계를 실습하고 허용 파일을 명시적으로 제한하는 처리와 비교한다.",
-  "category": "Wargame / DVWA",
+  "category": "Security / Web Security",
   "date": "2025-12-19",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2025-12-19T23:04:25+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "ad057116df9acb5d990fdd8e26ad5af715e40183a28db16506d17ebd206c618e",
+  "updatedAt": "2026-11-07T06:10:47.712Z",
+  "sourceDigest": "f90a68738b62a753d933d96eba328e46f286f7abb8f263ffd9701cf287bc6c67",
   "assets": [
     {
       "id": "2e3038ec-63a6-5c36-a4ab-00f9401030ab",
@@ -505,5 +505,6 @@
     "publishedAt": "2025-12-19T23:04:25+09:00",
     "updatedAt": "2026-01-20T13:24:42+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "DVWA"
 }

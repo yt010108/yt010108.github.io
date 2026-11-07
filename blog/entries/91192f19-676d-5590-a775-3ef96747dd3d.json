@@ -6,14 +6,14 @@
   "title": "[SK Rookies] 데이터 수집과 저장",
   "slug": "tistory-134",
   "description": "requests와 BeautifulSoup으로 API·웹 페이지에서 데이터를 수집하고 파일과 SQLite에 저장하는 과정을 복습한다. 응답·선택자 검증, 데이터 형식 선택과 매개변수화 쿼리 등 수집 파이프라인의 기본을 정리한다.",
-  "category": "SK Rookies / 수업 정리",
+  "category": "Development",
   "date": "2026-08-12",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-08-12T09:56:52+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "e6ee45f176dfd6192d8d1781780aa93a24e6f3963a6ae72ab26bacc7d2b4162c",
+  "updatedAt": "2026-11-07T06:10:47.742Z",
+  "sourceDigest": "e1e2287b93ff5a3408fd83f8c0d4d1a9c1a79299905e8e28a77872a5a7a8e842",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -419,5 +419,6 @@
     "publishedAt": "2026-08-12T09:56:52+09:00",
     "updatedAt": "2026-08-12T10:00:24+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "SK Rookies"
 }

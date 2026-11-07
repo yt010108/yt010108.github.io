@@ -6,14 +6,14 @@
   "title": "[SK Rookies] 모델 기반 애플리케이션과 OpenAI API",
   "slug": "tistory-137",
   "description": "학습한 모델을 joblib·pickle·Keras 형식으로 저장하고 애플리케이션에서 다시 사용하는 흐름을 정리한다. OpenAI API의 도구 연동 개념과 Streamlit 인터페이스를 연결해 모델 기반 서비스의 구성을 살펴본다.",
-  "category": "SK Rookies / 수업 정리",
+  "category": "AI",
   "date": "2026-08-12",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-08-12T10:04:44+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "85b76e6222768aa10a36505988d6ccdc9dfab681a3019dbc041e4b6fcb2c3bec",
+  "updatedAt": "2026-11-07T06:10:47.736Z",
+  "sourceDigest": "4119a91c7c1cd03fe27120ff87564c693496e8a7b663911f924fd6ae4946faa1",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -1903,5 +1903,6 @@
     "publishedAt": "2026-08-12T10:04:44+09:00",
     "updatedAt": "2026-08-12T10:04:52+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "SK Rookies"
 }

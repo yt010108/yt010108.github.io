@@ -6,14 +6,14 @@
   "title": "[DVWA] Command Injection",
   "slug": "tistory-12",
   "description": "DVWA의 ping 기능을 통해 사용자 입력이 셸 명령으로 연결될 때 발생하는 Command Injection을 실습한다. 난이도별 입력 처리 코드를 비교하며 메타문자 블랙리스트의 한계와 형식 검증의 차이를 살펴본다.",
-  "category": "Wargame / DVWA",
+  "category": "Security / Web Security",
   "date": "2025-12-19",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2025-12-19T18:41:25+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "8f611ccdc66ca20431baa1bc9e58619c5a3245ecf4e6b670e3ae29f1b383f8d6",
+  "updatedAt": "2026-11-07T06:10:47.766Z",
+  "sourceDigest": "71479577890d8d785182f609b0018a3d99b9d4b61722118d191d0c536db984d5",
   "assets": [
     {
       "id": "9545326e-6fc5-523f-aa93-5127bae933ec",
@@ -830,5 +830,6 @@
     "publishedAt": "2025-12-19T18:41:25+09:00",
     "updatedAt": "2026-01-20T13:23:33+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "DVWA"
 }

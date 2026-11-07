@@ -6,14 +6,14 @@
   "title": "[SK Rookies] Git과 GitHub 기초 정리",
   "slug": "tistory-111",
   "description": "Git의 작업 공간·스테이징·커밋 흐름과 GitHub 원격 저장소 연결을 정리한다. 변경 확인과 되돌리기, 브랜치 병합·충돌 해결, Pull Request를 통한 협업까지 기본 예제로 살펴본다.",
-  "category": "SK Rookies / 수업 정리",
+  "category": "Development",
   "date": "2026-07-21",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-07-21T13:15:15+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "b30c951fda64da5fd71d4917d0ef4517f5269c196a29a06b22788f91e49a4edf",
+  "updatedAt": "2026-11-07T06:10:47.725Z",
+  "sourceDigest": "f79335cce35704d4f9c1690602ddc8ab9d19bc78edf96c31673bb71362b9365f",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -1902,5 +1902,6 @@
     "publishedAt": "2026-07-21T13:15:15+09:00",
     "updatedAt": "2026-08-12T10:01:29+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "SK Rookies"
 }

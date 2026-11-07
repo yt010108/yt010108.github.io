@@ -6,14 +6,14 @@
   "title": "[SK Rookies]VPN 기술 | IPsec·L2VPN·SSLVPN·Monitoring",
   "slug": "tistory-157",
   "description": "VPN의 터널링·암호화·인증 개념과 IPsec의 협상·설정 흐름을 정리한다. L2VPN·GRE·SSL/TLS의 역할을 비교하고 SNMP·Syslog·NTP로 장비 상태와 로그·시간을 관리하는 방법을 복습한다.",
-  "category": "SK Rookies / 수업 정리",
+  "category": "Network",
   "date": "2026-09-05",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-09-05T23:49:56+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "78ed14702042fed479ffa1e79c8cf068eb2dc23de1973704589d78c4913b0c99",
+  "updatedAt": "2026-11-07T06:10:47.678Z",
+  "sourceDigest": "7527306e36e677df112000b0ac1ceb9c48af5c6a0f32c623047e53d1f9728259",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -609,5 +609,6 @@
     "publishedAt": "2026-09-05T23:49:56+09:00",
     "updatedAt": "2026-09-05T23:51:01+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "SK Rookies"
 }

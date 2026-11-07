@@ -95,8 +95,8 @@ import { draftDigest } from "../../shared/posts.js";
 
 
 function summary(entry) {
-  const { id, title, kind, category, tags, date, updatedAt, revision, trashedAt, publication, sourceDigest } = entry;
-  return { id, title, kind, category, tags, date, updatedAt, revision, trashedAt, publication, sourceDigest };
+  const { id, title, kind, category, series, tags, date, updatedAt, revision, trashedAt, publication, sourceDigest } = entry;
+  return { id, title, kind, category, series, tags, date, updatedAt, revision, trashedAt, publication, sourceDigest };
 }
 
 export async function trashDrafts(items, restore = false, publications = new Map()) {

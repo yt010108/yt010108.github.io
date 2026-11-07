@@ -8,7 +8,7 @@ export function newEntry() {
   const date = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
   return {
     format: FORMAT, version: 1, id: crypto.randomUUID(), revision: 0,
-    title: "", kind: "posts", category: "", tags: [], slug: "", description: "", date,
+    title: "", kind: "posts", category: "", series: "", tags: [], slug: "", description: "", date,
     createdAt: now.toISOString(), updatedAt: now.toISOString(),
     doc: { type: "doc", content: [{ type: "paragraph" }] }, assets: [], mode: "rich", markdown: null
   };
@@ -83,6 +83,7 @@ export function validateBackup(value) {
   visit(value.doc, 0);
   const entry = newEntry();
   for (const field of ["title", "category", "slug", "description"]) entry[field] = String(value[field] || "").slice(0, field === "description" ? 500 : 200);
+  entry.series = String(value.series || "").trim().slice(0, 100);
   entry.kind = value.kind === "notes" ? "notes" : "posts";
   entry.tags = [...new Set((Array.isArray(value.tags) ? value.tags : []).map(tag => String(tag).trim().slice(0, 80)).filter(Boolean))].slice(0, 30);
   if (/^\d{4}-\d{2}-\d{2}$/.test(value.date)) entry.date = value.date;
@@ -97,7 +98,7 @@ export function markdownDocument(entry, markdown) {
   const lines = [
     "---", "title: " + JSON.stringify(entry.title || "제목 없는 글"), "date: " + JSON.stringify(entry.date),
     "description: " + JSON.stringify(entry.description), "type: " + JSON.stringify(entry.kind),
-    "category: " + JSON.stringify(entry.category), "tags: " + JSON.stringify(entry.tags), "draft: true", "---", "", markdown, ""
+    "category: " + JSON.stringify(entry.category), "series: " + JSON.stringify(entry.series || ""), "tags: " + JSON.stringify(entry.tags), "draft: true", "---", "", markdown, ""
   ];
   return lines.join("\n");
 }

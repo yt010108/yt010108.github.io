@@ -4,16 +4,16 @@ import { taxonomyOptions, usesTaxonomy, replaceTaxonomy } from "../../shared/tax
 const $ = id => document.getElementById(id);
 export function createTaxonomyManager({ repository, report, onBusy, onChange }) {
   let index = { entries: [] }, local = [], type = "categories", busy = false, pending;
-  const label = () => type === "categories" ? "카테고리" : "태그";
+  const label = () => ({ categories: "카테고리", series: "시리즈", tags: "태그" })[type];
   function render() {
     const options = taxonomyOptions(index, local), list = $("taxonomy-list");
-    for (const [kind, id] of [["categories", "category-suggestions"], ["tags", "tag-suggestions"]]) {
+    for (const [kind, id] of [["categories", "category-suggestions"], ["series", "series-suggestions"], ["tags", "tag-suggestions"]]) {
       $(id).replaceChildren(...options[kind].map(name => new Option(name, name)));
     }
     document.querySelectorAll("[data-taxonomy-type]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.taxonomyType === type)));
     $("taxonomy-name-label").textContent = "새 " + label();
-    $("taxonomy-name").maxLength = type === "categories" ? 100 : 80;
-    $("taxonomy-name").placeholder = type === "categories" ? "예: Security / Web" : "예: reversing";
+    $("taxonomy-name").maxLength = type === "tags" ? 80 : 100;
+    $("taxonomy-name").placeholder = ({ categories: "예: Security / Web", series: "예: SK Rookies", tags: "예: reversing" })[type];
     list.replaceChildren();
     for (const name of options[type]) {
       const ids = new Set([...index.entries, ...local].filter(entry => usesTaxonomy(entry, type, name)).map(entry => entry.id));
@@ -50,9 +50,9 @@ export function createTaxonomyManager({ repository, report, onBusy, onChange }) 
     $("taxonomy-change-name").textContent = "선택한 " + label() + ": " + name;
     $("taxonomy-next-label").hidden = action === "delete";
     $("taxonomy-next").required = action === "rename";
-    $("taxonomy-next").maxLength = type === "categories" ? 100 : 80;
+    $("taxonomy-next").maxLength = type === "tags" ? 80 : 100;
     $("taxonomy-next").value = name;
-    $("taxonomy-impact").textContent = "발행한 글 " + remote.length + "개와 이 브라우저의 저장본 " + drafts.length + "개에 적용돼요. " + (action !== "delete" ? "선택한 항목의 이름을 함께 바꿔요." : type === "categories" ? "해당 글의 카테고리를 미분류로 바꿔요. 글은 삭제하지 않아요." : "해당 태그만 글에서 제거해요. 글과 다른 태그는 유지돼요.");
+    $("taxonomy-impact").textContent = "발행한 글 " + remote.length + "개와 이 브라우저의 저장본 " + drafts.length + "개에 적용돼요. " + (action !== "delete" ? "선택한 항목의 이름을 함께 바꿔요." : type === "categories" ? "해당 글의 카테고리를 미분류로 바꿔요. 글은 삭제하지 않아요." : type === "series" ? "해당 시리즈만 글에서 제거해요. 글과 카테고리는 유지돼요." : "해당 태그만 글에서 제거해요. 글과 다른 태그는 유지돼요.");
     $("taxonomy-error").hidden = true;
     $("taxonomy-confirm").textContent = action === "delete" ? "삭제하기" : "변경하기";
     $("taxonomy-dialog").showModal();

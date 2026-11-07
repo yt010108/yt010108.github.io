@@ -6,14 +6,14 @@
   "title": "[SK Rookies] Python 기초 2",
   "slug": "tistory-113",
   "description": "조건문·반복문·함수로 파이썬 프로그램의 실행 흐름을 구성하는 방법을 복습한다. 사용자 입력과 파일 입출력, 구체적인 예외 처리까지 연결하며 종료 조건과 재사용 가능한 코드 작성 기준을 정리한다.",
-  "category": "SK Rookies / 수업 정리",
+  "category": "Development",
   "date": "2026-07-28",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-07-28T13:56:02+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "890550bf42c2db01e732964da6f81ea120dbbe4cd9986b3ccfce15109a73d6a6",
+  "updatedAt": "2026-11-07T06:10:47.718Z",
+  "sourceDigest": "6a89265601472cb6110d99c692290d58df91d84ffe9902bc75e08de63ee4641c",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -748,5 +748,6 @@
     "publishedAt": "2026-07-28T13:56:02+09:00",
     "updatedAt": "2026-08-12T10:01:29+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "SK Rookies"
 }

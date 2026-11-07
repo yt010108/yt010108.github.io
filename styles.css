@@ -157,7 +157,7 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
 .page-intro { color: var(--muted); font-size: 14px; line-height: 1.95; word-break: keep-all; }
 .filter-bar { display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--line); margin-bottom: 10px; }
 .filter-buttons { display: flex; flex-wrap: wrap; gap: 22px; }
-.archive-tools { display: flex; align-items: center; gap: 24px; padding-bottom: 10px; }
+.archive-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; padding-bottom: 10px; }
 .archive-category { display: flex; align-items: center; gap: 10px; color: var(--quiet); font-size: 11px; }
 .archive-category select { max-width: 320px; min-height: 34px; padding: 5px 28px 5px 10px; border: 1px solid var(--line); border-radius: 3px; background: var(--bg); color: var(--text); font: 11px/1.5 var(--mono); }
 .filter-button { background: none; border: none; border-bottom: 1px solid transparent; padding: 12px 0; color: var(--quiet); font-size: 11px; margin-bottom: -1px; }

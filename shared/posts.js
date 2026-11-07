@@ -41,6 +41,7 @@ function metadata(value) {
   for (const field of ["title", "slug", "description", "category", "date", "updatedAt", "publishedAt"]) {
     if (typeof value[field] !== "string" || value[field].length > (field === "description" ? 500 : 200)) throw new Error("저장된 글 정보가 올바르지 않아요.");
   }
+  if (value.series !== undefined && (typeof value.series !== "string" || value.series.length > 100 || value.series !== value.series.trim())) throw new Error("시리즈 이름을 확인해 주세요.");
   if (!value.title.trim() || !/^\d{4}-\d{2}-\d{2}$/.test(value.date) || !Array.isArray(value.tags) || value.tags.length > 30 || value.tags.some(tag => typeof tag !== "string" || tag.length > 80)) throw new Error("제목·날짜·태그를 확인해 주세요.");
   if (!/^[a-f0-9]{64}$/.test(value.sourceDigest || "")) throw new Error("글 버전 정보를 확인할 수 없어요.");
 }
@@ -69,11 +70,12 @@ export function validateIndex(value) {
 }
 export function indexEntry(record, sha) {
   const { id, kind, slug, title, description, category, tags, date, updatedAt, publishedAt, status, trashedAt, sourceDigest } = record;
-  return { id, kind, slug, title, description, category, tags, date, updatedAt, publishedAt, status, sourceDigest, trashedAt: trashedAt || null, path: entryPath(id), sha };
+  return { id, kind, slug, title, description, category, ...(record.series !== undefined ? { series: record.series } : {}), tags, date, updatedAt, publishedAt, status, sourceDigest, trashedAt: trashedAt || null, path: entryPath(id), sha };
 }
 export async function draftDigest(entry) {
   const value = JSON.stringify({
     title: entry.title, kind: entry.kind, slug: entry.slug, description: entry.description, category: entry.category,
+    ...(entry.series ? { series: entry.series } : {}),
     tags: entry.tags, date: entry.date, doc: entry.doc,
     assets: entry.assets.map(({ id, path, name }) => ({ id, path, name }))
   });

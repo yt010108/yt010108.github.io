@@ -6,7 +6,7 @@
   "kind": "posts",
   "slug": "pentest-lab-2026-sqli",
   "description": "1~3일차 SQL 인젝션 실습 7개를 통합했다. 우편번호 검색, 로그인, 연봉·날짜 검색, 정렬 기능의 입력 문맥과 참·거짓 응답을 비교하고 확인 범위와 대응 방법을 정리한다.",
-  "category": "SK Rookies / 수업 정리",
+  "category": "Security / Web Security",
   "date": "2026-11-07",
   "tags": [
     "SQLi",
@@ -17,8 +17,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-07T06:11:23.541Z",
-  "updatedAt": "2026-11-07T06:11:23.541Z",
-  "sourceDigest": "75747c6d9e34184695625ee2fcd33cb50d4078275e98754c13cc366d9958d163",
+  "updatedAt": "2026-11-07T06:19:36.260Z",
+  "sourceDigest": "20846b2d29e98911dae71dde88055d2d2c22d9364fdc81236f843e385f86e5a5",
   "assets": [
     {
       "id": "1babf3c7-7968-517c-ac92-b9d7fa00a267",
@@ -4648,5 +4648,6 @@
         ]
       }
     ]
-  }
+  },
+  "series": "SK Rookies"
 }

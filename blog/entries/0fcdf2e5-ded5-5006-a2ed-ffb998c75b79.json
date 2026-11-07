@@ -6,14 +6,14 @@
   "title": "[SK Rookies] Traffic Control과 NAT | ACL·NAT",
   "slug": "tistory-155",
   "description": "라우터 ACL의 위에서 아래로 처리하는 규칙과 최초 일치·암묵적 거부를 복습한다. Standard·Extended·Named ACL의 조건과 적용 위치를 비교하고 Static·Dynamic NAT와 PAT의 구성 흐름을 정리한다.",
-  "category": "SK Rookies / 수업 정리",
+  "category": "Network",
   "date": "2026-09-05",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-09-05T23:48:48+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "12f1c40c2dea4065e2e81fdabfbca7a3b2bbb928c784b9ea0ab89947faa48c57",
+  "updatedAt": "2026-11-07T06:10:47.690Z",
+  "sourceDigest": "387f37b243c2419e2e16e79477dcdfe358358777fb26dce1f1984356fbc4d716",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -572,5 +572,6 @@
     "publishedAt": "2026-09-05T23:48:48+09:00",
     "updatedAt": "2026-09-05T23:51:01+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "SK Rookies"
 }

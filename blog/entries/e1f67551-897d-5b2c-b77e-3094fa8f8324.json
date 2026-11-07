@@ -6,14 +6,14 @@
   "title": "[DVWA] SQL Injection",
   "slug": "tistory-16",
   "description": "DVWA의 사용자 조회 기능을 통해 SQL Injection의 원리와 난이도별 입력 처리를 비교한다. 쿼리 구조·데이터베이스 메타정보를 확인하는 실습과 함께 준비된 쿼리와 정수 바인딩의 역할을 살펴본다.",
-  "category": "Wargame / DVWA",
+  "category": "Security / Web Security",
   "date": "2025-12-28",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2025-12-28T19:44:46+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "2e42d806d100e9ddf4cb1a019fe665b21fa52fa0333feb8309d257c285a36863",
+  "updatedAt": "2026-11-07T06:10:47.761Z",
+  "sourceDigest": "855732fb43b7adbd09c6df4245e9fe3f1bd33a42b602e681ec32734a987d7dbc",
   "assets": [
     {
       "id": "08679cab-e20a-5a86-b45b-a821f811d7e6",
@@ -1092,5 +1092,6 @@
     "publishedAt": "2025-12-28T19:44:46+09:00",
     "updatedAt": "2026-01-20T13:25:15+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "DVWA"
 }

@@ -6,14 +6,14 @@
   "title": "[SK Rookies] LAN Security | Access Control·Port Security·Threat Mitigation",
   "slug": "tistory-154",
   "description": "Cisco IOS 예제로 장비 접근 제어와 LAN 내부 보안 설정을 복습한다. SSH·AAA·802.1X와 Port Security, VLAN 공격 완화, DHCP Snooping·Dynamic ARP Inspection의 역할을 정리한다.",
-  "category": "SK Rookies / 수업 정리",
+  "category": "Network",
   "date": "2026-09-05",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-09-05T23:48:17+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "db674ef04845b67a16bb43513bbc5930c44b3956288f309a5c46947d4cfc76bd",
+  "updatedAt": "2026-11-07T06:10:47.688Z",
+  "sourceDigest": "bfbe03109eb8b40f11d8979a985f361f88659506d35a5b7dbe9771ae648a03a5",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -528,5 +528,6 @@
     "publishedAt": "2026-09-05T23:48:17+09:00",
     "updatedAt": "2026-09-05T23:51:01+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "SK Rookies"
 }

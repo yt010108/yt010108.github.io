@@ -110,16 +110,17 @@
       "slug": "tistory-157",
       "title": "[SK Rookies]VPN 기술 | IPsec·L2VPN·SSLVPN·Monitoring",
       "description": "VPN의 터널링·암호화·인증 개념과 IPsec의 협상·설정 흐름을 정리한다. L2VPN·GRE·SSL/TLS의 역할을 비교하고 SNMP·Syslog·NTP로 장비 상태와 로그·시간을 관리하는 방법을 복습한다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "Network",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-09-05",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.678Z",
       "publishedAt": "2026-09-05T23:49:56+09:00",
       "status": "published",
-      "sourceDigest": "78ed14702042fed479ffa1e79c8cf068eb2dc23de1973704589d78c4913b0c99",
+      "sourceDigest": "7527306e36e677df112000b0ac1ceb9c48af5c6a0f32c623047e53d1f9728259",
       "trashedAt": null,
       "path": "blog/entries/018f4e2c-5054-5530-bc4e-3896fc939070.json",
-      "sha": "9d1f853ff3209062c37720c9aee825f182b24e06"
+      "sha": "ef25107dbadd00edb751ddab0125bfdf7e120ec5"
     },
     {
       "id": "04512e0e-fecd-5bf3-8007-5b3f0a9142e3",
@@ -212,16 +213,17 @@
       "slug": "tistory-154",
       "title": "[SK Rookies] LAN Security | Access Control·Port Security·Threat Mitigation",
       "description": "Cisco IOS 예제로 장비 접근 제어와 LAN 내부 보안 설정을 복습한다. SSH·AAA·802.1X와 Port Security, VLAN 공격 완화, DHCP Snooping·Dynamic ARP Inspection의 역할을 정리한다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "Network",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-09-05",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.688Z",
       "publishedAt": "2026-09-05T23:48:17+09:00",
       "status": "published",
-      "sourceDigest": "db674ef04845b67a16bb43513bbc5930c44b3956288f309a5c46947d4cfc76bd",
+      "sourceDigest": "bfbe03109eb8b40f11d8979a985f361f88659506d35a5b7dbe9771ae648a03a5",
       "trashedAt": null,
       "path": "blog/entries/0a8be006-d259-5d14-a3a0-9063c419ec2d.json",
-      "sha": "228a7a6e0f48afb40e6a4146140cfbaf11aa439b"
+      "sha": "f90976858dc8b3d2803402aeae2daf36eb2b6b7a"
     },
     {
       "id": "0f999cc3-0571-567c-80da-9dae7b77535e",
@@ -246,16 +248,17 @@
       "slug": "tistory-155",
       "title": "[SK Rookies] Traffic Control과 NAT | ACL·NAT",
       "description": "라우터 ACL의 위에서 아래로 처리하는 규칙과 최초 일치·암묵적 거부를 복습한다. Standard·Extended·Named ACL의 조건과 적용 위치를 비교하고 Static·Dynamic NAT와 PAT의 구성 흐름을 정리한다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "Network",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-09-05",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.690Z",
       "publishedAt": "2026-09-05T23:48:48+09:00",
       "status": "published",
-      "sourceDigest": "12f1c40c2dea4065e2e81fdabfbca7a3b2bbb928c784b9ea0ab89947faa48c57",
+      "sourceDigest": "387f37b243c2419e2e16e79477dcdfe358358777fb26dce1f1984356fbc4d716",
       "trashedAt": null,
       "path": "blog/entries/0fcdf2e5-ded5-5006-a2ed-ffb998c75b79.json",
-      "sha": "ef02f994c9db904e03daa352b095e7c0bc610067"
+      "sha": "51ef28b55b4f1e5d012f39e9d46ee38bb32e4546"
     },
     {
       "id": "1132320c-7420-514d-a486-506b3c42657a",
@@ -314,16 +317,17 @@
       "slug": "tistory-112",
       "title": "[SK Rookies] Python 기초 1",
       "description": "파이썬의 변수와 객체, 기본 자료형과 연산을 정리한다. 문자열·리스트·튜플·딕셔너리·집합의 차이와 자료형을 고르는 기준을 예제로 비교하고 타입 힌트의 역할을 살펴본다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "Development",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-07-28",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.694Z",
       "publishedAt": "2026-07-28T13:55:18+09:00",
       "status": "published",
-      "sourceDigest": "4225b65668b36f2b2e726b60cd5932f5e99ee8ba884e962a4e0186d5f95a4faa",
+      "sourceDigest": "30578ce4f66dcba21cb175e9352695cd2ac407d671a5460f4b09da62bf5e8c4b",
       "trashedAt": null,
       "path": "blog/entries/1ac21c23-470c-595a-a475-933894e08d48.json",
-      "sha": "4a72feb6898cd8f45ff2c35181f1b08ed7e91bbd"
+      "sha": "8aa6933a794e038467a04f8d3f25d68a0960948d"
     },
     {
       "id": "1c4aad1c-f844-5de1-81d4-149e5ac5eae8",
@@ -331,16 +335,17 @@
       "slug": "tistory-115",
       "title": "[SK Rookies] Python 정규식",
       "description": "파이썬 re 모듈로 문자열을 검색·추출·치환하는 방법을 정리한다. 메타문자와 캡처 그룹·플래그를 전화번호·이메일 예제에 적용하고 검색 결과 확인과 경계값 테스트를 복습한다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "Development",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-07-28",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.697Z",
       "publishedAt": "2026-07-28T13:56:34+09:00",
       "status": "published",
-      "sourceDigest": "d71b646740908628f3f8345dfc765907cafd392ed697995d71b81611cb9d3bc5",
+      "sourceDigest": "c00d6237887e5a8b983053282491f243eaea650dc48592d236fc076f0f073487",
       "trashedAt": null,
       "path": "blog/entries/1c4aad1c-f844-5de1-81d4-149e5ac5eae8.json",
-      "sha": "8d191dccdfafb6b188990f85f688863be3e0e84d"
+      "sha": "02ec8ae691bdac056a93334f9eec6b2d82d58f23"
     },
     {
       "id": "1ca9c0f1-4852-52b4-9223-6c417e3de287",
@@ -348,16 +353,17 @@
       "slug": "tistory-152",
       "title": "[SK Rookies]  레거시 네트워크 | 네트워크·스위칭·TCP/IP·라우팅",
       "description": "OSI 계층과 스위치 동작에서 시작해 VLAN·Trunk·STP, TCP/IP와 IPv4 서브넷팅을 복습한다. 라우팅 테이블과 경로 선택, Inter-VLAN Routing과 Cisco IOS 기본 설정을 통신 흐름에 따라 정리한다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "Network",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-09-05",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.700Z",
       "publishedAt": "2026-09-05T23:47:23+09:00",
       "status": "published",
-      "sourceDigest": "d2dc559069e1a84761d5897f059a423d443408839cb0dbd74ebe6c867f30932b",
+      "sourceDigest": "cc37c2a2131cddf8eea8b632d9d83386326f575cc205e1751976d5bdbfca84d6",
       "trashedAt": null,
       "path": "blog/entries/1ca9c0f1-4852-52b4-9223-6c417e3de287.json",
-      "sha": "35c190dbb9dd571ba24ca769c5bc3944d2ff612f"
+      "sha": "81683d489e8668f43e3298073180c8f1307cc48f"
     },
     {
       "id": "1dd0c2c2-1791-5f46-a216-6ef272b0d318",
@@ -416,16 +422,17 @@
       "slug": "tistory-114",
       "title": "[SK Rookies] Python 기초 3",
       "description": "클래스와 객체, 상속·메서드 오버라이딩으로 파이썬 코드를 구조화하는 방법을 살펴본다. 모듈·표준 라이브러리 사용법과 NumPy 배열 계산, pandas의 표 데이터 조회·결측값 처리 예제를 정리한다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "Development",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-07-28",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.704Z",
       "publishedAt": "2026-07-28T13:56:20+09:00",
       "status": "published",
-      "sourceDigest": "83fcab87bd8e72e9da4330a4b5e7bb346868334187ee4190ea663c7b8b386cd6",
+      "sourceDigest": "8e08a39ac6eb997b5e626e5757be7fb1d3b3934462e28908b149ecf56e3d21d0",
       "trashedAt": null,
       "path": "blog/entries/2be844db-45f2-5fdc-bcbe-e4139d642acc.json",
-      "sha": "d5dbbb9898d98b774f132183994064db5b86216c"
+      "sha": "050f8853f4028051e45aaa04a0d3a29d65653762"
     },
     {
       "id": "2d9cf327-633b-558f-bc53-68517ee3874d",
@@ -535,16 +542,17 @@
       "slug": "tistory-116",
       "title": "[SK Rookies] 데이터 전처리",
       "description": "데이터 수집·정제·변환·통합의 흐름을 보안 로그와 pandas 예제로 복습한다. 결측치·이상치·중복 처리, 스케일링과 범주형 인코딩, 날짜·교차 변수 등을 만드는 피처 엔지니어링을 정리한다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "AI",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-07-31",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.707Z",
       "publishedAt": "2026-07-31T14:39:59+09:00",
       "status": "published",
-      "sourceDigest": "8d0e814f3055d6e3bcc84f7014b1caaa2aaed5f2ee8db2a1a0a402b1c12cfc91",
+      "sourceDigest": "8b2d4c939085fff09b4490dd6c6fad3b46f2d095b2052e87ff6f75607f5767fa",
       "trashedAt": null,
       "path": "blog/entries/3360a8f2-3167-57ca-b066-6ffc83e28c79.json",
-      "sha": "db1723e9a20866f4647fffc180da0457ea896198"
+      "sha": "1f08d38901ac75f5ea6da236d6548d01e90468cb"
     },
     {
       "id": "3526bdf6-02df-5567-ade2-72990775623b",
@@ -620,16 +628,17 @@
       "slug": "tistory-15",
       "title": "[DVWA] File inclusion",
       "description": "DVWA의 page 파라미터가 파일 포함 경로로 사용되는 흐름을 분석한다. 경로 문자열 치환과 파일명 패턴 검사의 한계를 실습하고 허용 파일을 명시적으로 제한하는 처리와 비교한다.",
-      "category": "Wargame / DVWA",
+      "category": "Security / Web Security",
+      "series": "DVWA",
       "tags": [],
       "date": "2025-12-19",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.712Z",
       "publishedAt": "2025-12-19T23:04:25+09:00",
       "status": "published",
-      "sourceDigest": "ad057116df9acb5d990fdd8e26ad5af715e40183a28db16506d17ebd206c618e",
+      "sourceDigest": "f90a68738b62a753d933d96eba328e46f286f7abb8f263ffd9701cf287bc6c67",
       "trashedAt": null,
       "path": "blog/entries/3f6435a3-0b47-5b75-82c4-d355daa397c3.json",
-      "sha": "4c4612cf42f310d54d58327e08330e9e0fcb98fa"
+      "sha": "606a4ed4e3e38ed3ae2776bfd2e5481169fd9acf"
     },
     {
       "id": "40014620-6914-53cb-8d6d-b80276920c78",
@@ -654,16 +663,17 @@
       "slug": "tistory-120",
       "title": "[SK Rookies] 머신러닝 비지도학습",
       "description": "라벨 없는 데이터에서 구조를 찾는 군집화·차원 축소·이상치 탐지를 정리한다. K-Means의 K 선택과 실루엣 평가, PCA의 주성분 해석, Isolation Forest와 DBSCAN의 접근 방식을 비교한다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "AI",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-08-04",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.714Z",
       "publishedAt": "2026-08-04T09:12:30+09:00",
       "status": "published",
-      "sourceDigest": "18f641003e188ab5fc3ecb0749a82e44f9cf8b03d9d01886e052546f085a0499",
+      "sourceDigest": "38168cf4e5821802e791104d62815b941ab21c15060e8f2f1e049949c8ebb581",
       "trashedAt": null,
       "path": "blog/entries/416b7d45-ead2-50e7-b761-a885952e8429.json",
-      "sha": "228f9e227c27b52590e91a20b1de955952f7aeae"
+      "sha": "a2b0e9fc7f1215535cdcd52af54aa96a0674cd41"
     },
     {
       "id": "44bc44a1-ff5a-594a-a5d3-f0da88d8f246",
@@ -688,16 +698,17 @@
       "slug": "tistory-113",
       "title": "[SK Rookies] Python 기초 2",
       "description": "조건문·반복문·함수로 파이썬 프로그램의 실행 흐름을 구성하는 방법을 복습한다. 사용자 입력과 파일 입출력, 구체적인 예외 처리까지 연결하며 종료 조건과 재사용 가능한 코드 작성 기준을 정리한다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "Development",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-07-28",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.718Z",
       "publishedAt": "2026-07-28T13:56:02+09:00",
       "status": "published",
-      "sourceDigest": "890550bf42c2db01e732964da6f81ea120dbbe4cd9986b3ccfce15109a73d6a6",
+      "sourceDigest": "6a89265601472cb6110d99c692290d58df91d84ffe9902bc75e08de63ee4641c",
       "trashedAt": null,
       "path": "blog/entries/46ca1958-5a1a-5130-bce6-f2fd40497111.json",
-      "sha": "c7d034f6672e435fe9f22344a5c2dcbab56c6b3c"
+      "sha": "c769f5f0a059d56966acfd314104e2c1c0a5e669"
     },
     {
       "id": "480531a2-bdef-5a97-9b39-bbb396c06050",
@@ -705,16 +716,17 @@
       "slug": "tistory-14",
       "title": "[DVWA] File Upload",
       "description": "DVWA의 파일 업로드 기능에서 난이도별 검증 방식이 어떻게 달라지는지 분석한다. Content-Type·확장자·이미지 검사와 파일 실행의 관계를 확인하고 파일명 변경과 이미지 재생성 등 방어 처리를 비교한다.",
-      "category": "Wargame / DVWA",
+      "category": "Security / Web Security",
+      "series": "DVWA",
       "tags": [],
       "date": "2025-12-19",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.721Z",
       "publishedAt": "2025-12-19T20:17:10+09:00",
       "status": "published",
-      "sourceDigest": "2fea519a729efd1d59ead76c633eef45fe984eaea8b9a4c918d96c15c19b958d",
+      "sourceDigest": "e302b5cd248563fe3f753a1e26f2c18fe1af8aa690bc338ab33835fe73af0870",
       "trashedAt": null,
       "path": "blog/entries/480531a2-bdef-5a97-9b39-bbb396c06050.json",
-      "sha": "38985db652a6dbdb2b021a8898b2420d97c1144b"
+      "sha": "01ff0e558a6a65b6d048361f8e634618358f1d80"
     },
     {
       "id": "4ad3d79e-2ba0-59a2-bf67-f01e7635afc0",
@@ -790,16 +802,17 @@
       "slug": "tistory-111",
       "title": "[SK Rookies] Git과 GitHub 기초 정리",
       "description": "Git의 작업 공간·스테이징·커밋 흐름과 GitHub 원격 저장소 연결을 정리한다. 변경 확인과 되돌리기, 브랜치 병합·충돌 해결, Pull Request를 통한 협업까지 기본 예제로 살펴본다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "Development",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-07-21",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.725Z",
       "publishedAt": "2026-07-21T13:15:15+09:00",
       "status": "published",
-      "sourceDigest": "b30c951fda64da5fd71d4917d0ef4517f5269c196a29a06b22788f91e49a4edf",
+      "sourceDigest": "f79335cce35704d4f9c1690602ddc8ab9d19bc78edf96c31673bb71362b9365f",
       "trashedAt": null,
       "path": "blog/entries/5304d796-115f-5af0-a3f7-8916281657f8.json",
-      "sha": "100d3630a890acc8965f9967deb4bedc9fbb4f7a"
+      "sha": "e0cd8fdd457bee0bad37c8c6d2b3bf21be3287cc"
     },
     {
       "id": "549f744e-5fd2-51c2-a134-3e15886f3b9f",
@@ -875,16 +888,17 @@
       "slug": "tistory-131",
       "title": "[SK Rookies]기초통계와 데이터 탐색",
       "description": "대표값·산포도·분포와 상관관계의 기초를 pandas와 시각화 예제로 정리한다. 탐색적 데이터 분석과 단순 회귀를 살펴보고 상관관계를 인과관계로 단정하지 않도록 해석 기준을 복습한다.",
-      "category": "Study / T34M Rookies",
+      "category": "AI",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-08-07",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.729Z",
       "publishedAt": "2026-08-07T18:56:56+09:00",
       "status": "published",
-      "sourceDigest": "04a4dfc115e6799705eaecb1b22bdfc604c2221bc8f682a10adea585a6883ff9",
+      "sourceDigest": "0b4564c1fcd814c521f6d4821b5e83e8aa92b74888835648e7a8d21f54c57d16",
       "trashedAt": null,
       "path": "blog/entries/5ab9eccc-f2de-5cf0-ad3d-668b5874ec0c.json",
-      "sha": "9de6ae7f3e35d0699106caa39552d828a9099fb9"
+      "sha": "f092f25c2da2f4cd4bb85402a9080403184b58bb"
     },
     {
       "id": "5ba4ffcb-5892-5095-a7c2-2ffc70d6f264",
@@ -909,16 +923,17 @@
       "slug": "tistory-135",
       "title": "[SK Rookies] 딥러닝 대표 모델과 확장 모델",
       "description": "CNN·ResNet부터 RNN·LSTM·Attention·Transformer까지 데이터 유형에 따른 딥러닝 구조를 비교한다. 전이학습과 모델 선택 기준을 살펴보고 보안 문자열 분류에 활용하는 문자 단위 1D-CNN을 소개한다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "AI",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-08-12",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.731Z",
       "publishedAt": "2026-08-12T10:03:35+09:00",
       "status": "published",
-      "sourceDigest": "89b86ad7112ffdb75fb76919ae8c44e926baa06014506d2063ffa52ff7ab76db",
+      "sourceDigest": "da93463f8d4f8e65c86182f4a319f5f7aeba905c9454eb80b9e41b22115af3df",
       "trashedAt": null,
       "path": "blog/entries/5edd0afa-7560-5c39-b73c-1be62e65a2e7.json",
-      "sha": "1ce7916b3090ec5e520e7025553f6e147500077c"
+      "sha": "26e352f0e5e27f8695b58e77ec14cb912b5e45b3"
     },
     {
       "id": "641c59ec-f85c-5f8f-ac54-fc6e5586be07",
@@ -994,16 +1009,17 @@
       "slug": "tistory-137",
       "title": "[SK Rookies] 모델 기반 애플리케이션과 OpenAI API",
       "description": "학습한 모델을 joblib·pickle·Keras 형식으로 저장하고 애플리케이션에서 다시 사용하는 흐름을 정리한다. OpenAI API의 도구 연동 개념과 Streamlit 인터페이스를 연결해 모델 기반 서비스의 구성을 살펴본다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "AI",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-08-12",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.736Z",
       "publishedAt": "2026-08-12T10:04:44+09:00",
       "status": "published",
-      "sourceDigest": "85b76e6222768aa10a36505988d6ccdc9dfab681a3019dbc041e4b6fcb2c3bec",
+      "sourceDigest": "4119a91c7c1cd03fe27120ff87564c693496e8a7b663911f924fd6ae4946faa1",
       "trashedAt": null,
       "path": "blog/entries/78d940b0-b2d7-5470-9e76-c440b8ae21f7.json",
-      "sha": "4cdeb74319ed0b3d32ae51462469e27684089ece"
+      "sha": "195cb1a1c2b98f4b62cb23000d43658b2a89959a"
     },
     {
       "id": "7a43d469-1c8d-5bb2-a19e-b7ab0381d9b8",
@@ -1028,16 +1044,17 @@
       "slug": "tistory-153",
       "title": "[SK Rookies]  네트워크 보안 | 보안 기본 개념",
       "description": "네트워크 보안의 목적을 기밀성·무결성·가용성 관점에서 정리한다. 스푸핑·스니핑·중간자 공격·서비스 거부 등의 위협을 방화벽·IDS/IPS·NAC·VLAN·VPN 같은 방어 기술과 연결해 살펴본다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "Network",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-09-05",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.740Z",
       "publishedAt": "2026-09-05T23:47:52+09:00",
       "status": "published",
-      "sourceDigest": "d0aced8b8f2f3bdf87254175917fe5135c305a4089ef04b3307c1c14579277a9",
+      "sourceDigest": "9f8c785cc66ab4eb05d297fdc3baeeab98f7a46cf0143fef36753392495d4577",
       "trashedAt": null,
       "path": "blog/entries/7bf399e8-91cb-5c7b-8a6d-4fd677a027d6.json",
-      "sha": "558d89447fa4cfe0fb1cd1b825a082835c983763"
+      "sha": "3f8322f35dfcce916d415b4d2636eedbb1296086"
     },
     {
       "id": "7d5e9d86-558e-52a0-aeed-dc1fe44bf8ab",
@@ -1147,16 +1164,17 @@
       "slug": "tistory-134",
       "title": "[SK Rookies] 데이터 수집과 저장",
       "description": "requests와 BeautifulSoup으로 API·웹 페이지에서 데이터를 수집하고 파일과 SQLite에 저장하는 과정을 복습한다. 응답·선택자 검증, 데이터 형식 선택과 매개변수화 쿼리 등 수집 파이프라인의 기본을 정리한다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "Development",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-08-12",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.742Z",
       "publishedAt": "2026-08-12T09:56:52+09:00",
       "status": "published",
-      "sourceDigest": "e6ee45f176dfd6192d8d1781780aa93a24e6f3963a6ae72ab26bacc7d2b4162c",
+      "sourceDigest": "e1e2287b93ff5a3408fd83f8c0d4d1a9c1a79299905e8e28a77872a5a7a8e842",
       "trashedAt": null,
       "path": "blog/entries/91192f19-676d-5590-a775-3ef96747dd3d.json",
-      "sha": "31c10e82ab229fc5b9dec6d8dff53b0aba37f1ce"
+      "sha": "143f451ddf244ced84643275efdda5c3a25a951f"
     },
     {
       "id": "92e8e094-8a83-56b1-b4b3-be0cc25055c1",
@@ -1232,16 +1250,17 @@
       "slug": "tistory-158",
       "title": "[SK Rookies] FHRP | HSRP 기반 게이트웨이 이중화",
       "description": "FHRP의 게이트웨이 이중화 목적과 HSRP의 Active·Standby 동작을 살펴본다. 가상 IP, 우선순위와 Preempt 설정의 관계를 Cisco IOS 예제와 상태 확인 명령으로 정리한다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "Network",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-09-05",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.744Z",
       "publishedAt": "2026-09-05T23:50:22+09:00",
       "status": "published",
-      "sourceDigest": "359cf5a4b887497c0baf6e054b84666f347835ec09bd8ae5d07b8e82d6509141",
+      "sourceDigest": "3b9c7eb3b351bad71ded69802163191ce8677e6381b4f765caa250b048d0aa46",
       "trashedAt": null,
       "path": "blog/entries/9ae544e6-ff35-5b67-ab5c-4f8dc6f86f1b.json",
-      "sha": "bb043c070cb54e39a665674b426ee6e377cbbc44"
+      "sha": "a3256e593f5ebb88e6300bc50e79e47cd7efc8c4"
     },
     {
       "id": "9bc59143-4007-5bec-bc85-fb1098784e26",
@@ -1249,16 +1268,17 @@
       "slug": "tistory-17",
       "title": "[DVWA] Blind SQL Injection",
       "description": "DVWA의 아이디 존재 여부 응답으로 참·거짓 기반 Blind SQL Injection을 실습한다. 문자열 길이와 문자 비교, 범위 탐색으로 정보를 추론하는 원리를 살펴보고 sqlmap의 자동화 결과와 비교한다.",
-      "category": "Wargame / DVWA",
+      "category": "Security / Web Security",
+      "series": "DVWA",
       "tags": [],
       "date": "2025-12-31",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.746Z",
       "publishedAt": "2025-12-31T03:01:25+09:00",
       "status": "published",
-      "sourceDigest": "49413613e440fe372f0e4591b550531b57adaf7f8408ef4166692f88dd93454e",
+      "sourceDigest": "ff68a37c0fe401652b561f6509c7e7eb17618bfe67e5cb99cd82d981429b2cd1",
       "trashedAt": null,
       "path": "blog/entries/9bc59143-4007-5bec-bc85-fb1098784e26.json",
-      "sha": "ed571a3243bd6b369dcfac87eef385fbc6394621"
+      "sha": "3d807311ad8475c5290964c6f5502ea69dda14c9"
     },
     {
       "id": "9caa9bf2-07d9-57a6-9a47-1d66bfbda652",
@@ -1266,16 +1286,17 @@
       "slug": "tistory-136",
       "title": "[SK Rookies] 딥러닝 기초와 Hugging Face",
       "description": "신경망의 활성화·손실 함수와 역전파, 학습률·배치 등 딥러닝 학습의 기초를 정리한다. 분류 실습과 함께 Hugging Face에서 태스크와 Model Card를 확인하고 Pipeline으로 사전학습 모델을 사용하는 흐름을 살펴본다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "AI",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-08-12",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.749Z",
       "publishedAt": "2026-08-12T10:03:56+09:00",
       "status": "published",
-      "sourceDigest": "4fa5691a0b67d3888806f0158e5f75b3496955866eb29f64405a35628690c35a",
+      "sourceDigest": "15823b2322847adaecc3e1622d92fa8ec1f3bb398c54fcd5a51bff01930ceade",
       "trashedAt": null,
       "path": "blog/entries/9caa9bf2-07d9-57a6-9a47-1d66bfbda652.json",
-      "sha": "fc083e3de4cf41a8948ffa97fbccf71b9014192b"
+      "sha": "2fcccdbf9f13889f5ad6efa94493742a31033d2d"
     },
     {
       "id": "9fafbeed-b8ff-57b2-9960-6f8d77173c93",
@@ -1402,16 +1423,17 @@
       "slug": "tistory-117",
       "title": "[SK Rookies]머신러닝 지도학습",
       "description": "정답 라벨을 사용하는 지도학습의 회귀·분류 문제를 선형 회귀, 로지스틱 회귀와 KNN으로 살펴본다. 학습·평가 데이터 분리와 성능 지표, 클래스 불균형, 스케일링과 하이퍼파라미터 선택을 복습한다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "AI",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-07-31",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.755Z",
       "publishedAt": "2026-07-31T14:40:05+09:00",
       "status": "published",
-      "sourceDigest": "e1813d96187e3dc9954216dc91c2bd4689a93ee9e22f979e789999f4e73022ae",
+      "sourceDigest": "0ed7d6d56e65b0adb7d268286d249bb3807b03df1aa5723655c2dc977d0cc47f",
       "trashedAt": null,
       "path": "blog/entries/a96e2909-9cb4-5ad7-9c21-8c1c4fdb051b.json",
-      "sha": "9b6595e9f2f2cb6854aae6bada5b94e2c98dcd9f"
+      "sha": "c30795b23118d5ac79853cd1a2203ebe69735520"
     },
     {
       "id": "adb6b65f-58b4-5f93-aa7a-017dd25cf67c",
@@ -1827,16 +1849,17 @@
       "slug": "tistory-19",
       "title": "[DVWA] CSRF",
       "description": "DVWA의 비밀번호 변경 기능을 통해 인증된 사용자의 브라우저가 원치 않는 요청을 보내는 CSRF를 실습한다. Referer·CSRF 토큰·현재 비밀번호 검증의 차이와 XSS가 함께 존재할 때의 영향을 살펴본다.",
-      "category": "Wargame / DVWA",
+      "category": "Security / Web Security",
+      "series": "DVWA",
       "tags": [],
       "date": "2026-01-03",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.758Z",
       "publishedAt": "2026-01-03T19:38:42+09:00",
       "status": "published",
-      "sourceDigest": "e8ac8227f3a5245915f29901925f9c9777f2baa6202d2dd9d933c87d9303a7c0",
+      "sourceDigest": "5d654b15bcc600ebdc6e98b6ebb51a65059b3aacb28feddc688681c6ef3aa142",
       "trashedAt": null,
       "path": "blog/entries/dc96d36d-f017-54d3-bc3a-b3c769d5ee47.json",
-      "sha": "5d00ef1d239c83cf0091c51e503f547ab124427e"
+      "sha": "c05de7fdc7af3ef90ae4bc5a21568415e06934e4"
     },
     {
       "id": "e1f3676d-d556-56f9-96b2-c1125d960ec2",
@@ -1861,16 +1884,17 @@
       "slug": "tistory-16",
       "title": "[DVWA] SQL Injection",
       "description": "DVWA의 사용자 조회 기능을 통해 SQL Injection의 원리와 난이도별 입력 처리를 비교한다. 쿼리 구조·데이터베이스 메타정보를 확인하는 실습과 함께 준비된 쿼리와 정수 바인딩의 역할을 살펴본다.",
-      "category": "Wargame / DVWA",
+      "category": "Security / Web Security",
+      "series": "DVWA",
       "tags": [],
       "date": "2025-12-28",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.761Z",
       "publishedAt": "2025-12-28T19:44:46+09:00",
       "status": "published",
-      "sourceDigest": "2e42d806d100e9ddf4cb1a019fe665b21fa52fa0333feb8309d257c285a36863",
+      "sourceDigest": "855732fb43b7adbd09c6df4245e9fe3f1bd33a42b602e681ec32734a987d7dbc",
       "trashedAt": null,
       "path": "blog/entries/e1f67551-897d-5b2c-b77e-3094fa8f8324.json",
-      "sha": "f919c7128a08e77cfbae1236a5b61f4b7896e59b"
+      "sha": "96fca5fcafb80af2cc7c5fd08954f800338f92a1"
     },
     {
       "id": "e878dd84-b81f-58a9-b217-73c7c1ffdacc",
@@ -1895,16 +1919,17 @@
       "slug": "tistory-18",
       "title": "[DVWA] XXS",
       "description": "DVWA의 이름 출력 기능에서 발생하는 Reflected XSS를 난이도별 코드로 분석한다. 특정 태그와 문자열을 제거하는 필터의 한계를 확인하고 HTML 특수문자를 인코딩해 텍스트로 출력하는 처리와 비교한다.",
-      "category": "Wargame / DVWA",
+      "category": "Security / Web Security",
+      "series": "DVWA",
       "tags": [],
       "date": "2025-12-31",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.763Z",
       "publishedAt": "2025-12-31T17:14:28+09:00",
       "status": "published",
-      "sourceDigest": "92d0c607fa19e51f47aad089dbf80603a14c0caf623c094c9c500a85231221dd",
+      "sourceDigest": "53e2e7812373f5d205a9ec9d58a7098133f7594665b0c63d977bb42581c57e09",
       "trashedAt": null,
       "path": "blog/entries/ea543822-a181-5cfe-9cbb-f3d59459b69e.json",
-      "sha": "5d42ad6d3826d865a4da5cff707df2e3e004b2f7"
+      "sha": "10b261e8c0e86858cd5755843e0e2aa811c770f9"
     },
     {
       "id": "eeae36d0-4cc6-57bd-a7c4-f58b54afe71f",
@@ -1980,16 +2005,17 @@
       "slug": "tistory-12",
       "title": "[DVWA] Command Injection",
       "description": "DVWA의 ping 기능을 통해 사용자 입력이 셸 명령으로 연결될 때 발생하는 Command Injection을 실습한다. 난이도별 입력 처리 코드를 비교하며 메타문자 블랙리스트의 한계와 형식 검증의 차이를 살펴본다.",
-      "category": "Wargame / DVWA",
+      "category": "Security / Web Security",
+      "series": "DVWA",
       "tags": [],
       "date": "2025-12-19",
-      "updatedAt": "2026-10-25T05:55:56.711Z",
+      "updatedAt": "2026-11-07T06:10:47.766Z",
       "publishedAt": "2025-12-19T18:41:25+09:00",
       "status": "published",
-      "sourceDigest": "8f611ccdc66ca20431baa1bc9e58619c5a3245ecf4e6b670e3ae29f1b383f8d6",
+      "sourceDigest": "71479577890d8d785182f609b0018a3d99b9d4b61722118d191d0c536db984d5",
       "trashedAt": null,
       "path": "blog/entries/f51865ee-2c76-5fbe-a80e-61e93879c934.json",
-      "sha": "3c408cd829f23fa57d9101323e8f25808d95b94b"
+      "sha": "01e3e8e9be7787c1350c41267cc8e6ca7a50869b"
     },
     {
       "id": "f593c18c-e3fc-57ea-b868-2102af5f309a",
@@ -2235,16 +2261,17 @@
       "slug": "sql-injection",
       "title": "SQL Injection(ORACLE DB)",
       "description": "",
-      "category": "SK Rookies / 수업 정리",
+      "category": "Security / Web Security",
+      "series": "SK Rookies",
       "tags": [],
       "date": "2026-11-02",
-      "updatedAt": "2026-11-04T00:00:17.325Z",
+      "updatedAt": "2026-11-07T06:10:47.772Z",
       "publishedAt": "2026-11-02T07:14:08.726Z",
       "status": "published",
-      "sourceDigest": "d16ebe33fb4a7fe581bcdfaa2cfebd80505193f349618cf88ef3c31851e4983d",
+      "sourceDigest": "2739a8d7d97926fe9eba0461268f8727766e8ce8872e0422c6af4aa951102e29",
       "trashedAt": null,
       "path": "blog/entries/dcd21fcf-0221-47da-b0ad-81538d3a7ad1.json",
-      "sha": "100e1e18b0b71b81dc7fb6dda92e51ef28e74afe"
+      "sha": "657d2652d8291769afd38ba7d5fe406905989274"
     },
     {
       "id": "7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29",
@@ -2371,7 +2398,8 @@
       "slug": "pentest-lab-2026-sqli",
       "title": "[모의해킹 실습] SQLi - UNION·오류 기반·Blind·정렬 조건",
       "description": "1~3일차 SQL 인젝션 실습 7개를 통합했다. 우편번호 검색, 로그인, 연봉·날짜 검색, 정렬 기능의 입력 문맥과 참·거짓 응답을 비교하고 확인 범위와 대응 방법을 정리한다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "Security / Web Security",
+      "series": "SK Rookies",
       "tags": [
         "SQLi",
         "Oracle",
@@ -2379,13 +2407,13 @@
         "모의해킹"
       ],
       "date": "2026-11-07",
-      "updatedAt": "2026-11-07T06:11:23.541Z",
+      "updatedAt": "2026-11-07T06:19:36.260Z",
       "publishedAt": "2026-11-07T06:11:23.541Z",
       "status": "published",
-      "sourceDigest": "75747c6d9e34184695625ee2fcd33cb50d4078275e98754c13cc366d9958d163",
+      "sourceDigest": "20846b2d29e98911dae71dde88055d2d2c22d9364fdc81236f843e385f86e5a5",
       "trashedAt": null,
       "path": "blog/entries/195deac9-942c-50cc-bb97-98c63f3af522.json",
-      "sha": "1a2011099e61c1293a2af64aed1536ffa3381bd7"
+      "sha": "454230c0cb9ab39a501750c9a9508d1394259e30"
     },
     {
       "id": "6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7",
@@ -2393,7 +2421,8 @@
       "slug": "pentest-lab-2026-xss",
       "title": "[모의해킹 실습] XSS - 반사형·저장형과 출력 문맥",
       "description": "3~4일차 XSS 실습 7개를 반사형 3개와 저장형 4개로 묶었다. JavaScript 문자열, hidden input, 에디터의 인코딩과 문자열 삭제 필터를 비교한다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "Security / Web Security",
+      "series": "SK Rookies",
       "tags": [
         "XSS",
         "JavaScript",
@@ -2401,13 +2430,13 @@
         "모의해킹"
       ],
       "date": "2026-11-07",
-      "updatedAt": "2026-11-07T06:11:23.541Z",
+      "updatedAt": "2026-11-07T06:19:36.280Z",
       "publishedAt": "2026-11-07T06:11:23.541Z",
       "status": "published",
-      "sourceDigest": "4cb743c04c9d3ff9a86f5e530fe2df6fa17966d449e85e494c6f746775cec2f2",
+      "sourceDigest": "58924f4dcd1237967f587d4b2c0a193f3098777901378aaa301fa9813d3ab63d",
       "trashedAt": null,
       "path": "blog/entries/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7.json",
-      "sha": "ea2ee1f4702982fba16ec19080af8e7254774a53"
+      "sha": "3f760ee944742bade669847c4599909f3ce48023"
     },
     {
       "id": "e69e7e91-d2c3-56da-9a26-7d555f273aa1",
@@ -2415,7 +2444,8 @@
       "slug": "pentest-lab-2026-csrf",
       "title": "[모의해킹 실습] CSRF - GET·POST·토큰과 XSS의 연결",
       "description": "5일차 권한 변경 실습 3개를 정리했다. 이미지 GET 요청, 저장형 XSS의 POST 요청, 정상 CSRF 토큰을 읽는 흐름을 구분하고 각 결과의 의미와 방어 방법을 설명한다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "Security / Web Security",
+      "series": "SK Rookies",
       "tags": [
         "CSRF",
         "XSS",
@@ -2423,13 +2453,13 @@
         "모의해킹"
       ],
       "date": "2026-11-07",
-      "updatedAt": "2026-11-07T06:11:23.541Z",
+      "updatedAt": "2026-11-07T06:19:36.292Z",
       "publishedAt": "2026-11-07T06:11:23.541Z",
       "status": "published",
-      "sourceDigest": "33ea4cb89f11da64370f8e42089f340fc9d135c1e83e2e1814c25e7b42d126c1",
+      "sourceDigest": "727b58b1fce1fe9d0058195608ae26b4a5f3b350500c80f02364f28edb54bd1d",
       "trashedAt": null,
       "path": "blog/entries/e69e7e91-d2c3-56da-9a26-7d555f273aa1.json",
-      "sha": "3c630b94a0dcd0ff4e82d6253e7702cbec262341"
+      "sha": "b6aaf27efd1e827441d53be8aad59a6fdd72809b"
     },
     {
       "id": "fd66532a-6d6b-5d33-a1dd-0ce18a7cdc16",
@@ -2437,7 +2467,8 @@
       "slug": "pentest-lab-2026-session",
       "title": "[모의해킹 실습] 세션 - 쿠키 변조와 서버 측 검증",
       "description": "5일차 sessionID 쿠키 변경 실습을 정리했다. 힌트로 주어진 식별자 변경의 결과, 세션 탈취와의 차이, 서버에서 확인해야 할 사용자·권한 연결을 살펴본다.",
-      "category": "SK Rookies / 수업 정리",
+      "category": "Security / Web Security",
+      "series": "SK Rookies",
       "tags": [
         "Session",
         "Cookie",
@@ -2445,13 +2476,13 @@
         "모의해킹"
       ],
       "date": "2026-11-07",
-      "updatedAt": "2026-11-07T06:11:23.541Z",
+      "updatedAt": "2026-11-07T06:19:36.297Z",
       "publishedAt": "2026-11-07T06:11:23.541Z",
       "status": "published",
-      "sourceDigest": "e4d3b63fe722044e8185bda9d8a2b4095de9775cae3968eccbd5d36d36d82c30",
+      "sourceDigest": "b98afab6cfeb1cbd4809d47f8a18c8ddd987120d2ef8ce32f145181c92d9be30",
       "trashedAt": null,
       "path": "blog/entries/fd66532a-6d6b-5d33-a1dd-0ce18a7cdc16.json",
-      "sha": "9a00aa445d919151565f55c5611c3dca99454af5"
+      "sha": "933a88532af706ec30f2ae940b67a7b339729ece"
     }
   ],
   "taxonomy": {
@@ -2460,6 +2491,8 @@
       "AI / hermes",
       "Book",
       "Certificate",
+      "Development",
+      "Network",
       "Project",
       "Security",
       "Security / Bug Bounty",
@@ -2469,16 +2502,15 @@
       "Security / Reversing",
       "Security / tools",
       "Security / Web Security",
-      "SK Rookies",
-      "SK Rookies / 수업 정리",
-      "SK Rookies / Study",
       "Study",
-      "Study / T34M Rookies",
       "Wargame",
-      "Wargame / DVWA",
       "Wargame / WebGoat",
       "Wargame / webhacking.kr"
     ],
-    "tags": []
+    "tags": [],
+    "series": [
+      "DVWA",
+      "SK Rookies"
+    ]
   }
 }

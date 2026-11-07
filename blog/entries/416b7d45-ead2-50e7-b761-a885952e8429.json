@@ -6,14 +6,14 @@
   "title": "[SK Rookies] 머신러닝 비지도학습",
   "slug": "tistory-120",
   "description": "라벨 없는 데이터에서 구조를 찾는 군집화·차원 축소·이상치 탐지를 정리한다. K-Means의 K 선택과 실루엣 평가, PCA의 주성분 해석, Isolation Forest와 DBSCAN의 접근 방식을 비교한다.",
-  "category": "SK Rookies / 수업 정리",
+  "category": "AI",
   "date": "2026-08-04",
   "tags": [],
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-08-04T09:12:30+09:00",
-  "updatedAt": "2026-10-25T05:55:56.711Z",
-  "sourceDigest": "18f641003e188ab5fc3ecb0749a82e44f9cf8b03d9d01886e052546f085a0499",
+  "updatedAt": "2026-11-07T06:10:47.714Z",
+  "sourceDigest": "38168cf4e5821802e791104d62815b941ab21c15060e8f2f1e049949c8ebb581",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -1043,5 +1043,6 @@
     "publishedAt": "2026-08-04T09:12:30+09:00",
     "updatedAt": "2026-08-12T10:02:11+09:00",
     "importedAt": "2026-10-25T14:17:38+09:00"
-  }
+  },
+  "series": "SK Rookies"
 }
