@@ -2396,8 +2396,8 @@
       "id": "195deac9-942c-50cc-bb97-98c63f3af522",
       "kind": "posts",
       "slug": "pentest-lab-2026-sqli",
-      "title": "[모의해킹 실습] SQLi - UNION·오류 기반·Blind·정렬 조건",
-      "description": "1~3일차 SQL 인젝션 실습 7개를 통합했다. 우편번호 검색, 로그인, 연봉·날짜 검색, 정렬 기능의 입력 문맥과 참·거짓 응답을 비교하고 확인 범위와 대응 방법을 정리한다.",
+      "title": "[모의해킹 심화] SQLi - 논리의 빈틈과 다음 검증",
+      "description": "SQLi 실습 7개를 검증 관점에서 다시 본다. 오류·빈 목록의 오판, 불안정한 Blind 판정, 로그인 우회 과장, 정렬 CASE의 가정을 짚고 다음 실험과 결과 해석을 설계한다.",
       "category": "Security / Web Security",
       "series": "SK Rookies",
       "tags": [
@@ -2407,20 +2407,20 @@
         "모의해킹"
       ],
       "date": "2026-11-07",
-      "updatedAt": "2026-11-07T06:19:36.260Z",
+      "updatedAt": "2026-11-07T06:34:37.693Z",
       "publishedAt": "2026-11-07T06:11:23.541Z",
       "status": "published",
-      "sourceDigest": "20846b2d29e98911dae71dde88055d2d2c22d9364fdc81236f843e385f86e5a5",
+      "sourceDigest": "85a2a8d610cce3402f662d6c9c08bf8711cd2e335a6e753b04a3e68360243ca0",
       "trashedAt": null,
       "path": "blog/entries/195deac9-942c-50cc-bb97-98c63f3af522.json",
-      "sha": "454230c0cb9ab39a501750c9a9508d1394259e30"
+      "sha": "fa2b1ececf9c2bfe46fc98f529d35a3b4d09d557"
     },
     {
       "id": "6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7",
       "kind": "posts",
       "slug": "pentest-lab-2026-xss",
-      "title": "[모의해킹 실습] XSS - 반사형·저장형과 출력 문맥",
-      "description": "3~4일차 XSS 실습 7개를 반사형 3개와 저장형 4개로 묶었다. JavaScript 문자열, hidden input, 에디터의 인코딩과 문자열 삭제 필터를 비교한다.",
+      "title": "[모의해킹 심화] XSS - 실행 근거와 필터 분석을 발전시키기",
+      "description": "XSS 실습 7개의 부족한 근거를 점검한다. 출력 문맥, 이벤트 발생 조건, 입력 필드 분리, 저장·조회·수정 과정과 필터 변환 순서를 비교하는 실험을 정리한다.",
       "category": "Security / Web Security",
       "series": "SK Rookies",
       "tags": [
@@ -2430,20 +2430,20 @@
         "모의해킹"
       ],
       "date": "2026-11-07",
-      "updatedAt": "2026-11-07T06:19:36.280Z",
+      "updatedAt": "2026-11-07T06:34:37.693Z",
       "publishedAt": "2026-11-07T06:11:23.541Z",
       "status": "published",
-      "sourceDigest": "58924f4dcd1237967f587d4b2c0a193f3098777901378aaa301fa9813d3ab63d",
+      "sourceDigest": "07368547d37c67669982b38a96665e4fd36bc4da3c5f42a2515d123ffa2303e0",
       "trashedAt": null,
       "path": "blog/entries/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7.json",
-      "sha": "3f760ee944742bade669847c4599909f3ce48023"
+      "sha": "d408c1d21659e9bdae6bc541b8f75dee280427ee"
     },
     {
       "id": "e69e7e91-d2c3-56da-9a26-7d555f273aa1",
       "kind": "posts",
       "slug": "pentest-lab-2026-csrf",
-      "title": "[모의해킹 실습] CSRF - GET·POST·토큰과 XSS의 연결",
-      "description": "5일차 권한 변경 실습 3개를 정리했다. 이미지 GET 요청, 저장형 XSS의 POST 요청, 정상 CSRF 토큰을 읽는 흐름을 구분하고 각 결과의 의미와 방어 방법을 설명한다.",
+      "title": "[모의해킹 심화] CSRF - 요청 출처·XSS·토큰을 분리해 검증하기",
+      "description": "GET·POST·토큰 실습에서 무엇을 입증했고 무엇이 남았는지 구분한다. 실제 상태 변화, 브라우저 쿠키 전송, 외부 CSRF, XSS와 정상 토큰 악용을 비교하는 후속 실험이다.",
       "category": "Security / Web Security",
       "series": "SK Rookies",
       "tags": [
@@ -2453,20 +2453,20 @@
         "모의해킹"
       ],
       "date": "2026-11-07",
-      "updatedAt": "2026-11-07T06:19:36.292Z",
+      "updatedAt": "2026-11-07T06:34:37.693Z",
       "publishedAt": "2026-11-07T06:11:23.541Z",
       "status": "published",
-      "sourceDigest": "727b58b1fce1fe9d0058195608ae26b4a5f3b350500c80f02364f28edb54bd1d",
+      "sourceDigest": "cfdfd2df4d8a31f7496d9a365947bc2a623584ede17ffea8ea114af6bad4df79",
       "trashedAt": null,
       "path": "blog/entries/e69e7e91-d2c3-56da-9a26-7d555f273aa1.json",
-      "sha": "b6aaf27efd1e827441d53be8aad59a6fdd72809b"
+      "sha": "0c9a775ad017714ac343357dc9cc8cc4fa2cdb3b"
     },
     {
       "id": "fd66532a-6d6b-5d33-a1dd-0ce18a7cdc16",
       "kind": "posts",
       "slug": "pentest-lab-2026-session",
-      "title": "[모의해킹 실습] 세션 - 쿠키 변조와 서버 측 검증",
-      "description": "5일차 sessionID 쿠키 변경 실습을 정리했다. 힌트로 주어진 식별자 변경의 결과, 세션 탈취와의 차이, 서버에서 확인해야 할 사용자·권한 연결을 살펴본다.",
+      "title": "[모의해킹 심화] 세션 - 쿠키 변조에서 인증 경계 검증으로",
+      "description": "sessionID 변경과 정답 표시만으로 계정 탈취를 주장할 수 있을까. 두 쿠키의 역할, 시험 계정 간 접근, 세션 고정·갱신·무효화를 구분하는 후속 검증을 설계한다.",
       "category": "Security / Web Security",
       "series": "SK Rookies",
       "tags": [
@@ -2476,13 +2476,13 @@
         "모의해킹"
       ],
       "date": "2026-11-07",
-      "updatedAt": "2026-11-07T06:19:36.297Z",
+      "updatedAt": "2026-11-07T06:34:37.693Z",
       "publishedAt": "2026-11-07T06:11:23.541Z",
       "status": "published",
-      "sourceDigest": "b98afab6cfeb1cbd4809d47f8a18c8ddd987120d2ef8ce32f145181c92d9be30",
+      "sourceDigest": "d26fdfa9e5322194f61aea1e29094acbb7ee910e40b62697cf281f37c216e82b",
       "trashedAt": null,
       "path": "blog/entries/fd66532a-6d6b-5d33-a1dd-0ce18a7cdc16.json",
-      "sha": "933a88532af706ec30f2ae940b67a7b339729ece"
+      "sha": "555204a74ab625ad2cd61f1842133c2e850958e0"
     }
   ],
   "taxonomy": {

@@ -2,10 +2,10 @@
   "format": "yt010108-published-post",
   "version": 1,
   "id": "e69e7e91-d2c3-56da-9a26-7d555f273aa1",
-  "title": "[모의해킹 실습] CSRF - GET·POST·토큰과 XSS의 연결",
+  "title": "[모의해킹 심화] CSRF - 요청 출처·XSS·토큰을 분리해 검증하기",
   "kind": "posts",
   "slug": "pentest-lab-2026-csrf",
-  "description": "5일차 권한 변경 실습 3개를 정리했다. 이미지 GET 요청, 저장형 XSS의 POST 요청, 정상 CSRF 토큰을 읽는 흐름을 구분하고 각 결과의 의미와 방어 방법을 설명한다.",
+  "description": "GET·POST·토큰 실습에서 무엇을 입증했고 무엇이 남았는지 구분한다. 실제 상태 변화, 브라우저 쿠키 전송, 외부 CSRF, XSS와 정상 토큰 악용을 비교하는 후속 실험이다.",
   "category": "Security / Web Security",
   "date": "2026-11-07",
   "tags": [
@@ -17,8 +17,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-07T06:11:23.541Z",
-  "updatedAt": "2026-11-07T06:19:36.292Z",
-  "sourceDigest": "727b58b1fce1fe9d0058195608ae26b4a5f3b350500c80f02364f28edb54bd1d",
+  "updatedAt": "2026-11-07T06:34:37.693Z",
+  "sourceDigest": "cfdfd2df4d8a31f7496d9a365947bc2a623584ede17ffea8ea114af6bad4df79",
   "assets": [
     {
       "id": "9464636a-99cf-54bd-aebe-ecbdd138340e",
@@ -50,7 +50,7 @@
         "content": [
           {
             "type": "text",
-            "text": "5일차 권한 변경 실습 3개를 정리했다. 이미지 GET 요청, 저장형 XSS의 POST 요청, 정상 CSRF 토큰을 읽는 흐름을 구분하고 각 결과의 의미와 방어 방법을 설명한다."
+            "text": "GET·POST·토큰 실습에서 무엇을 입증했고 무엇이 남았는지 구분한다. 실제 상태 변화, 브라우저 쿠키 전송, 외부 CSRF, XSS와 정상 토큰 악용을 비교하는 후속 실험이다."
           }
         ]
       },
@@ -59,7 +59,7 @@
         "content": [
           {
             "type": "text",
-            "text": "실습 기간: 2026년 11월 6일 · 정리일: 2026년 11월 7일"
+            "text": "2026년 11월 2~6일 원본 실습에서 확인한 사실과, 그 다음에 필요한 검증을 분리했다. 아래 “다음 실험”은 아직 수행하지 않은 제안이며 교육용 복제 환경과 본인의 시험 계정을 기준으로 한다."
           }
         ]
       },
@@ -68,16 +68,7 @@
         "content": [
           {
             "type": "text",
-            "text": "교육용 실습 환경에서 수행한 원본 기록을 바탕으로 작성했다. 설명과 캡처가 어긋난 부분은 확인 가능한 요청·응답을 기준으로 정리했으며, 아래 결과는 새로 실행한 테스트가 아닌 당시 기록이다."
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "SQLi 실습",
+            "text": "SQLi 심화",
             "marks": [
               {
                 "type": "link",
@@ -93,7 +84,7 @@
           },
           {
             "type": "text",
-            "text": "XSS 실습",
+            "text": "XSS 심화",
             "marks": [
               {
                 "type": "link",
@@ -109,7 +100,7 @@
           },
           {
             "type": "text",
-            "text": "세션 실습",
+            "text": "세션 심화",
             "marks": [
               {
                 "type": "link",
@@ -129,7 +120,7 @@
         "content": [
           {
             "type": "text",
-            "text": "원리와 실습 구성"
+            "text": "먼저 바꿀 판단 방식"
           }
         ]
       },
@@ -138,7 +129,7 @@
         "content": [
           {
             "type": "text",
-            "text": "세 실습 모두 일반 사용자는 직접 권한을 바꿀 수 없지만 관리자가 문의 글을 확인하는 기능이 있었다. 그 열람 동작으로 관리자 브라우저의 인증 상태를 이용한 요청을 만들었다. 요청 메서드와 토큰 유무에 따라 구현은 달라졌지만, POST·토큰 사례에는 저장형 XSS가 선행했다는 점을 따로 표시했다."
+            "text": "성공한 요청에서 조건을 하나씩 제거하면 원인을 더 정확히 알 수 있다. 관리자 쿠키, 같은 출처 실행, XSS, 정상 토큰 중 무엇이 필수였는지 비교한다. 특히 기존 세 실습은 일반 사용자의 직접 변경이 거부됐으므로 권한 검사 자체의 부재로 단순화하지 않는다."
           }
         ]
       },
@@ -156,7 +147,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "실습"
+                        "text": "증거"
                       }
                     ]
                   }
@@ -170,7 +161,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "요청 방식"
+                        "text": "확인하는 것"
                       }
                     ]
                   }
@@ -184,21 +175,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "동작 조건"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "tableHeader",
-                "content": [
-                  {
-                    "type": "paragraph",
-                    "content": [
-                      {
-                        "type": "text",
-                        "text": "확인한 결과"
+                        "text": "확인하지 못하는 것"
                       }
                     ]
                   }
@@ -217,7 +194,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "GET"
+                        "text": "요청이 전송됨"
                       }
                     ]
                   }
@@ -231,7 +208,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "img의 src로 GET"
+                        "text": "브라우저/서버에서 요청이 관찰됨"
                       }
                     ]
                   }
@@ -245,21 +222,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "관리자가 삽입된 HTML을 렌더링"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "tableCell",
-                "content": [
-                  {
-                    "type": "paragraph",
-                    "content": [
-                      {
-                        "type": "text",
-                        "text": "ADMIN_GET 및 전용 화면"
+                        "text": "인증 쿠키 포함과 실제 변경 성공"
                       }
                     ]
                   }
@@ -278,7 +241,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "POST"
+                        "text": "HTTP 200 또는 관리자 댓글"
                       }
                     ]
                   }
@@ -292,7 +255,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "저장된 스크립트의 fetch"
+                        "text": "응답·열람의 일부 정황"
                       }
                     ]
                   }
@@ -306,21 +269,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "관리자 페이지에서 JavaScript 실행"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "tableCell",
-                "content": [
-                  {
-                    "type": "paragraph",
-                    "content": [
-                      {
-                        "type": "text",
-                        "text": "ADMIN_POST 및 전용 화면"
+                        "text": "변경 대상의 실제 권한 상태"
                       }
                     ]
                   }
@@ -339,7 +288,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "토큰"
+                        "text": "관리자 문맥의 fetch 성공"
                       }
                     ]
                   }
@@ -353,7 +302,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "폼 조회 후 토큰을 포함한 POST"
+                        "text": "같은 출처 스크립트의 권한 있는 요청"
                       }
                     ]
                   }
@@ -367,7 +316,26 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "같은 출처에서 폼 응답을 읽는 XSS"
+                        "text": "외부 출처 HTML form의 성공"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "정상 토큰 포함 요청 성공"
                       }
                     ]
                   }
@@ -381,7 +349,21 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "ADMIN_csrfToken 및 전용 화면"
+                        "text": "발급된 토큰 사용 가능"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "토큰 검증 결함이나 토큰 예측 성공"
                       }
                     ]
                   }
@@ -392,11 +374,14 @@
         ]
       },
       {
-        "type": "paragraph",
+        "type": "codeBlock",
+        "attrs": {
+          "language": "text"
+        },
         "content": [
           {
             "type": "text",
-            "text": "CSRF는 브라우저가 보내는 인증 정보만으로 요청의 의도까지 신뢰하는 문제이고, XSS는 페이지 안에서 의도하지 않은 스크립트가 실행되는 문제다. 두 취약점은 연결될 수 있지만 같은 것은 아니다. 특히 XSS가 같은 출처에서 실행되면 정상 CSRF 토큰을 읽는 경로까지 생길 수 있다."
+            "text": "초기 상태 확인 → 요청 출처·메서드·쿠키 조건 기록 → 요청 전송\n→ 서버가 인식한 사용자 확인 → 대상의 실제 상태 재조회\n→ 초기 상태로 돌린 뒤 다음 조건 비교"
           }
         ]
       },
@@ -405,15 +390,7 @@
         "content": [
           {
             "type": "text",
-            "text": "OWASP Cross Site Request Forgery Prevention",
-            "marks": [
-              {
-                "type": "link",
-                "attrs": {
-                  "href": "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
-                }
-              }
-            ]
+            "text": "아래 실험의 계정 A/B는 본인이 관리하는 시험 계정이다. 변경 대상과 초기 상태를 고정하고, 쿠키·토큰 값은 비밀값 자체가 아닌 A/B 표식으로 기록한다."
           }
         ]
       },
@@ -425,7 +402,81 @@
         "content": [
           {
             "type": "text",
-            "text": "1. 이미지 요청을 이용한 GET 권한 변경"
+            "text": "1. GET 요청: 관리자 열람과 권한 변경 사이의 연결을 증명한다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "원본 지점: https://lab.eqst.co.kr:8444/csrfget/update_role_ok_get.jsp · target_id, new_role"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "현재 근거: 일반 사용자의 직접 권한 변경은 거부됐다. 문의 글의 img가 /csrfget/update_role_ok_get.jsp를 참조했고 관리자 열람 후 전용 페이지 접근과 FLAG를 확인했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "보완할 논리"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "img 요청에는 JavaScript가 필요 없다. HTML 삽입만으로 가능한 동작과 저장형 JavaScript 실행을 같은 취약점으로 부르면 필요한 조건을 놓친다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "관리자 댓글은 열람의 단서지만 실제 권한 변경 요청이 언제, 어떤 인증 주체로 처리됐는지까지 직접 보여 주지는 않는다. 결과 전후 상태와 요청을 연결해야 한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "같은 사이트 문의 글에서 발생한 요청과 외부 사이트에서 보낸 요청은 쿠키 전송 조건이 다를 수 있다. 이번 결과만으로 외부 모든 사이트에서도 같은 동작이 가능하다고 쓰지 않는다."
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
@@ -443,7 +494,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "항목"
+                        "text": "다음 실험"
                       }
                     ]
                   }
@@ -457,7 +508,21 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "내용"
+                        "text": "비교할 조건·관찰"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "결과에 따른 해석"
                       }
                     ]
                   }
@@ -476,7 +541,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "원본"
+                        "text": "요청과 상태 변화 연결"
                       }
                     ]
                   }
@@ -490,7 +555,21 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "5일차 · 2026-11-06"
+                        "text": "매번 초기 상태가 같은 시험 계정으로 진행하고 요청 시각·요청 경로·인증 주체·변경 전후 역할을 기록한다. 로그에는 세션 원문을 남기지 않는다."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "관리자 인증 요청 뒤 그 계정의 역할이 바뀌어야 연결이 성립한다. 댓글만 있거나 이전 관리자 상태가 남으면 성공 판정을 보류한다."
                       }
                     ]
                   }
@@ -509,7 +588,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "확인 지점"
+                        "text": "스크립트 의존성"
                       }
                     ]
                   }
@@ -523,7 +602,21 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "https://lab.eqst.co.kr:8444/csrfget/update_role_ok_get.jsp"
+                        "text": "복제 페이지에서 JavaScript를 사용하지 않는 img만으로 요청이 발생하는지 비교한다."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "스크립트 없이도 발생하면 HTML 리소스 요청이 핵심이다. script 차단 정책만으로 이 경로가 닫힌다고 판단하지 않는다."
                       }
                     ]
                   }
@@ -542,7 +635,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "입력값"
+                        "text": "출처와 요청 방식 분리"
                       }
                     ]
                   }
@@ -556,26 +649,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "target_id, new_role"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "tableRow",
-            "content": [
-              {
-                "type": "tableCell",
-                "content": [
-                  {
-                    "type": "paragraph",
-                    "content": [
-                      {
-                        "type": "text",
-                        "text": "요청 방식"
+                        "text": "같은 사이트의 이미지, 외부 사이트의 이미지, 외부 최상위 GET 이동을 각각 시험하고 Cookie 전송 여부를 본다."
                       }
                     ]
                   }
@@ -589,7 +663,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "GET"
+                        "text": "실패하면 쿠키 미전송과 서버 거부를 구분한다. SameSite가 한 방식만 제한해도 다른 방식까지 막았다고 확대하지 않는다."
                       }
                     ]
                   }
@@ -604,167 +678,21 @@
         "content": [
           {
             "type": "text",
-            "text": "관리자가 확인하는 문의글에 권한 변경 경로를 참조하는 이미지 요소를 삽입하였다. 관리자 열람 뒤 실습 계정이 관리자 전용 페이지에 접근한 결과를 확인하였다."
+            "text": "여기서 더 확인할 수 있는 것: 그다음에는 GET을 상태 조회 전용으로 바꿨을 때의 효과와 POST·토큰 검증을 따로 적용했을 때의 효과를 비교할 수 있다. 관리자 역할 자체의 검사는 통과했을 수 있으므로 핵심은 “관리자가 보냈다는 사실”과 “관리자가 그 변경을 의도했다는 사실”을 나누는 것이다."
           }
         ]
       },
       {
-        "type": "heading",
-        "attrs": {
-          "level": 3
-        },
+        "type": "blockquote",
         "content": [
           {
-            "type": "text",
-            "text": "확인 과정"
-          }
-        ]
-      },
-      {
-        "type": "orderedList",
-        "content": [
-          {
-            "type": "listItem",
+            "type": "paragraph",
             "content": [
               {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "일반 사용자 상태에서는 권한 변경이 거부되는 화면을 확인하였다. 권한 변경 폼에서 GET 방식과 target_id·new_role 필드를 확인하였다."
-                  }
-                ]
+                "type": "text",
+                "text": "현재 증거로 쓸 수 있는 결론: 문의 글의 리소스 요청과 관리자 열람을 이용한 상태 변경 시나리오에서 전용 페이지 접근을 확인했다. 일반 외부 출처에서의 재현 조건은 별도 확인 대상이다."
               }
             ]
-          },
-          {
-            "type": "listItem",
-            "content": [
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "문의글에 관리자의 열람을 나타내는 댓글이 생성되는 흐름을 확인하였다."
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "listItem",
-            "content": [
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "이미지의 src가 /csrfget/update_role_ok_get.jsp를 참조하도록 저장하였다. 원문은 실습 계정과 ADMIN_GET 역할값을 지정하였다."
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "listItem",
-            "content": [
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "관리자 열람 이후 관리자 전용 페이지와 해당 실습의 FLAG 화면을 확인하였다. 권한 변경 요청에 사용자 의도 검증이 필요함을 확인하였다."
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "일반 사용자로 권한 변경을 직접 요청하면 거부됐다. 문의 글을 관리자가 확인하는 흐름을 이용해 관리자의 브라우저가 권한 변경 URL을 요청하도록 구성했다. 실제 매개변수 이름은 target_id와 new_role다."
-          }
-        ]
-      },
-      {
-        "type": "codeBlock",
-        "attrs": {
-          "language": "html"
-        },
-        "content": [
-          {
-            "type": "text",
-            "text": "<img src=\"/csrfget/update_role_ok_get.jsp?target_id=learner%40example.test&amp;new_role=ADMIN_GET\">"
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "공개 글의 예시 계정은 learner@example.test로 바꿨다. 원문에서 사용한 실습 계정을 뜻하는 자리다. img는 JavaScript가 아니라 HTML 요소이며, 이미지를 불러오려는 동작으로 GET 요청이 발생한다. 응답이 실제 이미지가 아니어도 서버에 도착한 요청은 처리될 수 있다."
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "원문의 대상 URL에는 이전 XSS 문제 경로가 남아 있어 캡처의 /csrfget/update_role_ok_get.jsp로 바로잡았다. new_role의 ADMIN_GET도 문서 줄바꿈 때문에 분리되어 보이던 부분을 한 문자열로 정리했다."
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "문의 글의 관리자 댓글은 열람의 단서이고, 최종 관리자 전용 페이지 접근과 해당 문제의 FLAG가 결과 근거다. 서로 다른 CSRF 문서에 재사용된 일반 관리자 화면만으로 각 단계의 성공을 판단하지 않았다."
-          }
-        ]
-      },
-      {
-        "type": "heading",
-        "attrs": {
-          "level": 3
-        },
-        "content": [
-          {
-            "type": "text",
-            "text": "결과와 보완점"
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "문의글 열람을 매개로 상태를 변경하는 GET 요청이 발생한 시나리오에서 관리자 전용 페이지 접근 결과를 확인하였다."
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "권한 있는 사용자의 브라우저가 의도하지 않은 상태 변경 요청을 보내면 일반 계정의 권한 상승으로 이어질 수 있다."
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "img의 리소스 요청은 JavaScript 실행과 구분한다. 관리자 열람 전후의 역할 화면 일부는 다른 문서와 중복되므로 실습별 요청과 최종 화면으로 보강한다."
           }
         ]
       },
@@ -781,25 +709,7 @@
         "content": [
           {
             "type": "text",
-            "text": "그림 1. GET 실습에서 관리자 전용 페이지 접근 후 표시된 결과."
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "개선 방향: 상태 변경을 GET으로 처리하지 않고 서버에서 CSRF 방어와 권한 검증을 함께 수행한다. 문의글의 허용 HTML 범위를 제한하고 민감한 권한 변경에는 재확인을 적용한다."
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "향후 재검증 기준: 문의글의 이미지 로드만으로 권한이 바뀌지 않아야 하며, 정상적인 관리자 요청도 유효한 의도 검증을 통과한 경우에만 처리되어야 한다. 이 기준으로 수정 후 재검증한 기록은 아직 없다."
+            "text": "원본 증빙: GET 실습에서 관리자 전용 페이지 접근 후 표시된 결과."
           }
         ]
       },
@@ -811,7 +721,81 @@
         "content": [
           {
             "type": "text",
-            "text": "2. 저장형 XSS와 연계한 POST 권한 변경"
+            "text": "2. POST 요청: XSS가 만든 요청과 외부 CSRF를 별도로 시험한다"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "원본 지점: https://lab.eqst.co.kr:8444/csrfpost/update_role_ok_post.jsp · target_id, new_role"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "현재 근거: 문의 글에 저장한 script가 fetch와 URLSearchParams로 /csrfpost/update_role_ok_post.jsp에 POST를 보냈고 관리자 전용 페이지 접근 결과가 남았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "보완할 논리"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "이 경로는 같은 출처에서 실행된 저장형 XSS가 선행한다. 외부 페이지에서 XSS 없이도 되는지까지 입증한 기록은 아니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "POST는 요청 메서드다. 사용자의 의도나 출처를 검증하는 장치가 아니며, CORS로 응답을 읽지 못했다는 사실도 상태 변경 요청이 전혀 전달되지 않았다는 뜻은 아니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "반대로 실제 브라우저에서 쿠키가 전송되지 않았다면 서버가 CSRF 요청을 거부한 것과 구분해야 한다. 프록시에서 쿠키를 수동으로 붙인 요청만으로 브라우저 재현을 대신할 수 없다."
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
@@ -829,7 +813,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "항목"
+                        "text": "다음 실험"
                       }
                     ]
                   }
@@ -843,7 +827,21 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "내용"
+                        "text": "비교할 조건·관찰"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "결과에 따른 해석"
                       }
                     ]
                   }
@@ -862,7 +860,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "원본"
+                        "text": "XSS 선행 조건 제거"
                       }
                     ]
                   }
@@ -876,7 +874,21 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "5일차 · 2026-11-06"
+                        "text": "별도 시험 출처의 일반 HTML form으로 같은 형식의 테스트 POST를 보낸다. 자동 쿠키 전송과 서버의 실제 상태를 본다."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "XSS 없이도 상태가 바뀌면 독립적인 CSRF 경로가 추가로 확인된다. 실패하면 쿠키·출처 검증·요청 형식을 분리한다."
                       }
                     ]
                   }
@@ -895,7 +907,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "확인 지점"
+                        "text": "요청 전송과 응답 읽기 구분"
                       }
                     ]
                   }
@@ -909,7 +921,21 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "https://lab.eqst.co.kr:8444/csrfpost/update_role_ok_post.jsp"
+                        "text": "form 제출과 fetch를 비교하고 네트워크 요청·preflight 유무·서버 처리 로그를 각각 기록한다."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "콘솔 CORS 오류만으로 방어 성공이라 적지 않는다. 본문을 읽지 못해도 상태 변경이 완료됐는지 별도로 확인한다."
                       }
                     ]
                   }
@@ -928,7 +954,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "입력값"
+                        "text": "수정 효과 분리"
                       }
                     ]
                   }
@@ -942,26 +968,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "target_id, new_role"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "tableRow",
-            "content": [
-              {
-                "type": "tableCell",
-                "content": [
-                  {
-                    "type": "paragraph",
-                    "content": [
-                      {
-                        "type": "text",
-                        "text": "요청 방식"
+                        "text": "복제 환경에서 XSS 출력 처리만 수정한 경우, CSRF 방어만 추가한 경우, 둘 다 적용한 경우를 비교한다."
                       }
                     ]
                   }
@@ -975,7 +982,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "POST"
+                        "text": "XSS만 제거해도 외부 form이 남을 수 있고, 토큰만 추가해도 같은 출처 XSS가 읽는 경로가 남을 수 있다. 서로 다른 결함을 별도로 닫아야 한다."
                       }
                     ]
                   }
@@ -990,158 +997,21 @@
         "content": [
           {
             "type": "text",
-            "text": "문의글에 저장한 스크립트가 관리자 열람 시 같은 출처의 권한 변경 경로로 POST 요청을 보내는 시나리오를 확인하였다. 결과는 저장형 XSS와 권한 있는 요청의 악용이 결합된 사례이다."
+            "text": "여기서 더 확인할 수 있는 것: 요청 출처를 확인하는 Origin/Referer·Fetch Metadata가 어느 요청을 구분하는지 살펴볼 수 있다. 이미 같은 출처에서 실행 중인 XSS는 정상과 같은 출처로 보이므로 이 검사만으로 구분하기 어렵다. 권한 검증과 CSRF·XSS 방어를 각각 다른 통제로 평가한다."
           }
         ]
       },
       {
-        "type": "heading",
-        "attrs": {
-          "level": 3
-        },
+        "type": "blockquote",
         "content": [
           {
-            "type": "text",
-            "text": "확인 과정"
-          }
-        ]
-      },
-      {
-        "type": "orderedList",
-        "content": [
-          {
-            "type": "listItem",
+            "type": "paragraph",
             "content": [
               {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "권한 변경 폼의 method=post와 target_id·new_role 필드를 확인하였다."
-                  }
-                ]
+                "type": "text",
+                "text": "현재 증거로 쓸 수 있는 결론: 저장형 XSS가 관리자 브라우저의 POST 권한 변경 요청으로 이어졌다. 외부 출처의 단독 CSRF는 아직 별도로 입증하지 않았다."
               }
             ]
-          },
-          {
-            "type": "listItem",
-            "content": [
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "문의글 content에 fetch와 URLSearchParams를 이용한 스크립트를 저장하였다. 역할값은 원문에 보이는 ADMIN_POST이다."
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "listItem",
-            "content": [
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "조회 응답에서 저장된 script 요소와 관리자 댓글을 확인하였다. 관리자의 같은 출처 브라우저 문맥에서 요청이 실행되는 흐름이다."
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "listItem",
-            "content": [
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "POST 실습의 관리자 전용 페이지와 FLAG 화면을 확인하였다. 일반적인 외부 출처 CSRF의 독립적 성공 여부는 별도 검증 대상이다."
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "권한 변경 경로가 POST를 받는 조건에서는 문의 글에 저장된 스크립트가 fetch를 실행했다. 계정 식별자는 공개 예시용 값으로 바꾸고 원문의 중복 코드는 한 번만 남겼다."
-          }
-        ]
-      },
-      {
-        "type": "codeBlock",
-        "attrs": {
-          "language": "html"
-        },
-        "content": [
-          {
-            "type": "text",
-            "text": "<script>\nfetch('/csrfpost/update_role_ok_post.jsp', {\n  method: 'POST',\n  body: new URLSearchParams({\n    target_id: 'learner@example.test',\n    new_role: 'ADMIN_POST'\n  })\n});\n</script>"
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "관리자가 글을 읽으면 같은 출처에서 스크립트가 실행되고, 그 브라우저의 인증 상태로 권한 변경 요청을 보낸다. URLSearchParams는 폼 형식의 요청 본문을 만드는 데 사용했다."
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "이 기록은 저장형 XSS가 관리자 권한 요청으로 이어진 사례다. 외부 사이트의 HTML form만으로도 동일 요청이 성공하는지, Origin·Referer·토큰 검증이 어떻게 작동하는지는 별도로 확인하지 않았다. 따라서 독립적인 외부 출처 CSRF가 입증됐다고 쓰지 않는다. POST라는 메서드만으로 CSRF 방어가 완성되는 것도 아니다."
-          }
-        ]
-      },
-      {
-        "type": "heading",
-        "attrs": {
-          "level": 3
-        },
-        "content": [
-          {
-            "type": "text",
-            "text": "결과와 보완점"
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "저장형 XSS를 통해 관리자 문맥에서 POST 권한 변경을 유도한 결과가 확인되었다. POST 방식 자체는 방어 수단이 되지 않는다."
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "관리자가 열람하는 저장형 XSS는 관리자 기능을 실행하는 경로로 이어질 수 있다."
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "이 시나리오만으로 CSRF 토큰·Origin 검증이 서버에 전혀 없다고 단정하지 않는다. 관리자 브라우저의 실제 요청 로그를 추가하면 연계 과정이 명확해진다."
           }
         ]
       },
@@ -1158,25 +1028,7 @@
         "content": [
           {
             "type": "text",
-            "text": "그림 2. POST 실습에서 관리자 전용 페이지 접근 후 표시된 결과."
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "개선 방향: 문의글의 저장·출력 XSS를 우선 차단하고 상태 변경 요청에 서버 측 CSRF 검증을 적용한다. 권한 변경에는 서버 인가와 사용자 재확인을 함께 적용한다."
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "향후 재검증 기준: 문의글에 저장한 스크립트가 실행되지 않고, 유효한 CSRF 검증 없이 전송된 권한 변경 요청도 거부되는지 각각 확인한다. 이 기준으로 수정 후 재검증한 기록은 아직 없다."
+            "text": "원본 증빙: POST 실습에서 관리자 전용 페이지 접근 후 표시된 결과."
           }
         ]
       },
@@ -1188,7 +1040,81 @@
         "content": [
           {
             "type": "text",
-            "text": "3. 저장형 XSS를 통한 CSRF 토큰 사용"
+            "text": "3. CSRF 토큰: 토큰 검증 실패인가, 정상 토큰의 악용인가"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "원본 지점: https://lab.eqst.co.kr:8444/csrfToken/update_role_ok_csrfToken.jsp · target_id, new_role, csrfToken"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "현재 근거: 같은 출처의 script가 /csrfToken/update_role.jsp를 조회해 hidden csrfToken을 읽고, 그 값으로 권한 변경 POST를 보냈다. 토큰 실습의 전용 페이지 결과를 확인했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "보완할 논리"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "정상 토큰을 읽어 사용한 것이라 토큰을 추측하거나 서명·검증을 깨뜨렸다는 증거가 아니다. “CSRF 토큰이 무의미하다”는 결론도 과하다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "HTML 폼에 토큰이 있고 같은 출처 스크립트가 읽을 수 있다는 사실 자체는 결함이 아니다. 이 경로에서는 의도하지 않은 스크립트가 실행된 XSS가 핵심 선행 조건이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "토큰 재사용이 된다는 이유만으로 취약하다고 할 수 없다. 세션 단위와 요청 단위 정책을 구분하고, 다른 세션의 토큰을 수용하는지부터 봐야 한다."
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
@@ -1206,7 +1132,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "항목"
+                        "text": "다음 실험"
                       }
                     ]
                   }
@@ -1220,7 +1146,21 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "내용"
+                        "text": "비교할 조건·관찰"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "결과에 따른 해석"
                       }
                     ]
                   }
@@ -1239,7 +1179,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "원본"
+                        "text": "토큰 검증의 존재"
                       }
                     ]
                   }
@@ -1253,7 +1193,21 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "5일차 · 2026-11-06"
+                        "text": "시험 계정 A에서 토큰 누락·빈 값·임의 값·정상 값을 같은 작업과 상태로 비교한다."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "잘못된 값도 성공하면 검증 누락 의심이 추가된다. 정상 값만 성공하면 이번 성공을 토큰 검증 실패로 쓰지 않는다."
                       }
                     ]
                   }
@@ -1272,7 +1226,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "확인 지점"
+                        "text": "세션과의 연결"
                       }
                     ]
                   }
@@ -1286,7 +1240,21 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "https://lab.eqst.co.kr:8444/csrfToken/update_role_ok_csrfToken.jsp"
+                        "text": "본인이 관리하는 시험 계정 A/B의 세션과 각 토큰을 교차 조합한다. 비밀값은 기록에서 표식으로 대체한다."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "B 토큰이 A 세션에서 허용된다면 세션 연결 정책을 확인한다. 정책·다른 검증을 살펴 취약점 여부와 영향 범위를 판단한다."
                       }
                     ]
                   }
@@ -1305,7 +1273,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "입력값"
+                        "text": "수명과 재사용 정책"
                       }
                     ]
                   }
@@ -1319,7 +1287,21 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "target_id, new_role, csrfToken"
+                        "text": "같은 세션의 반복 요청과 로그아웃·새 로그인 후의 이전 토큰을 따로 비교한다."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "같은 세션 재사용은 정책상 정상일 수 있다. 서버에서 종료된 세션의 권한이 이어지는지와 토큰 처리 규칙을 구분한다."
                       }
                     ]
                   }
@@ -1338,7 +1320,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "요청 방식"
+                        "text": "XSS 제거 후 외부 읽기"
                       }
                     ]
                   }
@@ -1352,7 +1334,21 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "토큰 페이지 GET 후 POST"
+                        "text": "XSS를 없앤 복제 환경에서 외부 시험 출처가 토큰 응답을 실제로 읽을 수 있는지 확인한다."
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "못 읽으면 같은 출처 XSS가 핵심 경로였다는 설명이 강화된다. 읽힌다면 의도된 공유인지 CORS 등 별도 노출 결함인지 조사한다."
                       }
                     ]
                   }
@@ -1367,167 +1363,21 @@
         "content": [
           {
             "type": "text",
-            "text": "관리자 문맥에서 실행되는 저장형 XSS가 같은 출처의 권한 변경 페이지를 읽고 CSRF 토큰을 포함한 요청을 보내는 흐름을 확인하였다. 토큰의 생성·검증 결함과 XSS에 의한 정상 토큰 사용을 구분해야 한다."
+            "text": "여기서 더 확인할 수 있는 것: 토큰 검증, 동일 출처 정책, 저장형 XSS를 각각 켜고 끄는 작은 실험 환경을 만들면 연결 관계를 설명하기 좋다. 토큰이 막는 외부 요청과 토큰을 읽을 수 있는 내부 스크립트는 전제가 다르다. 민감 작업의 추가 확인 절차도 별도 단계로 비교하되 XSS의 일반적인 해결책으로 대체하지 않는다."
           }
         ]
       },
       {
-        "type": "heading",
-        "attrs": {
-          "level": 3
-        },
+        "type": "blockquote",
         "content": [
           {
-            "type": "text",
-            "text": "확인 과정"
-          }
-        ]
-      },
-      {
-        "type": "orderedList",
-        "content": [
-          {
-            "type": "listItem",
+            "type": "paragraph",
             "content": [
               {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "권한 변경 폼에 target_id·new_role 및 hidden csrfToken이 있는 것을 확인하였다."
-                  }
-                ]
+                "type": "text",
+                "text": "현재 증거로 쓸 수 있는 결론: 저장형 XSS가 관리자에게 발급된 정상 CSRF 토큰을 읽고 사용했다. 토큰 예측 성공이나 검증 로직 자체의 실패는 입증하지 않았다."
               }
             ]
-          },
-          {
-            "type": "listItem",
-            "content": [
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "저장된 스크립트가 /csrfToken/update_role.jsp를 조회하고 응답 HTML에서 csrfToken 값을 읽는 흐름을 확인하였다."
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "listItem",
-            "content": [
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "확인한 토큰과 ADMIN_csrfToken 역할값을 포함하여 권한 변경 경로로 POST 요청을 보내는 코드가 조회 화면에 출력되었다."
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "listItem",
-            "content": [
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "해당 실습의 관리자 전용 페이지와 FLAG 화면을 확인하였다. CSRF 토큰의 예측 가능성이나 다른 세션 토큰 허용 여부를 검증한 것은 아니다."
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "이번에는 권한 변경 요청에 csrfToken이 필요했다. 저장된 스크립트가 관리자 브라우저에서 권한 변경 폼을 읽고, 그 응답의 hidden 필드에서 정상 토큰을 얻은 뒤 POST에 포함했다."
-          }
-        ]
-      },
-      {
-        "type": "codeBlock",
-        "attrs": {
-          "language": "html"
-        },
-        "content": [
-          {
-            "type": "text",
-            "text": "<script>\n(async () => {\n  const html = await (await fetch('/csrfToken/update_role.jsp')).text();\n  const doc = new DOMParser().parseFromString(html, 'text/html');\n  const token = doc.querySelector('[name=\"csrfToken\"]').value;\n  await fetch('/csrfToken/update_role_ok_csrfToken.jsp', {\n    method: 'POST',\n    body: new URLSearchParams({\n      target_id: 'learner@example.test',\n      new_role: 'ADMIN_csrfToken',\n      csrfToken: token\n    })\n  });\n})();\n</script>"
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "코드는 원문 캡처의 동작을 읽기 쉽게 정리한 것이다. 문서 텍스트에서 붙어 있던 newDOMParser·awaitfetch·newURLSearchParams를 각각 new DOMParser·await fetch·new URLSearchParams로 바로잡았다. 예시 계정만 바꿨으며 /csrfToken의 대소문자와 역할 문자열은 실습 요청을 따른다."
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "토큰을 추측하거나 검증 로직을 깨뜨린 실험이 아니다. 같은 출처에서 실행된 XSS가 관리자에게 발급된 정상 토큰을 읽고 사용한 것이다. 외부 출처 페이지가 동일한 응답 본문을 자유롭게 읽을 수 있다는 뜻도 아니다."
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "토큰 요청이 끝나기 전에 권한 변경 요청을 보내지 않도록 await로 순서를 연결한 점이 핵심이다. 원문에 남은 결과는 관리자 전용 화면과 토큰 문제의 FLAG다. 토큰 누락·오류 값의 거부 동작이나 토큰 수명까지 검증한 기록은 없으므로 추가 확인 항목으로 남긴다."
-          }
-        ]
-      },
-      {
-        "type": "heading",
-        "attrs": {
-          "level": 3
-        },
-        "content": [
-          {
-            "type": "text",
-            "text": "결과와 보완점"
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "같은 출처에서 실행되는 저장형 XSS가 관리자에게 발급된 토큰을 사용할 수 있는 시나리오의 결과를 확인하였다."
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "XSS가 존재하면 토큰을 사용하는 상태 변경 기능도 공격자가 관리자 문맥에서 호출할 수 있다."
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "원문의 본문 코드에는 공백 누락과 중복이 있으나 캡처의 코드는 구분되어 있다. 편집 오류를 서버 취약점의 증거로 사용하지 않는다."
           }
         ]
       },
@@ -1544,25 +1394,7 @@
         "content": [
           {
             "type": "text",
-            "text": "그림 3. 정상 CSRF 토큰을 읽어 사용한 실습의 관리자 전용 페이지 결과."
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "개선 방향: 저장형 XSS를 우선 제거하고 CSRF 토큰 검증은 유지한다. 권한 변경에 재인증·서버 인가를 적용하며 토큰의 세션 결합과 누락·변조 시 거부 여부를 별도로 점검한다."
-          }
-        ]
-      },
-      {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "text",
-            "text": "향후 재검증 기준: XSS 실행 차단과 함께 토큰 누락·변조·다른 세션 토큰을 각각 거부하는지 확인한다. 정상 관리자의 유효 요청은 유지되어야 한다. 이 기준으로 수정 후 재검증한 기록은 아직 없다."
+            "text": "원본 증빙: 정상 CSRF 토큰을 읽어 사용한 실습의 관리자 전용 페이지 결과."
           }
         ]
       },
@@ -1574,7 +1406,7 @@
         "content": [
           {
             "type": "text",
-            "text": "대응 방법과 다음 검증"
+            "text": "출처와 사이트를 구분해야 실험이 맞아진다"
           }
         ]
       },
@@ -1583,7 +1415,374 @@
         "content": [
           {
             "type": "text",
-            "text": "권한 변경처럼 상태를 바꾸는 작업을 GET으로 처리하지 않고, 인증된 세션에 연결한 CSRF 토큰과 요청 출처 검증을 적용한다. 쿠키의 SameSite도 추가 방어가 될 수 있다. 다만 이번 POST·토큰 실습처럼 같은 출처에서 XSS가 실행되는 경우를 해결하려면 게시판의 출력 처리도 함께 수정해야 한다."
+            "text": "Origin은 스킴·호스트·포트의 조합이고, SameSite의 사이트 판정은 스킴과 등록 가능 도메인을 기준으로 하며 포트를 구분하지 않는다. 같은 호스트에서 포트만 바꾼 시험은 다른 출처이면서 같은 사이트일 수 있다. 이를 외부 사이트 시험이라고 적으면 쿠키 결과를 잘못 해석하게 된다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "MDN: Same-origin policy",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Same-origin_policy"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " · "
+          },
+          {
+            "type": "text",
+            "text": "MDN: Site",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://developer.mozilla.org/en-US/docs/Glossary/Site"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "시험 문맥"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "주요 관찰"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "해석 포인트"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "같은 출처의 저장형 XSS"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "스크립트 실행, 폼 응답 읽기, 인증 요청"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "같은 출처 XSS는 토큰 읽기와 요청 출처 검사의 전제를 바꾼다."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "다른 출처지만 같은 사이트"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "포트·호스트 차이와 쿠키 범위"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "SOP/CORS와 SameSite를 같은 방어로 취급하지 않는다."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "다른 사이트의 이미지 GET"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "실제 인증 쿠키 전송 여부"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "이미지 요청과 최상위 이동은 서로 다른 조건이다."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "다른 사이트의 form POST"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "쿠키, 서버 출처·토큰 검사, 실제 상태"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "응답 본문을 읽을 수 없어도 요청 처리 여부는 별도로 확인한다."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "HttpOnly 쿠키는 JavaScript가 값을 읽는 것을 제한하지만 해당 쿠키가 붙는 JavaScript 요청까지 막지는 않는다. 브라우저의 실제 Set-Cookie 속성과 전송 여부를 보고 판정한다. SameSite 설정값만 적고 요청 문맥을 생략하지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "MDN: Set-Cookie",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "가장 먼저 해볼 세 가지 후속 실험"
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "POST 실습에서 XSS를 제거한 뒤 외부 form 요청을 비교한다. 단독 CSRF와 XSS 연계를 분리하는 가장 직접적인 실험이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "토큰 실습에서 누락·오류·정상·다른 세션 토큰을 비교한다. 검증 자체가 작동하는지와 XSS가 정상 토큰을 쓰는 문제를 분리한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "각 실험을 같은 초기 상태에서 반복하고 변경 후 실제 역할을 다시 조회한다. 재사용된 관리자 캡처와 HTTP 200으로 성공을 판정하지 않는다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "인증, 권한 검사, 요청 의도 검증, 출력 처리는 서로 다른 단계다. 일반 사용자 요청이 거부돼도 관리자 브라우저를 통한 의도하지 않은 요청은 남을 수 있고, 토큰이 정확해도 XSS는 남을 수 있다."
           }
         ]
       },
@@ -1601,83 +1800,6 @@
                 }
               }
             ]
-          },
-          {
-            "type": "text",
-            "text": " · "
-          },
-          {
-            "type": "text",
-            "text": "OWASP Cross Site Scripting Prevention",
-            "marks": [
-              {
-                "type": "link",
-                "attrs": {
-                  "href": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html"
-                }
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "type": "bulletList",
-        "content": [
-          {
-            "type": "listItem",
-            "content": [
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "권한 변경 권한과 대상 계정·변경 가능한 역할을 서버에서 검증한다. new_role 값을 받았다는 이유만으로 그대로 적용하지 않는다."
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "listItem",
-            "content": [
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "문의 글에서 실행 가능한 태그·이벤트를 제거하거나 문맥에 맞게 인코딩한다. 정상 CSRF 토큰이 있어도 XSS 자체가 사라지는 것은 아니다."
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "listItem",
-            "content": [
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "수정 후에는 비인증 사용자·일반 사용자 요청, 토큰 누락·오류·다른 세션 토큰을 각각 비교한다. 유효한 관리자 요청은 정상 동작해야 한다."
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "listItem",
-            "content": [
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "type": "text",
-                    "text": "외부 출처 form 기반 요청과, 게시판 내부에 저장된 스크립트의 요청을 별도로 검증한다. 후자의 성공만으로 전자의 성공을 주장하지 않는다."
-                  }
-                ]
-              }
-            ]
           }
         ]
       },
@@ -1689,16 +1811,19 @@
         "content": [
           {
             "type": "text",
-            "text": "실습에서 정리한 점"
+            "text": "다음 실험에 남길 기록"
           }
         ]
       },
       {
-        "type": "paragraph",
+        "type": "codeBlock",
+        "attrs": {
+          "language": "text"
+        },
         "content": [
           {
             "type": "text",
-            "text": "첫 문제에서는 이미지 요청만으로 상태가 바뀌었고, 두 번째에서는 요청 본문을 가진 fetch를 사용했다. 세 번째는 비동기 요청의 순서를 맞춰 폼 조회 → 토큰 추출 → 권한 변경을 이어야 했다. “토큰이 있는데도 성공했다”는 결과를 쓸 때는 토큰을 추측한 것인지, 같은 출처의 XSS로 읽은 것인지까지 기록해야 원인과 조치가 정확해진다."
+            "text": "가설: 무엇 때문에 이 결과가 생겼다고 보는가?\n기준 요청: 정상 결과와 초기 계정/데이터 상태\n변경 조건: 이번에 바꾼 한 가지\n관찰: 요청·응답·브라우저·서버 상태의 실제 차이\n대안 설명: 같은 차이를 만들 수 있는 다른 원인\n판정: 가설 지지 / 반증 / 판정 불가\n다음 단계: 결과에 따라 어느 조건을 다시 나눌 것인가?"
           }
         ]
       },
@@ -1710,7 +1835,7 @@
         "content": [
           {
             "type": "text",
-            "text": "원본 기록"
+            "text": "원본과 참고 문서"
           }
         ]
       },
@@ -1742,7 +1867,7 @@
                     "content": [
                       {
                         "type": "text",
-                        "text": "원본 문서"
+                        "text": "원본 기록"
                       }
                     ]
                   }
@@ -1852,18 +1977,6 @@
         ]
       },
       {
-        "type": "heading",
-        "attrs": {
-          "level": 2
-        },
-        "content": [
-          {
-            "type": "text",
-            "text": "참고 문서"
-          }
-        ]
-      },
-      {
         "type": "paragraph",
         "content": [
           {
@@ -1874,6 +1987,74 @@
                 "type": "link",
                 "attrs": {
                   "href": "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "OWASP WSTG: CSRF",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://wstg.owasp.org/v4.2/4-Web_Application_Security_Testing/06-Session_Management_Testing/05-Testing_for_Cross_Site_Request_Forgery/"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "MDN: Same-origin policy",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Same-origin_policy"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "MDN: Site",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://developer.mozilla.org/en-US/docs/Glossary/Site"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "MDN: Set-Cookie",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie"
                 }
               }
             ]
