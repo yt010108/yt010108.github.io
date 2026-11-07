@@ -1,0 +1,1058 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "fd66532a-6d6b-5d33-a1dd-0ce18a7cdc16",
+  "title": "[모의해킹 실습] 세션 - 쿠키 변조와 서버 측 검증",
+  "kind": "posts",
+  "slug": "pentest-lab-2026-session",
+  "description": "5일차 sessionID 쿠키 변경 실습을 정리했다. 힌트로 주어진 식별자 변경의 결과, 세션 탈취와의 차이, 서버에서 확인해야 할 사용자·권한 연결을 살펴본다.",
+  "category": "SK Rookies / 수업 정리",
+  "date": "2026-11-07",
+  "tags": [
+    "Session",
+    "Cookie",
+    "인증",
+    "모의해킹"
+  ],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-07T06:11:23.541Z",
+  "updatedAt": "2026-11-07T06:11:23.541Z",
+  "sourceDigest": "e4d3b63fe722044e8185bda9d8a2b4095de9775cae3968eccbd5d36d36d82c30",
+  "assets": [
+    {
+      "id": "e94a1a96-bde1-5ebd-9035-90bdb8b67bba",
+      "name": "s19-image4.png",
+      "type": "image/png",
+      "path": "/assets/uploads/fd66532a-6d6b-5d33-a1dd-0ce18a7cdc16/e94a1a96-bde1-5ebd-9035-90bdb8b67bba.png",
+      "sha": "e2ef88f87f1d0109a5e405aef805efa9fd1c96b7"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "5일차 sessionID 쿠키 변경 실습을 정리했다. 힌트로 주어진 식별자 변경의 결과, 세션 탈취와의 차이, 서버에서 확인해야 할 사용자·권한 연결을 살펴본다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실습 기간: 2026년 11월 6일 · 정리일: 2026년 11월 7일"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "교육용 실습 환경에서 수행한 원본 기록을 바탕으로 작성했다. 설명과 캡처가 어긋난 부분은 확인 가능한 요청·응답을 기준으로 정리했으며, 아래 결과는 새로 실행한 테스트가 아닌 당시 기록이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SQLi 실습",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/#/post/195deac9-942c-50cc-bb97-98c63f3af522"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " · "
+          },
+          {
+            "type": "text",
+            "text": "XSS 실습",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/#/post/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " · "
+          },
+          {
+            "type": "text",
+            "text": "CSRF 실습",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/#/post/e69e7e91-d2c3-56da-9a26-7d555f273aa1"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "원리와 실습 구성"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "쿠키는 브라우저가 보관하고 요청에 붙이는 값이고, 서버 세션은 그 식별자를 통해 로그인 상태와 사용자 정보를 관리하는 방식이다. 개발자 도구에서 쿠키를 바꿀 수 있다는 사실 자체보다 서버가 그 값을 무엇의 근거로 신뢰하는지가 중요하다."
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "항목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "이번 실습에서의 의미"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "PHPSESSID"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "함께 존재하던 PHP 세션 쿠키. 변경하지 않았다."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "sessionID"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "힌트의 값으로 바꾼 별도 식별자 쿠키"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "판정 근거"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "변경 후 새로고침했을 때 실습 정답이 표시됨"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "확인하지 않은 내용"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "토큰 무작위 추측, 실제 타인 토큰 탈취, 타인 계정 전체 접근"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 사용자 식별 쿠키 변조"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "항목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "내용"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원본"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "5일차 · 2026-11-06"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "확인 지점"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "https://lab.eqst.co.kr:8083/exam40/main.php"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "입력값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "쿠키 sessionID"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "요청 방식"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "쿠키 변경 후 조회"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "로그인 상태에서 sessionID 쿠키를 실습 힌트에 제시된 값으로 변경하자 정답 화면에 접근하였다. PHPSESSID와 별도로 존재하는 사용자 식별 쿠키의 변경이 처리 결과에 영향을 주는 것을 확인하였다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "확인 과정"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "개발자 도구에서 PHPSESSID와 sessionID 두 쿠키를 확인하였다. sessionID는 eqst와 숫자가 결합된 형태로 보였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "실습 힌트에 제공된 eqst001004로 sessionID를 변경하였다. 제시된 캡처에서 PHPSESSID는 동일하게 유지되었다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "페이지를 새로고침한 뒤 정답 FLAG가 표시되는 결과를 확인하였다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "로그인한 뒤 개발자 도구에서 쿠키를 확인했을 때 PHPSESSID와 sessionID가 함께 있었다. 실습에서는 PHPSESSID를 유지하고, 문제 힌트가 제공한 다른 식별자를 sessionID에 넣은 뒤 새로고침했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "text"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "변경한 항목: sessionID\n변경값: 문제 힌트에 제시된 eqst001004\n유지한 항목: PHPSESSID\n확인 결과: 새로고침 후 실습 정답 표시"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "확인한 것은 클라이언트가 바꾼 식별자 쿠키에 따라 실습 결과가 달라졌다는 사실이다. 힌트로 주어진 값을 사용했으므로 세션 ID를 무작위 추측해 맞혔다거나, 타인의 실제 세션 토큰을 탈취했다는 결과는 아니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "응답의 정답 화면은 확인했지만 다른 사용자의 개인정보나 전체 계정 기능까지 접근한 기록은 없다. 따라서 이 글은 “쿠키 식별자 변조와 서버 측 사용자 연결 검증” 실습으로 정리한다. 원문 개발자 도구 캡처에 포함된 실제 PHPSESSID 값은 공개하지 않았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "세션 ID가 사용자 정보를 많이 담아야 한다는 원문의 설명도 수정했다. 일반적으로 세션 ID는 불투명한 식별자로 두고, 사용자와 권한은 서버의 세션 상태에 연결한다. 별도의 sessionID가 필요하더라도 그 값만 믿고 로그인 사용자나 권한을 결정해서는 안 된다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "결과와 보완점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "힌트로 주어진 식별 쿠키 값의 변경이 수용되고 정답 페이지가 표시되는 결과를 확인하였다. 무작위 예측이나 실제 세션 토큰 탈취를 입증한 사례는 아니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서버가 클라이언트의 사용자 식별값을 신뢰하여 접근을 결정한다면 다른 사용자 문맥의 자원 접근으로 이어질 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "난수성 평가, 타 사용자 실제 데이터 접근, 서버의 sessionID 연계 방식은 추가 확인이 필요하다. 세션 ID 자체에 개인정보가 많이 들어간다는 일반화는 하지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/fd66532a-6d6b-5d33-a1dd-0ce18a7cdc16/e94a1a96-bde1-5ebd-9035-90bdb8b67bba.png",
+          "assetId": "e94a1a96-bde1-5ebd-9035-90bdb8b67bba",
+          "alt": "힌트의 식별자로 sessionID를 변경한 뒤 표시된 정답 화면."
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그림 1. 힌트의 식별자로 sessionID를 변경한 뒤 표시된 정답 화면."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개선 방향: 인증 사용자와 권한은 서버 세션에서 결정하고 클라이언트 식별 쿠키만으로 권한을 부여하지 않는다. 세션 식별자는 예측하기 어려운 값으로 생성하며 권한 변경 시 재발급한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "향후 재검증 기준: 임의의 sessionID·힌트값·다른 사용자 식별값을 보내도 인증된 사용자와 접근 범위가 바뀌지 않는지 확인한다. 이 기준으로 수정 후 재검증한 기록은 아직 없다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "대응 방법과 다음 검증"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "인증 상태와 권한은 서버에서 검증한 세션에 연결한다. 사용자가 변경할 수 있는 별도 식별자만으로 다른 계정의 상태를 선택하게 해서는 안 된다. 세션 식별자는 예측하기 어려운 값으로 만들고 로그인·권한 변경 시 갱신하며, 로그아웃·만료 후에는 서버에서도 무효화한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "OWASP Session Management",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "점검"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "수정 후 기대하는 동작"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "sessionID만 변경"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "다른 사용자로 전환되지 않고 거부되거나 현재 세션과 일치하는 상태 유지"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "다른 세션과 식별자 조합"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "서버가 불일치를 감지하고 접근을 거부"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "누락·임의 값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "기본 관리자나 타인으로 처리하지 않음"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "로그아웃·만료·갱신 뒤 이전 값 재사용"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "이전 세션이 다시 인증 상태로 쓰이지 않음"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "쿠키 속성"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "업무에 맞는 Secure·HttpOnly·SameSite 및 전송 범위 적용"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "HttpOnly는 JavaScript의 쿠키 읽기를 제한하고 Secure는 HTTPS 전송을 요구하는 설정이다. 이 속성만으로 서버가 변조된 사용자 식별자를 신뢰하는 문제까지 해결되지는 않는다. 위 표는 향후 재검증 기준이며, 실제 수정과 재검증을 완료한 결과는 아니다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "실습에서 정리한 점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "쿠키 이름에 session이 들어간다고 모두 안전한 인증 식별자인 것은 아니다. 이번에는 힌트가 있는 단순 변경만으로 결과가 바뀌었지만, 이를 토큰 예측 성공이나 실제 계정 탈취로 과장하지 않는 것이 중요했다. 요청의 어느 쿠키를 바꿨는지와 서버에서 어떤 변화가 확인됐는지를 나눠 적는 방식으로 정리했다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "원본 기록"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "절"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원본 문서"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "5일차-4-SESSION-1-유영택.docx"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "참고 문서"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "OWASP Session Management",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

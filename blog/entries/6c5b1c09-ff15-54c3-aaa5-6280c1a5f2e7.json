@@ -1,0 +1,3661 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7",
+  "title": "[모의해킹 실습] XSS - 반사형·저장형과 출력 문맥",
+  "kind": "posts",
+  "slug": "pentest-lab-2026-xss",
+  "description": "3~4일차 XSS 실습 7개를 반사형 3개와 저장형 4개로 묶었다. JavaScript 문자열, hidden input, 에디터의 인코딩과 문자열 삭제 필터를 비교한다.",
+  "category": "SK Rookies / 수업 정리",
+  "date": "2026-11-07",
+  "tags": [
+    "XSS",
+    "JavaScript",
+    "출력 인코딩",
+    "모의해킹"
+  ],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-07T06:11:23.541Z",
+  "updatedAt": "2026-11-07T06:11:23.541Z",
+  "sourceDigest": "4cb743c04c9d3ff9a86f5e530fe2df6fa17966d449e85e494c6f746775cec2f2",
+  "assets": [
+    {
+      "id": "76c80ec2-a4f0-55de-9cfd-76839ee89bc2",
+      "name": "s08-image9.png",
+      "type": "image/png",
+      "path": "/assets/uploads/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7/76c80ec2-a4f0-55de-9cfd-76839ee89bc2.png",
+      "sha": "578cd66422df2989ac699253a02c80b85717638d"
+    },
+    {
+      "id": "92dbe4a6-f246-5099-8d88-42eec6b85527",
+      "name": "s10-image9.png",
+      "type": "image/png",
+      "path": "/assets/uploads/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7/92dbe4a6-f246-5099-8d88-42eec6b85527.png",
+      "sha": "3809a897649aaee47ad41967eae72d1fbb1c98b7"
+    },
+    {
+      "id": "741d8600-36e2-5d64-aa4c-eb8f598ca7ce",
+      "name": "s11-image9.png",
+      "type": "image/png",
+      "path": "/assets/uploads/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7/741d8600-36e2-5d64-aa4c-eb8f598ca7ce.png",
+      "sha": "1858c73cdd9f7bbf7a6a26e8b981fb9fb95b42fb"
+    },
+    {
+      "id": "1000bcc4-6766-58e1-8681-8214251bc37b",
+      "name": "s12-image8.png",
+      "type": "image/png",
+      "path": "/assets/uploads/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7/1000bcc4-6766-58e1-8681-8214251bc37b.png",
+      "sha": "2a4da04df67e102502e5a198983fe47dc677f347"
+    },
+    {
+      "id": "7ddef9fc-0f55-5882-9e3f-8808c02d527f",
+      "name": "s13-image8.png",
+      "type": "image/png",
+      "path": "/assets/uploads/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7/7ddef9fc-0f55-5882-9e3f-8808c02d527f.png",
+      "sha": "b7e341e1326c724b9fd85af32dfe8abba522e33e"
+    },
+    {
+      "id": "7d9abf4f-7355-51ca-9337-60082a50fa32",
+      "name": "s14-image8.png",
+      "type": "image/png",
+      "path": "/assets/uploads/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7/7d9abf4f-7355-51ca-9337-60082a50fa32.png",
+      "sha": "d52bda385ccd7cc74a7863dd144d97a70025d2a6"
+    },
+    {
+      "id": "405ab1f5-73f4-5c31-8789-18a961ecde01",
+      "name": "s14-image3.png",
+      "type": "image/png",
+      "path": "/assets/uploads/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7/405ab1f5-73f4-5c31-8789-18a961ecde01.png",
+      "sha": "c8415a5ec500134466fa0d3151d76913cffb299a"
+    },
+    {
+      "id": "f8a18d1e-27a3-5f76-8d16-c2ef03beafeb",
+      "name": "s15-image8.png",
+      "type": "image/png",
+      "path": "/assets/uploads/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7/f8a18d1e-27a3-5f76-8d16-c2ef03beafeb.png",
+      "sha": "148b411747d6640a757e5eee5cadd2988a1c7608"
+    },
+    {
+      "id": "ad8a535f-db22-5a23-bb71-350b81da70e9",
+      "name": "s15-image10.png",
+      "type": "image/png",
+      "path": "/assets/uploads/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7/ad8a535f-db22-5a23-bb71-350b81da70e9.png",
+      "sha": "d0deb095650bb9ac7d1b9775d60493b2d1127e35"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "3~4일차 XSS 실습 7개를 반사형 3개와 저장형 4개로 묶었다. JavaScript 문자열, hidden input, 에디터의 인코딩과 문자열 삭제 필터를 비교한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실습 기간: 2026년 11월 4~5일 · 정리일: 2026년 11월 7일"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "교육용 실습 환경에서 수행한 원본 기록을 바탕으로 작성했다. 설명과 캡처가 어긋난 부분은 확인 가능한 요청·응답을 기준으로 정리했으며, 아래 결과는 새로 실행한 테스트가 아닌 당시 기록이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SQLi 실습",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/#/post/195deac9-942c-50cc-bb97-98c63f3af522"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " · "
+          },
+          {
+            "type": "text",
+            "text": "CSRF 실습",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/#/post/e69e7e91-d2c3-56da-9a26-7d555f273aa1"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " · "
+          },
+          {
+            "type": "text",
+            "text": "세션 실습",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/#/post/fd66532a-6d6b-5d33-a1dd-0ce18a7cdc16"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "원리와 실습 구성"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "XSS에서는 입력값이 어디에 출력되는지가 먼저다. 같은 문자열도 HTML 본문, 속성값, JavaScript 문자열에서 다르게 해석된다. 이번에는 즉시 응답에 반영되는 반사형 3개와, 저장한 글을 다시 조회할 때 실행되는 저장형 4개를 비교했다."
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "분류"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "입력·출력 위치"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "사례"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "반사형"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "board_id → JavaScript 문자열"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "exam17·exam18"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "반사형"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "pageIndex → hidden input의 value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "exam57"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "저장형"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "title → FAQ 제목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "exam19"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "저장형"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "content → 에디터 본문"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "exam20·exam21"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "저장형"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "content → 삭제 필터를 거친 본문"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "exam23"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "확인 순서는 입력 → 전송한 요청 → 서버 응답의 출력 문맥 → 브라우저 실행 결과다. 실습의 성공 알림은 마지막 결과를 보조하지만, 그것만으로 입력 위치나 다른 사용자에게 미치는 범위까지 설명할 수는 없다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. JavaScript 문자열 문맥의 반사형 XSS"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "항목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "내용"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원본"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "3일차 · 2026-11-04"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "확인 지점"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "https://lab.eqst.co.kr:8083/exam17/noticeview.php"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "입력값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "board_id"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "요청 방식"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GET"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공지사항 상세 화면의 board_id 값이 JavaScript 문자열에 반영되며 따옴표가 적절히 처리되지 않는 것을 확인하였다. 문자열과 함수 문맥을 벗어나 스크립트 실행을 유도하였고 실습 정답 알림을 확인하였다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "확인 과정"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "목록 화면의 pageIndex와 keyword를 확인하였다. 확인한 출력 위치에서는 특수 문자가 HTML 엔터티로 변환되어 이번 입력으로 실행을 확인하지 못하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "상세 화면에서 board_id가 전달되는 요청을 확인하고, 응답의 script 내부 fnEdit 함수에 값이 삽입되는 위치를 확인하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "JavaScript 문자열과 함수의 닫힘 구조를 고려한 입력을 사용하였다. HTML 텍스트 문맥과 JavaScript 문맥에 필요한 처리가 다름을 확인하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "원문의 실행 후 알림에서 실습 정답 응답을 확인하였다. 스크립트 실행의 영향 범위는 해당 실습 화면에서 확인한 수준으로 제한하였다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "목록 화면의 pageIndex와 keyword에서 <, >, 작은따옴표, 큰따옴표가 HTML 엔티티로 바뀌는 것을 확인했다. 이번 입력으로는 실행을 입증하지 못했으므로 게시물 상세의 board_id를 추가로 확인했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "board_id는 fnEdit 함수 안의 JavaScript 문자열에 들어갔다. 입력값이 화면에 보인다는 사실보다, HTML 본문·속성·JavaScript 중 어디에 들어가는지와 어떤 문자가 남는지가 중요했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "javascript"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "';}alert('xss'); function x(){//"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "원문 요청값은 ';}alert('xss');+function+x(){// 형태였다. 위 코드는 요청의 +를 공백으로 풀어 표시했다. 원래 문자열과 함수 경계를 닫고 alert를 넣은 뒤, 뒤쪽 코드가 문법 오류를 만들지 않도록 함수와 주석을 배치한 구조다. 서버가 만든 주변 스크립트에 의존하므로 어느 위치에서나 그대로 동작하는 공통 문자열은 아니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실제 입력 경로는 /exam17/noticeview.php의 board_id다. 원문 그림 8의 /xss/record.php 요청은 실습 채점 기록 요청이어서 취약한 원래 요청과 구분했다. 원본 XSS-2와 교정본은 같은 실습이므로 원본 기준으로 한 번만 포함했다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "결과와 보완점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "board_id가 반영되는 JavaScript 문맥에서 반사형 XSS 실행 결과가 확인되었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사용자가 조작된 요청을 열면 해당 사이트 문맥에서 스크립트가 실행될 수 있다. 계정 탈취나 실제 정보 유출까지 검증한 것은 아니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "원문 그림 8은 /xss/record.php 요청으로 보인다. 취약 요청과 정답 기록 요청을 구분하고, 최초 noticeview.php 요청·응답을 추가하면 재현성이 높아진다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7/76c80ec2-a4f0-55de-9cfd-76839ee89bc2.png",
+          "assetId": "76c80ec2-a4f0-55de-9cfd-76839ee89bc2",
+          "alt": "exam17 반사형 XSS 실습의 성공 알림. 입력 경로 자체는 본문의 noticeview.php 요청이다."
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그림 1. exam17 반사형 XSS 실습의 성공 알림. 입력 경로 자체는 본문의 noticeview.php 요청이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개선 방향: board_id를 서버에서 기대한 형식으로 검증하고, 사용자 입력을 실행 코드에 직접 연결하지 않는다. 필요한 데이터 출력에는 JavaScript 문자열과 HTML script 경계를 함께 고려한 인코딩을 적용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "향후 재검증 기준: 정상 상세 조회를 유지하면서 따옴표·괄호 등이 코드 구문으로 해석되지 않고 데이터로 처리되는지 확인한다. 이 기준으로 수정 후 재검증한 기록은 아직 없다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 페이지 이동을 유발하는 반사형 XSS"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "항목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "내용"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원본"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "4일차 · 2026-11-05"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "확인 지점"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "https://lab.eqst.co.kr:8083/exam18/noticeview.php"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "입력값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "board_id"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "요청 방식"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GET"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공지사항 상세 화면의 board_id가 JavaScript 문맥에 반영되는 지점을 이용하여 실습용 페이지 이동을 유도하였다. 원문에는 지정 경로로 이동시키는 입력과 실행 후 정답 알림이 제시되어 있다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "확인 과정"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "pageIndex와 keyword의 응답 반영 위치를 비교하여 HTML 엔터티 변환 여부를 확인하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "상세 화면의 board_id가 fnEdit 함수의 문자열에 들어가는 위치와 작은따옴표·괄호 처리 상태를 확인하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문자열과 함수 문맥을 종료한 뒤 document.location.href로 /exam18/location.php를 지정하는 입력을 사용하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "입력 요청과 실행 후 실습 정답 알림을 확인하였다. 실제 도착 URL이나 이동 요청 로그는 추가 증빙으로 보강할 수 있다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이전 실습처럼 목록의 pageIndex·keyword를 살펴본 뒤 상세 화면의 board_id로 이동했다. HTML 엔티티 변환이 보인 위치와 JavaScript 문자열에 그대로 들어가는 위치의 처리 방식이 달랐다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "javascript"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "'xss';}document.location.href='/exam18/location.php';{"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "위 문자열은 원문에 기록된 board_id 입력값이다. 이번 목표는 alert 자체가 아니라 지정된 /exam18/location.php로의 이동이었다. 입력값에서 문자열·함수 경계를 끝내고 document.location.href를 바꾸는 흐름으로 설명할 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "원본에는 해당 입력 요청과 실습 성공 알림이 있다. 다만 최종 주소창이나 목적지 요청 로그가 따로 남아 있지 않아, 정확한 리다이렉션 응답 전체를 확보했다고 쓰지는 않았다. 재현 기록을 보완한다면 원래 요청, 실행된 스크립트 문맥, 목적지 네트워크 요청을 한 묶음으로 남기는 편이 좋다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "결과와 보완점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실습 페이지 이동을 의도한 반사형 XSS 입력 이후 정답 알림이 확인되었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "조작된 요청을 연 사용자의 브라우저에서 페이지 이동 등 원치 않는 동작을 유발할 수 있다. 외부 사이트 이동이나 정보 유출은 별도로 검증하지 않았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정답 알림만으로 최종 도착 경로 전체를 입증하지 않는다. URL 변경 또는 네트워크 이동 요청을 함께 확인할 필요가 있다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7/92dbe4a6-f246-5099-8d88-42eec6b85527.png",
+          "assetId": "92dbe4a6-f246-5099-8d88-42eec6b85527",
+          "alt": "exam18 실습 성공 알림. 최종 이동 경로의 네트워크 로그는 별도로 남아 있지 않다."
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그림 2. exam18 실습 성공 알림. 최종 이동 경로의 네트워크 로그는 별도로 남아 있지 않다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개선 방향: 입력 식별자를 서버에서 검증하고 JavaScript 코드와 데이터를 분리한다. 문자열 출력에는 해당 문맥에 맞는 인코딩을 적용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "향후 재검증 기준: 조작된 board_id를 넣어도 브라우저의 위치가 변경되지 않고, 정상적인 공지사항 조회만 수행되는지 확인한다. 이 기준으로 수정 후 재검증한 기록은 아직 없다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 숨김 입력 속성 문맥의 반사형 XSS"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "항목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "내용"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원본"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "4일차 · 2026-11-05"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "확인 지점"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "https://lab.eqst.co.kr:8083/exam57/noticelist.php"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "입력값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "pageIndex"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "요청 방식"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GET"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "pageIndex가 hidden 입력 요소의 value 속성에 들어가는 위치에서 큰따옴표 처리가 불충분한 것을 확인하였다. 속성과 이벤트 처리기를 삽입한 실습에서 정답 알림이 확인되었다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "확인 과정"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "같은 pageIndex가 페이지 번호 표시와 hidden 입력 등 여러 위치에 반영되는 것을 비교하였다. 출력 위치에 따라 큰따옴표 처리 결과가 달랐다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "hidden 입력의 value 속성을 벗어나는 입력을 검토하였다. accesskey 방식의 시도에서는 실행 성공을 확인하지 못하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "content-visibility:auto와 관련 이벤트 처리기를 삽입한 요청·응답에서 해당 속성이 출력되는 것을 확인하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "실행 후 정답 알림을 확인하였다. 해당 이벤트의 지원 여부와 실행 조건은 브라우저·버전·렌더링 상태에 따라 달라질 수 있다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "같은 pageIndex라도 출력 위치에 따라 인코딩이 달랐다. 다른 위치에서는 특수 문자가 변환됐지만 hidden input의 value에는 큰따옴표가 남아 속성 경계를 닫을 수 있었다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "html"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<input value=\"xss1\" id=\"pageIndex\" name=\"pageIndex\" type=\"hidden\" />"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "먼저 accesskey와 onclick 조합을 시도했지만 해당 환경에서는 차단 안내와 함께 실행되지 않았다. 원문에 적힌 25H2·OS 빌드 번호는 Windows 정보이며 IE 버전으로 볼 수 없다. 키 조합도 브라우저와 운영체제에 따라 달라지므로 성공 조건처럼 일반화하지 않았다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "text"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "xss\" oncontentvisibilityautostatechange=\"alert('XSS')\" style=\"content-visibility:auto\""
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다음으로 content-visibility:auto와 관련 이벤트 처리기를 추가했고 실습 성공 화면을 확인했다. 이 이벤트는 요소의 렌더링 생략 상태가 바뀔 때 발생한다. 원문에서 성공한 결과와 별개로 모든 브라우저·요소 상태에서 항상 실행된다고 단정할 수는 없다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "MDN contentvisibilityautostatechange",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://developer.mozilla.org/en-US/docs/Web/API/Element/contentvisibilityautostatechange_event"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "원문 초반 요청 캡처 한 장에는 이전 문제인 /exam18 경로가 남아 있다. 이번 문제의 근거는 /exam57 요청과 그 결과로 구분했다. “hidden이라서 안전하다”는 판단 대신 속성 경계와 실행 가능한 이벤트가 있는지 확인한 실습이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "결과와 보완점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "HTML 속성 문맥에서 pageIndex 입력의 불충분한 인코딩과 실습 환경에서의 이벤트 실행 결과를 확인하였다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "숨겨진 입력 요소라도 출력 문맥을 벗어나 이벤트 처리기가 삽입되면 스크립트 실행에 영향을 줄 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Windows 11 25H2는 운영체제 버전이다. 이를 Internet Explorer 버전으로 기재하지 않으며, 지원하지 않는 브라우저에 실행 결과를 일반화하지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7/741d8600-36e2-5d64-aa4c-eb8f598ca7ce.png",
+          "assetId": "741d8600-36e2-5d64-aa4c-eb8f598ca7ce",
+          "alt": "hidden input 속성에 이벤트를 추가한 뒤 표시된 실습 성공 알림."
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그림 3. hidden input 속성에 이벤트를 추가한 뒤 표시된 실습 성공 알림."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개선 방향: 페이지 번호를 서버에서 정수로 검증하고 속성값에는 따옴표를 포함한 HTML 속성 인코딩을 적용한다. 사용자 입력으로 이벤트 속성이 생성되지 않도록 한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "향후 재검증 기준: 서로 다른 출력 위치 모두에서 따옴표가 속성을 종료하지 못하는지 확인하고, 지원 브라우저의 정상 페이지 이동 기능을 함께 점검한다. 이 기준으로 수정 후 재검증한 기록은 아직 없다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. FAQ 제목의 저장형 XSS"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "항목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "내용"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원본"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "4일차 · 2026-11-05"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "확인 지점"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "https://lab.eqst.co.kr:8083/exam19/faqview.php"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "입력값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "글 저장 시 title"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "요청 방식"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "저장 후 GET 조회"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "FAQ 제목에 입력한 스크립트가 저장 후 상세 화면에 실행 가능한 형태로 출력되는 것을 확인하였다. 실습은 본인만 조회 가능한 게시판에서 수행되었다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "확인 과정"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "FAQ 글쓰기 화면의 제목, 내용, 첨부파일명을 입력 후보로 확인하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "특수 문자 입력 후 저장 요청과 조회 응답을 비교하였다. 제목에 포함된 문자가 상세 화면에서 그대로 반영되는 지점을 확인하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "제목에 스크립트 입력을 저장한 뒤 faqview.php를 조회하였다. 응답의 제목 영역에 script 요소가 출력되는 것을 확인하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "실행 후 저장형 XSS의 정답 알림을 확인하였다. 저장한 글을 다시 조회한 결과가 저장형 판단의 핵심 근거이다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "FAQ 글쓰기에서 제목, 내용, 첨부파일 이름을 입력 후보로 살펴봤다. 특수 문자를 넣었을 때 어떻게 저장되고 다시 출력되는지 확인한 뒤, 제목(title)에 아래 입력을 사용했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "html"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<script>alert('xss')</script>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "저장한 글을 /exam19/faqview.php에서 다시 조회했을 때 응답에 스크립트가 남아 있었고 실행 결과를 확인했다. 코드의 따옴표는 복사 과정에서 생긴 곡선형 따옴표 대신 ASCII 작은따옴표로 통일했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "최종 실행 근거는 title에 대한 것이다. 다른 입력에도 문자가 남는다는 관찰만으로 내용·파일명 모두에서 스크립트 실행이 입증됐다고 확대하지 않는다. 문제는 본인만 볼 수 있는 FAQ였으므로 다른 사용자에게 전파되는 범위도 확인되지 않았다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "결과와 보완점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "제목 저장과 재조회 과정에서 스크립트 출력·실행 결과를 확인하였다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "저장된 콘텐츠가 조회될 때 실행될 수 있다. 본인 전용 게시판이므로 다른 사용자나 관리자에 대한 영향은 추가 검증이 필요하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "제목에서 확인한 실행 결과를 내용·첨부파일명 모두에 확대하지 않는다. 저장 요청의 정확한 처리 URL도 보완 대상이다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7/1000bcc4-6766-58e1-8681-8214251bc37b.png",
+          "assetId": "1000bcc4-6766-58e1-8681-8214251bc37b",
+          "alt": "제목에 저장한 스크립트를 다시 조회한 뒤 표시된 실습 성공 알림."
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그림 4. 제목에 저장한 스크립트를 다시 조회한 뒤 표시된 실습 성공 알림."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개선 방향: 일반 텍스트 제목에는 HTML 인코딩을 적용하고, 본문에서 HTML을 지원한다면 서버에서 허용된 요소와 속성만 남기는 정화를 적용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "향후 재검증 기준: 기존 저장 콘텐츠와 새로 저장한 콘텐츠를 모두 조회하여 스크립트가 실행되지 않는지 확인한다. 이 기준으로 수정 후 재검증한 기록은 아직 없다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. FAQ 본문 처리 미흡에 따른 저장형 XSS"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "항목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "내용"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원본"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "4일차 · 2026-11-05"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "확인 지점"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "https://lab.eqst.co.kr:8083/exam20/faqview.php"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "입력값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "글 저장 시 content"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "요청 방식"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "저장 후 GET 조회"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "에디터가 변환한 내용을 전송 요청에서 변경하자 스크립트가 저장되고 조회 응답에 출력되었다. 클라이언트의 입력 처리만으로는 서버가 저장·출력하는 콘텐츠의 안전성을 보장할 수 없음을 확인하였다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "확인 과정"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "제목과 내용의 특수 문자 입력을 비교하고, 전송 요청의 content 값이 에디터에서 변환되는 것을 확인하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "프록시에서 content의 전송값을 변경한 뒤 저장·조회 응답을 확인하였다. 제목과 본문의 출력 처리 결과를 구분하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "저장 요청의 content에 포함된 script 요소가 faqview.php의 본문 영역에 나타나는 것을 확인하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "저장형 XSS의 정답 알림을 확인하였다. 시험한 콘텐츠에 대해 서버의 최종 출력 처리가 충분하지 않음을 확인하였다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "에디터에서 넣은 기호가 전송 직전에 HTML 엔티티로 바뀌는 것을 확인했다. 이 변환이 서버에서도 강제되는지 보기 위해 Burp Suite에서 요청 본문의 content를 원래 문자로 바꾸었다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "text"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "content = <script>alert('xss')</script>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "요청을 변경한 뒤 저장된 글을 조회하자 content 위치에 스크립트가 출력되고 실행됐다. 클라이언트 에디터에서 제공하는 변환은 직접 만든 HTTP 요청까지 강제할 수 없다는 점을 확인했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실제 매개변수 이름은 content다. 원문에서 혼용한 contents·Content를 content로 맞췄다. 최종 요청 캡처에는 title과 content가 함께 변경되어 있어, 입력 지점 하나의 영향을 분리하려면 제목을 정상값으로 고정한 추가 비교가 필요하다. 응답의 content 위치에 코드가 남았다는 사실과 “서버에 아무 필터도 없다”는 결론은 구분했다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "결과와 보완점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "content를 변경해 저장한 뒤 조회했을 때 스크립트가 실행되는 결과를 확인하였다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "브라우저 에디터의 처리에 의존하면 직접 요청한 콘텐츠가 저장 후 실행될 수 있다. 다른 사용자에게 글이 노출되는지는 별도 확인이 필요하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "모든 서버 측 필터가 없다고 단정하지 않는다. 확인한 입력과 출력에 대해 방어가 불충분한 것으로 기술한다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7/7ddef9fc-0f55-5882-9e3f-8808c02d527f.png",
+          "assetId": "7ddef9fc-0f55-5882-9e3f-8808c02d527f",
+          "alt": "content 요청값을 변경한 뒤 표시된 exam20 실습 성공 알림."
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그림 5. content 요청값을 변경한 뒤 표시된 exam20 실습 성공 알림."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개선 방향: 서버에서 HTML 허용 목록 기반 정화를 수행하고, 출력 문맥에 맞게 인코딩한다. 에디터의 클라이언트 처리는 사용성 보조 수단으로 취급한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "향후 재검증 기준: 에디터를 거친 요청과 직접 작성한 요청을 모두 점검하고, 저장 후 재조회에서도 실행 가능한 script·이벤트 속성이 남지 않아야 한다. 이 기준으로 수정 후 재검증한 기록은 아직 없다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6. FAQ 본문 검증 우회에 따른 저장형 XSS"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "항목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "내용"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원본"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "4일차 · 2026-11-05"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "확인 지점"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "https://lab.eqst.co.kr:8083/exam21/faqview.php"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "입력값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "글 저장 시 content"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "요청 방식"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "저장 후 GET 조회"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "FAQ 본문을 전송 요청에서 변경하여 저장한 뒤 실행 가능한 script 요소가 출력되는 것을 확인하였다. exam20과 유사한 절차이지만 별도 실습 경로의 요청·응답으로 결과를 구분하였다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "확인 과정"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "제목과 본문 입력의 변환 결과를 확인하였다. 에디터에서 변환된 content 전송값을 프록시에서 변경하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "exam21의 저장 요청에서 title은 일반 문자열로 두고 content에 스크립트를 입력한 상태를 확인하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "faqview.php 조회 응답의 본문 영역에 script 요소가 출력되는 것을 확인하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "실행 후 실습 정답 알림을 확인하였다. 앞선 실습과의 방어 구현 차이는 소스 코드나 추가 비교 자료가 없어 확정하지 않았다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "exam21에서도 에디터의 인코딩 결과를 프록시에서 바꾼 뒤 저장·재조회하는 흐름을 확인했다. 최종 요청에서는 title을 asd로 두고 content에 스크립트를 넣어, 바로 앞 사례보다 변경 위치를 더 분명하게 보여 준다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "text"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "title: asd\ncontent: <script>alert('XSS')</script>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "원문에는 에디터의 HTML 기능을 이용하는 방법도 검토했지만 이번 조건에서 성공하지 못했다는 소감이 있다. 실제로 남아 있는 성공 근거는 요청 본문을 변경한 방식이다. 이전 문제와 풀이가 유사해도 서버 구현 전체가 같다고 결론 내리지는 않는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 사례의 비교 포인트는 “에디터가 보낸 값 → 프록시에서 바꾼 값 → 재조회 응답”이다. 서버에서 허용된 HTML을 정제하거나 일반 문자열로 출력하지 않으면, 클라이언트에서 먼저 수행한 인코딩만으로 저장형 XSS를 막을 수 없다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "결과와 보완점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "exam21의 content 저장·조회 과정에서 저장형 XSS 실행 결과를 확인하였다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "콘텐츠 작성자가 저장한 입력이 브라우저 코드로 해석될 수 있다. 본인 전용 조회 범위를 벗어나는 영향은 별도 검증 대상이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이전 실습과 결과가 유사하더라도 동일한 서버 구현이라는 뜻은 아니다. 이 사례의 원인 설명은 exam21에서 확인한 요청·응답 범위로 한정한다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7/7d9abf4f-7355-51ca-9337-60082a50fa32.png",
+          "assetId": "7d9abf4f-7355-51ca-9337-60082a50fa32",
+          "alt": "title은 일반 문자열로 두고 content에 스크립트를 넣은 요청 본문."
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그림 6. title은 일반 문자열로 두고 content에 스크립트를 넣은 요청 본문."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7/405ab1f5-73f4-5c31-8789-18a961ecde01.png",
+          "assetId": "405ab1f5-73f4-5c31-8789-18a961ecde01",
+          "alt": "exam21 실습의 성공 알림."
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그림 7. exam21 실습의 성공 알림."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개선 방향: 콘텐츠를 서버에서 정화하고 HTML 기능 허용 범위를 명확하게 제한한다. 문자열 일부 삭제나 클라이언트 에디터 처리만으로 방어하지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "향후 재검증 기준: 제목을 정상값으로 유지한 상태에서 content의 저장·재조회 및 실행 차단 여부를 확인한다. 이 기준으로 수정 후 재검증한 기록은 아직 없다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "7. 문자열 삭제 필터를 우회한 저장형 XSS"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "항목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "내용"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원본"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "4일차 · 2026-11-05"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "확인 지점"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "https://lab.eqst.co.kr:8083/exam23/faqview.php"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "입력값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "글 저장 시 content"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "요청 방식"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "저장 후 GET 조회"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "콘텐츠의 특정 문자열이 삭제되는 현상을 관찰하고, 처리 후 다시 실행 가능한 문자열이 형성되는 입력을 검증하였다. 조회 응답에 이미지의 onerror 처리기가 남고 실습 정답 알림이 표시되었다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "확인 과정"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "본문의 이미지 이벤트 입력이 처리된 뒤 onerror와 alert가 사라진 형태를 확인하였다. 이는 해당 입력에서 관찰한 필터 동작이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "필터가 문자열 일부를 제거한 뒤 다시 위험한 구문이 형성되는지 확인하기 위해 중첩된 문자열 형태의 입력을 사용하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "원문 저장 요청에서 oneonerrorrror 및 aalertlert가 포함된 입력을 확인하였다. 조회 응답에는 onerror=alert('XSS')가 표시되었다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "실습 정답 알림을 확인하였다. 입력→처리 후 응답→실행 결과를 연결하여 문자열 삭제 방식의 한계를 설명하였다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "content에 일반적인 img 이벤트 입력을 보냈을 때 onerror와 alert 문자열이 삭제되는 것을 관찰했다. 문자열 일부가 지워진 뒤 남은 앞뒤 문자가 다시 유효한 이름이 되는지 확인했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "html"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "<!-- 처음 확인한 입력 -->\n<img src=x onerror=alert('XSS')>\n\n<!-- 최종 요청에 넣은 입력 -->\n<img src=x oneonerrorrror=aalertlert('XSS')>\n\n<!-- 응답에서 확인한 형태 -->\n<img src=x onerror=alert('XSS')>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "oneonerrorrror에서 가운데 onerror가 한 번 제거되면 앞의 one와 뒤의 rror가 이어져 onerror가 된다. aalertlert도 가운데 alert가 제거되면 a와 lert가 이어져 alert가 된다. 원문 설명의 oneonerrorerror는 실제 요청과 다른 오타여서 요청 캡처의 oneonerrorrror로 맞췄다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "삭제되는 문자열과 복원된 출력은 확인했지만 서버 코드의 정확한 구현을 읽은 것은 아니다. 따라서 “한 번 치환하는 필터와 부합하는 결과”로 설명한다. 같은 단어를 반복 삭제하도록 바꾸는 것만으로 충분한 XSS 방어가 된다는 뜻도 아니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "원문 중간의 일부 캡처는 /exam21에서 가져온 것이어서 /exam23의 성공 근거로 사용하지 않았다. /exam23에 보낸 최종 요청, 반환된 이벤트 속성, 성공 알림을 기준으로 정리했다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "결과와 보완점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문자열 삭제 이후 실행 가능한 이벤트 처리기가 재구성되어 저장형 XSS가 발생한 결과를 확인하였다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "금지 문자열을 일부 삭제하는 방식은 콘텐츠를 안전하게 만들지 못할 수 있다. 저장된 콘텐츠를 조회하는 환경에 영향을 줄 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "원문 앞부분의 일부 캡처는 exam21 경로이다. 이 사례의 판정에는 exam23이 보이는 최종 응답과 실행 결과를 우선 사용한다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7/f8a18d1e-27a3-5f76-8d16-c2ef03beafeb.png",
+          "assetId": "f8a18d1e-27a3-5f76-8d16-c2ef03beafeb",
+          "alt": "중첩된 문자열을 content에 넣은 최종 요청 본문."
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그림 8. 중첩된 문자열을 content에 넣은 최종 요청 본문."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7/ad8a535f-db22-5a23-bb71-350b81da70e9.png",
+          "assetId": "ad8a535f-db22-5a23-bb71-350b81da70e9",
+          "alt": "exam23의 필터 우회 후 표시된 실습 성공 알림."
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그림 9. exam23의 필터 우회 후 표시된 실습 성공 알림."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개선 방향: 문자열 삭제에 의존하지 않고 HTML 구조를 해석하는 서버 측 정화를 적용한다. 허용하지 않은 이벤트 속성을 제거하고 일반 문자열은 문맥에 맞게 인코딩한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "향후 재검증 기준: 중첩 문자열 입력과 정상 이미지 콘텐츠를 함께 저장·조회하여 이벤트 실행은 차단되고 정상 기능은 유지되는지 확인한다. 이 기준으로 수정 후 재검증한 기록은 아직 없다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "대응 방법과 다음 검증"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일반 텍스트는 출력 문맥에 맞게 인코딩하고, HTML을 허용해야 하는 에디터는 검증된 HTML 정제 도구와 명시적인 허용 정책을 사용한다. 사용자 입력을 JavaScript 문자열이나 이벤트 속성 안에 직접 연결하는 구조도 줄여야 한다. HTML 엔티티 변환을 모든 문맥의 공통 해결책으로 취급하지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "OWASP Cross Site Scripting Prevention",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "서버에서 직접 받은 요청도 검증한다. 클라이언트 에디터의 변환·금지 문자 처리는 보조 기능이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "특정 단어를 지우는 블랙리스트만으로 처리하지 않는다. 삭제 후 문자열이 연결되거나 다른 표현이 허용되는 문제를 함께 고려한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "저장형은 저장 직후뿐 아니라 목록·상세·수정·관리자 화면처럼 다시 출력되는 모든 위치를 확인한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "입력 하나씩 바꾼 요청과 응답, 브라우저·버전, 실행 조건을 묶어 남긴다. CSP는 추가 방어로 사용하되 출력 처리의 대체 수단으로 삼지 않는다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "실습에서 정리한 점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "XSS-2 원본에서 배운 출력 문맥 분석을 이후 문제에도 적용했다. hidden 요소는 보이지 않아도 속성 문맥을 갖고, 에디터가 인코딩해도 요청을 직접 바꿀 수 있으며, 삭제 필터는 제거한 뒤 남는 문자열까지 봐야 했다. 제목·요청 경로·캡처가 서로 맞는지 확인하는 것도 풀이 자체만큼 중요했다. 제공되지 않은 XSS-8 등의 실습은 추가하지 않았다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "원본 기록"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "절"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원본 문서"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "3일차-2-XSS-2-유영택.docx"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "2"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "4일차-1-XSS-3-유영택.docx"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "3"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "4일차-2-XSS-4-유영택.docx"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "4"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "4일차-3-XSS-5-유영택 .docx"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "5"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "4일차-4-XSS-6-유영택.docx"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "6"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "4일차-5-XSS-7-유영택.docx"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "7"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "4일차-7-XSS-9-유영택.docx"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "참고 문서"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "OWASP Cross Site Scripting Prevention",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "MDN contentvisibilityautostatechange",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://developer.mozilla.org/en-US/docs/Web/API/Element/contentvisibilityautostatechange_event"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

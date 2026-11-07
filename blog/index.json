@@ -2364,6 +2364,94 @@
       "trashedAt": null,
       "path": "blog/entries/3e148b7f-e5d3-4645-9fbf-bfa8390c56d1.json",
       "sha": "740f235484663e4b0e1b7ff4918330a7d34bbe0f"
+    },
+    {
+      "id": "195deac9-942c-50cc-bb97-98c63f3af522",
+      "kind": "posts",
+      "slug": "pentest-lab-2026-sqli",
+      "title": "[모의해킹 실습] SQLi - UNION·오류 기반·Blind·정렬 조건",
+      "description": "1~3일차 SQL 인젝션 실습 7개를 통합했다. 우편번호 검색, 로그인, 연봉·날짜 검색, 정렬 기능의 입력 문맥과 참·거짓 응답을 비교하고 확인 범위와 대응 방법을 정리한다.",
+      "category": "SK Rookies / 수업 정리",
+      "tags": [
+        "SQLi",
+        "Oracle",
+        "MySQL",
+        "모의해킹"
+      ],
+      "date": "2026-11-07",
+      "updatedAt": "2026-11-07T06:11:23.541Z",
+      "publishedAt": "2026-11-07T06:11:23.541Z",
+      "status": "published",
+      "sourceDigest": "75747c6d9e34184695625ee2fcd33cb50d4078275e98754c13cc366d9958d163",
+      "trashedAt": null,
+      "path": "blog/entries/195deac9-942c-50cc-bb97-98c63f3af522.json",
+      "sha": "1a2011099e61c1293a2af64aed1536ffa3381bd7"
+    },
+    {
+      "id": "6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7",
+      "kind": "posts",
+      "slug": "pentest-lab-2026-xss",
+      "title": "[모의해킹 실습] XSS - 반사형·저장형과 출력 문맥",
+      "description": "3~4일차 XSS 실습 7개를 반사형 3개와 저장형 4개로 묶었다. JavaScript 문자열, hidden input, 에디터의 인코딩과 문자열 삭제 필터를 비교한다.",
+      "category": "SK Rookies / 수업 정리",
+      "tags": [
+        "XSS",
+        "JavaScript",
+        "출력 인코딩",
+        "모의해킹"
+      ],
+      "date": "2026-11-07",
+      "updatedAt": "2026-11-07T06:11:23.541Z",
+      "publishedAt": "2026-11-07T06:11:23.541Z",
+      "status": "published",
+      "sourceDigest": "4cb743c04c9d3ff9a86f5e530fe2df6fa17966d449e85e494c6f746775cec2f2",
+      "trashedAt": null,
+      "path": "blog/entries/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7.json",
+      "sha": "ea2ee1f4702982fba16ec19080af8e7254774a53"
+    },
+    {
+      "id": "e69e7e91-d2c3-56da-9a26-7d555f273aa1",
+      "kind": "posts",
+      "slug": "pentest-lab-2026-csrf",
+      "title": "[모의해킹 실습] CSRF - GET·POST·토큰과 XSS의 연결",
+      "description": "5일차 권한 변경 실습 3개를 정리했다. 이미지 GET 요청, 저장형 XSS의 POST 요청, 정상 CSRF 토큰을 읽는 흐름을 구분하고 각 결과의 의미와 방어 방법을 설명한다.",
+      "category": "SK Rookies / 수업 정리",
+      "tags": [
+        "CSRF",
+        "XSS",
+        "권한 검증",
+        "모의해킹"
+      ],
+      "date": "2026-11-07",
+      "updatedAt": "2026-11-07T06:11:23.541Z",
+      "publishedAt": "2026-11-07T06:11:23.541Z",
+      "status": "published",
+      "sourceDigest": "33ea4cb89f11da64370f8e42089f340fc9d135c1e83e2e1814c25e7b42d126c1",
+      "trashedAt": null,
+      "path": "blog/entries/e69e7e91-d2c3-56da-9a26-7d555f273aa1.json",
+      "sha": "3c630b94a0dcd0ff4e82d6253e7702cbec262341"
+    },
+    {
+      "id": "fd66532a-6d6b-5d33-a1dd-0ce18a7cdc16",
+      "kind": "posts",
+      "slug": "pentest-lab-2026-session",
+      "title": "[모의해킹 실습] 세션 - 쿠키 변조와 서버 측 검증",
+      "description": "5일차 sessionID 쿠키 변경 실습을 정리했다. 힌트로 주어진 식별자 변경의 결과, 세션 탈취와의 차이, 서버에서 확인해야 할 사용자·권한 연결을 살펴본다.",
+      "category": "SK Rookies / 수업 정리",
+      "tags": [
+        "Session",
+        "Cookie",
+        "인증",
+        "모의해킹"
+      ],
+      "date": "2026-11-07",
+      "updatedAt": "2026-11-07T06:11:23.541Z",
+      "publishedAt": "2026-11-07T06:11:23.541Z",
+      "status": "published",
+      "sourceDigest": "e4d3b63fe722044e8185bda9d8a2b4095de9775cae3968eccbd5d36d36d82c30",
+      "trashedAt": null,
+      "path": "blog/entries/fd66532a-6d6b-5d33-a1dd-0ce18a7cdc16.json",
+      "sha": "9a00aa445d919151565f55c5611c3dca99454af5"
     }
   ],
   "taxonomy": {
