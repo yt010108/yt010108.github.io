@@ -2501,6 +2501,24 @@
       "trashedAt": null,
       "path": "blog/entries/16cf4f39-65cf-42cf-97ad-e485e2185a83.json",
       "sha": "33fc34c986a8b96717917f3ea0ce26e65b94d7fd"
+    },
+    {
+      "id": "93e48ea8-fb1b-48d7-9658-303596d46af6",
+      "kind": "posts",
+      "slug": "file-download",
+      "title": "file download",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-09",
+      "updatedAt": "2026-11-09T07:16:34.082Z",
+      "publishedAt": "2026-11-09T07:16:34.082Z",
+      "status": "published",
+      "sourceDigest": "7b8d192ca5d512b02683d90817cdc98a7e1ac135a8ca73b8bfbc4943bcafcefb",
+      "trashedAt": null,
+      "path": "blog/entries/93e48ea8-fb1b-48d7-9658-303596d46af6.json",
+      "sha": "c93b0188ec006e7b0b399c808685666f603c7c0c"
     }
   ],
   "taxonomy": {
