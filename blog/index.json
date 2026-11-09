@@ -2483,6 +2483,24 @@
       "trashedAt": null,
       "path": "blog/entries/fd66532a-6d6b-5d33-a1dd-0ce18a7cdc16.json",
       "sha": "555204a74ab625ad2cd61f1842133c2e850958e0"
+    },
+    {
+      "id": "16cf4f39-65cf-42cf-97ad-e485e2185a83",
+      "kind": "posts",
+      "slug": "정보노출",
+      "title": "정보노출",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-09",
+      "updatedAt": "2026-11-09T00:45:50.724Z",
+      "publishedAt": "2026-11-09T00:45:50.724Z",
+      "status": "published",
+      "sourceDigest": "16a51b639e2d45402450ee117b49db2542c989753a1469fcdd2da5ea36490fbf",
+      "trashedAt": null,
+      "path": "blog/entries/16cf4f39-65cf-42cf-97ad-e485e2185a83.json",
+      "sha": "33fc34c986a8b96717917f3ea0ce26e65b94d7fd"
     }
   ],
   "taxonomy": {

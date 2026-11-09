@@ -1,0 +1,163 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "16cf4f39-65cf-42cf-97ad-e485e2185a83",
+  "title": "정보노출",
+  "kind": "posts",
+  "slug": "정보노출",
+  "description": "",
+  "category": "",
+  "date": "2026-11-09",
+  "tags": [],
+  "series": "",
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-09T00:45:50.724Z",
+  "updatedAt": "2026-11-09T00:45:50.724Z",
+  "sourceDigest": "16a51b639e2d45402450ee117b49db2542c989753a1469fcdd2da5ea36490fbf",
+  "assets": [
+    {
+      "id": "198d7c16-c6c5-4914-a978-5f3a5a7b860b",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/16cf4f39-65cf-42cf-97ad-e485e2185a83/198d7c16-c6c5-4914-a978-5f3a5a7b860b.png",
+      "sha": "4962ee8d76eecab6a37e984f450043acc08044db"
+    },
+    {
+      "id": "582d397f-bc18-4111-bbb9-7b39d3686c60",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/16cf4f39-65cf-42cf-97ad-e485e2185a83/582d397f-bc18-4111-bbb9-7b39d3686c60.png",
+      "sha": "2d832ad854b933138e7e25ead92ff3826f6f9601"
+    },
+    {
+      "id": "e4192d75-6d25-4abc-abbc-81f7fa120e80",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/16cf4f39-65cf-42cf-97ad-e485e2185a83/e4192d75-6d25-4abc-abbc-81f7fa120e80.png",
+      "sha": "fb6c5c1d783992bdc5b56936ef0450043dbf54cf"
+    },
+    {
+      "id": "b99f5926-161c-4f81-a224-3c20109aacf2",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/16cf4f39-65cf-42cf-97ad-e485e2185a83/b99f5926-161c-4f81-a224-3c20109aacf2.png",
+      "sha": "6709f9a5859a8332fa02327eb38d94b7c312a11f"
+    },
+    {
+      "id": "dd196fe8-3b6a-4e12-8200-752d9a06b966",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/16cf4f39-65cf-42cf-97ad-e485e2185a83/dd196fe8-3b6a-4e12-8200-752d9a06b966.png",
+      "sha": "3787965420d039f501f9d3ebd6a844274f7cf98e"
+    },
+    {
+      "id": "0ab14a44-385e-47c2-8a67-185d718aa766",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/16cf4f39-65cf-42cf-97ad-e485e2185a83/0ab14a44-385e-47c2-8a67-185d718aa766.png",
+      "sha": "1007c8dcb92ae065ae400efe49992cfa5732ce98"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "API 진단 "
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/16cf4f39-65cf-42cf-97ad-e485e2185a83/198d7c16-c6c5-4914-a978-5f3a5a7b860b.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "198d7c16-c6c5-4914-a978-5f3a5a7b860b"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/16cf4f39-65cf-42cf-97ad-e485e2185a83/582d397f-bc18-4111-bbb9-7b39d3686c60.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "582d397f-bc18-4111-bbb9-7b39d3686c60"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/16cf4f39-65cf-42cf-97ad-e485e2185a83/e4192d75-6d25-4abc-abbc-81f7fa120e80.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "e4192d75-6d25-4abc-abbc-81f7fa120e80"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "익명정보 AI 데이터 수집, 국외정보 이전, 병원 환자정보"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "별도로 작성된 동일한 에러 페이지로 리다이렉트"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/16cf4f39-65cf-42cf-97ad-e485e2185a83/b99f5926-161c-4f81-a224-3c20109aacf2.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "b99f5926-161c-4f81-a224-3c20109aacf2"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/16cf4f39-65cf-42cf-97ad-e485e2185a83/dd196fe8-3b6a-4e12-8200-752d9a06b966.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "dd196fe8-3b6a-4e12-8200-752d9a06b966"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/16cf4f39-65cf-42cf-97ad-e485e2185a83/0ab14a44-385e-47c2-8a67-185d718aa766.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "0ab14a44-385e-47c2-8a67-185d718aa766"
+        }
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  }
+}
