@@ -14,10 +14,10 @@
     "MySQL",
     "모의해킹"
   ],
-  "status": "published",
-  "trashedAt": null,
+  "status": "trash",
+  "trashedAt": "2026-11-09T07:20:06.123Z",
   "publishedAt": "2026-11-07T06:11:23.541Z",
-  "updatedAt": "2026-11-07T06:34:37.693Z",
+  "updatedAt": "2026-11-09T07:20:06.123Z",
   "sourceDigest": "85a2a8d610cce3402f662d6c9c08bf8711cd2e335a6e753b04a3e68360243ca0",
   "assets": [
     {

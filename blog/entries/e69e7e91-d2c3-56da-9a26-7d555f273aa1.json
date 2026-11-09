@@ -14,10 +14,10 @@
     "권한 검증",
     "모의해킹"
   ],
-  "status": "published",
-  "trashedAt": null,
+  "status": "trash",
+  "trashedAt": "2026-11-09T07:20:06.123Z",
   "publishedAt": "2026-11-07T06:11:23.541Z",
-  "updatedAt": "2026-11-07T06:34:37.693Z",
+  "updatedAt": "2026-11-09T07:20:06.123Z",
   "sourceDigest": "cfdfd2df4d8a31f7496d9a365947bc2a623584ede17ffea8ea114af6bad4df79",
   "assets": [
     {

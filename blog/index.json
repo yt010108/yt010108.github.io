@@ -2265,13 +2265,13 @@
       "series": "SK Rookies",
       "tags": [],
       "date": "2026-11-02",
-      "updatedAt": "2026-11-07T06:10:47.772Z",
+      "updatedAt": "2026-11-09T07:20:06.123Z",
       "publishedAt": "2026-11-02T07:14:08.726Z",
-      "status": "published",
+      "status": "trash",
       "sourceDigest": "2739a8d7d97926fe9eba0461268f8727766e8ce8872e0422c6af4aa951102e29",
-      "trashedAt": null,
+      "trashedAt": "2026-11-09T07:20:06.123Z",
       "path": "blog/entries/dcd21fcf-0221-47da-b0ad-81538d3a7ad1.json",
-      "sha": "657d2652d8291769afd38ba7d5fe406905989274"
+      "sha": "b8ac7904e18699bfa8da82ebe1c3e828966cd1fe"
     },
     {
       "id": "7db82a3d-ad9a-4b7e-b6ee-23d5c7b04f29",
@@ -2407,13 +2407,13 @@
         "모의해킹"
       ],
       "date": "2026-11-07",
-      "updatedAt": "2026-11-07T06:34:37.693Z",
+      "updatedAt": "2026-11-09T07:20:06.123Z",
       "publishedAt": "2026-11-07T06:11:23.541Z",
-      "status": "published",
+      "status": "trash",
       "sourceDigest": "85a2a8d610cce3402f662d6c9c08bf8711cd2e335a6e753b04a3e68360243ca0",
-      "trashedAt": null,
+      "trashedAt": "2026-11-09T07:20:06.123Z",
       "path": "blog/entries/195deac9-942c-50cc-bb97-98c63f3af522.json",
-      "sha": "fa2b1ececf9c2bfe46fc98f529d35a3b4d09d557"
+      "sha": "062c25d0314253b17fd926e7243e412306f7a217"
     },
     {
       "id": "6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7",
@@ -2430,13 +2430,13 @@
         "모의해킹"
       ],
       "date": "2026-11-07",
-      "updatedAt": "2026-11-07T06:34:37.693Z",
+      "updatedAt": "2026-11-09T07:20:06.123Z",
       "publishedAt": "2026-11-07T06:11:23.541Z",
-      "status": "published",
+      "status": "trash",
       "sourceDigest": "07368547d37c67669982b38a96665e4fd36bc4da3c5f42a2515d123ffa2303e0",
-      "trashedAt": null,
+      "trashedAt": "2026-11-09T07:20:06.123Z",
       "path": "blog/entries/6c5b1c09-ff15-54c3-aaa5-6280c1a5f2e7.json",
-      "sha": "d408c1d21659e9bdae6bc541b8f75dee280427ee"
+      "sha": "e6cd6623534f7f4945dcd4edce69e7f7bb9cfee4"
     },
     {
       "id": "e69e7e91-d2c3-56da-9a26-7d555f273aa1",
@@ -2453,13 +2453,13 @@
         "모의해킹"
       ],
       "date": "2026-11-07",
-      "updatedAt": "2026-11-07T06:34:37.693Z",
+      "updatedAt": "2026-11-09T07:20:06.123Z",
       "publishedAt": "2026-11-07T06:11:23.541Z",
-      "status": "published",
+      "status": "trash",
       "sourceDigest": "cfdfd2df4d8a31f7496d9a365947bc2a623584ede17ffea8ea114af6bad4df79",
-      "trashedAt": null,
+      "trashedAt": "2026-11-09T07:20:06.123Z",
       "path": "blog/entries/e69e7e91-d2c3-56da-9a26-7d555f273aa1.json",
-      "sha": "0c9a775ad017714ac343357dc9cc8cc4fa2cdb3b"
+      "sha": "3572f6664d674c8c33cbaf5712abdbe1b733f3d9"
     },
     {
       "id": "fd66532a-6d6b-5d33-a1dd-0ce18a7cdc16",
@@ -2476,13 +2476,13 @@
         "모의해킹"
       ],
       "date": "2026-11-07",
-      "updatedAt": "2026-11-07T06:34:37.693Z",
+      "updatedAt": "2026-11-09T07:20:06.123Z",
       "publishedAt": "2026-11-07T06:11:23.541Z",
-      "status": "published",
+      "status": "trash",
       "sourceDigest": "d26fdfa9e5322194f61aea1e29094acbb7ee910e40b62697cf281f37c216e82b",
-      "trashedAt": null,
+      "trashedAt": "2026-11-09T07:20:06.123Z",
       "path": "blog/entries/fd66532a-6d6b-5d33-a1dd-0ce18a7cdc16.json",
-      "sha": "555204a74ab625ad2cd61f1842133c2e850958e0"
+      "sha": "ad81cad94211b3ea6164384323235db4108cc0b1"
     },
     {
       "id": "16cf4f39-65cf-42cf-97ad-e485e2185a83",
@@ -2494,13 +2494,13 @@
       "series": "",
       "tags": [],
       "date": "2026-11-09",
-      "updatedAt": "2026-11-09T00:45:50.724Z",
+      "updatedAt": "2026-11-09T07:20:06.123Z",
       "publishedAt": "2026-11-09T00:45:50.724Z",
-      "status": "published",
+      "status": "trash",
       "sourceDigest": "16a51b639e2d45402450ee117b49db2542c989753a1469fcdd2da5ea36490fbf",
-      "trashedAt": null,
+      "trashedAt": "2026-11-09T07:20:06.123Z",
       "path": "blog/entries/16cf4f39-65cf-42cf-97ad-e485e2185a83.json",
-      "sha": "33fc34c986a8b96717917f3ea0ce26e65b94d7fd"
+      "sha": "2e73f1a58f359cab87d073087a3ac3a83a8c6f93"
     },
     {
       "id": "93e48ea8-fb1b-48d7-9658-303596d46af6",
@@ -2512,13 +2512,13 @@
       "series": "",
       "tags": [],
       "date": "2026-11-09",
-      "updatedAt": "2026-11-09T07:16:34.082Z",
+      "updatedAt": "2026-11-09T07:20:06.123Z",
       "publishedAt": "2026-11-09T07:16:34.082Z",
-      "status": "published",
+      "status": "trash",
       "sourceDigest": "7b8d192ca5d512b02683d90817cdc98a7e1ac135a8ca73b8bfbc4943bcafcefb",
-      "trashedAt": null,
+      "trashedAt": "2026-11-09T07:20:06.123Z",
       "path": "blog/entries/93e48ea8-fb1b-48d7-9658-303596d46af6.json",
-      "sha": "c93b0188ec006e7b0b399c808685666f603c7c0c"
+      "sha": "344ab73c1868502e460fcb9884131d6c2d6aadc7"
     }
   ],
   "taxonomy": {

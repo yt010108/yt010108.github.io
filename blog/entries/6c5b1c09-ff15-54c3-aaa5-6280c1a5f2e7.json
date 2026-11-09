@@ -14,10 +14,10 @@
     "출력 인코딩",
     "모의해킹"
   ],
-  "status": "published",
-  "trashedAt": null,
+  "status": "trash",
+  "trashedAt": "2026-11-09T07:20:06.123Z",
   "publishedAt": "2026-11-07T06:11:23.541Z",
-  "updatedAt": "2026-11-07T06:34:37.693Z",
+  "updatedAt": "2026-11-09T07:20:06.123Z",
   "sourceDigest": "07368547d37c67669982b38a96665e4fd36bc4da3c5f42a2515d123ffa2303e0",
   "assets": [
     {

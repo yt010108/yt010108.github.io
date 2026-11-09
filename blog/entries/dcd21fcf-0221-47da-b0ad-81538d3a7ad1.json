@@ -9,10 +9,10 @@
   "category": "Security / Web Security",
   "date": "2026-11-02",
   "tags": [],
-  "status": "published",
-  "trashedAt": null,
+  "status": "trash",
+  "trashedAt": "2026-11-09T07:20:06.123Z",
   "publishedAt": "2026-11-02T07:14:08.726Z",
-  "updatedAt": "2026-11-07T06:10:47.772Z",
+  "updatedAt": "2026-11-09T07:20:06.123Z",
   "sourceDigest": "2739a8d7d97926fe9eba0461268f8727766e8ce8872e0422c6af4aa951102e29",
   "assets": [
     {

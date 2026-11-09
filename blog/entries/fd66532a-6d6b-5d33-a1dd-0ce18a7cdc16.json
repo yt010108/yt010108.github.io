@@ -14,10 +14,10 @@
     "인증",
     "모의해킹"
   ],
-  "status": "published",
-  "trashedAt": null,
+  "status": "trash",
+  "trashedAt": "2026-11-09T07:20:06.123Z",
   "publishedAt": "2026-11-07T06:11:23.541Z",
-  "updatedAt": "2026-11-07T06:34:37.693Z",
+  "updatedAt": "2026-11-09T07:20:06.123Z",
   "sourceDigest": "d26fdfa9e5322194f61aea1e29094acbb7ee910e40b62697cf281f37c216e82b",
   "assets": [
     {
