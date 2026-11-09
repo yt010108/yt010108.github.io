@@ -1,0 +1,27 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "81517379-3e97-4500-bbe5-db0aefd2ab3e",
+  "title": "webshell기깔난거 하나 만들어보자",
+  "kind": "notes",
+  "slug": "webshell기깔난거-하나-만들어보자",
+  "description": "",
+  "category": "",
+  "date": "2026-11-09",
+  "tags": [],
+  "series": "",
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-09T08:28:42.639Z",
+  "updatedAt": "2026-11-09T08:28:42.639Z",
+  "sourceDigest": "57be4457d20473c13e2c782b7a56a9e83114d838c55ab0c97c6c0d44ac917f24",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph"
+      }
+    ]
+  }
+}
