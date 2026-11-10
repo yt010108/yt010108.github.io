@@ -2555,6 +2555,24 @@
       "trashedAt": null,
       "path": "blog/entries/67b4c474-efa6-4ee9-8661-8f1e73f7a488.json",
       "sha": "f3cda310e47d019efed3b696dcb391a4944a0fc9"
+    },
+    {
+      "id": "45dc474c-7c6a-465a-a3d4-aeaba99aee2b",
+      "kind": "posts",
+      "slug": "ㅁㄴㅇ",
+      "title": "ssrf",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-10",
+      "updatedAt": "2026-11-10T13:20:16.455Z",
+      "publishedAt": "2026-11-10T13:20:16.455Z",
+      "status": "published",
+      "sourceDigest": "f942cd3a4eb5ad58d4c9075e9c184d820409270dc419ce9db12ffed7f66ddbf4",
+      "trashedAt": null,
+      "path": "blog/entries/45dc474c-7c6a-465a-a3d4-aeaba99aee2b.json",
+      "sha": "3f5054389e7e13108850f20e65bcef5ad8df58ec"
     }
   ],
   "taxonomy": {

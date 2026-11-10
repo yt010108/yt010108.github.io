@@ -1,0 +1,92 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "45dc474c-7c6a-465a-a3d4-aeaba99aee2b",
+  "title": "ssrf",
+  "kind": "posts",
+  "slug": "ㅁㄴㅇ",
+  "description": "",
+  "category": "",
+  "date": "2026-11-10",
+  "tags": [],
+  "series": "",
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-10T13:20:16.455Z",
+  "updatedAt": "2026-11-10T13:20:16.455Z",
+  "sourceDigest": "f942cd3a4eb5ad58d4c9075e9c184d820409270dc419ce9db12ffed7f66ddbf4",
+  "assets": [
+    {
+      "id": "cf7629ad-3174-4a36-807c-25b77db243ff",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/45dc474c-7c6a-465a-a3d4-aeaba99aee2b/cf7629ad-3174-4a36-807c-25b77db243ff.png",
+      "sha": "0fe76c8aff6fab015b5ada8e8a7f772cae30c358"
+    },
+    {
+      "id": "5d9e1941-425a-497b-814f-bb0b314f454d",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/45dc474c-7c6a-465a-a3d4-aeaba99aee2b/5d9e1941-425a-497b-814f-bb0b314f454d.png",
+      "sha": "465caac5e2a09e2393389ea178a073620533e3eb"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "file:///etc/apache2/apache2.conf"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "code"
+              }
+            ],
+            "text": "./admin.php"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/45dc474c-7c6a-465a-a3d4-aeaba99aee2b/cf7629ad-3174-4a36-807c-25b77db243ff.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "cf7629ad-3174-4a36-807c-25b77db243ff"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/45dc474c-7c6a-465a-a3d4-aeaba99aee2b/5d9e1941-425a-497b-814f-bb0b314f454d.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "5d9e1941-425a-497b-814f-bb0b314f454d"
+        }
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  }
+}
