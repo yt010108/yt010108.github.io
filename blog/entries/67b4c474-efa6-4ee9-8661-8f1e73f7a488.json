@@ -1,0 +1,90 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "67b4c474-efa6-4ee9-8661-8f1e73f7a488",
+  "title": "파리미터 변조",
+  "kind": "posts",
+  "slug": "파리미터-변조",
+  "description": "",
+  "category": "",
+  "date": "2026-11-10",
+  "tags": [],
+  "series": "",
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-10T00:35:32.042Z",
+  "updatedAt": "2026-11-10T00:35:32.042Z",
+  "sourceDigest": "f1f3c6508785f13c012cb56acebc7adb92842dae408ad79d930a9ced1bf8c19c",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "효자종목"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "타인 변경 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "인증 vs 인가"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "인증<- 로그인 전에 타인의 권한을 이용가능"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "인가 <-로그인 후"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "csrf, xss<-키로거 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대응방안 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  }
+}

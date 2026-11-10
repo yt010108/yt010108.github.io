@@ -2537,6 +2537,24 @@
       "trashedAt": null,
       "path": "blog/entries/81517379-3e97-4500-bbe5-db0aefd2ab3e.json",
       "sha": "406b48ffe312ded4f0dfcfe282b3f2dc9bdf86a7"
+    },
+    {
+      "id": "67b4c474-efa6-4ee9-8661-8f1e73f7a488",
+      "kind": "posts",
+      "slug": "파리미터-변조",
+      "title": "파리미터 변조",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-10",
+      "updatedAt": "2026-11-10T00:35:32.042Z",
+      "publishedAt": "2026-11-10T00:35:32.042Z",
+      "status": "published",
+      "sourceDigest": "f1f3c6508785f13c012cb56acebc7adb92842dae408ad79d930a9ced1bf8c19c",
+      "trashedAt": null,
+      "path": "blog/entries/67b4c474-efa6-4ee9-8661-8f1e73f7a488.json",
+      "sha": "f3cda310e47d019efed3b696dcb391a4944a0fc9"
     }
   ],
   "taxonomy": {
