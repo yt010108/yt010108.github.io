@@ -729,13 +729,14 @@ async function unlockAdmin() {
     const route = location.hash;
     const linkedEntry = linkedEntryRoute(route);
     manager.setStatus(route === "#drafts" ? "draft" : route === "#trash" ? "trash" : "all");
-    setView(route === "#media" ? "media" : route === "#site" ? "site" : route === "#dashboard" ? "dashboard" : route === "#taxonomy" ? "taxonomy" : !["#write", "#new-note"].includes(route));
+    setView(route === "#media" ? "media" : route === "#site" ? "site" : route === "#dashboard" ? "dashboard" : route === "#taxonomy" ? "taxonomy" : !["#write", "#new-post", "#new-note"].includes(route));
     await manager.refresh();
     if (route === "#taxonomy") await taxonomy.refresh();
     if (route === "#dashboard") await dashboardManager.refresh();
     if (route === "#media") await mediaManager.refresh();
     if (route === "#site") await siteManager.refresh();
     if (route === "#new-note") await beginNew("notes");
+    if (route === "#new-post") await beginNew("posts");
     if (!repository.connected || repository.generation !== generation) return;
     $("github-dialog").append($("github-form"));
     document.body.classList.remove("is-locked");
@@ -1036,6 +1037,7 @@ window.addEventListener("hashchange", () => {
   else if (location.hash === "#media") openSiteSection("media");
   else if (location.hash === "#site") openSiteSection("site");
   else if (location.hash === "#new-note") beginNew("notes");
+  else if (location.hash === "#new-post") beginNew("posts");
   else if (linkedEntry) openLinkedEntry(linkedEntry.id, linkedEntry.action, true, linkedEntry.kind);
   else if (["#manage", "#drafts", "#trash"].includes(location.hash)) openManager(location.hash === "#drafts" ? "draft" : location.hash === "#trash" ? "trash" : "all");
 });
