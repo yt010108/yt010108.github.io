@@ -1,0 +1,229 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "d3c61628-ecf9-44af-a37f-de565add67f8",
+  "title": "GPT 피드백",
+  "kind": "posts",
+  "slug": "gpt-피드백",
+  "description": "",
+  "category": "",
+  "date": "2026-11-11",
+  "tags": [],
+  "series": "",
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-12T16:00:00.015Z",
+  "updatedAt": "2026-11-12T16:00:00.015Z",
+  "sourceDigest": "e1a967b266d6f7c081aac0ef185a75cf2e382a681e729beaa281e494e8b58711",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "pageIndex, sorting, sortingAd, startDt, endDt, searchType, keyword"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일단 step 이런거는 ~확인 이런식으로 끝내줘 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 지금 SQL Injection 관련은 예상 쿼리까지 넣어야해 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ],
+            "text": "SQL Injection (Union)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ],
+            "text": "야 그리고 첫번째 사진에 위에 브라우저 부분 지워줘 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ],
+            "text": "일단 스탭이 9까지 가는데 지금 너무 길어 테이블 조회하는 거만 넣고 5.1.1-6,7은 빼줘"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ],
+            "text": ". SQL Injection (Error) "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[사진 5.1.2-16] 열 이름 조회 결과 1 빼주고 필요한 것들 id랑 pw만 남겨 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ],
+            "text": "SQL Injection (Blind)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ],
+            "text": ". SQL Injection (Join)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ],
+            "text": "5.1.6. SQL Injection (날짜)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[사진 5.1.6-19] 네 번째 문자 L 확인 이런거에 입력값 다 넣어줘 페이로드 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[사진 5.1.6-12] SYS.DATABASE_NAME 표현식 확인이거 빼 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그리고 xss에 결과가 아니라 뭐가 필터링 된건지 관한 내용까지 넣어야해 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ],
+            "text": "XSS 4번에 "
+          },
+          {
+            "type": "text",
+            "text": "accesskey 관련 내용 빼줘 oncontentvisibilityautostatechange이거로 풀었으니까 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "상세 정보에 조금 더 뭐가 필터링 되었고 어떻게 우회했는 지에 대해서 조금 더 자세히 써줄래 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ],
+            "text": "5.2.22. SSRF (2) 외부 실습 서버는 아니고 flask서버로"
+          }
+        ]
+      }
+    ]
+  }
+}
