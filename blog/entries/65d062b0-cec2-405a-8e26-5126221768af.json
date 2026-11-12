@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-12T12:34:37.112Z",
-  "updatedAt": "2026-11-12T12:34:37.112Z",
-  "sourceDigest": "13d3d7dde9913e4ee6e5d08cccb1f0f9a73747f2a4f7c5dcc6fd20918700d8c6",
+  "updatedAt": "2026-11-12T12:37:24.389Z",
+  "sourceDigest": "efc6e101c952f99ccba58860a23165c01e8a3f0df2d196c461cef3fdf951c898",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -463,6 +463,15 @@
           {
             "type": "text",
             "text": "쇼9 수정"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "[사진 5.4.1-1] 상품 상세 화면의 연봉·대출 한도"
           }
         ]
       }
