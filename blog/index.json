@@ -2609,6 +2609,24 @@
       "trashedAt": null,
       "path": "blog/entries/65d062b0-cec2-405a-8e26-5126221768af.json",
       "sha": "ccfad0b91137c43741aced80e0d6ee439bc2ef8a"
+    },
+    {
+      "id": "0af59755-0549-4fdb-8848-892a9a9a499a",
+      "kind": "posts",
+      "slug": "untitled-2026-11-11",
+      "title": "시험",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-11",
+      "updatedAt": "2026-11-12T12:34:51.009Z",
+      "publishedAt": "2026-11-12T12:34:51.009Z",
+      "status": "published",
+      "sourceDigest": "be0f44b2300b2dd3849093a55d7b7124d87e489d58e14e613cd9e09ff9310871",
+      "trashedAt": null,
+      "path": "blog/entries/0af59755-0549-4fdb-8848-892a9a9a499a.json",
+      "sha": "619415538161acce9620e23eec50adfb67d62bdc"
     }
   ],
   "taxonomy": {

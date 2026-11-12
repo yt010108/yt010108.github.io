@@ -1,0 +1,389 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "0af59755-0549-4fdb-8848-892a9a9a499a",
+  "title": "시험",
+  "kind": "posts",
+  "slug": "untitled-2026-11-11",
+  "description": "",
+  "category": "",
+  "date": "2026-11-11",
+  "tags": [],
+  "series": "",
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-12T12:34:51.009Z",
+  "updatedAt": "2026-11-12T12:34:51.009Z",
+  "sourceDigest": "be0f44b2300b2dd3849093a55d7b7124d87e489d58e14e613cd9e09ff9310871",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "암호화 "
+          }
+        ]
+      },
+      {
+        "type": "bulletList",
+        "content": [
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "혼돈은 주로 키와 암호문의 관계를 복잡하게 만드는 원리이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "평문 비트의 영향과 통계적 특성이 넓게 퍼진다는 설명이 확산이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "치환은 비선형 변환 등에 사용하는 구현 기법이다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "라운드는 변환을 반복하는 구조이며 질문의 설계 성질 이름은 아니다."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "전치: 값 자체보다 비트나 기호의 위치를 바꾸어 영향이 여러 위치로 퍼지도록 하는 기법이다."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Feistel 구조"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Feistel 구조의 핵심은 암호화와 복호화가 거의 같은 구조, 역함수가 없어도 복호화 가능 DES, SEED가 대표적인 블록암호 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Feistel 구조 = 데이터를 좌우로 나누고, 한쪽에 함수 \\(F\\)를 적용한 결과를 다른 쪽과 XOR한 뒤 좌우를 교환하는 과정을 반복하는 블록 암호 구조."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "특히 시험이나 CTF에서는 왜 \\(F\\)의 역함수가 없어도 복호화할 수 있는지가 핵심이야"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "AES"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SPN 구조에 대한 설명입니다. 핵심은 치환 계층과 순열·선형 변환 계층을 반복하며 AES가 이 계열에 속한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "MixColumns"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "DSA"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "DSA에 대한 설명입니다. 핵심은 메시지의 기밀성 확보보다 전자서명을 생성하고 검증하는 용도로 설계된 알고리즘이다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "차분 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "입력 차이와 출력 차이 사이의 확률적 편향은 차분 분석의 핵심이다. 선형 분석은 비트들의 선형 근사식 편향을 이용한다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "선형 분석은 평문·암호문·키 비트의 선형 근사를 이용하는 분석이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "중간 일치는 다중 암호화의 중간값을 맞추는 방식이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "대수적 공격은 암호를 방정식으로 표현해 푸는 접근이다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "bold"
+              }
+            ],
+            "text": "카시스키 분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "카시스키 분석에 대한 설명입니다. 핵심은 반복되는 암호문 구간 사이의 거리를 이용해 반복 키의 길이를 추정한다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 1
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "키 분배 알고리즘"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Needham-Schroeder "
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 6
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "Needham-Schroeder는 넌스 사용해서 시간 x"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Denning-Sacco는 노출된 과거 세션키와 재전송된 티켓을 이용한 사칭 문제를 지적했다."
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "커버로스 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "Otway-Rees는 개선된 키 분배 프로토콜"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "파일리스 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "메모리에서 실행하고 PowerShell·WMI 등 정상 관리 도구를 악용하는 방식이 파일리스 행위의 대표 특징이다. 정상 도구를 썼다는 사실이 탐지 불가능하다는 뜻은 아니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "RA "
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "인증서 발급 요청자의 신원 등록"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  }
+}
