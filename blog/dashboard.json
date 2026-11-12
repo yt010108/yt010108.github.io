@@ -22,6 +22,11 @@
       "id": "d5148955-0aa0-497e-96d1-b5b15371d4c5",
       "text": "EQST LMS 수가하기",
       "done": false
+    },
+    {
+      "id": "ffcbbbd8-5a9e-41ee-96d4-b5feca9a1e86",
+      "text": "지웅님한테 링크 보내드리기",
+      "done": false
     }
   ],
   "shortcuts": [
@@ -92,5 +97,5 @@
       "url": "https://github.com/yt010108/artex-ko"
     }
   ],
-  "updatedAt": "2026-11-11T06:43:19.422Z"
+  "updatedAt": "2026-11-12T16:19:31.498Z"
 }
