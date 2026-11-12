@@ -2573,6 +2573,24 @@
       "trashedAt": null,
       "path": "blog/entries/45dc474c-7c6a-465a-a3d4-aeaba99aee2b.json",
       "sha": "3f5054389e7e13108850f20e65bcef5ad8df58ec"
+    },
+    {
+      "id": "4e364ad5-05c0-4ab3-9416-8bf315b53c33",
+      "kind": "notes",
+      "slug": "untitled-2026-11-12",
+      "title": "ㅁㄴㅇ",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-12",
+      "updatedAt": "2026-11-12T08:46:31.819Z",
+      "publishedAt": "2026-11-12T08:46:31.819Z",
+      "status": "published",
+      "sourceDigest": "575fad18ff248cc96af5d45a38bb355584125b96a3aef462b4488074f53961ec",
+      "trashedAt": null,
+      "path": "blog/entries/4e364ad5-05c0-4ab3-9416-8bf315b53c33.json",
+      "sha": "cbf301cd7f237f2ccb350d5e61dacc583ed1634a"
     }
   ],
   "taxonomy": {

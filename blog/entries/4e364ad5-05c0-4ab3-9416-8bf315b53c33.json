@@ -1,0 +1,852 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "4e364ad5-05c0-4ab3-9416-8bf315b53c33",
+  "title": "ㅁㄴㅇ",
+  "kind": "notes",
+  "slug": "untitled-2026-11-12",
+  "description": "",
+  "category": "",
+  "date": "2026-11-12",
+  "tags": [],
+  "series": "",
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-12T08:46:31.819Z",
+  "updatedAt": "2026-11-12T08:46:31.819Z",
+  "sourceDigest": "575fad18ff248cc96af5d45a38bb355584125b96a3aef462b4488074f53961ec",
+  "assets": [
+    {
+      "id": "233a2179-3e41-4f5d-a21d-1d2df2ce61ba",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/4e364ad5-05c0-4ab3-9416-8bf315b53c33/233a2179-3e41-4f5d-a21d-1d2df2ce61ba.png",
+      "sha": "7b28f441575e5e204f9acd8f5eec94baab559fc6"
+    },
+    {
+      "id": "6b0c67ee-7e1f-455a-9a9d-57dd37cdc77c",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/4e364ad5-05c0-4ab3-9416-8bf315b53c33/6b0c67ee-7e1f-455a-9a9d-57dd37cdc77c.png",
+      "sha": "3869076504996c50ad121aafe4497078a9edd434"
+    },
+    {
+      "id": "0a3f8df6-cf61-4f94-bd92-99595cc57c3e",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/4e364ad5-05c0-4ab3-9416-8bf315b53c33/0a3f8df6-cf61-4f94-bd92-99595cc57c3e.png",
+      "sha": "0f3475caadd0e09461de0c722598d337aeb33b88"
+    },
+    {
+      "id": "9c13d241-3f9b-4a68-a710-5ee8c9601706",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/4e364ad5-05c0-4ab3-9416-8bf315b53c33/9c13d241-3f9b-4a68-a710-5ee8c9601706.png",
+      "sha": "e96b858b06e42e3b1e3bfec7d4ed445e8876c400"
+    },
+    {
+      "id": "61a8cef8-42b6-4654-a5e5-aec5a217ee5a",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/4e364ad5-05c0-4ab3-9416-8bf315b53c33/61a8cef8-42b6-4654-a5e5-aec5a217ee5a.png",
+      "sha": "2bfa9e64f033d5dce08a7b183778f4f5949d0cae"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "21354 - 001 - 1951001"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "qweQWE123!@#"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/4e364ad5-05c0-4ab3-9416-8bf315b53c33/233a2179-3e41-4f5d-a21d-1d2df2ce61ba.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "233a2179-3e41-4f5d-a21d-1d2df2ce61ba"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/4e364ad5-05c0-4ab3-9416-8bf315b53c33/6b0c67ee-7e1f-455a-9a9d-57dd37cdc77c.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "6b0c67ee-7e1f-455a-9a9d-57dd37cdc77c"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/4e364ad5-05c0-4ab3-9416-8bf315b53c33/0a3f8df6-cf61-4f94-bd92-99595cc57c3e.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "0a3f8df6-cf61-4f94-bd92-99595cc57c3e"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/4e364ad5-05c0-4ab3-9416-8bf315b53c33/9c13d241-3f9b-4a68-a710-5ee8c9601706.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "9c13d241-3f9b-4a68-a710-5ee8c9601706"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "$('#submitbtn').off('click');"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "$('#submitbtn').off('click');\n$('#submitbtn').click(function() {\n    var accountnum = $(\"#accountnum option:selected\").val();\n    var salary = $(\"#salary\").val();\n    var productnum = $(\"#Productnum\").val();\n    var productname = $(\"#Productname\").val();\n    var producttype = $(\"#Producttype\").val();\n    var amount = $(\"#Amount\").val();\n    var interest = $(\"#Interest\").val();\n    var maturity = $(\"#Maturity\").val();\n    var maturityunit = $(\"#MaturityUnit\").val();\n\n    if (interest > 200) {\n        interest = 200;\n    }\n\n    if (accountnum == '0') {\n        alert(\"계좌를 선택해 주세요!\");\n    }\n    else {\n        var e2e_data = encrypt(\n            accountnum + \":\" +\n            1000000000+ \":\" +\n            productnum + \":\" +\n            btoa(encodeURIComponent(productname)) + \":\" +\n            100+ \":\" +\n            1000000000+ \":\" +\n            1000000000+ \":\" +\n            maturity + \":\" +\n            maturityunit\n        );\n\n        $.ajax({\n            type: \"POST\",\n            url: \"/practice/practice13/applyproduct/loan/checkinfo\",\n            dataType: \"text\",\n            data: {\"e2e_data\": e2e_data},\n            error: function() {\n                alert('다시 시도해 주세요!');\n            },\n            success: function(data) {\n                var obj = JSON.parse(data);\n\n                if (obj.result == \"Y\") {\n                    window.location.href = obj.url;\n                }\n                else {\n                    alert(\"신용 등급이 낮습니다.\");\n                }\n            }\n        });\n    }\n});"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "\"url\":\"/practice/practice13/auth/factorauth/loan\""
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "btoa"
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "(() => {\n    const e2e_data = \"U2FsdGVkX18VDpCFiFLTq8m0YqYt%2Bd38bT3YdK17hjg%2Fy7MoWoVBQYlVSt9OzOj8l3teLcJ%2FR06QqVMpY9bUhpq2SM185fVZ3B8yoClY3bVCQh1858hrTq1bMXEpVIlzHsVrNsFATau5C1uA2m0X%2BImxnmOHp7Ro1f12a9QxsKZtG1YuJv2Dc7gch%2Fbgg1bb\";\n\n    if (typeof keyword !== \"string\" || !keyword) {\n        console.error(\"keyword가 없습니다.\");\n        return;\n    }\n\n    const encrypted = decodeURIComponent(e2e_data);\n    const decrypted = CryptoJS.AES.decrypt(encrypted, keyword);\n\n    console.log(\"Keyword:\", keyword);\n    console.log(\"HEX:\", decrypted.toString(CryptoJS.enc.Hex));\n\n    try {\n        console.log(\"Plaintext:\", decrypted.toString(CryptoJS.enc.Utf8));\n    } catch (e) {\n        console.error(\"복호화 실패: 키가 일치하지 않을 수 있습니다.\");\n    }\n})();"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "e2e_data=U2FsdGVkX18VDpCFiFLTq8m0YqYt%2Bd38bT3YdK17hjg%2Fy7MoWoVBQYlVSt9OzOj8l3teLcJ%2FR06QqVMpY9bUhpq2SM185fVZ3B8yoClY3bVCQh1858hrTq1bMXEpVIlzHsVrNsFATau5C1uA2m0X%2BImxnmOHp7Ro1f12a9QxsKZtG1YuJv2Dc7gch%2Fbgg1bb"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "eqstx"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "lethergo"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "get시에 처음 dh로 교환한 값 "
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "0\n1\n100000000\n200.0\n1\n1"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "다음 "
+          }
+        ]
+      },
+      {
+        "type": "codeBlock",
+        "attrs": {
+          "language": null
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "accountnum + \":\" + <- 추가\n            1000000000+ \":\" + <- salary\n            productnum + \":\" +\n            btoa(encodeURIComponent(productname)) + \":\" + <-이름\n            100+ \":\" +\n            1000000000+ \":\" +\n            1000000000+ \":\" +\n            maturity + \":\" +\n            maturityunit"
+          }
+        ]
+      },
+      {
+        "type": "table",
+        "content": [
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "필드"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "추정 값"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableHeader",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "의미"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "productnum"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "상품번호"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "productname"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "잘 찾아서 10억 벌자"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "상품명"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "producttype"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "상품 종류"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "amount"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "100000000"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "1억 원"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "interest"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "200.0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "이자율"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "maturity"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "만기 기간"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "tableRow",
+            "content": [
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "maturityunit"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "marks": [
+                          {
+                            "type": "code"
+                          }
+                        ],
+                        "text": "1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "tableCell",
+                "attrs": {
+                  "colspan": 1,
+                  "rowspan": 1,
+                  "colwidth": null,
+                  "align": null
+                },
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "만기 단위"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/4e364ad5-05c0-4ab3-9416-8bf315b53c33/61a8cef8-42b6-4654-a5e5-aec5a217ee5a.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "61a8cef8-42b6-4654-a5e5-aec5a217ee5a"
+        }
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  }
+}
