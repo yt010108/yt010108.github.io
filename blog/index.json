@@ -2591,6 +2591,24 @@
       "trashedAt": null,
       "path": "blog/entries/4e364ad5-05c0-4ab3-9416-8bf315b53c33.json",
       "sha": "cbf301cd7f237f2ccb350d5e61dacc583ed1634a"
+    },
+    {
+      "id": "65d062b0-cec2-405a-8e26-5126221768af",
+      "kind": "posts",
+      "slug": "gpt-피드백",
+      "title": "GPT 피드백",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-12",
+      "updatedAt": "2026-11-12T12:34:37.112Z",
+      "publishedAt": "2026-11-12T12:34:37.112Z",
+      "status": "published",
+      "sourceDigest": "13d3d7dde9913e4ee6e5d08cccb1f0f9a73747f2a4f7c5dcc6fd20918700d8c6",
+      "trashedAt": null,
+      "path": "blog/entries/65d062b0-cec2-405a-8e26-5126221768af.json",
+      "sha": "ccfad0b91137c43741aced80e0d6ee439bc2ef8a"
     }
   ],
   "taxonomy": {
