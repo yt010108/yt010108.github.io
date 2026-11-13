@@ -2645,6 +2645,24 @@
       "trashedAt": null,
       "path": "blog/entries/d3c61628-ecf9-44af-a37f-de565add67f8.json",
       "sha": "3c514d5f07333b1785a661c6cc6d8432c1cfc74a"
+    },
+    {
+      "id": "6d7b6165-3bb3-417b-96b8-dfae9638d21d",
+      "kind": "posts",
+      "slug": "보안-관제",
+      "title": "보안 관제",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-13",
+      "updatedAt": "2026-11-13T06:11:35.272Z",
+      "publishedAt": "2026-11-13T06:11:35.272Z",
+      "status": "published",
+      "sourceDigest": "6e6d45185979ff71698f02241aa1a82dc26a288ab8db54098fdbc84454276710",
+      "trashedAt": null,
+      "path": "blog/entries/6d7b6165-3bb3-417b-96b8-dfae9638d21d.json",
+      "sha": "8119a3aa7c96075a7d7187f3acbfa863834057eb"
     }
   ],
   "taxonomy": {
