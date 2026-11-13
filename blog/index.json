@@ -2663,6 +2663,24 @@
       "trashedAt": null,
       "path": "blog/entries/6d7b6165-3bb3-417b-96b8-dfae9638d21d.json",
       "sha": "8119a3aa7c96075a7d7187f3acbfa863834057eb"
+    },
+    {
+      "id": "443af7ae-e7d4-4c19-8599-6c016e3b3df8",
+      "kind": "posts",
+      "slug": "암호학부터-악성코드-분석까지-원리와-코드로-이해하는-전공-심화-정리",
+      "title": "암호학부터 악성코드 분석까지: 원리와 코드로 이해하는 전공 심화 정리",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-13",
+      "updatedAt": "2026-11-13T06:16:52.439Z",
+      "publishedAt": "2026-11-13T06:16:52.439Z",
+      "status": "published",
+      "sourceDigest": "5afdea4463a1b791de69128f2d69b3b04a99716557d8afdcdbe28e95921af76e",
+      "trashedAt": null,
+      "path": "blog/entries/443af7ae-e7d4-4c19-8599-6c016e3b3df8.json",
+      "sha": "f7ccd453ac125cbb21c28b626af868996501edcc"
     }
   ],
   "taxonomy": {
