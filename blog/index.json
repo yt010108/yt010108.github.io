@@ -2681,6 +2681,24 @@
       "trashedAt": null,
       "path": "blog/entries/443af7ae-e7d4-4c19-8599-6c016e3b3df8.json",
       "sha": "f7ccd453ac125cbb21c28b626af868996501edcc"
+    },
+    {
+      "id": "b41320ce-dda3-40e9-8628-74b8ecee0a7f",
+      "kind": "notes",
+      "slug": "파라미터-퍼징",
+      "title": "파라미터 퍼징",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-16",
+      "updatedAt": "2026-11-16T07:26:05.789Z",
+      "publishedAt": "2026-11-16T07:26:05.789Z",
+      "status": "published",
+      "sourceDigest": "d74387e332903eebe8387df1f925e2e274824e1c8659509b67b12ac378aab02d",
+      "trashedAt": null,
+      "path": "blog/entries/b41320ce-dda3-40e9-8628-74b8ecee0a7f.json",
+      "sha": "c6dc40cf3065ea0fba4b5f3f650126c75822a183"
     }
   ],
   "taxonomy": {

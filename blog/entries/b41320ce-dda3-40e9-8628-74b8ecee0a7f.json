@@ -1,0 +1,27 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "b41320ce-dda3-40e9-8628-74b8ecee0a7f",
+  "title": "파라미터 퍼징",
+  "kind": "notes",
+  "slug": "파라미터-퍼징",
+  "description": "",
+  "category": "",
+  "date": "2026-11-16",
+  "tags": [],
+  "series": "",
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-16T07:26:05.789Z",
+  "updatedAt": "2026-11-16T07:26:05.789Z",
+  "sourceDigest": "d74387e332903eebe8387df1f925e2e274824e1c8659509b67b12ac378aab02d",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph"
+      }
+    ]
+  }
+}
