@@ -29,11 +29,6 @@
       "done": false
     },
     {
-      "id": "219556ef-ff13-49eb-b851-0ed2b928c221",
-      "text": "책 읽자",
-      "done": false
-    },
-    {
       "id": "1cfa62ee-c1d4-41d4-af13-0c71470961cb",
       "text": "apache2shell 공부하기",
       "done": false
@@ -112,5 +107,5 @@
       "url": "https://github.com/yt010108/artex-ko"
     }
   ],
-  "updatedAt": "2026-11-16T01:33:56.643Z"
+  "updatedAt": "2026-11-16T02:21:34.866Z"
 }
