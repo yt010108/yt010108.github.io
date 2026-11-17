@@ -19,11 +19,6 @@
       "done": false
     },
     {
-      "id": "d5148955-0aa0-497e-96d1-b5b15371d4c5",
-      "text": "EQST LMS 수가하기",
-      "done": false
-    },
-    {
       "id": "1cfa62ee-c1d4-41d4-af13-0c71470961cb",
       "text": "apache2shell 공부하기",
       "done": false
@@ -97,5 +92,5 @@
       "url": "https://github.com/yt010108/artex-ko"
     }
   ],
-  "updatedAt": "2026-11-17T10:12:20.744Z"
+  "updatedAt": "2026-11-17T10:12:31.488Z"
 }
