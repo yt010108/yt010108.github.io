@@ -6,9 +6,10 @@ import { TableKit } from "@tiptap/extension-table";
 import { Markdown } from "@tiptap/markdown";
 import { EditorState } from "@tiptap/pm/state";
 import { zipSync, strToU8 } from "fflate";
-import { createIcons, SquarePen, Files, Bold, Italic, Strikethrough, Code, List, ListOrdered, Quote, Link, ImagePlus, Table2, SquareCode, Minus, Eye, Undo2, Redo2, FolderOpen, Download, Archive, ArrowLeft, Hash, Menu, FileClock, FolderTree, Images, PanelsTopLeft, Trash2, LogOut } from "lucide";
+import { createIcons, SquarePen, Files, Bold, Italic, Strikethrough, Code, List, ListOrdered, Quote, Link, ImagePlus, Paperclip, Table2, SquareCode, Minus, Eye, Undo2, Redo2, FolderOpen, Download, Archive, ArrowLeft, Hash, Menu, FileClock, FolderTree, Images, PanelsTopLeft, Trash2, LogOut } from "lucide";
 import { readDraft, listDrafts, writeDraft, hasUnpublishedChanges, DraftConflict } from "./draft-store.js";
 import { IMAGE_TYPES, MAX_IMAGE_SIZE, newEntry, safeSlug, safeImageData, createAsset, imageBySource, transformImages, usedAssets, validateBackup, markdownDocument, assetBytes } from "./document.js";
+import { FILE_TYPE, createFileAsset, dataSize } from "../../shared/files.js";
 import { createLinkPreviews, webURL } from "./link-preview.js";
 import { renderDocument, UUID } from "../../shared/posts.js";
 import { REMEMBER_KEY } from "./github.js";
@@ -28,13 +29,13 @@ const assets = new Map();
 let entry = newEntry(), mode = "rich", ready = false, silent = false, composing = false;
 let changes = 0, savedChanges = 0, exportedChanges = -1;
 let saveTimer, messageTimer, savePromise, editor, lastSelection, imagePosition;
-let imageJobs = Promise.resolve(), pendingImages = 0;
+let assetJobs = Promise.resolve(), pendingAssets = 0;
 let cmsBusy = false, managing = false, taxonomyOpen = false, dashboardOpen = false, mediaOpen = false, siteOpen = false, navigationBusy = false;
 let authorized = false, authBusy = false, unlockTask, managerStatus = "all";
 const repository = new SiteRepository();
 const linkPreviews = createLinkPreviews({ getEditor: () => editor, getEntryId: () => entry.id });
 
-createIcons({ icons: { SquarePen, Files, Bold, Italic, Strikethrough, Code, List, ListOrdered, Quote, Link, ImagePlus, Table2, SquareCode, Minus, Eye, Undo2, Redo2, FolderOpen, Download, Archive, ArrowLeft, Hash, Menu, FileClock, FolderTree, Images, PanelsTopLeft, Trash2, LogOut }, attrs: { "stroke-width": 1.5 } });
+createIcons({ icons: { SquarePen, Files, Bold, Italic, Strikethrough, Code, List, ListOrdered, Quote, Link, ImagePlus, Paperclip, Table2, SquareCode, Minus, Eye, Undo2, Redo2, FolderOpen, Download, Archive, ArrowLeft, Hash, Menu, FileClock, FolderTree, Images, PanelsTopLeft, Trash2, LogOut }, attrs: { "stroke-width": 1.5 } });
 
 function message(text, error = false) {
   clearTimeout(messageTimer);
@@ -285,17 +286,16 @@ editor = new Editor({
       const images = [...(event.clipboardData?.files || [])].filter(file => file.type.startsWith("image/"));
       if (!images.length) return false;
       event.preventDefault();
-      addImages(images);
+      addFiles(images);
       return true;
     },
     handleDrop(view, event, slice, moved) {
       if (moved || !event.dataTransfer?.files.length) return false;
       const files = [...event.dataTransfer.files];
-      if (!files.some(file => file.type.startsWith("image/"))) return false;
       event.preventDefault();
       const position = view.posAtCoords({ left: event.clientX, top: event.clientY });
       if (position) editor.commands.setTextSelection(position.pos);
-      addImages(files);
+      addFiles(files);
       return true;
     }
   },
@@ -495,7 +495,7 @@ function applyEntry(next) {
 }
 
 async function keepBeforeSwitch() {
-  await waitForImages();
+  await waitForAssets();
   commitTags();
   if (!meaningful() && changes === savedChanges) return true;
   if (changes === exportedChanges) return true;
@@ -529,41 +529,48 @@ async function fileData(file) {
   });
 }
 
-async function waitForImages() {
-  while (pendingImages) await imageJobs;
+async function waitForAssets() {
+  while (pendingAssets) await assetJobs;
 }
 
-function addImages(files) {
+function addFiles(files, { asFiles = false, imagesOnly = false } = {}) {
+  if (!files.length || !authorized || !repository.connected || cmsBusy) return Promise.resolve();
   const draftId = entry.id;
-  pendingImages++;
-  message("이미지를 불러오고 있어요…");
-  imageJobs = imageJobs.then(() => insertImages(files, draftId)).finally(() => { pendingImages--; });
-  return imageJobs;
+  pendingAssets++;
+  message("첨부 파일을 불러오고 있어요…");
+  assetJobs = assetJobs.then(() => insertFiles(files, draftId, { asFiles, imagesOnly })).finally(() => { pendingAssets--; });
+  return assetJobs;
 }
 
-async function insertImages(files, draftId) {
+async function insertFiles(files, draftId, { asFiles, imagesOnly }) {
   for (const file of files) {
     try {
-      if (!IMAGE_TYPES.has(file.type)) throw new Error("PNG, JPG, GIF, WebP 이미지를 선택해 주세요.");
-      if (file.size > MAX_IMAGE_SIZE) throw new Error("이미지는 한 장에 10MB까지 첨부할 수 있어요.");
-      const total = usedAssets(editor.getJSON(), assets, mode === "markdown" ? source.value : "").reduce((size, asset) => size + asset.data.length * .75, 0);
-      if (total + file.size > 50 * 1024 * 1024) throw new Error("한 글에 첨부하는 이미지는 합계 50MB까지 보관할 수 있어요.");
-      const data = await fileData(file);
-      const image = new window.Image();
-      image.src = data;
-      await image.decode();
-      if (entry.id !== draftId) return;
-      const asset = createAsset(data, file.name);
+      const inlineImage = !asFiles && IMAGE_TYPES.has(file.type);
+      if (imagesOnly && !inlineImage) throw new Error("PNG, JPG, GIF, WebP 이미지를 선택해 주세요.");
+      if (file.size > MAX_IMAGE_SIZE) throw new Error(file.name + "은 10MB를 넘어요.");
+      const used = usedAssets(editor.getJSON(), assets, mode === "markdown" ? source.value : "");
+      const total = used.reduce((size, asset) => size + dataSize(asset.data), 0);
+      if (used.length >= 150 || total + file.size > 50 * 1024 * 1024) throw new Error("한 글에 이미지와 파일을 합쳐 150개, 50MB까지 첨부할 수 있어요.");
+      const data = await fileData(inlineImage ? file : new Blob([file], { type: FILE_TYPE }));
+      if (inlineImage) {
+        const image = new window.Image();
+        image.src = data;
+        await image.decode();
+      }
+      if (entry.id !== draftId || !authorized || !repository.connected) return;
+      const asset = inlineImage ? createAsset(data, file.name) : createFileAsset(data, file.name);
       assets.set(asset.id, asset);
       const alt = file.name.replace(/\.[^.]+$/, "") || "첨부 이미지";
       if (mode === "markdown") {
-        const markdown = "\n![" + alt.replace(/[[\]\\]/g, "\\$&") + "](" + asset.path + ")\n";
+        const markdown = "\n" + (inlineImage ? "!" : "") + "[" + (inlineImage ? alt : asset.name).replace(/[[\]\\]/g, "\\$&").replace(/\r?\n/g, " ") + "](" + asset.path + ")\n";
         source.setRangeText(markdown, source.selectionStart, source.selectionEnd, "end");
         changed();
-      } else {
+      } else if (inlineImage) {
         editor.chain().focus().insertContent({ type: "image", attrs: { assetId: asset.id, src: asset.data, alt } }).run();
+      } else {
+        editor.chain().focus().insertContent([{ type: "paragraph", content: [{ type: "text", text: asset.name, marks: [{ type: "link", attrs: { href: asset.path } }] }] }, { type: "paragraph" }]).unsetLink().run();
       }
-    } catch (error) { message(error.message || "이미지를 읽지 못했어요.", true); }
+    } catch (error) { message(error.message || "첨부 파일을 읽지 못했어요.", true); }
   }
 }
 
@@ -589,7 +596,7 @@ function runCommand(command) {
 
 async function preview() {
   if (!authorized || !repository.connected) return;
-  await waitForImages();
+  await waitForAssets();
   commitTags();
   try {
     const data = snapshot();
@@ -623,7 +630,7 @@ async function preview() {
 
 async function openExport() {
   if (!authorized || !repository.connected) return;
-  await waitForImages();
+  await waitForAssets();
   commitTags();
   try { await persist(); } catch {}
   if (!$("post-slug").value.trim()) {
@@ -632,8 +639,8 @@ async function openExport() {
   }
   const data = snapshot();
   const count = data.assets.length;
-  $("export-info").textContent = count ? "첨부 이미지 " + count + "장과 글을 함께 보관해요." : "Markdown은 글 원본, 편집용 백업은 다시 불러오기 위한 파일이에요.";
-  $("export-markdown").querySelector("span").textContent = count ? "Markdown + 이미지 ZIP 저장" : "Markdown 저장";
+  $("export-info").textContent = count ? "첨부 파일 " + count + "개와 글을 함께 보관해요." : "Markdown은 글 원본, 편집용 백업은 다시 불러오기 위한 파일이에요.";
+  $("export-markdown").querySelector("span").textContent = count ? "Markdown + 첨부 파일 ZIP 저장" : "Markdown 저장";
   $("publish-progress").textContent = "";
   updatePublishReview();
   $("export-dialog").showModal();
@@ -646,7 +653,7 @@ async function publish() {
   setBusy(true);
   let result;
   try {
-    await waitForImages(); commitTags();
+    await waitForAssets(); commitTags();
     if (!$("post-slug").value.trim()) $("post-slug").value = safeSlug(title.value);
     await persist(true);
     const data = snapshot();
@@ -801,10 +808,15 @@ function exportFile(backup) {
     if (backup) {
       download(new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }), filename + ".draft.json");
     } else {
-      const text = markdownDocument(data, mode === "markdown" ? data.markdown : editor.getMarkdown());
+      let text = markdownDocument(data, mode === "markdown" ? data.markdown : editor.getMarkdown());
       if (data.assets.length) {
-        const files = { [filename + ".md"]: strToU8(text) };
-        data.assets.forEach(asset => { files[asset.path] = [assetBytes(asset), { level: 0 }]; });
+        const files = {};
+        data.assets.forEach(asset => {
+          const path = asset.type === FILE_TYPE ? "files/" + asset.id + "/" + asset.name.replace(/[<>:"/\\|?*\x00-\x1f\x7f]/g, "_") : asset.path;
+          text = text.replaceAll("](" + asset.path + ")", "](" + encodeURI(path).replace(/[()#?]/g, char => "%" + char.charCodeAt(0).toString(16)) + ")");
+          files[path] = [assetBytes(asset), { level: 0 }];
+        });
+        files[filename + ".md"] = strToU8(text);
         download(new Blob([zipSync(files, { level: 6 })], { type: "application/zip" }), filename + ".zip");
       } else download(new Blob([text], { type: "text/markdown;charset=utf-8" }), filename + ".md");
     }
@@ -874,6 +886,7 @@ document.querySelectorAll(".writer-toolbar button, .writer-context-tools button"
     if (button.dataset.tableCommand) editor.chain().focus()[button.dataset.tableCommand]().run();
     if (button.dataset.action === "link") openLink();
     if (button.dataset.action === "images") $("image-input").click();
+    if (button.dataset.action === "files") $("file-input").click();
     if (button.dataset.action === "image-alt") {
       imagePosition = editor.state.selection.from;
       $("image-alt").value = editor.getAttributes("image").alt || "";
@@ -905,14 +918,15 @@ $("tag-input").addEventListener("keydown", event => {
 });
 $("tag-input").addEventListener("blur", commitTags);
 $("tag-input").addEventListener("input", event => { if (!event.isComposing && /[,，]/.test(event.target.value)) commitTags(); });
-$("image-input").addEventListener("change", async event => { await addImages([...event.target.files]); event.target.value = ""; });
+$("image-input").addEventListener("change", async event => { const files = [...event.target.files]; event.target.value = ""; await addFiles(files, { imagesOnly: true }); });
+$("file-input").addEventListener("change", async event => { const files = [...event.target.files]; event.target.value = ""; await addFiles(files, { asFiles: true }); });
 source.addEventListener("paste", event => {
   const images = [...(event.clipboardData?.files || [])].filter(file => file.type.startsWith("image/"));
-  if (images.length) { event.preventDefault(); addImages(images); }
+  if (images.length) { event.preventDefault(); addFiles(images); }
 });
 source.addEventListener("dragover", event => { if (event.dataTransfer.types.includes("Files")) event.preventDefault(); });
 source.addEventListener("drop", event => {
-  if (event.dataTransfer.files.length) { event.preventDefault(); addImages([...event.dataTransfer.files]); }
+  if (event.dataTransfer.files.length) { event.preventDefault(); addFiles([...event.dataTransfer.files]); }
 });
 $("link-form").addEventListener("submit", event => {
   event.preventDefault();
@@ -1051,7 +1065,7 @@ document.addEventListener("click", async event => {
 });
 document.addEventListener("visibilitychange", () => { if (document.hidden) persist().catch(() => {}); });
 window.addEventListener("beforeunload", event => {
-  if ([dashboardManager, siteManager, mediaManager].some(panel => panel.isDirty() || panel.isBusy()) || pendingImages || (ready && meaningful() && changes !== savedChanges && changes !== exportedChanges)) { event.preventDefault(); event.returnValue = ""; }
+  if ([dashboardManager, siteManager, mediaManager].some(panel => panel.isDirty() || panel.isBusy()) || pendingAssets || (ready && meaningful() && changes !== savedChanges && changes !== exportedChanges)) { event.preventDefault(); event.returnValue = ""; }
 });
 new ResizeObserver(entries => {
   document.body.style.setProperty("--writer-header-height", entries[0].target.getBoundingClientRect().height + "px");

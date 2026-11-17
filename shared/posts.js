@@ -1,4 +1,5 @@
 import { validateTaxonomy } from "./taxonomy.js";
+import { FILE_TYPE, FILE_PATH, PUBLIC_FILE_PATH, safeFileData, localAssetPath } from "./files.js";
 
 export const POST_FORMAT = "yt010108-published-post";
 export const INDEX_FORMAT = "yt010108-post-index";
@@ -11,8 +12,8 @@ export const entryPath = id => {
 };
 export const uploadPath = (id, path) => {
   entryPath(id);
-  if (!/^images\/[a-f0-9-]{36}\.(png|jpg|gif|webp)$/.test(path)) throw new Error("이미지 경로가 올바르지 않아요.");
-  return "assets/uploads/" + id + "/" + path.slice(7);
+  if (!/^images\/[a-f0-9-]{36}\.(png|jpg|gif|webp)$/.test(path) && !FILE_PATH.test(path)) throw new Error("첨부 파일 경로가 올바르지 않아요.");
+  return "assets/uploads/" + id + "/" + path.split("/").at(-1);
 };
 export const esc = value => String(value ?? "").replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
 export function safeURL(value, image = false) {
@@ -49,10 +50,11 @@ export function validateRecord(value) {
   if (value?.format !== POST_FORMAT || value.version !== 1) throw new Error("지원하지 않는 발행 글 형식이에요.");
   metadata(value);
   validateDocument(value.doc);
-  if (!Array.isArray(value.assets) || value.assets.length > 150) throw new Error("이미지 목록을 확인할 수 없어요.");
+  if (!Array.isArray(value.assets) || value.assets.length > 150) throw new Error("첨부 파일 목록을 확인할 수 없어요.");
   const ids = new Set();
   for (const asset of value.assets) {
-    if (!UUID.test(asset.id) || ids.has(asset.id) || !SHA.test(asset.sha) || asset.path !== "/" + uploadPath(value.id, "images/" + asset.path.split("/").at(-1)) || !["image/png", "image/jpeg", "image/gif", "image/webp"].includes(asset.type)) throw new Error("발행 이미지 정보를 확인할 수 없어요.");
+    if (!asset || typeof asset.path !== "string" || !UUID.test(asset.id) || ids.has(asset.id) || !SHA.test(asset.sha) || asset.path !== "/" + uploadPath(value.id, localAssetPath(asset)) || !["image/png", "image/jpeg", "image/gif", "image/webp", FILE_TYPE].includes(asset.type)) throw new Error("발행 첨부 파일 정보를 확인할 수 없어요.");
+    if (asset.type === FILE_TYPE && (localAssetPath(asset) !== "files/" + asset.id + ".bin" || typeof asset.name !== "string" || !asset.name || asset.name.length > 200)) throw new Error("발행 파일 정보를 확인할 수 없어요.");
     ids.add(asset.id);
   }
   return value;
@@ -93,6 +95,7 @@ export function plainText(doc) {
 export function renderDocument(doc, { assets = [], preview = false } = {}) {
   validateDocument(doc);
   const headings = [], images = new Map(assets.map(asset => [asset.id, asset]));
+  const files = new Map(assets.filter(asset => asset.type === FILE_TYPE).map(asset => [asset.path, asset]));
   function render(node) {
     const attrs = node.attrs || {}, children = () => (node.content || []).map(render).join("");
     switch (node.type) {
@@ -103,6 +106,12 @@ export function renderDocument(doc, { assets = [], preview = false } = {}) {
           const tag = { bold: "strong", italic: "em", strike: "s", code: "code" }[mark.type];
           if (tag) html = "<" + tag + ">" + html + "</" + tag + ">";
           else if (mark.type === "link") {
+            const file = files.get(mark.attrs?.href);
+            if (file) {
+              const href = preview && safeFileData(file.data) ? file.data : PUBLIC_FILE_PATH.test(file.path) ? file.path : "";
+              if (href) html = '<a class="post-attachment" href="' + esc(href) + '" download="' + esc(file.name) + '">' + html + "</a>";
+              continue;
+            }
             const href = safeURL(mark.attrs?.href);
             if (href) html = '<a href="' + esc(href) + '" target="_blank" rel="noopener noreferrer">' + html + "</a>";
           }

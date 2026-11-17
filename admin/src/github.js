@@ -1,5 +1,6 @@
 import { POST_FORMAT, INDEX_FORMAT, UUID, SHA, entryPath, uploadPath, validateRecord, validateIndex, indexEntry, draftDigest } from "../../shared/posts.js";
 import { newEntry, safeImageData, MAX_IMAGE_SIZE } from "./document.js";
+import { FILE_TYPE, safeFileData, dataSize, localAssetPath } from "../../shared/files.js";
 import { validateTaxonomy, taxonomyOptions, usesTaxonomy, replaceTaxonomy } from "../../shared/taxonomy.js";
 
 export const REPOSITORY = "yt010108/yt010108.github.io";
@@ -29,7 +30,7 @@ function decode(value) {
   const raw = atob(value.replace(/\s/g, ""));
   return new TextDecoder("utf-8", { fatal: true }).decode(Uint8Array.from(raw, char => char.charCodeAt(0)));
 }
-function mapImages(doc, assets) {
+function mapAssets(doc, assets, links = new Map()) {
   const copy = { ...doc };
   if (doc.attrs) copy.attrs = { ...doc.attrs };
   if (doc.type === "image") {
@@ -37,7 +38,14 @@ function mapImages(doc, assets) {
     if (asset) copy.attrs.src = asset.path;
     else if (!/^https:\/\//i.test(doc.attrs?.src || "")) throw new Error("본문 이미지 파일이 없어요. 이미지를 다시 첨부해 주세요.");
   }
-  if (doc.content) copy.content = doc.content.map(child => mapImages(child, assets));
+  if (doc.marks) copy.marks = doc.marks.map(mark => {
+    if (mark.type !== "link") return mark;
+    const href = links.get(mark.attrs?.href);
+    if (href) return { ...mark, attrs: { ...mark.attrs, href } };
+    if (/^files\//.test(mark.attrs?.href || "")) throw new Error("본문의 첨부 파일이 없어요. 파일을 다시 첨부해 주세요.");
+    return mark;
+  });
+  if (doc.content) copy.content = doc.content.map(child => mapAssets(child, assets, links));
   return copy;
 }
 export class GitHubRepository extends EventTarget {
@@ -171,13 +179,13 @@ export class GitHubRepository extends EventTarget {
   async loadDraft(item, onProgress = () => {}) {
     const record = await this.record(item), assets = [];
     for (const [index, asset] of record.assets.entries()) {
-      onProgress("이미지를 불러오는 중 · " + (index + 1) + "/" + record.assets.length);
+      onProgress("첨부 파일을 불러오는 중 · " + (index + 1) + "/" + record.assets.length);
       const data = "data:" + asset.type + ";base64," + await this.blob(asset.sha);
-      if (!safeImageData(data)) throw new Error("이미지를 불러올 수 없어요. 파일 크기를 확인해 주세요.");
-      assets.push({ id: asset.id, name: asset.name, type: asset.type, path: "images/" + asset.path.split("/").at(-1), data });
+      if (!(asset.type === FILE_TYPE ? safeFileData(data) : safeImageData(data))) throw new Error("첨부 파일을 불러올 수 없어요. 파일 크기를 확인해 주세요.");
+      assets.push({ id: asset.id, name: asset.name, type: asset.type, path: localAssetPath(asset), data });
     }
     const entry = { ...newEntry(), ...Object.fromEntries(["id", "title", "kind", "slug", "description", "category", "date", "tags"].map(key => [key, record[key]])), series: record.series || "", assets };
-    entry.doc = mapImages(record.doc, new Map(assets.map(asset => [asset.id, asset])));
+    entry.doc = mapAssets(record.doc, new Map(assets.map(asset => [asset.id, asset])), new Map(record.assets.filter(asset => asset.type === FILE_TYPE).map(asset => [asset.path, localAssetPath(asset)])));
     entry.publication = { id: record.id, sha: item.sha, sourceDigest: await draftDigest(entry), publishedAt: record.publishedAt };
     return entry;
   }
@@ -208,31 +216,32 @@ export class GitHubRepository extends EventTarget {
     if ((previous?.sha || null) !== (draft.publication?.sha || null)) throw new RepositoryConflict();
     if (previous?.status === "trash") throw new Error("휴지통의 공개 글을 먼저 복원해 주세요.");
     const now = new Date().toISOString(), assets = draft.assets.map(asset => ({
-      id: asset.id, name: String(asset.name || "첨부 이미지").slice(0, 200), type: asset.type,
+      id: asset.id, name: String(asset.name || "첨부 파일").slice(0, 200), type: asset.type,
       path: "/" + uploadPath(draft.id, asset.path), sha: "0".repeat(40)
     }));
     let total = 0;
     for (const asset of draft.assets) {
-      const bytes = Math.floor((asset.data?.length || 0) * .75);
-      if (!UUID.test(asset.id) || !safeImageData(asset.data) || bytes > MAX_IMAGE_SIZE + 100) throw new Error("발행 이미지 형식이나 크기를 확인해 주세요.");
+      if (!UUID.test(asset.id) || !(asset.type === FILE_TYPE ? safeFileData(asset.data) : safeImageData(asset.data))) throw new Error("발행 첨부 파일 형식이나 크기를 확인해 주세요.");
+      const bytes = dataSize(asset.data);
+      if (bytes > MAX_IMAGE_SIZE) throw new Error("첨부 파일은 하나에 10MB까지 발행할 수 있어요.");
       total += bytes;
     }
-    if (total > 50 * 1024 * 1024 + 1000) throw new Error("한 글의 이미지는 합계 50MB까지 발행할 수 있어요.");
+    if (total > 50 * 1024 * 1024) throw new Error("한 글의 이미지와 파일은 합계 50MB까지 발행할 수 있어요.");
     const record = {
       format: POST_FORMAT, version: 1,
       ...Object.fromEntries(["id", "title", "kind", "slug", "description", "category", "date", "tags"].map(key => [key, draft[key]])),
       series: draft.series || "",
       status: "published", trashedAt: null, publishedAt: previous?.publishedAt || now, updatedAt: now,
-      sourceDigest: await draftDigest(draft), assets, doc: mapImages(draft.doc, new Map(assets.map(asset => [asset.id, asset])))
+      sourceDigest: await draftDigest(draft), assets, doc: mapAssets(draft.doc, new Map(assets.map(asset => [asset.id, asset])), new Map(draft.assets.filter(asset => asset.type === FILE_TYPE).map(asset => [asset.path, "/" + uploadPath(draft.id, asset.path)])))
     };
     validateRecord(record);
     const files = [];
     for (let i = 0; i < assets.length; i++) {
-      onProgress("이미지를 저장하는 중 · " + (i + 1) + "/" + assets.length);
+      onProgress("첨부 파일을 저장하는 중 · " + (i + 1) + "/" + assets.length);
       assets[i].sha = await this.createBlob(draft.assets[i].data.split(",")[1], "base64");
       files.push({ path: assets[i].path.slice(1), mode: "100644", type: "blob", sha: assets[i].sha });
     }
-    onProgress("글과 이미지를 함께 발행하는 중…");
+    onProgress("글과 첨부 파일을 함께 발행하는 중…");
     const sha = await this.createBlob(jsonText(record)), item = indexEntry(record, sha);
     const index = { ...snapshot.index, entries: [...snapshot.index.entries.filter(other => other.id !== item.id), item] };
     files.push({ path: entryPath(item.id), mode: "100644", type: "blob", sha });
@@ -270,9 +279,9 @@ export class GitHubRepository extends EventTarget {
     const files = [], changed = new Map(), now = new Date().toISOString();
     if (action !== "add") for (const item of snapshot.index.entries.filter(item => usesTaxonomy(item, type, name))) {
       const record = replaceTaxonomy(await this.record(item), type, name, next);
-      const localAssets = record.assets.map(asset => ({ ...asset, path: "images/" + asset.path.split("/").at(-1) }));
+      const localAssets = record.assets.map(asset => ({ ...asset, path: localAssetPath(asset) }));
       record.updatedAt = now;
-      record.sourceDigest = await draftDigest({ ...record, assets: localAssets, doc: mapImages(record.doc, new Map(localAssets.map(asset => [asset.id, asset]))) });
+      record.sourceDigest = await draftDigest({ ...record, assets: localAssets, doc: mapAssets(record.doc, new Map(localAssets.map(asset => [asset.id, asset])), new Map(record.assets.filter(asset => asset.type === FILE_TYPE).map(asset => [asset.path, localAssetPath(asset)]))) });
       validateRecord(record);
       const sha = await this.createBlob(jsonText(record));
       files.push({ path: item.path, mode: "100644", type: "blob", sha });

@@ -6,7 +6,10 @@ import { tmpdir } from "node:os";
 import { resolve, dirname, basename } from "node:path";
 import { spawnSync } from "node:child_process";
 import { GitHubRepository, REPOSITORY, RepositoryConflict } from "../admin/src/github.js";
-import { newEntry, validateBackup, markdownDocument } from "../admin/src/document.js";
+import { newEntry, validateBackup, markdownDocument, transformImages, usedAssets, assetBytes } from "../admin/src/document.js";
+import { createFileAsset, FILE_TYPE, safeFileData, MAX_FILE_SIZE } from "../shared/files.js";
+import { MarkdownManager } from "@tiptap/markdown";
+import StarterKit from "@tiptap/starter-kit";
 import { hasUnpublishedChanges } from "../admin/src/draft-store.js";
 import { INDEX_FORMAT, validateRecord, validateIndex, renderDocument, draftDigest } from "../shared/posts.js";
 
@@ -74,7 +77,7 @@ function server() {
       assert.ok(body.base_tree && trees.has(body.base_tree), "Every write must preserve the current base tree");
       const files = new Map(trees.get(body.base_tree));
       for (const item of body.tree) {
-        assert.ok(item.path === "blog/index.json" || /^blog\/entries\/[a-f0-9-]+\.json$/.test(item.path) || /^assets\/uploads\/[a-f0-9-]+\/[a-f0-9-]+\.(png|jpg|gif|webp)$/.test(item.path));
+        assert.ok(item.path === "blog/index.json" || /^blog\/entries\/[a-f0-9-]+\.json$/.test(item.path) || /^assets\/uploads\/[a-f0-9-]+\/[a-f0-9-]+\.(png|jpg|gif|webp|bin)$/.test(item.path));
         const sha = item.content === undefined ? item.sha : addBlob(Buffer.from(item.content));
         assert.ok(blobs.has(sha)); files.set(item.path, sha);
       }
@@ -146,6 +149,62 @@ test("Editing, trashing, and restoring use the expected remote version", async (
   const restored = await s.client.changeStatus(trashed.index.entries, true);
   assert.equal(restored.index.entries[0].status, "published");
   assert.equal((await s.client.record(restored.index.entries[0])).title, "수정한 제목");
+});
+
+test("File attachments survive backup, publication, editing and category changes with downloadable original names", async () => {
+  const s = server(); await s.client.connect(TOKEN);
+  const entry = draft(), bytes = Buffer.from("%PDF-1.7\n첨부 파일\n"), file = createFileAsset("data:" + FILE_TYPE + ";base64," + bytes.toString("base64"), '실습 자료 [1] & 2.pdf');
+  entry.assets = [file];
+  entry.doc.content.push({ type: "paragraph", content: [{ type: "text", text: file.name, marks: [{ type: "link", attrs: { href: file.path } }] }] });
+  const assets = new Map([[file.id, file]]);
+  const markdown = new MarkdownManager({ extensions: [StarterKit] });
+  const fileDoc = { type: "doc", content: [entry.doc.content.at(-1)] };
+  const parsed = markdown.parse(markdown.serialize(fileDoc));
+  assert.equal(parsed.content[0].content[0].marks[0].attrs.href, file.path);
+  assert.deepEqual(usedAssets(transformImages(parsed, assets, false), assets), [file]);
+  assert.deepEqual(usedAssets(entry.doc, assets), [file]);
+  assert.deepEqual(usedAssets(newEntry().doc, assets), []);
+  assert.deepEqual(usedAssets(newEntry().doc, assets, `[file](${file.path})`), [file]);
+  assert.deepEqual(transformImages(entry.doc, assets, false), entry.doc);
+  const backup = validateBackup(JSON.parse(JSON.stringify(entry)));
+  assert.deepEqual(backup.doc, entry.doc); assert.deepEqual(backup.assets, entry.assets);
+  assert.deepEqual(Buffer.from(assetBytes(backup.assets[0])), bytes);
+  assert.match(renderDocument(entry.doc, { assets: entry.assets, preview: true }).html, /href="data:application\/octet-stream;base64,/);
+  const result = await s.client.publish(entry), record = await s.client.record(result.item);
+  assert.equal(record.doc.content.at(-1).content[0].marks[0].attrs.href, record.assets[0].path);
+  assert.deepEqual(s.blobs.get(record.assets[0].sha), bytes);
+  const html = renderDocument(record.doc, { assets: record.assets }).html;
+  assert.ok(html.includes('href="' + record.assets[0].path + '" download="실습 자료 [1] &amp; 2.pdf"'));
+  const loaded = await s.client.loadDraft(result.item);
+  assert.deepEqual(loaded.assets, entry.assets); assert.deepEqual(loaded.doc, entry.doc);
+  assert.equal(loaded.publication.sourceDigest, record.sourceDigest);
+  const renamed = await s.client.changeTaxonomy({ type: "categories", action: "rename", name: entry.category, replacement: "Attachments", expectedIndex: result.index });
+  const latest = await s.client.loadDraft(renamed.items[0]);
+  assert.deepEqual(latest.assets, entry.assets);
+  assert.equal((await s.client.record(renamed.items[0])).sourceDigest, await draftDigest(latest));
+  latest.title += " edited";
+  await s.client.publish(latest);
+  assert.deepEqual(s.blobs.get(record.assets[0].sha), bytes);
+});
+
+test("Attachment validation rejects unsafe paths, missing data and oversize files before any write", async () => {
+  const s = server(); await s.client.connect(TOKEN);
+  const entry = draft(), file = createFileAsset("data:" + FILE_TYPE + ";base64,AA==", "page.html");
+  assert.match(file.path, /\.bin$/);
+  assert.equal(file.name, "page.html");
+  assert.equal(safeFileData("data:text/html;base64,AA=="), false);
+  assert.equal(safeFileData("data:" + FILE_TYPE + ";base64,A==="), false);
+  assert.equal(safeFileData("data:" + FILE_TYPE + ";base64," + Buffer.alloc(MAX_FILE_SIZE).toString("base64")), true);
+  assert.equal(safeFileData("data:" + FILE_TYPE + ";base64," + Buffer.alloc(MAX_FILE_SIZE + 1).toString("base64")), false);
+  entry.assets = [{ ...file, path: "files/../../index.html" }];
+  await assert.rejects(() => s.client.publish(entry), /경로/);
+  assert.throws(() => validateBackup(entry), /첨부 파일/);
+  entry.assets = [];
+  entry.doc.content.push({ type: "paragraph", content: [{ type: "text", text: file.name, marks: [{ type: "link", attrs: { href: file.path } }] }] });
+  await assert.rejects(() => s.client.publish(entry), /첨부 파일/);
+  assert.throws(() => validateBackup(entry), /첨부 파일/);
+  assert.equal(s.requests.filter(r => r.method !== "GET").length, 0);
+  assert.doesNotMatch(renderDocument(entry.doc).html, /href="files\//);
 });
 test("A concurrent branch update is never force overwritten", async () => {
   const s = server(); await s.client.connect(TOKEN); s.state.race = true;
@@ -260,6 +319,9 @@ test("The production content build includes published entries and excludes trash
   entry.series = "DVWA";
   entry.assets = [{ id: imageId, path: "images/" + imageId + ".png", name: "image.png", type: "image/png", data: "data:image/png;base64,aW1hZ2U=" }];
   entry.doc.content.push({ type: "image", attrs: { assetId: imageId, src: entry.assets[0].path, alt: "이미지" } });
+  const file = createFileAsset("data:" + FILE_TYPE + ";base64,AA==", "자료.zip");
+  entry.assets.push(file);
+  entry.doc.content.push({ type: "paragraph", content: [{ type: "text", text: file.name, marks: [{ type: "link", attrs: { href: file.path } }] }] });
   const first = await s.client.publish(entry), second = await s.client.publish({ ...draft(), kind: "notes", title: "비공개 목록 테스트" });
   await s.client.changeStatus([second.item]);
   const files = s.trees.get(s.commits.get(s.state.head).tree.sha);
@@ -282,6 +344,12 @@ test("The production content build includes published entries and excludes trash
     assert.deepEqual(feed.managedKinds.sort(), ["notes", "posts"]);
     assert.doesNotMatch(await readFile(resolve(temp, "published.js"), "utf8"), /보안 연구 기록/);
     assert.match(output, /보안 연구 기록/); assert.doesNotMatch(output, /비공개 목록 테스트/);
+    const attachment = feed.posts[0].assets.find(asset => asset.type === FILE_TYPE);
+    assert.equal(attachment.name, "자료.zip");
+    assert.match(renderDocument(feed.posts[0].doc, { assets: feed.posts[0].assets }).html, /download="자료.zip"/);
+    await writeFile(resolve(temp, attachment.path.slice(1)), "corrupt attachment");
+    assert.notEqual(spawnSync(process.execPath, [script], { cwd: temp, encoding: "utf8" }).status, 0, "A changed file attachment must fail the build");
+    await writeFile(resolve(temp, attachment.path.slice(1)), s.blobs.get(attachment.sha));
     const imagePath = "assets/uploads/" + entry.id + "/" + imageId + ".png";
     assert.ok(output.includes("/" + imagePath));
     await writeFile(resolve(temp, imagePath), "corrupted image");

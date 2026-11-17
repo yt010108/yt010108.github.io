@@ -1,3 +1,5 @@
+import { FILE_TYPE, FILE_PATH, safeFileData, dataSize } from "../../shared/files.js";
+
 export const FORMAT = "yt010108-writing-draft";
 export const IMAGE_TYPES = new Set(["image/png", "image/jpeg", "image/gif", "image/webp"]);
 export const MAX_IMAGE_SIZE = 10 * 1024 * 1024;
@@ -42,7 +44,7 @@ export function transformImages(doc, assets, hydrate) {
     if (asset) next.attrs = { ...next.attrs, assetId: asset.id, src: hydrate ? asset.data : asset.path, width: null, height: null };
     else if (!/^(https:\/\/|images\/)/i.test(next.attrs.src || "")) next.attrs.src = "";
   }
-  if (doc.marks) next.marks = doc.marks.filter(mark => mark.type !== "link" || /^(https?:\/\/|mailto:|\/|#)/i.test(mark.attrs?.href || ""));
+  if (doc.marks) next.marks = doc.marks.filter(mark => mark.type !== "link" || /^(https?:\/\/|mailto:|\/|#)/i.test(mark.attrs?.href || "") || imageBySource(assets, mark.attrs?.href)?.type === FILE_TYPE);
   if (doc.content) next.content = doc.content.map(child => transformImages(child, assets, hydrate));
   return next;
 }
@@ -53,6 +55,10 @@ export function usedAssets(doc, assets, markdown = "") {
     if (node.type === "image") {
       const asset = assets.get(node.attrs?.assetId) || imageBySource(assets, node.attrs?.src);
       if (asset) ids.add(asset.id);
+    }
+    for (const mark of node.marks || []) {
+      const asset = mark.type === "link" && imageBySource(assets, mark.attrs?.href);
+      if (asset?.type === FILE_TYPE) ids.add(asset.id);
     }
     node.content?.forEach(visit);
   };
@@ -65,18 +71,23 @@ export function validateBackup(value) {
   if (!value || value.format !== FORMAT || value.version !== 1 || value.doc?.type !== "doc" || !Array.isArray(value.assets)) {
     throw new Error("이 글쓰기에서 내보낸 편집용 백업 파일을 선택해 주세요.");
   }
-  if (value.assets.length > 150) throw new Error("첨부 이미지가 너무 많아요.");
+  if (value.assets.length > 150) throw new Error("첨부 파일이 너무 많아요.");
   const assets = new Map();
+  let total = 0;
   for (const asset of value.assets) {
-    if (!asset || typeof asset.id !== "string" || !/^images\/[a-f0-9-]+\.(png|jpg|gif|webp)$/.test(asset.path) || !safeImageData(asset.data) || assets.has(asset.id)) {
-      throw new Error("백업 이미지 정보를 확인할 수 없어요.");
+    const valid = asset?.type === FILE_TYPE ? FILE_PATH.test(asset.path) && asset.path === "files/" + asset.id + ".bin" && safeFileData(asset.data) : /^images\/[a-f0-9-]+\.(png|jpg|gif|webp)$/.test(asset?.path) && safeImageData(asset?.data);
+    if (!asset || typeof asset.id !== "string" || !valid || assets.has(asset.id)) {
+      throw new Error("백업 첨부 파일 정보를 확인할 수 없어요.");
     }
+    total += dataSize(asset.data);
+    if (total > 50 * 1024 * 1024) throw new Error("한 글의 첨부 파일은 합계 50MB까지 보관할 수 있어요.");
     assets.set(asset.id, { ...asset, name: String(asset.name || "첨부 이미지").slice(0, 200) });
   }
   let count = 0;
   const visit = (node, depth) => {
     if (++count > 50000 || depth > 50 || !node || typeof node.type !== "string") throw new Error("백업 본문 형식을 확인할 수 없어요.");
     if (node.type === "image" && node.attrs?.assetId && !assets.has(node.attrs.assetId)) throw new Error("백업에 필요한 이미지가 없어요.");
+    for (const mark of node.marks || []) if (mark.type === "link" && /^files\//.test(mark.attrs?.href || "") && imageBySource(assets, mark.attrs.href)?.type !== FILE_TYPE) throw new Error("백업에 필요한 첨부 파일이 없어요.");
     if (node.content !== undefined && !Array.isArray(node.content)) throw new Error("백업 본문 형식을 확인할 수 없어요.");
     node.content?.forEach(child => visit(child, depth + 1));
   };
