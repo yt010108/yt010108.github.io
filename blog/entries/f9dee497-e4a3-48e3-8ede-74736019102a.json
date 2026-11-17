@@ -1,0 +1,46 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "f9dee497-e4a3-48e3-8ede-74736019102a",
+  "title": "메일",
+  "kind": "posts",
+  "slug": "메일",
+  "description": "",
+  "category": "",
+  "date": "2026-11-17",
+  "tags": [],
+  "series": "",
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-17T01:48:13.037Z",
+  "updatedAt": "2026-11-17T01:48:13.037Z",
+  "sourceDigest": "13363b8ef2b13c3070074c332ee2d024e128b38cd06a37d04a485c1789ea49a3",
+  "assets": [
+    {
+      "id": "c49e8549-69db-4aa8-8166-c548e8599432",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/f9dee497-e4a3-48e3-8ede-74736019102a/c49e8549-69db-4aa8-8166-c548e8599432.png",
+      "sha": "b63b24e845e0ce0ab5613a4a7d5cfcc1f8ba6c51"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/f9dee497-e4a3-48e3-8ede-74736019102a/c49e8549-69db-4aa8-8166-c548e8599432.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "c49e8549-69db-4aa8-8166-c548e8599432"
+        }
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  }
+}

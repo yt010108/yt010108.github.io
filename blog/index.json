@@ -2700,6 +2700,24 @@
       "trashedAt": null,
       "path": "blog/entries/36bd994f-a09f-41b5-9de4-40a767f5c472.json",
       "sha": "302c1cfbf35a67243618b3f1ca9671678f7cd7e1"
+    },
+    {
+      "id": "f9dee497-e4a3-48e3-8ede-74736019102a",
+      "kind": "posts",
+      "slug": "메일",
+      "title": "메일",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-17",
+      "updatedAt": "2026-11-17T01:48:13.037Z",
+      "publishedAt": "2026-11-17T01:48:13.037Z",
+      "status": "published",
+      "sourceDigest": "13363b8ef2b13c3070074c332ee2d024e128b38cd06a37d04a485c1789ea49a3",
+      "trashedAt": null,
+      "path": "blog/entries/f9dee497-e4a3-48e3-8ede-74736019102a.json",
+      "sha": "e58096f4d5db4718a92b0e2245acc1e86643a274"
     }
   ],
   "taxonomy": {
