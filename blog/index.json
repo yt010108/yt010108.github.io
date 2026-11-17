@@ -2718,6 +2718,24 @@
       "trashedAt": null,
       "path": "blog/entries/f9dee497-e4a3-48e3-8ede-74736019102a.json",
       "sha": "e58096f4d5db4718a92b0e2245acc1e86643a274"
+    },
+    {
+      "id": "df5dacda-dbda-45e4-ad5d-ace7b85fa290",
+      "kind": "posts",
+      "slug": "php-webshell-웹쉘",
+      "title": "php webshell(웹쉘)",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-17",
+      "updatedAt": "2026-11-17T02:11:59.741Z",
+      "publishedAt": "2026-11-17T02:11:59.741Z",
+      "status": "published",
+      "sourceDigest": "1e4074deb503d147744250346baa5be491b22f6497ef3e7e0f7ad6c974e4ca71",
+      "trashedAt": null,
+      "path": "blog/entries/df5dacda-dbda-45e4-ad5d-ace7b85fa290.json",
+      "sha": "caafa33a371698fc70cad69f67563069588fbffc"
     }
   ],
   "taxonomy": {
