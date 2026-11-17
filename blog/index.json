@@ -2754,6 +2754,24 @@
       "trashedAt": null,
       "path": "blog/entries/9219bbc2-629f-43d1-aec5-2df571afbf45.json",
       "sha": "8611e9f186b75ff37de50068e41520eaf6299cf8"
+    },
+    {
+      "id": "c1d474db-d435-411b-801c-0cc1ad6c41d8",
+      "kind": "posts",
+      "slug": "jsp-웹쉘",
+      "title": "jsp 웹쉘",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-17",
+      "updatedAt": "2026-11-17T03:13:14.757Z",
+      "publishedAt": "2026-11-17T03:13:14.757Z",
+      "status": "published",
+      "sourceDigest": "38c7db94205405a60e8c323c54059dcd343276dfebbe5ced127b6b744cd41e3c",
+      "trashedAt": null,
+      "path": "blog/entries/c1d474db-d435-411b-801c-0cc1ad6c41d8.json",
+      "sha": "c3b16eb85cc8d52246d7b132e76bc7fc5f9f4480"
     }
   ],
   "taxonomy": {
