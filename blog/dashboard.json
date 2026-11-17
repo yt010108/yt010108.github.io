@@ -32,11 +32,6 @@
       "id": "1cfa62ee-c1d4-41d4-af13-0c71470961cb",
       "text": "apache2shell 공부하기",
       "done": false
-    },
-    {
-      "id": "134c728e-fa4a-4126-a10a-873e849c803d",
-      "text": "위버맨쉬-니체",
-      "done": false
     }
   ],
   "shortcuts": [
@@ -107,5 +102,5 @@
       "url": "https://github.com/yt010108/artex-ko"
     }
   ],
-  "updatedAt": "2026-11-16T11:14:27.298Z"
+  "updatedAt": "2026-11-17T00:42:12.795Z"
 }
