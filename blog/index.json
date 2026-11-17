@@ -2086,23 +2086,6 @@
       "sha": "efe4043e8f4d85c1189c1ba6955a25391bd5e1c7"
     },
     {
-      "id": "36bd994f-a09f-41b5-9de4-40a767f5c472",
-      "kind": "notes",
-      "slug": "책-관련",
-      "title": "책 관련",
-      "description": "",
-      "category": "",
-      "tags": [],
-      "date": "2026-10-26",
-      "updatedAt": "2026-10-26T01:31:30.616Z",
-      "publishedAt": "2026-10-26T01:31:30.616Z",
-      "status": "published",
-      "sourceDigest": "09990f830467d4d354d1a12af1689b2c3d82b385e40225572c0e6335474febd1",
-      "trashedAt": null,
-      "path": "blog/entries/36bd994f-a09f-41b5-9de4-40a767f5c472.json",
-      "sha": "f3682204f57a347cdcea3ae254325058955f1115"
-    },
-    {
       "id": "c1c86403-e56f-4a4b-b736-8ba1d20f0d49",
       "kind": "notes",
       "slug": "쉴더스-정리",
@@ -2699,6 +2682,24 @@
       "trashedAt": null,
       "path": "blog/entries/b41320ce-dda3-40e9-8628-74b8ecee0a7f.json",
       "sha": "c6dc40cf3065ea0fba4b5f3f650126c75822a183"
+    },
+    {
+      "id": "36bd994f-a09f-41b5-9de4-40a767f5c472",
+      "kind": "notes",
+      "slug": "책-관련",
+      "title": "책 관련",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-10-26",
+      "updatedAt": "2026-11-17T00:49:56.542Z",
+      "publishedAt": "2026-10-26T01:31:30.616Z",
+      "status": "published",
+      "sourceDigest": "e192d1464ebe186282d7f27ed9c296ae9d6f067e76cb229017d4708f8d6cc929",
+      "trashedAt": null,
+      "path": "blog/entries/36bd994f-a09f-41b5-9de4-40a767f5c472.json",
+      "sha": "302c1cfbf35a67243618b3f1ca9671678f7cd7e1"
     }
   ],
   "taxonomy": {

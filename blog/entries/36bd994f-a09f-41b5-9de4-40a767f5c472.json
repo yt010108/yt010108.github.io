@@ -9,11 +9,12 @@
   "category": "",
   "date": "2026-10-26",
   "tags": [],
+  "series": "",
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-10-26T01:31:30.616Z",
-  "updatedAt": "2026-10-26T01:31:30.616Z",
-  "sourceDigest": "09990f830467d4d354d1a12af1689b2c3d82b385e40225572c0e6335474febd1",
+  "updatedAt": "2026-11-17T00:49:56.542Z",
+  "sourceDigest": "e192d1464ebe186282d7f27ed9c296ae9d6f067e76cb229017d4708f8d6cc929",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -36,6 +37,48 @@
               }
             ],
             "text": "https://www.youtube.com/watch?v=pdh4lkZKT6A"
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "b4510fa1-89f5-4433-945f-c7f6bcbbcd02",
+          "href": "https://www.youtube.com/watch?v=pdh4lkZKT6A",
+          "title": "",
+          "description": "",
+          "image": "",
+          "imageKind": "image",
+          "state": "unavailable"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 은하수를 여행하는 히치하이커들을 위한 안내서"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "2. 율리시스 - 제임스 조이스"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "3. 내 이름은 빨강"
+          },
+          {
+            "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "4. 변신 - 프란츠 카프카"
           }
         ]
       }
