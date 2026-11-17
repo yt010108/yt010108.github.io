@@ -2790,6 +2790,24 @@
       "trashedAt": null,
       "path": "blog/entries/799e8253-e2a8-4160-a494-4541b115c71c.json",
       "sha": "0e1bee13c4a34cc0b02eaed3ab2ba345ee4f6b9c"
+    },
+    {
+      "id": "56b3cac4-4958-41ae-9a02-74106f5b1369",
+      "kind": "notes",
+      "slug": "ai-활용-능력-시장이-원하는",
+      "title": "AI 활용 능력(시장이 원하는?)",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-17",
+      "updatedAt": "2026-11-17T10:20:49.801Z",
+      "publishedAt": "2026-11-17T10:20:49.801Z",
+      "status": "published",
+      "sourceDigest": "c3bace00bea16a0f1c348213fb4534d289cbe132f2f0071b4734c6544eb21019",
+      "trashedAt": null,
+      "path": "blog/entries/56b3cac4-4958-41ae-9a02-74106f5b1369.json",
+      "sha": "4978a893993de30ce049ae681f516eb733f5181f"
     }
   ],
   "taxonomy": {
