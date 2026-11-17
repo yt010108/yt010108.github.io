@@ -2808,6 +2808,24 @@
       "trashedAt": null,
       "path": "blog/entries/56b3cac4-4958-41ae-9a02-74106f5b1369.json",
       "sha": "4978a893993de30ce049ae681f516eb733f5181f"
+    },
+    {
+      "id": "c804c61d-f8c2-4bb8-8652-0b26b4d88201",
+      "kind": "posts",
+      "slug": "회사-준비",
+      "title": "회사 준비",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-17",
+      "updatedAt": "2026-11-17T10:59:18.276Z",
+      "publishedAt": "2026-11-17T10:59:18.276Z",
+      "status": "published",
+      "sourceDigest": "d4b57c5201a7d3368bc71eb865b030447eb5a7a15b497e35ea07a1b52edd8180",
+      "trashedAt": null,
+      "path": "blog/entries/c804c61d-f8c2-4bb8-8652-0b26b4d88201.json",
+      "sha": "3e30750cca0f23dbddee8ec8999d59526659db88"
     }
   ],
   "taxonomy": {
