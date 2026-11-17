@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-17T10:59:18.276Z",
-  "updatedAt": "2026-11-17T10:59:18.276Z",
-  "sourceDigest": "d4b57c5201a7d3368bc71eb865b030447eb5a7a15b497e35ea07a1b52edd8180",
+  "updatedAt": "2026-11-17T11:16:50.715Z",
+  "sourceDigest": "f586b8f4ab76aab0b03e7401e8df3e21a60d4fa7341b3ee3a29890270c576dc1",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -528,11 +528,22 @@
                 ]
               }
             ]
+          },
+          {
+            "type": "listItem",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "SQLI prepared statement order by에 왜 적용이 안되는 것인"
+                  }
+                ]
+              }
+            ]
           }
         ]
-      },
-      {
-        "type": "paragraph"
       },
       {
         "type": "paragraph"
