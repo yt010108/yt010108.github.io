@@ -22,6 +22,11 @@
       "id": "1cfa62ee-c1d4-41d4-af13-0c71470961cb",
       "text": "apache2shell 공부하기",
       "done": false
+    },
+    {
+      "id": "b3a1a791-945b-4ac0-b715-ae1cf0fa4b18",
+      "text": "직무 정하기",
+      "done": false
     }
   ],
   "shortcuts": [
@@ -92,5 +97,5 @@
       "url": "https://github.com/yt010108/artex-ko"
     }
   ],
-  "updatedAt": "2026-11-17T10:12:31.488Z"
+  "updatedAt": "2026-11-18T09:41:01.290Z"
 }
