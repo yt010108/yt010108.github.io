@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-17T10:59:18.276Z",
-  "updatedAt": "2026-11-17T11:16:50.715Z",
-  "sourceDigest": "f586b8f4ab76aab0b03e7401e8df3e21a60d4fa7341b3ee3a29890270c576dc1",
+  "updatedAt": "2026-11-18T11:03:15.978Z",
+  "sourceDigest": "33c73c240c1570677b64a21d37988be61eda1c9ba34673594ebfc0ed3efdab46",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -43,7 +43,133 @@
       {
         "type": "heading",
         "attrs": {
-          "level": 1
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "희망 직무"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "결국 별로인 직무는 없음, 사실 모의해킹이랑 취단 차이는 그냥 체크리스트랑 시나리오 기반이라는 느낌 밖에는 모르겠음 하지만 컨설팅은 수요와 커리어 적으로 나중에 프리렌서나 하기 좋아보임 하지만 발표 보고서 및 사람 만나는 거가 개인적으로는 빡세다고 생각함 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "게다가 결국 모의해킹, 취약점 잔단, 컨설팅은 초반에는 결국 웹해킹 위주로 시작하고 배워가면서 진행하는 느낌??"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "1. 모의해킹"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "장점 :  EQST, 술 전문 분야를 만들 기회"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "단점 : EQST에 맞는 실력까지 .. 그리고 직무의 어려움, AI, TO도 또한 문제인듯"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "2. 취약점 진단"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "장점 :  재미있게 프로젝트 가능할 느낌(팀원), 커리큘럼 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "단점 :  하지만 그만큼 프로젝트에 압박도 있음 , 반복 확인과 정리의 비중이 커질 수 있음"
+          }
+        ]
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 3
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "3. 컨설팅 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "장점 :  커리어 적으로 개인정보나 법률로 가면 괜찮아 보임(공공기관으로 이직이나 프리렌서 가능)"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "단점 : 발표나 보고서를 고객사한테 맞춰야한다. 그리고 발표를 해야하는 압박, 수주 발표등  "
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
         },
         "content": [
           {
@@ -64,7 +190,7 @@
       {
         "type": "heading",
         "attrs": {
-          "level": 2
+          "level": 3
         },
         "content": [
           {
@@ -92,9 +218,18 @@
         ]
       },
       {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "게다가 보고서 작성 능력 <- 이게 생각보다 많이 중요함 하지만 늘리려면 결국 경험이 답인듯"
+          }
+        ]
+      },
+      {
         "type": "heading",
         "attrs": {
-          "level": 2
+          "level": 3
         },
         "content": [
           {
@@ -113,9 +248,27 @@
         ]
       },
       {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "내 생각에는 AI를 통해 결국 어떤 문제를 해결하는 것 보다 어떤 문제 해결에 필요한 시간을 줄여준다고 생각함"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "어차피 문제를 푸는 것은 사람임 + AI는 그 사람이 못하는 것을 획기적으로 바꿔주지는 않지만 시간은 줄여준다고 생각함 "
+          }
+        ]
+      },
+      {
         "type": "heading",
         "attrs": {
-          "level": 2
+          "level": 3
         },
         "content": [
           {
@@ -160,7 +313,7 @@
       {
         "type": "heading",
         "attrs": {
-          "level": 2
+          "level": 3
         },
         "content": [
           {
@@ -199,7 +352,7 @@
       {
         "type": "heading",
         "attrs": {
-          "level": 2
+          "level": 3
         },
         "content": [
           {
@@ -220,7 +373,7 @@
       {
         "type": "heading",
         "attrs": {
-          "level": 2
+          "level": 3
         },
         "content": [
           {
@@ -235,19 +388,6 @@
           {
             "type": "text",
             "text": "두괄식, star기법이 무조건 들어가야함"
-          }
-        ]
-      },
-      {
-        "type": "bulletList",
-        "content": [
-          {
-            "type": "listItem",
-            "content": [
-              {
-                "type": "paragraph"
-              }
-            ]
           }
         ]
       },
@@ -297,7 +437,7 @@
       {
         "type": "heading",
         "attrs": {
-          "level": 2
+          "level": 3
         },
         "content": [
           {
@@ -330,7 +470,7 @@
       {
         "type": "heading",
         "attrs": {
-          "level": 2
+          "level": 3
         },
         "content": [
           {
@@ -551,7 +691,7 @@
       {
         "type": "heading",
         "attrs": {
-          "level": 2
+          "level": 3
         },
         "content": [
           {
