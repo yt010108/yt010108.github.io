@@ -13,9 +13,17 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-17T02:11:59.741Z",
-  "updatedAt": "2026-11-19T06:58:51.752Z",
-  "sourceDigest": "f2226164db8609e2fdb271da176a47501b4bca672d19f120ccb2ec244088f987",
-  "assets": [],
+  "updatedAt": "2026-11-19T07:00:26.381Z",
+  "sourceDigest": "4c630a17234fe6b98dc3fdbae92bf46297d5f5f5040db1958660f5bd70842b14",
+  "assets": [
+    {
+      "id": "1f1a5c0a-25f2-43bb-a815-d749a186c6dd",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/df5dacda-dbda-45e4-ad5d-ace7b85fa290/1f1a5c0a-25f2-43bb-a815-d749a186c6dd.png",
+      "sha": "ebc928208bf2b153de957511d4348060cb969c0e"
+    }
+  ],
   "doc": {
     "type": "doc",
     "content": [
@@ -27,6 +35,17 @@
             "text": "php webshell (yt, 1234)"
           }
         ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/df5dacda-dbda-45e4-ad5d-ace7b85fa290/1f1a5c0a-25f2-43bb-a815-d749a186c6dd.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "1f1a5c0a-25f2-43bb-a815-d749a186c6dd"
+        }
       },
       {
         "type": "horizontalRule"

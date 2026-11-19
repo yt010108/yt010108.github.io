@@ -3377,13 +3377,13 @@
       "series": "",
       "tags": [],
       "date": "2026-11-17",
-      "updatedAt": "2026-11-19T06:58:51.752Z",
+      "updatedAt": "2026-11-19T07:00:26.381Z",
       "publishedAt": "2026-11-17T02:11:59.741Z",
       "status": "published",
-      "sourceDigest": "f2226164db8609e2fdb271da176a47501b4bca672d19f120ccb2ec244088f987",
+      "sourceDigest": "4c630a17234fe6b98dc3fdbae92bf46297d5f5f5040db1958660f5bd70842b14",
       "trashedAt": null,
       "path": "blog/entries/df5dacda-dbda-45e4-ad5d-ace7b85fa290.json",
-      "sha": "ae6c766926f500ec0dbbffb3cf1be4e5a03ccf1f"
+      "sha": "e5bbc52ae9bc66520c5f9111e97836248cfad5f4"
     }
   ],
   "taxonomy": {
