@@ -2866,12 +2866,26 @@
       "Study",
       "Wargame",
       "Wargame / WebGoat",
-      "Wargame / webhacking.kr"
+      "Wargame / webhacking.kr",
+      "Privacy/개인정보보호법 결과공표"
     ],
-    "tags": [],
     "series": [
       "DVWA",
       "SK Rookies"
+    ],
+    "tags": [
+      "권한 검증",
+      "모의해킹",
+      "인증",
+      "출력 인코딩",
+      "Cookie",
+      "CSRF",
+      "JavaScript",
+      "MySQL",
+      "Oracle",
+      "Session",
+      "SQLi",
+      "XSS"
     ]
   }
 }
