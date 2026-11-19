@@ -1,0 +1,101 @@
+name: 개인정보위 결과 공표 동기화
+
+on:
+  schedule:
+    - cron: '35 0 * * *' # 09:35 Asia/Seoul
+  workflow_dispatch:
+    inputs:
+      notice_id:
+        description: '검토 승인 시 원문 글 번호 (정기 수집은 비워두기)'
+        type: string
+        required: false
+      names:
+        description: '원문에서 확인한 대상 이름 (여러 곳은 | 로 구분)'
+        type: string
+        required: false
+
+permissions: {}
+
+concurrency:
+  group: pipc-sync-main
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      actions: write
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      OMP_THREAD_LIMIT: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: scripts/pipc/requirements.txt
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - name: Install document readers and Korean OCR
+        run: |
+          python -m pip install -r scripts/pipc/requirements.txt
+          if ! tesseract --list-langs 2>/dev/null | grep -Fxq kor; then
+            sudo apt-get -q update
+            sudo apt-get -qy install --no-install-recommends tesseract-ocr tesseract-ocr-kor tesseract-ocr-eng
+          fi
+          tesseract --list-langs | grep -Fxq kor
+          tesseract --list-langs | grep -Fxq eng
+      - name: Test publication and review
+        run: python -B tests/test_pipc.py
+      - name: Collect, validate and commit
+        id: sync
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PIPC_REVIEW_ID: ${{ inputs.notice_id }}
+          PIPC_NAMES: ${{ inputs.names }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3; do
+            git fetch --quiet origin refs/heads/main
+            git switch --quiet --detach FETCH_HEAD
+            env -u GH_TOKEN python -B scripts/pipc/sync.py
+            git add -A -- blog/pipc blog/index.json blog/entries assets/uploads
+            if git diff --cached --quiet; then break; fi
+            deploy=false
+            if ! git diff --cached --quiet -- blog/index.json; then
+              node scripts/build-content.mjs
+              deploy=true
+            fi
+            git diff --cached --check
+            git commit -qm 'Sync PIPC notices and reviews'
+            if git -c 'credential.https://github.com.helper=!gh auth git-credential' push origin HEAD:refs/heads/main; then
+              echo "deploy=$deploy" >> "$GITHUB_OUTPUT"
+              break
+            fi
+            if [ "$attempt" = 3 ]; then exit 1; fi
+            sleep 3
+          done
+      - name: Deploy newly published posts
+        if: steps.sync.outputs.deploy == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for attempt in 1 2 3; do
+            if gh workflow run deploy.yml --ref main; then exit 0; fi
+            sleep 3
+          done
+          exit 1
+      - name: Signal notices that still need fetching
+        if: steps.sync.outputs.retry == 'true'
+        run: |
+          echo "::error::일부 공표 원본을 가져오지 못했습니다. 실행 요약의 글 번호를 확인하세요."
+          exit 1
