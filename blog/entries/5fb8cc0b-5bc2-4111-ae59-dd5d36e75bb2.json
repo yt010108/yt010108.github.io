@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T00:19:44.372Z",
-  "updatedAt": "2026-11-19T00:19:44.372Z",
-  "sourceDigest": "7bf8f67dd5b52f66be56b419aacc7f17d000cd0751435950a2a9f45c38cfb214",
+  "updatedAt": "2026-11-19T00:21:07.871Z",
+  "sourceDigest": "137b9703d8d45ec7ef768fa1c8d3789be0ce1c12c6a6da88c88acd3258753a03",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -60,6 +60,87 @@
             "text": "공지 확인하는 툴 있으면 좋을듯 https://www.boho.or.kr/kr/bbs/list.do?menuNo=205020&bbsId=B0000133"
           }
         ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.dailysecu.com/",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "https://www.dailysecu.com/"
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "edf67dbe-61cc-4797-bf5e-bc0ef715629a",
+          "href": "https://www.dailysecu.com/",
+          "title": "데일리시큐",
+          "description": "보안전문 인터넷신문, 보안인력채용, 해킹, 개인정보보호 등 뉴스 수록.",
+          "image": "https://www.dailysecu.com/image/logo/snslogotrans_20250610104120.jpg",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "보안 뉴스"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.boannews.com/",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "https://www.boannews.com/"
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "cc41041a-3539-4c1b-b500-82527d973363",
+          "href": "https://www.boannews.com/",
+          "title": "",
+          "description": "",
+          "image": "",
+          "imageKind": "image",
+          "state": "loading"
+        }
+      },
+      {
+        "type": "paragraph"
       }
     ]
   }
