@@ -32,6 +32,11 @@
       "id": "fc6847a3-fcd2-412a-867e-791dfb91fd4e",
       "text": "Java2shell 공부하기",
       "done": false
+    },
+    {
+      "id": "02b2d8cd-26b6-4abf-92cc-01e0751e5f6c",
+      "text": "nginX?",
+      "done": false
     }
   ],
   "shortcuts": [
@@ -102,5 +107,5 @@
       "url": "https://github.com/yt010108/artex-ko"
     }
   ],
-  "updatedAt": "2026-11-19T00:06:49.958Z"
+  "updatedAt": "2026-11-19T00:17:13.733Z"
 }
