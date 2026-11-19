@@ -10,10 +10,10 @@
   "date": "2026-11-12",
   "tags": [],
   "series": "",
-  "status": "published",
-  "trashedAt": null,
+  "status": "trash",
+  "trashedAt": "2026-11-19T06:56:51.251Z",
   "publishedAt": "2026-11-12T08:46:31.819Z",
-  "updatedAt": "2026-11-12T08:46:31.819Z",
+  "updatedAt": "2026-11-19T06:56:51.251Z",
   "sourceDigest": "575fad18ff248cc96af5d45a38bb355584125b96a3aef462b4488074f53961ec",
   "assets": [
     {
