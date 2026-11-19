@@ -3384,6 +3384,24 @@
       "trashedAt": null,
       "path": "blog/entries/df5dacda-dbda-45e4-ad5d-ace7b85fa290.json",
       "sha": "e5bbc52ae9bc66520c5f9111e97836248cfad5f4"
+    },
+    {
+      "id": "dd821490-df56-4a30-8321-0420b9864e66",
+      "kind": "posts",
+      "slug": "컨설팅-asd",
+      "title": "컨설팅 asd",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-19",
+      "updatedAt": "2026-11-19T09:29:19.056Z",
+      "publishedAt": "2026-11-19T09:29:19.056Z",
+      "status": "published",
+      "sourceDigest": "795f1ddaf2b6fda097d251ee9542394402a8b612854727cd5e4bdc4d4a6cadc2",
+      "trashedAt": null,
+      "path": "blog/entries/dd821490-df56-4a30-8321-0420b9864e66.json",
+      "sha": "6546c7e2696e79d283ec2d6c4691edd2517f4475"
     }
   ],
   "taxonomy": {

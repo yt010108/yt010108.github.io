@@ -1,0 +1,502 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "dd821490-df56-4a30-8321-0420b9864e66",
+  "title": "컨설팅 asd",
+  "kind": "posts",
+  "slug": "컨설팅-asd",
+  "description": "",
+  "category": "",
+  "date": "2026-11-19",
+  "tags": [],
+  "series": "",
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-19T09:29:19.056Z",
+  "updatedAt": "2026-11-19T09:29:19.056Z",
+  "sourceDigest": "795f1ddaf2b6fda097d251ee9542394402a8b612854727cd5e4bdc4d4a6cadc2",
+  "assets": [
+    {
+      "id": "46b76db7-9eee-451b-9941-b8eea7cf9c62",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/46b76db7-9eee-451b-9941-b8eea7cf9c62.png",
+      "sha": "12b4546856a0475e358f5e0116ee67064425eeaa"
+    },
+    {
+      "id": "69fea8a5-e796-47fb-915e-1f800e30bcd2",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/69fea8a5-e796-47fb-915e-1f800e30bcd2.png",
+      "sha": "f6125df20f7e131beb1b32132a8493c0a258b47b"
+    },
+    {
+      "id": "8765d6ac-1d61-4f08-b3c9-fa4e4a4dc4f2",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/8765d6ac-1d61-4f08-b3c9-fa4e4a4dc4f2.png",
+      "sha": "6c1cf921b064afde957dcbbd44fec92b0c32d00f"
+    },
+    {
+      "id": "45d7bd9d-23ca-40d8-b91f-833c26d73c23",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/45d7bd9d-23ca-40d8-b91f-833c26d73c23.png",
+      "sha": "72386da4773d274501d964cbc49a672965217961"
+    },
+    {
+      "id": "3793f91e-3f75-4dd1-af91-c23db29bf436",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/3793f91e-3f75-4dd1-af91-c23db29bf436.png",
+      "sha": "5fedfef8827f8366f680a52cf5ab8805dadf6f42"
+    },
+    {
+      "id": "9b6ee9fe-ef8b-4a3e-972e-c807c6f8a6bc",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/9b6ee9fe-ef8b-4a3e-972e-c807c6f8a6bc.png",
+      "sha": "269c8cdd71a3c074c05ace8affda57833dd137d5"
+    },
+    {
+      "id": "d7e2f708-fa17-4dab-b373-d31d148514e6",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/d7e2f708-fa17-4dab-b373-d31d148514e6.png",
+      "sha": "ca2de73e3498c8dac3b4700bfc5cec8ff4c042d3"
+    },
+    {
+      "id": "877b8d79-1cc4-4b95-9065-c3516bcdf941",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/877b8d79-1cc4-4b95-9065-c3516bcdf941.png",
+      "sha": "36b227793340deb67bdcfa7c31a578b22c7b6182"
+    },
+    {
+      "id": "a5c6741a-eb67-4561-bac0-e3d872c01aa8",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/a5c6741a-eb67-4561-bac0-e3d872c01aa8.png",
+      "sha": "dfc4f0db328f74fcbcb44135dc6c16dcd408a82c"
+    },
+    {
+      "id": "69059a4f-0e4c-4bcd-bee0-eaec0e4c5c6a",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/69059a4f-0e4c-4bcd-bee0-eaec0e4c5c6a.png",
+      "sha": "9d9583fb37f96f266e5c05aa1f70f203555d60e7"
+    },
+    {
+      "id": "883b3e27-5ca2-4d0a-97b8-54570220c472",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/883b3e27-5ca2-4d0a-97b8-54570220c472.png",
+      "sha": "dd52130e60de1a733f7fe8b05d3412a3208b9b55"
+    },
+    {
+      "id": "fafb94c6-3e2a-4794-8fb4-11d021425a40",
+      "name": "image.png",
+      "type": "image/png",
+      "path": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/fafb94c6-3e2a-4794-8fb4-11d021425a40.png",
+      "sha": "da4a0e3f11f24e93c89a9b8ed1259e2ab6788032"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/46b76db7-9eee-451b-9941-b8eea7cf9c62.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "46b76db7-9eee-451b-9941-b8eea7cf9c62"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "배경 2개 패널티 관련"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "팀명"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "와 사진도 넣네 증명사진"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/69fea8a5-e796-47fb-915e-1f800e30bcd2.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "69fea8a5-e796-47fb-915e-1f800e30bcd2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "수탁사 대상 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "사업배경<- 클라우드 "
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/8765d6ac-1d61-4f08-b3c9-fa4e4a4dc4f2.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "8765d6ac-1d61-4f08-b3c9-fa4e4a4dc4f2"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "관련 법률 매핑 <- 금융이니까 신용정보법 먼저 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "일단 대상에 맞게 해야함 관련된 업종에 맞게 취약점 기준을 바탕으로 해야한다. 그거에 대한 명분 기준이 명확해야함 <- 진단 기준이 없거나 수탁에 대한 "
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "제안서 <- 요구사항 잘 확인해야함"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/45d7bd9d-23ca-40d8-b91f-833c26d73c23.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "45d7bd9d-23ca-40d8-b91f-833c26d73c23"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "인력 mm"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/3793f91e-3f75-4dd1-af91-c23db29bf436.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "3793f91e-3f75-4dd1-af91-c23db29bf436"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "체크리스트 현행화 <- 클라우드 추가 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "매핑 검증 최종화 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "점검 일정 수립 , 흐름도 "
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "분석"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "서면 점검 준수율"
+          }
+        ]
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "진단 결과 종합 분석<- 이거 중요함"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "팀별로 점검 일정 나눔"
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개선 방안"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "현재 하고 점검 후에 개선율 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "기대효과 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "소감 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "동영상 , 재점검 , 스크립트 자동화, 1주차부터 5주차 까지 보고서 잘 작성하자!! "
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "인재상"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/9b6ee9fe-ef8b-4a3e-972e-c807c6f8a6bc.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "9b6ee9fe-ef8b-4a3e-972e-c807c6f8a6bc"
+        }
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "heading",
+        "attrs": {
+          "level": 2
+        },
+        "content": [
+          {
+            "type": "text",
+            "text": "취약점 진단(19기)"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/d7e2f708-fa17-4dab-b373-d31d148514e6.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "d7e2f708-fa17-4dab-b373-d31d148514e6"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/877b8d79-1cc4-4b95-9065-c3516bcdf941.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "877b8d79-1cc4-4b95-9065-c3516bcdf941"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/a5c6741a-eb67-4561-bac0-e3d872c01aa8.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "a5c6741a-eb67-4561-bac0-e3d872c01aa8"
+        }
+      },
+      {
+        "type": "paragraph"
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/69059a4f-0e4c-4bcd-bee0-eaec0e4c5c6a.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "69059a4f-0e4c-4bcd-bee0-eaec0e4c5c6a"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "15분이면 되잖아 <- 이말을 항상 염두해야함 "
+          }
+        ]
+      },
+      {
+        "type": "horizontalRule"
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/883b3e27-5ca2-4d0a-97b8-54570220c472.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "883b3e27-5ca2-4d0a-97b8-54570220c472"
+        }
+      },
+      {
+        "type": "image",
+        "attrs": {
+          "src": "/assets/uploads/dd821490-df56-4a30-8321-0420b9864e66/fafb94c6-3e2a-4794-8fb4-11d021425a40.png",
+          "alt": "image",
+          "title": null,
+          "width": null,
+          "height": null,
+          "assetId": "fafb94c6-3e2a-4794-8fb4-11d021425a40"
+        }
+      },
+      {
+        "type": "paragraph"
+      }
+    ]
+  }
+}
