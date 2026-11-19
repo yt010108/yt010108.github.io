@@ -2826,6 +2826,24 @@
       "trashedAt": null,
       "path": "blog/entries/c804c61d-f8c2-4bb8-8652-0b26b4d88201.json",
       "sha": "bf83c6ee7323e2282b4ad016ffb706ac060ac41b"
+    },
+    {
+      "id": "5fb8cc0b-5bc2-4111-ae59-dd5d36e75bb2",
+      "kind": "notes",
+      "slug": "url",
+      "title": "URL",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-19",
+      "updatedAt": "2026-11-19T00:19:44.372Z",
+      "publishedAt": "2026-11-19T00:19:44.372Z",
+      "status": "published",
+      "sourceDigest": "7bf8f67dd5b52f66be56b419aacc7f17d000cd0751435950a2a9f45c38cfb214",
+      "trashedAt": null,
+      "path": "blog/entries/5fb8cc0b-5bc2-4111-ae59-dd5d36e75bb2.json",
+      "sha": "1e682b816e58ed4b80fef34f4ad062ff04325352"
     }
   ],
   "taxonomy": {

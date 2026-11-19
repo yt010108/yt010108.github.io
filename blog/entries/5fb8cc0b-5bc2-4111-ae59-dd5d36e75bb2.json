@@ -1,0 +1,66 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "5fb8cc0b-5bc2-4111-ae59-dd5d36e75bb2",
+  "title": "URL",
+  "kind": "notes",
+  "slug": "url",
+  "description": "",
+  "category": "",
+  "date": "2026-11-19",
+  "tags": [],
+  "series": "",
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-19T00:19:44.372Z",
+  "updatedAt": "2026-11-19T00:19:44.372Z",
+  "sourceDigest": "7bf8f67dd5b52f66be56b419aacc7f17d000cd0751435950a2a9f45c38cfb214",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.boho.or.kr/",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "보호 나라 https://www.boho.or.kr/"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.boho.or.kr/kr/bbs/list.do?menuNo=205020&bbsId=B0000133",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "공지 확인하는 툴 있으면 좋을듯 https://www.boho.or.kr/kr/bbs/list.do?menuNo=205020&bbsId=B0000133"
+          }
+        ]
+      }
+    ]
+  }
+}
