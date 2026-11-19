@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T01:48:03.788Z",
-  "updatedAt": "2026-11-19T01:48:03.788Z",
-  "sourceDigest": "c35cf6cbfc9fe3fd4d0f8372837bd3d9f982724c84d639a90f61d6aa0b71089c",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "d64e61ebdfbff05484cfe0f1c7ab272fe242da6d75c8bce130b8fda7a1d803da",
   "assets": [
     {
       "id": "375a1d51-ded3-4c39-8540-f35bacc04b25",
@@ -423,13 +423,32 @@
         ]
       },
       {
-        "type": "paragraph"
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "SK텔레콤㈜"
+          }
+        ]
       },
       {
         "type": "paragraph",
         "content": [
           {
-            "type": "hardBreak"
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS258&mCode=C010040000&nttId=11545",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "개인정보보호위원회 원문 (2026-11-19 확인)"
           }
         ]
       }

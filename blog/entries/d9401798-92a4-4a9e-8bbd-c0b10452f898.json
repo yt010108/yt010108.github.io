@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.174Z",
-  "updatedAt": "2026-11-19T02:37:37.174Z",
-  "sourceDigest": "136b6cf92ce9c39a63af1a4f61d8e3a363a7bed7e3a19654b1f531712588eadf",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "a18ad7cca783016781dfcb9e2e72ae29d58b532080c81217f3d0ded73ec8f5d1",
   "assets": [
     {
       "id": "831c4357-2696-47ff-86e1-43379e56cc3a",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "마포구"
           }
         ]
       },

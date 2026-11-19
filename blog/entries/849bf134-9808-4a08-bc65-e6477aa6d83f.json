@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.181Z",
-  "updatedAt": "2026-11-19T02:37:37.181Z",
-  "sourceDigest": "da35d673bb065120bce9d13b598c59790d70fcc6e262866431cd0f948f8e034c",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "6dd7585ef045c47659ee01e187ba78f3607e7360236e5ddda1ca47f1e4519a96",
   "assets": [
     {
       "id": "4efb3f8d-1a56-4d85-9f3f-fd2d0a23be9c",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "신남초등학교"
           }
         ]
       },

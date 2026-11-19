@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.197Z",
-  "updatedAt": "2026-11-19T02:37:37.197Z",
-  "sourceDigest": "948a94eccea75cc613c9e06c02d60c17bb6fdcf1e1908f4d7fc19812282df204",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "7c336132a5136cdfb4279a818f5d667267b142d53a068587e028cbb181a66ff0",
   "assets": [
     {
       "id": "091e92f3-5f76-4104-9729-52044a544bc8",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "행정안전부, 농촌진흥청, 국립농업과학원"
           }
         ]
       },

@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.180Z",
-  "updatedAt": "2026-11-19T02:37:37.180Z",
-  "sourceDigest": "190594b291ecf676c496d63ac8b4e9599716f02898b50aeebc83d12b067a20ae",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "4df68c495fcbf37653bd5f152d26838f17df934c8a3d41ca49249bcb8f0fc69d",
   "assets": [
     {
       "id": "393c6ac1-0c5e-42f2-8851-39c151c61221",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "한국외국어대학교"
           }
         ]
       },

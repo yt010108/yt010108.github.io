@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.178Z",
-  "updatedAt": "2026-11-19T02:37:37.178Z",
-  "sourceDigest": "1422a39255edff516972adf61d8553b5b8ce18fbd0606fdea160dcfaff7037b0",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "bbca831d0e182950aa6ade06d8b337cced702c80c62a395ade88b0f09f713a49",
   "assets": [
     {
       "id": "7dddd22c-c305-46a4-89e2-febbb390651d",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "경기대학교"
           }
         ]
       },

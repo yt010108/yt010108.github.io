@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.189Z",
-  "updatedAt": "2026-11-19T02:37:37.189Z",
-  "sourceDigest": "c09cd74b9a3b4e24f7757cbf0cdf03b96e64564b4bd9a495af169cfcab8b1424",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "370df966537336dfac674e1574b3cb8cd8600d7a29fc5e3ae0f5b6dc6d295841",
   "assets": [
     {
       "id": "91deed4d-aa51-4d31-977d-0e5475608503",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "한국연구재단"
           }
         ]
       },

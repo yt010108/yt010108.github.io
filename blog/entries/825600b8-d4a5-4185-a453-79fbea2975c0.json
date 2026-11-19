@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.195Z",
-  "updatedAt": "2026-11-19T02:37:37.195Z",
-  "sourceDigest": "e6e4329d96b0a6aac792138349535a131704728473305f3675dfdb073efca75b",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "3f54fc558db41c047f0352775e916068858c5c766477a9f8f7ca4661392cb18b",
   "assets": [
     {
       "id": "d32f4e67-e848-4f59-9d4e-22e8baa6e6e9",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "법원행정처, 법원도서관, 서광주세무서, 하남도시공사"
           }
         ]
       },

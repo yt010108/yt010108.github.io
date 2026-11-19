@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.201Z",
-  "updatedAt": "2026-11-19T02:37:37.201Z",
-  "sourceDigest": "185ecf2046943bdf736ecae4ccdb98b44b1ca37c3e556dad8be6409aca8add30",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "94ecdaf80c1930bee650eacaaed6f650ad740b0f2926522f369e432ee94da5ca",
   "assets": [
     {
       "id": "44ad0311-55ed-4f05-a1c8-d7c4eedd7464",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "국토교통부, 한국방송공사, 한국제품안전연구원"
           }
         ]
       },

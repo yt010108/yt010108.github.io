@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.182Z",
-  "updatedAt": "2026-11-19T02:37:37.182Z",
-  "sourceDigest": "a10cb21ae51e470a08962f6d4d2e9268748a03f41c83048f152f9dbe973604b2",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "4e763cc3e0e2a51087236079c15bf4862ce25ce743977bd924065ce3ea9c35b5",
   "assets": [
     {
       "id": "38752af4-b91f-40c2-958a-8fc1fc9718fc",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "광주도시관리공사"
           }
         ]
       },

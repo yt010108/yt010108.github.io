@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.196Z",
-  "updatedAt": "2026-11-19T02:37:37.196Z",
-  "sourceDigest": "d4c00de87bf3a773ed82238f3cd16a110646a29a49c3d236cf82a7fc8d23c6a5",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "32d10e906214feffc86afc8fca22e64c6fccf911b9dd1ec8eea2b15a0da9b6b2",
   "assets": [
     {
       "id": "ade74817-bd79-43fe-981e-8c09e94595d6",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "한국방송통신대학교, 전남대학교, 인천광역시청, (재)대구광역시 동구문화재단, 용인시장학재단, 가평군청, 용인시청"
           }
         ]
       },

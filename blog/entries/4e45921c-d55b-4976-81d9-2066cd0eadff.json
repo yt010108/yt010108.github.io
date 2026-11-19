@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.179Z",
-  "updatedAt": "2026-11-19T02:37:37.179Z",
-  "sourceDigest": "47f441956965703cc6be8fc1bb4f1877426e148b17dff277b9f0354d774ea118",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "4b902a296185afd6c785913a90d708e043db72a48a4620797036e0117cf449c9",
   "assets": [
     {
       "id": "fbb2c49c-314a-4661-8b2c-b85a42cd54f6",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "한국토지주택공사"
           }
         ]
       },

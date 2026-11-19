@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.198Z",
-  "updatedAt": "2026-11-19T02:37:37.198Z",
-  "sourceDigest": "3161908781bd552e6659f46bf15e68f82e908eeea5b8780f6d1d60762b9e9caf",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "3aa87988578c0104ee64f63bb9d873106add7a3505f9914f25850dd254903ead",
   "assets": [
     {
       "id": "a18f138e-3526-44cd-b980-194582b1d2cf",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "양평군청, 경성대학교"
           }
         ]
       },

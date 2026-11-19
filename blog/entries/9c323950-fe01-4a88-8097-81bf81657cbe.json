@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.183Z",
-  "updatedAt": "2026-11-19T02:37:37.183Z",
-  "sourceDigest": "138a4c43f06687aa46619681c27aa6ae97f15fc8325ca15f7b8fa7da5a1c3333",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "1503bdc5495b855298e5ab175a6ade8f929d3f6cf6a1950604c442a8ad04c68b",
   "assets": [
     {
       "id": "cc0b3772-b186-480f-ab6c-c224cede7ce6",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "강원특별자치도교육청"
           }
         ]
       },

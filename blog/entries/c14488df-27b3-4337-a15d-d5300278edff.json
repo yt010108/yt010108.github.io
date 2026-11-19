@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.175Z",
-  "updatedAt": "2026-11-19T02:37:37.175Z",
-  "sourceDigest": "6afe79e7e2ca66b1e649666d38a0fc4984ace2b745036333faa0a8564f5176b7",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "13fc6a8ebcd589716876c6dc00d8370496746e4e01ac39856c122a221b8d46cf",
   "assets": [
     {
       "id": "ed1cb6f1-78e6-484f-b96e-1137081e70b7",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "김해중부경찰서"
           }
         ]
       },

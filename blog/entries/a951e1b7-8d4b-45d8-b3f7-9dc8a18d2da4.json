@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.199Z",
-  "updatedAt": "2026-11-19T02:37:37.199Z",
-  "sourceDigest": "c6160d25e39a16849a4ff4c543cc602e52b4636f8f1a3652556ea287a4478059",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "0f3a04deb3b39bd137aa9779357a7045efd8468141bb79e2745a0b2e83d5d31d",
   "assets": [
     {
       "id": "502d84ab-52f4-4abd-821e-0807d0907aba",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "(주)케이티"
           }
         ]
       },

@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.188Z",
-  "updatedAt": "2026-11-19T02:37:37.188Z",
-  "sourceDigest": "3a6cc63be9c1658bb6c61e6d5549ef8d80ad519ce90ead29b6c32e81d473e746",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "bf47ad7f5e9da8f8bf8ba9b83dfd4589ed05f9e787549c08fdd456b2564c00a7",
   "assets": [
     {
       "id": "e246aeb4-f538-4b94-a4e0-3244e44e0db4",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "경북대학교병원"
           }
         ]
       },

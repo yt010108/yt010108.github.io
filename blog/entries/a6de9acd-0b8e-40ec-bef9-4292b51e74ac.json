@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.191Z",
-  "updatedAt": "2026-11-19T02:37:37.191Z",
-  "sourceDigest": "186693092a30f3257fca7651c1acf8f313a46a113db897e590cf4f7301870ada",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "c94658e12456ce13cdee911a048cec135206e4f8002709c94585a4763fea7fee",
   "assets": [
     {
       "id": "c0e7a1f6-ac54-49b6-b256-d50d508e9d8e",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "호원대학교, 성남시의료원, 서울특별시, 서울교통공사"
           }
         ]
       },

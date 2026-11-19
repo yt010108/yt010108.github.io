@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.173Z",
-  "updatedAt": "2026-11-19T02:37:37.173Z",
-  "sourceDigest": "c1ad8ee470d01aeb9d062b15e66b0cec951debbbafaeca608807f6a2cb86a1a8",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "62609c632b3ec5dd723a1412903996fc0502d67eb450eeb0fd27e8e571daec26",
   "assets": [
     {
       "id": "3fdedcc6-b1e7-4a50-a9ff-b6ef73edb020",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "㈜몽클레르코리아"
           }
         ]
       },

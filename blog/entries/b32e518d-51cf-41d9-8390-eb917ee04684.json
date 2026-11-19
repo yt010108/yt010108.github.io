@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.186Z",
-  "updatedAt": "2026-11-19T02:37:37.186Z",
-  "sourceDigest": "69064b5f77e10d22c06b4bc4eeea227053a68f43dfb64d7f60c2987190a3c35a",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "ec9612ae81a64a3caa0a7a4212d9657446f6951a895034474e9967a70b03cb83",
   "assets": [
     {
       "id": "924d1f5a-9fbe-4f1f-8a90-e9242c881784",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "2K Games, Inc."
           }
         ]
       },

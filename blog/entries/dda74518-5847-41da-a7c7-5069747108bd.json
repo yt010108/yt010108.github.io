@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.200Z",
-  "updatedAt": "2026-11-19T02:37:37.200Z",
-  "sourceDigest": "36e92b25943cf90aedf40b31674b8098284aecd29dbd9f9b08803ef6f37dee02",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "970f0557a9d5ab076372c1327f74706641de7c685c43a3ee2a157babeb4078b4",
   "assets": [
     {
       "id": "dd156ccc-ba66-4167-bf4e-b1b78fac7480",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "㈜한성크린텍, ㈜서울경제티브이"
           }
         ]
       },

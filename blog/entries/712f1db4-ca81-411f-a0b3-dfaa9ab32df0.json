@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.185Z",
-  "updatedAt": "2026-11-19T02:37:37.185Z",
-  "sourceDigest": "b1c20ee2fccd29ec719381099fcac09282c365050c1c9e78a7e704291226b596",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "16c8270724ccf3e5c5cbad152bb62d50dd1194f4911373ab615efe916778c6ef",
   "assets": [
     {
       "id": "883108ee-f024-467b-90ef-17bd6d2311e3",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "국립항공박물관"
           }
         ]
       },

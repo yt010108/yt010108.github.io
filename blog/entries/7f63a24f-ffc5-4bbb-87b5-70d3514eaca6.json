@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.190Z",
-  "updatedAt": "2026-11-19T02:37:37.190Z",
-  "sourceDigest": "2f73ac17cca3a63242f5b483b7a4d756b4de61c4919a5e6ec3af3240aa2092be",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "bef866ead5270f4005c4da51dca4e1672687ad290d2003cebc247a1249fe27ec",
   "assets": [
     {
       "id": "f27a0086-3f1c-433c-b677-81e2c3a85839",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "㈜티노파이브"
           }
         ]
       },

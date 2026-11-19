@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.193Z",
-  "updatedAt": "2026-11-19T02:37:37.193Z",
-  "sourceDigest": "e4e600f73581c4a98af858a2b3bbaa0d4a1f2cd6dd98a27552630964420cf5b6",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "f606dd1c2c51aaa86618940a01025ce2ea792653028bca84db9d2eefc0a298e7",
   "assets": [
     {
       "id": "256e1210-b45a-4cbd-936c-e637dc9bb1a5",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "근로복지공단, 동국대학교 사범대학부속 가람고등학교, 국세청, 부천시청"
           }
         ]
       },

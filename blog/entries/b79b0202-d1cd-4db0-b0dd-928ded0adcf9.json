@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.194Z",
-  "updatedAt": "2026-11-19T02:37:37.194Z",
-  "sourceDigest": "28b43a7f820096fd5a4630ed39e5338b29d800d659aa48768b7d85429d1b1acf",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "fe6bf77ab9fffc59de4f58912e0bba0c49ed8355a8a8755d9d0ba05d4b6e795e",
   "assets": [
     {
       "id": "c44eb3cf-8f31-4282-8d5c-bc9720d50d77",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "(주)재미스홈"
           }
         ]
       },

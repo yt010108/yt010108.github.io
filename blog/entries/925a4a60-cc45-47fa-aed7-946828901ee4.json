@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T02:37:37.187Z",
-  "updatedAt": "2026-11-19T02:37:37.187Z",
-  "sourceDigest": "0c07ab8a785692245440062a71dd77eff61d847034a1a87dddc71f84c059f830",
+  "updatedAt": "2026-11-19T02:48:00.739Z",
+  "sourceDigest": "d432e35aa1f7736c910e1abaa8a60c0ed3f72a45027181d9e638d1fe3013d623",
   "assets": [
     {
       "id": "54b71ba7-8d3e-4683-9fba-533c5b1e2323",
@@ -425,6 +425,15 @@
                 }
               }
             ]
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "광주광역시 동구청"
           }
         ]
       },
