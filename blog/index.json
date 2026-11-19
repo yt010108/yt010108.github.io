@@ -2844,6 +2844,24 @@
       "trashedAt": null,
       "path": "blog/entries/5fb8cc0b-5bc2-4111-ae59-dd5d36e75bb2.json",
       "sha": "054c25c178c8e457630e6ff0214b1c4b35d1339d"
+    },
+    {
+      "id": "b81b6973-7b41-4c52-9a6a-d5b14119fde3",
+      "kind": "posts",
+      "slug": "개인정보보호법-제66조에-따른-결과의-공표-2025-11-13",
+      "title": "개인정보보호법 제66조에 따른 결과의 공표(2025-11-13)",
+      "description": "",
+      "category": "Privacy/개인정보보호법 결과공표",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-19",
+      "updatedAt": "2026-11-19T01:48:03.788Z",
+      "publishedAt": "2026-11-19T01:48:03.788Z",
+      "status": "published",
+      "sourceDigest": "c35cf6cbfc9fe3fd4d0f8372837bd3d9f982724c84d639a90f61d6aa0b71089c",
+      "trashedAt": null,
+      "path": "blog/entries/b81b6973-7b41-4c52-9a6a-d5b14119fde3.json",
+      "sha": "a0faa51640c738ee874a7911c212ba03ec630646"
     }
   ],
   "taxonomy": {
