@@ -7,14 +7,16 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    - cron: '15 0 * * *'
+    # UTC slots for 08:50, 11:50 and 14:50 in Seoul, every day.
+    - cron: '50 2,5,23 * * *'
 
 permissions:
   contents: read
 
 concurrency:
-  group: pages-${{ github.ref }}
-  cancel-in-progress: true
+  # Each publishing run reads the archive produced by the preceding deployment.
+  group: pages-${{ github.event_name == 'pull_request' && github.ref || 'publish' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
@@ -27,11 +29,26 @@ jobs:
         with:
           node-version: '24'
           cache: npm
+      - name: Refresh news from the previous Pages archive
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          archive="$RUNNER_TEMP/published-news.json"
+          status=$(curl --silent --show-error --location --retry 2 --connect-timeout 8 --max-time 30 \
+            --output "$archive" --write-out '%{http_code}' \
+            "https://yt010108.github.io/assets/security-news.json?run=$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT")
+          case "$status" in
+            200) ;;
+            404) archive=assets/security-news.json ;;
+            *) echo "::error::Could not restore the published news archive (HTTP $status)"; exit 1 ;;
+          esac
+          python3 scripts/collect-news.py --published-archive "$archive"
       - name: Build editor and published content
         run: |
           npm ci --ignore-scripts
           npm run build
           npm test
+          python3 -B tests/test_news_archive.py
       - name: Check JavaScript syntax
         run: |
           node --check app.js

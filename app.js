@@ -213,6 +213,7 @@
         if (changed || main.querySelector("[data-publication-status]")) render(firstLoad);
         if (dialog.open) updateSearch();
         window.BlogDashboard.refresh();
+        window.BlogNews.refresh();
       }
     })();
     return refreshTask;
@@ -237,6 +238,7 @@
     let nav = kind || "home";
     if (!kind) html = home();
     else if (kind === "dashboard") { html = window.BlogDashboard.html(); title = "Dashboard"; }
+    else if (kind === "news") { html = '<section class="container news-page" data-news="archive" aria-label="보안 뉴스"></section>'; title = "News"; }
     else if (kind === "posts" || kind === "notes") {
       html = archive(kind === "posts" ? "post" : "note", params.get("tag") || "all", params.get("category") || "", params.get("series") || "");
       title = kind === "posts" ? "Posts" : "Notes";
@@ -260,6 +262,7 @@
     main.innerHTML = html;
     window.NotesBoard.mount(main.querySelector("[data-notes-board]"), data.notes);
     window.BlogDashboard.mount(main.querySelector("[data-dashboard]"), data, contentRevision);
+    window.BlogNews.mount(main.querySelector("[data-news]"), params.get("view") === "all");
     document.body.classList.toggle("dashboard-page", kind === "dashboard");
     document.title = `${title} — ${data.profile.name}`;
     document.querySelectorAll("[data-nav]").forEach(link => {

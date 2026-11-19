@@ -1,0 +1,388 @@
+{
+  "version": 1,
+  "lastComplete": "2026-11-19T11:46:43+09:00",
+  "checked": {
+    "kisa": "2026-11-19T11:46:42+09:00",
+    "dailysecu": "2026-11-19T11:46:42+09:00",
+    "boannews": "2026-11-19T11:46:43+09:00"
+  },
+  "failed": [],
+  "articles": [
+    {
+      "id": "dailysecu-209610",
+      "source": "dailysecu",
+      "title": "엔키화이트햇, 자바 원격 해킹 취약점 ‘Java4Shell’ 내부 점검 도구 배포",
+      "url": "https://www.dailysecu.com/news/articleView.html?idxno=209610",
+      "published": "2026-11-19T11:16:44+09:00",
+      "day": "2026-11-19",
+      "eligible": false,
+      "refs": [
+        "CVE-2026-114938"
+      ]
+    },
+    {
+      "id": "boannews-147370",
+      "source": "boannews",
+      "title": "패치 엿새 만에 악용 경보... 싱가포르, 아파치 웹서버 HTTP/2 결함 즉시 업데이트 권고",
+      "url": "https://www.boannews.com/news/articleView.html?idxno=147370",
+      "published": "2026-11-19T09:35:00+09:00",
+      "day": "2026-11-19",
+      "eligible": true,
+      "refs": [
+        "CVE-2026-119618"
+      ]
+    },
+    {
+      "id": "dailysecu-209609",
+      "source": "dailysecu",
+      "title": "[긴급] “로그인 없이 서버에서 코드 실행”…티오리·Xint, 엔진엑스 취약점 5건 공개",
+      "url": "https://www.dailysecu.com/news/articleView.html?idxno=209609",
+      "published": "2026-11-19T01:50:09+09:00",
+      "day": "2026-11-19",
+      "eligible": true,
+      "refs": [
+        "CVE-2026-113425",
+        "CVE-2026-121810",
+        "CVE-2026-123007",
+        "CVE-2026-123633",
+        "CVE-2026-123634"
+      ]
+    },
+    {
+      "id": "kisa-72314",
+      "source": "kisa",
+      "title": "NGINX 제품 보안 업데이트 권고",
+      "url": "https://www.boho.or.kr/kr/bbs/view.do?menuNo=205020&bbsId=B0000133&nttId=72314",
+      "published": "2026-11-19",
+      "day": "2026-11-19",
+      "eligible": true,
+      "refs": [
+        "CVE-2026-113425",
+        "CVE-2026-121810",
+        "CVE-2026-123007",
+        "CVE-2026-123633",
+        "CVE-2026-123634"
+      ]
+    },
+    {
+      "id": "dailysecu-209608",
+      "source": "dailysecu",
+      "title": "전주대 해킹으로 개인정보 약 18만 건 유출…주민등록번호 포함 2만5천 건",
+      "url": "https://www.dailysecu.com/news/articleView.html?idxno=209608",
+      "published": "2026-11-18T23:09:56+09:00",
+      "day": "2026-11-18",
+      "eligible": true,
+      "refs": []
+    },
+    {
+      "id": "boannews-147360",
+      "source": "boannews",
+      "title": "[자바 취약점 비상] PHP와 차이점은?... “아파치+자바 조합 위험”",
+      "url": "https://www.boannews.com/news/articleView.html?idxno=147360",
+      "published": "2026-11-18T17:14:50+09:00",
+      "day": "2026-11-18",
+      "eligible": false,
+      "refs": []
+    },
+    {
+      "id": "boannews-147350",
+      "source": "boannews",
+      "title": "[자바 취약점 비상] “패치 나와도 어디 깔렸는지 모른다”… 자바4셸’이 드러낸 오픈소스 공급망 사각지대",
+      "url": "https://www.boannews.com/news/articleView.html?idxno=147350",
+      "published": "2026-11-18T15:58:29+09:00",
+      "day": "2026-11-18",
+      "eligible": false,
+      "refs": [
+        "CVE-2026-114938"
+      ]
+    },
+    {
+      "id": "boannews-147356",
+      "source": "boannews",
+      "title": "미래에셋생명 개인정보 유출 규모 1만418명... 금융당국 신고",
+      "url": "https://www.boannews.com/news/articleView.html?idxno=147356",
+      "published": "2026-11-18T15:37:34+09:00",
+      "day": "2026-11-18",
+      "eligible": true,
+      "refs": []
+    },
+    {
+      "id": "boannews-147355",
+      "source": "boannews",
+      "title": "노란우산 개인정보 유출 규모 특정... 20만명 넘었다",
+      "url": "https://www.boannews.com/news/articleView.html?idxno=147355",
+      "published": "2026-11-18T14:56:42+09:00",
+      "day": "2026-11-18",
+      "eligible": true,
+      "refs": []
+    },
+    {
+      "id": "dailysecu-209588",
+      "source": "dailysecu",
+      "title": "정부, Java4Shell 긴급 대응…민·관·군 점검하고 기업에 보안 업데이트 권고",
+      "url": "https://www.dailysecu.com/news/articleView.html?idxno=209588",
+      "published": "2026-11-18T13:03:27+09:00",
+      "day": "2026-11-18",
+      "eligible": false,
+      "refs": [
+        "CVE-2026-114938"
+      ]
+    },
+    {
+      "id": "boannews-147349",
+      "source": "boannews",
+      "title": "[자바 취약점 비상] 이번에도 AI가 찾았다... 사람+AI ‘켄타우로스 해커’ 시대 왔다",
+      "url": "https://www.boannews.com/news/articleView.html?idxno=147349",
+      "published": "2026-11-18T12:30:30+09:00",
+      "day": "2026-11-18",
+      "eligible": false,
+      "refs": []
+    },
+    {
+      "id": "dailysecu-209584",
+      "source": "dailysecu",
+      "title": "AI 에이전트 확산에 클라우드 보안 비상…기업 40% “AI 행동 추적 불가능”, 보안 취약점 수정에 평균 18.4일",
+      "url": "https://www.dailysecu.com/news/articleView.html?idxno=209584",
+      "published": "2026-11-18T09:54:37+09:00",
+      "day": "2026-11-18",
+      "eligible": false,
+      "refs": []
+    },
+    {
+      "id": "boannews-147336",
+      "source": "boannews",
+      "title": "[자바 취약점 비상] 오라클, ‘자바4셸’ 등 RCE 취약점 11건 긴급 패치... “즉시 업데이트 필수”",
+      "url": "https://www.boannews.com/news/articleView.html?idxno=147336",
+      "published": "2026-11-18T08:08:26+09:00",
+      "day": "2026-11-18",
+      "eligible": true,
+      "refs": [
+        "CVE-2026-114938"
+      ]
+    },
+    {
+      "id": "dailysecu-209580",
+      "source": "dailysecu",
+      "title": "[긴급] 자바 ‘Java4Shell’ 취약점 공개…국내 기업, 외부 서비스·내장 자바 긴급 점검해야",
+      "url": "https://www.dailysecu.com/news/articleView.html?idxno=209580",
+      "published": "2026-11-18T07:22:43+09:00",
+      "day": "2026-11-18",
+      "eligible": false,
+      "refs": []
+    },
+    {
+      "id": "dailysecu-209579",
+      "source": "dailysecu",
+      "title": "전북교육청 통학차량 관리시스템 해킹…학생·학부모 개인정보 유출 확인",
+      "url": "https://www.dailysecu.com/news/articleView.html?idxno=209579",
+      "published": "2026-11-18T00:07:19+09:00",
+      "day": "2026-11-18",
+      "eligible": true,
+      "refs": []
+    },
+    {
+      "id": "kisa-72313",
+      "source": "kisa",
+      "title": "Oracle 제품 보안 업데이트 권고",
+      "url": "https://www.boho.or.kr/kr/bbs/view.do?menuNo=205020&bbsId=B0000133&nttId=72313",
+      "published": "2026-11-18",
+      "day": "2026-11-18",
+      "eligible": true,
+      "refs": [
+        "CVE-2026-114938",
+        "CVE-2026-114939",
+        "CVE-2026-114940",
+        "CVE-2026-114941",
+        "CVE-2026-114942",
+        "CVE-2026-86144"
+      ]
+    },
+    {
+      "id": "dailysecu-209578",
+      "source": "dailysecu",
+      "title": "바라쿠다 이메일 보안 장비 취약점 2건 실제 악용",
+      "url": "https://www.dailysecu.com/news/articleView.html?idxno=209578",
+      "published": "2026-11-17T23:53:57+09:00",
+      "day": "2026-11-17",
+      "eligible": true,
+      "refs": []
+    },
+    {
+      "id": "dailysecu-209577",
+      "source": "dailysecu",
+      "title": "영남대학교 도서관·취업 홈페이지 해킹…학생 개인정보 유출",
+      "url": "https://www.dailysecu.com/news/articleView.html?idxno=209577",
+      "published": "2026-11-17T22:19:07+09:00",
+      "day": "2026-11-17",
+      "eligible": true,
+      "refs": []
+    },
+    {
+      "id": "dailysecu-209575",
+      "source": "dailysecu",
+      "title": "씨라이프 부산 아쿠아리움 고객정보 유출…예약시스템 운영사 해킹",
+      "url": "https://www.dailysecu.com/news/articleView.html?idxno=209575",
+      "published": "2026-11-17T17:02:41+09:00",
+      "day": "2026-11-17",
+      "eligible": true,
+      "refs": []
+    },
+    {
+      "id": "dailysecu-209566",
+      "source": "dailysecu",
+      "title": "동의대학교 연구비관리시스템 해킹…개인정보 530명 유출",
+      "url": "https://www.dailysecu.com/news/articleView.html?idxno=209566",
+      "published": "2026-11-17T14:13:22+09:00",
+      "day": "2026-11-17",
+      "eligible": true,
+      "refs": []
+    },
+    {
+      "id": "kisa-72312",
+      "source": "kisa",
+      "title": "Citrix 제품 보안 업데이트 권고",
+      "url": "https://www.boho.or.kr/kr/bbs/view.do?menuNo=205020&bbsId=B0000133&nttId=72312",
+      "published": "2026-11-17",
+      "day": "2026-11-17",
+      "eligible": true,
+      "refs": [
+        "CVE-2026-107407",
+        "CVE-2026-107408",
+        "CVE-2026-107409",
+        "CVE-2026-107410",
+        "CVE-2026-107412",
+        "CVE-2026-107415",
+        "CVE-2026-111334",
+        "CVE-2026-118268",
+        "CVE-2026-120864",
+        "CVE-2026-120868",
+        "CVE-2026-120869"
+      ]
+    },
+    {
+      "id": "kisa-72311",
+      "source": "kisa",
+      "title": "Check Point 제품 보안 업데이트 권고",
+      "url": "https://www.boho.or.kr/kr/bbs/view.do?menuNo=205020&bbsId=B0000133&nttId=72311",
+      "published": "2026-11-17",
+      "day": "2026-11-17",
+      "eligible": true,
+      "refs": [
+        "CVE-2026-109618",
+        "CVE-2026-109619",
+        "CVE-2026-123039"
+      ]
+    },
+    {
+      "id": "kisa-72310",
+      "source": "kisa",
+      "title": "PostgreSQL 제품 보안 업데이트 권고",
+      "url": "https://www.boho.or.kr/kr/bbs/view.do?menuNo=205020&bbsId=B0000133&nttId=72310",
+      "published": "2026-11-17",
+      "day": "2026-11-17",
+      "eligible": true,
+      "refs": [
+        "CVE-2026-116304",
+        "CVE-2026-116306",
+        "CVE-2026-116307",
+        "CVE-2026-116309",
+        "CVE-2026-116314",
+        "CVE-2026-116315",
+        "CVE-2026-116317",
+        "CVE-2026-116318",
+        "CVE-2026-116319",
+        "CVE-2026-116320",
+        "CVE-2026-116323",
+        "CVE-2026-116328",
+        "CVE-2026-116329",
+        "CVE-2026-116330",
+        "CVE-2026-116331",
+        "CVE-2026-116332",
+        "CVE-2026-116335",
+        "CVE-2026-116336",
+        "CVE-2026-120139",
+        "CVE-2026-120141",
+        "CVE-2026-120142",
+        "CVE-2026-120143",
+        "CVE-2026-120144",
+        "CVE-2026-120145",
+        "CVE-2026-6460"
+      ]
+    },
+    {
+      "id": "kisa-72309",
+      "source": "kisa",
+      "title": "MongoDB 제품 보안 업데이트 권고",
+      "url": "https://www.boho.or.kr/kr/bbs/view.do?menuNo=205020&bbsId=B0000133&nttId=72309",
+      "published": "2026-11-17",
+      "day": "2026-11-17",
+      "eligible": true,
+      "refs": [
+        "CVE-2026-126837"
+      ]
+    },
+    {
+      "id": "kisa-72308",
+      "source": "kisa",
+      "title": "Fortinet 제품 보안 업데이트 권고",
+      "url": "https://www.boho.or.kr/kr/bbs/view.do?menuNo=205020&bbsId=B0000133&nttId=72308",
+      "published": "2026-11-16",
+      "day": "2026-11-16",
+      "eligible": true,
+      "refs": [
+        "CVE-2026-121528",
+        "CVE-2026-126170",
+        "CVE-2026-126176",
+        "CVE-2026-126177",
+        "CVE-2026-126181",
+        "CVE-2026-126184",
+        "CVE-2026-126232",
+        "CVE-2026-126253",
+        "CVE-2026-126254",
+        "CVE-2026-126255",
+        "CVE-2026-126256",
+        "CVE-2026-126258",
+        "CVE-2026-126259",
+        "CVE-2026-126261",
+        "CVE-2026-126262"
+      ]
+    },
+    {
+      "id": "kisa-72307",
+      "source": "kisa",
+      "title": "Git 제품 보안 업데이트 권고",
+      "url": "https://www.boho.or.kr/kr/bbs/view.do?menuNo=205020&bbsId=B0000133&nttId=72307",
+      "published": "2026-11-16",
+      "day": "2026-11-16",
+      "eligible": true,
+      "refs": [
+        "CVE-2026-105437",
+        "CVE-2026-111760"
+      ]
+    },
+    {
+      "id": "kisa-72306",
+      "source": "kisa",
+      "title": "Vates 제품 보안 업데이트 권고",
+      "url": "https://www.boho.or.kr/kr/bbs/view.do?menuNo=205020&bbsId=B0000133&nttId=72306",
+      "published": "2026-11-13",
+      "day": "2026-11-13",
+      "eligible": true,
+      "refs": []
+    },
+    {
+      "id": "kisa-72304",
+      "source": "kisa",
+      "title": "Apache 제품 보안 업데이트 권고",
+      "url": "https://www.boho.or.kr/kr/bbs/view.do?menuNo=205020&bbsId=B0000133&nttId=72304",
+      "published": "2026-11-12",
+      "day": "2026-11-12",
+      "eligible": true,
+      "refs": [
+        "CVE-2026-106023",
+        "CVE-2026-109163",
+        "CVE-2026-119618"
+      ]
+    }
+  ]
+}
