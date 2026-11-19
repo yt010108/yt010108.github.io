@@ -67,7 +67,9 @@ jobs:
           for attempt in 1 2 3; do
             git fetch --quiet origin refs/heads/main
             git switch --quiet --detach FETCH_HEAD
+            export PIPC_RELEASE_DIR="$RUNNER_TEMP/pipc-originals-$attempt"
             env -u GH_TOKEN python -B scripts/pipc/sync.py
+            python -B scripts/pipc/release_files.py "$PIPC_RELEASE_DIR"
             git add -A -- blog/pipc blog/index.json blog/entries assets/uploads
             if git diff --cached --quiet; then break; fi
             deploy=false

@@ -5,7 +5,6 @@ import time
 from html import unescape
 from http.client import HTTPException
 from http.cookiejar import CookieJar
-from urllib.error import URLError
 from urllib.parse import parse_qs, urlencode, urlsplit
 from urllib.request import HTTPCookieProcessor, Request, build_opener
 
@@ -14,7 +13,8 @@ from lxml import html
 HOST = "https://pipc.go.kr"
 BBS = "/np/cop/bbs/"
 BOARD = {"bbsId": "BS258", "mCode": "C010040000"}
-MAX_TOTAL = 50 * 1024 * 1024
+# GitHub Release assets must be smaller than 2 GiB.
+MAX_ORIGINAL = 2 * 1024 ** 3 - 1
 
 
 def article_url(notice_id):
@@ -34,18 +34,31 @@ class Board:
             ("Accept-Language", "ko-KR,ko;q=0.9"),
         ]
 
-    def get(self, url, limit, referer=None):
+    def get(self, url, limit, referer=None, path=None):
         request = Request(url, headers={"Referer": referer} if referer else {})
         for attempt in range(3):
             try:
                 with self.http.open(request, timeout=30) as response:
                     if urlsplit(response.url).hostname not in ("pipc.go.kr", "www.pipc.go.kr"):
                         raise ValueError("Unexpected download host")
+                    if path is not None:
+                        with path.open("wb") as output:
+                            while chunk := response.read(1024 * 1024):
+                                if output.tell() + len(chunk) > limit:
+                                    raise ValueError("원본이 GitHub Release의 파일당 2 GiB 한도를 초과합니다.")
+                                output.write(chunk)
+                        size = path.stat().st_size
+                        if not size:
+                            raise ValueError("Empty attachment")
+                        length = response.headers.get("Content-Length")
+                        if length is not None and size != int(length):
+                            raise HTTPException("Incomplete attachment response")
+                        return
                     data = response.read(limit + 1)
                     if len(data) > limit or not data:
                         raise ValueError("Empty or oversized response")
                     return data
-            except (OSError, HTTPException, URLError):
+            except (OSError, HTTPException):
                 if attempt == 2:
                     raise
                 time.sleep(2 ** attempt)
@@ -88,7 +101,6 @@ class Board:
         if not buttons or declared != [str(len(buttons))]:
             raise ValueError("Cannot verify the original attachment list")
         files = []
-        remaining = MAX_TOTAL
         for i, button in enumerate(buttons):
             action = re.fullmatch(r"(?:javascript:)?fn_egov_downFile\(\s*'(FILE_\d+)'\s*,\s*'(\d+)'\s*,\s*'([A-Za-z0-9]+)'\s*\);?", button.get("onclick", "").strip())
             if not action:
@@ -98,20 +110,22 @@ class Board:
             if not name.lower().endswith("." + ext.lower()) or len(name) > 200:
                 raise ValueError("Cannot verify attachment filename")
             args = dict(atchFileId=key, fileSn=serial, fileExtsn=ext, cnvCnt="")
-            data = self.get(HOST + "/np/cmm/fms/FileDown.do?" + urlencode(args), remaining, url)
+            path = folder / f"{i}.bin"
+            self.get(HOST + "/np/cmm/fms/FileDown.do?" + urlencode(args), MAX_ORIGINAL, url, path)
             comments = " ".join(str(c.text or "") for c in button.xpath("ancestor::div[contains(@class,'download')][1]/comment()"))
             expected = re.search(r"\[([\d,]+)\s*byte", unescape(comments), re.I)
-            if expected and len(data) != int(expected[1].replace(",", "")):
+            if expected and path.stat().st_size != int(expected[1].replace(",", "")):
                 raise ValueError("Original attachment size mismatch")
-            if re.match(rb"\s*(?:<!doctype\s+html|<html\b|<head\b|<script\b)", data[:256], re.I):
+            with path.open("rb") as original:
+                prefix = original.read(256)
+                original.seek(0)
+                digest = hashlib.file_digest(original, "sha256").hexdigest()
+            if re.match(rb"\s*(?:<!doctype\s+html|<html\b|<head\b|<script\b)", prefix, re.I):
                 raise ValueError("Received an HTML error instead of an attachment")
             signatures = {"pdf": b"%PDF-", "png": b"\x89PNG\r\n\x1a\n", "hwp": bytes.fromhex("d0cf11e0a1b11ae1"),
                           "hwpx": b"PK\x03\x04", "jpg": b"\xff\xd8\xff", "jpeg": b"\xff\xd8\xff", "webp": b"RIFF"}
             magic = signatures.get(ext.lower())
-            if (magic and not data.startswith(magic)) or (not magic and not expected):
+            if (magic and not prefix.startswith(magic)) or (not magic and not expected):
                 raise ValueError("Cannot verify the original attachment format")
-            path = folder / f"{i}.bin"
-            path.write_bytes(data)
-            files.append({"name": name, "file": path.name, "sha256": hashlib.sha256(data).hexdigest()})
-            remaining -= len(data)
+            files.append({"name": name, "file": path.name, "sha256": digest})
         return {"id": notice_id, "url": url, "fields": fields, "body": clean(body.text_content()), "files": files}

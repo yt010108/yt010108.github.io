@@ -12,6 +12,7 @@ from tempfile import TemporaryDirectory
 from urllib.parse import parse_qs, urlsplit
 from uuid import NAMESPACE_URL, uuid5
 
+from release_files import stage_originals
 from source import Board, article_url
 from subjects import Review, compact, extract
 
@@ -40,26 +41,30 @@ def manual_posts():
     for item in read(Path("blog/index.json"))["entries"]:
         if item["category"] != CATEGORY:
             continue
+        primary = set()
         for block in read(Path(item["path"]))["doc"]["content"]:
             if block["type"] != "paragraph":
                 continue
-            for node in block.get("content", []):
-                for mark in node.get("marks", []):
-                    if mark["type"] != "link":
-                        continue
-                    u = urlsplit(mark["attrs"]["href"])
-                    q = parse_qs(u.query)
-                    if (u.hostname in ("pipc.go.kr", "www.pipc.go.kr") and u.path == "/np/cop/bbs/selectBoardArticle.do"
-                            and q.get("bbsId") == ["BS258"] and re.fullmatch(r"[0-9]+", q.get("nttId", [""])[0])):
-                        found.add(q["nttId"][0])
+            nodes = block.get("content", [])
+            label = "".join(n.get("text", "") for n in nodes).strip()
+            if not re.fullmatch(r"개인정보보호위원회 원문(?:\s*\(\d{4}-\d{2}-\d{2} 확인\))?", label):
+                continue
+            links = {m["attrs"]["href"] for n in nodes for m in n.get("marks", []) if m["type"] == "link"}
+            if len(links) == 1:
+                url = urlsplit(links.pop())
+                query = parse_qs(url.query)
+                ids = query.get("nttId", [])
+                if (url.hostname in ("pipc.go.kr", "www.pipc.go.kr") and url.path == "/np/cop/bbs/selectBoardArticle.do"
+                        and query.get("bbsId") == ["BS258"] and len(ids) == 1 and re.fullmatch(r"[0-9]+", ids[0])):
+                    primary.add(ids[0])
+        if len(primary) == 1:
+            found.update(primary)
     return found
 
 
 def recognize(notice, folder):
     names = {}
     for f in notice["files"]:
-        if (folder / f["file"]).stat().st_size > 10 * 1024 * 1024 or len(notice["files"]) > 150:
-            raise Review("첨부파일이 블로그의 발행 크기 또는 개수 한도를 초과합니다.")
         try:
             values = extract(folder / f["file"], f["name"])
         except (FileNotFoundError, PermissionError, MemoryError):
@@ -92,10 +97,12 @@ def collect_one(board, notice_id, published):
             names = recognize(notice, folder)
         except Review as exc:
             notice["reviewReason"] = str(exc)
-            write(folder / "notice.json", notice)
-            shutil.copytree(folder, REVIEW / notice_id)
-            return "검토 대기"
+        stage_originals(notice, folder)
         write(folder / "notice.json", notice)
+        if "reviewReason" in notice:
+            archived = [f["file"] for f in notice["files"] if f.get("release")]
+            shutil.copytree(folder, REVIEW / notice_id, ignore=shutil.ignore_patterns(*archived))
+            return "검토 대기"
         publish(folder, names)
         published.add(notice_id)
         return "발행"
@@ -105,7 +112,7 @@ def clear_review(folder, notice):
     for i, f in enumerate(notice["files"]):
         if f["file"] != f"{i}.bin":
             raise ValueError("검토 원본 파일 경로가 올바르지 않습니다.")
-        (folder / f["file"]).unlink()
+        (folder / f["file"]).unlink(missing_ok=bool(f.get("release")))
     (folder / "notice.json").unlink()
     folder.rmdir()
 
@@ -125,6 +132,8 @@ def approve(notice_id, raw_names, published):
     notice = read(folder / "notice.json")
     if notice["id"] != notice_id or notice["url"] != article_url(notice_id):
         raise ValueError("검토 원문 글 번호가 일치하지 않습니다.")
+    stage_originals(notice, folder)
+    write(folder / "notice.json", notice)
     publish(folder, list(dict.fromkeys(names)))
     published.add(notice_id)
     clear_review(folder, notice)

@@ -1,8 +1,8 @@
 // Run from the repository root. stdin holds the verified names, one JSON array.
 import assert from "node:assert/strict";
 import { createHash, randomUUID } from "node:crypto";
-import { readFileSync } from "node:fs";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { constants, readFileSync } from "node:fs";
+import { copyFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { FILE_TYPE } from "../../shared/files.js";
 import { POST_FORMAT, draftDigest, entryPath, indexEntry, uploadPath, validateIndex, validateRecord } from "../../shared/posts.js";
@@ -14,27 +14,32 @@ const names = JSON.parse(readFileSync(0, "utf8"));
 const { id, postId, fields, files } = notice;
 assert(/^[0-9]+$/.test(id) && notice.url === "https://pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS258&mCode=C010040000&nttId=" + id);
 assert(Array.isArray(names) && names.length && names.every(n => typeof n === "string" && n.trim() === n && n.length && n.length <= 150 && !/[\x00-\x1f\x7f]/.test(n)));
-assert(files.length && files.length <= 150);
+assert(files.length);
 const json = value => JSON.stringify(value, null, 2) + "\n";
 const gitHash = bytes => createHash("sha1").update("blob " + Buffer.byteLength(bytes) + "\0").update(bytes).digest("hex");
 const indexPath = "blog/index.json";
 const index = validateIndex(JSON.parse(await readFile(indexPath, "utf8")));
 assert(index.taxonomy.categories.includes(category), "The PIPC category is missing");
 assert(!index.entries.some(e => e.id === postId), "This PIPC notice already has an entry");
-const local = [], assets = [], writes = [];
+const local = [], assets = [], links = [], writes = [];
 for (const [i, f] of files.entries()) {
   assert.equal(f.file, i + ".bin");
-  const bytes = await readFile(join(folder, f.file));
+  if (f.release) {
+    links.push({ name: f.name, draft: f.release, published: f.release });
+    continue;
+  }
+  const input = join(folder, f.file);
+  const bytes = await readFile(input);
   assert.equal(createHash("sha256").update(bytes).digest("hex"), f.sha256, "Original attachment changed");
-  assert(bytes.length && bytes.length <= 10 * 1024 * 1024);
+  assert(bytes.length);
   const assetId = randomUUID(), path = "files/" + assetId + ".bin";
   const file = { id: assetId, name: f.name, type: FILE_TYPE, path };
   local.push(file);
   const output = uploadPath(postId, path);
   assets.push({ ...file, path: "/" + output, sha: gitHash(bytes) });
-  writes.push([output, bytes]);
+  links.push({ name: f.name, draft: path, published: "/" + output });
+  writes.push([input, output]);
 }
-assert(writes.reduce((sum, [, bytes]) => sum + bytes.length, 0) <= 50 * 1024 * 1024);
 const now = new Date(), stamp = now.toISOString();
 const date = new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Seoul" }).format(now);
 function paragraph(text, href) {
@@ -48,7 +53,7 @@ function cell(text, colspan = 1, header = false) {
     content: (Array.isArray(text) ? text : [text]).map(s => paragraph(s)) };
 }
 const label = key => cell(key, 1, true);
-function doc(links) {
+function doc(version) {
   const rows = [
     [label("제목"), cell(fields["제목"], 3)],
     [label("작성부서"), cell(fields["작성부서"]), label("작성자"), cell(fields["작성자"])],
@@ -60,21 +65,24 @@ function doc(links) {
   ];
   return { type: "doc", content: [
     { type: "table", content: rows.map(content => ({ type: "tableRow", content })) },
-    ...links.map(f => paragraph(f.name, f.path)), paragraph(names.join(", ")),
+    ...links.map(f => paragraph(f.name, f[version])), paragraph(names.join(", ")),
     paragraph("개인정보보호위원회 원문 (" + notice.checked + " 확인)", notice.url)
   ] };
 }
 const baseTitle = fields["제목"] + "(" + fields["작성일"] + ")";
 const title = index.entries.some(e => e.title.startsWith(baseTitle)) ? baseTitle + " · " + names[0] : baseTitle;
 const draft = { id: postId, title, kind: "posts", slug: "pipc-" + id, description: names.length > 1 ? names[0] + " 등 " + names.length + "곳에 대한 결과 공표" : names[0] + "에 대한 결과 공표",
-  category, date, tags: [], series: "", assets: local, doc: doc(local) };
+  category, date, tags: [], series: "", assets: local, doc: doc("draft") };
 const record = validateRecord({ ...draft, format: POST_FORMAT, version: 1, status: "published", trashedAt: null,
-  publishedAt: stamp, updatedAt: stamp, assets, doc: doc(assets), sourceDigest: await draftDigest(draft) });
+  publishedAt: stamp, updatedAt: stamp, assets, doc: doc("published"), sourceDigest: await draftDigest(draft) });
 const body = json(record);
 index.entries.push(indexEntry(record, gitHash(body)));
 validateIndex(index);
-for (const [path, bytes] of [...writes, [entryPath(postId), body]]) {
-  await mkdir(dirname(path), { recursive: true });
-  await writeFile(path, bytes, { flag: "wx" });
+for (const [input, output] of writes) {
+  await mkdir(dirname(output), { recursive: true });
+  await copyFile(input, output, constants.COPYFILE_EXCL);
 }
+const entry = entryPath(postId);
+await mkdir(dirname(entry), { recursive: true });
+await writeFile(entry, body, { flag: "wx" });
 await writeFile(indexPath, json(index));

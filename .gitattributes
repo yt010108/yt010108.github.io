@@ -3,3 +3,4 @@ blog/index.json text eol=lf
 blog/entries/*.json text eol=lf
 assets/uploads/** -text
 assets/imported/** -text -diff
+tests/fixtures/*.pdf binary

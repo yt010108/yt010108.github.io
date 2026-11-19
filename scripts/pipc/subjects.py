@@ -31,29 +31,40 @@ def name_text(value):
     return value
 
 
-def table_rows(rows):
-    header = None
+def table_rows(rows, spans):
     for i, row in enumerate(rows):
         cells = [compact(c) for c in row]
         if cells and cells[0].isdigit():
             raise Review("머리글 전에 번호가 있는 행이 있습니다.")
         if cells[:2] == ["순번", "위반행위를한자"]:
-            header = i
             break
-    if header is None:
+    else:
         raise Review("‘순번 / 위반행위를 한 자’ 열을 확인할 수 없습니다.")
+    # Only a leaf entirely inside the recipient heading can identify the name.
+    end = 1 + spans[i][1][0]
+    labels = rows[i + 1] if i + 1 < len(rows) else []
+    columns = [j for j in range(1, min(end, len(labels))) if compact(labels[j]) == "명칭"]
+    if len(columns) != 1 or spans[i][1][1] != 1 or compact(labels[0]) not in {"", "순번"}:
+        raise Review("‘위반행위를 한 자’ 아래의 명칭 열을 하나로 확인할 수 없습니다.")
+    name_column, = columns
+    if spans[i + 1].get(name_column) != (1, 1):
+        raise Review("명칭 머리글이 여러 열에 걸쳐 있습니다.")
     result = []
-    for row in rows[header + 1:]:
-        seq, name = (list(row) + [None, None])[:2]
+    merged_until = 0
+    for j, row in enumerate(rows[i + 2:], i + 2):
+        seq = row[0]
+        name = row[name_column] if name_column < len(row) else None
         key = compact(seq)
-        if "위반조항" in [compact(c) for c in row] and "처분내용" in [compact(c) for c in row]:
-            continue
         if re.fullmatch(r"[0-9]+", key):
+            serial_span = spans[j][0]
+            if serial_span[0] != 1 or spans[j].get(name_column) != serial_span:
+                raise Review("번호 행의 명칭 셀을 하나로 확인할 수 없습니다.")
+            merged_until = j + serial_span[1]
             result.append((int(key), name_text(name)))
         elif len([c for c in row if compact(c)]) == 1 and (key.startswith(("*", "※")) or "개인정보보호위원회" in key):
             continue
-        elif result and seq is None and name is None:
-            continue  # A vertically merged recipient spans several violation rows in a native PDF.
+        elif j < merged_until and seq is None and name is None:
+            continue
         else:
             raise Review("번호와 명칭을 대응시킬 수 없는 행이 있습니다.")
     if not result:
@@ -69,12 +80,72 @@ def xml_rows(root, table_tag, row_tag, cell_tag, text_tag):
         raise Review("한글 문서에서 처분 표를 찾지 못했습니다.")
     found = []
     for table in tables:
-        rows = []
-        for row in table.xpath("./*[local-name()=$tag]", tag=row_tag):
-            cells = row.xpath("./*[local-name()=$tag]", tag=cell_tag)
-            rows.append(["".join(c.xpath(".//*[local-name()=$tag]/text()", tag=text_tag)) for c in cells])
-        found.extend(table_rows(rows))
+        width = int(table.get("colCnt") or table.get("cols") or 0)
+        if not 2 <= width <= len(table.xpath(".//*[local-name()=$tag]", tag=cell_tag)):
+            raise Review("한글 표의 열 구성을 확인할 수 없습니다.")
+        rows, spans = [], []
+        elements = table.xpath("./*[local-name()=$tag]", tag=row_tag)
+        count = int(table.get("rowCnt") or table.get("rows") or len(elements))
+        if count != len(elements):
+            raise Review("한글 표의 행 수가 실제 행과 일치하지 않습니다.")
+        for j, row in enumerate(elements):
+            cells = [None] * width
+            dimensions = {}
+            for cell in row.xpath("./*[local-name()=$tag]", tag=cell_tag):
+                if cell_tag == "tc":
+                    addr, span = cell.find("{*}cellAddr"), cell.find("{*}cellSpan")
+                    if addr is None or span is None:
+                        raise Review("한글 표의 셀 위치와 병합 범위를 확인할 수 없습니다.")
+                    col, row_no = (int(addr.get(k, -1)) for k in ("colAddr", "rowAddr"))
+                    size, depth = (int(span.get(k, 0)) for k in ("colSpan", "rowSpan"))
+                else:
+                    col, row_no = (int(cell.get(k, -1)) for k in ("col", "row"))
+                    size, depth = (int(cell.get(k, 0)) for k in ("colspan", "rowspan"))
+                if (row_no != j or not 0 <= col < col + size <= width or not 1 <= depth <= count - j
+                        or any(col < start + w and start < col + size for start, (w, _) in dimensions.items())):
+                    raise Review("한글 표의 셀 위치를 확인할 수 없습니다.")
+                dimensions[col] = (size, depth)
+                cells[col] = "".join(cell.xpath(".//*[local-name()=$tag]/text()", tag=text_tag))
+            rows.append(cells)
+            spans.append(dimensions)
+        found.extend(table_rows(rows, spans))
     return found
+
+
+def pdf_rows(page, tables):
+    result, number_columns = [], []
+    for table in tables:
+        grid = table.extract()
+        xs = {x: i for i, x in enumerate(sorted({x for cell in table.cells for x in (cell[0], cell[2])}))}
+        ys = {y: i for i, y in enumerate(sorted({y for cell in table.cells for y in (cell[1], cell[3])}))}
+        spans = [{i: (xs[cell[2]] - xs[cell[0]], ys[cell[3]] - ys[cell[1]]) for i, cell in enumerate(row.cells) if cell}
+                 for row in table.rows]
+        result.extend(table_rows(grid, spans))
+        header = next(i for i, row in enumerate(grid) if compact(row[0]) == "순번")
+        left, _, right, _ = table.rows[header].cells[0]
+        number_columns.append((left, right))
+
+    # Read the page independently of the ruled grid: an unclosed last row can vanish from extract().
+    cells = [cell for table in tables for cell in table.cells]
+    page_numbers, outside = [], []
+    for word in page.extract_words():
+        x = (word["x0"] + word["x1"]) / 2
+        y = (word["top"] + word["bottom"]) / 2
+        text = compact(word["text"])
+        if not any(x0 <= x < x1 and y0 <= y < y1 for x0, y0, x1, y1 in cells):
+            outside.append(word)
+        if re.fullmatch(r"[0-9]+", text) and any(left <= x < right for left, right in number_columns):
+            page_numbers.append(int(text))
+    if outside:
+        # Printed page numbers sometimes sit below the grid on a separate line, e.g. "- 1 -".
+        bottom = max(table.bbox[3] for table in tables)
+        if ("".join(compact(w["text"]) for w in outside) != f"-{page.page_number}-"
+                or min(w["top"] for w in outside) < bottom
+                or max(w["top"] for w in outside) - min(w["top"] for w in outside) > 3):
+            raise Review("PDF 표 밖에 글자가 있어 마지막 행을 포함한 전체 대상을 확인할 수 없습니다.")
+    if page_numbers != [n for n, _ in result]:
+        raise Review("PDF 원문에 보이는 순번과 표에서 추출한 순번이 일치하지 않습니다.")
+    return result
 
 
 def centers(values):
@@ -167,14 +238,13 @@ def extract(path, filename):
     if ext == "pdf":
         with pdfplumber.open(path) as pdf:
             for page in pdf.pages:
-                tables = page.extract_tables()
+                tables = page.find_tables()
                 if not tables or not page.chars:
                     rows.extend(image_rows(page.to_image(resolution=165).original))
                 else:
                     if any(i["width"] > page.width * .45 and i["height"] > page.height * .12 for i in page.images):
                         raise Review("텍스트 표와 큰 이미지가 섞인 페이지입니다.")
-                    for table in tables:
-                        rows.extend(table_rows(table))
+                    rows.extend(pdf_rows(page, tables))
     elif ext == "hwpx":
         with zipfile.ZipFile(path) as doc:
             sections = [(int(m[1]), z) for z in doc.infolist()
