@@ -36,7 +36,7 @@
     {
       "id": "02b2d8cd-26b6-4abf-92cc-01e0751e5f6c",
       "text": "nginX?",
-      "done": true
+      "done": false
     }
   ],
   "shortcuts": [
@@ -107,5 +107,5 @@
       "url": "https://github.com/yt010108/artex-ko"
     }
   ],
-  "updatedAt": "2026-11-19T00:17:17.401Z"
+  "updatedAt": "2026-11-19T00:17:21.356Z"
 }
