@@ -65,7 +65,8 @@ export class SiteRepository extends DashboardRepository {
     return { files, registry: registry.value, snapshot };
   }
   async uploadMedia(images, progress = () => {}) {
-    if (!this.connected || !images.length || images.length > 20 || images.reduce((sum, image) => sum + image.bytes.length, 0) > 50 * 1024 * 1024) throw new Error("한 번에 최대 20장, 합계 50MB까지 올릴 수 있어요.");
+    if (!this.connected) throw new Error("먼저 GitHub에 연결해 주세요.");
+    if (!images.length || images.length > 20) throw new Error("한 번에 이미지 1~20장을 올릴 수 있어요.");
     const generation = this.generation, added = [];
     for (const [index, image] of images.entries()) {
       const bytes = verifyImageBytes(image.bytes, image.type), id = crypto.randomUUID();

@@ -8,8 +8,8 @@ import { EditorState } from "@tiptap/pm/state";
 import { zipSync, strToU8 } from "fflate";
 import { createIcons, SquarePen, Files, Bold, Italic, Strikethrough, Code, List, ListOrdered, Quote, Link, ImagePlus, Paperclip, Table2, SquareCode, Minus, Eye, Undo2, Redo2, FolderOpen, Download, Archive, ArrowLeft, Hash, Menu, FileClock, FolderTree, Images, PanelsTopLeft, Trash2, LogOut } from "lucide";
 import { readDraft, listDrafts, writeDraft, hasUnpublishedChanges, DraftConflict } from "./draft-store.js";
-import { IMAGE_TYPES, MAX_IMAGE_SIZE, newEntry, safeSlug, safeImageData, createAsset, imageBySource, transformImages, usedAssets, validateBackup, markdownDocument, assetBytes } from "./document.js";
-import { FILE_TYPE, createFileAsset, dataSize } from "../../shared/files.js";
+import { IMAGE_TYPES, newEntry, safeSlug, safeImageData, createAsset, imageBySource, transformImages, usedAssets, validateBackup, markdownDocument, assetBytes } from "./document.js";
+import { FILE_TYPE, createFileAsset } from "../../shared/files.js";
 import { createLinkPreviews, webURL } from "./link-preview.js";
 import { renderDocument, UUID } from "../../shared/posts.js";
 import { REMEMBER_KEY } from "./github.js";
@@ -547,10 +547,8 @@ async function insertFiles(files, draftId, { asFiles, imagesOnly }) {
     try {
       const inlineImage = !asFiles && IMAGE_TYPES.has(file.type);
       if (imagesOnly && !inlineImage) throw new Error("PNG, JPG, GIF, WebP 이미지를 선택해 주세요.");
-      if (file.size > MAX_IMAGE_SIZE) throw new Error(file.name + "은 10MB를 넘어요.");
       const used = usedAssets(editor.getJSON(), assets, mode === "markdown" ? source.value : "");
-      const total = used.reduce((size, asset) => size + dataSize(asset.data), 0);
-      if (used.length >= 150 || total + file.size > 50 * 1024 * 1024) throw new Error("한 글에 이미지와 파일을 합쳐 150개, 50MB까지 첨부할 수 있어요.");
+      if (used.length >= 150) throw new Error("한 글에 이미지와 파일을 합쳐 150개까지 첨부할 수 있어요.");
       const data = await fileData(inlineImage ? file : new Blob([file], { type: FILE_TYPE }));
       if (inlineImage) {
         const image = new window.Image();
@@ -860,7 +858,6 @@ async function showDrafts() {
 async function importBackup(file) {
   if (!file || !await keepBeforeSwitch()) return;
   try {
-    if (file.size > 80 * 1024 * 1024) throw new Error("백업 파일은 80MB까지 불러올 수 있어요.");
     const next = validateBackup(JSON.parse(await file.text()));
     const map = new Map(next.assets.map(asset => [asset.id, asset]));
     editor.schema.nodeFromJSON(transformImages(next.doc, map, true)).check();

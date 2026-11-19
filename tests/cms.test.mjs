@@ -6,8 +6,8 @@ import { tmpdir } from "node:os";
 import { resolve, dirname, basename } from "node:path";
 import { spawnSync } from "node:child_process";
 import { GitHubRepository, REPOSITORY, RepositoryConflict } from "../admin/src/github.js";
-import { newEntry, validateBackup, markdownDocument, transformImages, usedAssets, assetBytes } from "../admin/src/document.js";
-import { createFileAsset, FILE_TYPE, safeFileData, MAX_FILE_SIZE } from "../shared/files.js";
+import { newEntry, validateBackup, markdownDocument, transformImages, usedAssets, assetBytes, createAsset } from "../admin/src/document.js";
+import { createFileAsset, FILE_TYPE, safeFileData } from "../shared/files.js";
 import { MarkdownManager } from "@tiptap/markdown";
 import StarterKit from "@tiptap/starter-kit";
 import { hasUnpublishedChanges } from "../admin/src/draft-store.js";
@@ -187,15 +187,31 @@ test("File attachments survive backup, publication, editing and category changes
   assert.deepEqual(s.blobs.get(record.assets[0].sha), bytes);
 });
 
-test("Attachment validation rejects unsafe paths, missing data and oversize files before any write", async () => {
+test("A post with two 26 MiB attachments can be restored, published and reopened", async () => {
+  const s = server();
+  await s.client.connect(TOKEN);
+  const entry = draft();
+  const payload = Buffer.alloc(26 * 1024 * 1024).toString("base64");
+  const file = createFileAsset("data:" + FILE_TYPE + ";base64," + payload, "archive.bin");
+  const image = createAsset("data:image/png;base64," + payload, "image.png");
+  entry.assets = [file, image];
+  entry.doc.content.push(
+    { type: "paragraph", content: [{ type: "text", text: file.name, marks: [{ type: "link", attrs: { href: file.path } }] }] },
+    { type: "image", attrs: { assetId: image.id, src: image.path } }
+  );
+  const restored = validateBackup(entry);
+  const result = await s.client.publish(restored);
+  const loaded = await s.client.loadDraft(result.item);
+  assert.deepEqual(loaded.assets, entry.assets);
+});
+
+test("Attachment validation rejects unsafe paths and missing or malformed data before any write", async () => {
   const s = server(); await s.client.connect(TOKEN);
   const entry = draft(), file = createFileAsset("data:" + FILE_TYPE + ";base64,AA==", "page.html");
   assert.match(file.path, /\.bin$/);
   assert.equal(file.name, "page.html");
   assert.equal(safeFileData("data:text/html;base64,AA=="), false);
   assert.equal(safeFileData("data:" + FILE_TYPE + ";base64,A==="), false);
-  assert.equal(safeFileData("data:" + FILE_TYPE + ";base64," + Buffer.alloc(MAX_FILE_SIZE).toString("base64")), true);
-  assert.equal(safeFileData("data:" + FILE_TYPE + ";base64," + Buffer.alloc(MAX_FILE_SIZE + 1).toString("base64")), false);
   entry.assets = [{ ...file, path: "files/../../index.html" }];
   await assert.rejects(() => s.client.publish(entry), /경로/);
   assert.throws(() => validateBackup(entry), /첨부 파일/);

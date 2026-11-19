@@ -1,9 +1,9 @@
 import { esc } from "../../shared/posts.js";
-import { MAX_MEDIA_BYTES, verifyImageBytes } from "../../shared/media.js";
+import { verifyImageBytes } from "../../shared/media.js";
 
 export const mediaViewHTML = () => `<section id="media-view" class="cms-manager" aria-labelledby="media-title" hidden>
   <div class="cms-title-row"><div><p class="cms-eyebrow">MEDIA LIBRARY</p><h1 id="media-title" tabindex="-1">미디어</h1><p>글의 첨부 이미지와 라이브러리 업로드를 한곳에서 관리해요.</p></div><label class="writer-button writer-primary" for="media-upload">이미지 업로드<input id="media-upload" class="writer-sr-only" type="file" accept="image/png,image/jpeg,image/gif,image/webp" multiple disabled></label></div>
-  <p class="writer-small-note">PNG·JPG·GIF·WebP · 한 장 10MB, 한 번에 20장·합계 50MB. 업로드한 파일은 GitHub에 저장하고 블로그에 배포해요.</p>
+  <p class="writer-small-note">PNG·JPG·GIF·WebP 이미지를 한 번에 20장까지 올릴 수 있어요. 업로드한 파일은 GitHub에 저장하고 블로그에 배포해요.</p>
   <fieldset id="media-fields" disabled><legend class="writer-sr-only">미디어 관리</legend>
     <div class="cms-filter-row"><label class="cms-search"><span class="writer-sr-only">미디어 검색</span><input id="media-search" type="search" placeholder="파일 이름·주소·글 제목 검색"></label><label><span class="writer-sr-only">미디어 종류</span><select id="media-type"><option value="">모든 이미지</option><option value="image/png">PNG</option><option value="image/jpeg">JPG</option><option value="image/gif">GIF</option><option value="image/webp">WebP</option></select></label><label><span class="writer-sr-only">미디어 출처</span><select id="media-source"><option value="">모든 출처</option><option value="library">라이브러리 업로드</option><option value="posts">글 첨부 이미지</option></select></label><button id="media-refresh" type="button" class="writer-button">새로고침</button></div>
     <p id="media-status" class="cms-list-note" role="status" aria-live="polite"></p>
@@ -68,10 +68,9 @@ export function createMediaManager({ repository, onBusy, onInsert, localDrafts }
     if (!chosen.length) return;
     if (dirty()) { status("편집 중인 이미지 정보를 먼저 저장해 주세요.", true); return; }
     await run(async () => {
-      if (chosen.length > 20 || chosen.reduce((sum, file) => sum + file.size, 0) > 50 * 1024 * 1024) throw new Error("한 번에 20장, 합계 50MB까지 올릴 수 있어요.");
+      if (chosen.length > 20) throw new Error("한 번에 20장까지 올릴 수 있어요.");
       const images = [];
       for (const file of chosen) {
-        if (file.size > MAX_MEDIA_BYTES) throw new Error(file.name + "은 10MB를 넘어요.");
         const bytes = verifyImageBytes(new Uint8Array(await file.arrayBuffer()), file.type);
         const decoded = await createImageBitmap(file).catch(() => { throw new Error(file.name + "을 이미지로 읽지 못했어요."); }); decoded.close();
         images.push({ name: file.name, type: file.type, bytes });

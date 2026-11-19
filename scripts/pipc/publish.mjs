@@ -4,7 +4,7 @@ import { createHash, randomUUID } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
-import { FILE_TYPE, MAX_FILE_SIZE } from "../../shared/files.js";
+import { FILE_TYPE } from "../../shared/files.js";
 import { POST_FORMAT, draftDigest, entryPath, indexEntry, uploadPath, validateIndex, validateRecord } from "../../shared/posts.js";
 
 const category = "Archive / 개인정보보호법 결과 공표";
@@ -26,7 +26,7 @@ for (const [i, f] of files.entries()) {
   assert.equal(f.file, i + ".bin");
   const bytes = await readFile(join(folder, f.file));
   assert.equal(createHash("sha256").update(bytes).digest("hex"), f.sha256, "Original attachment changed");
-  assert(bytes.length && bytes.length <= MAX_FILE_SIZE);
+  assert(bytes.length && bytes.length <= 10 * 1024 * 1024);
   const assetId = randomUUID(), path = "files/" + assetId + ".bin";
   const file = { id: assetId, name: f.name, type: FILE_TYPE, path };
   local.push(file);

@@ -1,8 +1,7 @@
-import { FILE_TYPE, FILE_PATH, safeFileData, dataSize } from "../../shared/files.js";
+import { FILE_TYPE, FILE_PATH, safeFileData } from "../../shared/files.js";
 
 export const FORMAT = "yt010108-writing-draft";
 export const IMAGE_TYPES = new Set(["image/png", "image/jpeg", "image/gif", "image/webp"]);
-export const MAX_IMAGE_SIZE = 10 * 1024 * 1024;
 const DATA_IMAGE = /^data:image\/(png|jpeg|gif|webp);base64,[A-Za-z0-9+/=]+$/;
 
 export function newEntry() {
@@ -21,7 +20,7 @@ export function safeSlug(value) {
 }
 
 export function safeImageData(value) {
-  return typeof value === "string" && value.length <= MAX_IMAGE_SIZE * 1.4 + 100 && DATA_IMAGE.test(value);
+  return typeof value === "string" && DATA_IMAGE.test(value);
 }
 
 export function createAsset(data, name = "첨부 이미지") {
@@ -73,14 +72,11 @@ export function validateBackup(value) {
   }
   if (value.assets.length > 150) throw new Error("첨부 파일이 너무 많아요.");
   const assets = new Map();
-  let total = 0;
   for (const asset of value.assets) {
     const valid = asset?.type === FILE_TYPE ? FILE_PATH.test(asset.path) && asset.path === "files/" + asset.id + ".bin" && safeFileData(asset.data) : /^images\/[a-f0-9-]+\.(png|jpg|gif|webp)$/.test(asset?.path) && safeImageData(asset?.data);
     if (!asset || typeof asset.id !== "string" || !valid || assets.has(asset.id)) {
       throw new Error("백업 첨부 파일 정보를 확인할 수 없어요.");
     }
-    total += dataSize(asset.data);
-    if (total > 50 * 1024 * 1024) throw new Error("한 글의 첨부 파일은 합계 50MB까지 보관할 수 있어요.");
     assets.set(asset.id, { ...asset, name: String(asset.name || "첨부 이미지").slice(0, 200) });
   }
   let count = 0;
@@ -116,5 +112,7 @@ export function markdownDocument(entry, markdown) {
 
 export function assetBytes(asset) {
   const raw = atob(asset.data.slice(asset.data.indexOf(",") + 1));
-  return Uint8Array.from(raw, char => char.charCodeAt(0));
+  const bytes = new Uint8Array(raw.length);
+  for (let i = 0; i < raw.length; i++) bytes[i] = raw.charCodeAt(i);
+  return bytes;
 }

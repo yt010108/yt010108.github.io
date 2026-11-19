@@ -8,7 +8,7 @@ import { REPOSITORY, RepositoryConflict } from "../admin/src/github.js";
 import { newEntry } from "../admin/src/document.js";
 import { INDEX_FORMAT } from "../shared/posts.js";
 import { validateSite, publicSite, mergeSite, SITE_PATH, SITE_FORMAT } from "../shared/site.js";
-import { MEDIA_FORMAT, MEDIA_PATH, MAX_MEDIA_BYTES, verifyImageBytes, validateMedia } from "../shared/media.js";
+import { MEDIA_FORMAT, MEDIA_PATH, verifyImageBytes, validateMedia } from "../shared/media.js";
 
 const context = { window: {} }; vm.runInNewContext(await readFile(new URL("../content.js", import.meta.url), "utf8"), context);
 const originalContent = JSON.parse(JSON.stringify(context.window.BLOG_DATA));
@@ -104,16 +104,18 @@ test("Site saving safely retries an unrelated branch race and never overwrites a
   await assert.rejects(() => s.client.saveSite(before, second), /다른 기기/); assert.equal(s.data(SITE_PATH).projects[0].name, "다른 기기 프로젝트");
 });
 
-test("Image checks reject executable files, mismatched formats, oversized data and traversal metadata", () => {
+test("Image checks reject executable files, mismatched formats, empty data and traversal metadata", () => {
   assert.equal(verifyImageBytes(png, "image/png"), png);
-  for (const [bytes, type] of [[Buffer.from('<svg onload="alert(1)">'), "image/svg+xml"], [png, "image/jpeg"], [new Uint8Array(MAX_MEDIA_BYTES + 1), "image/png"]]) assert.throws(() => verifyImageBytes(bytes, type));
+  for (const [bytes, type] of [[Buffer.from('<svg onload="alert(1)">'), "image/svg+xml"], [png, "image/jpeg"], [new Uint8Array(), "image/png"]]) assert.throws(() => verifyImageBytes(bytes, type));
   assert.throws(() => validateMedia({ format: MEDIA_FORMAT, version: 1, files: [{ id: crypto.randomUUID(), path: "../../index.html", type: "image/png" }] }));
 });
 
-test("A media upload commits the registry and binary together while preserving other files", async () => {
-  const s = await connected(), before = new Map(s.files()), result = await s.client.uploadMedia([image(), { ...image(), name: "두 번째.png" }]);
+test("A media upload over 50 MiB commits the registry and images together while preserving other files", async () => {
+  const s = await connected(), before = new Map(s.files());
+  const bytes = Buffer.concat([png], 26 * 1024 * 1024);
+  const result = await s.client.uploadMedia([{ ...image(), bytes }, { ...image(), bytes, name: "두 번째.png" }]);
   assert.equal(result.added.length, 2); assert.equal(s.calls.filter(call => call.method === "PATCH").length, 1);
-  for (const file of result.added) assert.deepEqual(s.blobs.get(s.files().get(file.path)), png);
+  for (const file of result.added) assert.deepEqual(s.blobs.get(s.files().get(file.path)), bytes);
   assert.equal(s.data(MEDIA_PATH).files.length, 2);
   for (const [path, version] of before) if (path !== MEDIA_PATH) assert.equal(s.files().get(path), version);
   const library = await s.client.mediaLibrary(); assert.equal(library.files.length, 2); assert.ok(library.files.every(file => file.managed && file.url.startsWith("https://yt010108.github.io/assets/uploads/library/")));

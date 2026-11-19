@@ -1,6 +1,6 @@
 import { POST_FORMAT, INDEX_FORMAT, UUID, SHA, entryPath, uploadPath, validateRecord, validateIndex, indexEntry, draftDigest } from "../../shared/posts.js";
-import { newEntry, safeImageData, MAX_IMAGE_SIZE } from "./document.js";
-import { FILE_TYPE, safeFileData, dataSize, localAssetPath } from "../../shared/files.js";
+import { newEntry, safeImageData } from "./document.js";
+import { FILE_TYPE, safeFileData, localAssetPath } from "../../shared/files.js";
 import { validateTaxonomy, taxonomyOptions, usesTaxonomy, replaceTaxonomy } from "../../shared/taxonomy.js";
 
 export const REPOSITORY = "yt010108/yt010108.github.io";
@@ -181,7 +181,7 @@ export class GitHubRepository extends EventTarget {
     for (const [index, asset] of record.assets.entries()) {
       onProgress("첨부 파일을 불러오는 중 · " + (index + 1) + "/" + record.assets.length);
       const data = "data:" + asset.type + ";base64," + await this.blob(asset.sha);
-      if (!(asset.type === FILE_TYPE ? safeFileData(data) : safeImageData(data))) throw new Error("첨부 파일을 불러올 수 없어요. 파일 크기를 확인해 주세요.");
+      if (!(asset.type === FILE_TYPE ? safeFileData(data) : safeImageData(data))) throw new Error("첨부 파일 형식을 확인할 수 없어요.");
       assets.push({ id: asset.id, name: asset.name, type: asset.type, path: localAssetPath(asset), data });
     }
     const entry = { ...newEntry(), ...Object.fromEntries(["id", "title", "kind", "slug", "description", "category", "date", "tags"].map(key => [key, record[key]])), series: record.series || "", assets };
@@ -219,14 +219,9 @@ export class GitHubRepository extends EventTarget {
       id: asset.id, name: String(asset.name || "첨부 파일").slice(0, 200), type: asset.type,
       path: "/" + uploadPath(draft.id, asset.path), sha: "0".repeat(40)
     }));
-    let total = 0;
     for (const asset of draft.assets) {
-      if (!UUID.test(asset.id) || !(asset.type === FILE_TYPE ? safeFileData(asset.data) : safeImageData(asset.data))) throw new Error("발행 첨부 파일 형식이나 크기를 확인해 주세요.");
-      const bytes = dataSize(asset.data);
-      if (bytes > MAX_IMAGE_SIZE) throw new Error("첨부 파일은 하나에 10MB까지 발행할 수 있어요.");
-      total += bytes;
+      if (!UUID.test(asset.id) || !(asset.type === FILE_TYPE ? safeFileData(asset.data) : safeImageData(asset.data))) throw new Error("발행 첨부 파일 형식을 확인해 주세요.");
     }
-    if (total > 50 * 1024 * 1024) throw new Error("한 글의 이미지와 파일은 합계 50MB까지 발행할 수 있어요.");
     const record = {
       format: POST_FORMAT, version: 1,
       ...Object.fromEntries(["id", "title", "kind", "slug", "description", "category", "date", "tags"].map(key => [key, draft[key]])),
