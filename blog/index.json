@@ -2828,24 +2828,6 @@
       "sha": "bf83c6ee7323e2282b4ad016ffb706ac060ac41b"
     },
     {
-      "id": "5fb8cc0b-5bc2-4111-ae59-dd5d36e75bb2",
-      "kind": "notes",
-      "slug": "url",
-      "title": "URL",
-      "description": "",
-      "category": "",
-      "series": "",
-      "tags": [],
-      "date": "2026-11-19",
-      "updatedAt": "2026-11-19T00:28:54.433Z",
-      "publishedAt": "2026-11-19T00:19:44.372Z",
-      "status": "published",
-      "sourceDigest": "a3791d7f60b7a92a67e03723294ad0378c854a0d77388786a8dcc17d6af104e6",
-      "trashedAt": null,
-      "path": "blog/entries/5fb8cc0b-5bc2-4111-ae59-dd5d36e75bb2.json",
-      "sha": "054c25c178c8e457630e6ff0214b1c4b35d1339d"
-    },
-    {
       "id": "b81b6973-7b41-4c52-9a6a-d5b14119fde3",
       "kind": "posts",
       "slug": "개인정보보호법-제66조에-따른-결과의-공표-2025-11-13",
@@ -2862,6 +2844,24 @@
       "trashedAt": null,
       "path": "blog/entries/b81b6973-7b41-4c52-9a6a-d5b14119fde3.json",
       "sha": "a0faa51640c738ee874a7911c212ba03ec630646"
+    },
+    {
+      "id": "5fb8cc0b-5bc2-4111-ae59-dd5d36e75bb2",
+      "kind": "notes",
+      "slug": "url",
+      "title": "URL",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-19",
+      "updatedAt": "2026-11-19T02:00:26.159Z",
+      "publishedAt": "2026-11-19T00:19:44.372Z",
+      "status": "published",
+      "sourceDigest": "4df71cc1230d32200d62c918a4c29c6000d21ca7d56770f52c7230cfdb3de305",
+      "trashedAt": null,
+      "path": "blog/entries/5fb8cc0b-5bc2-4111-ae59-dd5d36e75bb2.json",
+      "sha": "41ba932cccb69c91262d4e42c0640eff310726ae"
     }
   ],
   "taxonomy": {

@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T00:19:44.372Z",
-  "updatedAt": "2026-11-19T00:28:54.433Z",
-  "sourceDigest": "a3791d7f60b7a92a67e03723294ad0378c854a0d77388786a8dcc17d6af104e6",
+  "updatedAt": "2026-11-19T02:00:26.159Z",
+  "sourceDigest": "4df71cc1230d32200d62c918a4c29c6000d21ca7d56770f52c7230cfdb3de305",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -216,8 +216,48 @@
         "content": [
           {
             "type": "hardBreak"
+          },
+          {
+            "type": "text",
+            "text": "개인정보보호 포털 자료 안내서 "
           }
         ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.privacy.go.kr/front/bbs/bbsList.do?bbsNo=BBSMSTR_000000000049",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "https://www.privacy.go.kr/front/bbs/bbsList.do?bbsNo=BBSMSTR_000000000049"
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "fb8c0ff2-48ed-4bce-a182-048a6ada4aae",
+          "href": "https://www.privacy.go.kr/front/bbs/bbsList.do?bbsNo=BBSMSTR_000000000049",
+          "title": "개인정보 포털",
+          "description": "개인정보보호위원회는 개인정보의 처리와 보호에 관한 사안을 독립적으로 수행하기 위해 설립된 합의제 중앙행정기관입니다.",
+          "image": "https://www.privacy.go.kr/assets/img/common/ogImage_01.png",
+          "imageKind": "image",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph"
       }
     ]
   }
