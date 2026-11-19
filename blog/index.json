@@ -2837,13 +2837,13 @@
       "series": "",
       "tags": [],
       "date": "2026-11-19",
-      "updatedAt": "2026-11-19T00:21:07.871Z",
+      "updatedAt": "2026-11-19T00:28:54.433Z",
       "publishedAt": "2026-11-19T00:19:44.372Z",
       "status": "published",
-      "sourceDigest": "137b9703d8d45ec7ef768fa1c8d3789be0ce1c12c6a6da88c88acd3258753a03",
+      "sourceDigest": "a3791d7f60b7a92a67e03723294ad0378c854a0d77388786a8dcc17d6af104e6",
       "trashedAt": null,
       "path": "blog/entries/5fb8cc0b-5bc2-4111-ae59-dd5d36e75bb2.json",
-      "sha": "abb63233cc109aa5f3acd230318d2aa068205879"
+      "sha": "054c25c178c8e457630e6ff0214b1c4b35d1339d"
     }
   ],
   "taxonomy": {

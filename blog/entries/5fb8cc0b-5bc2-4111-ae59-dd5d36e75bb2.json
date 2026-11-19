@@ -13,8 +13,8 @@
   "status": "published",
   "trashedAt": null,
   "publishedAt": "2026-11-19T00:19:44.372Z",
-  "updatedAt": "2026-11-19T00:21:07.871Z",
-  "sourceDigest": "137b9703d8d45ec7ef768fa1c8d3789be0ce1c12c6a6da88c88acd3258753a03",
+  "updatedAt": "2026-11-19T00:28:54.433Z",
+  "sourceDigest": "a3791d7f60b7a92a67e03723294ad0378c854a0d77388786a8dcc17d6af104e6",
   "assets": [],
   "doc": {
     "type": "doc",
@@ -132,15 +132,92 @@
         "attrs": {
           "id": "cc41041a-3539-4c1b-b500-82527d973363",
           "href": "https://www.boannews.com/",
-          "title": "",
-          "description": "",
-          "image": "",
+          "title": "보안뉴스",
+          "description": "사이버보안, AI보안, 영상감시, 출입통제, 융합보안, 산업보안, 사회안전 등 모든 보안분야의 최신 트렌드와 심도있는 정보를 제공",
+          "image": "https://www.boannews.com/image/logo/snslogotrans_20260424112347.jpg",
           "imageKind": "image",
-          "state": "loading"
+          "state": "ready"
         }
       },
       {
-        "type": "paragraph"
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개인정보보호위원회 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://pipc.go.kr/np/cop/bbs/selectBoardList.do?bbsId=BS258&mCode=C010040000",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "https://pipc.go.kr/np/cop/bbs/selectBoardList.do?bbsId=BS258&mCode=C010040000"
+          }
+        ]
+      },
+      {
+        "type": "linkPreview",
+        "attrs": {
+          "id": "bf8f9d72-5df8-4f77-85f6-ea386d26df13",
+          "href": "https://pipc.go.kr/np/cop/bbs/selectBoardList.do?bbsId=BS258&mCode=C010040000",
+          "title": "개인정보보호위원회",
+          "description": "개인정보보호위원회는 여러분들의 소중한 개인정보를 지키기 위한 파수꾼 입니다.",
+          "image": "https://pipc.go.kr/np/resources/images/common/btn_info_ri_03.png",
+          "imageKind": "logo",
+          "state": "ready"
+        }
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "국가 법령 정보 센터 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://www.law.go.kr/main.html",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "https://www.law.go.kr/main.html"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "hardBreak"
+          }
+        ]
       }
     ]
   }
