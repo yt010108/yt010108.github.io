@@ -1,0 +1,150 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "f65fd439-725c-4081-8c41-2919e2cb65d6",
+  "title": "취약점 진단",
+  "kind": "notes",
+  "slug": "취약점-진단",
+  "description": "",
+  "category": "",
+  "date": "2026-11-20",
+  "tags": [],
+  "series": "",
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-20T00:27:30.650Z",
+  "updatedAt": "2026-11-20T00:27:30.650Z",
+  "sourceDigest": "600cbc9ee0228bcd59be8b3e453d84f93e8df468f3234a4716fe0cd5889f2150",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "WEB 어플리케이션 진단"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "클라우드 진단"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "시스템 진단"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "진단 수행 하고 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "주통기 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "진단 수행 계획서 프론트 백나눠서 진행"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "개발한 환경에 대해 하고 마이그래이션"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "그 후에 진단 클라우드 웹"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "AI "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "웹 어플리케이션을 자동으로 진단함 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "웹 어플리케이션 진단을 가지고 진단이랑 고민 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "최종적으로 5회차에 "
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "시스템, 웹 , 클라우드 진단"
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "취약점 진단에 "
+          }
+        ]
+      }
+    ]
+  }
+}

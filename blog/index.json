@@ -3402,6 +3402,24 @@
       "trashedAt": null,
       "path": "blog/entries/dd821490-df56-4a30-8321-0420b9864e66.json",
       "sha": "6546c7e2696e79d283ec2d6c4691edd2517f4475"
+    },
+    {
+      "id": "f65fd439-725c-4081-8c41-2919e2cb65d6",
+      "kind": "notes",
+      "slug": "취약점-진단",
+      "title": "취약점 진단",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-20",
+      "updatedAt": "2026-11-20T00:27:30.650Z",
+      "publishedAt": "2026-11-20T00:27:30.650Z",
+      "status": "published",
+      "sourceDigest": "600cbc9ee0228bcd59be8b3e453d84f93e8df468f3234a4716fe0cd5889f2150",
+      "trashedAt": null,
+      "path": "blog/entries/f65fd439-725c-4081-8c41-2919e2cb65d6.json",
+      "sha": "3f120d81790a35c921dfd69bf216ecaad67d12a7"
     }
   ],
   "taxonomy": {
