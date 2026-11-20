@@ -82,27 +82,42 @@
     const items = isNotes ? data.notes : data.posts;
     const route = isNotes ? "notes" : "posts";
     const matchesCategory = (item, category) => !category || (category === "@uncategorized" ? !item.category : item.category === category || item.category?.startsWith(category + " / "));
-    const categories = [...new Set(items.flatMap(item => {
-      const parts = (item.category || "").split(" / ");
-      return parts.map((_, index) => parts.slice(0, index + 1).join(" / ")).filter(Boolean);
-    }))].sort((a, b) => a.localeCompare(b, "ko"));
+    const categoryCounts = window.BlogPosts.archiveCategoryCounts(items);
+    const categories = [...categoryCounts.keys()].filter(category => category && category !== "@uncategorized").sort((a, b) => a.localeCompare(b, "ko"));
     if (selectedCategory && selectedCategory !== "@uncategorized" && !categories.includes(selectedCategory)) selectedCategory = "";
+    const menuCategory = isNotes ? selectedCategory : selectedCategory.split(" / ")[0];
     const series = [...new Set(items.map(item => item.series).filter(Boolean))].sort((a, b) => a.localeCompare(b, "ko"));
     if (selectedSeries && !series.includes(selectedSeries)) selectedSeries = "";
-    const categoryItems = items.filter(item => matchesCategory(item, selectedCategory) && (!selectedSeries || item.series === selectedSeries));
-    const tags = [...new Set(categoryItems.flatMap(item => item.tags))];
+    const seriesItems = selectedSeries ? items.filter(item => item.series === selectedSeries) : items;
+    const categoryItems = seriesItems.filter(item => matchesCategory(item, selectedCategory));
     const filtered = selectedTag === "all" ? categoryItems : categoryItems.filter(item => item.tags.includes(selectedTag));
-    const filters = ["all", ...tags].map(tag => {
-      const count = tag === "all" ? categoryItems.length : categoryItems.filter(item => item.tags.includes(tag)).length;
-      return `<button class="filter-button" type="button" data-filter-tag="${esc(tag)}" data-filter-kind="${route}" aria-pressed="${tag === selectedTag}">${esc(tag === "all" ? "All" : tagName(tag))}<span>${count}</span></button>`;
-    }).join("");
-    const categoryOptions = [["", "전체 카테고리", items.length], ...categories.map(category => [category, category, items.filter(item => matchesCategory(item, category)).length]), ...(items.some(item => !item.category) ? [["@uncategorized", "미분류", items.filter(item => !item.category).length]] : [])];
-    const categoryControl = categories.length ? `<label class="archive-category"><span>카테고리</span><select data-filter-category data-filter-kind="${route}" aria-label="카테고리 선택">${categoryOptions.map(([value, label, count]) => `<option value="${esc(value)}" ${value === selectedCategory ? "selected" : ""}>${esc(label)} (${count})</option>`).join("")}</select></label>` : "";
+    const showTags = isNotes || selectedTag !== "all";
+    let filters;
+    if (showTags) {
+      const tags = [...new Set(categoryItems.flatMap(item => item.tags))];
+      const choices = isNotes && !tags.length && selectedTag === "all" ? [] : ["all", ...tags];
+      filters = choices.map(tag => {
+        const count = tag === "all" ? categoryItems.length : categoryItems.filter(item => item.tags.includes(tag)).length;
+        return `<button class="filter-button" type="button" data-filter-tag="${esc(tag)}" data-filter-kind="${route}" aria-pressed="${tag === selectedTag}">${esc(tag === "all" ? "All" : tagName(tag))}<span>${count}</span></button>`;
+      }).join("");
+    } else {
+      const counts = selectedSeries ? window.BlogPosts.archiveCategoryCounts(seriesItems) : categoryCounts;
+      const prefix = menuCategory + " / ";
+      const children = menuCategory ? categories.filter(category => category.startsWith(prefix)) : [];
+      filters = [menuCategory, ...children].map(category => {
+        const label = category === menuCategory ? "All" : category.slice(prefix.length);
+        return `<a class="filter-button" href="${esc(archivePath(route, "all", category, selectedSeries))}"${category === selectedCategory ? ' aria-current="page"' : ""}>${esc(label)}<span>${counts.get(category) || 0}</span></a>`;
+      }).join("");
+    }
+    const menuCategories = isNotes ? categories : categories.filter(category => !category.includes(" / "));
+    const categoryOptions = [["", "전체 카테고리", items.length], ...menuCategories.map(category => [category, category, categoryCounts.get(category)])];
+    if (categoryCounts.has("@uncategorized")) categoryOptions.push(["@uncategorized", "미분류", categoryCounts.get("@uncategorized")]);
+    const categoryControl = categories.length ? `<label class="archive-category"><span>카테고리</span><select data-filter-category data-filter-kind="${route}" aria-label="카테고리 선택">${categoryOptions.map(([value, label, count]) => `<option value="${esc(value)}" ${value === menuCategory ? "selected" : ""}>${esc(label)} (${count})</option>`).join("")}</select></label>` : "";
     const seriesControl = series.length ? `<label class="archive-category"><span>시리즈</span><select data-filter-series data-filter-kind="${route}" aria-label="시리즈 선택"><option value="">전체 시리즈</option>${series.map(value => `<option value="${esc(value)}" ${value === selectedSeries ? "selected" : ""}>${esc(value)} (${items.filter(item => item.series === value).length})</option>`).join("")}</select></label>` : "";
     const heading = pageHead(isNotes ? "A LITTLE SPACE TO THINK" : "WRITING & RESEARCH", isNotes ? "Notes." : "Posts.");
     const newLink = isNotes ? window.NotesBoard.newLink : '<a class="archive-new" href="admin/#new-post"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>글쓰기</span></a>';
     const listing = isNotes ? window.NotesBoard.html(filtered) : `<div class="archive-list">${filtered.length ? filtered.map(item => postRow(item, kind)).join("") : '<div class="empty-state"><p>이 조건에 맞는 기록이 아직 없습니다.</p><a class="text-link" href="#/' + route + '">전체 기록 보기</a></div>'}</div>`;
-    return `<div class="container${isNotes ? " notes-page" : ""}"><div class="archive-heading">${heading}${newLink}</div>${items.some(item => item.sample) ? '<p class="archive-notice"><span class="sample-label">예시</span> 표시는 콘텐츠를 채우기 전의 구성 예시입니다.</p>' : ""}<div class="filter-bar"><div class="filter-buttons" aria-label="주제 필터">${isNotes && !tags.length && selectedTag === "all" ? "" : filters}</div><div class="archive-tools">${categoryControl}${seriesControl}<button class="archive-search" type="button" data-search-open>Search ↗</button></div></div>${listing}</div>`;
+    return `<div class="container ${isNotes ? "notes-page" : "posts-page"}"><div class="archive-heading">${heading}${newLink}</div>${items.some(item => item.sample) ? '<p class="archive-notice"><span class="sample-label">예시</span> 표시는 콘텐츠를 채우기 전의 구성 예시입니다.</p>' : ""}<div class="filter-bar"><div class="filter-buttons" role="group" aria-label="${showTags ? "주제 필터" : "소분류 필터"}">${filters}</div><div class="archive-tools">${categoryControl}${seriesControl}<button class="archive-search" type="button" data-search-open>Search ↗</button></div></div>${listing}</div>`;
   }
 
   function projects() {

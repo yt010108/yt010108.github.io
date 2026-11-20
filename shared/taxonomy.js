@@ -15,6 +15,18 @@ export function taxonomyOptions(index, drafts = []) {
   ].filter(Boolean))].sort((a, b) => a.localeCompare(b, "ko"))]));
 }
 
+export function archiveCategoryCounts(items) {
+  const counts = new Map([["", items.length]]);
+  for (const item of items) {
+    const parts = (item.category || "@uncategorized").split(" / ");
+    for (let depth = 1; depth <= parts.length; depth++) {
+      const path = parts.slice(0, depth).join(" / ");
+      counts.set(path, (counts.get(path) || 0) + 1);
+    }
+  }
+  return counts;
+}
+
 export const usesTaxonomy = (entry, type, name) => type === "tags" ? (entry.tags || []).includes(name) : entry[type === "categories" ? "category" : "series"] === name;
 export function replaceTaxonomy(entry, type, name, replacement) {
   if (type === "categories") return { ...entry, category: entry.category === name ? replacement : entry.category };

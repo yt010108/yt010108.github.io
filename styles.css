@@ -162,7 +162,10 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
 .archive-category select { max-width: 320px; min-height: 34px; padding: 5px 28px 5px 10px; border: 1px solid var(--line); border-radius: 3px; background: var(--bg); color: var(--text); font: 11px/1.5 var(--mono); }
 .filter-button { background: none; border: none; border-bottom: 1px solid transparent; padding: 12px 0; color: var(--quiet); font-size: 11px; margin-bottom: -1px; }
 .filter-button:hover { color: var(--text); }
-.filter-button[aria-pressed="true"] { color: var(--text); border-color: var(--text); }
+.filter-button[aria-pressed="true"], .filter-button[aria-current="page"] { color: var(--text); border-color: var(--text); }
+.posts-page .filter-bar { align-items: flex-end; }
+.posts-page .filter-buttons { min-width: 0; row-gap: 0; }
+.posts-page .filter-button { max-width: 100%; overflow-wrap: anywhere; }
 .filter-button span { margin-left: 6px; font: 9px/1.5 var(--mono); color: var(--quiet); }
 .archive-search { background: none; border: 0; padding: 10px 0; color: var(--muted); white-space: nowrap; font: 10px/1.5 var(--mono); }
 .archive-list { padding-bottom: 80px; }
@@ -454,6 +457,8 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
   .page-head { padding-top: 55px; padding-bottom: 32px; }
   .page-intro { font-size: 13px; }
   .filter-bar { align-items: flex-end; gap: 15px; flex-wrap: wrap; }
+  .posts-page .filter-bar { flex-direction: column-reverse; align-items: stretch; gap: 4px; }
+  .posts-page .archive-tools { padding-bottom: 0; }
   .archive-tools { flex-wrap: wrap; gap: 15px; }
   .archive-category select { max-width: min(280px, 65vw); }
   .filter-buttons { gap: 17px; }
