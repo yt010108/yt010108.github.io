@@ -159,7 +159,12 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
 .filter-buttons { display: flex; flex-wrap: wrap; gap: 22px; }
 .archive-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; padding-bottom: 10px; }
 .archive-category { display: flex; align-items: center; gap: 10px; color: var(--quiet); font-size: 11px; }
-.archive-category select { max-width: 320px; min-height: 34px; padding: 5px 28px 5px 10px; border: 1px solid var(--line); border-radius: 3px; background: var(--bg); color: var(--text); font: 11px/1.5 var(--mono); }
+.archive-category select, .posts-search-input { max-width: 320px; min-height: 34px; padding: 5px 28px 5px 10px; border: 1px solid var(--line); border-radius: 3px; background: var(--bg); color: var(--text); font: 11px/1.5 var(--mono); }
+.posts-search-input { width: min(210px, 100%); min-width: 0; padding-right: 10px; font: 13px/1.5 var(--sans); }
+.posts-search-input::placeholder { color: var(--quiet); }
+.posts-page .search-status { padding: 12px 0 6px; }
+.posts-page .search-results { max-height: none; overflow: visible; padding: 0 0 55px; }
+.posts-page .search-result { border-bottom: 1px solid var(--soft-line); padding: 14px 10px; }
 .filter-button { background: none; border: none; border-bottom: 1px solid transparent; padding: 12px 0; color: var(--quiet); font-size: 11px; margin-bottom: -1px; }
 .filter-button:hover { color: var(--text); }
 .filter-button[aria-pressed="true"], .filter-button[aria-current="page"] { color: var(--text); border-color: var(--text); }
@@ -401,6 +406,7 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
 
 @media (pointer: coarse) {
   .theme-toggle { min-width: 44px; min-height: 44px; }
+  .posts-search-input { min-height: 44px; font-size: 16px; }
 }
 
 @media (min-width: 1700px) {

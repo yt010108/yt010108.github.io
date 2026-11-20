@@ -22,8 +22,6 @@
   const main = document.getElementById("main");
   const dialog = document.getElementById("search-dialog");
   const searchInput = document.getElementById("search-input");
-  const results = document.getElementById("search-results");
-  const searchStatus = document.getElementById("search-status");
   const menu = document.getElementById("main-nav");
   const menuButton = document.querySelector(".menu-trigger");
   const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
@@ -113,11 +111,16 @@
     const categoryOptions = [["", "전체 카테고리", items.length], ...menuCategories.map(category => [category, category, categoryCounts.get(category)])];
     if (categoryCounts.has("@uncategorized")) categoryOptions.push(["@uncategorized", "미분류", categoryCounts.get("@uncategorized")]);
     const categoryControl = categories.length ? `<label class="archive-category"><span>카테고리</span><select data-filter-category data-filter-kind="${route}" aria-label="카테고리 선택">${categoryOptions.map(([value, label, count]) => `<option value="${esc(value)}" ${value === menuCategory ? "selected" : ""}>${esc(label)} (${count})</option>`).join("")}</select></label>` : "";
-    const seriesControl = series.length ? `<label class="archive-category"><span>시리즈</span><select data-filter-series data-filter-kind="${route}" aria-label="시리즈 선택"><option value="">전체 시리즈</option>${series.map(value => `<option value="${esc(value)}" ${value === selectedSeries ? "selected" : ""}>${esc(value)} (${items.filter(item => item.series === value).length})</option>`).join("")}</select></label>` : "";
+    const seriesControl = isNotes && series.length ? `<label class="archive-category"><span>시리즈</span><select data-filter-series data-filter-kind="${route}" aria-label="시리즈 선택"><option value="">전체 시리즈</option>${series.map(value => `<option value="${esc(value)}" ${value === selectedSeries ? "selected" : ""}>${esc(value)} (${items.filter(item => item.series === value).length})</option>`).join("")}</select></label>` : "";
+    const searchControl = isNotes
+      ? '<button class="archive-search" type="button" data-search-open>Search ↗</button>'
+      : '<input id="posts-search" class="posts-search-input" type="search" placeholder="글, 노트, 프로젝트 검색…" aria-label="글, 노트, 프로젝트 검색" aria-controls="posts-search-results" autocomplete="off">';
+    const inlineResults = isNotes ? "" : '<section id="posts-search-results" aria-label="통합 검색 결과" hidden><p class="search-status" role="status"></p><div class="search-results"></div></section>';
     const heading = pageHead(isNotes ? "A LITTLE SPACE TO THINK" : "WRITING & RESEARCH", isNotes ? "Notes." : "Posts.");
     const newLink = isNotes ? window.NotesBoard.newLink : '<a class="archive-new" href="admin/#new-post"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>글쓰기</span></a>';
-    const listing = isNotes ? window.NotesBoard.html(filtered) : `<div class="archive-list">${filtered.length ? filtered.map(item => postRow(item, kind)).join("") : '<div class="empty-state"><p>이 조건에 맞는 기록이 아직 없습니다.</p><a class="text-link" href="#/' + route + '">전체 기록 보기</a></div>'}</div>`;
-    return `<div class="container ${isNotes ? "notes-page" : "posts-page"}"><div class="archive-heading">${heading}${newLink}</div>${items.some(item => item.sample) ? '<p class="archive-notice"><span class="sample-label">예시</span> 표시는 콘텐츠를 채우기 전의 구성 예시입니다.</p>' : ""}<div class="filter-bar"><div class="filter-buttons" role="group" aria-label="${showTags ? "주제 필터" : "소분류 필터"}">${filters}</div><div class="archive-tools">${categoryControl}${seriesControl}<button class="archive-search" type="button" data-search-open>Search ↗</button></div></div>${listing}</div>`;
+    const seriesNotice = !isNotes && selectedSeries ? `<p class="archive-notice">시리즈 · ${esc(selectedSeries)} <a class="text-link" href="${esc(archivePath(route, selectedTag, selectedCategory))}">필터 해제</a></p>` : "";
+    const listing = isNotes ? window.NotesBoard.html(filtered) : `<div class="archive-list">${seriesNotice}${filtered.length ? filtered.map(item => postRow(item, kind)).join("") : '<div class="empty-state"><p>이 조건에 맞는 기록이 아직 없습니다.</p><a class="text-link" href="#/' + route + '">전체 기록 보기</a></div>'}</div>`;
+    return `<div class="container ${isNotes ? "notes-page" : "posts-page"}"><div class="archive-heading">${heading}${newLink}</div>${items.some(item => item.sample) ? '<p class="archive-notice"><span class="sample-label">예시</span> 표시는 콘텐츠를 채우기 전의 구성 예시입니다.</p>' : ""}<div class="filter-bar"><div class="filter-buttons" role="group" aria-label="${showTags ? "주제 필터" : "소분류 필터"}">${filters}</div><div class="archive-tools">${categoryControl}${seriesControl}${searchControl}</div></div>${inlineResults}${listing}</div>`;
   }
 
   function projects() {
@@ -275,7 +278,15 @@
       html = missingPost(kind === "note" || kind === "notes" ? "note" : "post");
       title = contentCheck === "error" ? "연결 확인" : "글 확인 중";
     }
+    const previousInput = !navigate && main.querySelector("#posts-search");
+    const wasTyping = previousInput && document.activeElement === previousInput;
     main.innerHTML = html;
+    const replacement = previousInput && main.querySelector("#posts-search");
+    if (replacement) {
+      replacement.replaceWith(previousInput);
+      updatePostsSearch(previousInput);
+      if (wasTyping) previousInput.focus({ preventScroll: true });
+    }
     window.NotesBoard.mount(main.querySelector("[data-notes-board]"), data.notes);
     window.BlogDashboard.mount(main.querySelector("[data-dashboard]"), data, contentRevision);
     window.BlogNews.mount(main.querySelector("[data-news]"), params.get("view") === "all");
@@ -299,9 +310,9 @@
   ];
   const normalize = text => String(text).normalize("NFKC").toLocaleLowerCase("ko-KR");
 
-  function updateSearch() {
+  function updateSearch(input = searchInput, scope = dialog) {
     const searchable = searchableItems();
-    const query = normalize(searchInput.value).trim();
+    const query = normalize(input.value).trim();
     let matches;
     if (!query) matches = [searchable[0], searchable[1], searchable.find(item => item.kind === "note"), searchable.find(item => item.kind === "project")].filter(Boolean);
     else {
@@ -311,12 +322,22 @@
         return tokens.every(token => text.includes(token));
       });
     }
-    searchStatus.textContent = query ? `${matches.length}개의 기록을 찾았습니다.` : "이런 기록부터 살펴보세요.";
-    results.innerHTML = matches.length ? matches.map(item => `<a class="search-result" href="${localPath(item.kind, item.id)}"><span class="search-result-type">${item.type}</span><h3>${esc(item.title)}</h3><p>${esc(item.description)}</p></a>`).join("") : '<div class="empty-state"><p>일치하는 기록이 없습니다.</p><p class="placeholder-text">다른 단어나 짧은 검색어로 찾아보세요.</p></div>';
+    scope.querySelector(".search-status").textContent = query ? `${matches.length}개의 기록을 찾았습니다.` : "이런 기록부터 살펴보세요.";
+    scope.querySelector(".search-results").innerHTML = matches.length ? matches.map(item => `<a class="search-result" href="${localPath(item.kind, item.id)}"><span class="search-result-type">${item.type}</span><h3>${esc(item.title)}</h3><p>${esc(item.description)}</p></a>`).join("") : '<div class="empty-state"><p>일치하는 기록이 없습니다.</p><p class="placeholder-text">다른 단어나 짧은 검색어로 찾아보세요.</p></div>';
+  }
+
+  function updatePostsSearch(input) {
+    const panel = document.getElementById("posts-search-results");
+    const searching = Boolean(input.value.trim());
+    main.querySelector(".archive-list").hidden = searching;
+    panel.hidden = !searching;
+    if (searching) updateSearch(input, panel);
   }
 
   function openSearch() {
     if (dialog.open) return;
+    const inlineInput = main.querySelector("#posts-search");
+    if (inlineInput) { inlineInput.focus(); return; }
     searchInput.value = "";
     updateSearch();
     dialog.showModal();
@@ -368,7 +389,7 @@
       const item = data[deleteButton.dataset.deleteKind]?.find(post => post.id === deleteButton.dataset.deletePost);
       if (item) window.BlogPostDelete.open(item);
     }
-    if (target.closest(".search-result")) dialog.close();
+    if (target.closest("#search-dialog .search-result")) dialog.close();
     if (!target.closest(".header-inner")) closeMenu();
   });
 
@@ -393,10 +414,18 @@
     const rect = dialog.getBoundingClientRect();
     if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
   });
-  searchInput.addEventListener("input", updateSearch);
+  searchInput.addEventListener("input", () => updateSearch());
+  main.addEventListener("input", event => {
+    if (event.target.id === "posts-search") updatePostsSearch(event.target);
+  });
   document.addEventListener("keydown", event => {
     if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") { event.preventDefault(); if (dialog.open) dialog.close(); else openSearch(); }
     if (event.key === "Escape") {
+      if (event.target.id === "posts-search" && !event.isComposing && event.target.value) {
+        event.preventDefault();
+        event.target.value = "";
+        updatePostsSearch(event.target);
+      }
       if (dialog.open) { event.preventDefault(); dialog.close(); }
       closeMenu();
     }
