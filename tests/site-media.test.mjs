@@ -8,6 +8,7 @@ import { REPOSITORY, RepositoryConflict } from "../admin/src/github.js";
 import { newEntry } from "../admin/src/document.js";
 import { INDEX_FORMAT } from "../shared/posts.js";
 import { validateSite, publicSite, mergeSite, SITE_PATH, SITE_FORMAT } from "../shared/site.js";
+import { homeSections } from "../shared/home.js";
 import { MEDIA_FORMAT, MEDIA_PATH, verifyImageBytes, validateMedia } from "../shared/media.js";
 
 const context = { window: {} }; vm.runInNewContext(await readFile(new URL("../content.js", import.meta.url), "utf8"), context);
@@ -82,19 +83,53 @@ test("Site validation excludes hidden projects from the reader and rejects unsaf
   assert.throws(() => validateSite({ ...value, projects: [{ ...value.projects[0], showOnHome: "false" }] }));
 });
 
-test("Saving home selections preserves CMS order and only publishes visible projects", async () => {
-  const s = await connected(), edited = structuredClone(initialSite);
-  const [first, hidden, unselected, last] = edited.projects;
+test("Legacy home flags keep their order and default posts until an explicit selection is saved", () => {
+  const legacy = structuredClone(initialSite);
+  delete legacy.home;
+  assert.throws(() => validateSite(legacy));
+  legacy.version = 1;
+  const [first, hidden, other, last] = legacy.projects;
   first.showOnHome = hidden.showOnHome = last.showOnHome = true;
   hidden.published = false;
-  delete unselected.showOnHome;
-  edited.projects = [last, unselected, hidden, first];
-  await s.client.saveSite(initialSite, edited);
+  legacy.projects = [last, other, hidden, first];
+  const { home, version } = validateSite(legacy);
+  assert.equal(version, 2);
+  assert.deepEqual(home, { firstSection: "post", postIds: null, projectIds: [last.id, hidden.id, first.id] });
+  const posts = ["2025-01-01", "2026-03-01", "2026-02-01"].map((date, i) => ({ id: crypto.randomUUID(), kind: "posts", status: "published", date, publishedAt: date, title: String(i) }));
+  const reader = publicSite(legacy, posts);
+  assert.deepEqual(reader.home, { firstSection: "post", postIds: [posts[1].id, posts[2].id], projectIds: [last.id, first.id] });
+  assert.deepEqual(reader.projects.map(item => item.showOnHome), [true, false, true]);
+  const empty = publicSite({ ...legacy, home: { ...home, postIds: [], projectIds: [] } }, posts);
+  assert.deepEqual(homeSections(empty.home, posts, empty.projects), [["post", []], ["project", []]]);
+});
 
+test("Saved home order is independent of catalog order and the preview matches the published selection", async () => {
+  const s = await connected(), edited = structuredClone(initialSite);
+  const [first, hidden, last, sample] = edited.projects;
+  hidden.published = false;
+  sample.sample = true;
+  const post = () => ({ id: crypto.randomUUID(), kind: "posts", status: "published", date: "2026-01-05", publishedAt: "2026-01-05" });
+  const a = post(), b = post(), trash = { ...post(), status: "trash" }, note = { ...post(), kind: "notes" };
+  const entries = [a, trash, note, b], missing = crypto.randomUUID();
+  edited.home = { firstSection: "project", postIds: [b.id, trash.id, missing, note.id, a.id], projectIds: [last.id, hidden.id, sample.id, first.id] };
+  await s.client.saveSite(initialSite, edited);
   const { value } = await s.client.readSite();
-  const projects = publicSite(value).projects;
-  assert.deepEqual(projects.map(item => item.id), [last.id, unselected.id, first.id]);
-  assert.deepEqual(projects.map(item => item.showOnHome), [true, false, true]);
+  assert.deepEqual(value.home, edited.home);
+  const reader = publicSite(value, entries);
+  assert.deepEqual(reader.home, { firstSection: "project", postIds: [b.id, a.id], projectIds: [last.id, first.id] });
+  assert.deepEqual(reader.projects.map(item => item.id), value.projects.filter(item => item.published && !item.sample).map(item => item.id));
+  const order = sections => sections.map(([section, items]) => [section, items.map(item => item.id)]);
+  const expected = [["project", [last.id, first.id]], ["post", [b.id, a.id]]];
+  assert.deepEqual(order(homeSections(value.home, entries, value.projects)), expected);
+  assert.deepEqual(order(homeSections(reader.home, [a, b], reader.projects)), expected);
+  const catalogEdit = structuredClone(initialSite);
+  catalogEdit.projects[0].name += " revised";
+  assert.deepEqual(mergeSite(initialSite, { ...initialSite, home: edited.home }, catalogEdit).projects, catalogEdit.projects);
+  const differentOrder = { ...edited, home: { ...edited.home, firstSection: "post" } };
+  assert.throws(() => mergeSite(initialSite, edited, differentOrder), /다른 기기/);
+  for (const invalid of [{ postIds: [a.id, a.id] }, { postIds: ["bad"] }, { projectIds: ["../bad"] }, { firstSection: "unknown" }]) {
+    assert.throws(() => validateSite({ ...value, home: { ...value.home, ...invalid } }));
+  }
 });
 
 test("Site saves merge independent sections and reject concurrent changes to the same section", () => {

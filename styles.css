@@ -102,6 +102,7 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
 .hero > .hero-actions { margin-top: 56px; }
 .primary-link { display: inline-flex; align-items: center; gap: 28px; border-bottom: 1px solid #6a736c; padding: 9px 0; font: 10px/1.5 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
 .primary-link:hover { border-color: var(--text); }
+.hero .primary-link { border-bottom: 0; }
 .hero-index, .hero-scroll { position: absolute; bottom: 32px; color: var(--quiet); font: 9px/1.5 var(--mono); letter-spacing: .13em; }
 .hero-index { left: 0; }
 .hero-scroll { right: 0; display: flex; align-items: center; gap: 13px; }
@@ -149,7 +150,6 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
 .post-row p { font-size: 12px; line-height: 1.9; color: var(--muted); margin-top: 6px; word-break: keep-all; }
 .row-arrow { color: var(--quiet); padding-top: 4px; }
 .row-meta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 10px; font: 9px/1.6 var(--mono); color: var(--quiet); }
-.home-bottom-note { color: var(--quiet); font-size: 11px; margin-top: 26px; }
 
 .page-head { padding: 88px 0 45px; max-width: 760px; }
 .page-head h1 { font-size: clamp(38px, 5vw, 59px); line-height: 1.15; font-weight: 300; letter-spacing: -.045em; margin: 15px 0 22px; }

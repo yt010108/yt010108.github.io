@@ -36,10 +36,6 @@
     return `<div class="meta"><time datetime="${esc(item.date)}">${date(item.date)}</time>${sample(item)}</div>`;
   }
 
-  function sectionHeading(label, title, link, linkText) {
-    return `<div class="section-heading"><div><p class="eyebrow">${esc(label)}</p><h2>${esc(title)}</h2></div><a class="text-link" href="${link}">${esc(linkText)} ${arrow}</a></div>`;
-  }
-
   function postRow(item, kind = "post") {
     return `<article class="post-row"><time class="post-date" datetime="${esc(item.date)}">${date(item.date)}</time><div><h3><a href="${localPath(kind, item.id)}">${esc(item.title)}</a></h3><p>${esc(item.description)}</p><div class="row-meta"><span>${[item.category, ...item.tags.map(tagName)].filter(Boolean).map(esc).join(" / ")}</span>${item.series ? `<a href="${esc(archivePath(kind === "note" ? "notes" : "posts", "all", "", item.series))}">시리즈 · ${esc(item.series)}</a>` : ""}${sample(item)}</div></div><a class="row-arrow" href="${localPath(kind, item.id)}" aria-label="${esc(item.title)} 읽기">${arrow}</a></article>`;
   }
@@ -55,12 +51,18 @@
   }
 
   function home() {
-    const featured = data.posts.some(post => post.featured) ? data.posts.filter(post => post.featured).slice(0, 2) : data.posts.slice(0, 2);
-    const homeProjects = data.projects.filter(project => project.showOnHome);
-    return `<div class="container"><section class="hero" aria-labelledby="home-title"><p class="eyebrow">${esc(data.profile.role)}</p><h1 id="home-title">${data.profile.headline.map(line => `<span>${esc(line)}</span>`).join("")}</h1><div class="hero-actions"><a class="primary-link" href="#/posts">Explore posts <span class="arrow" aria-hidden="true">→</span></a><a class="text-link" href="#/about">About me ${arrow}</a></div><span class="hero-index" aria-hidden="true">PERSONAL SITE / 2026</span><a class="hero-scroll" href="#selected" data-scroll="selected">SCROLL TO EXPLORE <span class="arrow" aria-hidden="true">↓</span></a></section>
-      <section class="home-section" id="selected">${sectionHeading("SELECTED WRITING", "먼저 읽어볼 글", "#/posts", "All posts")}<div class="featured-grid">${featured.map(post => `<article class="featured-item"><p class="eyebrow">${post.tags.map(tag => esc(tagName(tag))).join(" / ")}</p><h3 class="featured-title"><a href="${localPath("post", post.id)}">${esc(post.title)}</a></h3><p>${esc(post.description)}</p>${meta(post)}</article>`).join("")}</div></section>
-      <section class="home-section">${sectionHeading("LATEST POSTS", "최근에 남긴 기록", "#/posts", "View archive")}<div class="post-list">${data.posts.slice(0, 5).map(post => postRow(post)).join("")}</div>${data.posts.some(item => item.sample) ? '<p class="home-bottom-note">‘예시’로 표시한 글은 화면 구성을 확인하기 위한 샘플입니다.</p>' : ""}</section>
-      ${homeProjects.length ? `<section class="home-section">${sectionHeading("SELECTED PROJECTS", "작게 만들고, 깊게 이해하기", "#/projects", "All projects")}<div class="project-grid">${homeProjects.map(projectCard).join("")}</div></section>` : ""}</div>`;
+    const sections = window.BlogPosts.homeSections(window.BLOG_SITE_DATA?.home, data.posts, data.projects).filter(([, items]) => items.length);
+    const scroll = sections.length ? '<a class="hero-scroll" href="#selected" data-scroll="selected">SCROLL TO EXPLORE <span class="arrow" aria-hidden="true">↓</span></a>' : "";
+    const content = sections.map(([kind, items], index) => {
+      const grid = kind === "post" ? "featured-grid" : "project-grid";
+      const card = kind === "post" ? homePost : projectCard;
+      return `<section class="home-section"${index === 0 ? ' id="selected"' : ""}><div class="section-heading"><h2>${kind.toUpperCase()}</h2><a class="text-link" href="#/${kind}s">All ${kind}s ${arrow}</a></div><div class="${grid}">${items.map(card).join("")}</div></section>`;
+    }).join("");
+    return `<div class="container"><section class="hero" aria-labelledby="home-title"><p class="eyebrow">${esc(data.profile.role)}</p><h1 id="home-title">${data.profile.headline.map(line => `<span>${esc(line)}</span>`).join("")}</h1><div class="hero-actions"><a class="primary-link" href="#/posts">Explore posts <span class="arrow" aria-hidden="true">→</span></a><a class="text-link" href="#/about">About me ${arrow}</a></div><span class="hero-index" aria-hidden="true">PERSONAL SITE / 2026</span>${scroll}</section>${content}</div>`;
+  }
+
+  function homePost(post) {
+    return `<article class="featured-item">${post.tags.length ? `<p class="eyebrow">${post.tags.map(tag => esc(tagName(tag))).join(" / ")}</p>` : ""}<h3 class="featured-title"><a href="${localPath("post", post.id)}">${esc(post.title)}</a></h3>${post.description ? `<p>${esc(post.description)}</p>` : ""}${meta(post)}</article>`;
   }
 
   function pageHead(eyebrow, title, intro) {

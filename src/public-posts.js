@@ -1,3 +1,4 @@
 import { renderDocument, plainText } from "../shared/posts.js";
 import { archiveCategoryCounts } from "../shared/taxonomy.js";
-window.BlogPosts = { renderDocument, plainText, archiveCategoryCounts };
+import { homeSections } from "../shared/home.js";
+window.BlogPosts = { renderDocument, plainText, archiveCategoryCounts, homeSections };

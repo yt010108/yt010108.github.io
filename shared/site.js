@@ -1,4 +1,5 @@
 import { UUID, validateDocument } from "./posts.js";
+import { homeSections, isPublicProject } from "./home.js";
 
 export const SITE_PATH = "blog/site.json";
 export const SITE_FORMAT = "yt010108-site";
@@ -21,8 +22,13 @@ export function siteURL(value, blank = true) {
   return url.href;
 }
 export const validSiteId = value => typeof value === "string" && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value) && value.length <= 90;
+function homeIds(ids, limit, valid, label) {
+  list(ids, limit, label);
+  if (ids.some(id => typeof id !== "string" || !valid(id)) || new Set(ids).size !== ids.length) throw new Error(label + "의 선택 목록을 확인해 주세요.");
+  return [...ids];
+}
 export function validateSite(value) {
-  if (value?.format !== SITE_FORMAT || value.version !== 1 || !value.profile) throw new Error("사이트 설정 형식이 올바르지 않아요.");
+  if (value?.format !== SITE_FORMAT || ![1, 2].includes(value.version) || !value.profile) throw new Error("사이트 설정 형식이 올바르지 않아요.");
   const source = value.profile, profile = {};
   for (const key of ["name", "displayName", "role", "intro", "about"]) profile[key] = text(source[key] ?? "", ["intro", "about"].includes(key) ? 12000 : 200, "프로필 " + key, key === "name");
   profile.headline = list(source.headline, 4, "홈 제목").map(line => text(line, 200, "홈 제목", true));
@@ -47,10 +53,18 @@ export function validateSite(value) {
     if (item.published !== undefined && typeof item.published !== "boolean") throw new Error("프로젝트 공개 여부를 확인해 주세요.");
     if (item.showOnHome !== undefined && typeof item.showOnHome !== "boolean") throw new Error("프로젝트 홈 표시 여부를 확인해 주세요.");
     project.published = item.published !== false;
-    project.showOnHome = item.showOnHome === true;
     project.sample = Boolean(item.sample);
     return project;
   });
+  const settings = value.version === 1 && value.home === undefined ? {
+    firstSection: "post", postIds: null, projectIds: value.projects.filter(item => item.showOnHome).map(item => item.id)
+  } : value.home;
+  if (!["post", "project"].includes(settings?.firstSection)) throw new Error("홈 섹션 순서를 확인해 주세요.");
+  const home = {
+    firstSection: settings.firstSection,
+    postIds: settings.postIds === null ? null : homeIds(settings.postIds, 10000, id => UUID.test(id), "홈 글"),
+    projectIds: homeIds(settings.projectIds, 60, validSiteId, "홈 프로젝트").filter(id => ids.has(id))
+  };
   const pageIds = new Set();
   const pages = list(value.pages || [], 30, "페이지").map(item => {
     if (!validSiteId(item.id) || pageIds.has(item.id)) throw new Error("페이지 주소가 올바르지 않거나 중복돼요."); pageIds.add(item.id);
@@ -60,15 +74,25 @@ export function validateSite(value) {
     return { id: item.id, title: text(item.title, 200, "페이지 제목", true), description: text(item.description || "", 1000, "페이지 소개"), markdown: text(item.markdown || "", 80000, "페이지 본문"), doc, published: item.published };
   });
   if (value.updatedAt !== null && (typeof value.updatedAt !== "string" || value.updatedAt.length > 40 || !Number.isFinite(Date.parse(value.updatedAt)))) throw new Error("사이트 저장 시각을 확인해 주세요.");
-  const result = { format: SITE_FORMAT, version: 1, profile, projects, pages, updatedAt: value.updatedAt };
+  const result = { format: SITE_FORMAT, version: 2, profile, projects, home, pages, updatedAt: value.updatedAt };
   if (JSON.stringify(result).length > 450000) throw new Error("사이트 설정이 너무 커요. 페이지와 프로젝트의 내용을 나누어 주세요.");
   return result;
 }
 export const siteText = value => JSON.stringify(validateSite(value), null, 2) + "\n";
-export function publicSite(value) { const checked = validateSite(value); return { profile: checked.profile, projects: checked.projects.filter(item => item.published && !item.sample), pages: checked.pages.filter(item => item.published) }; }
+export function publicSite(value, entries = []) {
+  const { profile, projects, home, pages } = validateSite(value);
+  const selected = Object.fromEntries(homeSections(home, entries, projects));
+  const projectIds = selected.project.map(project => project.id);
+  return {
+    profile,
+    projects: projects.filter(isPublicProject).map(project => ({ ...project, showOnHome: projectIds.includes(project.id) })),
+    home: { firstSection: home.firstSection, postIds: selected.post.map(post => post.id), projectIds },
+    pages: pages.filter(page => page.published)
+  };
+}
 export function mergeSite(base, local, remote) {
   const a = validateSite(base), b = validateSite(local), c = validateSite(remote), result = { ...c };
-  for (const key of ["profile", "projects", "pages"]) {
+  for (const key of ["profile", "projects", "home", "pages"]) {
     const original = JSON.stringify(a[key]), mine = JSON.stringify(b[key]), latest = JSON.stringify(c[key]);
     if (mine !== original && latest !== original && mine !== latest) throw new Error("다른 기기에서 같은 사이트 항목을 수정했어요. 현재 입력을 보관한 뒤 최신 저장본을 확인해 주세요.");
     result[key] = structuredClone(mine === original ? c[key] : b[key]);

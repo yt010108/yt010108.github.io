@@ -6,7 +6,7 @@ import { TableKit } from "@tiptap/extension-table";
 import { Markdown } from "@tiptap/markdown";
 import { EditorState } from "@tiptap/pm/state";
 import { zipSync, strToU8 } from "fflate";
-import { createIcons, SquarePen, Files, Bold, Italic, Strikethrough, Code, List, ListOrdered, Quote, Link, ImagePlus, Paperclip, Table2, SquareCode, Minus, Eye, Undo2, Redo2, FolderOpen, Download, Archive, ArrowLeft, Hash, Menu, FileClock, FolderTree, Images, PanelsTopLeft, Trash2, LogOut } from "lucide";
+import { createIcons, SquarePen, Files, Bold, Italic, Strikethrough, Code, List, ListOrdered, Quote, Link, ImagePlus, Paperclip, Table2, SquareCode, Minus, Eye, Undo2, Redo2, FolderOpen, Download, Archive, ArrowLeft, Hash, Menu, FileClock, FolderTree, Images, House, PanelsTopLeft, Trash2, LogOut } from "lucide";
 import { readDraft, listDrafts, writeDraft, hasUnpublishedChanges, DraftConflict } from "./draft-store.js";
 import { IMAGE_TYPES, newEntry, safeSlug, safeImageData, createAsset, imageBySource, transformImages, usedAssets, validateBackup, markdownDocument, assetBytes } from "./document.js";
 import { FILE_TYPE, createFileAsset } from "../../shared/files.js";
@@ -35,7 +35,7 @@ let authorized = false, authBusy = false, unlockTask, managerStatus = "all";
 const repository = new SiteRepository();
 const linkPreviews = createLinkPreviews({ getEditor: () => editor, getEntryId: () => entry.id });
 
-createIcons({ icons: { SquarePen, Files, Bold, Italic, Strikethrough, Code, List, ListOrdered, Quote, Link, ImagePlus, Paperclip, Table2, SquareCode, Minus, Eye, Undo2, Redo2, FolderOpen, Download, Archive, ArrowLeft, Hash, Menu, FileClock, FolderTree, Images, PanelsTopLeft, Trash2, LogOut }, attrs: { "stroke-width": 1.5 } });
+createIcons({ icons: { SquarePen, Files, Bold, Italic, Strikethrough, Code, List, ListOrdered, Quote, Link, ImagePlus, Paperclip, Table2, SquareCode, Minus, Eye, Undo2, Redo2, FolderOpen, Download, Archive, ArrowLeft, Hash, Menu, FileClock, FolderTree, Images, House, PanelsTopLeft, Trash2, LogOut }, attrs: { "stroke-width": 1.5 } });
 
 function message(text, error = false) {
   clearTimeout(messageTimer);
@@ -70,7 +70,8 @@ function setView(managerView) {
   taxonomyOpen = managerView === "taxonomy";
   dashboardOpen = managerView === "dashboard";
   mediaOpen = managerView === "media";
-  siteOpen = managerView === "site";
+  siteOpen = ["home", "projects"].includes(managerView) ? managerView : false;
+  if (siteOpen) siteManager.setSection(siteOpen);
   managing = Boolean(managerView);
   document.body.classList.toggle("is-managing", managing);
   $("taxonomy-view").hidden = !taxonomyOpen;
@@ -83,9 +84,9 @@ function setView(managerView) {
   $("manage-button").setAttribute("aria-current", managerView ? "page" : "false");
   const skip = document.querySelector(".skip-link");
   skip.href = mediaOpen ? "#media-title" : siteOpen ? "#site-title" : dashboardOpen ? "#dashboard-admin-title" : taxonomyOpen ? "#taxonomy-title" : managing ? "#manager-title" : "#post-title";
-  skip.textContent = mediaOpen ? "미디어 관리로 이동" : siteOpen ? "페이지·프로젝트 관리로 이동" : dashboardOpen ? "대시보드 관리로 이동" : taxonomyOpen ? "분류 관리로 이동" : managing ? "글 관리로 이동" : "글 제목으로 이동";
-  document.title = mediaOpen ? "미디어 — yt010108" : siteOpen ? "페이지·프로젝트 — yt010108" : dashboardOpen ? "대시보드 관리 — yt010108" : taxonomyOpen ? "분류 관리 — yt010108" : managing ? "글 관리 — yt010108" : (title.value.trim() || "글쓰기") + " — yt010108";
-  history.replaceState(null, "", mediaOpen ? "#media" : siteOpen ? "#site" : dashboardOpen ? "#dashboard" : taxonomyOpen ? "#taxonomy" : managing ? managerStatus === "draft" ? "#drafts" : managerStatus === "trash" ? "#trash" : "#manage" : "#write");
+  skip.textContent = mediaOpen ? "미디어 관리로 이동" : siteOpen ? $("site-title").textContent + " 열기" : dashboardOpen ? "대시보드 관리로 이동" : taxonomyOpen ? "분류 관리로 이동" : managing ? "글 관리로 이동" : "글 제목으로 이동";
+  document.title = (mediaOpen ? "미디어" : siteOpen ? $("site-title").textContent : dashboardOpen ? "대시보드 관리" : taxonomyOpen ? "분류 관리" : managing ? "글 관리" : title.value.trim() || "글쓰기") + " — yt010108";
+  if (!managing) history.replaceState(null, "", "#write");
   syncSidebar(); setSidebarOpen(false);
   if (!managerView) resizeTitle();
 }
@@ -153,7 +154,9 @@ async function openSiteSection(section) {
   navigationBusy = true; setBusy(true);
   try {
     if (!await keepBeforeSwitch()) return;
-    setView(section); await (section === "media" ? mediaManager : siteManager).refresh();
+    const switchTab = siteOpen && section !== "media" && siteManager.isLoaded();
+    setView(section);
+    if (!switchTab) await (section === "media" ? mediaManager : siteManager).refresh();
   } finally { navigationBusy = false; setBusy(false); }
 }
 
@@ -682,12 +685,18 @@ function openGitHub() {
 }
 
 function syncSidebar() {
-  const current = mediaOpen ? "media" : siteOpen ? "site" : dashboardOpen ? "dashboard" : taxonomyOpen ? "taxonomy" : managing ? managerStatus === "draft" ? "draft" : managerStatus === "trash" ? "trash" : "all" : "write";
+  const current = mediaOpen ? "media" : siteOpen || (dashboardOpen ? "dashboard" : taxonomyOpen ? "taxonomy" : managing ? managerStatus === "draft" ? "draft" : managerStatus === "trash" ? "trash" : "all" : "write");
   document.querySelectorAll("[data-admin-view]").forEach(button => {
     if (button.dataset.adminView === current) button.setAttribute("aria-current", "page");
     else button.removeAttribute("aria-current");
   });
-  if (authorized && managing) history.replaceState(null, "", current === "media" ? "#media" : current === "site" ? "#site" : current === "dashboard" ? "#dashboard" : current === "taxonomy" ? "#taxonomy" : current === "draft" ? "#drafts" : current === "trash" ? "#trash" : "#manage");
+  if (authorized && managing) history.replaceState(null, "", "#" + (current === "all" ? "manage" : current === "draft" ? "drafts" : current));
+}
+
+function siteRoute(hash) {
+  if (hash === "#site" || hash === "#home") return "home";
+  if (hash === "#projects") return "projects";
+  return null;
 }
 
 function setSidebarOpen(open) {
@@ -734,12 +743,12 @@ async function unlockAdmin() {
     const route = location.hash;
     const linkedEntry = linkedEntryRoute(route);
     manager.setStatus(route === "#drafts" ? "draft" : route === "#trash" ? "trash" : "all");
-    setView(route === "#media" ? "media" : route === "#site" ? "site" : route === "#dashboard" ? "dashboard" : route === "#taxonomy" ? "taxonomy" : !["#write", "#new-post", "#new-note"].includes(route));
+    setView(siteRoute(route) ?? (route === "#media" ? "media" : route === "#dashboard" ? "dashboard" : route === "#taxonomy" ? "taxonomy" : !["#write", "#new-post", "#new-note"].includes(route)));
     await manager.refresh();
     if (route === "#taxonomy") await taxonomy.refresh();
     if (route === "#dashboard") await dashboardManager.refresh();
     if (route === "#media") await mediaManager.refresh();
-    if (route === "#site") await siteManager.refresh();
+    if (siteRoute(route)) await siteManager.refresh();
     if (route === "#new-note") await beginNew("notes");
     if (route === "#new-post") await beginNew("posts");
     if (!repository.connected || repository.generation !== generation) return;
@@ -1001,7 +1010,7 @@ document.querySelectorAll("[data-admin-view]").forEach(button => button.addEvent
   if (button.dataset.adminView === "write") beginNew();
   else if (button.dataset.adminView === "taxonomy") openTaxonomy();
   else if (button.dataset.adminView === "dashboard") openDashboard();
-  else if (["media", "site"].includes(button.dataset.adminView)) openSiteSection(button.dataset.adminView);
+  else if (["media", "home", "projects"].includes(button.dataset.adminView)) openSiteSection(button.dataset.adminView);
   else openManager(button.dataset.adminView);
 }));
 $("sidebar-toggle").addEventListener("click", () => setSidebarOpen(!document.body.classList.contains("is-sidebar-open")));
@@ -1046,7 +1055,7 @@ window.addEventListener("hashchange", () => {
   } else if (location.hash === "#taxonomy") openTaxonomy();
   else if (location.hash === "#dashboard") openDashboard();
   else if (location.hash === "#media") openSiteSection("media");
-  else if (location.hash === "#site") openSiteSection("site");
+  else if (siteRoute(location.hash)) openSiteSection(siteRoute(location.hash));
   else if (location.hash === "#new-note") beginNew("notes");
   else if (location.hash === "#new-post") beginNew("posts");
   else if (linkedEntry) openLinkedEntry(linkedEntry.id, linkedEntry.action, true, linkedEntry.kind);

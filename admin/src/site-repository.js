@@ -43,11 +43,11 @@ export class SiteRepository extends DashboardRepository {
   async saveSite(base, value) {
     for (let attempt = 0; attempt < 3; attempt++) {
       const snapshot = await this.snapshot(), latest = await this.readSite(snapshot.head), merged = mergeSite(base, value, latest.value);
-      if (siteText(merged) === siteText(latest.value)) return { ...latest, commit: null };
+      if (siteText(merged) === siteText(latest.value)) return { ...latest, commit: null, entries: snapshot.index.entries };
       merged.updatedAt = new Date().toISOString();
       try {
-        const commit = await this.commitFiles(snapshot, [{ path: SITE_PATH, mode: "100644", type: "blob", content: siteText(merged) }], "Update pages and projects");
-        return { value: merged, commit, sha: null };
+        const commit = await this.commitFiles(snapshot, [{ path: SITE_PATH, mode: "100644", type: "blob", content: siteText(merged) }], "Update home and project settings");
+        return { value: merged, commit, sha: null, entries: snapshot.index.entries };
       } catch (error) { if (!(error instanceof RepositoryConflict) || attempt === 2) throw error; }
     }
   }

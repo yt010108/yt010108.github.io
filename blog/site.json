@@ -1,6 +1,6 @@
 {
   "format": "yt010108-site",
-  "version": 1,
+  "version": 2,
   "profile": {
     "name": "yt010108",
     "displayName": "Yeongtaek Yoo",
@@ -207,7 +207,6 @@
         "8cc6e116-a226-5a95-a874-950a9ea1129d"
       ],
       "published": true,
-      "showOnHome": true,
       "sample": false
     },
     {
@@ -252,7 +251,6 @@
         "04c53a28-d0a9-5cc5-b8bd-8708849a84c9"
       ],
       "published": true,
-      "showOnHome": true,
       "sample": false
     },
     {
@@ -504,6 +502,17 @@
       "sample": false
     }
   ],
+  "home": {
+    "firstSection": "post",
+    "postIds": [
+      "dd821490-df56-4a30-8321-0420b9864e66",
+      "94de11e4-fd60-4ec0-b341-4a09d1f25fe9"
+    ],
+    "projectIds": [
+      "reverser",
+      "recon"
+    ]
+  },
   "pages": [],
   "updatedAt": null
 }
