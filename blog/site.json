@@ -207,6 +207,7 @@
         "8cc6e116-a226-5a95-a874-950a9ea1129d"
       ],
       "published": true,
+      "showOnHome": true,
       "sample": false
     },
     {
@@ -251,6 +252,7 @@
         "04c53a28-d0a9-5cc5-b8bd-8708849a84c9"
       ],
       "published": true,
+      "showOnHome": true,
       "sample": false
     },
     {

@@ -79,6 +79,22 @@ test("Site validation excludes hidden projects from the reader and rejects unsaf
   for (const address of ["javascript:alert(1)", "data:text/html,x", "https://user:secret@example.com/"]) assert.throws(() => validateSite({ ...value, profile: { ...value.profile, github: address } }));
   assert.throws(() => validateSite({ ...value, projects: [value.projects[0], value.projects[0]] }));
   assert.throws(() => validateSite({ ...value, projects: [{ ...value.projects[0], id: "../../index" }] }));
+  assert.throws(() => validateSite({ ...value, projects: [{ ...value.projects[0], showOnHome: "false" }] }));
+});
+
+test("Saving home selections preserves CMS order and only publishes visible projects", async () => {
+  const s = await connected(), edited = structuredClone(initialSite);
+  const [first, hidden, unselected, last] = edited.projects;
+  first.showOnHome = hidden.showOnHome = last.showOnHome = true;
+  hidden.published = false;
+  delete unselected.showOnHome;
+  edited.projects = [last, unselected, hidden, first];
+  await s.client.saveSite(initialSite, edited);
+
+  const { value } = await s.client.readSite();
+  const projects = publicSite(value).projects;
+  assert.deepEqual(projects.map(item => item.id), [last.id, unselected.id, first.id]);
+  assert.deepEqual(projects.map(item => item.showOnHome), [true, false, true]);
 });
 
 test("Site saves merge independent sections and reject concurrent changes to the same section", () => {

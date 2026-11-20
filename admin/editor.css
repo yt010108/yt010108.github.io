@@ -88,7 +88,7 @@
 .cms-site-project-item span { font-size: 13px; }
 .cms-site-project-item small { color: var(--quiet); font-size: 10px; }
 .cms-site-project-editor { min-width: 0; }
-.cms-site-project-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 24px; }
+.cms-site-project-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 24px; }
 .cms-site-checkbox { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; color: var(--muted); }
 .cms-site-checkbox input[type="checkbox"] { appearance: auto; width: 16px; height: 16px; min-height: 0 !important; padding: 0; margin: 3px 0 0; accent-color: var(--writer-accent); flex: 0 0 16px; }
 .cms-site-related { display: grid; gap: 14px; max-height: 330px; overflow-y: auto; margin-top: 18px; }

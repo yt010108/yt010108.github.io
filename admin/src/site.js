@@ -44,18 +44,21 @@ export function createSiteManager({ repository, onBusy }) {
   function renderProjectList() {
     const query = $("site-project-search").value.toLowerCase().trim();
     $("site-project-count").textContent = value?.projects.length || 0;
-    $("site-project-list").innerHTML = (value?.projects || []).filter(item => !query || (item.name + " " + item.category).toLowerCase().includes(query)).map(item => `<button type="button" class="cms-site-project-item" data-project-select="${esc(item.id)}" aria-pressed="${item.id === selected}"><span>${esc(item.name || "새 프로젝트")}</span><small>${esc(item.category || "미분류")} · ${item.published ? "표시 중" : "사이트에서 숨김"}</small></button>`).join("") || '<p class="cms-site-empty">프로젝트가 없어요.</p>';
+    $("site-project-list").innerHTML = (value?.projects || []).filter(item => !query || (item.name + " " + item.category).toLowerCase().includes(query)).map(item => `<button type="button" class="cms-site-project-item" data-project-select="${esc(item.id)}" aria-pressed="${item.id === selected}"><span>${esc(item.name || "새 프로젝트")}</span><small>${esc(item.category || "미분류")} · ${item.published ? "공개" : "사이트에서 숨김"}${item.published && item.showOnHome ? " · 홈에 표시" : ""}</small></button>`).join("") || '<p class="cms-site-empty">프로젝트가 없어요.</p>';
   }
   function renderProject() {
     renderProjectList(); const item = project();
     if (!item) { $("site-project-editor").innerHTML = '<p class="cms-site-empty">프로젝트를 선택하거나 추가해 주세요.</p>'; return; }
     const existing = saved?.projects.some(original => original.id === item.id), index = value.projects.indexOf(item);
-    $("site-project-editor").innerHTML = `<div class="cms-site-project-top"><label class="cms-site-checkbox"><input type="checkbox" data-project-field="published" ${item.published ? "checked" : ""}>사이트에 표시</label><a href="../#/project/${esc(item.id)}" class="writer-text-button" target="_blank" rel="noopener noreferrer">공개 페이지 ↗</a></div>
+    $("site-project-editor").innerHTML = `<div class="cms-site-project-top">
+      <label class="cms-site-checkbox"><input type="checkbox" data-project-field="published" ${item.published ? "checked" : ""}>사이트에 표시</label>
+      <label class="cms-site-checkbox"><input type="checkbox" data-project-field="showOnHome" ${item.showOnHome ? "checked" : ""}>홈에 표시</label>
+      <a href="../#/project/${esc(item.id)}" class="writer-text-button" target="_blank" rel="noopener noreferrer">공개 페이지 ↗</a></div>
       <div class="cms-site-form">${field("주소 ID", item.id, `data-project-field="id" maxlength="90" ${existing ? "readonly" : ""}`, "id")}${PROJECT_TEXT_FIELDS.map(([key, label]) => field(label, item[key], `data-project-field="${key}" maxlength="${["summary", "description"].includes(key) ? 12000 : key === "github" ? 1500 : 250}"`, key)).join("")}${field("기술 스택 · 한 줄에 하나", item.stack.join("\n"), 'data-project-field="stack" maxlength="3025"', "stack")}${field("구성도 단계 · 한 줄에 하나 (최대 8개)", item.flow.join("\n"), 'data-project-field="flow" maxlength="968"', "flow")}</div>
       <p class="writer-small-note">${existing ? "기존 링크를 유지하기 위해 저장한 프로젝트의 주소 ID는 변경하지 않아요." : "주소 ID는 영문 소문자·숫자·하이픈으로 입력하세요. 저장 후 주소가 고정돼요."}</p>
       <div class="cms-site-section cms-site-section-body"><h3>상세 설명</h3>${item.sections.map((section, sectionIndex) => `<div class="cms-site-repeat-item">${field("설명 제목", section.title, `data-project-section="${sectionIndex}" data-field="title" maxlength="200"`, "title")}${field("설명 내용", section.text, `data-project-section="${sectionIndex}" data-field="text" maxlength="15000"`, "text")}${actions("project-sections", sectionIndex, item.sections.length)}</div>`).join("")}<button type="button" class="writer-button" data-site-add="project-sections">설명 추가</button></div>
       <details class="cms-site-section"><summary>관련 글 <span>${item.relatedPosts.length}</span></summary><div class="cms-site-section-body"><input id="site-related-search" type="search" placeholder="관련 글 검색" aria-label="관련 글 검색"><div class="cms-site-related">${posts.filter(post => post.status === "published").map(post => `<label data-related-label="${esc(post.id)}" class="cms-site-checkbox"><input type="checkbox" data-related-post="${esc(post.id)}" ${item.relatedPosts.includes(post.id) ? "checked" : ""}><span>${esc(post.title)}<small>${post.kind === "notes" ? "Notes" : "Posts"} · ${esc(post.category || "미분류")}</small></span></label>`).join("") || '<p>공개된 글이 없어요.</p>'}</div></div></details>
-      ${actions("projects", index, value.projects.length)}<p class="writer-small-note">목록 순서는 Home의 추천 프로젝트와 Projects 화면에도 적용돼요. 삭제는 GitHub에 저장한 뒤 공개 사이트에 반영돼요.</p>`;
+      ${actions("projects", index, value.projects.length)}<p class="writer-small-note">공개 프로젝트 중 ‘홈에 표시’를 켠 항목이 홈의 최근 글 아래에 이 순서로 보여요. 삭제는 GitHub에 저장한 뒤 공개 사이트에 반영돼요.</p>`;
     setBusy(externalBusy);
   }
   function render() { renderProfile(); if (!project()) selected = value?.projects[0]?.id || null; renderProject(); setBusy(externalBusy); }
@@ -99,9 +102,9 @@ export function createSiteManager({ repository, onBusy }) {
       const item = project(), key = data.projectField;
       if (key === "id" && saved.projects.some(original => original.id === item.id)) return;
       if (key === "id" && value.projects.some(other => other !== item && other.id === element.value)) { status("같은 주소 ID의 프로젝트가 있어요. 다른 주소를 입력해 주세요.", true); return; }
-      item[key] = key === "published" ? element.checked : ["stack", "flow"].includes(key) ? lines(element.value) : element.value;
+      item[key] = element.type === "checkbox" ? element.checked : ["stack", "flow"].includes(key) ? lines(element.value) : element.value;
       if (key === "id") selected = item.id;
-      if (["id", "name", "category", "published"].includes(key)) renderProjectList();
+      if (["id", "name", "category", "published", "showOnHome"].includes(key)) renderProjectList();
     } else if (data.projectSection !== undefined && project()) project().sections[Number(data.projectSection)][data.field] = element.value;
     else if (data.relatedPost && project()) { const ids = new Set(project().relatedPosts); element.checked ? ids.add(data.relatedPost) : ids.delete(data.relatedPost); project().relatedPosts = [...ids]; }
     else if (element.id === "site-project-search") { renderProjectList(); return; }
@@ -116,7 +119,7 @@ export function createSiteManager({ repository, onBusy }) {
     if (button.id === "site-project-add") {
       if (value.projects.length >= 60) { status("프로젝트는 60개까지 추가할 수 있어요.", true); return; }
       selected = "project-" + crypto.randomUUID().slice(0, 8);
-      value.projects.push({ id: selected, ...Object.fromEntries(PROJECT_TEXT_FIELDS.map(([key]) => [key, key === "name" ? "새 프로젝트" : ""])), stack: [], flow: [], sections: [], relatedPosts: [], published: false, sample: false }); renderProject(); changed(); return;
+      value.projects.push({ id: selected, ...Object.fromEntries(PROJECT_TEXT_FIELDS.map(([key]) => [key, key === "name" ? "새 프로젝트" : ""])), stack: [], flow: [], sections: [], relatedPosts: [], published: false, showOnHome: false, sample: false }); renderProject(); changed(); return;
     }
     if (data.siteAdd) {
       if (data.siteAdd === "project-sections") { if (!project() || project().sections.length >= 25) return; project().sections.push({ title: "새 설명", text: "" }); renderProject(); }

@@ -58,10 +58,11 @@
 
   function home() {
     const featured = data.posts.some(post => post.featured) ? data.posts.filter(post => post.featured).slice(0, 2) : data.posts.slice(0, 2);
+    const homeProjects = data.projects.filter(project => project.showOnHome);
     return `<div class="container"><section class="hero" aria-labelledby="home-title"><p class="eyebrow">${esc(data.profile.role)}</p><h1 id="home-title">${data.profile.headline.map(line => `<span>${esc(line)}</span>`).join("")}</h1><div class="hero-actions"><a class="primary-link" href="#/posts">Explore posts <span class="arrow" aria-hidden="true">→</span></a><a class="text-link" href="#/about">About me ${arrow}</a></div><span class="hero-index" aria-hidden="true">PERSONAL SITE / 2026</span><a class="hero-scroll" href="#selected" data-scroll="selected">SCROLL TO EXPLORE <span class="arrow" aria-hidden="true">↓</span></a></section>
       <section class="home-section" id="selected">${sectionHeading("SELECTED WRITING", "먼저 읽어볼 글", "#/posts", "All posts")}<div class="featured-grid">${featured.map(post => `<article class="featured-item"><p class="eyebrow">${post.tags.map(tag => esc(tagName(tag))).join(" / ")}</p><h3 class="featured-title"><a href="${localPath("post", post.id)}">${esc(post.title)}</a></h3><p>${esc(post.description)}</p>${meta(post)}</article>`).join("")}</div></section>
-      <section class="home-section">${sectionHeading("SELECTED PROJECTS", "작게 만들고, 깊게 이해하기", "#/projects", "All projects")}<div class="project-grid">${data.projects.slice(0, 2).map(project => projectCard(project)).join("")}</div></section>
-      <section class="home-section">${sectionHeading("LATEST POSTS", "최근에 남긴 기록", "#/posts", "View archive")}<div class="post-list">${data.posts.slice(0, 5).map(post => postRow(post)).join("")}</div>${[...data.posts, ...data.projects].some(item => item.sample) ? '<p class="home-bottom-note">‘예시’로 표시한 글과 프로젝트는 화면 구성을 확인하기 위한 샘플입니다.</p>' : ""}</section></div>`;
+      <section class="home-section">${sectionHeading("LATEST POSTS", "최근에 남긴 기록", "#/posts", "View archive")}<div class="post-list">${data.posts.slice(0, 5).map(post => postRow(post)).join("")}</div>${data.posts.some(item => item.sample) ? '<p class="home-bottom-note">‘예시’로 표시한 글은 화면 구성을 확인하기 위한 샘플입니다.</p>' : ""}</section>
+      ${homeProjects.length ? `<section class="home-section">${sectionHeading("SELECTED PROJECTS", "작게 만들고, 깊게 이해하기", "#/projects", "All projects")}<div class="project-grid">${homeProjects.map(projectCard).join("")}</div></section>` : ""}</div>`;
   }
 
   function pageHead(eyebrow, title, intro) {

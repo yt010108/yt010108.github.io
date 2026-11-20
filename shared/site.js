@@ -45,7 +45,10 @@ export function validateSite(value) {
     project.sections = list(item.sections || [], 25, "프로젝트 설명").map(section => ({ title: text(section.title, 200, "설명 제목", true), text: text(section.text, 15000, "설명") }));
     project.relatedPosts = list(item.relatedPosts || [], 40, "관련 글").map(id => { if (!UUID.test(id)) throw new Error("관련 글 ID를 확인해 주세요."); return id; });
     if (item.published !== undefined && typeof item.published !== "boolean") throw new Error("프로젝트 공개 여부를 확인해 주세요.");
-    project.published = item.published !== false; project.sample = Boolean(item.sample);
+    if (item.showOnHome !== undefined && typeof item.showOnHome !== "boolean") throw new Error("프로젝트 홈 표시 여부를 확인해 주세요.");
+    project.published = item.published !== false;
+    project.showOnHome = item.showOnHome === true;
+    project.sample = Boolean(item.sample);
     return project;
   });
   const pageIds = new Set();
