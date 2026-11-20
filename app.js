@@ -116,7 +116,7 @@
     const seriesControl = isNotes && series.length ? `<label class="archive-category"><span>시리즈</span><select data-filter-series data-filter-kind="${route}" aria-label="시리즈 선택"><option value="">전체 시리즈</option>${series.map(value => `<option value="${esc(value)}" ${value === selectedSeries ? "selected" : ""}>${esc(value)} (${items.filter(item => item.series === value).length})</option>`).join("")}</select></label>` : "";
     const searchControl = isNotes
       ? '<button class="archive-search" type="button" data-search-open>Search ↗</button>'
-      : '<input id="posts-search" class="posts-search-input" type="search" placeholder="글, 노트, 프로젝트 검색…" aria-label="글, 노트, 프로젝트 검색" aria-controls="posts-search-results" autocomplete="off">';
+      : '<input id="posts-search" class="posts-search-input" type="search" placeholder="Search" aria-label="Search" aria-controls="posts-search-results" autocomplete="off">';
     const inlineResults = isNotes ? "" : '<section id="posts-search-results" aria-label="통합 검색 결과" hidden><p class="search-status" role="status"></p><div class="search-results"></div></section>';
     const heading = pageHead(isNotes ? "A LITTLE SPACE TO THINK" : "WRITING & RESEARCH", isNotes ? "Notes." : "Posts.");
     const newLink = isNotes ? window.NotesBoard.newLink : '<a class="archive-new" href="admin/#new-post"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>글쓰기</span></a>';
