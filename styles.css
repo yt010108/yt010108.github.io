@@ -160,7 +160,7 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
 .archive-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; padding-bottom: 10px; }
 .archive-category { display: flex; align-items: center; gap: 10px; color: var(--quiet); font-size: 11px; }
 .archive-category select, .posts-search-input { max-width: 320px; min-height: 34px; padding: 5px 28px 5px 10px; border: 1px solid var(--line); border-radius: 3px; background: var(--bg); color: var(--text); font: 11px/1.5 var(--mono); }
-.posts-search-input { width: min(210px, 100%); min-width: 0; padding-right: 10px; font: 13px/1.5 var(--sans); }
+.posts-search-input { width: 210px; min-width: 0; padding-right: 10px; font: 13px/1.5 var(--sans); }
 .posts-search-input::placeholder { color: var(--quiet); }
 .posts-page .search-status { padding: 12px 0 6px; }
 .posts-page .search-results { max-height: none; overflow: visible; padding: 0 0 55px; }
@@ -169,6 +169,9 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
 .filter-button:hover { color: var(--text); }
 .filter-button[aria-pressed="true"], .filter-button[aria-current="page"] { color: var(--text); border-color: var(--text); }
 .posts-page .filter-bar { align-items: flex-end; }
+.posts-page .archive-tools { min-width: 0; flex-wrap: nowrap; }
+.posts-page .archive-category { min-width: 0; white-space: nowrap; }
+.posts-page .archive-category select { min-width: 0; }
 .posts-page .filter-buttons { min-width: 0; row-gap: 0; }
 .posts-page .filter-button { max-width: 100%; overflow-wrap: anywhere; }
 .filter-button span { margin-left: 6px; font: 9px/1.5 var(--mono); color: var(--quiet); }
@@ -463,8 +466,11 @@ kbd { font: 9px/1.4 var(--mono); border: 1px solid #333a35; color: #a3aaa5; bord
   .page-head { padding-top: 55px; padding-bottom: 32px; }
   .page-intro { font-size: 13px; }
   .filter-bar { align-items: flex-end; gap: 15px; flex-wrap: wrap; }
-  .posts-page .filter-bar { flex-direction: column-reverse; align-items: stretch; gap: 4px; }
-  .posts-page .archive-tools { padding-bottom: 0; }
+  .posts-page .filter-bar { flex-flow: column-reverse nowrap; align-items: stretch; gap: 4px; }
+  .posts-page .archive-tools { column-gap: 10px; padding-bottom: 0; }
+  .posts-page .archive-category { gap: 6px; }
+  .posts-page .archive-category select { padding-inline: 6px; }
+  .posts-page .posts-search-input { flex: 1 1 160px; }
   .archive-tools { flex-wrap: wrap; gap: 15px; }
   .archive-category select { max-width: min(280px, 65vw); }
   .filter-buttons { gap: 17px; }
