@@ -3413,13 +3413,13 @@
       "series": "",
       "tags": [],
       "date": "2026-11-20",
-      "updatedAt": "2026-11-20T00:27:30.650Z",
+      "updatedAt": "2026-11-21T10:14:34.523Z",
       "publishedAt": "2026-11-20T00:27:30.650Z",
-      "status": "published",
+      "status": "trash",
       "sourceDigest": "600cbc9ee0228bcd59be8b3e453d84f93e8df468f3234a4716fe0cd5889f2150",
-      "trashedAt": null,
+      "trashedAt": "2026-11-21T10:14:34.523Z",
       "path": "blog/entries/f65fd439-725c-4081-8c41-2919e2cb65d6.json",
-      "sha": "3f120d81790a35c921dfd69bf216ecaad67d12a7"
+      "sha": "d0a927c05f1b8c15b12da47dbf163a69adae48fd"
     }
   ],
   "taxonomy": {
