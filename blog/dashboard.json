@@ -61,11 +61,6 @@
       "url": "https://dreamhack.io/"
     },
     {
-      "id": "10000000-0000-4000-8000-000000000003",
-      "title": "Notion",
-      "url": "https://www.notion.so/"
-    },
-    {
       "id": "10000000-0000-4000-8000-000000000004",
       "title": "ChatGPT",
       "url": "https://chatgpt.com/"
@@ -79,6 +74,16 @@
       "id": "10000000-0000-4000-8000-000000000006",
       "title": "티스토리",
       "url": "https://yt5246.tistory.com/"
+    },
+    {
+      "id": "48d08a95-32cd-4613-b9e0-e932e468bd3b",
+      "title": "개인정보 포털",
+      "url": "https://www.privacy.go.kr/"
+    },
+    {
+      "id": "96dfe2d0-6651-4e4c-acc9-e5df672d627c",
+      "title": "국가법령정보센터",
+      "url": "https://www.law.go.kr/"
     }
   ],
   "workingOn": [
@@ -107,5 +112,5 @@
       "url": "https://github.com/yt010108/artex-ko"
     }
   ],
-  "updatedAt": "2026-11-21T07:15:56.561Z"
+  "updatedAt": "2026-11-21T10:18:47.127Z"
 }
