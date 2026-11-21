@@ -163,6 +163,7 @@ class PIPC(unittest.TestCase):
             self.assertFalse(pending.exists())
             self.assertEqual(read(LEDGER), ["10", "11", "12"])
             second = read(Path(read(index)["entries"][1]["path"]))
+            self.assertEqual([post["title"], second["title"]], ["개인정보보호법 제66조에 따른 결과의 공표(2026-11-18)"] * 2)
             self.assertEqual(second["doc"]["content"][-2]["content"][0]["text"], "확인기관 A, 확인기관 B")
             self.assertEqual(Path(second["assets"][0]["path"][1:]).read_bytes(), docs["12"][0])
             sync(board, "12", "확인기관 A | 확인기관 B")

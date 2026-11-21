@@ -69,8 +69,7 @@ function doc(version) {
     paragraph("개인정보보호위원회 원문 (" + notice.checked + " 확인)", notice.url)
   ] };
 }
-const baseTitle = fields["제목"] + "(" + fields["작성일"] + ")";
-const title = index.entries.some(e => e.title.startsWith(baseTitle)) ? baseTitle + " · " + names[0] : baseTitle;
+const title = "개인정보보호법 제66조에 따른 결과의 공표(" + fields["작성일"] + ")";
 const draft = { id: postId, title, kind: "posts", slug: "pipc-" + id, description: names.length > 1 ? names[0] + " 등 " + names.length + "곳에 대한 결과 공표" : names[0] + "에 대한 결과 공표",
   category, date, tags: [], series: "", assets: local, doc: doc("draft") };
 const record = validateRecord({ ...draft, format: POST_FORMAT, version: 1, status: "published", trashedAt: null,
