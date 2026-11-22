@@ -3420,6 +3420,24 @@
       "trashedAt": "2026-11-21T10:14:34.523Z",
       "path": "blog/entries/f65fd439-725c-4081-8c41-2919e2cb65d6.json",
       "sha": "d0a927c05f1b8c15b12da47dbf163a69adae48fd"
+    },
+    {
+      "id": "a9367b57-cca5-4ffb-8628-73de65409d67",
+      "kind": "notes",
+      "slug": "유출-사건-정리-관련",
+      "title": "유출 사건 정리 관련",
+      "description": "",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-22",
+      "updatedAt": "2026-11-22T07:04:11.042Z",
+      "publishedAt": "2026-11-22T07:04:11.042Z",
+      "status": "published",
+      "sourceDigest": "6f05d18890713e7c05dfd19f7a791be6ad7131707113d6643071de08ef2fba42",
+      "trashedAt": null,
+      "path": "blog/entries/a9367b57-cca5-4ffb-8628-73de65409d67.json",
+      "sha": "32ddba59cbd2f00602d25e79b41f0418eefc0536"
     }
   ],
   "taxonomy": {

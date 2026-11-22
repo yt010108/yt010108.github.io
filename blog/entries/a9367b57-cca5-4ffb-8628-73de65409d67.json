@@ -1,0 +1,45 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "a9367b57-cca5-4ffb-8628-73de65409d67",
+  "title": "유출 사건 정리 관련",
+  "kind": "notes",
+  "slug": "유출-사건-정리-관련",
+  "description": "",
+  "category": "",
+  "date": "2026-11-22",
+  "tags": [],
+  "series": "",
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-22T07:04:11.042Z",
+  "updatedAt": "2026-11-22T07:04:11.042Z",
+  "sourceDigest": "6f05d18890713e7c05dfd19f7a791be6ad7131707113d6643071de08ef2fba42",
+  "assets": [],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "https://lastcard.tistory.com/1554",
+                  "target": "_blank",
+                  "rel": "noopener noreferrer",
+                  "class": null,
+                  "title": null
+                }
+              }
+            ],
+            "text": "https://lastcard.tistory.com/1554"
+          }
+        ]
+      }
+    ]
+  }
+}
