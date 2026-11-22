@@ -180,7 +180,6 @@
 .cms-post-title { color: var(--text); text-align: left; background: transparent; border: 0; padding: 0; font-size: 15px !important; line-height: 1.6; }
 .cms-post-title:hover:not(:disabled) { text-decoration: underline; text-underline-offset: 4px; }
 .cms-post-kind { display: block; margin-top: 7px; color: var(--quiet); font: 10px var(--mono); }
-.cms-post-series { display: block; margin-top: 7px; color: var(--quiet); font-size: 11px; }
 .cms-feedback-cell { color: var(--quiet); font-size: 11px; }
 .cms-feedback-button { padding: 0; border: 0; background: transparent; color: var(--writer-accent); font-size: 12px; text-underline-offset: 4px; }
 .cms-feedback-button:hover { text-decoration: underline; }

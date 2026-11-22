@@ -36,9 +36,9 @@ export function createManager({ repository, edit, newDraft, report, onBusy = () 
     return filter === "all" ? row.state !== "trash" : filter === "draft" ? ["draft", "modified"].includes(row.state) : filter === "published" ? row.published && row.state !== "trash" : row.state === "trash";
   }
   function visible() {
-    const query = normalize($("manager-search").value), kind = $("manager-kind").value, category = $("manager-category").value, series = $("manager-series").value;
-    return rows.filter(row => matches(row, status) && (!kind || row.item.kind === kind) && (!category || row.item.category === category) && (!series || row.item.series === series)
-      && (!query || normalize([row.item.title, row.item.category, row.item.series, ...(row.item.tags || [])].join(" ")).includes(query)));
+    const query = normalize($("manager-search").value), kind = $("manager-kind").value, category = $("manager-category").value;
+    return rows.filter(row => matches(row, status) && (!kind || row.item.kind === kind) && (!category || row.item.category === category)
+      && (!query || normalize([row.item.title, row.item.category, ...(row.item.tags || [])].join(" ")).includes(query)));
   }
   function canChange(row) { return !row.published || Boolean(row.remote && repository.connected); }
   function renderSelection() {
@@ -63,10 +63,6 @@ export function createManager({ repository, edit, newDraft, report, onBusy = () 
     const categories = [...new Set(rows.map(row => row.item.category).filter(Boolean))].sort((a, b) => a.localeCompare(b, "ko"));
     $("manager-category").innerHTML = '<option value="">모든 카테고리</option>' + categories.map(value => '<option value="' + esc(value) + '">' + esc(value) + "</option>").join("");
     $("manager-category").value = categories.includes(category) ? category : "";
-    const selectedSeries = $("manager-series").value;
-    const series = [...new Set(rows.map(row => row.item.series).filter(Boolean))].sort((a, b) => a.localeCompare(b, "ko"));
-    $("manager-series").replaceChildren(new Option("모든 시리즈", ""), ...series.map(value => new Option(value, value)));
-    $("manager-series").value = series.includes(selectedSeries) ? selectedSeries : "";
     const filtered = visible(), pages = Math.max(1, Math.ceil(filtered.length / 20));
     page = Math.max(1, Math.min(page, pages));
     const shown = filtered.slice((page - 1) * 20, page * 20), list = $("manager-list");
@@ -76,7 +72,7 @@ export function createManager({ repository, edit, newDraft, report, onBusy = () 
       tr.dataset.id = row.id;
       const date = new Date(item.updatedAt);
       const stamp = Number.isNaN(date.getTime()) ? "" : date.toLocaleDateString("ko-KR", { year: "numeric", month: "2-digit", day: "2-digit" });
-      tr.innerHTML = '<td><input type="checkbox" aria-label="' + esc((item.title || "제목 없는 글") + " 선택") + '"' + (selected.has(row.id) ? " checked" : "") + '></td><td><button type="button" class="cms-post-title" data-action="edit"' + (row.state === "trash" ? " disabled" : "") + ">" + esc(item.title || "제목 없는 글") + '</button><span class="cms-post-kind">' + (item.kind === "notes" ? "NOTES" : "POSTS") + '</span></td><td><span class="cms-state" data-state="' + row.state + '">' + stateLabel[row.state] + "</span>" + (row.state === "modified" ? '<span class="cms-state-note">공개본 있음</span>' : "") + '</td><td>' + esc(item.category || "미분류") + (item.series ? '<span class="cms-post-series">시리즈 · ' + esc(item.series) + '</span>' : '') + '</td><td class="cms-post-date">' + esc(stamp) + '</td><td><div class="cms-post-actions"></div></td>';
+      tr.innerHTML = '<td><input type="checkbox" aria-label="' + esc((item.title || "제목 없는 글") + " 선택") + '"' + (selected.has(row.id) ? " checked" : "") + '></td><td><button type="button" class="cms-post-title" data-action="edit"' + (row.state === "trash" ? " disabled" : "") + ">" + esc(item.title || "제목 없는 글") + '</button><span class="cms-post-kind">' + (item.kind === "notes" ? "NOTES" : "POSTS") + '</span></td><td><span class="cms-state" data-state="' + row.state + '">' + stateLabel[row.state] + "</span>" + (row.state === "modified" ? '<span class="cms-state-note">공개본 있음</span>' : "") + '</td><td>' + esc(item.category || "미분류") + '</td><td class="cms-post-date">' + esc(stamp) + '</td><td><div class="cms-post-actions"></div></td>';
       const actions = tr.querySelector(".cms-post-actions");
       const button = (label, action, disabled = false) => {
         const button = document.createElement("button"); button.type = "button"; button.textContent = label;
@@ -217,7 +213,7 @@ export function createManager({ repository, edit, newDraft, report, onBusy = () 
     await edit(entry, action === "publish");
   });
   document.querySelectorAll(".cms-tabs [data-status]").forEach(button => button.addEventListener("click", () => { status = button.dataset.status; page = 1; selected.clear(); render(); }));
-  ["manager-search", "manager-kind", "manager-category", "manager-series"].forEach(id => $(id).addEventListener(id === "manager-search" ? "input" : "change", () => { page = 1; selected.clear(); render(); }));
+  ["manager-search", "manager-kind", "manager-category"].forEach(id => $(id).addEventListener(id === "manager-search" ? "input" : "change", () => { page = 1; selected.clear(); render(); }));
   $("manager-select-all").addEventListener("change", event => { visible().slice((page - 1) * 20, page * 20).forEach(row => event.target.checked ? selected.add(row.id) : selected.delete(row.id)); render(); });
   $("manager-prev").addEventListener("click", () => { page--; selected.clear(); render(); });
   $("manager-next").addEventListener("click", () => { page++; selected.clear(); render(); });
