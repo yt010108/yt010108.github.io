@@ -3438,6 +3438,24 @@
       "trashedAt": null,
       "path": "blog/entries/a9367b57-cca5-4ffb-8628-73de65409d67.json",
       "sha": "32ddba59cbd2f00602d25e79b41f0418eefc0536"
+    },
+    {
+      "id": "19a5897d-5b1a-4589-9cad-ac7cab99a254",
+      "kind": "posts",
+      "slug": "요구사항정의서-양식",
+      "title": "요구사항정의서 양식",
+      "description": "기능적·비기능적 요구사항과 인터페이스 요구사항을 정리하는 워드 양식입니다.",
+      "category": "",
+      "series": "",
+      "tags": [],
+      "date": "2026-11-22",
+      "updatedAt": "2026-11-22T08:22:27.302Z",
+      "publishedAt": "2026-11-22T08:22:27.302Z",
+      "status": "published",
+      "sourceDigest": "30ceab47e96ed4a60d159e1a2476f10928506bb48e3f6dad1a565b21880e4ec5",
+      "trashedAt": null,
+      "path": "blog/entries/19a5897d-5b1a-4589-9cad-ac7cab99a254.json",
+      "sha": "64dc59752cd4178f2a58678406a64f67fc07144d"
     }
   ],
   "taxonomy": {

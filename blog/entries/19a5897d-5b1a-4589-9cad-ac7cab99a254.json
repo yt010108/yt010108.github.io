@@ -1,0 +1,58 @@
+{
+  "format": "yt010108-published-post",
+  "version": 1,
+  "id": "19a5897d-5b1a-4589-9cad-ac7cab99a254",
+  "title": "요구사항정의서 양식",
+  "kind": "posts",
+  "slug": "요구사항정의서-양식",
+  "description": "기능적·비기능적 요구사항과 인터페이스 요구사항을 정리하는 워드 양식입니다.",
+  "category": "",
+  "date": "2026-11-22",
+  "tags": [],
+  "series": "",
+  "status": "published",
+  "trashedAt": null,
+  "publishedAt": "2026-11-22T08:22:27.302Z",
+  "updatedAt": "2026-11-22T08:22:27.302Z",
+  "sourceDigest": "30ceab47e96ed4a60d159e1a2476f10928506bb48e3f6dad1a565b21880e4ec5",
+  "assets": [
+    {
+      "id": "d6553527-5c0b-468a-abb4-3b3caa7d5fae",
+      "name": "요구사항정의서_빈양식.docx",
+      "type": "application/octet-stream",
+      "path": "/assets/uploads/19a5897d-5b1a-4589-9cad-ac7cab99a254/d6553527-5c0b-468a-abb4-3b3caa7d5fae.bin",
+      "sha": "d47e2f4f552a93e3c386fe5e84c8bde56fff7837"
+    }
+  ],
+  "doc": {
+    "type": "doc",
+    "content": [
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "프로젝트의 목적과 범위를 적은 뒤, 기능별 표에 분류·요구사항·우선순위를 입력하세요. 표지와 제/개정 이력, 목차도 포함되어 있습니다."
+          }
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": [
+          {
+            "type": "text",
+            "text": "요구사항정의서 양식 다운로드 (.docx)",
+            "marks": [
+              {
+                "type": "link",
+                "attrs": {
+                  "href": "/assets/uploads/19a5897d-5b1a-4589-9cad-ac7cab99a254/d6553527-5c0b-468a-abb4-3b3caa7d5fae.bin"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
