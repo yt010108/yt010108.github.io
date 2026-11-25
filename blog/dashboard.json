@@ -36,7 +36,7 @@
     {
       "id": "c817a77b-1412-46c8-9f57-8517f5e3731d",
       "text": "법 공부하기",
-      "done": true
+      "done": false
     }
   ],
   "shortcuts": [
@@ -112,5 +112,5 @@
       "url": "https://github.com/yt010108/artex-ko"
     }
   ],
-  "updatedAt": "2026-11-25T11:58:34.158Z"
+  "updatedAt": "2026-11-25T11:58:36.549Z"
 }
